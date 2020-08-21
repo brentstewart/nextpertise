@@ -1,0 +1,14 @@
+{{define "main"}}
+<br>
+<h1>Posts with the tag: <b style="color:blue">{{.Title}}</b></h1>
+<div style="color:grey; font-size:16px;"> 
+Ordered by date
+</div>
+<ul>
+    {{ range .Data.Pages }}
+    <li>
+      <a href="{{.RelPermalink}}">{{ .Title }}</a> - <i>{{ dateFormat "Monday, Jan 2, 2006" .Date}}</i>
+    </li>
+    {{ end }}
+  </ul>
+{{end}}

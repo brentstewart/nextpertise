@@ -1,0 +1,4 @@
+[submodule "themes/nextpertise"]
+	path = themes/nextpertise
+	url = https://github.com/brentstewart/nextpertise.git
+	branch = master

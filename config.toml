@@ -1,0 +1,28 @@
+baseURL = "https://www.nextpertise.net/"
+languageCode = "en-us"
+title = "Nextpertise"
+theme = "next"
+enableRobotsTXT = "true"
+[params]
+  css = ["/style.css"]
+
+
+[taxonomies]
+  tag = "tags"
+
+[[menu.main]]
+  name="Home"
+  url = "/"
+  weight = 1
+[[menu.main]]
+  name="About"
+  url = "/about"
+  weight = 5
+[[menu.main]]
+  name = "TagCloud"
+  url = "/tags/"
+  weight = 3
+[[menu.main]]
+  name = "Github"
+  url = "https://github.com/brentstewart"
+  weight = 4

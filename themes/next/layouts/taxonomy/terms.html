@@ -1,0 +1,10 @@
+{{define "main"}}
+<br>Tags used on this site: <br>
+<ul>
+    {{ range $key, $value := .Site.Taxonomies.tags }}
+    <li>    <a href="/tags/{{ $key | urlize  }}">{{ $key | humanize }}</a> ({{ len $value }})</li>
+    {{ end }}
+</ul>
+{{end}}
+
+
