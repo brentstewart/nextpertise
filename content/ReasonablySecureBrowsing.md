@@ -6,7 +6,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["http://opendns.com", "https://1.1.1.1", "https://haveibeenpwned.com/"]
-tags: ["Security"]
+tags: ["Security","Non-Technical"]
 ---
 Most of my articles are aimed at helping me remember how I did something _cool_ years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I'm disappointed with the lack of understanding about computer security.  I was going to say "surprised", but sadly I'm not.
 
