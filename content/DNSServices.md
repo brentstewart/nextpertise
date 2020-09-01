@@ -1,5 +1,5 @@
 ---
-title: "DNSServices"
+title: "DNS Services"
 date: 2020-08-26T12:01:51-04:00
 draft: false
 author: "Brent"

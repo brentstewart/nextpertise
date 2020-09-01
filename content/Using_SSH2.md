@@ -1,5 +1,5 @@
 ---
-title: "Using SSH - Part 2"
+title: "Using SSH - Part 2 (Authentication)"
 date: 2020-08-12T11:36:12-04:00
 draft: false
 author: "Brent Stewart"
