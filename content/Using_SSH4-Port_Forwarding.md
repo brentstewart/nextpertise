@@ -6,7 +6,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["SSH","Linux"]
 ---
 ![SSH Tunnel](/SSH-Tunnel.png#floatright)__Problem__: We want to access an internal web page that is behind a firewall.  We have SSH access to a server behind the firewall, and _that_ server can see the intranet.
 
