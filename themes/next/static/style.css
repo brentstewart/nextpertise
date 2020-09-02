@@ -42,6 +42,10 @@ blockquote {
   font-family: 'Courier New', Courier, monospace;
   background-color: lightgray;
 }
+code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: lightgray;
+}
 
 img[src$='#center']
 {
