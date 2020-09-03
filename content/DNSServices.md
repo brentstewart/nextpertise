@@ -2,7 +2,7 @@
 title: "DNS Services"
 date: 2020-08-26T12:01:51-04:00
 draft: false
-author: "Brent"
+author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://www.opendns.com","https:/1.1.1.1","https://quad9.net"]

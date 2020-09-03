@@ -2,7 +2,7 @@
 title: "Alternate GNS3 Symbols"
 date: 2020-08-21T13:18:28-04:00
 draft: false
-author: "Brent"
+author: "Brent Stewart"
 github: "https://github.com/brentstewart/GNS3Symbols"
 youtube: ""
 refs: ["https://gns3.com/","https://github.com/GNS3/gns3-registry.git"]

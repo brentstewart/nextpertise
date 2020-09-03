@@ -2,7 +2,7 @@
 title: "Updating a GNS3 Appliance File"
 date: 2020-09-02T08:41:13-04:00
 draft: false
-author: "Brent"
+author: "Brent Stewart"
 github: "https://github.com/brentstewart/gns3-registry"
 youtube: ""
 refs: ["https://securityonion.net/","https://github.com/GNS3/gns3-registry", "https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request"]

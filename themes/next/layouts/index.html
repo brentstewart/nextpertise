@@ -1,0 +1,27 @@
+{{define "main"}}
+<div class="tags">a journal of interesting technical ideas . . .</div>
+<h1>Most Recent Posts:</h1>
+{{range first 3 .Pages }}
+<div class="child">
+    <a href="{{.URL}}">{{.Title}}</a> <div class="tags"> <i>by {{.Params.Author}} on {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
+        {{ .Summary}}<div class="tags"> 
+         {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
+    </div>
+  <br>
+  </div>
+{{end}}
+<hr>
+<h2>Older articles:</h2>
+<div id="parent">
+{{range after 3 .Pages}}
+  <div class="child">
+    <a href="{{.URL}}">{{.Title}}</a><br>
+    <div class="tags"> 
+      <i>by {{.Params.Author}} on {{ dateFormat "1/2/06" .Date }}</i><br>
+      {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
+    </div>
+    <br>
+  </div>
+  {{end}}
+</div>
+{{end}}
