@@ -2,6 +2,8 @@
 title: "Render"
 date: 2020-07-24T08:21:27-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "Render"
 author: "Brent Stewart"
 github: ""
 youtube: ""

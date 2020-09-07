@@ -2,6 +2,8 @@
 title: "Updating a GNS3 Appliance File"
 date: 2020-09-02T08:41:13-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "GNS3"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/gns3-registry"
 youtube: ""

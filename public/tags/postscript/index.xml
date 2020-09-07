@@ -1,0 +1,74 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Postscript on Nextpertise</title>
+    <link>https://www.nextpertise.net/tags/postscript/</link>
+    <description>Recent content in Postscript on Nextpertise</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Aug 2020 16:59:30 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/postscript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fun with Postscript</title>
+      <link>https://www.nextpertise.net/funwithpostscript/</link>
+      <pubDate>Mon, 03 Aug 2020 16:59:30 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/funwithpostscript/</guid>
+      <description>&lt;p&gt;I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&amp;rsquo;s just &lt;em&gt;fun&lt;/em&gt;.  One example of the latter is Postscript.&lt;/p&gt;
+&lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
+&lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1 2 add&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In college, I &amp;ldquo;discovered&amp;rdquo; postscript by printing a file for an Apple LaserWriter to an HP Laserjet. Since the Laserjet didn&amp;rsquo;t speak Postscript (they use PCL) it just dumped raw text onto a stack of paper. I was fascinated because I could kinda read it, so I researched it and bought three books and just started playing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Postscript Language: Tutorial and Cookbook by Adobe
+Graphic Design with Postscript by Gerard Kunkel
+Postscript by Example by Henry McGilton and Mary Campione&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At first, I wrote text files and dumped them to the LaserWriter.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;copy myfile.ps &amp;gt; lpt1:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Later I started using early ghostscript to output to my dot matrix printer. I recently rediscoverd some of my files from the 1980&amp;rsquo;s and found that I could display them in Linux with modern Ghostscript.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a simple Postscript program I took from the Postscript Cookbook:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/Helvetica-Bold findfont&lt;br&gt;
+30 scalefont setfont&lt;br&gt;
+/oshow  %stack: {string}&lt;br&gt;
+{true charpath stroke} def&lt;br&gt;
+/circleofBrent&lt;br&gt;
+{ 20 20 340&lt;br&gt;
+{ gsave&lt;br&gt;
+rotate 0 0 moveto&lt;br&gt;
+(Brent) oshow&lt;br&gt;
+grestore&lt;br&gt;
+} for&lt;br&gt;
+} def&lt;/p&gt;
+&lt;p&gt;% &amp;ndash;Begin Program &amp;ndash;&lt;br&gt;
+250 400 translate&lt;/p&gt;
+&lt;p&gt;.5 setlinewidth&lt;br&gt;
+circleofBrent&lt;/p&gt;
+&lt;p&gt;0 0 moveto&lt;br&gt;
+(Brent Stewart) true charpath&lt;br&gt;
+gsave 1 setgray fill grestore&lt;br&gt;
+stroke&lt;/p&gt;
+&lt;p&gt;showpage&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/CircleofBrent.png#floatright&#34; alt=&#34;Circle of Brent&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Without a lot of explanation, you get the sense of how postscript works.  There&amp;rsquo;s a routine to print my name and rotate the coordinate system in increments of 20 degrees.  That routine is looped through and then the final full name is printed at the end.  Instead of printing this page, in Linux I just typed:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;gs CircleofBrent.ps&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and the page is rendered in a window.  I discovered that you GIMP can directly load postscript files (!) and used that to create the logo and favicon for this site.  You can print the file to a postscript printer using lpr.  MFC9340CDW is a brother printer I use, and I opened system-config-printer to confirm the name.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;lpr -P MFC9340CDW rays.ps&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&amp;rsquo;ve built a repo with some examples.  I actually found some of my code from 30 years ago! PostScript is a simple enough language to quickly accomplish things with, but complicated enough to get some interesting results.  In fact, you can do things in the language that I&amp;rsquo;ve never seen translated to an app.  I hope this post will encourage you to give it a try and have some fun!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

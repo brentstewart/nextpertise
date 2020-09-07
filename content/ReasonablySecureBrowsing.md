@@ -2,13 +2,15 @@
 title: "Reasonably Secure Browsing"
 date: 2020-08-05T11:23:41-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "Secure Browsing"
 author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["http://opendns.com", "https://1.1.1.1", "https://haveibeenpwned.com/"]
 tags: ["Security","Non-Technical"]
 ---
-Most of my articles are aimed at helping me remember how I did something _cool_ years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I'm disappointed with the lack of understanding about computer security.  I was going to say "surprised", but sadly I'm not.
+Most of my articles are aimed at helping me remember how I did something _cool_ years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I'm disappointed with the lack of understanding about computer security.  I was going to say "surprised", but sadly I'm not.  This article tries to fix that by introducing this audience to concepts in Secure Browsing.
 
 I get that we can't all be aware of __everything__.  For instance, I'm not really interested in cars.  Still, if you are participating in an area (driving a car or browsing the web), then there's a basic level of awareness that is needed and that you should aim for.  So this post is written for the non-technical in order to provide that grounding.  I'll try to keep this up to date (pay attention to the posting date!) and I'll start pointing people who ask those questions to this resource.
  ![Tim McGee from NCIS](https://upload.wikimedia.org/wikipedia/en/0/09/Timmcgee.jpg#floatleft)

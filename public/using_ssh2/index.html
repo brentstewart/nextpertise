@@ -1,0 +1,170 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+  </head>
+  <body>
+    
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/about" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+  <i>by Brent Stewart on Wednesday, Aug 12, 2020</i><br>
+  <hr>
+  <h1>Using SSH - Part 2 (Authentication)</h1>
+  <p><p>This aricle makes up part two of the series on SSH.  If you&rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.</p>
+<h2 id="secure-authentication-with-passwords">Secure Authentication with Passwords</h2>
+<p>By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.</p>
+<p>One way to secure the ssh interface is to limit the devices allowed to access your server.  This can be done at different places - on your network firewall, in the OS firewall, or in the ssh process.   SSH uses TCP port 22, so blocking that at the firewall is one way to mitigate against maliciousness.  Since this article is about using SSH, we&rsquo;ll focus on the latter.  Go into sshd_config and add a line for AllowUsers.  The example below allows anyone to login from the 192.168.1.0/24 network. Remember to restart the ssh service after changing sshd_config: <strong>sudo systemctl restart ssh</strong>.</p>
+<blockquote>
+<p><strong>sudo nano /etc/sshd_config</strong></p>
+<blockquote>
+<p><strong>AllowUsers *@192.168.1.*</strong></p>
+</blockquote>
+</blockquote>
+<p>Blocking source addresses only works up to a point.  Bad actors from within can still attack, and outside actors can use another host as a jump server (SSH to there, then start a new SSH session from the inside box).  Picking a good password helps make brute-force attacks take longer, but we need to prevent opportunities to work through every combination of letters.  Fail2ban is a service that blocks IP addresses that exhibit suspicious behavior.  Install it using <strong>sudo apt install fail2ban</strong>.  Below is a script that will setup fail2ban to block IPs that fail three consecutive login attempts.</p>
+<blockquote>
+<p><strong>echo setup fail2ban</strong><br>
+<strong>systemctl start fail2ban</strong><br>
+<strong>systemctl enable fail2ban</strong><br>
+<strong>echo &ldquo;/[sshd]</strong><br>
+<strong>enabled = true</strong><br>
+<strong>port = 22</strong><br>
+<strong>filter = sshd</strong><br>
+<strong>logpath = /var/log/auth.log</strong><br>
+<strong>maxretry = 3&rdquo; &gt;  /etc/fail2ban/jail.local</strong></p>
+</blockquote>
+<h2 id="authentication-with-keys">Authentication with keys</h2>
+<p>Another way to login is using keys.  A key pair - public and private - can be generated on a client and authenticates the client to the server.  Since the keys are stored in the <em>user</em> account, they also in theory are associated with identity.  There are two advantages of using keys.  First, it can eliminate remembering and typing a knuckle-busting password and supports automation.  Second, keys are more secure than passwords <em>on the assumption that the key file is secure</em>.</p>
+<p>To use public-key authentication, you first need to generate a key pair using the command <strong>ssh-keygen</strong>.  You can optionally enter a passphrase to use to unlock the key.  By default, the public key is saved as <em>~/.ssh/id_rsa</em> and the private key as <em>~/.ssh/id_rsa.pub</em>.  This process is shown below.</p>
+<blockquote>
+<p>brent@inspiron:~$ <strong>ssh-keygen</strong><br>
+Generating public/private rsa key pair.<br>
+Enter file in which to save the key (/home/brent/.ssh/id_rsa):<br>
+Enter passphrase (empty for no passphrase):<br>
+Enter same passphrase again:<br>
+Your identification has been saved in /home/brent/.ssh/id_rsa<br>
+Your public key has been saved in /home/brent/.ssh/id_rsa.pub<br>
+The key fingerprint is:<br>
+SHA256:A5RBWIxVGMCAQbzAfenno9hlwQAeafZgnCPJCylrnz8 brent@inspiron<br>
+The key&rsquo;s randomart image is:<br>
++&mdash;[RSA 3072]&mdash;-+<br>
+|<em>====OO</em>.        |<br>
+|**.@==+          |<br>
+|+.B.* +          |<br>
+|.+   o =         |<br>
+|. . . o S        |<br>
+|   o   = .       |<br>
+|    + + .        |<br>
+|   . G           |<br>
+|      .          |<br>
++&mdash;-[SHA256]&mdash;&ndash;+<br>
+brent@inspiron:~$</p>
+</blockquote>
+<p>I don&rsquo;t want to publish my keys to the world, so I just re-ran <strong>ssh-keygen</strong> and accepted the prompt to overwrite the old set.</p>
+<p>Once a key pair is generated, the public key needs to be copied to the host that you want to login to.  To do this, you need password access to the host and this process doesn&rsquo;t disable password access.  Unless you opt to turn that off, you still need to secure the password access using ACLs and fail2ban as previously discussed.  That said, ssh includes a utility to push your public key to a target device - <strong>ssh-copy-id</strong>.</p>
+<blockquote>
+<p>brent@MintyTwenty:~$ <strong>ssh-copy-id brent@192.168.1.1</strong><br>
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed<br>
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed &ndash; if you are prompted now it is to install the new keys<br>
+<a href="mailto:brent@192.168.1.1">brent@192.168.1.1</a>&rsquo;s password:</p>
+<p>Number of key(s) added: 1</p>
+<p>Now try logging into the machine, with:   &ldquo;ssh &lsquo;<a href="mailto:brent@192.168.1.1">brent@192.168.1.1</a>&rsquo;&rdquo;<br>
+and check to make sure that only the key(s) you wanted were added.</p>
+</blockquote>
+<p>Now I should be able to just type <strong>ssh brent@192.168.1.1</strong> and be attached to the server without a password prompt!  Easier administration and easier to script.</p>
+<h2 id="authentication-with-totp">Authentication with TOTP</h2>
+<p>TOTP is for the <em>really</em> paranoid and for those uber-geeks that want to impress their friends.  Digital Ocean has a really nice write up on this, and that was my primary source for learning.  I&rsquo;ve referenced it in the notes.  Their procedure is written for Ubuntu 16.04 but I&rsquo;ve personally used it up through 20.04 without a problem.</p>
+<p>Ideally authentication involves something you <em>know</em> and something you <em>have</em>.  Time-based One Time Passwords are six-digit codes that change periodically.  Hopefully, you already use this to secure critical online resources like your email.  TOTP utilities generate a 3D barcode that can be read by the camera on a phone, and use that to set a unique nugget that can be combined with the time to give random number strings.  Google authenticator is the &ldquo;go-to&rdquo; app on the phone for entering and holding these authenticators.  I use <em>Enpass</em>, which does a similarly good job.</p>
+<p>Before you begin, you&rsquo;ll need the authenticator app loaded on your phone and you&rsquo;ll need to be physically in front of the server.  On the server, install the authenticator module and initiate the settings.</p>
+<blockquote>
+<p><strong>sudo apt install libpam-google-authenticator</strong><br>
+<strong>google-authenticator -t -d -f -r 3 -R 30 -W</strong>   # NOTE: using cmd w/o flags will walk you through prompts</p>
+</blockquote>
+<p>The <strong>google-authenticator</strong> command will show you a 3D barcode and your first code.  Scan that in on your phone and verify the code.  The output will also include five &ldquo;emergency scratch codes&rdquo;.  These would be used if you lose your phone.  Write them down somewhere for emergencies before continuing.</p>
+<p>Next, add a line to <em>/etc/pam.d/sshd</em> for authentication and edit a line in <em>sshd_config</em> for Challenges.  Restart the service and you&rsquo;ll be ready to test.</p>
+<blockquote>
+<p><strong>sudo nano /etc/pam.d/sshd</strong><br>
+#<em>add this line, then close the file</em></p>
+<blockquote>
+<p><strong>auth required pam_google_authenticator.so nullok</strong></p>
+</blockquote>
+<p><strong>sudo nano /etc/.ssh/sshd_config</strong><br>
+#<em>find and change this line, then close the file</em></p>
+<blockquote>
+<p><strong>ChallengeResponseAuthentication yes</strong></p>
+</blockquote>
+<p>#<em>restart sshd</em>
+<strong>sudo systemctl restart sshd.service</strong></p>
+</blockquote>
+<p>At this point, try connecting to this server using ssh.  It should <em>either</em> use a key or prompt you for your password and then for the current TOTP code.  If you want it to require TOTP when using a key, you&rsquo;ll need to edit sshd_config and restart the process again.</p>
+<blockquote>
+<p><strong>sudo nano /etc/.ssh/sshd_config</strong><br>
+#<em>add this line</em></p>
+<blockquote>
+<p><strong>AuthenticationMethods publickey,password publickey,keyboard-interactive</strong></p>
+</blockquote>
+</blockquote>
+<h2 id="recommendations">Recommendations</h2>
+<p>I&rsquo;ve presented a lot of ideas here, so I want to conclude by giving you my recommendations for personal machines.</p>
+<ul>
+<li>Install SSH server by default</li>
+<li>Use a banner in .bashrc to make clear which device you are currently logged into</li>
+<li>Limit SSH to local IPs unless there&rsquo;s a specific requirement otherwise.  If you can&rsquo;t limit by IP, use TOTP.</li>
+<li>Use fail2ban</li>
+<li>Use keys.  Don&rsquo;t try to use the same keys on all devices, just generate new ones every time you re-install or get a new PC.  At least for me, this cuts down on the risk of keys falling into outside hands.</li>
+</ul>
+</p>
+  <br>
+  <hr>
+  <div style="color:grey; font-size:16px;"><strong>References:<br></strong> &nbsp&nbsp<a href="https://www.fail2ban.org">https://www.fail2ban.org</a><br> &nbsp&nbsp<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-16-04</a><br> </div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"><strong>Tags:</strong> <a href="/tags/how-to">How To</a> <a href="/tags/ssh">SSH</a> <a href="/tags/linux">Linux</a> </div>
+  <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/using_ssh2/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Using SSH - Part 2 (Authentication)</a></nav>
+</div>
+  </body>

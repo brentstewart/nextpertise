@@ -1,0 +1,127 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+  </head>
+  <body>
+    
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/about" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+  <i>by Brent Stewart on Thursday, Aug 13, 2020</i><br>
+  <hr>
+  <h1>Using SSH - Part 3 (File Shares)</h1>
+  <p><p>One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you <em>could</em> do this; I&rsquo;m going to share how I&rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.</p>
+<p>I should start by saying that I&rsquo;m <em>not</em> using Microsoft sharing &ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.</p>
+<h2 id="sftp-filezillafilezillapngfloatright">SFTP <img src="/Filezilla.png#floatright" alt="Filezilla"></h2>
+<p>SFTP is a Secure File Transfer Protocol built on top of SSH, and the two are usually bundled together since they are complementary.  One of the easiest ways to use SFTP to transfer files on all platforms is to use <em>Filezilla</em>.  Filezilla presents a left/right here/there file manager that allows easy drag and drop between locations.  It works most places SSH works.  Login using your SSH credentials and set the port to 22.  If you use Filezilla often, the first button on the left is the Site Manager and remembers common destinations.  Filezilla works, but there&rsquo;s no way to open a file in an application from the other disk.  It must be copied locally and this creates multiple file versions and is onerous to use.  So - Filezilla if nothing else works.</p>
+<p><img src="/caja.png#floatleft" alt="Caja">Linux file managers like <em>Caja</em> and Finder on the Mac allow you to attach to an arbitrary destination in an ad-hoc fashion (Windows does not).  For Linux and Mac, just use existing SSH credentials.  This method also supports FTP, CIFS, and WebDav.  I don&rsquo;t recommend FTP because it&rsquo;s not secure and it&rsquo;s a very old protocol and can be difficult to handle on firewalls.  WebDav is slow and involves some Apache setup.  It can be secure, but most folks setting up a quick file share won&rsquo;t take the time to make it so.  I recommend SSH/SFTP.  File managers generally allow bookmarking, but don&rsquo;t automatically reconnect.  I&rsquo;ll walk through a technique that builds the connection at startup later in the article.</p>
+<p>On Android, I&rsquo;m using <em>Cx File Explorer</em>.  This application allows me to connect to SFTP resources and bookmark them.  Cx integrates with the rest of Android, so I can do things like type an email and use Cx to attach a file from the server.  Cx has the same requirements SSH does - a network path to the server and credentials. For me, a common use is to grab a PDF from the server and transfer them to my Kindle.</p>
+<h2 id="aside---nfs">Aside - NFS</h2>
+<p>Network File System (NFS) is a dream for devices that support it.  It lacks the ad hoc browsing you might do on a Windows network, but at home I want all the files on the servers and if I have to do horizontal file sharing I can figure it out.  Setting up NFS on the server involves getting the NFS server, setting up the <em>/etc/fstab</em> configuration file, and publishing the share using <strong>exportfs</strong>.  The example below publishes my user directory from the server.</p>
+<blockquote>
+<p><strong>sudo apt install nfs-kernel-server nfs-common</strong><br>
+<strong>sudo nano /etc/exports</strong></p>
+<blockquote>
+<p><em>add lines similar to this one</em><br>
+<strong>/home/brent 192.168.1.0/255.255.255.0(rw,anonuid=1000,anongid=1000,sync)</strong><br>
+<em>save file</em></p>
+</blockquote>
+<p><strong>exportfs -avf</strong></p>
+</blockquote>
+<p>On the client, I&rsquo;ll map this share to a folder so it sits in my directory tree.  In this case, I want my server user directory to fit under my local user directory as the <em>server</em> sub-directory.</p>
+<blockquote>
+<p><strong>mkdir ~/server</strong><br>
+<strong>sudo nano /etc/fstab</strong></p>
+<blockquote>
+<p><em>add lines similar to this one</em><br>
+<strong>192.168.1.1:/home/brent /home/brent/server nfs default 0 0</strong><br>
+<em>save file</em><br>
+<strong>sudo mount ~/server</strong></p>
+</blockquote>
+</blockquote>
+<p>It should just work, but you may need to use <strong>mount</strong> to kick it in the rear.  Because this is setup in your <em>fstab</em> file, it will automatically reconnect when you restart.  My personal workflow is to save all my work products to the server because that&rsquo;s what is being backed up.  I use the local folders for scratch files, downloads, etc.  I like to try new things and end up re-installing my OS on my desktop about three times a year.  I can throw my Ventoy USB stick in the PC, pick a distro, and be back up with no lost data in minutes!</p>
+<p>NFS works great for Linux to Linux filesharing.  I didn&rsquo;t have great success with Windows.  There is a process that includes using <em>Services for NFS</em>, but I won&rsquo;t even link to it.  It was difficult to get working and didn&rsquo;t &ldquo;just work&rdquo; in the way that I wanted for my wife&rsquo;s PC.  I haven&rsquo;t seen a way to use this with Android and haven&rsquo;t attempted with Chrome.  On the Mac, this works fine and is supported by Finder.  The procedure is just:</p>
+<blockquote>
+<p><strong>showmount -e 192.168.1.1</strong>  <em>#view available shares</em>
+<strong>sudo mkdir /server-files</strong> _ #depending on where you put it, you may not need sudo
+<strong>sudo mount -o rw -t nfs 192.168.1.1:/home/brent /server-files</strong></p>
+</blockquote>
+<p>NFS can be secure.  NFSv4 encrypts traffic in-transit and v2/3 allow you to limit promiscuous connections using a mask.  In the enterprise or if your traffic crosses a public network you <em>really</em> need to use v4.
+<img src="https://raw.githubusercontent.com/billziss-gh/sshfs-win/master/cap.gif#floatright" alt="SSHFS Win"></p>
+<h2 id="sshfs">SSHFS</h2>
+<p>SSHFS is a file system using SFTP.  Since SFTP is built on top of SSH, SSHFS inherits all the goodness.  SSHFS  works for everything I&rsquo;ve tested so far - I haven&rsquo;t gotten to the Chromebooks yet, but I <em>have</em> used it in Haiku.  SSHFS doesn&rsquo;t require server setup beyond installing the SSH server daemon.  File permissions are communicated based on how you login.</p>
+<p>On Linux, the command to mount a directory using SSHFS looks like this (the server is 192.168.1.1).</p>
+<blockquote>
+<p><strong>mkdir ~/server</strong>  <em>#if it doesn&rsquo;t already exist</em><br>
+<strong>sudo sshfs -o allow_other,default_permissions <a href="mailto:brent@192.168.1.1">brent@192.168.1.1</a>:/home/brent /home/brent/server</strong></p>
+</blockquote>
+<p>You can add this to fstab if you want it to be automatic.</p>
+<blockquote>
+<p><strong>sudo nano /etc/fstab</strong></p>
+<blockquote>
+<p><em># add this line</em><br>
+_<em><a href="mailto:sshfs#brent@192.168.1.1">sshfs#brent@192.168.1.1</a>:/home/brent /home/brent/server fuse.sshfs <em>netdev,idmap=user,uid=1001,gid=1002,allow_other,default_permissions 0 0</em></em></p>
+</blockquote>
+</blockquote>
+<p>For Windows, I&rsquo;m using a stack of WinFsp, SSHFS-Win, and SSHFS-Win-Manager (links in notes).  Here&rsquo;s the procedure:<img src="/SSHFS-Win-Manager.png#floatleft" alt="SSHFS-WIn-Manager"></p>
+<ol>
+<li>Install <em>WinFsp</em> from Github - there&rsquo;s an MSI attached to the latest release (I tested with winfsp-1.7.20172.msi)</li>
+<li>Install <em>SSHFS-Win</em> from Github - again using an MSI (I tested with SSHFS-Win-3.5.20024-x64.msi).  At this point you can map drives using the UNC \sshfs\user@server.</li>
+</ol>
+<p><img src="/SSHFS-Win-Manager-Add.png#floatright" alt="SSH-Win-Manager Adding a Conneciton">. This is aimed at the family members who <em>don&rsquo;t</em> want to futz around with computers all day, so install <em>SSHFS-Win Manager</em> from Github (I tested with sshfs-win-manager-setup-v1.0.1.exe).  Once installed, click &ldquo;add connection&rdquo;.  The connection information is standard SSH information.  To attach my remote user directory to my local one as in the earlier example, I would specify a Remote path of <em>/home/brent</em> and a Local Path of <em>/home/brent/server</em>.</p>
+</p>
+  <br>
+  <hr>
+  <div style="color:grey; font-size:16px;"><strong>References:<br></strong> &nbsp&nbsp<a href="https://filezilla-project.org/">https://filezilla-project.org/</a><br> &nbsp&nbsp<a href="https://play.google.com/store/apps/details?id=com.cxinventor.file.explorer&amp;hl=en_US">https://play.google.com/store/apps/details?id=com.cxinventor.file.explorer&amp;hl=en_US</a><br> &nbsp&nbsp<a href="https://github.com/billziss-gh/winfsp/releases/tag/v1.7">https://github.com/billziss-gh/winfsp/releases/tag/v1.7</a><br> &nbsp&nbsp<a href="https://github.com/billziss-gh/sshfs-win">https://github.com/billziss-gh/sshfs-win</a><br> &nbsp&nbsp<a href="https://github.com/evsar3/sshfs-win-manager">https://github.com/evsar3/sshfs-win-manager</a><br> </div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"><strong>Tags:</strong> <a href="/tags/nfs">NFS</a> <a href="/tags/ssh">SSH</a> <a href="/tags/linux">Linux</a> </div>
+  <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/using_ssh3/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Using SSH - Part 3 (File Shares)</a></nav>
+</div>
+  </body>

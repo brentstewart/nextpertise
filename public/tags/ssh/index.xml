@@ -1,0 +1,304 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH on Nextpertise</title>
+    <link>https://www.nextpertise.net/tags/ssh/</link>
+    <description>Recent content in SSH on Nextpertise</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Aug 2020 15:12:24 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using SSH Part 4 - Port Forwarding</title>
+      <link>https://www.nextpertise.net/using_ssh4-port_forwarding/</link>
+      <pubDate>Sun, 30 Aug 2020 15:12:24 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/using_ssh4-port_forwarding/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/SSH-Tunnel.png#floatright&#34; alt=&#34;SSH Tunnel&#34;&gt;&lt;strong&gt;Problem&lt;/strong&gt;: We want to access an internal web page that is behind a firewall.  We have SSH access to a server behind the firewall, and &lt;em&gt;that&lt;/em&gt; server can see the intranet.&lt;/p&gt;
+&lt;p&gt;SSH has a solution for this type of problem - tunneling.  Most people use SSH as a telnet replacement &amp;ndash; as just a way to get a terminal session.  SSH is capable of much more than mere terminal access.  There are several ways to accomplish out goal, so let&amp;rsquo;s sort through them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This article demonstrates an obscure and useful way to use a tool, but raises two important points.  First, don&amp;rsquo;t take any part of this to be an example of good design.  I&amp;rsquo;ve constructed a case that allows demonstrating a technique.  Second, using the tool this way may short-circuit your organizations&amp;rsquo; security design and so security folks may want to mitigate against allowing this use.&lt;/p&gt;
+&lt;h2 id=&#34;option-1---ssh-from-the-client&#34;&gt;Option 1 - SSH from the client&lt;/h2&gt;
+&lt;p&gt;For this to work, the intermediate host (10.0.0.22 in this case) needs to allow itself to pass ports.  Open the &lt;strong&gt;sshd_config&lt;/strong&gt; file and set GatewayPorts to &lt;em&gt;yes&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/ssh/sshd_config&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;# edit line to remove remark and change to yes&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;GatewayPorts yes&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Next, ssh from the external device to the intermediate device and link a local port to an address and port reachable from the ssh target.  In the example below, we connect into 2.2.2.2 (&amp;ldquo;server&amp;rdquo;) and then we map &lt;em&gt;local (on the external device)&lt;/em&gt; port 8080 to a target reachable from the server - webserver port 80.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ssh -L 8080:10.0.0.80:80 2.2.2.2&lt;/strong&gt;
+&lt;em&gt;# -L maps a local port&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;# 8080:10.0.0.80:80 ties port 8080 to a remote destination of 10.0.0.80:80&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;# 2.2.2.2 is the ssh target&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After running this command, you&amp;rsquo;ll be asked to log into the ssh server normally.  Once logged in, open a web browser on the external client to http://localhost:8080 and the remote internal webpage will be visible.&lt;/p&gt;
+&lt;h2 id=&#34;option-2---ssh-from-the-inside-reverse-tunnel&#34;&gt;Option 2 - SSH from the inside (Reverse Tunnel)&lt;/h2&gt;
+&lt;p&gt;Another option is to make a port available to a remote computer.  In this case, we start ssh from the server and connect to the remote client (which we&amp;rsquo;ll imagine is me.myself.com).  Again, the command prompts us to login to the remote machine.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ssh -R 8080:10.0.0.80:80 me.myself.com&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At this point the remote user can open a browser to http://localhost:8080 and see the internal page.  In fact, the firewall may allow ssh traffic to originate from the webserver.  In that case the reverse tunnel could be established from the webserver without having to use an intermediate host.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ssh -R 8080:localhost:80 me.myself.com&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;option-3---http-from-the-outside&#34;&gt;Option 3 - HTTP from the outside&lt;/h2&gt;
+&lt;p&gt;The final scenario to consider is to allow the server to listen on a port and forward traffic to the intranet server.  Obviously this would require the firewall configuration to allow some port in addition to tcp/22 (SSH) into the server.  In this case, we&amp;rsquo;ll ask the server to listen on port 8001 and forward that traffic to the internal web server.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ssh -R 8001:10.0.0.80:80 localhost&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The client can now browse to http://2.2.2.2:8001 to see the webpage.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;SSH port forwarding and reverse SSH connections are powerful tools that can circumvent network policy.  Being familiar with this use may be helpful in troubleshooting, and may be important to you when considering how ssh servers are deployed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 3 (File Shares)</title>
+      <link>https://www.nextpertise.net/using_ssh3/</link>
+      <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/using_ssh3/</guid>
+      <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
+&lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
+&lt;h2 id=&#34;sftp-filezillafilezillapngfloatright&#34;&gt;SFTP &lt;img src=&#34;https://www.nextpertise.net/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;SFTP is a Secure File Transfer Protocol built on top of SSH, and the two are usually bundled together since they are complementary.  One of the easiest ways to use SFTP to transfer files on all platforms is to use &lt;em&gt;Filezilla&lt;/em&gt;.  Filezilla presents a left/right here/there file manager that allows easy drag and drop between locations.  It works most places SSH works.  Login using your SSH credentials and set the port to 22.  If you use Filezilla often, the first button on the left is the Site Manager and remembers common destinations.  Filezilla works, but there&amp;rsquo;s no way to open a file in an application from the other disk.  It must be copied locally and this creates multiple file versions and is onerous to use.  So - Filezilla if nothing else works.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/caja.png#floatleft&#34; alt=&#34;Caja&#34;&gt;Linux file managers like &lt;em&gt;Caja&lt;/em&gt; and Finder on the Mac allow you to attach to an arbitrary destination in an ad-hoc fashion (Windows does not).  For Linux and Mac, just use existing SSH credentials.  This method also supports FTP, CIFS, and WebDav.  I don&amp;rsquo;t recommend FTP because it&amp;rsquo;s not secure and it&amp;rsquo;s a very old protocol and can be difficult to handle on firewalls.  WebDav is slow and involves some Apache setup.  It can be secure, but most folks setting up a quick file share won&amp;rsquo;t take the time to make it so.  I recommend SSH/SFTP.  File managers generally allow bookmarking, but don&amp;rsquo;t automatically reconnect.  I&amp;rsquo;ll walk through a technique that builds the connection at startup later in the article.&lt;/p&gt;
+&lt;p&gt;On Android, I&amp;rsquo;m using &lt;em&gt;Cx File Explorer&lt;/em&gt;.  This application allows me to connect to SFTP resources and bookmark them.  Cx integrates with the rest of Android, so I can do things like type an email and use Cx to attach a file from the server.  Cx has the same requirements SSH does - a network path to the server and credentials. For me, a common use is to grab a PDF from the server and transfer them to my Kindle.&lt;/p&gt;
+&lt;h2 id=&#34;aside---nfs&#34;&gt;Aside - NFS&lt;/h2&gt;
+&lt;p&gt;Network File System (NFS) is a dream for devices that support it.  It lacks the ad hoc browsing you might do on a Windows network, but at home I want all the files on the servers and if I have to do horizontal file sharing I can figure it out.  Setting up NFS on the server involves getting the NFS server, setting up the &lt;em&gt;/etc/fstab&lt;/em&gt; configuration file, and publishing the share using &lt;strong&gt;exportfs&lt;/strong&gt;.  The example below publishes my user directory from the server.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo apt install nfs-kernel-server nfs-common&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;sudo nano /etc/exports&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;add lines similar to this one&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;/home/brent 192.168.1.0/255.255.255.0(rw,anonuid=1000,anongid=1000,sync)&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;save file&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;exportfs -avf&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;On the client, I&amp;rsquo;ll map this share to a folder so it sits in my directory tree.  In this case, I want my server user directory to fit under my local user directory as the &lt;em&gt;server&lt;/em&gt; sub-directory.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;mkdir ~/server&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;sudo nano /etc/fstab&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;add lines similar to this one&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;192.168.1.1:/home/brent /home/brent/server nfs default 0 0&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;save file&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;sudo mount ~/server&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It should just work, but you may need to use &lt;strong&gt;mount&lt;/strong&gt; to kick it in the rear.  Because this is setup in your &lt;em&gt;fstab&lt;/em&gt; file, it will automatically reconnect when you restart.  My personal workflow is to save all my work products to the server because that&amp;rsquo;s what is being backed up.  I use the local folders for scratch files, downloads, etc.  I like to try new things and end up re-installing my OS on my desktop about three times a year.  I can throw my Ventoy USB stick in the PC, pick a distro, and be back up with no lost data in minutes!&lt;/p&gt;
+&lt;p&gt;NFS works great for Linux to Linux filesharing.  I didn&amp;rsquo;t have great success with Windows.  There is a process that includes using &lt;em&gt;Services for NFS&lt;/em&gt;, but I won&amp;rsquo;t even link to it.  It was difficult to get working and didn&amp;rsquo;t &amp;ldquo;just work&amp;rdquo; in the way that I wanted for my wife&amp;rsquo;s PC.  I haven&amp;rsquo;t seen a way to use this with Android and haven&amp;rsquo;t attempted with Chrome.  On the Mac, this works fine and is supported by Finder.  The procedure is just:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;showmount -e 192.168.1.1&lt;/strong&gt;  &lt;em&gt;#view available shares&lt;/em&gt;
+&lt;strong&gt;sudo mkdir /server-files&lt;/strong&gt; _ #depending on where you put it, you may not need sudo
+&lt;strong&gt;sudo mount -o rw -t nfs 192.168.1.1:/home/brent /server-files&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;NFS can be secure.  NFSv4 encrypts traffic in-transit and v2/3 allow you to limit promiscuous connections using a mask.  In the enterprise or if your traffic crosses a public network you &lt;em&gt;really&lt;/em&gt; need to use v4.
+&lt;img src=&#34;https://raw.githubusercontent.com/billziss-gh/sshfs-win/master/cap.gif#floatright&#34; alt=&#34;SSHFS Win&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sshfs&#34;&gt;SSHFS&lt;/h2&gt;
+&lt;p&gt;SSHFS is a file system using SFTP.  Since SFTP is built on top of SSH, SSHFS inherits all the goodness.  SSHFS  works for everything I&amp;rsquo;ve tested so far - I haven&amp;rsquo;t gotten to the Chromebooks yet, but I &lt;em&gt;have&lt;/em&gt; used it in Haiku.  SSHFS doesn&amp;rsquo;t require server setup beyond installing the SSH server daemon.  File permissions are communicated based on how you login.&lt;/p&gt;
+&lt;p&gt;On Linux, the command to mount a directory using SSHFS looks like this (the server is 192.168.1.1).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;mkdir ~/server&lt;/strong&gt;  &lt;em&gt;#if it doesn&amp;rsquo;t already exist&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;sudo sshfs -o allow_other,default_permissions &lt;a href=&#34;mailto:brent@192.168.1.1&#34;&gt;brent@192.168.1.1&lt;/a&gt;:/home/brent /home/brent/server&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can add this to fstab if you want it to be automatic.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/fstab&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;# add this line&lt;/em&gt;&lt;br&gt;
+_&lt;em&gt;&lt;a href=&#34;mailto:sshfs#brent@192.168.1.1&#34;&gt;sshfs#brent@192.168.1.1&lt;/a&gt;:/home/brent /home/brent/server fuse.sshfs &lt;em&gt;netdev,idmap=user,uid=1001,gid=1002,allow_other,default_permissions 0 0&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For Windows, I&amp;rsquo;m using a stack of WinFsp, SSHFS-Win, and SSHFS-Win-Manager (links in notes).  Here&amp;rsquo;s the procedure:&lt;img src=&#34;https://www.nextpertise.net/SSHFS-Win-Manager.png#floatleft&#34; alt=&#34;SSHFS-WIn-Manager&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install &lt;em&gt;WinFsp&lt;/em&gt; from Github - there&amp;rsquo;s an MSI attached to the latest release (I tested with winfsp-1.7.20172.msi)&lt;/li&gt;
+&lt;li&gt;Install &lt;em&gt;SSHFS-Win&lt;/em&gt; from Github - again using an MSI (I tested with SSHFS-Win-3.5.20024-x64.msi).  At this point you can map drives using the UNC \sshfs\user@server.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/SSHFS-Win-Manager-Add.png#floatright&#34; alt=&#34;SSH-Win-Manager Adding a Conneciton&#34;&gt;. This is aimed at the family members who &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; want to futz around with computers all day, so install &lt;em&gt;SSHFS-Win Manager&lt;/em&gt; from Github (I tested with sshfs-win-manager-setup-v1.0.1.exe).  Once installed, click &amp;ldquo;add connection&amp;rdquo;.  The connection information is standard SSH information.  To attach my remote user directory to my local one as in the earlier example, I would specify a Remote path of &lt;em&gt;/home/brent&lt;/em&gt; and a Local Path of &lt;em&gt;/home/brent/server&lt;/em&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 2 (Authentication)</title>
+      <link>https://www.nextpertise.net/using_ssh2/</link>
+      <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/using_ssh2/</guid>
+      <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
+&lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
+&lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
+&lt;p&gt;One way to secure the ssh interface is to limit the devices allowed to access your server.  This can be done at different places - on your network firewall, in the OS firewall, or in the ssh process.   SSH uses TCP port 22, so blocking that at the firewall is one way to mitigate against maliciousness.  Since this article is about using SSH, we&amp;rsquo;ll focus on the latter.  Go into sshd_config and add a line for AllowUsers.  The example below allows anyone to login from the 192.168.1.0/24 network. Remember to restart the ssh service after changing sshd_config: &lt;strong&gt;sudo systemctl restart ssh&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/sshd_config&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;AllowUsers *@192.168.1.*&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Blocking source addresses only works up to a point.  Bad actors from within can still attack, and outside actors can use another host as a jump server (SSH to there, then start a new SSH session from the inside box).  Picking a good password helps make brute-force attacks take longer, but we need to prevent opportunities to work through every combination of letters.  Fail2ban is a service that blocks IP addresses that exhibit suspicious behavior.  Install it using &lt;strong&gt;sudo apt install fail2ban&lt;/strong&gt;.  Below is a script that will setup fail2ban to block IPs that fail three consecutive login attempts.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;echo setup fail2ban&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;systemctl start fail2ban&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;systemctl enable fail2ban&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;echo &amp;ldquo;/[sshd]&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;enabled = true&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;port = 22&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;filter = sshd&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;logpath = /var/log/auth.log&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;maxretry = 3&amp;rdquo; &amp;gt;  /etc/fail2ban/jail.local&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;authentication-with-keys&#34;&gt;Authentication with keys&lt;/h2&gt;
+&lt;p&gt;Another way to login is using keys.  A key pair - public and private - can be generated on a client and authenticates the client to the server.  Since the keys are stored in the &lt;em&gt;user&lt;/em&gt; account, they also in theory are associated with identity.  There are two advantages of using keys.  First, it can eliminate remembering and typing a knuckle-busting password and supports automation.  Second, keys are more secure than passwords &lt;em&gt;on the assumption that the key file is secure&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To use public-key authentication, you first need to generate a key pair using the command &lt;strong&gt;ssh-keygen&lt;/strong&gt;.  You can optionally enter a passphrase to use to unlock the key.  By default, the public key is saved as &lt;em&gt;~/.ssh/id_rsa&lt;/em&gt; and the private key as &lt;em&gt;~/.ssh/id_rsa.pub&lt;/em&gt;.  This process is shown below.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brent@inspiron:~$ &lt;strong&gt;ssh-keygen&lt;/strong&gt;&lt;br&gt;
+Generating public/private rsa key pair.&lt;br&gt;
+Enter file in which to save the key (/home/brent/.ssh/id_rsa):&lt;br&gt;
+Enter passphrase (empty for no passphrase):&lt;br&gt;
+Enter same passphrase again:&lt;br&gt;
+Your identification has been saved in /home/brent/.ssh/id_rsa&lt;br&gt;
+Your public key has been saved in /home/brent/.ssh/id_rsa.pub&lt;br&gt;
+The key fingerprint is:&lt;br&gt;
+SHA256:A5RBWIxVGMCAQbzAfenno9hlwQAeafZgnCPJCylrnz8 brent@inspiron&lt;br&gt;
+The key&amp;rsquo;s randomart image is:&lt;br&gt;
++&amp;mdash;[RSA 3072]&amp;mdash;-+&lt;br&gt;
+|&lt;em&gt;====OO&lt;/em&gt;.        |&lt;br&gt;
+|**.@==+          |&lt;br&gt;
+|+.B.* +          |&lt;br&gt;
+|.+   o =         |&lt;br&gt;
+|. . . o S        |&lt;br&gt;
+|   o   = .       |&lt;br&gt;
+|    + + .        |&lt;br&gt;
+|   . G           |&lt;br&gt;
+|      .          |&lt;br&gt;
++&amp;mdash;-[SHA256]&amp;mdash;&amp;ndash;+&lt;br&gt;
+brent@inspiron:~$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I don&amp;rsquo;t want to publish my keys to the world, so I just re-ran &lt;strong&gt;ssh-keygen&lt;/strong&gt; and accepted the prompt to overwrite the old set.&lt;/p&gt;
+&lt;p&gt;Once a key pair is generated, the public key needs to be copied to the host that you want to login to.  To do this, you need password access to the host and this process doesn&amp;rsquo;t disable password access.  Unless you opt to turn that off, you still need to secure the password access using ACLs and fail2ban as previously discussed.  That said, ssh includes a utility to push your public key to a target device - &lt;strong&gt;ssh-copy-id&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brent@MintyTwenty:~$ &lt;strong&gt;ssh-copy-id brent@192.168.1.1&lt;/strong&gt;&lt;br&gt;
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed&lt;br&gt;
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed &amp;ndash; if you are prompted now it is to install the new keys&lt;br&gt;
+&lt;a href=&#34;mailto:brent@192.168.1.1&#34;&gt;brent@192.168.1.1&lt;/a&gt;&amp;rsquo;s password:&lt;/p&gt;
+&lt;p&gt;Number of key(s) added: 1&lt;/p&gt;
+&lt;p&gt;Now try logging into the machine, with:   &amp;ldquo;ssh &amp;lsquo;&lt;a href=&#34;mailto:brent@192.168.1.1&#34;&gt;brent@192.168.1.1&lt;/a&gt;&amp;rsquo;&amp;rdquo;&lt;br&gt;
+and check to make sure that only the key(s) you wanted were added.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now I should be able to just type &lt;strong&gt;ssh brent@192.168.1.1&lt;/strong&gt; and be attached to the server without a password prompt!  Easier administration and easier to script.&lt;/p&gt;
+&lt;h2 id=&#34;authentication-with-totp&#34;&gt;Authentication with TOTP&lt;/h2&gt;
+&lt;p&gt;TOTP is for the &lt;em&gt;really&lt;/em&gt; paranoid and for those uber-geeks that want to impress their friends.  Digital Ocean has a really nice write up on this, and that was my primary source for learning.  I&amp;rsquo;ve referenced it in the notes.  Their procedure is written for Ubuntu 16.04 but I&amp;rsquo;ve personally used it up through 20.04 without a problem.&lt;/p&gt;
+&lt;p&gt;Ideally authentication involves something you &lt;em&gt;know&lt;/em&gt; and something you &lt;em&gt;have&lt;/em&gt;.  Time-based One Time Passwords are six-digit codes that change periodically.  Hopefully, you already use this to secure critical online resources like your email.  TOTP utilities generate a 3D barcode that can be read by the camera on a phone, and use that to set a unique nugget that can be combined with the time to give random number strings.  Google authenticator is the &amp;ldquo;go-to&amp;rdquo; app on the phone for entering and holding these authenticators.  I use &lt;em&gt;Enpass&lt;/em&gt;, which does a similarly good job.&lt;/p&gt;
+&lt;p&gt;Before you begin, you&amp;rsquo;ll need the authenticator app loaded on your phone and you&amp;rsquo;ll need to be physically in front of the server.  On the server, install the authenticator module and initiate the settings.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo apt install libpam-google-authenticator&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;google-authenticator -t -d -f -r 3 -R 30 -W&lt;/strong&gt;   # NOTE: using cmd w/o flags will walk you through prompts&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;strong&gt;google-authenticator&lt;/strong&gt; command will show you a 3D barcode and your first code.  Scan that in on your phone and verify the code.  The output will also include five &amp;ldquo;emergency scratch codes&amp;rdquo;.  These would be used if you lose your phone.  Write them down somewhere for emergencies before continuing.&lt;/p&gt;
+&lt;p&gt;Next, add a line to &lt;em&gt;/etc/pam.d/sshd&lt;/em&gt; for authentication and edit a line in &lt;em&gt;sshd_config&lt;/em&gt; for Challenges.  Restart the service and you&amp;rsquo;ll be ready to test.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/pam.d/sshd&lt;/strong&gt;&lt;br&gt;
+#&lt;em&gt;add this line, then close the file&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;auth required pam_google_authenticator.so nullok&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/.ssh/sshd_config&lt;/strong&gt;&lt;br&gt;
+#&lt;em&gt;find and change this line, then close the file&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ChallengeResponseAuthentication yes&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;#&lt;em&gt;restart sshd&lt;/em&gt;
+&lt;strong&gt;sudo systemctl restart sshd.service&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At this point, try connecting to this server using ssh.  It should &lt;em&gt;either&lt;/em&gt; use a key or prompt you for your password and then for the current TOTP code.  If you want it to require TOTP when using a key, you&amp;rsquo;ll need to edit sshd_config and restart the process again.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/.ssh/sshd_config&lt;/strong&gt;&lt;br&gt;
+#&lt;em&gt;add this line&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;AuthenticationMethods publickey,password publickey,keyboard-interactive&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;recommendations&#34;&gt;Recommendations&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve presented a lot of ideas here, so I want to conclude by giving you my recommendations for personal machines.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install SSH server by default&lt;/li&gt;
+&lt;li&gt;Use a banner in .bashrc to make clear which device you are currently logged into&lt;/li&gt;
+&lt;li&gt;Limit SSH to local IPs unless there&amp;rsquo;s a specific requirement otherwise.  If you can&amp;rsquo;t limit by IP, use TOTP.&lt;/li&gt;
+&lt;li&gt;Use fail2ban&lt;/li&gt;
+&lt;li&gt;Use keys.  Don&amp;rsquo;t try to use the same keys on all devices, just generate new ones every time you re-install or get a new PC.  At least for me, this cuts down on the risk of keys falling into outside hands.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 1 (Basics and Banners)</title>
+      <link>https://www.nextpertise.net/using_ssh1/</link>
+      <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/using_ssh1/</guid>
+      <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
+&lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
+&lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;
+&lt;p&gt;My walk through assumes you are using a command-line client.  Note that the ssh &lt;em&gt;client&lt;/em&gt; is typically installed in the *nix world.  If you want your box to be the server then you&amp;rsquo;ll need to add it via &lt;strong&gt;sudo apt install openssh-server&lt;/strong&gt; (Debian/Ubuntu).&lt;/p&gt;
+&lt;p&gt;Most of us encounter SSH as a secure replacement for telnet.  SSH allows us to connect to a remote terminal from the command line.  Assuming that I wanted to connect to my firewall by it&amp;rsquo;s IP address and that there was an account named &amp;ldquo;brent&amp;rdquo; there, I can connect using _&lt;em&gt;ssh &lt;em&gt;username&lt;/em&gt;@&lt;em&gt;Destination&lt;/em&gt;&lt;/em&gt;.  If this is the first time you&amp;rsquo;ve connected, you&amp;rsquo;ll be asked to confirm the fingerprint.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brent@MintyTwenty:~$ &lt;strong&gt;ssh brent@192.168.24.230&lt;/strong&gt;&lt;br&gt;
+The authenticity of host &amp;lsquo;192.168.24.230 (192.168.24.230)&amp;rsquo; can&amp;rsquo;t be established.&lt;br&gt;
+ECDSA key fingerprint is SHA256:1XYZ12MBd5Sb345ABOBhoKx42D+STU56szGR/d3LkGs.&lt;br&gt;
+Are you sure you want to continue connecting (yes/no/[fingerprint])? &lt;strong&gt;yes&lt;/strong&gt;&lt;br&gt;
+Warning: Permanently added &amp;lsquo;192.168.24.230&amp;rsquo; (ECDSA) to the list of known hosts.&lt;br&gt;
+&lt;a href=&#34;mailto:brent@192.168.24.230&#34;&gt;brent@192.168.24.230&lt;/a&gt;&amp;rsquo;s password:&lt;br&gt;
+brent@inspiron:~$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The fingerprint is to protect against a man-in-the-middle attack, where your traffic is being re-directed to a malicious third party.  Before you type in (and reveal) your password, best to make sure that this is a trusted server!  So, where do we find the fingerprint to match it to?  The easiest way to get it is to go to your server and use ssh to connect to itself: &lt;strong&gt;ssh &lt;em&gt;username&lt;/em&gt;@127.0.0.1&lt;/strong&gt;.  This will show the local fingerprint.  If someone has already used this trick and accepted the fingerprint, you can delete ~/.ssh/knownhosts (&lt;em&gt;not recommended&lt;/em&gt;) or use ssh-keygen to examine the local public key.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brent@MintyTwenty:~$ &lt;strong&gt;ssh-keygen -lf .ssh/id_rsa.pub&lt;/strong&gt;&lt;br&gt;
+4096 SHA256:cjyCsHXYZ12dESNo+12AB/oGGaxY1JHSTU%1p3Aeouw brent@X (RSA)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;banners&#34;&gt;Banners&lt;/h2&gt;
+&lt;p&gt;SSH banners are specified in the ssh daemon configuration (&lt;em&gt;/etc/sshd_config&lt;/em&gt;),  To specify a banner, find the line reads &amp;ldquo;#banner none&amp;rdquo; and edit it to specify a file.  The contents of this file will be displayed &lt;em&gt;before&lt;/em&gt; the password prompt.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sudo nano /etc/sshd_config&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;banner /etc/banner.txt&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After authentication the prompt displays the server hostname.  You can display a banner &lt;em&gt;after&lt;/em&gt; authentication by editing &lt;em&gt;~/.bashrc&lt;/em&gt;.  This has a side benefit - the terminal, when connected to locally or remotely, processes &lt;em&gt;~/.bashrc&lt;/em&gt; before it produces a prompt.  Go to the end of that file and add whatever you like - that output will be displayed before a prompt is produced.  I&amp;rsquo;ve listed some cool ideas to build a dynamic banner below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;neofetech&lt;/strong&gt; is a popular script that summarizes system information.  There&amp;rsquo;s a ppa available to add this from apt.&lt;img src=&#34;https://www.nextpertise.net/neofetch.png#floatright&#34; alt=&#34;neofetch&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo add-apt-repository ppa:dawidd0811/neofetch&lt;br&gt;
+sudo apt install neofetch&lt;br&gt;
+echo &amp;ldquo;neofetch&amp;rdquo; &amp;raquo; /home/brent/.bashrc            # Add the command to the end of .bashrc&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Figlet&lt;/strong&gt; - draws letters in ASCII for a nice banner and any command can be piped through it (echo &amp;ldquo;for example&amp;rdquo; | figlet).  It&amp;rsquo;s available in the standard Ubuntu repository.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/figlet.png#floatright&#34; alt=&#34;figlet&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Curl&lt;/strong&gt; - pull in data from the web.  Try &lt;strong&gt;curl v2.wttr.in/Hickory+NC&lt;/strong&gt;.  A more practical example might be:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl wttr.in/Hickory+NC?format=2                  # check out the github page for lots more options&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server stats&lt;/strong&gt; - display information about the server such as IP (&lt;strong&gt;hostname -I)&lt;/strong&gt; or temperature (&lt;strong&gt;sensors&lt;/strong&gt;).  This snippet will display just the main temperature.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;data=$(sensors | grep &amp;ldquo;id 0:&amp;rdquo; | cut -c16-23)      &lt;em&gt;#sensors displays a lot of data. Grep just grabs the one line, and cut pulls temp out.&lt;/em&gt;&lt;br&gt;
+echo &amp;ldquo;CPU Temp:${data}&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Part two of this series will cover secure authentication options.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

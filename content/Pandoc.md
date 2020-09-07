@@ -2,6 +2,8 @@
 title: "Team Documentation Using GitHub and Pandoc"
 date: 2020-08-18T13:56:30-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "Git"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/Pandoc-CI"
 youtube: ""

@@ -2,6 +2,8 @@
 title: "Most Commonly Used Linux Commands"
 date: 2020-08-17T12:47:16-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "Linux"
 author: "Brent Stewart"
 github: ""
 youtube: ""

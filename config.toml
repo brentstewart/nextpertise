@@ -5,6 +5,10 @@ theme = "next"
 enableRobotsTXT = "true"
 [params]
   css = ["/style.css"]
+  author="Brent Stewart"
+  github="https://github.com/brentstewart"
+  twitter="@nextpertise"
+
 
 
 [taxonomies]

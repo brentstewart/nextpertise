@@ -1,0 +1,121 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+  </head>
+  <body>
+    
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/about" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+  <i>by Brent Stewart on Monday, Aug 17, 2020</i><br>
+  <hr>
+  <h1>Most Commonly Used Linux Commands</h1>
+  <p><p>I&rsquo;ve seen some articles recently on &ldquo;Linux commands frequently used by admins&rdquo;  or &ldquo;15 commonly used Linux commands&rdquo;, which got me thinking . . . what commands do I use most frequently?</p>
+<p><strong>history</strong> shows us a list of recent commands starting with a sequence number (example below).  But I just want the command!</p>
+<blockquote>
+<p>brent@MintyTwenty:<strong>~$ history</strong><br>
+1  mkdir git<br>
+2  cd git<br>
+3  git clone <a href="https://github.com/brentstewart/Mint-install.git">https://github.com/brentstewart/Mint-install.git</a><br>
+. . .</p>
+</blockquote>
+<p>Piping this output into <strong>awk</strong> allows me to filter this down to the first word.  <strong>Awk</strong> can pull a field out; in this case the sequence number is field 1 and the command is field 2.</p>
+<blockquote>
+<p>brent@MintyTwenty:~$ <strong>history | awk &lsquo;{print $2}'</strong><br>
+mkdir<br>
+cd<br>
+git<br>
+. . .</p>
+</blockquote>
+<p>Getting closer!  I want a frequence count of which commands are used, so let&rsquo;s pipe this to <strong>uniq -c</strong>.</p>
+<blockquote>
+<p>brent@MintyTwenty:~$ <strong>history | awk &lsquo;{print $2}&rsquo; | uniq -c</strong><br>
+1 mkdir<br>
+1 cd<br>
+1 git<br>
+3 sudo<br>
+1 exit<br>
+1 git<br>
+1 ls<br>
+1 cd<br>
+1 git<br>
+1 cd<br>
+1 ls<br>
+. . .</p>
+</blockquote>
+<p>Notice that it&rsquo;s showing <strong>cd</strong> counted in multiple groups.  I <em>think</em> this is because of the way <strong>uniq</strong> is grouping, so let&rsquo;s help it out by piping that output to sort before asking <strong>uniq</strong> to group and count.</p>
+<blockquote>
+<p>brent@MintyTwenty:~$ <strong>history | awk &lsquo;{print $2}&rsquo; | sort | uniq -c</strong><br>
+1 &quot;<br>
+3 alias<br>
+4 awk<br>
+4 ./basic.sh<br>
+1 cat<br>
+31 cd<br>
+3 chmod<br>
+. . .</p>
+</blockquote>
+<p>At this point it is easy to find that my top commands are:</p>
+<ol>
+<li><strong>history</strong> (probably from working through this example)</li>
+<li><strong>git</strong></li>
+<li><strong>cd</strong></li>
+<li><strong>ls</strong></li>
+<li><strong>sudo</strong></li>
+</ol>
+</p>
+  <br>
+  <hr>
+  <div style="color:grey; font-size:16px;"><strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> </div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"><strong>Tags:</strong> <a href="/tags/linux">Linux</a> </div>
+  <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/mostcommonlinuxcommand/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Most Commonly Used Linux Commands</a></nav>
+</div>
+  </body>

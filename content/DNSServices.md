@@ -2,13 +2,15 @@
 title: "DNS Services"
 date: 2020-08-26T12:01:51-04:00
 draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "DNS"
 author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://www.opendns.com","https:/1.1.1.1","https://quad9.net"]
 tags: ["Security","Non-technical"]
 ---
-This post is to continue the conversation started in [Reasonably Secure Browsing](/ReasonablySecureBrowsing).  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don't share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.
+This post is to continue the conversation started in [Reasonably Secure Browsing](/ReasonablySecureBrowsing) with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don't share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.
 
 The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like "amazon.com" with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call "Brent" or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more "human friendly".
 
@@ -20,12 +22,15 @@ To enable, go into your router and change the DNS setting to the IP provided (th
 
 Firefox can encrypt your DNS traffic from "snoopers".  Go to the menu button and choose _preferences_ and then _Network Settings_.  Click _Enable DNS over HTTPS_ and then choose a provider or select "Custom" and type in the IP address (included below).
 
+![OpenDNS](https://d15ni2z53ptwz9.cloudfront.net/opendns-www/img/logo-opendns.png#floatright)
 ## OpenDNS (208.67.222.222) - Best for home use
 OpenDNS is a great choice.  By default, their free service is excellent.  It recognizes many cases where you've been directed to a malicious site, and keeps you out of trouble by blocking it.  OpenDNS is owned by Cisco, and it benefits from the huge investments they've made in Internet security.  It also blocks adult content by default.  You can create an account and customize your home's experience - for instance, do you want to block Gambling or Tobacco advertising?  These settings are tied to your home IP, so your laptop goes back to the "default" when not at home.  Especially for public places, like church wifi, or for a home with children this allows you to control what portion of the Internet is available to users.
 
+![CloudFlare](https://cloudflare.com/#floatright)
 ## Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3) - best for travelers
 Cloudflare is very easy to setup.  Use the IP address that matches your use case.  These settings can carry over when you are away from home if you change them on your device.  There's also an app that provides this service no matter where you are (just for mobile with Windows and Mac coming soon).  Cloudflare has good settings for most cases, is easy to setup, and has the mobile apps, but lacks the customization of OpenDNS.
 
+![Quad9](https://www.quad9.net/wp-content/uploads/2017/11/quad9-logo-white@2x.png#floatright)
 ## Quad9 (9.9.9.9)
 Quad9 provides a service that is very similar to Cloudflare 1.1.1.2 - just set the DNS and forget it and it provides DNS with malicious sites blocked.  My experience with Quad9 has been largely indistinguishable from Cloudflare or OpenDNS with default settings, when testing blocking or response speed.  However, Quad9 doesn't have the customization of OpenDNS or the apps that Cloudflare has.
 
@@ -35,4 +40,4 @@ This has been a popular alternative for the geek set for a long time.  It's easy
 ## Summary
 Using one of these services helps to protect your home.  I use OpenDNS at home and have customized it to filter out a range of categories.  It doesn't block everything on the Internet, but it addresses some of the obvious sites and it helps prevent "oops" experiences.  It seems to help with advertising too.  I use Cloudflare on my office network and it does a great job as well.
 
-If you've benefitted from the "Reasonably Secure Browsing" discussion, this is another "reasonable" step that you can take to improve your families Internet experience.
+If you've benefitted from the [Reasonably Secure Browsing](/ReasonablySecureBrowsing) discussion, this is another "reasonable" step that you can take to improve your families Internet experience.

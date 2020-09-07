@@ -1,6 +1,6 @@
 <!doctype html>
   <html lang="en">
-  <head>
+  <head itemscope itemtype="{{ .Site.BaseURL }}">
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -10,11 +10,13 @@
     <title>Nextpertise</title>
     <meta charset="UTF-8">
     <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    {{ partial "victorhugo.html" . }}
   </head>
   <body>
     {{partial "header" .}}

@@ -1,0 +1,75 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+  </head>
+  <body>
+    
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/about" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+  <i>by Brent Stewart on Tuesday, Jul 28, 2020</i><br>
+  <hr>
+  <h1>VMWare 3D Acceleration</h1>
+  <p><p>I tried to load Chrome OS in VMWare Workstation the other day and got the message &ldquo;No 3D Support is available&rdquo;.  Apparently this is required for Chrome OS to boot.  I&rsquo;ve gotten the message on other VMs, but never needed to worry about it.</p>
+<p>I assumed this was an issue with Chrome OS at first and tried several versions including &ldquo;CloudReady&rdquo;.  I was using the build put together by FydeOS and had a chance to talk with him on Telegram about the issue.  He recommended I look through a question on AskUbuntu.</p>
+<p>I edited <strong>.vmware/preferences</strong> and added the following line.</p>
+<blockquote>
+<p>mks.gl.allowBlacklistedDrivers = &ldquo;TRUE&rdquo;</p>
+</blockquote>
+<p>Chrome OS booted without a problem!  I had VMs on ESXi that I was accessing via Workstation, and this also resolved the issue for them.  If you are interested in running a ChromeOS VM, I suggest checking out FydeOS.  My testing has been smooth and they have a Telegram channel that is super helpful.</p>
+</p>
+  <br>
+  <hr>
+  <div style="color:grey; font-size:16px;"><strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/FydeOS/chromium_os-vm-vmware">https://github.com/FydeOS/chromium_os-vm-vmware</a><br> &nbsp&nbsp<a href="https://askubuntu.com/questions/832755/no-3d-support-is-available-from-the-host-on-all-vmware-guests">https://askubuntu.com/questions/832755/no-3d-support-is-available-from-the-host-on-all-vmware-guests</a><br> </div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"></div>
+  <div style="color:grey; font-size:16px;"><strong>Tags:</strong> <a href="/tags/virtualization">Virtualization</a> </div>
+  <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/vmware_3d_acceleration/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">VMWare 3D Acceleration</a></nav>
+</div>
+  </body>
