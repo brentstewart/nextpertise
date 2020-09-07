@@ -27,3 +27,6 @@ My professional interests include:
 * Automation and Cloud
 
 My PCs all run Linux (mostly Ubuntu variants) and I work with and contribute to GNS3, so those topics will come up on this site.  On a personal note, I've been married 24 years and have four kids!
+
+## Myron Estibeiro
+is a really nice guy

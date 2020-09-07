@@ -1,0 +1,27 @@
+---
+title: "GNS3 version 2.2.13"
+date: 2020-09-07T15:46:53-04:00
+draft: false
+Victor_Hugo: "true"
+Focus_Keyword: "GNS3"
+author: "Brent Stewart"
+github: ""
+youtube: ""
+refs: ["https://gns3.com/community/blog/gns3-2-2-13-released", "https://github.com/GNS3/gns3-gui/releases"]
+tags: ["GNS3"]
+---
+
+GNS3 2.2.13 dropped Friday (9/4).  The new version doesn't make any changes to the GUI, but fixes a bug that surfaced when using a Qemu device.  It also includes Beta 3 of the Web-UI.
+![GNS3 WebUI](/GNS3WebUI.png#center)
+
+## Should you upgrade?
+For "production" software, I recommend upgrading to get security fixes or because there is a bug-fix or enhancement that you need.  This version doesn't seem to include a security fix, and the features aren't things I use heavily so it may be optional.  That said, the Web-UI is coming along nicely.  In my initial testing, I'm able to add a node to a topology, add links, and manage things from the webpage.  It looks like this would make it easy to collaborate with others on a shared topology.  I can also envision using this as my sole access to GNS3.  This is marked "beta", but it seems to be in good shape.  I definitely suggest you start evaluating it.  If you do find a bug, be sure to log an issue on the GNS3 Github repository.
+
+I have run into issues before that affected my ability to run GNS3 and took me a day or so to sort out (at least once was because I upgraded my OS, not because of GNS3).  If you have ongoing work that depends on GNS3, hold off until you have a little slack in your schedule.  One way to evaluate the risk is to look at the GNS3 community forum to see if there are posts about the new version.
+
+My personal experience with GNS3 has been that _most_ upgrades go without a hitch.  I usually just go for it, but I'm not typically dependent on GNS3 from day to day.  Note that _gns3-gui_ and _gns3-server_ have to be the exact same version.  If for some reason you upgrade one, you either have to roll back or upgrade the other.
+
+![GNS3 Server Upgrade](/GNS3ServerUpgrade.png#center)
+## How do you upgrade?
+On Windows, just dowload the executable and run it.  On Ubuntu, __sudo apt upgrade__.  If you have a server VM (and I recommend it), start by getting a snapshot of your current server.  I once had a server upgrade go poorly that resulted in rebuilding my VM, so this is a realistic risk.  After that, log into the server and you can kick-off the upgrade from the menu.  
+
