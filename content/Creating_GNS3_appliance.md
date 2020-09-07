@@ -285,10 +285,26 @@ Image for kernel_image
 (optional leave blank for skip) :  
 Add appliance version?[y/n]: __n__  
 
+## Submit a Pull Request
+I created a Raspberry Pi Desktop image, but assuming you've created a new appliance and want to share it you'll need to submit your new file as a pull request.  If you haven't already cloned the GNS3 Registry Git, refer back to the beginning of the article for instructions on that part.  Make sure your local copy is up-to-date.  Two Python programs are included in the repo.  Run them both on your copy before continuing.  These are QA processes that look for issues before you submit.  They _will_ take a little time to run.
+> pip3 install -r requirements.txt   # this does __pip3 install jsonschma__ and __pip3 install pycurl__  
+> python3 check.py  
+> python3 check_url.py  
+
+Next push your local copy to your github copy.  In Github terms, _origin_ is your copy on Github, and _master_ is the local copy.  
+> git add .  
+> git commit -m "Added Raspberry Pi Desktop appliance"  
+> git push -f origin master
+
+Now there is an up-to-date local copy of the gns3-registry that includes the updated gns3a appliance and your fork is up-to-date on Github.  Next, offer the update to the project via a _Pull Request_.  
+
+![Pull Request](/PullRequest.png#center)
+Go to the gns3-registry repository on Github and select the Pull Requests tab and click the big green __New pull request__ button. Under Compare, select the link to _compare across forks_ (since your copy is a fork) and select your fork.  It should show you the changes to files so take a moment to digest that and make sure this PR is doing what you want.  Finally, submit the Pull Request.  Github will email you when there's an update to the request.  If the GNS3 team has a question, they'll submit a comment on the PR and leave it open for you to resolve.  Otherwise, it will get merged in and all the other GNS3 users will be able to enjoy your hard work!  
+
 ![Raspberry Pi Desktop running in GNS3](/RPIDesktop.png#floatright)
 ## Results
-I'm going to submit the Raspian appliance to GNS3 in a pull request so that others can play with it.  The image seems to run well.  If I test the Linux Unplugged scenario, I can add some additional interfaces to it easily.  I'll probably also add some RAM to liven it up.  If you use this image, it boots into an install screen.  You can use the ISO image with persistence, or you can install.  Be aware that the install process took awhile.
+The image seems to run well.  If I test the Linux Unplugged scenario, I can add some additional interfaces to it easily.  I'll probably also add some RAM to liven it up.  If you use this image, it boots into an install screen.  You can use the ISO image with persistence, or you can install.  Be aware that the install process took awhile.
 
-The focus of the article was on using the included __new_appliance.py__ script to build new appliances.  In the past, I've just used an existing template and updated it for a new appliance.  I found the script interesting, but it took several run-throughs to understand the flow and to get things setup the way I wanted.  For me, it's easier just to crank up _nano_ and hand edit but the Python program wasn't bad and would be particularly useful to someone who wasn't as familiar.  Hopefully this walkthrough will help that person understand what to expect and make using the tool a little easier.
+The focus of the article was on using the included __new_appliance.py__ script to build new appliances.  In the past, I've just used an existing template and updated it manually for a new appliance.  I found the script interesting, but it took several run-throughs to understand the flow and to get things setup the way I wanted.  For me, it's easier just to crank up _nano_ and hand edit but the Python program wasn't bad and would be particularly useful to someone who wasn't as familiar with the process.  Hopefully this walk through will help that person understand what to expect and make using the tool a little easier.
 
 Do you have any custom appliances?  Contributing to an open source project was really cool and I'd love for you to have the chance to experience it!  Are there some appliances you _wish_ we could build for GNS3?  Write in the comments below, and maybe I can help you build it.  I'd love to hear how you use this feature!
