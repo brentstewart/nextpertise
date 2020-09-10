@@ -4,7 +4,7 @@ date: 2020-09-07T15:46:53-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
-author: "Brent Stewart"
+writer: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://gns3.com/community/blog/gns3-2-2-13-released", "https://github.com/GNS3/gns3-gui/releases"]

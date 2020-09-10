@@ -5,14 +5,13 @@ theme = "next"
 enableRobotsTXT = "true"
 [params]
   css = ["/style.css"]
-  author="Brent Stewart"
   github="https://github.com/brentstewart"
   twitter="@nextpertise"
-
-
+  Authors="Brent Stewart"
 
 [taxonomies]
   tag = "tags"
+  writer = "writers"
 
 [[menu.main]]
   name="Home"
@@ -20,7 +19,7 @@ enableRobotsTXT = "true"
   weight = 1
 [[menu.main]]
   name="About"
-  url = "/about"
+  url = "/contributors"
   weight = 5
 [[menu.main]]
   name = "TagCloud"

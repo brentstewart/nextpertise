@@ -3,7 +3,7 @@
 <h1>Most Recent Posts:</h1>
 {{range first 3 .Pages }}
 <div class="child">
-    <a href="{{.URL}}">{{.Title}}</a> <div class="tags"> <i>by {{.Params.Author}} on {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
+    <a href="{{.URL}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
         {{ .Summary}}<div class="tags"> 
          {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
     </div>
