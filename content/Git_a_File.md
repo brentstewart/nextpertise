@@ -22,21 +22,21 @@ Private repositories operate just like public ones in my experience.  The only d
 ## Using a Linux install script 
 Here's a snippet of the Ubuntu script to give you an idea of what I'm doing.  This section sets up fail2ban (an SSH security measure) and installs VSCodium.  
 
-> echo setup fail2ban  
-systemctl start fail2ban  
-systemctl enable fail2ban  
-echo "/[sshd]  
-enabled = true  
-port = 22  
-filter = sshd  
-logpath = /var/log/auth.log  
-maxretry = 3" >  /etc/fail2ban/jail.local  
-##VSCodium  
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -   
-echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list
-sudo apt update && sudo apt install codium
+> __echo setup fail2ban__  
+__systemctl start fail2ban__  
+__systemctl enable fail2ban__  
+__echo "/[sshd]__  
+__enabled = true__  
+__port = 22__  
+__filter = sshd__  
+__logpath = /var/log/auth.log__  
+__maxretry = 3" >  /etc/fail2ban/jail.local__  
+__##VSCodium__  
+__wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -__   
+__echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list__  
+__sudo apt update && sudo apt install codium__  
 
-I build and tear down a lot of Linux machines (mostly VMs and EC2 instances).  The initial install lacks some of the tools I expect, and I don't want to got through a process to build the environment.  The script automates this setup, saves me time and makes sure that I don't forget anything!
+I build and tear down a lot of Linux machines (mostly VMs and EC2 instances).  The initial install lacks some of the tools I expect, and I don't want to go through a process to build the environment.  The script automates this setup, saves me time and makes sure that I don't forget anything!
 
 Up until recently my process was to install Linux, grab git, then clone the repository.  From there, I could move into the repository and run the scripts I wanted.
 
