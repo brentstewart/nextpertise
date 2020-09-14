@@ -10,7 +10,7 @@ refs: ["https://in.linkedin.com/in/myronestibeiro"]
 ## About Myron Estibeiro
 I have been in the IT industry for about 10 years.  I started my career fresh out of college as an intern in a global Network Operations Center (NOC), subsequently moving into a Security Operations Center (SOC) role. There I found my actual 'taste', which was for Information Security. Throughout my career, I've had the priviliege of being mentored and guided by some of the finest people in the industry. Equiped with this knowledge and experience, my next goal is to return it back to community via education and consulting. 
 
-I have a Bachelor's degree in Engineering (B.E) in Information Technology, with over 10 different industry certifcations under my belt. I'm very passionate about problem solving, automating boring and manual stuff with Python, and very enthused in teaching and knowledge sharing - Below is my reference to LinkedIn. Feel free to add me in your professional network and please mention that you saw this website!
+I have a Bachelor's degree in Engineering (B.E) in Information Technology, with over 10 different industry certifcations under my belt. I'm very passionate about problem solving, automating boring and manual stuff with Python, and very enthused in teaching and knowledge sharing - Below is my reference to LinkedIn. Feel free to add me in your professional network and please mention that you saw this website.
 
 My professional interests include:
 * Network Security
