@@ -4,7 +4,7 @@ date: 2020-09-07T15:46:53-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
-writer: "Brent Stewart"
+author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://gns3.com/community/blog/gns3-2-2-13-released", "https://github.com/GNS3/gns3-gui/releases"]
@@ -23,5 +23,5 @@ My personal experience with GNS3 has been that _most_ upgrades go without a hitc
 
 ![GNS3 Server Upgrade](/GNS3ServerUpgrade.png#center)
 ## How do you upgrade?
-On Windows, just dowload the executable and run it.  On Ubuntu, __sudo apt upgrade__.  If you have a server VM (and I recommend it), start by getting a snapshot of your current server.  I once had a server upgrade go poorly that resulted in rebuilding my VM, so this is a realistic risk.  After that, log into the server and you can kick-off the upgrade from the menu.  
+On Windows, just download the executable and run it.  On Ubuntu, __sudo apt upgrade__.  If you have a server VM (and I recommend it), start by getting a snapshot of your current server.  I once had a server upgrade go poorly that resulted in rebuilding my VM, so this is a realistic risk.  After that, log into the server and you can kick-off the upgrade from the menu.  
 

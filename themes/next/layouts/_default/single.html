@@ -8,7 +8,13 @@
   <div style="color:grey; font-size:16px;">{{ if .Params.refs }}<strong>References:<br></strong> {{range .Params.refs}}&nbsp&nbsp<a href="{{ . }}">{{ . }}</a><br> {{end}}{{end}}</div>
   <div style="color:grey; font-size:16px;">{{ if .Params.youtube }}<strong>Video:</strong> {{.Params.youtube}}{{end}}</div>
   <div style="color:grey; font-size:16px;">{{ if .Params.github }}<strong>Github:</strong> {{.Params.github}}{{end}}</div>
-  <div style="color:grey; font-size:16px;">{{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}</div>
+  <div style="color:grey; font-size:16px;">
+    {{ if .Params.tags }}<strong>Tags:</strong> 
+      {{range .Params.tags}}
+        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> 
+       {{end}}
+    {{end}}</div>
+
   <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="{{.RelPermalink}}"></script>&NonBreakingSpace;
