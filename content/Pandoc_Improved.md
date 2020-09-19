@@ -1,6 +1,6 @@
 ---
 title: "CI for Docs with Pandoc (take 2)"
-date: 2020-09-19
+date: 2020-09-19T13:18:28-04:00
 draft: false
 Victor_Hugo: "true
 Focus_Keyword: "Pandoc"
