@@ -1,8 +1,8 @@
 ---
 title: "CI for Docs with Pandoc (take 2)"
-date: 2020-08-18T13:56:30-04:00
+date: 2020-09-19
 draft: false
-Victor_Hugo: "true"
+Victor_Hugo: "true
 Focus_Keyword: "Pandoc"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/Pandoc-CI"
