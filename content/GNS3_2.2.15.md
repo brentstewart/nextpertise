@@ -1,0 +1,38 @@
+---
+title: "GNS3_2.2.15"
+date: 2020-10-08T09:21:45-04:00
+draft: false
+author: "Brent Stewart"
+github: ""
+youtube: ""
+refs:
+  [
+    "https://gns3.com/community/blog/gns3-2-2-14-released",
+    "https://github.com/GNS3/gns3-gui/releases",
+  ]
+tags: ["GNS3"]
+---
+
+GNS3 2.2.15 is out. Not much to report . . . reviewing the release notes indicates thi is mostly bug fixes.
+
+## Should you upgrade?
+
+This version doesn't include a security fix, and the bug fixes aren't issues I've run into.
+
+My personal experience with GNS3 has been that _most_ upgrades go without a hitch. I usually just go for it, but I'm not typically dependent on GNS3 from day to day. **Note** that _gns3-gui_ and _gns3-server_ have to be the exact same version. If for some reason you upgrade one, you either have to roll back or upgrade the other.
+
+![GNS3 Server Upgrade](/GNS3ServerUpgrade.png#center)
+
+## How do you upgrade?
+
+On Windows, just download the executable and run it. On Ubuntu, **sudo apt upgrade**. If you have a server VM (and I recommend it), start by getting a snapshot of your current server. I once had a server upgrade go poorly that resulted in rebuilding my VM, so this is a realistic risk. After that, log into the server and you can kick-off the upgrade from the menu.
+
+I ran into an issue upgrading the server side - docker-ce was missing a dependency. To resolve, I dropped down the shell and used docker's instructions for installing on an Ubuntu host.
+
+> sudo apt-get update  
+> sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common  
+> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
+> sudo apt-get update  
+> sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+After that, I rebooted and re-initiated the upgrade to 2.2.15 and everything worked. The experience reiterates my point that GNS3 server upgrades sometimes have problems that can easily knock you off your game for a few days. Make sure you have a good backup before upgrading, or that you are not under time pressure.
