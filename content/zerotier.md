@@ -23,7 +23,7 @@ Make sure under Access Control that you set your network to private.  This will 
 
 Under advanced, choose a network range.  You can use one of the "easy" options or select an IP address range of your own.  For now, just choose a pre-defined range.
 
-![Zero Tier Networking](/ZTnetworks.jpg#floatright)
+![Zero Tier Networking](/ZTnetworks.png#floatright)
 
 There's an option to use IPv6.  The easy way is to click the ZeroTier 6PLANE option.  It's a great idea to be learning about IPv6, but most of us are still using v4 and if that's the case for you then just leave this turned off.
 
@@ -38,7 +38,7 @@ On Linux, the software can be installed with this command:
 After installation, use __zerotier-cli__ to join the new virtual network.
 > sudo zerotier-cli join 123456789ABCDEF  
 
-![ZeroTier Client](/ZTClient.jpg#floatright)
+![ZeroTier Client](/ZTclient.png#floatright)
 Go back to Central and scroll down to clients.  Find the new client and check the Auth? box.  You should add a name and description here as well to help identify this client as you add more endpoints.
 
 Back at Linux, confirm that you're on the network.
