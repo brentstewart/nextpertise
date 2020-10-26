@@ -46,7 +46,7 @@ Windows are on desktops, with the taskbar across the top showing you what's on t
 * Split - each application takes up either the left or right half of the screen.  The app order is shown on the taskbar, and you can drag to rearrange.  Many times I'm typing in one window with another for reference, so this mode sets up exactly what I'm looking for.
 * Half - the first application occupies the left half of the screen.  Subsequent apps stack to the right.  You can drag windows or rearrange the taskbar to change which applications go in each spot.
 * Free - this is the "normal" Gnome experience, with tiling turned off.
-![Material Design](https://raw.githubusercontent.com/material-shell/material-shell/master/documentation/tiling_showcase.gif)
+![Material Design](https://raw.githubusercontent.com/material-shell/material-shell/master/documentation/tiling_showcase.gif#floatright)
 
 In my testing, I found that I could set different modes for each desktop.  Right now, the desktop I'm typing on has Codium on one side and a browser on the other in "Split" mode.  My other desktop use "Half" with a big browser on the right and a terminal, Enpass, and settings stacked on the right.
 
