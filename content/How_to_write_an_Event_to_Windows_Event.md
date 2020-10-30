@@ -18,9 +18,9 @@ A brief aside: The dichotomy of an admin PowerShell session and a regular PowerS
 
 Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses _scoop_ to grab a "sudo" application for Powershell.
 
-> iex (new-object net.webclient).downloadstring('https://get.scoop.sh')  
-set-executionpolicy unrestricted -s cu -f  
-scoop install sudo  
+> __iex (new-object net.webclient).downloadstring('https://get.scoop.sh')__  
+__set-executionpolicy unrestricted -s cu -f__  
+__scoop install sudo__  
 
 ## How to write an Event to Windows Event Log
 
@@ -48,7 +48,7 @@ It is also possible to write an entry on a remote computer. The example below as
 
 ## Scripting
 This can all be simplified in a script, saved as "log.ps1"
->try  
+>  try  
 {  
         sudo New-eventlog -logname application -source $env:username  
 }  
@@ -62,7 +62,7 @@ write-host $args[0]
 
 Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.
 
-> '\log.ps1 "Something happened"
+> .\log.ps1 "Something happened"
 
 # Linux (much easier)
 
