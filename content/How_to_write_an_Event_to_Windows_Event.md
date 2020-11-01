@@ -14,7 +14,7 @@ One of the first problems we encounter in understanding syslog is figuring out w
 
 ## PowerShell sudo
 
-A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the bult in terminal in Visual Studio Code (or VSCodium), which is an an "admin" session.  
+A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the built-in terminal in Visual Studio Code (or VSCodium) for Windows, which uses a "non-admin" session.  
 
 Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses _scoop_ to grab a "sudo" application for Powershell.
 
