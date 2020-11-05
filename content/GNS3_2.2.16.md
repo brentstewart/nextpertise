@@ -1,0 +1,46 @@
+---
+title: "GNS3 2.2.16"
+date: 2020-11-05T08:29:40-05:00
+draft: False
+author: "Brent Stewart"
+github: ""
+youtube: ""
+refs: ["https://github.com/GNS3/gns3-gui/releases/tag/v2.2.16"]
+tags: ["GNS3"]
+---
+
+GNS3 2.2.16 was released today. This release has a number of bug fixes that are mostly around Qemu and HyperV support. Of general interest, there's a patch for a bug in capturing packets with Wireshark. I had an issue open involving downloading appliances from the application and that was fixed as well. This shapes up to be a good polish on a great application and I wouldn't be surprised if this attention didn't translate into generally better performance in other areas.
+
+## Should you upgrade?
+
+This version doesn't include a security fix. The VM improvements will help those running KVM or HyperV. There are some bug-fixes that will be of general interest, but aren't critical. I recommend upgrading _assuming you have a little time to sort out any issues_.
+
+My personal experience with GNS3 has been that _most_ upgrades go without a hitch. I usually just go for it, but I'm not typically dependent on GNS3 from day to day. When I have had issues, they've been resolvable with an hour or two of concentration. **Note** that _gns3-gui_ and _gns3-server_ have to be the exact same version. If for some reason you upgrade one, you either have to roll back or upgrade the other.
+
+![GNS3 Server Upgrade](/GNS3ServerUpgrade.png#center)
+
+## How do you upgrade?
+
+On Windows, just download the executable and run it. On Ubuntu, **sudo apt upgrade**. If you have a server VM (and I recommend it), start by getting a snapshot of your current server. I once had a server upgrade go poorly that resulted in rebuilding my VM, so this is a realistic risk. After that, log into the server and you can kick-off the upgrade from the menu.
+
+## New and updated appliances
+
+Folks continue to contribute appliances. If you are interested in doing this, refer to my articles on [creating an appliance](/Creating_GNS3_appliance) and [Updating an appliance](/UpdatingGNS3Appliances). Here's a list of the new and updated appliances since September first:
+
+- IPCop
+- Raspian
+- Arista VEOS
+- Aruba VGW
+- Cisco DCNM, IOSv L2, and IOSXRV9k
+- Extreme VOSS
+- F5 BIG-IP
+- Huawei AR1KV, CE12800, NE40e, and USG6KV
+- Juniper VMX , VRR, and VQFX
+- OpenWRT
+- OPNSense
+- TACACS
+- TinyCore
+- Ubuntu
+- Vyos
+
+Wow! That's a lot. I added IPCop and Raspian and described the process in those [earlier](/Creating_GNS3_appliance) and [articles](/UpdatingGNS3Appliances). I'm particularly excited about the Huawei additions. That's been a big gap and it's really nice to see that supported. Big thanks to "iceking2nd" for building those!
