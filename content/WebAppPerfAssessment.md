@@ -6,7 +6,7 @@ author: "Myron Estibeiro"
 github: ""
 youtube: ""
 refs: ["https://developers.google.com/web/tools/lighthouse/","https://github.com/GoogleChrome/lighthouse"]
-tags: ["Lighthouse","Web Application Testing","Web App Performance testing"]
+tags: ["Lighthouse","Web Application Testing"]
 ---
 Today, developers and content creators that maintain web applications are often looking out for ways to improve their site or web apps. This could be for High Performance (lower response time), Better Accessibility (consistent experience across all device types e.g. Tablet, Smartphone, PC), better Search Engine Optimization (SEO) score and other ways to improve the content by following industry best practices. There are many tools out there, which can be very expensive, and some have a steep learning curve.
 
