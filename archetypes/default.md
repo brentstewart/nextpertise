@@ -1,11 +1,10 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
-author: "Brent"
+draft: false
+author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: [""]
 tags: [""]
 ---
-
