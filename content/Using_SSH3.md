@@ -55,10 +55,10 @@ NFS can be secure.  NFSv4 encrypts traffic in-transit and v2/3 allow you to limi
 ![SSHFS Win](https://raw.githubusercontent.com/billziss-gh/sshfs-win/master/cap.gif#floatright)
 ##  SSHFS 
 
-SSHFS is a file system using SFTP.  Since SFTP is built on top of SSH, SSHFS inherits all the goodness.  SSHFS  works for everything I've tested so far - I haven't gotten to the Chromebooks yet, but I _have_ used it in Haiku.  SSHFS doesn't require server setup beyond installing the SSH server daemon.  File permissions are communicated based on how you login.
+SSHFS is a file system using SFTP.  Since SFTP is built on top of SSH, SSHFS inherits all the goodness.  SSHFS  works for everything I've tested so far - I haven't gotten to the Chromebooks yet, but I _have_ used it in Haiku.  SSHFS requires installing the sshfs package and installing the SSH server daemon.  File permissions are communicated based on how you login.
 
 On Linux, the command to mount a directory using SSHFS looks like this (the server is 192.168.1.1).
-
+> __sudo apt install sshfs__
 > __mkdir ~/server__  _#if it doesn't already exist_  
 > __sudo sshfs -o allow_other,default_permissions brent@192.168.1.1:/home/brent /home/brent/server__  
 
