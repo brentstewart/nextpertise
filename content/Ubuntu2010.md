@@ -6,7 +6,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://www.ubuntu.com"]
-tags: ["Linux","Gnome","Material Design","Ubuntu","Review"]
+tags: ["Linux","Gnome","Material Design","Ubuntu","Review","Tiling"]
 ---
 
 I had a chance to download Ubuntu 20.10 and install it on a gen 8 i5 laptop.  I typically use Cinnamon for a desktop environment, which I have long found to be mature, usable, and stable.  In the past, I've found Gnome to be laggy but I've heard good things about 3.38.
