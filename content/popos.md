@@ -1,10 +1,35 @@
 ---
-title: "Popos"
-date: 2020-11-17T14:17:03-05:00
+title: "Pop! OS"
+date: 2020-11-26T10:17:03-05:00
 draft: false
 author: "Brent Stewart"
 github: ""
 youtube: ""
-refs: [""]
+refs: ["https://pop.system76.com/", "https://extensions.gnome.org/extension/1485/workspace-matrix/", "https://extensions.gnome.org/extension/307/dash-to-dock/"]
 tags: [""]
 ---
+I recently wrote about my experiences with ![Ubuntu 20.10](/Ubuntu2010).  In that article, I mentioned that I had found Gnome laggy and the app picker to be annoyingly unsorted.  That article got into Gnome 3.38, which seems to answer my previous issues by being perkier and providing a way to organize applications.  I also mentioend how much I appreciated Material Design, a tiling extension for Gnome.  That setup - Ubuntu 20.10 with Gnome 3.38 and Material Design - has worked really well on my laptop and a month later I remain enthusiastic about the way it organizes my work.
+
+![Pop OS](https://pop.system76.com/_nuxt/img/623f266-700.png#floatright) 
+But . . . it doesn't work so well on my desktop setup.  The desktop is an i7 with 64GB of memory (perfect for GNS3!) and two 4K displays.  The Material Design extension didn't adapt well to the dual displays.  Gnome was still great, so I started hunting for a different tiling extension but the others didn't install on 3.38.  I had tried _Pop! OS_ six months ago and really liked where System 76 was headed with auto-tiling, but got frustrated by Gnome.  I decided to give the distribution another chance.
+
+_Pop! OS_ is an opinionated re-distribution of stock (Gnome) Ubuntu.  System 76 is a long time manufacturer of Linux computers.  They have a great reputation in the community and have been a big promoter and sponsor within the community.  A couple years ago, they decided to customize Ubuntu to optimize the experience for their hardware.  They labeled the result _Pop! OS_ and made it available for anyone to use.  _Pop! OS_ 20.10 came out shortly after Ubuntu 20.10 in seperate releases for computers with NVidia cards and those with AMD.
+
+The most obvious differnce between stock Ubuntu and _Pop! OS_ is the Gnome setup and skin.  Ubuntu has a very specific user experience and they have their own take on Gnome.  This isn't a criticism.  System 76 has built a different experience, with a more "standard" Gnome setup but with their Auto-tiling extension.  There is also a relentlessly upbeat feel to the skinning and backgrounds.  It's a peppiness that belies how darn useful the OS is.  Ubuntu is also moving very heavily toward snaps and _Pop! OS_ supports snaps but is built more along __apt__ lines.
+
+My experience with 20.10 has improved since 19.10.  The lagginess I saw before is now gone.  All the things that I loved about Auto-Tiling are still present, they just work better.  On big displays, I really don't see why you wouldn't want this experience.  Opening a new window automatically divides the display either vertically or horizontally.  Gnome supports multiple workspaces, and I have been setting up desktops for specific workflows (like one for blogging that I'm using now).  I don't like the workspace switcher that ships with _Pop! OS_, so I installed Workspace Matrix.  I also added _Dash to Dock_ to give a dock and put the application button in a better location.
+
+I first experimented with Tiling using i3 and later Regolith.  Regolith in particular has a lot going for it and really opened my eyes to the possibilities, but I found both to be a lot of trouble to setup and work inside.  i3 is very keyboard heavy and the folks who enjoy it the most are very keyboard oriented.  _Pop! OS_ provides a similar experience, but it's less laborious in a number of ways.  Tiling happens automatically, but if you don't like the arrangement you can drag windows around to adjust the tiling.  It's easier to setup exceptions (pop-up windows, like my password database, that should float and not re-tile the screen).  Keyboard shortcuts are supported, if you are oriented that way, but I rarely have used them in my testing.
+
+_Pop! OS_ also has a conventional Gnome app picker.  Here I have a quibble - I would still prefer a heirarchical menu.  If anyone can suggest a good _Dash to Dock_ or Gnome extension in the comments, I'd appreciate it!   
+
+![Brent playing with Tiling](/Peek_Pop!_OS.gif#floatright)
+The animated GIF here is me playing around.  I have two displays - a horizontal 4k on the right and a vertical 2k on the left.  There's a gray area above the 4k because of the way the resolutions match up.  You can see Tilix and GNS3 open on the 4k, and Wireshark and an additional Tilix window open and automatically Tile.  Then I open the application picker on and fonts on the other display.  You can see _Dash to Dock_ and get a sense of how the system works.  You can also see that Gnome 3.38 now supports grouping applications, like Android, which I find a big improvement.
+
+There are other differences besides tiling between _Pop! OS_ and Ubuntu.  There are different application "stores" and update interfaces, but both accomplish the same things in similar ways.  There are different packaged apps, but you can install anything you need from PPA or snap on either system so this doesn't strike me as worth cataloging.  I used my standard Ubuntu post-install script when I setup _Pop! OS_ and everything worked.
+
+So, why not just install the _Pop! OS_ extension on Ubuntu?  Well, it can be done.  System 76 publishes it to their Github.  They've packaged it for Fedora, but not yet for Ubuntu, so it would have to be built.  That's not a mountain to climb, but I was ready for a clean install anyway and opted for the full _Pop! OS_ experience.
+
+I can't say how much I appreciate what System 76 has done.  They've created a slightly different take on Ubuntu that looks great on their hardware and they've made all the parts - from a full OS install to the "secret sauce" extension easily accessible to the community.  I find _Pop! OS_ enjoyable and useful and plan on keeping it installed on this machine.
+
+My laptop is running fine on Ubuntu with Material Design, and there's not enough of a difference to make me re-install it.   Besides, I'd like to see where each tiler goes.  There's a lot in Material Design to recommend it and it's still early days for that extension.  Frankly, _Pop! OS_ wasn't quite baked at that stage either.  However, the current _Pop! OS_ 20.10 feels sharp, responsive, and really well done and I look forward to seeing where System 76 takes this idea next.
