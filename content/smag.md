@@ -25,11 +25,11 @@ This example pings Google DNS and graphs the round trip time.  I need ping to ex
 # Graph CPU temperatures
 ![Temp](/smag-sensor.png#floatright)
 
-For this, you'll need to grab some packages to monitor system parameters.  Notice that I have enclosed quotes, so I use the single quote for grep and double quotes for smag.  The two types of quotes do the same thing, but we need to help bash recognize that we have one set inside another.
+For this, you'll need to grab some packages to monitor system parameters.  
 > sudo apt install lm-sensors  
 sudo apt install hddtemp  
 
-and then monitor CPU temperature using this command.  Note that sensors returns a lot of information, such as temperature per core.  I'm arbitrarily grabbing the summary.  You could certainly adjust this to pull the the value that's most relevant to you.
+Then monitor CPU temperature using the following command.  Note that sensors returns a lot of information, such as temperature per core.  I'm arbitrarily grabbing the summary.  You could certainly adjust this to pull the the value that's most relevant to you.  Notice that I have enclosed quotes, so I use the single quote for grep and double quotes for smag.  The two types of quotes do the same thing, but we need to help bash recognize that we have one set inside another.
 > ./smag "sensors | grep 'id 0:' | cut -c 17-20"  
 
 # Graph Ethernet packets received
