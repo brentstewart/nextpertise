@@ -1,7 +1,7 @@
 ---
 title: "SSH Administrative Trivia"
 date: 2020-12-23T18:47:30-05:00
-draft: false
+draft: true
 author: "Brent Stewart"
 github: ""
 youtube: ""
