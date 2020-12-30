@@ -47,6 +47,18 @@ code {
   background-color: lightgray;
 }
 
+.table table{
+  border-collapse: collapse;
+  width: 100%;
+  background-color: lightgray;
+}
+.table td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0.6rem;
+}
+
+
 img[src$='#center']
 {
     display: block;

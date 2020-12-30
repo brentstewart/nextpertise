@@ -33,13 +33,14 @@ A long time ago, IP addresses were just numbers.  I could be "1" and you could b
 
 At a certain point, the network was divided into smaller networks of different sizes and the idea of an implicit class was used.  In this _classful_ structure, one could tell what portion of the address was the network prefix based on  the first octet.
 
-{{< table "table table-striped" >}}
+{{< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table: Classful addressing" >}}
 | Class | | First Octet | | Assumed Mask  |
 |:-----:|:--:|:-----|-|-----|
 | A |  | 0-127   | | 255.0.0.0 |
 | B |  | 128-191 | |255.255.0.0 |
 | C |  | 192-223 | |255.255.255.0 |
-{{</table>}}
+{{</bootstrap-table>}}
+
 
 Later (mid-90s) as the Internet started to grow it became obvious that this system lacked necessary flexibility.  IP addresses began to use _explicit masks_, so that they could specify network prefixes of any number of bits.  At that point (25 years ago!) class became a thing of the past.
 
