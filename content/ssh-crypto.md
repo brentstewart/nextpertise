@@ -1,7 +1,7 @@
 ---
 title: "SSH Crypto"
 date: 2020-12-29T13:01:35-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/ssh-crypto"
 youtube: ""
