@@ -3,6 +3,8 @@ title: "A Love Letter to Flameshot"
 date: 2020-12-10T14:28:39-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Flameshot"
 github: ""
 youtube: ""
 refs: ["https://en.wikipedia.org/wiki/Unix_philosophy","https://flameshot.org/"]

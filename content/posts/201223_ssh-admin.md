@@ -3,6 +3,8 @@ title: "SSH Administrative Trivia"
 date: 2020-12-23T18:47:30-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "SSH"
 github: ""
 youtube: ""
 refs: [""]

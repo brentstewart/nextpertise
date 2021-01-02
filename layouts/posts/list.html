@@ -1,10 +1,15 @@
 
 {{define "main"}}
 <h1>Archives:</h1><br>
-{{range .Pages.GroupByDate "01/2006"}}
-    <h3>{{.Key}}</h3>
+{{range .Pages.GroupByDate "2006"}}
+<hr><h2>{{.Key}}</h2>
+<body>{{range .Pages.GroupByDate "January"}}
+    <h3>{{.Key}}<br></h3>
+    <ul style="list-style: none;">
     {{range .Pages}}
-        <a href="{{.URL}}">{{.Title}}</a><br>
+        <li><a href="{{.URL}}">{{.Title}}</a></li><br>
     {{end}}
+    </ul><br></body>
+  {{end}}
   {{end}}
 {{end}}

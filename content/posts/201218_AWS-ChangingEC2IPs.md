@@ -3,6 +3,8 @@ title: "AWS Changing EC2 IPs or Water Never Lies"
 date: 2020-12-18T20:35:31-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "AWS EC2"
 github: ""
 youtube: ""
 refs: [""]

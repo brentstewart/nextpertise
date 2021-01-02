@@ -3,6 +3,8 @@ title: "Winapps"
 date: 2020-11-10T08:24:53-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Linux"
 github: "https://github.com/brentstewart/winapps"
 youtube: ""
 refs: ["https://github.com/Fmstrat/winapps"]

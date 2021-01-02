@@ -3,6 +3,8 @@ title: "Web Application Performance Assessment - Quick & Easy"
 date: 2020-11-06T04:30:50-04:00
 draft: false
 author: "Myron Estibeiro"
+Victor_Hugo: "true"
+Focus_Keyword: "Security"
 github: ""
 youtube: ""
 refs: ["https://developers.google.com/web/tools/lighthouse/","https://github.com/GoogleChrome/lighthouse"]

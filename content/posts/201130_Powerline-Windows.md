@@ -3,6 +3,8 @@ title: "Powerline Windows"
 date: 2020-11-30T18:23:57-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Powershell"
 github: ""
 youtube: ""
 refs: ["https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha"

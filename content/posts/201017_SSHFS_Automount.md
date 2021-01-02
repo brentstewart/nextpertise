@@ -3,6 +3,8 @@ title: "SSHFS_Automount"
 date: 2020-10-17T12:13:01-04:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "SSH"
 github: ""
 youtube: ""
 refs: ["https://wiki.archlinux.org/index.php/SSHFS"]

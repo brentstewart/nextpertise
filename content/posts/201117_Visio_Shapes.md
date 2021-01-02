@@ -3,6 +3,8 @@ title: "Visio Shapes"
 date: 2020-11-17T08:00:28-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Visio"
 github: "https://github.com/brentstewart/Visio_Stencils.git"
 youtube: ""
 refs: ["https://github.com/GNS3"]

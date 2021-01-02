@@ -2,7 +2,9 @@
 title: "Calibre 5.0"
 date: 2020-10-01T20:27:16-04:00
 draft: false
-author: "Brent"
+author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "ebook"
 github: ""
 youtube: ""
 refs:

@@ -3,6 +3,8 @@ title: "Custom Keycaps"
 date: 2020-12-30T17:30:38-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Keycaps"
 github: "https://github.com/brentstewart/postscript_projects"
 youtube: ""
 refs: ["https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html"]
@@ -15,9 +17,9 @@ I found that [Max Keyboard](https://www.maxkeyboard.com/custom-backlight-compati
 Max Keyboard wanted a file to print the image from.  I used a postscript program called "rays.ps" (available in my postscript github repo) for the original graphic, but MK wanted at least 300x300 and the resolution on my existing picture was a quarter that.
 
 I decided to update the postscrip to just output the "N" and used a larger size.  Here's the code.
-![N](/201230_n.png#floatright)                                         
+                                      
 > /Times findfont 300 scalefont setfont  
-    /rays  
+![N](/201230_n.png#floatsmallright)      /rays  
     { 0 1.5 359  
             {gsave  
             rotate  

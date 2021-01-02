@@ -3,6 +3,8 @@ title: "Technically Correct Verbage Rant"
 date: 2020-12-20T02:00:15-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Networking"
 github: ""
 youtube: ""
 refs: [""]

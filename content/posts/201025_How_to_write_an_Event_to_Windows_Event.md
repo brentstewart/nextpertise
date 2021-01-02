@@ -3,6 +3,8 @@ title: "How to write an event to Windows and Linux logs"
 date: 2020-10-25T16:29:57-04:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Logs"
 github: ""
 youtube: ""
 refs: ["https://scoop.sh/","https://github.com/lukesampson/scoop"]

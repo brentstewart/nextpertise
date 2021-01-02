@@ -4,16 +4,17 @@
 }
 
 .sidebar-nav {
-  font-family: sans-serif;
-  margin: 0px;
-  padding: 0px;
+  font-family: "Gill Sans",sans-serif;
+  margin: 10px;
+  font-size: 24px;
+  padding: 05px;
   list-style-type: none;
 }
 
 .sidebar-nav-item {
   padding: 0px;
   text-align: center;
-  font-size: 24px;
+  font-size: 16px;
   border-bottom: 1px solid black;
   transition: background-color 0.2s;
   color: white;
@@ -25,12 +26,45 @@
 }
 
 body {
-  font-size: 20px;
+  font-size: 16px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: black;
+  font-weight: light;
   padding: 0px;
   margin: 50px;
 }
+
+h1 {
+  font-size: 24px;
+  font-family: "Gill Sans",sans-serif;
+  font-weight: bold;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h2 {
+  font-size: 20px;
+  font-family: "Gill Sans",sans-serif;
+  font-style: bold;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h3 {
+  font-size: 16px;
+  font-family: "Gill Sans",sans-serif;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h6 {
+  font-size: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: grey;
+  padding: 0px;
+  margin: 0px;
+}
+
 figcaption {
   font-style: italic; color: cadetblue;
 }
@@ -77,6 +111,15 @@ img[src$='#floatleft']
     max-width: 50%;
     padding: 20px 20px;
 }
+img[src$='#floatsmallleft']
+{
+    float:left;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 25%;
+    padding: 20px 20px;
+}
 
 img[src$='#floatright']
 {
@@ -88,6 +131,15 @@ img[src$='#floatright']
     padding: 20px 20px;
 }
 
+img[src$='#floatsmallright']
+{
+    float:right;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 25%;
+    padding: 20px 20px;
+}
 #parent {display: grid; grid-template-columns: auto; grid-template-rows: auto}
 
 .child {width: 100%;border-bottom: 50px; }
@@ -96,196 +148,31 @@ img[src$='#floatright']
 
 @media screen and (min-width: 600px) {
   #parent {display: grid; grid-template-columns: auto auto; grid-template-rows: auto}
-  body { font-size: 24px;}
+  body { font-size: 20px;}
   .tags { font-size: 20px;}
-  .sidebar-nav-item { font-size: 28px;}
+  .sidebar-nav-item { font-size: 20px;}
+  h1 { font-size: 28px;}
+  h2 { font-size: 24px;}
+  h3 {font-size: 20px;}
+  h6 {font-size: 19px;}
 }
 @media screen and (min-width: 1200px) {
   #parent {display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto}
-  body { font-size: 30px;}
-  .tags {font-size: 22px;}
-  .sidebar-nav-item { font-size: 36px;}
+  body { font-size: 25px;}
+  h1 { font-size: 35px;}
+  h2 { font-size: 30px;}
+  h3 {font-size: 25px;}
+  h6 {font-size: 23px;}
+  .tags {font-size: 25px;}
+  .sidebar-nav-item { font-size: 25px;}
 }
 @media screen and (min-width: 2400px) {
   #parent {display: grid; grid-template-columns: auto auto auto auto; grid-template-rows: auto}
-  body { font-size: 36px;}
-  .tags {font-size: 27px;}
-  .sidebar-nav-item { font-size: 43px;}
-}
-
-/*
-Put this file in /static/css/hugo-easy-gallery.css
-Documentation and licence at https://github.com/liwenyip/hugo-easy-gallery/
-*/
-
-/* Grid Layout Styles */
-
-.gallery {
-  overflow: hidden;
-  margin: 10px;
-  max-width: 768px;
-}
-
-.gallery .box {
-  float: left;
-  position: relative;
-  /* Default: 1 tile wide */
-  width: 100%;
-  padding-bottom: 100%;
-}
-
-@media only screen and (min-width: 365px) {
-  /* Tablet view: 2 tiles */
-  .gallery .box {
-      width: 50%;
-      padding-bottom: 50%;
-  }
-}
-
-@media only screen and (min-width: 480px) {
-  /* Small desktop / ipad view: 3 tiles */
-  .gallery .box {
-      width: 33.3%;
-      padding-bottom: 33.3%;
-  }
-}
-
-@media only screen and (min-width: 9999px) {
-  /* Medium desktop: 4 tiles */
-  .box {
-      width: 25%;
-      padding-bottom: 25%;
-  }
-}
-
-/* Transition styles */
-
-.gallery.hover-transition figure,
-.gallery.hover-effect-zoom .img,
-.gallery:not(.caption-effect-appear) figcaption,
-.fancy-figure:not(.caption-effect-appear) figcaption {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Figure styles */
-
-figure {
-  position: relative;
-  /* purely to allow absolution positioning of figcaption */
-  overflow: hidden;
-}
-
-.gallery figure {
-  margin: 0;
-  position: absolute;
-  left: 5px;
-  right: 5px;
-  top: 5px;
-  bottom: 5px;
-}
-
-.gallery.hover-effect-grow figure:hover {
-  transform: scale(1.05);
-}
-
-.gallery.hover-effect-shrink figure:hover {
-  transform: scale(0.95);
-}
-
-.gallery.hover-effect-slidedown figure:hover {
-  transform: translateY(5px);
-}
-
-.gallery.hover-effect-slideup figure:hover {
-  transform: translateY(-5px);
-}
-
-/* img / a styles */
-
-.gallery .img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-
-.gallery.hover-effect-zoom figure:hover .img {
-  transform: scale(1.05);
-}
-
-.gallery img {
-  display: none;
-  /* only show the img if not inside a gallery */
-}
-
-figure a {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-/* figcaption styles */
-
-.gallery figcaption,
-.fancy-figure figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #000;
-  color: #FFF;
-  text-align: center;
-  font-size: 75%;
-  /* change this if you want bigger text */
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-  cursor: pointer;
-}
-
-.gallery.caption-position-none figcaption,
-.fancy-figure.caption-position-none figcaption {
-  display: none;
-}
-
-.gallery.caption-position-center figcaption,
-.fancy-figure.caption-position-center figcaption {
-  top: 0;
-  padding: 40% 5px;
-}
-
-.gallery.caption-position-bottom figcaption,
-.fancy-figure.caption-position-bottom figcaption {
-  padding: 5px;
-}
-
-.gallery.caption-effect-fade figure:not(:hover) figcaption,
-.gallery.caption-effect-appear figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-fade figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-appear figure:not(:hover) figcaption {
-  background: rgba(0, 0, 0, 0);
-  opacity: 0;
-}
-
-.gallery.caption-effect-slide.caption-position-bottom figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-slide.caption-position-bottom figure:not(:hover) figcaption {
-  margin-bottom: -100%;
-}
-
-.gallery.caption-effect-slide.caption-position-center figure:not(:hover) figcaption,
-.fancy-figure.caption-effect-slide.caption-position-center figure:not(:hover) figcaption {
-  top: 100%;
-}
-
-figcaption p {
-  margin: auto;
-  /* override style in theme */
+  body { font-size: 32px;}
+  h1 { font-size: 48px;}
+  h2 { font-size: 40px;}
+  h3 {font-size: 32px;}
+  h6 {font-size: 30px;}
+  .tags {font-size: 32px;}
+  .sidebar-nav-item { font-size: 32px;}
 }

@@ -3,6 +3,8 @@ title: "Personal Readme"
 date: 2020-12-06T14:58:31-05:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "Readme"
 github: "https://github.com/brentstewart/about-brent.git"
 youtube: ""
 refs: [""]

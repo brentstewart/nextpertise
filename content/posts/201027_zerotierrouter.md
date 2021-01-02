@@ -3,6 +3,8 @@ title: "ZeroTier Router"
 date: 2020-10-27T22:10:59-04:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "zerotier"
 github: ""
 youtube: ""
 refs: ["https://zerotier.com"]

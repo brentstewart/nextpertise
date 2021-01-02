@@ -3,6 +3,8 @@ title: "ZeroTier Basic Configuration"
 date: 2020-10-25T16:29:57-04:00
 draft: false
 author: "Brent Stewart"
+Victor_Hugo: "true"
+Focus_Keyword: "zerotier"
 github: ""
 youtube: ""
 refs: ["https://zerotier.com","http://adamierymenko.com/decentralization.html","https://www.zerotier.com/manual/#2_1_3", "https://github.com/zerotier"]
