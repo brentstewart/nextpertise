@@ -1,7 +1,7 @@
 ---
 title: "Writing a Blog - Reflections after a half year"
 date: 2021-01-02T11:45:16-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Blogging"
