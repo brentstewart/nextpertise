@@ -10,7 +10,7 @@ youtube: ""
 refs: ["https://jamstack.org", "https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf", "https://www.netlify.com/","https://disqus.com/","https://utteranc.es/"]
 tags: ["JAMStack","Hugo"]
 ---
-I wrote a few weeks ago about setting up this site using [Hugo]({{<ref "Building_Site_with_Hugo.md">}}) and [Render]({{< ref "render.md">}}).  It's become clear since then that what I "discovered" was a developed concept aimed at solving big problems in web development and that my use case was the simplest use.  Some of you were no doubt well ahead of me, but couldn't tell me because I didn't have a comment system on the blog until this week.
+I wrote a few weeks ago about setting up this site using Hugo and [Render]({{< ref "render.md">}}).  It's become clear since then that what I "discovered" was a developed concept aimed at solving big problems in web development and that my use case was the simplest use.  Some of you were no doubt well ahead of me, but couldn't tell me because I didn't have a comment system on the blog until this week.
 Hugo and Render are one iteration of a concept called the JAMStack.
 
 ### You should consider JAMStack

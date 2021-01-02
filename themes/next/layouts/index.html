@@ -1,7 +1,8 @@
 {{define "main"}}
 <div class="tags">a journal of interesting technical ideas . . .</div>
 <h1>Most Recent Posts:</h1>
-{{range first 3 .Pages }}
+
+{{range first 4 .Site.RegularPages }}
 <div class="child">
     <a href="{{.URL}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
         {{ .Summary}}<div class="tags"> 
@@ -11,9 +12,9 @@
   </div>
 {{end}}
 <hr>
-<h2>Older articles:</h2>
+<h2>Other recent articles:</h2>
 <div id="parent">
-{{range after 3 .Pages}}
+{{range first 6 (after 5 .Site.RegularPages)}}
   <div class="child">
     <a href="{{.URL}}">{{.Title}}</a><br>
     <div class="tags"> 
@@ -23,5 +24,4 @@
     <br>
   </div>
   {{end}}
-</div>
-{{end}}
+  {{end}}

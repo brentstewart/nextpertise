@@ -42,9 +42,28 @@ I also played with ENIs.  Originally, my idea was to create a new network interf
 However, you can create a stand-alone ENI and associate an IP with it.  _This_ can be attached to "A", unattached, and attached to "B" without a networking restart.  In practice, it works very similar to a secondary IP.
 
 In the Instances page, look in the menu on the left under networking and find "Network Interfaces".  From here you can click the "create network interface" button to create an independent NIC and assign it an IP.
-
-## Recommendations ##
-When using EC2, you should be aware the primary interface IPs cannot be reassigned without deleting the instance.  Yes, you can take a snapshot before deleting, but your tolerance for that kind of risk may be limited.
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="{{ .Site.BaseURL }}">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise {{.Title}}</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nexpertise is a journal of interesting technical ideas">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    {{ partial "victorhugo.html" . }}
+  </head>
+  <body>
+    {{partial "header" .}}face IPs cannot be reassigned without deleting the instance.  Yes, you can take a snapshot before deleting, but your tolerance for that kind of risk may be limited.
 
 The best option is to construct your VPC environment so that all references are done via Fully Qualified Domain Name (FQDN).  DNS can easily be updated to point the name "server" from 10.0.0.1 to 10.0.0.2.
 

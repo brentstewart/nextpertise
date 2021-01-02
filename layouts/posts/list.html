@@ -1,0 +1,10 @@
+
+{{define "main"}}
+<h1>Archives:</h1><br>
+{{range .Pages.GroupByDate "01/2006"}}
+    <h3>{{.Key}}</h3>
+    {{range .Pages}}
+        <a href="{{.URL}}">{{.Title}}</a><br>
+    {{end}}
+  {{end}}
+{{end}}

@@ -4,17 +4,31 @@
   <p>{{.Content}}</p>
   <br>
   <hr>
-  <div style="color:grey; font-size:16px;">{{ if .Params.refs }}<strong>References:<br></strong> {{range .Params.refs}}&nbsp&nbsp<a href="{{ . }}">{{ . }}</a><br> {{end}}{{end}}</div>
-  <div style="color:grey; font-size:16px;">{{ if .Params.youtube }}<strong>Video:</strong> {{.Params.youtube}}{{end}}</div>
-  <div style="color:grey; font-size:16px;">{{ if .Params.github }}<strong>Github:</strong> {{.Params.github}}{{end}}</div>
   <div style="color:grey; font-size:16px;">
-    {{ if .Params.tags }}<strong>Tags:</strong> 
+    {{ if .Params.refs }}<strong>References:<br></strong> {{range .Params.refs}}&nbsp&nbsp<a href="{{ . }}">{{ . }}</a><br> {{end}}{{end}}
+    {{ if .Params.youtube }}<strong>Video:</strong> {{.Params.youtube}}{{end}}
+    {{ if .Params.github }}<strong>Github:</strong> {{.Params.github}}{{end}}
+    <br>
+    Recent articles related to these tags:
+    {{ if .Params.tags }}
       {{range .Params.tags}}
         <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> 
        {{end}}
-    {{end}}</div>
+    {{end}}
+    <ul>
+      </ul>
+      {{ range first 5 ( where ( where .Site.Pages.ByDate.Reverse ".Params.tags" "intersect" .Params.tags ) "Permalink" "!=" .Permalink ) }}
+      <li class="relatedPost">
+        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a><br />
+        {{ .Description | markdownify }}
+      </li>
+    {{ end }}
+  </ul>
+<br>
 
-  <div style="color:grey; font-size:16px;">Share this article:&NonBreakingSpace;
+
+    
+Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="{{.RelPermalink}}"></script>&NonBreakingSpace;
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -18,13 +18,17 @@ enableRobotsTXT = "true"
   url = "/"
   weight = 1
 [[menu.main]]
+  name="Archives"
+  url="/posts/"
+  weight=3
+[[menu.main]]
   name="About"
   url = "/contributors"
   weight = 5
 [[menu.main]]
   name = "TagCloud"
   url = "/tags/"
-  weight = 3
+  weight = 2
 [[menu.main]]
   name = "Github"
   url = "https://github.com/brentstewart"
