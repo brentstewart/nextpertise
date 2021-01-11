@@ -9,6 +9,7 @@ enableRobotsTXT = "true"
   twitter="@nextpertise"
   Authors="Brent Stewart"
 
+
 [taxonomies]
   tag = "tags"
   writer = "writers"

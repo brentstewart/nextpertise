@@ -8,7 +8,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://www.duplicati.com/", "https://www.jupiterbroadcasting.com/", "https://www.backblaze.com/"]
-tags: ["Review","Backblaze","Duplicati","Backup","Cloud","Linux"]
+tags: ["Review","Backup","Linux"]
 ---
 
 At one point, I was taught to divide tasks by priority A, B, C.  As I've gotten older, I've converted that scale into "things that will immediately get me fired or divorced", "things that will eventually get me fired or divorced", and "things I'd like to do if I have time".  One of the "A" tasks on this scale is making sure that we don't lose our family digital pictures!
