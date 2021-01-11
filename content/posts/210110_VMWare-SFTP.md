@@ -1,7 +1,7 @@
 ---
 title: "VMWare File Transfer Options including SFTP "
 date: 2021-01-10T16:51:18-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"

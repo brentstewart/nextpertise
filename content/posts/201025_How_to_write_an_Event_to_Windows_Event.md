@@ -8,7 +8,7 @@ Focus_Keyword: "Logs"
 github: ""
 youtube: ""
 refs: ["https://scoop.sh/","https://github.com/lukesampson/scoop"]
-tags: ["Syslog","Windows","Linux"]
+tags: ["Syslog","Windows","Linux","Security"]
 ---
 Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.
 
