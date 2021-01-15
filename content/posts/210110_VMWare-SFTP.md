@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
+picture: "VMWare"
 github: ""
 youtube: ""
 refs: [""]

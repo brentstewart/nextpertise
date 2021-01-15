@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "SSH"
+picture: "shell"
 github: ""
 youtube: ""
 refs: [""]

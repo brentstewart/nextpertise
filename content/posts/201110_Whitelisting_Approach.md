@@ -4,6 +4,7 @@ date: 2020-10-07T06:30:00-00:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "Whitelisting, AppSamvid"
+picture: "security"
 author: "Myron Estibeiro"
 refs: ["https://cdac.in/index.aspx?id=cs_eps_appsamvid"]
 tags: ["Security"]

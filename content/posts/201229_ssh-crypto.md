@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "SSH"
+picture: "shell"
 github: "https://github.com/brentstewart/ssh-crypto"
 youtube: ""
 refs: ["https://www.cisecurity.org/", "https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process#negotiating-encryption-for-the-session"]

@@ -4,6 +4,7 @@ date: 2020-09-30T08:07:00-00:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "Protecting Children"
+picture: "security"
 author: "Myron Estibeiro"
 refs: ["https://opendns.com"]
 tags: ["Security"]

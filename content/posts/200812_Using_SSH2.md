@@ -4,6 +4,7 @@ date: 2020-08-12T11:36:12-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "SSH"
+picture: "shell"
 author: "Brent Stewart"
 github: ""
 youtube: ""

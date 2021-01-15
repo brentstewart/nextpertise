@@ -4,6 +4,7 @@ date: 2020-08-17T12:47:16-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "Linux"
+picture: "linux"
 author: "Brent Stewart"
 github: ""
 youtube: ""

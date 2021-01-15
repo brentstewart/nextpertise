@@ -4,6 +4,7 @@ date: 2020-09-21T08:07:02-00:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "Secure Secure Engines"
+picture: "201230_n"
 author: "Myron Estibeiro"
 refs: ["https://duckduckgo.com/", "https://www.startpage.com"]
 tags: ["Security"]

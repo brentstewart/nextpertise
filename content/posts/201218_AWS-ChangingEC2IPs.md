@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "AWS EC2"
+picture: "aws"
 github: ""
 youtube: ""
 refs: [""]

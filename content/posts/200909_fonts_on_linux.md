@@ -3,6 +3,7 @@ title: "Fonts on Linux"
 date: 2020-09-09T16:42:10-04:00
 draft: false
 author: "Brent Stewart"
+picture: "201230_n"
 github: ""
 youtube: ""
 refs: ["https://fonts.google.com", "https://www.google.com/get/noto/"]

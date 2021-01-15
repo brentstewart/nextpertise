@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "ebook"
+picture: "201230_n"
 github: ""
 youtube: ""
 refs:

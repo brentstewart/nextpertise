@@ -4,6 +4,7 @@ date: 2020-08-26T12:01:51-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "DNS"
+picture: "201230_n"
 author: "Brent Stewart"
 github: ""
 youtube: ""

@@ -5,6 +5,7 @@ draft: true
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: ""
+picture: "hugo"
 github: ""
 youtube: ""
 refs: ["https://github.com/doncabreraphone/victorhugo"]

@@ -4,6 +4,7 @@ date: 2020-08-04T09:12:52-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "Backup"
+picture: "201230_n"
 author: "Brent Stewart"
 github: ""
 youtube: ""

@@ -4,7 +4,8 @@ date: 2021-01-13T20:42:48-05:00
 draft: true
 author: "Brent Stewart"
 Victor_Hugo: "true"
-Focus_Keyword: "Diagram"
+Focus_Keyword: "GNS3"
+picture: "GNS3"
 github: ""
 youtube: ""
 refs: [""]

@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Blogging"
+picture: "hugo"
 github: ""
 youtube: ""
 refs: ["https://www.markdownguide.org/","https://jamstack.org/","https://vscodium.com/","https://render.com","https://mikedane.com","https://analytics.google.com/analytics/academy/"]

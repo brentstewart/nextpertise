@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
+picture: "GNS3"
 github: ""
 youtube: ""
 refs: [""]

@@ -4,6 +4,7 @@ date: 2020-08-21T13:18:28-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
+picture: "GNS3"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/GNS3Symbols"
 youtube: ""

@@ -4,6 +4,7 @@ date: 2020-08-03T16:59:30-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "PostScript"
+picture: "201230_n"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/postscript_projects"
 youtube: ""

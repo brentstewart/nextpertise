@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "zerotier"
+picture: "zerotier"
 github: ""
 youtube: ""
 refs: ["https://zerotier.com","http://adamierymenko.com/decentralization.html","https://www.zerotier.com/manual/#2_1_3", "https://github.com/zerotier"]

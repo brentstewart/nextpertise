@@ -5,6 +5,7 @@ draft: false
 author: "Myron Estibeiro"
 Victor_Hugo: "true"
 Focus_Keyword: "Security"
+picture: "security"
 github: ""
 youtube: ""
 refs: ["https://developers.google.com/web/tools/lighthouse/","https://github.com/GoogleChrome/lighthouse"]

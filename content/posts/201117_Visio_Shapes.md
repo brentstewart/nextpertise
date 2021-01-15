@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Visio"
+picture: "GNS3"
 github: "https://github.com/brentstewart/Visio_Stencils.git"
 youtube: ""
 refs: ["https://github.com/GNS3"]

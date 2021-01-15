@@ -3,6 +3,7 @@ title: "Git (and run) a File!"
 date: 2020-09-10T11:03:09-04:00
 draft: false
 author: "Brent Stewart"
+picture: "shell"
 github: ""
 youtube: ""
 refs: ["https://docs.github.com/en/rest/reference/repos#get-repository-content", "https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token"]

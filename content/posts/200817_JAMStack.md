@@ -4,6 +4,7 @@ date: 2020-08-17T08:25:02-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "JAMStack"
+picture: "201230_n"
 author: "Brent Stewart"
 github: "https://github.com/brentstewart/nextpertise"
 youtube: ""

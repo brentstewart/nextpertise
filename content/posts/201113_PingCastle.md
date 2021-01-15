@@ -4,6 +4,7 @@ date: 2020-11-13T10:30:00-00:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "PingCastle, AD Security"
+picture: "windows"
 author: "Myron Estibeiro"
 refs: ["https://www.pingcastle.com/"]
 tags: ["Security"]

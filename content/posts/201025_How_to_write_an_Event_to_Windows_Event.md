@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Logs"
+picture: "security"
 github: ""
 youtube: ""
 refs: ["https://scoop.sh/","https://github.com/lukesampson/scoop"]

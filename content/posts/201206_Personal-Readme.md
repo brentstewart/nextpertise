@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Readme"
+picture: "201230_n"
 github: "https://github.com/brentstewart/about-brent.git"
 youtube: ""
 refs: [""]

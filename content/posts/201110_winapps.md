@@ -5,6 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Linux"
+picture: "linux"
 github: "https://github.com/brentstewart/winapps"
 youtube: ""
 refs: ["https://github.com/Fmstrat/winapps"]
