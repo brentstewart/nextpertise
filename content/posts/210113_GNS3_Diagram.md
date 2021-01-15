@@ -21,3 +21,20 @@ $9.95/mo or $108/y [Lucidchart](https://lucidchart.com)
 
 ## GNS3
 Free [GNS3](https://gns3.org)
+[GNS3 Diagrams](/210113_GNS3_Diagrams)
+
+  Easy diagram
+  don't care about UML
+  standard symbols
+  easy connections
+  annotation
+  Visio compatible
+
+Building diagrams is an essential documentation and communication tool for IT professionals.  There are a variety of programs to do this. 
+
+LibreOffice Draw  https://www.yworks.com/products/yed
+yEd  https://www.yworks.com/products/yed
+Dia  http://dia-installer.de/
+Calligra Flow  https://www.graphviz.org/
+Graphviz https://www.graphviz.org/
+Pencil https://pencil.evolus.vn/
