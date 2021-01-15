@@ -4,7 +4,7 @@
 
 {{range first 4 .Site.RegularPages }}
 <div class="child">
-  {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatsmallleft" height="120">{{end}}
+  {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatsmallleft" height="140">{{end}}
   <a href="{{.URL}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
         {{ .Summary}}<div class="tags"> 
          {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
