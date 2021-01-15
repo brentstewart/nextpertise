@@ -4,7 +4,7 @@ date: 2020-07-28T15:44:02-04:00
 draft: false
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
-picture: "VMWare"
+picture: "vmware"
 author: "Brent Stewart"
 github: ""
 youtube: ""

@@ -1,10 +1,13 @@
 {{define "main"}}
 <br> Tags used on this site: <br>
-<ul>
+<div id="parent">
     {{ range .Data.Terms.Alphabetical }}
-    <li>    <a href="{{.Page.Permalink }}">{{ .Page.Title }}</a> ({{.Count}})
+    <div class="child">
+        <img src="/{{lower .Page.Title}}.png" height="20">
+        <a href="{{.Page.Permalink }}">{{ .Page.Title }}</a> ({{.Count}})
+    </div>
     {{ end }}
-</ul>
+</div>
 {{end}}
 
 

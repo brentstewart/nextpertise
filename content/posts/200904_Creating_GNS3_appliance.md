@@ -5,7 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3 gns3"
-picture: "GNS3"
+picture: "gns3"
 github: "https://github.com/brentstewart/gns3-registry"
 youtube: ""
 refs: ["https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/","https://github.com/GNS3/gns3-registry"]
