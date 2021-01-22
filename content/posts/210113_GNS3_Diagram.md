@@ -1,10 +1,10 @@
 ---
 title: "Diagrams on Linux"
-date: 2021-01-13T20:42:48-05:00
+date: 2021-01-21T17:42:48-05:00
 draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
-Focus_Keyword: "GNS3"
+Focus_Keyword: "lucidchart"
 picture: "gns3"
 github: ""
 youtube: ""
