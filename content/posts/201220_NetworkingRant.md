@@ -5,7 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Networking"
-picture: "201230_n"
+picture: "basics"
 github: ""
 youtube: ""
 refs: [""]

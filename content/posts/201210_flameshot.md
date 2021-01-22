@@ -5,7 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Flameshot"
-picture: "201230_n"
+picture: "linux"
 github: ""
 youtube: ""
 refs: ["https://en.wikipedia.org/wiki/Unix_philosophy","https://flameshot.org/"]

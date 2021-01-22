@@ -1,6 +1,6 @@
 {{define "main"}}
-<br><h1>{{.Title}}</h1><hr>
-
+{{if .Params.picture }}<img src="/{{.Params.picture}}.png#floatright" height="140">{{end}}
+<h1>{{.Title}}</h1> 
   <h6><div style="text-align: right"><i>by {{.Params.Author}}</a>  on {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i><br></div></h6>
   <p>{{.Content}}</p>
   <br>
