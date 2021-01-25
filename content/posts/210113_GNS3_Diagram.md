@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "lucidchart"
-picture: "gns3"
+picture: "lucidchart"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["GNS3","Visio","Lucidchart"]
+tags: ["GNS3","Visio","Lucidchart","Linux"]
 ---
 
 The articles I post generally start out as a way to share something I've learned through years of experience.  Less often, they are a way to share something that I'm researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I've learned.
