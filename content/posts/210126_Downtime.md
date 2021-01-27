@@ -4,12 +4,12 @@ date: 2021-01-26T08:18:24-05:00
 draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
-Focus_Keyword: "IT"
+Focus_Keyword: "Downtime"
 picture: "life"
 github: ""
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["How To","Management"]
 ---
 In another blog, planning downtime would involve tropical pictures.  Sigh.
 
