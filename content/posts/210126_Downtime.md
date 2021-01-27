@@ -1,6 +1,6 @@
 ---
 title: "How to Plan Good Downtime"
-date: 2021-01-26T08:18:24-05:00
+date: 2021-01-26T20:18:24-05:00
 draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
@@ -19,7 +19,7 @@ IT downtime is a period when IT systems have a planned outage.  These periods ar
 
 It is a good idea to have a recurring scheduled downtime at least once a month.  Most organizations sync their downtime to "patch Tuesday".  Microsoft, Oracle, and other big organizations release patches on the second Tuesday each month.  Since there's a good chance that something in an environment will need to be patched and this leads to a disruption, it's a good time to do other changes as well.
 
-Sometimes changes must be deployed to react to events.  In that case the process is hastily put together and it's more critical to have a clear idea of how to structure that time.
+Sometimes changes must be deployed to react to events.  In those cases the process is hastily put together and it's more critical to have a clear idea of how to structure that time.
 
 ![Plan](/plan.jpeg#floatsmallleft)
 
@@ -56,22 +56,22 @@ Updates should be sent at critical points in the process:
 * When backout is complete, if applicable
 * When the change is complete
 
-Keep in mind that your change may impact your ability to get to corporate directories phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers "just in case".
+Keep in mind that your change may impact your ability to get to corporate directories, phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers "just in case".
 
-Another aspect of communications is setting up the time for the change, getting it on people's calendars and insuring they can participate, and publishing the meeting information.
+Another aspect of communications is setting up the time for the change, getting it on people's calendars, insuring they can participate, and publishing the meeting information.
 
 ## Build a Script
-A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The _time_ column tells when that task should be complete.
+A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The _time_ column tells the clock-time when that task should be complete.
 
-Having a script allows the team to do a dry run and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.
+Having a script allows the team to do a walk-through and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.
 
 This process also applies to the backout script.  Understand how the change will be unwound, roles, and make sure you preserve adequate time to accomplish it.
 
-A word on time estimates - their going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each steps helps you to get a sense of where things stand relative to expectations at any point.
+A word on time estimates - they're going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each step helps you to get a sense of where things stand relative to expectations at any point.
 
 
 ## Recognize Risks
-Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted.  Anticipating likely scenarios also provides opportunities to mitigate.
+Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted by those impacted.  Anticipating likely scenarios also provides opportunities to mitigate.
 
 Is there a risk of disconnection to a remote facility?  Plan on having someone on site or available.
 
