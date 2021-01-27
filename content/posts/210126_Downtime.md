@@ -1,7 +1,7 @@
 ---
 title: "How to Plan Good Downtime"
 date: 2021-01-26T08:18:24-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "IT"
