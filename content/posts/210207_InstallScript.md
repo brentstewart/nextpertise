@@ -1,5 +1,5 @@
 ---
-title: "My Linux Install Script"
+title: "Linux Install Script"
 date: 2021-02-07T10:32:29-05:00
 draft: false
 author: "Brent Stewart"
