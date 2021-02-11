@@ -55,7 +55,7 @@ MaxKeyboards has an easy to follow ordering page where you can upload your graph
 
 I should get my new keys next week!  Looks like the total cost will be about $10 per key.  
 
-![Nextpertise Keycaps](/210112_NewKeycaps.png#floatright)
+![Nextpertise Keycaps](/210112_NewKeycaps.webp#floatright)
 
 ## Update 1-12-21
 I received the new keys today!  You can see the new keys in the picture here.
