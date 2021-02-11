@@ -1,7 +1,7 @@
 ---
 title: "GNS3 Update for February, 2021"
-date: 2021-02-11T15:03:01-05:00
-draft: true
+date: 2021-02-07T15:03:01-05:00
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"

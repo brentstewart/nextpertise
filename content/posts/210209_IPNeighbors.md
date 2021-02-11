@@ -1,5 +1,5 @@
 ---
-title: "Won't youu be my Neighbor?"
+title: "Won't you be my Neighbor?"
 date: 2021-02-09T18:33:05-05:00
 draft: false
 author: "Brent Stewart"
