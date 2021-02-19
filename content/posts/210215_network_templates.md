@@ -21,24 +21,28 @@ I'm proposing three basic topologies to test switching, routing, and firewalling
 
 The goals of the switching lab would be to cover the following key switching capabilities:
 * Spanning-tree and Rapid Spanning Tree
-* VLAN
+* VLANs
 * Trunk
-Port channel
+* Port channel
+* Intervlan routing (possibly with a router on a stick)
 * Port security
-* Router on a stick
 * Management - Telnet, SSH, HTTP, Syslog, TFTP
-* Authentication - static, RADIUS, TACACS
+* Authentication - static or RADIUS/TACACS
+The topology features three switches, but with the redundant connection provides some interesting cases for STP.  Spanning Tree, possibly alone on this list, is a requirement for switches.  It works so well that a lot of younger engineers don't even realize the problems that it prevents!  The redundant connections can later be used for a port-channel as well.  There's an external router (if the switch being considered is layer 2 only), plus three target devices to work through some VLAN examples.  There are some advanced cases that this doesn't cover, mostly because I want to make these labs accessible for those who don't have tons of memory.  Do you see anything I'm missing?
 
 ## Routing
 ![Routing Topology](/Topo-Routing.svg#floatsmallright)
-Router 
-* Intervlan and WAN
-* static
-* dynamic - RIP, OSPF, EIGRP, BGP
-* ACLs
-* S2S VPN
+The goals of the routing lab would cover the following capabilities: 
+* IPv4 and v6 support
+* Intervlan and WAN Routing
+* Static Routing
+* Dynamic routing - RIP, OSPF, EIGRP, BGP
+* Access-lists
+* Site-to-site VPN
 * Management - Telnet, SSH, HTTP, Syslog, TFTP
-* Authentication - static, RADIUS, TACACS
+* Authentication - static or RADIUS/TACACS
+Three routers covers most simple cases.  It's important to point out that I'm not attempting to model _good designs_.  I'm trying to create a lab that exercises the most definitive features of each class of devices while using the least amount of memory and processor so that these labs are accessible.  One interesting note here - I don't have a lot of experience with IPv6.  But the reason for the challenge is to push ourselves.  There's enough complication here that we can implement a relatively static design with a lot of different tools to see how they differ. 
+
 
 ## Firewall
 
