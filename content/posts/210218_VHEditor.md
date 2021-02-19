@@ -1,7 +1,7 @@
 ---
 title: "VHEditor - Visual Studio Code for Android"
 date: 2021-02-18T20:07:38-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Visual Studio Code"
@@ -34,7 +34,7 @@ It feels like there are some kinks to work out.  You use "pkg install git" on th
 
 I've expressed the opinion that the secret sauce in IT right now is Git + Python + WebAPIs.  VSCode has become this tool that fits into that mix of products perfectly.  VHEditor allows me to bring that all the way down to my tablet and is definitely worth a look.
 
-If you are familiar with VSCode, you know there's a lot of different things on the screen.  I have a large phone, but I just don't see this being useful on a display below 8".  You are also really going to need a bluetooth keyboard, especially to use any of the key combinations.  The app is currently sitting at 3 1/2 stars - I read through the reviews and the issues I see relate to unfamiliar or less technical users.  Be prepared to put a little thought into it, but I recommend checking this out.
+If you are familiar with VSCode, you know there's a lot of things on the screen.  I have a large phone, but I just don't see this being useful on a display below 8".  You are also really going to need a bluetooth keyboard, especially to use any of the key combinations.  The app is currently sitting at 3 1/2 stars - I read through the reviews and the issues I see relate to unfamiliar or less technical users.  Be prepared to put a little thought into it, but I recommend checking this out.
 
 
 
