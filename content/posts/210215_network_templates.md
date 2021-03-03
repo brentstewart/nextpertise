@@ -1,15 +1,15 @@
 ---
-title: "Network_templates"
-date: 2021-02-15T17:46:15-05:00
+title: "New Project - Testing *Every* GNS3 Network Appliance"
+date: 2021-02-27T17:46:15-05:00
 draft: true
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
 picture: "gns3"
-github: ""
+github: "https://github.com/brentstewart/gns3labs"
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["GNS3"]
 ---
 
 I'm kicking off an exciting new project, and I'd appreciate your thoughts as I get started.  GNS3 supports a many different appliances and I'm fascinated by how they work and compare.  I've supported many of them in my work, but I'd like to build a lab for each one that demonstrated the core functions of the device. My hope would be to produce a reference that would allow folks to quickly gain traction with new equipment.  Part of the goal is to directly compare the setup between devices, so the network structure would be static.
@@ -41,12 +41,13 @@ The goals of the routing lab would cover the following capabilities:
 * Site-to-site VPN
 * Management - Telnet, SSH, HTTP, Syslog, TFTP
 * Authentication - static or RADIUS/TACACS
-Three routers covers most simple cases.  It's important to point out that I'm not attempting to model _good designs_.  I'm trying to create a lab that exercises the most definitive features of each class of devices while using the least amount of memory and processor so that these labs are accessible.  One interesting note here - I don't have a lot of experience with IPv6.  But the reason for the challenge is to push ourselves.  There's enough complication here that we can implement a relatively static design with a lot of different tools to see how they differ. 
 
+Three routers covers most simple cases.  It's important to point out that I'm not attempting to model _good designs_.  I'm trying to create a lab that exercises the most definitive features of each class of devices while using the least amount of memory and processor so that these labs are accessible.  One interesting note here - I don't have a lot of experience with IPv6.  But the reason for the challenge is to push ourselves.  There's enough complication here that we can implement a relatively static design with a lot of different tools to see how they differ. 
+These labs will be fun to demonstrate and exercise the different routing protocols.  Of course it would be great to have a bigger lab to do things like iBGP and eBGP, but the goal here is to compare the different appliances.  
 
 ## Firewall
-
-Firewall
+![Firewall Topology](/Topo-Firewall.svg#floatsmallright)
+Firewalls are pretty straightforward to test.  The biggest question is whether we want to go full red-team or just demonstrate configuration options.  I chose the latter to be consistent at this stage, but I may come back to them when I'm ready to include Kali and Parrot.  Functions to be demonstrated include:
 * Routing
 * Bump on a wire
 * Routing functions
@@ -54,4 +55,8 @@ Firewall
 * client VPN
 * ACL / Policy
 * Management - Telnet, SSH, HTTP, Syslog, TFTP
-* Authentication - static, RADIUS, TACACS
+* Authentication - static, RADIUS or TACACS
+
+I've created a repository to house all the lab files and each setup will be a separate directory with instructions.
+
+My goal is to create the definitive set of reference labs.  I'll be starting soon with the easy one - Cisco.  I'd appreciate your ideas!
