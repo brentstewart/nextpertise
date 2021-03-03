@@ -1,7 +1,7 @@
 ---
 title: "New Project - Testing *Every* GNS3 Network Appliance"
 date: 2021-02-27T17:46:15-05:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "GNS3"
@@ -58,5 +58,3 @@ Firewalls are pretty straightforward to test.  The biggest question is whether w
 * Authentication - static, RADIUS or TACACS
 
 I've created a repository to house all the lab files and each setup will be a separate directory with instructions.
-
-My goal is to create the definitive set of reference labs.  I'll be starting soon with the easy one - Cisco.  I'd appreciate your ideas!
