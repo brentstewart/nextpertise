@@ -1,7 +1,7 @@
 ---
 title: "Rational Change Control"
 date: 2021-03-17T19:42:22-04:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Change Control"
