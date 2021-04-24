@@ -38,33 +38,36 @@ The virtual router needs a default route pointing to the home router.  It's also
 
 The following output has been edited for brevity, but shows the added commands and the test ping to Google.
 
-> Router# __sh run__  
+```plaintext
+Router# sh run  
 
-> hostname Router  
+hostname Router  
  
-> interface GigabitEthernet0/0  
+interface GigabitEthernet0/0  
  ip address 192.168.28.1 255.255.255.0  
  interface GigabitEthernet0/1  
  ip address 192.168.25.82 255.255.255.0  
 !  
 ip route 0.0.0.0 0.0.0.0 192.168.25.1  
->
-> Router#ping __8.8.8.8__  
+
+Router#ping __8.8.8.8__  
 Type escape sequence to abort.  
 !!!!!  
 Success rate is 100 percent (5/5), round-trip min/avg/max = 20/25/29 ms  
+```
 
 We also want to verify that traffic is flowing from the Internet into our virtual GNS3 lab environment.  To do this I'll source a ping from the G0/0 interface.
 
-> Router# __ping__      
+```plaintext
+Router# ping  
 Protocol [ip]:  
-Target IP address: __8.8.8.8__  
+Target IP address: 8.8.8.8  
 Repeat count [5]:  
 Datagram size [100]:   
 Timeout in seconds [2]:   
-Extended commands [n]: __y__  
+Extended commands [n]: y  
 Ingress ping [n]:   
-Source address or interface: __192.168.28.1__  
+Source address or interface: 192.168.28.1  
 Type of service [0]:  
 Set DF bit in IP header? [no]:   
 Validate reply data? [no]:  
@@ -77,6 +80,7 @@ Packet sent with a source address of 192.168.28.1
 !!!!!  
 Success rate is 100 percent (5/5), round-trip min/avg/max = 20/27/31 ms  
 Router#
+```
 
 ## Step 1 complete
 Our lab environment is reachable from the local network and it can reach out to the public Internet as needed at this point.  The next step will be to setup the switches! 

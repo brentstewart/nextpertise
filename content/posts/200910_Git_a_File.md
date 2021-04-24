@@ -9,9 +9,10 @@ youtube: ""
 refs: ["https://docs.github.com/en/rest/reference/repos#get-repository-content", "https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token"]
 tags: ["Git","Linux"]
 ---
-![GitHub Repository Settings](/githubpriv1.png#floatright)
 
 I maintain a private Github repository for my Linux install scripts.  My install scripts setup PPAs, install programs that I typically use, and setup my system the way I want it.  The repository has scripts for Ubuntu and Red Hat variants, plus secondary scripts that perform other admin tasks.
+
+![GitHub Repository Settings](/githubpriv1.png#floatsmallright)
 
 These scripts aren't supposed to have personal information in them, but things like IP addresses, paths, and security measures could sneak in.  I don't want to have to worry about revealing something that opens me to attack, so the repos are private. 
 ![GitHub Repository Settings](/githubpriv2.png#floatright)
@@ -23,40 +24,52 @@ Private repositories operate just like public ones in my experience.  The only d
 ## Using a Linux install script 
 Here's a snippet of the Ubuntu script to give you an idea of what I'm doing.  This section sets up fail2ban (an SSH security measure) and installs VSCodium.  
 
-> __echo setup fail2ban__  
-__systemctl start fail2ban__  
-__systemctl enable fail2ban__  
-__echo "/[sshd]__  
-__enabled = true__  
-__port = 22__  
-__filter = sshd__  
-__logpath = /var/log/auth.log__  
-__maxretry = 3" >  /etc/fail2ban/jail.local__  
-__##VSCodium__  
-__wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -__   
-__echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list__  
-__sudo apt update && sudo apt install codium__  
+```bash
+echo setup fail2ban
+systemctl start fail2ban
+systemctl enable fail2ban
+echo "/[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3" >  /etc/fail2ban/jail.local
+##VSCodium
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
+echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list
+sudo apt update && sudo apt install codium
+```
 
 I build and tear down a lot of Linux machines (mostly VMs and EC2 instances).  The initial install lacks some of the tools I expect, and I don't want to go through a process to build the environment.  The script automates this setup, saves me time and makes sure that I don't forget anything!
 
 Up until recently my process was to install Linux, grab git, then clone the repository.  From there, I could move into the repository and run the scripts I wanted.
 
-> __sudo apt install git__  
-__mkdir git/linuxinstall__  
-__cd git/linuxinstall__  
-__git clone__ https://github.com/brentstewart/Private_linuxinstall.git  
-__chmod +x myscript.sh__  
-__./myscript.sh__  
+```bash
+sudo apt install git
+mkdir git/linuxinstall
+cd git/linuxinstall
+git clone__ https://github.com/brentstewart/Private_linuxinstall.git  
+chmod +x myscript.sh
+./myscript.sh
+```
+![Github Settings](/githubsettings.png#floatright)
 
 This works, but it's a bunch to type.  It also downloads more than the one file I need and leaves a repository on the drive.  None of these are problems, but Linux is for the lazy and it feels like there's a better way to do this.
 
 ## An easier way
 I don't want a multi-step process and I don't want to download my whole repository.  The method I've developed to achieve this is to do all this in one line.
-![Github Settings](/githubsettings.png#floatright)
-> __curl -s --header 'Authorization: token aaabbbcccdddeeefff1112223334445556667778' --header 'Accept: application/vnd.github.v3.raw' --remote-name --location https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh && chmod +x hw.sh && bash hw.sh && rm hw.sh__  
+
+```bash
+curl -s --header 'Authorization: token aaabbbcccdddeeefff1112223334445556667778' 
+--header 'Accept: application/vnd.github.v3.raw' --remote-name --location 
+https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh
+&& chmod +x hw.sh && bash hw.sh && rm hw.sh
+```
 
 That a lot, so let's break down each piece.
-> __curl -s --header 'Authorization: token aaabbbcccdddeeefff1112223334445556667778' --header 'Accept: application/vnd.github.v3.raw' --remote-name --location__ https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh  
+```bash
+curl -s --header 'Authorization: token aaabbbcccdddeeefff1112223334445556667778' --header 'Accept: application/vnd.github.v3.raw' --remote-name --location__ https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh
+```
 
 __Curl__ is used to transfer data via various protocols, including https.
 

@@ -27,7 +27,9 @@ To test IP address mobility in EC2, I created two t2.micro instances running Ama
 ![AWS IP configuration](/AWS_Conf_IP.png#floatcenter)
 
 The first thing I tried to do was to change the IP at the prompt.
-> sudo ifconfig eth0 192.168.255.5 netmask 255.255.255.0  
+```bash
+sudo ifconfig eth0 192.168.255.5 netmask 255.255.255.0  
+```
 
 That would work on a physical instance, but this left the instance unreachable.  After rebooting, I tried changing the IP address from the AWS console and then I tried to remove the interface.  Neither action was allowed.
 
@@ -36,7 +38,9 @@ Next I assigned a secondary IP.  To do this, go to EC2 and select the instance a
 
 I tried removing the secondary IP and didn't have a problem.  I was able to take the secondary IP assigned to "A", unassign it, and put it on "B".  This works, but on AL2 you'll need to restart the network service before the secondary IP will be "seen".
 
-> sudo systemctl restart networking
+```bash
+sudo systemctl restart networking
+```
 
 ### Elastic Network Interfaces
 ![Elastic Network Interface](/AWS_ENI_IP.png#floatright)

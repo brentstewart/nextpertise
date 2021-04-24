@@ -27,12 +27,13 @@ Private repos are also good for personal notes and documentation.  I used to kee
 
 ## Building an Install Script
 Nope, I'm not going to share my install script.  As I said before, it's _private_.  But let's talk about what's in it and how it's built.
-
-> #!/bin/bash
-
+```bash
+#!/bin/bash
+```
 First, it specifies the execution environment.  Not all versions of Linux use bash as the default shell for scripts and that other environment may not support the commands I use, so I want to nail this down.
 
-> echo "Install some cool essential tools ============================"  
+```bash
+echo "Install some cool essential tools ============================"  
 apt update  
 apt upgrade -y  
 apt install traceroute nmap snapd flatpak htop net-tools gconf2 hugo git geary unzip -y  
@@ -49,6 +50,7 @@ systemctl --user enable psd.service
 systemctl --user start psd.service  
 apt update  
 apt upgrade -y  
+```
 
 Next, I install a bunch of stuff that I want on any machine I use.  For instance, _why isn't traceroute included in everything?_  Other common pieces include:
 * Networking and Security tools like nmap, htop, filezilla, and wireshark.  Gigolo for mounting drives.
@@ -61,8 +63,8 @@ Notice that I break the installs into groups - this makes it easier to track dow
 ## Fixing the Terminal
 
 I wrote about the [Powerline shell](/201130_Powerline-Windows) a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer [Tilix](/201125_tilix) to the default terminal.  This sections makes all those things happen.
-
-> echo "Fix terminal ===================================================="  
+```bash
+echo "Fix terminal ===================================================="  
 pip3 install powerline-shell  
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.225.zip  
 unzip JetBrainsMono-2.225.zip  
@@ -75,14 +77,17 @@ echo 'function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then  
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"  
 fi' >> /home/brent/.bashrc  
+```
 
 Note that I'm using an echo to give some feedback about where we are in the process. I download the font, move it to the correct directory, and update the font cache so it's usable.  The rest of this downloads Powerline and sets it up, plus grabs Tilix.
 
-  >echo "Cleaning up................"  
-  rm JetBrainsMono* -f  
-  rm -rf fonts  
-  \## Reminders  
-  echo "Set JetBrains Mono as terminal font"  
+```bash
+echo "Cleaning up................"  
+rm JetBrainsMono* -f  
+rm -rf fonts  
+\## Reminders  
+echo "Set JetBrains Mono as terminal font"  
+```
 
 ![Neofetch](/neofetch.png#floatsmallright)
 
@@ -93,8 +98,9 @@ At the end of the script, I have a clean up section and remove the Font files th
 I have a series of sections for handling optional components.  The first three optional sections are almost always turned on: the Firewall, Neofetch, SSH and NFS.
 
 The structure of these loops is a for statement terminated by done.  Since the conditions of the for are empty, it will loop continually until told to break.  Pressing a "y" or "n" executes some logic and breaks, any other key causes it to loop again.  I'm not sure this is the best way to do it, but it works.  In Bash, watch the spacing around the brackets and parentheses because it is required!
-  
->for (( ; ; ))  
+
+```bash
+for (( ; ; ))  
 do  
 echo "Would you like to enable the firewall (y/n)?  "  
 Read VAR  
@@ -151,6 +157,7 @@ echo "skipping............."
 break  
 fi  
 done  
+```
 
 ![Calibre](/calibre.png#floatright)
 The next sections are things that I would usually want, but not always.  One example is KDE Connect - on Gnome I use the _Gnome Connect_ extension and don't need to load it.  Other critical tools that I present as an option to myself include:

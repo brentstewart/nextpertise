@@ -26,7 +26,10 @@ There's not an Affinity Blue symbol for access points, so I chose the "cog".  Yo
 To extend this concept, in that same example I created a stand alone book icon that links to my documentation.  It would be easy to imagine a link to a Google doc or Sharepoint site in the same way.
 
 If you use outside graphics, keep in mind that GNS3 [recommends](https://github.com/GNS3/gns3-registry/tree/master/symbols) a maximum height and width of 70px.  I find that the "summary view" size on Google images works pretty well.  You can also resize existing graphics with Imagemagick:
-> convert -background none download/meraki.svg -resize x70 meraki.svg
+
+```bash
+convert -background none download/meraki.svg -resize x70 meraki.svg
+```
 
 ![GNS3 Device Properties](/2021-01-13_GNS3-Config.png#floatsmallleft)
 ## Creating Hyperlinks

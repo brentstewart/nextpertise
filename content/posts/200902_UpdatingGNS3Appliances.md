@@ -18,8 +18,8 @@ GNS3 appliance files are descriptions of virtual machines used in network simula
 On a personal note, submitting a new GNS3 appliance was the first time I contributed to an open-source project.  I'm still learning, but a few years ago I knew _nothing_.  Jeremy Grossman, with GNS3, was patient and helped me understand the process of using Git.  Contributing - even in this minor way - was a real high for me and I'd love for you to be able to share that feeling and contribute to this and other projects.  GNS3a was my "gateway drug" into being a contributor and not just a consumer of open source.
 
 One of the files I've contributed is the Security Onion appliance.  Security Onion is a Linux distribution that focuses on security tools.  Below is the current version (9/1/20) of the GNS3A file.  Before we create a new appliance, let's update this one.
-
-> {  
+```json
+{  
     "name": "Security Onion",  
     "category": "guest",  
     "description": "Security Onion is a Linux distro for intrusion detection, network security monitoring, and log management. It’s based on Ubuntu and contains Snort, Suricata, Bro, OSSEC, Sguil, Squert, ELSA, Xplico, NetworkMiner, and many other security tools. The easy-to-use Setup wizard allows you to build an army of distributed sensors for your enterprise in minutes!",  
@@ -121,6 +121,7 @@ One of the files I've contributed is the Security Onion appliance.  Security Oni
         }    
 ]  
 }  
+```
 
 Most of this is pretty straight forward.  The structure looks like:
 
@@ -142,7 +143,8 @@ Notice that I've set this up to boot to an empty machine and prompt the user to 
 
 Let's update this file.  There are a lot of old images listed as options.  I'll remove the image and version sections for 14.04.5.3 and add the most recent (16.04.7.1).  That will leave users with the last 14.x and two images in 16.x including the latest.  Whether dealing with a distribution or a commercial image, changes made between versions may introduce new processes or bugs so leaving some older images gives users an easy workaround.  Here's the updated file.  Scroll below the output for a discussion of submitting this back to the project.
 
-> {  
+```json
+{  
     "name": "Security Onion",  
     "category": "guest",  
     "description": "Security Onion is a Linux distro for intrusion detection, network security monitoring, and log management. It’s based on Ubuntu and contains Snort, Suricata, Bro, OSSEC, Sguil, Squert, ELSA, Xplico, NetworkMiner, and many other security tools. The easy-to-use Setup wizard allows you to build an army of distributed sensors for your enterprise in minutes!",  
@@ -223,6 +225,7 @@ Let's update this file.  There are a lot of old images listed as options.  I'll 
         }  
 ]  
 }  
+```
 
 ## Testing
 In GNS3, go to File > Import Appliance and make sure that your appliance imports correctly.  GNS3 will provide guidance if there's a formatting error.  Looking at the JSON above, you can imagine that a common mistake is unmatched brackets!
@@ -231,20 +234,28 @@ If the GNS3a file loads, test it by creating an instance.  You need to test at l
 
 ## Submit a Pull Request
 Once the pieces are working, submit the appliance to the community by cloning the GNS3-registry on Github and adding in your file.
-> git clone https://github.com/GNS3/gns3-registry.git
-
+```bash
+git clone https://github.com/GNS3/gns3-registry.git
+```
 If you've _already_ cloned it, make sure that your branch is up to date.  _Upstream_ is the original source (in this case the GNS3 copy).
-> git fetch upstream  
 
+```bash
+git fetch upstream  
+```
 Two Python programs are included in the repo.  Run them both on your copy before continuing.  These are QA processes that look for issues before you submit.  They _will_ take a little time to run.
-> pip3 install -r requirements.txt   # this does __pip3 install jsonschma__ and __pip3 install pycurl__  
-> python3 check.py  
-> python3 check_url.py  
+```bash
+pip3 install -r requirements.txt   # this does __pip3 install jsonschma__ and __pip3 install pycurl__  
+python3 check.py  
+python3 check_url.py  
+```
 
 Next push your local copy to your github copy.  In Github terms, _origin_ is your copy on Github, and _master_ is the local copy.
-> git add .  
-> git commit -m "Updated Security Onion"  
-> git push -f origin master
+
+```bash
+git add .  
+git commit -m "Updated Security Onion"  
+git push -f origin master
+```
 
 Now we have an up to date local copy of the gns3-registry that includes our updated gns3a appliance and we've updated our fork on Github.  Next, we offer our update to the project via a _Pull Request_.  You are going to be one of the cool kids!
 ![Pull Request](/PullRequest.png#center)

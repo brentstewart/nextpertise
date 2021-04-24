@@ -26,9 +26,11 @@ A quick note - use care when routing 192.168.0.0/24 and 192.168.1.0/24.  A lot o
 
 I assigned ZTRouter 192.168.100.2/24 with a default route to the local router at 192.168.100.1.  Next I installed Zerotier and attached it to the SDN built in the last article.
 
-> curl -s https://install.zerotier.com | sudo bash  
-> sudo zerotier-cli join 0123456789ABCDEF
-> sudo zerotier-cli listnetworks
+```bash
+curl -s https://install.zerotier.com | sudo bash  
+sudo zerotier-cli join 0123456789ABCDEF
+sudo zerotier-cli listnetworks
+```
 
 ![Zero Tier Routing Configuration](/ZTrouting.png#floatright)The router will be automatically assigned an address on the ZeroTier network - in this case I received 192.168.103.88.  __listnetworks__ is used to confirm the connection.
 
@@ -41,21 +43,29 @@ The routing that will need to be setup might not be obvious, so let's walk throu
 ## Routing between ZeroTier and the LAN
 
 Next, ZTRouter needs to be enabled as a router.  Edit /etc/sysctl.conf and uncomment the line that says __net.ipv4.forward__.  This will enable the Linux machine to route when it reboots.  Since we want it to work _now_, well use this command as well:
-> sudo sysctl -w net.ipv4.ip_forward=1
+```bash
+sudo sysctl -w net.ipv4.ip_forward=1
+```
 
 The local firewall also has to permit the traffic.  Depending on the distro, you may have nftables, iptables, or ufw.  Assuming the system uses iptables, start by getting the interface names.
-
-> __ip link__
+```bash
+ip link
+```
 
 For purposes of the article, let's assume it shows you that the ethernet is enp1s0 and ZeroTier is zt1
-> PHY_IFACE=enp1s0; ZT_IFACE=zt1 
+```bash
+PHY_IFACE=enp1s0; ZT_IFACE=zt1 
 sudo iptables -t nat -A POSTROUTING -o $PHY_IFACE -j MASQUERADE  
 sudo iptables -A FORWARD -i $PHY_IFACE -o $ZT_IFACE -m state --state RELATED,ESTABLISHED -j ACCEPT  
 sudo iptables -A FORWARD -i $ZT_IFACE -o $PHY_IFACE -j ACCEPT  
+```
 
 Make the iptables changes persistent.
->sudo apt install iptables-persistent
+
+```bash
+sudo apt install iptables-persistent
 sudo bash -c iptables-save > /etc/iptables/rules.v4
+```
 
 ## Reciprocal Routes
 
@@ -63,7 +73,9 @@ If testing is done at this point, it will show that ZT clients can ping the LAN 
 
 Testing will now show that ZeroTier clients can ping devices in the "100" network!  But, they can't reach the other local VLANs.  The problem is that ZTRouter doesn't have a route.  To fix that, add a summary route going to the Internet router.
 
-> ip route add 192.168.100.0/22 gw 192.168.100.1
+```bash
+ip route add 192.168.100.0/22 gw 192.168.100.1
+```
 
 Add this line to _/etc/rc.local_ so that it is persistent.
 

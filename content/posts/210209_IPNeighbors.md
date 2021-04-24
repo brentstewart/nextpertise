@@ -20,24 +20,29 @@ PCs don't typically support CDP, but you can do get some of this information by 
 
 We can inspect the ARP table to see a list of other local systems on our network.  There are three problems with this - first, the arp command is slow. Second, this will only show things that have communicated with your PC recently.  You can use some type of broadcast to try to goose other devices to identify themselves (i.e. __ping 192.168.0.255__).  Third, the devices only identify their layer 2 and 3 addresses so we don't know much about them.  The command below shows the __arp__ command on Linux, but parallel commands are available in every operating system and network device.
 
-> pop > pop-os > ~ > $ >  __arp__  
+```bash
+pop > pop-os > ~ > $ >  __arp__  
 Address              HWtype    HWaddress    Flags Mask             Iface  
-> _gateway             ether    0c:8d:db:8f:60:c0   C      enp0s31f6  
-> 192.168.25.50        ether    00:0c:29:19:61:6d     C      enp0s31f6  
-> vcenter.stewart.tc   ether    0c:ee:99:81:23:03   C      enp0s31f6  
-> 192.168.25.5         ether    00:0c:29:9d:a2:38   C      enp0s31f6  
-> 192.168.25.4         ether    96:ee:a6:5d:30:ec   C      enp0s31f6  
+_gateway             ether    0c:8d:db:8f:60:c0   C      enp0s31f6  
+192.168.25.50        ether    00:0c:29:19:61:6d     C      enp0s31f6  
+vcenter.stewart.tc   ether    0c:ee:99:81:23:03   C      enp0s31f6  
+192.168.25.5         ether    00:0c:29:9d:a2:38   C      enp0s31f6  
+192.168.25.4         ether    96:ee:a6:5d:30:ec   C      enp0s31f6  
+```
 
 A slightly more useful command for discovering devices on the local network is __ip neigh__.  This gives the same information but is much more responsive.  It still depends on the target having been in communication recently.
 
-> pop > pop-os > ~ > $ > __ip neigh__  
-> 192.168.25.1 dev enp0s31f6 lladdr 0c:8d:db:8f:60:c0 REACHABLE  
-> 192.168.25.50 dev enp0s31f6 lladdr 00:0c:29:19:61:6d STALE  
-> 192.168.25.3 dev enp0s31f6 lladdr 0c:ee:99:80:00:03 REACHABLE  
-> 192.168.25.5 dev enp0s31f6 lladdr 00:0c:29:9d:a2:38 STALE  
-> 192.168.25.4 dev enp0s31f6 lladdr 96:ee:a6:5d:30:ec REACHABLE  
+```bash
+pop > pop-os > ~ > $ > __ip neigh__  
+192.168.25.1 dev enp0s31f6 lladdr 0c:8d:db:8f:60:c0 REACHABLE  
+192.168.25.50 dev enp0s31f6 lladdr 00:0c:29:19:61:6d STALE  
+192.168.25.3 dev enp0s31f6 lladdr 0c:ee:99:80:00:03 REACHABLE  
+192.168.25.5 dev enp0s31f6 lladdr 00:0c:29:9d:a2:38 STALE  
+192.168.25.4 dev enp0s31f6 lladdr 96:ee:a6:5d:30:ec REACHABLE  
+```
 
 You could achieve something similar with nmap as well.  Running a command like __nmap 192.168.0.0/24__ will identify all the devices that respond locally and which ports are open on each of them, but it's not happening automatically.  NMAP takes a while to run, which makes it less practical, plus it will raise alarms if your network is monitored to any extent.
+
 
 ## Link Layer Discovery Protocol (LLDP)
 ![LLDP](/lldp.jpeg#floatright)
@@ -45,31 +50,35 @@ Link Layer Discovery Protocol is a vendor-neutral version of the CDP concept.  L
 
 LLDP can be enabled for Ubuntu derived Linux servers using the _lldpd_ package.  It uses snmpd, so install that at the same time.
 
-> sudo apt install lldpd snmpd  
-> sudo service lldpd status start  
-> sudo service snmpd status start  
-> lldpcli
+```bash
+sudo apt install lldpd snmpd  
+sudo service lldpd status start  
+sudo service snmpd status start  
+lldpcli
+```
 
 Once installed, use the __lldpcli__ command to enter an LLDP command line interface.  From the prompt, type __show neighbors__ to list the discovered devices.  In this example, I can see that I'm connected to a Cisco Meraki switch on port 6.  LLDP can also be enabled with the -c flag to produce CDP packets.
-> [lldpcli] $ __show neighbors__  
-> \-------------------------------------------------------------------------------  
-> LLDP neighbors:  
-> \-------------------------------------------------------------------------------  
-> Interface:  enp0s31f6, via: LLDP, RID: 1, Time: 0 day, 01:50:10  
-> Chassis:       
->  ChassisID:  mac 0c:8d:db:80:72:3e  
->  SysName:    MS220-Switch  
-  SysDescr:   Meraki MS220-8P Cloud Managed PoE Switch  
-  MgmtIP:     192.168.26.3  
-  Capability: Bridge, on  
+
+```bash
+[lldpcli] $ __show neighbors__  
+\-------------------------------------------------------------------------------  
+LLDP neighbors:  
+\-------------------------------------------------------------------------------  
+Interface:  enp0s31f6, via: LLDP, RID: 1, Time: 0 day, 01:50:10  
+Chassis:       
+ ChassisID:  mac 0c:8d:db:80:72:3e  
+ SysName:    MS220-Switch  
+SysDescr:   Meraki MS220-8P Cloud Managed PoE Switch  
+MgmtIP:     192.168.26.3  
+Capability: Bridge, on  
 Port:          
   PortID:      ifalias 6  
   PortDescr:   Port 6  
   TTL:         120  
 Unknown TLVs:  
   TLV:         OUI: 00,18,0A, SubType: 1, Len: 4 00,F6,40,25  
-> \-------------------------------------------------------------------------------
-
+\-------------------------------------------------------------------------------
+```
 ## Who cares?
 
 "Why" is always a useful question - I've always found that people who understand something embrace the opportunity it presents.  

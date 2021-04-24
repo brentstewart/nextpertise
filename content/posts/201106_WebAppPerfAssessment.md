@@ -26,9 +26,15 @@ Lighthouse is a tool supported and backed by Google Developers that helps to mea
 
     a.	Install the Node.JS  package, which matches your Operating System (OS) - https://nodejs.org/en/download/
 
-    b.	Open a Terminal or Command Window and issue the command ``` NPM install -g lighthouse ```
+    b.	Open a Terminal or Command Window and issue the command 
+    ```bash
+    NPM install -g lighthouse
+    ```
 
-    c.	To run a scan against a webpage, open terminal or command windows and issue: ```lighthouse <url>```
+    c.	To run a scan against a webpage, open terminal or command windows and issue: 
+    ```bash
+    lighthouse <url>
+    ```
 
     ![LH](/lighthouse_cmd1.PNG#center)
 

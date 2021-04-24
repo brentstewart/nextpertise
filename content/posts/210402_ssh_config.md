@@ -17,9 +17,11 @@ This article continues a series of articles I've done on SSH.  We've used the se
 
 The file is a plain text file found in __~/.ssh__.  It doesn't exist by default, so a new file with that name needs to be created.  The simplest version of an ssh config file looks something like this.
 
-> host server  
-  hostname 10.1.1.1  
-  user brent  
+```bash
+host server  
+hostname 10.1.1.1  
+user brent  
+```
 
 Even at this stage, this is beneficial.  We can use the __host__ to resolve a name, so even without DNS we don't have to remember IPs.  Because the user is specified we can now simplify our ssh command to: __ssh server__.
 
@@ -29,19 +31,21 @@ I am often moving between locations and don't have access to internal DNS.  I ca
 
 Building on the previous example, we can also specify a non-standard port or a specific key.  We can add additional hosts as well.
 
-> host server  
-  hostname 10.1.1.1  
-  user root  
-  port 2222  
+```bash
+host server  
+hostname 10.1.1.1  
+user root  
+port 2222  
 
->  host server2  
-  hostname 10.2.2.2  
-  user vagrant  
-  localforward 2222 10.1.1.1:2222
+host server2  
+hostname 10.2.2.2  
+user vagrant  
+localforward 2222 10.1.1.1:2222
 
->  host home    
-  hostname 192.168.1.10  
-  user brent 
+host home    
+hostname 192.168.1.10  
+user brent 
+```
 
 This example includes three servers.  The first now uses a non-standard port.  The second is setup to forward tcp traffic on 2222 to the first server.  Each has a different username specified.  
 
@@ -50,11 +54,13 @@ Other examples of additional commands can be found in the OpenSSH documentation 
 ## Wildcards
 The last complication I'll add is to add the following to the config file above.  Wildcards allow us to specify things that apply to multiple hosts.
 
->  host serv*  
-  identityfile server_id_rsa  
+```bash
+host serv*  
+identityfile server_id_rsa  
 
-> host *  
-  ForwardX11Trusted yes
+host *  
+ ForwardX11Trusted yes
+```
 
 Connecting to "server" will now pull in the the key file and X11 command.  For "home" only the X11 forwarding would be added.
 

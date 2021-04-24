@@ -23,44 +23,48 @@ I identified a few problems with that and I've been working to improve the proce
 
 The generated document placed the cover _after_ the table of contents. It also include the github README.md in the generated file. The Github CI process uses _.github/workflows/test.yml_ to build the workflow and my file pulled in all the markdown files alphabetically.
 
-> \- run: echo "::set-env name=FILELIST::\$(printf '%s ' \*.md)"
->
-> with:  
->  args: --template eisvogel2.tex --o output/result.pdf \${{env.FILELIST}}
+```bash
+\- run: echo "::set-env name=FILELIST::\$(printf '%s ' \*.md)"
+
+with:  
+  args: --template eisvogel2.tex --o output/result.pdf \${{env.FILELIST}}
+```
 
 I fixed this by changing FILELIST to use **d\*.md**.
 
 I was also able to improve the output a little by generating a default latex layout.
 
-> pandoc -D latex > ~/next.latex
+```bash 
+pandoc -D latex > ~/next.latex 
+```
 
 I also found that including YAML headers in the markdown transferred over to the output. Pandoc only takes the first headers it finds, so I placed my files in doc0.md. I was able to transfer all my customizations from the latex file to the YAML, which is much cleaner to maintain. Here's a version of that file.
 
-> ---
->
-> title: "My Sample Doc"  
-> subtitle: ""  
-> author: [Brent Stewart]  
-> date: "2020-09-18"  
-> abstract: |  
->  This is a sample document used to demonstrate documentation via pandoc and Github.  
-> keywords: ""  
-> institute: "Nextpertise.Net"  
-> numbersections: true  
-> toc: true  
-> geometry: margin=2.5cm  
-> header-include: \pagebreak  
-> include-before:  
-> include-after:  
-> logo: "Feed-icon.png"  
-> header-includes: |  
->  \usepackage{fancyhdr}  
->  \pagestyle{fancy}  
->  \lfoot{Prepared September 18th, 2020}  
->  \rfoot{Page \thepage}  
->  \cfoot{}
-
+```yaml
 ---
+title: "My Sample Doc"  
+subtitle: ""  
+author: [Brent Stewart]  
+date: "2020-09-18"  
+abstract: |  
+This is a sample document used to demonstrate documentation via pandoc and Github.  
+keywords: ""  
+institute: "Nextpertise.Net"  
+numbersections: true  
+toc: true  
+geometry: margin=2.5cm  
+header-include: \pagebreak  
+include-before:  
+include-after:  
+logo: "Feed-icon.png"  
+header-includes: |  
+ \usepackage{fancyhdr}  
+ \pagestyle{fancy}  
+ \lfoot{Prepared September 18th, 2020}  
+ \rfoot{Page \thepage}  
+ \cfoot{}
+---
+```
 
 Notice that this also cleaned up the command line used to invoke pandoc,as things like the Table of Contents directive were moved to YML. You can also use this technique to change fonts, margins, headers, and such.
 
@@ -71,17 +75,22 @@ That the good news. Using the existing directions and my **mymeta.md** example, 
 I wanted to update the pandoc Docker file to support the eisvogel template. I made a custom Dockerfile to pull pandoc/ubuntu-latex
 and add in the full set of texlive files.
 
-> from pandoc/ubuntu-latex  
-> run apt update && apt install texlive-full texlive-full -y
+```tex
+from pandoc/ubuntu-latex  
+run apt update && apt install texlive-full texlive-full -y
+```
 
 This was then built and pushed to Docker hub.
 
-> docker build --tag=pandoc_texlive:1.0
-> docker push brentstewart/pandoc_texlive:1.0
-
+```docker
+docker build --tag=pandoc_texlive:1.0
+docker push brentstewart/pandoc_texlive:1.0
+```
 I went back to github and updated the CI action to use the new docker file and to run **pandoc --template eisvogel.tex -o Output/result.pdf d\*.md** and . . . didn't work! I keep getting:
 
-> ! LaTeX Error: File `adjustbox.sty' not found.
+```tex
+! LaTeX Error: File `adjustbox.sty' not found.
+```
 
 This works on my local system, but it doesn't work if I run docker locally with my image. The default pandoc images don't have the required files either.
 

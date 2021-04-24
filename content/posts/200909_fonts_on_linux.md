@@ -24,8 +24,10 @@ All three formats work in Linux.  Unless you are very detail oriented, I doubt y
 ## Using Apt
 
 One way to get fonts is to use the archive for your distribution.  For Ubuntu, there are a variety of fonts available via PPA.  To list and install them use:
-> __apt search font__  
-__sudo apt install fonts-noto__  
+```bash
+apt search font
+sudo apt install fonts-noto
+```
 
 Noto is a Google font that is clean and available in a range of type faces.
 
@@ -35,9 +37,11 @@ This is an easy way to install new fonts, but there's no preview and this approa
 ![Google Fonts](/DownloadGoogleFont.png#center)
 Option #2 is to search for fonts online.  One great place to get (free!) quality fonts is from [Google](https://fonts.google.com).  Fonts can be previewed online and are easy to download. Google passes these to you as TrueType (TTF) files in a Zip.  Unzip the file and copy the files to _/usr/share/fonts_.  The __fc-cache__ command rebuilds the font cache to include the new files and they should be available in programs afterward.
 
-> __unzip _font_.zip__  
-__sudo cp *ttf /usr/share/fonts/truetype__  
-__sudo fc-cache -f -v__  
+```bash
+unzip font.zip
+sudo cp *ttf /usr/share/fonts/truetype
+sudo fc-cache -f -v
+```
 
 The _fonts_ directory has a set of sub-directories (including _postscript_, _truetype_, and _openscript_) so change the target directory appropriately.  If you downloaded a group of fonts that are sorted into sub-directories, you can grab all the ttf files recursively using __sudo cp *ttf /usr/share/fonts/truetype -r__.
 

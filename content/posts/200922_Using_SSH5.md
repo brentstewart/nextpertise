@@ -20,8 +20,10 @@ Why would we want to do this? I already covered that under "pretty cool", but I 
 
 To demonstrate, I'm going to run the text editor from my server on my desktop.
 
-> **ssh -X brent@192.168.1.1** # -X or -Y work  
-> **pluma**
+```bash
+ssh -X brent@192.168.1.1 # -X or -Y work  
+pluma
+```
 
 ![Displaying a remote program](/XRemote.png#center)
 

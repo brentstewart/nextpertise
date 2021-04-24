@@ -73,16 +73,19 @@ figcaption {
 }
 
 blockquote {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic; color: cadetblue;
   padding: 0 50px;
   margin-left: 0;
-  border-left: 5px solid lightslategray;
+  text-align: center;
 }
 code {
   font-family: 'Courier New', Courier, monospace;
-  padding: 0 50px;
-  margin-left: 0;
-  border-left: 5px solid lightslategray;
+  word-wrap: break-word;
+  width: 100%;
+  display:block;
+  background-color:  black;
+  padding: 10px;
 }
 
 .table table{

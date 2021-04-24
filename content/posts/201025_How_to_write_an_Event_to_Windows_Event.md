@@ -21,9 +21,11 @@ A brief aside: The dichotomy of an admin PowerShell session and a regular PowerS
 
 Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses _scoop_ to grab a "sudo" application for Powershell.
 
-> __iex (new-object net.webclient).downloadstring('https://get.scoop.sh')__  
-__set-executionpolicy unrestricted -s cu -f__  
-__scoop install sudo__  
+```powershell
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+set-executionpolicy unrestricted -s cu -f  
+scoop install sudo
+```
 
 ## How to write an Event to Windows Event Log
 
@@ -35,7 +37,9 @@ The general process is to create an information "source" to write into (if it do
 
 Since we're creating log events for comments, let's create a log source that matches our username.  If there are several admins, it may be a good idea to use a format like "admin-username" so that we can later search logs for "admin*".  Creating a new source requires PowerShell to run with Administrator priviledges.  
 
-> __New-eventlog -logname application -source "brent"__  
+```powershell
+New-eventlog -logname application -source "brent"
+```
 
 Note that you can use the environment variable _$env:username_.  You can build this into a script - if the source already exists, the command will return an error to that effect.
 
@@ -43,15 +47,20 @@ Note that you can use the environment variable _$env:username_.  You can build t
 
 To create a log entry use the "write-eventlog" cmdlet.  Specify the log (like Application or Security), the source that we defined, and the message.  The EventID isn't significant, so you could also use this numeric field if you had something suitable (like a ticket number).
 
-> __Write-EventLog -LogName Application -Source "brent" -EntryType Information -Message "Sample text" -EventID 1__  
+```powershell
+Write-EventLog -LogName Application -Source "brent" -EntryType Information -Message "Sample text" -EventID 1
+```
 
 It is also possible to write an entry on a remote computer. The example below assumes that the source "bstewart" exists on the remote computer.
 
-> __Write-EventLog -computername "Server" -LogName Application -Source "bstewart" -EntryType Information -Message "Sample text" -EventID 1__  
+```powershell
+Write-EventLog -computername "Server" -LogName Application -Source "bstewart" -EntryType Information -Message "Sample text" -EventID 1__  
+```
 
 ## Scripting
 This can all be simplified in a script, saved as "log.ps1"
->  try  
+```powershell
+try  
 {  
         sudo New-eventlog -logname application -source $env:username  
 }  
@@ -62,17 +71,21 @@ Catch
 Write-eventlog -logname application -source $env:username -entrytype information -message $args[0] -eventid 1  
 write-host "The following was written to the Application log using the source $env:username for that log."  
 write-host $args[0]  
+```
 
 Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.
 
+```powershell
 > .\log.ps1 "Something happened"
+```
 
 # Linux (much easier)
 
 Writing to the Linux journal is pretty straight-forward. 
 
-> __echo 'Sample text' | Systemd-cat__  
- 
+```powershell
+echo 'Sample text' | Systemd-cat
+``` 
 To take a look at this, just use __journalctl -f__.
 
 We'll talk about logging to syslog another time, or maybe I can talk Myron into delving in because he has great experience with pulling things out of SIEMs.  Whether you use this in the scope of a SIEM or just for local logging, I'm sure you'll find this idea useful.

@@ -18,13 +18,18 @@ A few years ago I was put in a position where I had to produce monthly reports t
 Flameshot made this an easy process.  Since then, I very commonly want to take a screenshot for this blog or for an email.  Usually I'm trying to demonstrate a function or show what a screen looks like.  This program allows me to quickly grab the section of the screen I need, highlight, draw, and even obfuscate sensitive portions (like credentials).
 
 Flameshot can be downloaded from Github, but most distros have it in their archives.  It's available as a flatpak, snap, AppImage, rpm, or deb.  It's even available for Windows.  On Ubuntu, it can be pulled down using:
-> sudo apt install flameshot  
-
+```bash
+sudo apt install flameshot  
+```
 For snap:
-> sudo install snap
+```bash
+sudo install snap
+```
 
 For flatpak:
->flatpak install https://github.com/flameshot-org/flameshot/releases/download/v0.8.0/org.flameshot.flameshot_0.8.0_x86_64.flatpak  
+```bash
+flatpak install https://github.com/flameshot-org/flameshot/releases/download/v0.8.0/org.flameshot.flameshot_0.8.0_x86_64.flatpak  
+```
 
 or grab the AppImage version from the website.
 
@@ -32,8 +37,7 @@ There's a lot of gnashing of teeth about which of these formats is better.  Pers
  
 ## Invoking Flameshot
 Flameshot can be launched from the menu.  It will also install an icon on the bar - on Gnome you need the [TopIcons](https://extensions.gnome.org/extension/1031/topicons/) extension to see it.  
-It also works well to map a keybinding to it, such as PrintScreen.  Link the keypress to the command:
-> flameshot gui
+It also works well to map a keybinding to it, such as PrintScreen.  Link the keypress to the command: __flameshot gui__
 
 ## Using Flameshot
 Once you start Flameshot, the screen immediately dims and you are prompted to drag a box around the area of the screen you want to snip.  Once the box is defined, a series of circular option buttons surround the selection to allow editing.

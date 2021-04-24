@@ -20,10 +20,12 @@ I've been doing this for nine months - pretty much the entire pandemic - and I'v
 ## Basic Markdown
 The __quick__ _brown_ __*fox*__ jumped over the {{<strike "frog">}} {{<highlight "lazy dog">}}.  Use the backslash to display literal symbols instead of processing them \{}.
 
-        The __quick__ _brown_ __*fox*__ jumped over the {{\<strike "frog">}} 
-                {{\<highlight "lazy dog">}}.    Use the backslash to display literal 
-                symbols instead of processing them \{}.
-_Note that "\\" literals appear in the shortcodes to force shortcode syntax display and are not used in production._
+```markdown
+The __quick__ _brown_ __*fox*__ jumped over the {{\<strike "frog">}} 
+{{\<highlight "lazy dog">}}.    Use the backslash to display literal 
+symbols instead of processing them \{}.
+```
+_Note that "\\" literals appear in the shortcodes to force shortcode syntax display and are not used in production.  Double tildes "~~" can be used before and after to strikethorugh as well._
 
 I picked up the shortcodes  for highlighting and strikethrough  from Ashish Lahoti at [codingconcepts.com](https://codingnconcepts.com/hugo/), who has several interesting Hugo articles on his blog.
 
@@ -33,37 +35,35 @@ Unnumbered and ordered list are easy and intuitive.
 1. Numbered
 2. Example
 
-        * Bullet
-        1. Numbered
-        2. Example
-
+~~~markdown
+* Bullet
+1. Numbered
+2. Example
+~~~
 ## Headings
 Headings are created by successive hash symbols.
 
-> \# H1  
+```markdown
+\# H1  
 \## H2     
 \### H3
+```
 
 _I usually use Heading one for the title and heading two inside an article._
 
 ## Blockquotes
-There are several ways to present code.  The first is to use the "greater than" sign to indicate a section is code.  When presenting code this way add two spaces at the end of every line to indicate the following line is also code and a new line, otherwise it won't respect returns.  You can also use multiple greater thans to create an indented section.  This comes in using my CSS Blockquote style, so I'm thinking about changing this to a proportional italic font for quotes in the future.
+Block quotes are accomplished by tabs.  Consecutive lines are assumed to be a continuation.  You can also use the "greater than" sign to indicate a section is a blockquote.  When presenting this way add two spaces at the end of every line to indicate the following line is also a part of the block and a new line, otherwise it won't respect returns.  You can also use multiple greater thans to create an indented section.  This comes in using my CSS Blockquote style.
 
 > Code line 1  
 line 2  
 >> Indented Code
 
 and here's the actual typed Markdown.
+```markdown
 > \> Code  
+line 2
 \>> Indented Code
-
-### Another way to present code
-A second option is to tab in the lines.  This automatically assumes that the text is code.  This translates into my CSS Code style.
-
-    test
-                test
-        another
-        
+```
 
 ### Non-printing characters
 You can also make this work with non-printing characters as demonstrated below.  Pretty weak approach, but sometimes I don't have a better way to make columns line up.
@@ -79,23 +79,29 @@ Tables are created using a table shortcode as demonstrated below.
 | C |  | 2 | | % |
 {{</bootstrap-table>}}
 
-> \{\{\< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table: Demonstration" \>\}\}  
+```markdown
+\{\{\< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table: Demonstration" \>\}\}  
 | Letters | | Numbers | | Symbols  |  
 |:-----:|:--:|:-----|-|-----|  
 | A |  | 0   | | \* |  
 | B |  | 1 | | $ |  
 | C |  | 2 | | % |   
 \{\{\</bootstrap-table>\}\}
+```
 
 I copied the shortcode for bootstrap tables from [MyBlueLinux](https://mybluelinux.com).  I'm not sure who the author is, but they are interested in many of the same things I am - networking, Linux, and so on.  Readers of my blog would probably enjoy this site as well.
 ![GNS3](/gns3.png#floatsmallright)
 ## Links and Images
 Links in Markdown are formatted as shown below for [GNS3](https://gns3.com).
-> \[GNS3](https://gns3.com)
+```markdown
+[GNS3](https://gns3.com)
+```
 
 Images in markdown are formatted similarly to links, but start with an exclamation.  The code to bring in the GNS3 symbols is shown below.
 
-> \![GNS3]\(/gns3.png#floatsmallright)  
+```markdown
+\![GNS3]\(/gns3.png#floatsmallright)  
+```
 
 My CSS supports the following directives - these are all dynamic and change the image size based on the window size, which gives a much cleaner look.  
 * floatsmallright

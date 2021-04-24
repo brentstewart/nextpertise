@@ -21,10 +21,10 @@ Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an E
 The approach I used was to attach the VMs into an ESXi VSwitch VLAN and then use additional cloud appliances to attach those VLAN into the GNS3 topology.  _This seems obvious in retrospect_.
 
 ## Setup on ESXi
-
+![Alt](/210422_GNS3Shell.png#floatsmallright)
 The first step is to go onto the VMWare ESXi server and create a new VLAN on the vSwitch.  From the ESXi management interface, select the networking tab and "add port group".  I created VLAN 30 and called it "GNS3-30" and assigned it to my default virtual switch (vSwitch0).
 
-![Alt](/210422_GNS3Shell.png#floatsmallleft)
+
 
 ## Setup the GNS3VM
 
@@ -32,12 +32,16 @@ Next I went to the GNS3vm VMWare properties and added an interface.  The interfa
 
 To setup the interface, login and choose "Shell" from the main menu.  The interface needs to be added to __netplan__.  I ended up adding two interfaces (more fun!) and also took the chance to set a static IP for my server.
 
-> cd /etc/netplan  
- ls  
- sudo nano 90_gns3vm_static_netcfg.yaml  
+```bash
+cd /etc/netplan  
+ls  
+sudo nano 90_gns3vm_static_netcfg.yaml  
+```
 
 Here's the edited YAML file I'm using.
-> network:
+
+```yaml
+network:
   version: 2  
   renderer: networkd  
   ethernets:  
@@ -51,6 +55,7 @@ Here's the edited YAML file I'm using.
       dhcp4: no  
     eth2:  
       dhcp4: no  
+```
 
 When I did this step, it replaced the existing eth0 on the GNS3VM and made my old interface eth1.  This disconnected the VM because the IP information was associated with eth0.  I diagnosed this by using the VMWare interface and the _ifconfig_ command on the GNS3VM to identify and associate names and MAC addresses, but it took a little time to understand what happened.  I'm still not sure why, but be alert for this issue if you add an interface.  My Internet GNS3 cloud appliance had to be disconnected (you cannot add interfaces to a cloud with existing connections), eth1 added, and reconnected to get it to work.
 
@@ -65,19 +70,23 @@ Attaching a new cloud (in GNS3) that uses the GNS3VM interface (in the vSwitch c
 
 At this point I attached a Windows VM to the new VLAN and set it's interface to DHCP.  I connected the cloud to the virtual router (in GNS3), setup the interface, and added DHCP server capability.
 
-> int g0/2  
+```plaintext
+int g0/2  
   ip add 192.168.30.1 255.255.255.224  
 ip dhcp pool GNS3  
   network 192.168.30.0 /27  
+```
 
 I can verify that this works inside the Windows VM, and by verifying that an IP has been assigned from the router.
 
->Router1# __sh ip dhcp bindings__  
+```plaintext
+Router1# __sh ip dhcp bindings__  
 Bindings from all pools not associated with VRF:  
 IP address   Client-ID/        Lease expiration    Type
              Hardware address/  
              User name  
 192.168.30.2 0100.0c29.e965.fd Apr 30 2021 12:05 AM  Automatic
+```
 
 ## What's next?
 I'd really like to be able to __Vagrant up__ straight into GNS3.  I'm not even sure why, except that it would be cool.  Right now I can build a VM on Workstation, transfer it to ESXi and place it in the VLAN and thus in the GNS3 topology.

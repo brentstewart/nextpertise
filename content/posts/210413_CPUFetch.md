@@ -20,11 +20,13 @@ I came across a fun utility to do the same thing, but prettier.  CPUfetch doesn'
 
 This doesn't solve a lot of problems, but it is kinda cool.  If you agree, check it out on Github.  To install, clone the repository and __make__ the executable.  I put all my repos in a single directory to organize them, a practice I suggest.
 
-> cd ~/git  
+```bash
+cd ~/git  
 git clone https://github.com/Dr-Noob/cpufetch  
 cd cpufetch  
 make  
 ./cpufetch  
+```
 
 It will also compile on Android, Windows and MacOS, if you're into that kinda thing.  The readme at github has some other sample pictures and some ways to modify the output.  Have fun!
 

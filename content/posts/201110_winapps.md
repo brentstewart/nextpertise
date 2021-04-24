@@ -20,11 +20,12 @@ To give it a try, clone the code from [GitHub](https://github.com/Fmstrat/winapp
 
 Create a text file at \_~/.config/winapps/winapps.conf that looks like this.
 
-> RDP_USER="MyWindowsUser"  
-> RDP_PASS="MyWindowsPassword"  
-> #RDP_IP="192.168.123.111"  
-> #DEBUG="true"
-
+```bash
+RDP_USER="MyWindowsUser"  
+RDP_PASS="MyWindowsPassword"  
+#RDP_IP="192.168.123.111"  
+#DEBUG="true"
+```
 The IP is only required if Windows is remote. The Debug command tells it to create a log and is optional.
 
 Finally, run the **install.sh** script. This script will use the variables defined in the config file and login and scan Windows. If it finds a file it knows, it will setup the link, put an icon and entry in the local application menu, and link the appropriate mime-types.
@@ -37,20 +38,22 @@ A lot of folks will be interested in running Office and those apps are defined, 
 
 I was able to create a Kindle definition file. I grabbed an SVG icon from Google Images and created an _info_ file that contained the following.
 
-> \# GNOME shortcut name  
-> NAME="Kindle"
->
-> \# Used for descriptions and window class  
-> FULL_NAME="Amazon Kindle"
->
-> \# The executable inside windows  
-> WIN_EXECUTABLE="c:\users\brent\appdata\local\amazon\kindle\application\kindle.exe"
->
-> \# GNOME categories  
-> CATEGORIES="Education"
->
-> \# GNOME mimetypes  
-> MIME_TYPES=";"
+```bash
+# GNOME shortcut name  
+NAME="Kindle"
+
+# Used for descriptions and window class  
+FULL_NAME="Amazon Kindle"
+
+# The executable inside windows  
+WIN_EXECUTABLE="c:\users\brent\appdata\local\amazon\kindle\application\kindle.exe"
+
+# GNOME categories  
+CATEGORIES="Education"
+
+# GNOME mimetypes  
+MIME_TYPES=";"
+```
 
 ![Big Brains](https://microfilums.files.wordpress.com/2010/01/2260894625_ea1feecb2a.jpg#floatleft)
 I wanted to add the work I'd done back to the project, so I forked the _develop_ branch, added the files, and submitted a Pull Request back to "fmstrat". I also added some troubleshooting suggestions for them based on my experience.

@@ -18,6 +18,6 @@ I assumed this was an issue with Chrome OS at first and tried several versions i
 
 I edited __.vmware/preferences__ and added the following line.
 
-> mks.gl.allowBlacklistedDrivers = "TRUE"
+    mks.gl.allowBlacklistedDrivers = "TRUE"
 
 Chrome OS booted without a problem!  I had VMs on ESXi that I was accessing via Workstation, and this also resolved the issue for them.  If you are interested in running a ChromeOS VM, I suggest checking out FydeOS.  My testing has been smooth and they have a Telegram channel that is super helpful.
