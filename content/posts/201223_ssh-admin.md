@@ -30,7 +30,7 @@ The first column - Name - is the local name that these users are logged in as.  
 If __who__ is too much typing for you, try __w__.  It provides very similar output, no switches required
 
     > w
-     16:22:45 up 25 days, 10:35,  3 users,  load average: 1.90, 1.70, 1.53
+     16:22:45 up 25 days, 10:35,  3 users,  load average: 1.90, 1.70, 1.53  
     USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
     pop      :1       :1               02Dec20 ?xdm?  12days  0.00s /usr/libexec/gdm-x-session --run-sc
     pop      pts/2    192.168.1.72    Wed18    3days  0.09s  0.09s -bash

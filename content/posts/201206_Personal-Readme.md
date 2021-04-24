@@ -34,11 +34,11 @@ I don't think it did any harm.  However retrospectively, I don't think this exer
 
 I tell my Trail Life boys, "Leadership is about working together to accomplish goals".  It's a definition that is easily understood by teenagers.  So on a certain level, I don't think the personal readme really empowered me to work more effectively or to accomplish goals more easily.
 
-The truth, as much as I can discern it, is that people are more impressed by the things you tolerate and not by what you say.  To the extent they listen to what you say, simple heuristics repeated consistenly seem to work best.
+The truth, as much as I can discern it, is that people are more impressed by the things you tolerate and not by what you say.  To the extent they listen to what you say, simple heuristics repeated consistently seem to work best.
 
 Some of my favorite things to say include "Play the cards in your hand and not the cards you want" (credit to Kap Kim) and "be creatively impatient" (that one is mine).  Jim Guido, a man I admire immensely, used to say "early is on-time, on-time is late, and late is dead".
 
-In spite of all the negatives, I would still recommend writing a readme.  Even though no one else paid attention, I did.  It helped me clarrify and organize thoughts that had been bouncing around in my head for a long time.  And I've referred back to it to ground myself, to think about what I've learned and where I've veered off course.
+In spite of all the negatives, I would still recommend writing a readme.  Even though no one else paid attention, I did.  It helped me clarify and organize thoughts that had been bouncing around in my head for a long time.  And I've referred back to it to ground myself, to think about what I've learned and where I've veered off course.
 
 I think management generally spends too little time thinking about how they know what they think they know.  
 
