@@ -100,6 +100,9 @@ code {
 img[src$='#center']
 {
     display: block;
+    max-width: 90%;
+    padding: 20px 20px;
+    box-shadow: cadetblue;
     margin: 0.7rem auto; /* you can replace the vertical '0.7rem' by
                             whatever floats your boat, but keep the
                             horizontal 'auto' for this to work */
@@ -114,7 +117,7 @@ img[src$='#floatleft']
     box-shadow: cadetblue;
     max-width: 50%;
     padding: 20px 20px;
-}
+    }
 img[src$='#floatsmallleft']
 {
     float:left;
@@ -123,7 +126,7 @@ img[src$='#floatsmallleft']
     box-shadow: cadetblue;
     max-width: 25%;
     padding: 20px 20px;
-}
+    }
 
 img[src$='#floatright']
 {
