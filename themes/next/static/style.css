@@ -81,6 +81,7 @@ blockquote {
 }
 code {
   font-family: 'Courier New', Courier, monospace;
+  color: white;
   word-wrap: break-word;
   width: 100%;
   display:block;
