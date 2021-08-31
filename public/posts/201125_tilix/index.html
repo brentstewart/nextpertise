@@ -1,0 +1,132 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Tilix</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution. This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.
+The basic pitch of Tilix is that it is a tiling terminal. New terminals exist in sessions. Within a session, terminals can split the window horizontally or veritcally.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Tilix</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Nov 25, 2020</i><br></div></h6>
+  <p><p><img src="https://gnunn1.github.io/tilix-web/src/images/gallery/tilix-screenshot-3.png#floatright" alt="Tilix"> Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution.  This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.</p>
+<p>The basic pitch of Tilix is that it is a tiling terminal.  New terminals exist in sessions.  Within a session, terminals can split the window horizontally or veritcally.</p>
+<p>Think of a session like a desktop.  You could create a poor-man&rsquo;s IDE by grouping three sessions on a desktop, with one showing a directory, a second running <strong>nano</strong>, and the third ready to receive a command.  Another session could be used for networking, with terminals open to a firewall and switch.  You manage sessions with the drop-down menu on the right.</p>
+<p>Sessions can be divided up into terminals.  New terminals split the screen.  You create a new terminal using the &ldquo;horizontal split&rdquo; button or the &ldquo;vertical split&rdquo;.</p>
+<p>There are a lot of additional features, such as a search function (particularly useful when scrolling through thousands of lines of syslog output), but the tiling features are what makes this program so darn useful to me.  As I have moved to larger displays (I typically work on a 40&quot; 4K display these days), managing windows is more of a chore and I prefer things that help organize the desktop.</p>
+<p><img src="https://camo.githubusercontent.com/b0862287feb56d682f22cfa67bc43f5cfa2fd5b59fc291533be741015c6766af/68747470733a2f2f7261772e6769746875622e636f6d2f622d7279616e2f706f7765726c696e652d7368656c6c2f6d61737465722f626173682d706f7765726c696e652d73637265656e73686f742e706e67#floatleft" alt="Powerline">Tilix supports any customization that a normal terminal application allows.  I&rsquo;ll dig a little into this aspect in a seperate article, but I&rsquo;ve included links for some of the ways I make my terminal easy to read.  I use the <strong>powerline-shell</strong> prompt.  I use either JetBrains Mono font or Fira Mono, which both support programming ligatures.  There&rsquo;s a variety of other monospace fonts with ligature support at the Powerline Git Repo.</p>
+<h2 id="using-tilix-with-gns3">Using Tilix with GNS3</h2>
+<p><img src="/Tilix_in_GNS3.png#floatright" alt="Tilix with GNS3">
+GNS3 allows you to set the terminal application it uses under <em>edit &gt; preferences</em>.  The drop-down for console sets GNS3 to work with some of the most common applications, such as <em>gnome-terminal</em> or <em>PuTTY</em>.  Tilix isn&rsquo;t defined, but it works <em>really</em> well in this scenario because GNS3 users typically have several terminal sessions on-going and need to easily move between them.</p>
+<p>To configure GNS3 to work with Tilix, choose &ldquo;custom&rdquo; and <strong>edit</strong>.  Here&rsquo;s the command that is needed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tilix -a session-add-right -t <span style="color:#e6db74">&#34;%d&#34;</span> -e <span style="color:#e6db74">&#34;telnet %h %p&#34;</span>
+</code></pre></div><p>This setup uses Tilix and opens new terminals to the right of the existing one.  Other options set the title and tell Tilix how to connect to the GNS3 device.  The variables are defined in GNS3 and are visible in the <strong>edit</strong> screen - %d is the tile, %h is the IP and %p is the port. Tilix has a man page if you want to investigate other options.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://gnunn1.github.io/tilix-web/">https://gnunn1.github.io/tilix-web/</a><br> &nbsp&nbsp<a href="https://www.jetbrains.com/lp/mono/">https://www.jetbrains.com/lp/mono/</a><br> &nbsp&nbsp<a href="https://github.com/tonsky/FiraCode">https://github.com/tonsky/FiraCode</a><br> &nbsp&nbsp<a href="https://github.com/b-ryan/powerline-shell">https://github.com/b-ryan/powerline-shell</a><br> &nbsp&nbsp<a href="https://www.gns3.com">https://www.gns3.com</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/tilix">Tilix</a> 
+       
+        <a href="/tags/tiling">Tiling</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+        <a href="/tags/gns3">GNS3</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210830_apache/">Simple Apache Setup on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210413_cpufetch/">CPUFetch</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210308_kdenlive/">Making a Memorial DVD</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201125_tilix/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Tilix</a></nav>
+</div>
+  </body>

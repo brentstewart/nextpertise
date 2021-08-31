@@ -1,0 +1,381 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Creating a new GNS3 Appliance using a script</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="In Updating a GNS3 Appliance File I described editing a GNS3a file to update an appliance. That is the method I&rsquo;ve used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try. I decided to create an appliance for the Raspberry Pi Desktop distribution.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/gns3.png#floatright" height="140">
+<h1>Creating a new GNS3 Appliance using a script</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Sep 4, 2020</i><br></div></h6>
+  <p><p><img src="https://gns3.com/assets/custom/gns3/images/logo-colour.png#floatleft" alt="GNS3">
+In <a href="/updatinggns3appliances/"><em>Updating a GNS3 Appliance File</em></a> I described editing a GNS3a file to update an appliance.  That is the method I&rsquo;ve used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.</p>
+<p>I was listening to the most recent Linux Unplugged, and they were doing interesting networking using a Pi to connect two different 4G providers.  Their setup allowed choosing an active path based on throughput or errors, or for balancing between multiple paths.  The discussion touched on multi-link, policy-based routing, using Linux routing.  It sounded like something I&rsquo;d like to experiment with!  I&rsquo;ve linked to the show in the references.  In addition, Raspian is a prettty good &ldquo;light&rdquo; desktop for testing in GNS3 and a lot of folks use it with their Pis, so I thought this would be an interesting appliance.</p>
+<h2 id="setting-up-the-git-environment">Setting up the Git environment</h2>
+<p>To begin, assuming you haven&rsquo;t done so already, you&rsquo;ll need to clone the gns3-registry repository from GitHub.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/GNS3/gns3-registry.git  
+</code></pre></div><p>If you&rsquo;ve <em>already</em> cloned it, make sure that your branch is up to date.  <em>Upstream</em> is the original source (in this case the GNS3 copy).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git fetch upstream  
+</code></pre></div><p><img src="/rpi.png#floatleft" alt="Raspberry Pi"></p>
+<h2 id="the-new-appliance-wizard">The new appliance &ldquo;Wizard&rdquo;</h2>
+<p>There&rsquo;s a Python program included in the repository that acts as a &ldquo;wizard&rdquo; in guiding you through the appliance creation process.  Invoke it by running <strong>new_appliance.py</strong>.  I&rsquo;ve copied the flow below, and I&rsquo;ll interrupt the output occasionally to comment on the process.</p>
+<p>The first few questions are pretty straightforward.  I copied the description from the Raspberry Pi Foundation website.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brent@MintyTwenty:~/git/gns3-registry$ python3 new_appliance.py 
+Appliance id <span style="color:#f92672">(</span>example: cisco-asav<span style="color:#f92672">)</span>: Raspian 
+Appliance name: Raspian  
+Category of the appliance  
+ 1<span style="color:#f92672">)</span> router  
+ 2<span style="color:#f92672">)</span> multilayer_switch  
+ 3<span style="color:#f92672">)</span> firewall  
+ 4<span style="color:#f92672">)</span> guest  
+ : __4__  
+Description of the appliance. Could be a marketing description: __Raspberry Pi Desktop comes pre-installed with plenty of software <span style="color:#66d9ef">for</span> education, programming and general use; including Python, Scratch, Sonic Pi, Java, and more.    Appliance created to demonstrate new_appliance.py - read more at https://nextpertise.net. 
+Name of the vendor: Raspberry Pi Foundation 
+Website of the vendor: https://www.raspberrypi.org
+An optional documentation <span style="color:#66d9ef">for</span> using the appliance on vendor website<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Product name: Raspberry Pi Desktop  
+An optional product url on vendor website<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : __https://www.raspberrypi.org/downloads/raspberry-pi-desktop__  
+Version of the registry compatible with this appliance  
+1<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>  
+2<span style="color:#f92672">)</span> <span style="color:#ae81ff">2</span>  
+3<span style="color:#f92672">)</span> <span style="color:#ae81ff">3</span>  
+4<span style="color:#f92672">)</span> <span style="color:#ae81ff">4</span>  
+5<span style="color:#f92672">)</span> <span style="color:#ae81ff">5</span>  
+: <span style="color:#ae81ff">5</span>
+Document <span style="color:#66d9ef">if</span> the appliance is working or not  
+1<span style="color:#f92672">)</span> stable  
+2<span style="color:#f92672">)</span> experimental  
+3<span style="color:#f92672">)</span> broken  
+: <span style="color:#ae81ff">1</span> 
+</code></pre></div><p>The Raspberry Pi Desktop is open source, so it&rsquo;s available for free.  I&rsquo;ve removed my email address from the blog, to prevent spam via scrapping.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">About image availability: can be downloaded directly; download requires a free registration; paid but a trial version <span style="color:#f92672">(</span>time or feature limited<span style="color:#f92672">)</span> is available; not available publicly  
+ 1<span style="color:#f92672">)</span> free  
+ 2<span style="color:#f92672">)</span> with-registration  
+ 3<span style="color:#f92672">)</span> free-to-try  
+ 4<span style="color:#f92672">)</span> service-contract  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : <span style="color:#ae81ff">1</span>
+Maintainer name: Brent Stewart  
+Maintainer email: X@X
+</code></pre></div><p>The next section starts by asking how to use the appliance.  This would be a place to reference built-in credentials or processes that should be used.  Note also that I&rsquo;m specifying a custom symbol.  I took the Raspberry symbol and used Gimp to crop the image and scale it to 63px tall (GNS3 asks for symbols to be less than 70px).  GNS3 asks for an SVG, but Gimp only exports as PNG so that&rsquo;s what I&rsquo;m using.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">How to use the appliance<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  Default password is raspberry
+An optional symbol <span style="color:#66d9ef">for</span> the appliance<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : rpi.png
+</code></pre></div><p>The script then prompts for the networking interface names.  If you are not sure, leave this blank.  Examples of different naming schemes including Cisco (gigabit1/1), Linux (enp6s0), and JunOS (4/0/0).  It also asks for the type of card.  I had success using <em>virtio</em>, which is the paravirtualized adapter using by Qemu.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Optional name of the first networking port example: eth0<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Optional formating of the networking port example: eth<span style="color:#f92672">{</span>0<span style="color:#f92672">}(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Optional port segment size. A port segment is a block of port. For example Ethernet0/0 Ethernet0/1 is the module <span style="color:#ae81ff">0</span> with a port segment size of 2<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Type of network adapter  
+1<span style="color:#f92672">)</span> e1000  
+2<span style="color:#f92672">)</span> i82550  
+3<span style="color:#f92672">)</span> i82551  
+4<span style="color:#f92672">)</span> i82557a  
+5<span style="color:#f92672">)</span> i82557b  
+6<span style="color:#f92672">)</span> i82557c  
+7<span style="color:#f92672">)</span> i82558a  
+8<span style="color:#f92672">)</span> i82558b  
+9<span style="color:#f92672">)</span> i82559a  
+10<span style="color:#f92672">)</span> i82559b  
+11<span style="color:#f92672">)</span> i82559c  
+12<span style="color:#f92672">)</span> i82559er  
+13<span style="color:#f92672">)</span> i82562  
+14<span style="color:#f92672">)</span> i82801  
+15<span style="color:#f92672">)</span> ne2k_pci  
+16<span style="color:#f92672">)</span> pcnet  
+17<span style="color:#f92672">)</span> rtl8139  
+18<span style="color:#f92672">)</span> virtio  
+19<span style="color:#f92672">)</span> virtio-net-pci  
+20<span style="color:#f92672">)</span> vmxnet3  
+: __18__  
+Number of adapters: <span style="color:#ae81ff">1</span>
+</code></pre></div><p>The system prompts for RAM allocation, CPU, and disks.  I set the RAM to 1GB to minimize memory usage on my test system, but my testing indicated that you&rsquo;ll be more comfortable if you can bump this up.  Leave the number of CPUs as the default.  Select SATA as the HDA image and do not specify any other drives.  This confused me the first time, since it loops through the same questions four times without queueing you about what it&rsquo;s doing.  Finally, notice that I&rsquo;m emulating an Intel core since I grabbed the Intel RPi image.  You could use the ARM image, but I didn&rsquo;t see the value at this point.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Ram allocated to the appliance <span style="color:#f92672">(</span>MB<span style="color:#f92672">)</span>: __1024__  
+Number of Virtual CPU<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Disk interface <span style="color:#66d9ef">for</span> the installed hda_disk_image  
+1<span style="color:#f92672">)</span> ide  
+2<span style="color:#f92672">)</span> scsi  
+3<span style="color:#f92672">)</span> sd  
+4<span style="color:#f92672">)</span> mtd  
+5<span style="color:#f92672">)</span> floppy  
+6<span style="color:#f92672">)</span> pflash  
+7<span style="color:#f92672">)</span> virtio  
+8<span style="color:#f92672">)</span> sata  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : __8__  
+Disk interface <span style="color:#66d9ef">for</span> the installed hdb_disk_image  
+1<span style="color:#f92672">)</span> ide  
+2<span style="color:#f92672">)</span> scsi  
+3<span style="color:#f92672">)</span> sd  
+4<span style="color:#f92672">)</span> mtd  
+5<span style="color:#f92672">)</span> floppy  
+6<span style="color:#f92672">)</span> pflash  
+7<span style="color:#f92672">)</span> virtio  
+8<span style="color:#f92672">)</span> sata  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Disk interface <span style="color:#66d9ef">for</span> the installed hdc_disk_image  
+1<span style="color:#f92672">)</span> ide  
+2<span style="color:#f92672">)</span> scsi  
+3<span style="color:#f92672">)</span> sd  
+4<span style="color:#f92672">)</span> mtd  
+5<span style="color:#f92672">)</span> floppy  
+6<span style="color:#f92672">)</span> pflash  
+7<span style="color:#f92672">)</span> virtio  
+8<span style="color:#f92672">)</span> sata  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Disk interface <span style="color:#66d9ef">for</span> the installed hdd_disk_image  
+1<span style="color:#f92672">)</span> ide  
+2<span style="color:#f92672">)</span> scsi  
+3<span style="color:#f92672">)</span> sd  
+4<span style="color:#f92672">)</span> mtd  
+5<span style="color:#f92672">)</span> floppy  
+6<span style="color:#f92672">)</span> pflash  
+7<span style="color:#f92672">)</span> virtio  
+8<span style="color:#f92672">)</span> sata  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Architecture emulated  
+ 1<span style="color:#f92672">)</span> aarch64  
+ 2<span style="color:#f92672">)</span> alpha  
+ 3<span style="color:#f92672">)</span> arm  
+ 4<span style="color:#f92672">)</span> cris  
+ 5<span style="color:#f92672">)</span> i386  
+ 6<span style="color:#f92672">)</span> lm32  
+ 7<span style="color:#f92672">)</span> m68k  
+ 8<span style="color:#f92672">)</span> microblaze  
+ 9<span style="color:#f92672">)</span> microblazeel  
+10<span style="color:#f92672">)</span> mips  
+11<span style="color:#f92672">)</span> mips64  
+12<span style="color:#f92672">)</span> mips64el  
+13<span style="color:#f92672">)</span> mipsel  
+14<span style="color:#f92672">)</span> moxie  
+15<span style="color:#f92672">)</span> or32  
+16<span style="color:#f92672">)</span> ppc  
+17<span style="color:#f92672">)</span> ppc64  
+18<span style="color:#f92672">)</span> ppcemb   
+19<span style="color:#f92672">)</span> s390x   
+20<span style="color:#f92672">)</span> sh4  
+21<span style="color:#f92672">)</span> sh4eb  
+22<span style="color:#f92672">)</span> sparc  
+23<span style="color:#f92672">)</span> sparc64  
+24<span style="color:#f92672">)</span> tricore  
+25<span style="color:#f92672">)</span> unicore32  
+26<span style="color:#f92672">)</span> x86_64  
+27<span style="color:#f92672">)</span> xtensa  
+28<span style="color:#f92672">)</span> xtensaeb  
+: <span style="color:#ae81ff">26</span>  
+</code></pre></div><p>The system will prompt for the console - set this to VNC.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Type of console connection <span style="color:#66d9ef">for</span> the administration of the appliance  
+ 1<span style="color:#f92672">)</span> telnet  
+ 2<span style="color:#f92672">)</span> vnc  
+ 3<span style="color:#f92672">)</span> spice    
+: <span style="color:#ae81ff">2</span>
+</code></pre></div><p>I left the boot priority alone.  I didn&rsquo;t enable KVM within KVM :) and didn&rsquo;t change process priority.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Optional define the disk boot priory. Refer to -boot option in qemu manual <span style="color:#66d9ef">for</span> more details.
+ 1<span style="color:#f92672">)</span> d  
+ 2<span style="color:#f92672">)</span> c  
+ 3<span style="color:#f92672">)</span> dc  
+ 4<span style="color:#f92672">)</span> cd  
+ 5<span style="color:#f92672">)</span> n  
+ 6<span style="color:#f92672">)</span> nc  
+ 7<span style="color:#f92672">)</span> nd  
+ 8<span style="color:#f92672">)</span> cn  
+ 9<span style="color:#f92672">)</span> dn  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Command line parameters send to the kernel<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+KVM requirements  
+ 1<span style="color:#f92672">)</span> require  
+ 2<span style="color:#f92672">)</span> allow
+ 3<span style="color:#f92672">)</span> disable
+: <span style="color:#ae81ff">3</span>  
+Optional additional qemu command line options<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Process priority <span style="color:#66d9ef">for</span> QEMU  
+ 1<span style="color:#f92672">)</span> realtime  
+ 2<span style="color:#f92672">)</span> very high  
+ 3<span style="color:#f92672">)</span> high  
+ 4<span style="color:#f92672">)</span> normal  
+ 5<span style="color:#f92672">)</span> low  
+ 6<span style="color:#f92672">)</span> very low  
+ 7<span style="color:#f92672">)</span> null  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+</code></pre></div><p>Finally the script gets to images.  I added two images - the blank drive that the GNS3 project posted to SourceForge and the Rpi image I downloaded earlier.  In both cases, checksum can be obtained with the <strong>md5sum</strong> command on Linux and the file size found with <strong>ls -l</strong>.  This image isn&rsquo;t encrypted or compressed, so that was left blank.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Add image?<span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>: y
+Filename: 2020-02-12-rpd-x86-buster.iso
+Version of the file: 2020-02-12  
+md5sum of the file: 98f34fb53086752b4c9c452094f30740  
+File size in bytes: <span style="color:#ae81ff">3128147968</span>  
+Download url where you can download the appliance from a browser<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : https://www.raspberrypi.org/downloads/raspberry-pi-desktop/  
+Optional. Non authenticated url to the image file where you can download the image.<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Optional, compression type of direct download url image.  
+ 1<span style="color:#f92672">)</span> bzip2  
+ 2<span style="color:#f92672">)</span> gzip  
+ 3<span style="color:#f92672">)</span> lzma  
+ 4<span style="color:#f92672">)</span> xz  
+ 5<span style="color:#f92672">)</span> rar  
+ 6<span style="color:#f92672">)</span> zip  
+ 7<span style="color:#f92672">)</span> 7z  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Add image?<span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>: y  
+Filename: empty8G.qcow2    
+Version of the file: <span style="color:#ae81ff">1</span>   
+md5sum of the file: f1d2c25b6990f99bd05b433ab603bdb4  
+File size in bytes: <span style="color:#ae81ff">197120</span>  
+Download url where you can download the appliance from a browser<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   https://sourceforge.net/projects/gns-3/files/Empty%20Qemu%20disk/empty8G.qcow2/download 
+Optional. Non authenticated url to the image file where you can download the image.<span style="color:#f92672">(</span>optional leave  blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Optional, compression type of direct download url image.  
+ 1<span style="color:#f92672">)</span> bzip2  
+ 2<span style="color:#f92672">)</span> gzip  
+ 3<span style="color:#f92672">)</span> lzma  
+ 4<span style="color:#f92672">)</span> xz  
+ 5<span style="color:#f92672">)</span> rar  
+ 6<span style="color:#f92672">)</span> zip  
+ 7<span style="color:#f92672">)</span> 7z  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Add image?<span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>: n  
+</code></pre></div><p>Last, it prompts you to setup a version that links the hardware and the images together to form a group.  I&rsquo;ve only built one version at this point.  Again, the script cycles through prompting you for images, so be prepared for this and understand that you only need the HDA and CD-ROM devices in this scenario.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Add appliance version?<span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>: y
+Appliance version name: 2020-02-12
+Image <span style="color:#66d9ef">for</span> hda_disk_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : <span style="color:#ae81ff">2</span>  
+Image <span style="color:#66d9ef">for</span> hdb_disk_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Image <span style="color:#66d9ef">for</span> hdc_disk_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Image <span style="color:#66d9ef">for</span> hdd_disk_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :   
+Image <span style="color:#66d9ef">for</span> cdrom_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> : <span style="color:#ae81ff">1</span>
+Image <span style="color:#66d9ef">for</span> initrd_image    
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso   
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Image <span style="color:#66d9ef">for</span> kernel_image  
+ 1<span style="color:#f92672">)</span> 2020-02-12-rpd-x86-buster.iso  
+ 2<span style="color:#f92672">)</span> empty8G.qcow2  
+<span style="color:#f92672">(</span>optional leave blank <span style="color:#66d9ef">for</span> skip<span style="color:#f92672">)</span> :  
+Add appliance version?<span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>: n
+</code></pre></div><h2 id="submit-a-pull-request">Submit a Pull Request</h2>
+<p>I created a Raspberry Pi Desktop image, but assuming you&rsquo;ve created a new appliance and want to share it you&rsquo;ll need to submit your new file as a pull request.  If you haven&rsquo;t already cloned the GNS3 Registry Git, refer back to the beginning of the article for instructions on that part.  Make sure your local copy is up-to-date.  Two Python programs are included in the repo.  Run them both on your copy before continuing.  These are QA processes that look for issues before you submit.  They <em>will</em> take a little time to run.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install -r requirements.txt   <span style="color:#75715e"># this does __pip3 install jsonschma__ and __pip3 install pycurl__  </span>
+python3 check.py  
+python3 check_url.py  
+</code></pre></div><p>Next push your local copy to your github copy.  In Github terms, <em>origin</em> is your copy on Github, and <em>master</em> is the local copy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .  
+git commit -m <span style="color:#e6db74">&#34;Added Raspberry Pi Desktop appliance&#34;</span>  
+git push -f origin master
+</code></pre></div><p>Now there is an up-to-date local copy of the gns3-registry that includes the updated gns3a appliance and your fork is up-to-date on Github.  Next, offer the update to the project via a <em>Pull Request</em>.</p>
+<p><img src="/PullRequest.png#center" alt="Pull Request">
+Go to the gns3-registry repository on Github and select the Pull Requests tab and click the big green <strong>New pull request</strong> button. Under Compare, select the link to <em>compare across forks</em> (since your copy is a fork) and select your fork.  It should show you the changes to files so take a moment to digest that and make sure this PR is doing what you want.  Finally, submit the Pull Request.  Github will email you when there&rsquo;s an update to the request.  If the GNS3 team has a question, they&rsquo;ll submit a comment on the PR and leave it open for you to resolve.  Otherwise, it will get merged in and all the other GNS3 users will be able to enjoy your hard work!</p>
+<p><img src="/RPIDesktop.png#floatright" alt="Raspberry Pi Desktop running in GNS3"></p>
+<h2 id="results">Results</h2>
+<p>The image seems to run well.  If I test the Linux Unplugged scenario, I can add some additional interfaces to it easily.  I&rsquo;ll probably also add some RAM to liven it up.  If you use this image, it boots into an install screen.  You can use the ISO image with persistence, or you can install.  Be aware that the install process took awhile.</p>
+<p>The focus of the article was on using the included <strong>new_appliance.py</strong> script to build new appliances.  In the past, I&rsquo;ve just used an existing template and updated it manually for a new appliance.  I found the script interesting, but it took several run-throughs to understand the flow and to get things setup the way I wanted.  For me, it&rsquo;s easier just to crank up <em>nano</em> and hand edit but the Python program wasn&rsquo;t bad and would be particularly useful to someone who wasn&rsquo;t as familiar with the process.  Hopefully this walk through will help that person understand what to expect and make using the tool a little easier.</p>
+<p>Do you have any custom appliances?  Contributing to an open source project was really cool and I&rsquo;d love for you to have the chance to experience it!  Are there some appliances you <em>wish</em> we could build for GNS3?  Write in the comments below, and maybe I can help you build it.  I&rsquo;d love to hear how you use this feature!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/">https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/</a><br> &nbsp&nbsp<a href="https://github.com/GNS3/gns3-registry">https://github.com/GNS3/gns3-registry</a><br> 
+    
+    <strong>Github:</strong> https://github.com/brentstewart/gns3-registry
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/gns3">GNS3</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210211_gns3_february21/">GNS3 Update for February, 2021</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200904_creating_gns3_appliance/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Creating a new GNS3 Appliance using a script</a></nav>
+</div>
+  </body>

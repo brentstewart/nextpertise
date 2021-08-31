@@ -1,0 +1,128 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise VHEditor - Visual Studio Code for Android</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="These days I live in VSCode. I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years. O365 runs like a champ in a browser. Teams is a really well done application, which I&rsquo;ve come to prefer over Zoom and (especially) Webex. But VScode is in a league of it&rsquo;s own. I didn&rsquo;t know how much I needed a really well done IDE, but it&rsquo;s become a must-have.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/coding.png#floatright" height="140">
+<h1>VHEditor - Visual Studio Code for Android</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Thursday, Feb 18, 2021</i><br></div></h6>
+  <p><p>These days I live in VSCode.  I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years.  O365 runs like a champ in a browser.  Teams is a really well done application, which I&rsquo;ve come to <em>prefer</em> over Zoom and (especially) Webex.  But VScode is in a league of it&rsquo;s own.  I didn&rsquo;t know how much I needed a really well done IDE, but it&rsquo;s become a must-have.</p>
+<p>I use VSCode for writing this blog.  There are extensions that make working with MarkUp easy and that facilitate uploading to Github.  I use the built-in terminal to execute Hugo commands while I&rsquo;m working (like <em>hugo server -D</em> to preview articles in a browser).  The workspace allows me to move files around or quickly move between files for comparison or editing.</p>
+<p>I also use VSCode to write Python (again, with some great extensions).  The biggest surprise is that I&rsquo;ve moved my notes into VSCode.  I sync my notes to a private Github repo, so that I can make them available on whichever machine I&rsquo;m working with.  I used to use Simplenote for this, and there&rsquo;s nothing wrong with Simplenote.  But by handling this in VSCode I can consolidate tools.</p>
+<p><img src="/vheditor.png#floatright" alt="VHEditor">
+I am going to do some traveling and it occurred to me that I didn&rsquo;t want to lug a laptop.  Wouldn&rsquo;t it be <em>cool</em> if I could use my Kindle HD for VSCode?  I already travel with the Kindle for books, and VSCode would fit in the 8&quot; display.  It seemed possible, but looking through the Google Play store didn&rsquo;t turn up a Microsoft VSCode app.</p>
+<p>That&rsquo;s when I stumbled on VHEditor.  But the story goes a little further back to two other projects I&rsquo;ve been watching with interest: VSCodium and Code-Server.</p>
+<p>VSCode is mostly open source, with some &ldquo;special&rdquo; parts added onto the FOSS bits.  Microsoft add telemetry, the gallery, a logo and other pieces.  VSCodium takes the open pieces and compiles a clean version with no telemetry.  The downside is that Microsoft prohibits clones from accessing the VS Code Marketplace, which means that some extensions you need aren&rsquo;t available.  An open Marketplace is available at <a href="https://open-vsx.org">open-vsx.org</a>, but not all extensions are published to that service yet.  For me, the Github extension I use is an issue, so I currently use the original MicroSoft version.  But I like VSCodium and have used it a lot.</p>
+<p>Code-Server takes the same source code and produces a web version.  I don&rsquo;t have a use-case for Code-Server currently, but it seems like a fascinating idea.  All of this brings us back to VHEditor.</p>
+<p><img src="/vheditorpic.jpeg#floatleft" alt="VHEditor in action"></p>
+<p>VHEditor takes Code-Server and Termux and creates a space in the Android OS for this to run.  There&rsquo;s a terminal that works and code-server is running locally.  Basically, when you run VHEditor, it starts Code-Server and accesses it via a loopback address.  VHEditor runs pretty well on my Kindle HD - paired with a small bluetooth keyboard, I can definitely use this to write notes and blog posts.  I have cloned multiple repositories down to the Kindle.</p>
+<p>It feels like there are some kinks to work out.  You use &ldquo;pkg install git&rdquo; on the terminal to setup Git (there&rsquo;s a note about this on GitHub), and that format makes me wonder if it&rsquo;s running in a BSD container.  Also, the first repo I cloned worked straight from VHEditor.  The second required me to <strong>git clone</strong> from the shell.  Still, the result is not only usable but useful.</p>
+<p>I&rsquo;ve expressed the opinion that the secret sauce in IT right now is Git + Python + WebAPIs.  VSCode has become this tool that fits into that mix of products perfectly.  VHEditor allows me to bring that all the way down to my tablet and is definitely worth a look.</p>
+<p>If you are familiar with VSCode, you know there&rsquo;s a lot of things on the screen.  I have a large phone, but I just don&rsquo;t see this being useful on a display below 8&quot;.  You are also really going to need a bluetooth keyboard, especially to use any of the key combinations.  The app is currently sitting at 3 1/2 stars - I read through the reviews and the issues I see relate to unfamiliar or less technical users.  Be prepared to put a little thought into it, but I recommend checking this out.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://play.google.com/store/apps/details?id=vn.vhn.vsc&amp;hl=en_US&amp;gl=US">https://play.google.com/store/apps/details?id=vn.vhn.vsc&amp;hl=en_US&amp;gl=US</a><br> &nbsp&nbsp<a href="https://simplenote.com/">https://simplenote.com/</a><br> &nbsp&nbsp<a href="https://github.com/cdr/code-server">https://github.com/cdr/code-server</a><br> &nbsp&nbsp<a href="https://vscodium.com/">https://vscodium.com/</a><br> 
+    
+    <strong>Github:</strong> https://github.com/vhqtvn/VHSCode-Android
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/coding">Coding</a> 
+       
+        <a href="/tags/review">Review</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210207_installscript/">Linux Install Script</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210201-deskreen/">Deskreen</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201210_flameshot/">A Love Letter to Flameshot</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201126_pop-os/">Pop! OS</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201110_winapps/">Winapps</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210218_vheditor/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">VHEditor - Visual Studio Code for Android</a></nav>
+</div>
+  </body>

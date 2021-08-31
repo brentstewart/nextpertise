@@ -1,0 +1,112 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Management on </title>
+    <link>https://www.nextpertise.net/tags/management/</link>
+    <description>Recent content in Management on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Jan 2021 20:18:24 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Plan Good Downtime</title>
+      <link>https://www.nextpertise.net/posts/210126_downtime/</link>
+      <pubDate>Tue, 26 Jan 2021 20:18:24 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210126_downtime/</guid>
+      <description>&lt;p&gt;In another blog, planning downtime would involve tropical pictures.  Sigh.&lt;/p&gt;
+&lt;h2 id=&#34;downtime&#34;&gt;Downtime&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright&#34; alt=&#34;Time&#34;&gt;
+IT downtime is a period when IT systems have a planned outage.  These periods are negotiated with internal and external stakeholders and communicated so that no one is surprised by the lack of availability.  During this time, changes take place to improve performance, enhance reliability, address security concerns, or add features.&lt;/p&gt;
+&lt;p&gt;It is a good idea to have a recurring scheduled downtime at least once a month.  Most organizations sync their downtime to &amp;ldquo;patch Tuesday&amp;rdquo;.  Microsoft, Oracle, and other big organizations release patches on the second Tuesday each month.  Since there&amp;rsquo;s a good chance that something in an environment will need to be patched and this leads to a disruption, it&amp;rsquo;s a good time to do other changes as well.&lt;/p&gt;
+&lt;p&gt;Sometimes changes must be deployed to react to events.  In those cases the process is hastily put together and it&amp;rsquo;s more critical to have a clear idea of how to structure that time.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/plan.jpeg#floatsmallleft&#34; alt=&#34;Plan&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;checklist-for-good-downtime&#34;&gt;Checklist for Good Downtime&lt;/h2&gt;
+&lt;p&gt;A six step process for thinking it through.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Plan testing&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Communication Plan&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Build a Script&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Recognize Risks&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Negotiate Window&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Make the change!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;plan-testing&#34;&gt;Plan Testing&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s an old adage to &amp;ldquo;start with the end in mind&amp;rdquo; and that&amp;rsquo;s appropriate when planning changes.  Start by thinking through &lt;em&gt;what&lt;/em&gt; should be tested to confirm success and &lt;em&gt;how&lt;/em&gt; it will be tested.&lt;/p&gt;
+&lt;p&gt;Circulate that testing plan within the parties of interest and allow them to modify the tests.  There are cases where a change passes testing but problems are later revealed.  In such cases, you will &lt;em&gt;always&lt;/em&gt; be asked &amp;ldquo;Didn&amp;rsquo;t you test for that?&amp;rdquo;  Having those other folks review the testing plan provides space to skip the blame game in those cases and focus on restoring service.&lt;/p&gt;
+&lt;p&gt;How does this apply to &amp;ldquo;emergency&amp;rdquo; changes?  Build a &amp;ldquo;Crown Jewels&amp;rdquo; testing list.  These are the critical services for your organization.  Any testing plan should include these tests, but in a pinch this can serve as a base level set of tests.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll want to automate these tests as much as possible.  Automation allows you to easily re-run the tests many times as you make adjustments.  &amp;ldquo;Ping scripts&amp;rdquo; are a good place to start, but be creative (for instance, wget can serve to test browsing).
+&lt;img src=&#34;https://www.nextpertise.net/process.jpeg#floatsmallright&#34; alt=&#34;Process&#34;&gt;
+Finally, make sure to include testing of monitoring.  If you expect alarms when a redundant power supply fails, test that.  When you make a change, confirm that your change didn&amp;rsquo;t interfere with critical monitoring.&lt;/p&gt;
+&lt;h2 id=&#34;communication-plan&#34;&gt;Communication Plan&lt;/h2&gt;
+&lt;p&gt;With a testing plan in place, the next step is to build a communication plan.  &lt;em&gt;Who&lt;/em&gt; should be updated, &lt;em&gt;how&lt;/em&gt; should they be updated, and &lt;em&gt;when&lt;/em&gt; or &lt;em&gt;how often&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;Updates need to go to your management, the equipment owners (internal or external), and the group that is dependent on the service.  Generally, updates to users should be to the point and limited to how the change impacts their use.&lt;/p&gt;
+&lt;p&gt;Updates should be sent at critical points in the process:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When the change is proposed&lt;/li&gt;
+&lt;li&gt;At the beginning of the change window&lt;/li&gt;
+&lt;li&gt;If the change needs to be backed out, when that decision is made&lt;/li&gt;
+&lt;li&gt;When backout is complete, if applicable&lt;/li&gt;
+&lt;li&gt;When the change is complete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keep in mind that your change may impact your ability to get to corporate directories, phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers &amp;ldquo;just in case&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Another aspect of communications is setting up the time for the change, getting it on people&amp;rsquo;s calendars, insuring they can participate, and publishing the meeting information.&lt;/p&gt;
+&lt;h2 id=&#34;build-a-script&#34;&gt;Build a Script&lt;/h2&gt;
+&lt;p&gt;A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The &lt;em&gt;time&lt;/em&gt; column tells the clock-time when that task should be complete.&lt;/p&gt;
+&lt;p&gt;Having a script allows the team to do a walk-through and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.&lt;/p&gt;
+&lt;p&gt;This process also applies to the backout script.  Understand how the change will be unwound, roles, and make sure you preserve adequate time to accomplish it.&lt;/p&gt;
+&lt;p&gt;A word on time estimates - they&amp;rsquo;re going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each step helps you to get a sense of where things stand relative to expectations at any point.&lt;/p&gt;
+&lt;h2 id=&#34;recognize-risks&#34;&gt;Recognize Risks&lt;/h2&gt;
+&lt;p&gt;Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted by those impacted.  Anticipating likely scenarios also provides opportunities to mitigate.&lt;/p&gt;
+&lt;p&gt;Is there a risk of disconnection to a remote facility?  Plan on having someone on site or available.&lt;/p&gt;
+&lt;p&gt;Is there a risk that an upgrade doesn&amp;rsquo;t work?  Have a backup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;One risk that isn&amp;rsquo;t often discussed is the risk that comes from asking your family to tolerate your work schedule.  As you prep for the activity, take some time to be at home (awake, alert, and agreeable) and spend time with them, especially if your work means that you have to be up all night Saturday night!&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;negotiate-window&#34;&gt;Negotiate Window&lt;/h2&gt;
+&lt;p&gt;Changes take place within a window.  This period of time needs to be agreed upon by everyone, short enough to minimize the disruption for users and long enough for the IT team to complete it&amp;rsquo;s work with quality.&lt;/p&gt;
+&lt;p&gt;One question that needs to be asked - what happens if the work isn&amp;rsquo;t complete by the close of the window?  In other words, is it a &amp;ldquo;hard window&amp;rdquo;?  Unless otherwise advised, assume that it is.&lt;/p&gt;
+&lt;p&gt;Take the time estimate from your script (above) and apply a &amp;ldquo;confidence&amp;rdquo; factor of between 50% and 100%.  In other words, if the script calls for thirty minutes, assume it will &lt;em&gt;really&lt;/em&gt; take between 45 minutes and an hour.  This helps to account for the unknown but inevitable stuff that pops up when working.  Adjust your confidence factor over time as you gain insight into task complexity, team competence, and your ability to estimate.&lt;/p&gt;
+&lt;p&gt;Next, make sure that a third of the time is for backout.  This is time to work through the recovery process if the change goes awry.  For a half-hour change, we&amp;rsquo;ll budget an hour for implementation.  If at the end of the hour it&amp;rsquo;s not done, we immediately go into backing out the change so that we&amp;rsquo;re done within an hour an a half.  And that&amp;rsquo;s the right period of time to ask for - 300% of your estimate.  Unless you can get more.&lt;/p&gt;
+&lt;p&gt;Seriously though, this drop-dead time to begin backout is crucial to being able to have integrity about honoring the window.  IT folks are always &amp;ldquo;5 minutes!&amp;rdquo; away from fixing things and can easily get lost in a spiral without maintaining discipline about when the backout has to begin.&lt;/p&gt;
+&lt;h2 id=&#34;make-the-change&#34;&gt;Make the Change!&lt;/h2&gt;
+&lt;p&gt;Finally it&amp;rsquo;s time to make the change.  Ask everyone to arrive early and join the conference.  Make sure that backups are up to date and configurations saved before beginning.  Also before beginning, run the test script to make sure that all elements are working before the change to prevent confusion afterward.
+&lt;img src=&#34;https://www.nextpertise.net/winner.jpeg#floatleft&#34; alt=&#34;Winner&#34;&gt;
+If the change is a group exercise, it is usually a good idea to have one person act as tracker.  In addition to making sure that the team is ready to begin backout at the right time, the tracker can check off items as they are accomplished, recognize any slippage, and suggest strategies to keep things moving.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s a good idea to communicate to stakeholders at the beginning of the window.&lt;/p&gt;
+&lt;p&gt;Run the test script again when things are complete (win or lose).  Each script run should produce output, which can be saved, in case there are questions afterward.&lt;/p&gt;
+&lt;p&gt;Finally, communicate to stakeholders when things are complete.&lt;/p&gt;
+&lt;p&gt;I realize the process is complicated, but it encompasses &lt;em&gt;years&lt;/em&gt; of hard-won ideas.  Each point has a story about the incident where it was learned.  However, well planned exercises run smoothly and feel like a victory lap, making all the effort worthwhile.  I sincerely hope that this helps you to move swiftly past these learning experiences and on to greater success!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Personal Readme</title>
+      <link>https://www.nextpertise.net/posts/201206_personal-readme/</link>
+      <pubDate>Sun, 06 Dec 2020 14:58:31 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201206_personal-readme/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/GoaDinner.jpg#floatright&#34; alt=&#34;Goa Friends&#34;&gt;
+I recently came across the concept of a personal README.  Conceptually, this is an introduction to workstyles and the preferred ways to work with someone.  Usually these are written by folks in management, because you have to be at a certain level before you can dictate how others should interact with you.  The idea comes from Michael Lopp (the VP of Engineering at Slack).  It&amp;rsquo;s a good concept to be familiar with in our industry because it is becoming more common.&lt;/p&gt;
+&lt;p&gt;I moved into a new team where this was an expected introduction for a new manager.  I&amp;rsquo;ve put one together and posted it to a Github repository along with my professional documentation, like resume and publication list.  I&amp;rsquo;d like to say I&amp;rsquo;ve extended the concept from a personal readme to a personal Repo, but I suspect that I&amp;rsquo;m behind the times and don&amp;rsquo;t realize it.&lt;/p&gt;
+&lt;h2 id=&#34;the-good&#34;&gt;The Good&lt;/h2&gt;
+&lt;p&gt;Putting together my personal README wasn&amp;rsquo;t hard.  I found some examples online, but I found many of them to be preachy or self-involved.  Making big moralistic statements seems like the kind of thing that is used to bludgeon the author at a later date.  As far as writing something self-centered, I just don&amp;rsquo;t think anyone cares.&lt;/p&gt;
+&lt;p&gt;I decided to focus on the parts that would matter to someone who worked for me.  I wrote about where I believe an IT team adds value, about my expectations and about my communications preferences.&lt;/p&gt;
+&lt;p&gt;I found the exercise to have introspective value.  Very few of us are lucky enough to have training about how to manage a team, so we pick it up by reflecting on our own experiences, by ideas we see others use, and by expirimenting.  It&amp;rsquo;s not surprising that everyone ends up with a different style.&lt;/p&gt;
+&lt;p&gt;A brief aside: One of the guys I used to work with (Joe - are you out there?) used to mix metaphors when he got upset or excited.  My favorite was &lt;em&gt;&amp;ldquo;throw it up against the wall and see who salutes&amp;rdquo;&lt;/em&gt;.  Still one of my favorite sayings.&lt;/p&gt;
+&lt;h2 id=&#34;the-bad&#34;&gt;The Bad&lt;/h2&gt;
+&lt;p&gt;I don&amp;rsquo;t think it did any harm.  However retrospectively, I don&amp;rsquo;t think this exercise really held value for the people it was intended to.  The new team dutifully sat through the presentation, but there were &lt;em&gt;no&lt;/em&gt; questions and it hasn&amp;rsquo;t ever come up in conversation.&lt;/p&gt;
+&lt;h2 id=&#34;my-conclusion&#34;&gt;My conclusion&lt;/h2&gt;
+&lt;p&gt;I tell my Trail Life boys, &amp;ldquo;Leadership is about working together to accomplish goals&amp;rdquo;.  It&amp;rsquo;s a definition that is easily understood by teenagers.  So on a certain level, I don&amp;rsquo;t think the personal readme really empowered me to work more effectively or to accomplish goals more easily.&lt;/p&gt;
+&lt;p&gt;The truth, as much as I can discern it, is that people are more impressed by the things you tolerate and not by what you say.  To the extent they listen to what you say, simple heuristics repeated consistently seem to work best.&lt;/p&gt;
+&lt;p&gt;Some of my favorite things to say include &amp;ldquo;Play the cards in your hand and not the cards you want&amp;rdquo; (credit to Kap Kim) and &amp;ldquo;be creatively impatient&amp;rdquo; (that one is mine).  Jim Guido, a man I admire immensely, used to say &amp;ldquo;early is on-time, on-time is late, and late is dead&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;In spite of all the negatives, I would still recommend writing a readme.  Even though no one else paid attention, I did.  It helped me clarify and organize thoughts that had been bouncing around in my head for a long time.  And I&amp;rsquo;ve referred back to it to ground myself, to think about what I&amp;rsquo;ve learned and where I&amp;rsquo;ve veered off course.&lt;/p&gt;
+&lt;p&gt;I think management generally spends too little time thinking about how they know what they think they know.&lt;/p&gt;
+&lt;p&gt;So take a look at my &lt;a href=&#34;https://github.com/brentstewart/about-brent.git&#34;&gt;repo&lt;/a&gt; and think about how you would describe yourself.  Writers say that the best way to get to a good second draft is to start with a bad first draft, by which they mean that it&amp;rsquo;s better to just start and get ideas on paper and then edit them later.  So start a text file with your thoughts and worry about editing it once it reaches critical mass.&lt;/p&gt;
+&lt;p&gt;I think you&amp;rsquo;ll find this a valuable exercise.&lt;/p&gt;
+&lt;p&gt;The picture at the top of the article is me with a group of men I worked with in Goa, India, seven years ago.  I met many good friends through that time, friends that I wouldn&amp;rsquo;t have today if I hadn&amp;rsquo;t become a manager.  They kept this picture at the office and during a conversation last year they took this picture-of-a-picture and sent it to me.  That feeling - that our work together had value and was a memory they cherished the same way I did - was one of the the highs of my career.  That&amp;rsquo;s why it&amp;rsquo;s important to me to try to do it right.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

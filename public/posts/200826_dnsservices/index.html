@@ -1,0 +1,135 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise DNS Services</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="This post is to continue the conversation started in Reasonably Secure Browsing with some options for home DNS setting that help protect you and your family. Like that post, this is intended for non-industry friends. My goal is to have a set of references for the people I care about, but who don&rsquo;t share my love of technology. For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/201230_n.png#floatright" height="140">
+<h1>DNS Services</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Aug 26, 2020</i><br></div></h6>
+  <p><p>This post is to continue the conversation started in <a href="/ReasonablySecureBrowsing">Reasonably Secure Browsing</a> with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don&rsquo;t share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.</p>
+<p>The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like &ldquo;amazon.com&rdquo; with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call &ldquo;Brent&rdquo; or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more &ldquo;human friendly&rdquo;.</p>
+<p>Why should you care?  Three reasons - speed, security, and privacy.  DNS is typically set up by your Internet provider.  Sometimes these implementations are the sources of problems, so changing the default DNS will give you a more stable (and sometimes faster) experience.  Anyone &ldquo;listening&rdquo; to your traffic can easily make a list of where you visit by tracking DNS requests.  This could be someone snooping on a shared wifi at the coffee shop, or it could be your ISP (in fact, ISPs sometimes redirect your traffic to internet locations they control for their own benefit).</p>
+<p>There are a set of alternative DNS providers that provide free services that are unfiltered and private.  I recommend that you consider one of these.  They&rsquo;re all good, but I&rsquo;ve listed them in the order of my preference.</p>
+<p>To enable, go into your router and change the DNS setting to the IP provided (the exact instructions vary by router).  At home, this is a reasonable step to protect you and your family.  If you travel, these providers also support a variety of options to encrypt your request, including DNS over HTTPS (DoH).  I recommend using DoH within Firefox for devices that leave the house.</p>
+<p>Firefox can encrypt your DNS traffic from &ldquo;snoopers&rdquo;.  Go to the menu button and choose <em>preferences</em> and then <em>Network Settings</em>.  Click <em>Enable DNS over HTTPS</em> and then choose a provider or select &ldquo;Custom&rdquo; and type in the IP address (included below).</p>
+<p><img src="https://d15ni2z53ptwz9.cloudfront.net/opendns-www/img/logo-opendns.png#floatright" alt="OpenDNS"></p>
+<h2 id="opendns-20867222222---best-for-home-use">OpenDNS (208.67.222.222) - Best for home use</h2>
+<p>OpenDNS is a great choice.  By default, their free service is excellent.  It recognizes many cases where you&rsquo;ve been directed to a malicious site, and keeps you out of trouble by blocking it.  OpenDNS is owned by Cisco, and it benefits from the huge investments they&rsquo;ve made in Internet security.  It also blocks adult content by default.  You can create an account and customize your home&rsquo;s experience - for instance, do you want to block Gambling or Tobacco advertising?  These settings are tied to your home IP, so your laptop goes back to the &ldquo;default&rdquo; when not at home.  Especially for public places, like church wifi, or for a home with children this allows you to control what portion of the Internet is available to users.</p>
+<p><img src="https://cloudflare.com/#floatright" alt="CloudFlare"></p>
+<h2 id="cloudflare-unfiltered-1111-malware-blocking-1112-malware-and-adult-content-1113---best-for-travelers">Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3) - best for travelers</h2>
+<p>Cloudflare is very easy to setup.  Use the IP address that matches your use case.  These settings can carry over when you are away from home if you change them on your device.  There&rsquo;s also an app that provides this service no matter where you are (just for mobile with Windows and Mac coming soon).  Cloudflare has good settings for most cases, is easy to setup, and has the mobile apps, but lacks the customization of OpenDNS.</p>
+<p><img src="https://www.quad9.net/wp-content/uploads/2017/11/quad9-logo-white@2x.png#floatright" alt="Quad9"></p>
+<h2 id="quad9-9999">Quad9 (9.9.9.9)</h2>
+<p>Quad9 provides a service that is very similar to Cloudflare 1.1.1.2 - just set the DNS and forget it and it provides DNS with malicious sites blocked.  My experience with Quad9 has been largely indistinguishable from Cloudflare or OpenDNS with default settings, when testing blocking or response speed.  However, Quad9 doesn&rsquo;t have the customization of OpenDNS or the apps that Cloudflare has.</p>
+<h2 id="google-8888">Google (8.8.8.8)</h2>
+<p>This has been a popular alternative for the geek set for a long time.  It&rsquo;s easy to remember and it provides an &ldquo;unfiltered&rdquo; response.</p>
+<h2 id="summary">Summary</h2>
+<p>Using one of these services helps to protect your home.  I use OpenDNS at home and have customized it to filter out a range of categories.  It doesn&rsquo;t block everything on the Internet, but it addresses some of the obvious sites and it helps prevent &ldquo;oops&rdquo; experiences.  It seems to help with advertising too.  I use Cloudflare on my office network and it does a great job as well.</p>
+<p>If you&rsquo;ve benefitted from the <a href="/ReasonablySecureBrowsing">Reasonably Secure Browsing</a> discussion, this is another &ldquo;reasonable&rdquo; step that you can take to improve your families Internet experience.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.opendns.com">https://www.opendns.com</a><br> &nbsp&nbsp<a href="https:/1.1.1.1">https:/1.1.1.1</a><br> &nbsp&nbsp<a href="https://quad9.net">https://quad9.net</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/security">Security</a> 
+       
+        <a href="/tags/non-technical">Non-technical</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/201120_kali_linux_2020_4/">Kali Linux 2020.4</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201113_pingcastle/">Active Directory Security Assessment with PingCastle</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201025_how_to_write_an_event_to_windows_event/">How to write an event to Windows and Linux logs</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201110_whitelisting_approach/">Whitelisting Approach to Security</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200930_opendnsforhome/">OpenDNS For Home</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200826_dnsservices/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">DNS Services</a></nav>
+</div>
+  </body>

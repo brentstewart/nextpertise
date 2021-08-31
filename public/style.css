@@ -1,0 +1,189 @@
+.nav {
+  background-color: cadetblue;
+  color: white;
+}
+
+.sidebar-nav {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+  font-size: 24px;
+  padding: 05px;
+  list-style-type: none;
+}
+
+.sidebar-nav-item {
+  padding: 0px;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 1px solid black;
+  transition: background-color 0.2s;
+  color: white;
+  background-color:cadetblue
+}
+
+.sidebar-nav-item:hover {
+  background-color: black;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+  font-weight: light;
+  padding: 0px;
+  margin: 50px;
+}
+
+h1 {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h2 {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: bold;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h3 {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+h6 {
+  font-size: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(57, 57, 223);
+  padding: 0px;
+  margin: 0px;
+}
+
+figcaption {
+  font-style: italic; color: cadetblue;
+}
+.picright {
+  style=float:right; padding: 0 0 0 10px;
+}
+
+blockquote {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic; color: cadetblue;
+  padding: 0 50px;
+  margin-left: 0;
+  text-align: center;
+}
+code {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  word-wrap: break-word;
+  width: 100%;
+  display:block;
+  background-color:  black;
+  padding: 10px;
+}
+
+.table table{
+  border-collapse: collapse;
+  width: 100%;
+  background-color: lightgray;
+}
+.table td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0.6rem;
+}
+
+
+img[src$='#center']
+{
+    display: block;
+    max-width: 90%;
+    padding: 20px 20px;
+    box-shadow: cadetblue;
+    margin: 0.7rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+    /* whatever else styles you fancy here */
+}
+
+img[src$='#floatleft']
+{
+    float:left;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 50%;
+    padding: 20px 20px;
+    }
+img[src$='#floatsmallleft']
+{
+    float:left;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 25%;
+    padding: 20px 20px;
+    }
+
+img[src$='#floatright']
+{
+    float:right;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 50%;
+    padding: 20px 20px;
+}
+
+img[src$='#floatsmallright']
+{
+    float:right;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+    box-shadow: cadetblue;
+    max-width: 25%;
+    padding: 20px 20px;
+}
+#parent {display: grid; grid-template-columns: auto; grid-template-rows: auto}
+
+.child {width: 100%;border-bottom: 50px; }
+
+.tags {color:grey; font-size:18px}
+
+@media screen and (min-width: 600px) {
+  #parent {display: grid; grid-template-columns: auto auto; grid-template-rows: auto}
+  body { font-size: 20px;}
+  .tags { font-size: 20px;}
+  .sidebar-nav-item { font-size: 20px;}
+  h1 { font-size: 28px;}
+  h2 { font-size: 24px;}
+  h3 {font-size: 20px;}
+  h6 {font-size: 19px;}
+}
+@media screen and (min-width: 1200px) {
+  #parent {display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto}
+  body { font-size: 25px;}
+  h1 { font-size: 35px;}
+  h2 { font-size: 30px;}
+  h3 {font-size: 25px;}
+  h6 {font-size: 23px;}
+  .tags {font-size: 25px;}
+  .sidebar-nav-item { font-size: 25px;}
+}
+@media screen and (min-width: 2400px) {
+  #parent {display: grid; grid-template-columns: auto auto auto auto; grid-template-rows: auto}
+  body { font-size: 32px;}
+  h1 { font-size: 48px;}
+  h2 { font-size: 40px;}
+  h3 {font-size: 32px;}
+  h6 {font-size: 30px;}
+  .tags {font-size: 32px;}
+  .sidebar-nav-item { font-size: 32px;}
+}

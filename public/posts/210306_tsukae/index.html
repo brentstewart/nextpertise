@@ -1,0 +1,124 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Tsukae - A tool for graphing command usage</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Readers may recall that six months ago I wrote about the most commonly used Linux commands. I had seen a series of articles with that title and decided to see what my most common commands were. I suggested the following as a way to pull command history and count usage.
+history | awk ‘{print $2}’ | sort | uniq -c Tsukae is a much better way to accomplish this task. It&rsquo;s much simpler and can produce the output in Bar or Pie chart, or as a list.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Tsukae - A tool for graphing command usage</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Saturday, Mar 6, 2021</i><br></div></h6>
+  <p><p>Readers may recall that six months ago I wrote about the <a href="/200817_MostCommonLinuxCommand">most commonly used Linux commands</a>.  I had seen a series of articles with that title and decided to see what my most common commands were.  I suggested the following as a way to pull command history and count usage.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">history | awk ‘<span style="color:#f92672">{</span>print $2<span style="color:#f92672">}</span>’ | sort | uniq -c
+</code></pre></div><p><a href="https://github.com/irevenko/tsukae">Tsukae</a> is a much better way to accomplish this task.  It&rsquo;s much simpler and can produce the output in Bar or Pie chart, or as a list.  Tsukae is written by Ilya Revenko and can be cloned from GitHub.</p>
+<p><img src="/tsukae.gif" alt="Tsukae Demo"></p>
+<h2 id="installing-tsukae">Installing Tsukae</h2>
+<p>Tsukae needs Go to run (<strong>apt install golang-go</strong>).  Once cloned, just go into the directory and build the executable.  Tsukae expects a <em>blacklist</em> file to be present at <em>~/.config/tsukae/blacklist</em>.  <del>This may be created automatically in future releases, but I got an error when I first ran the program and so created the file myself.</del></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/irevenko/tsukae.git  
+cd tsukae  
+go get -d ./...  
+go build   
+~~mkdir ~/.config/tsukae  
+touch blacklist~~
+</code></pre></div><p><strong>Update!</strong>  I posted an issue for the above on GitHub and the author published an update today to fix.  I tested it and confirmed it resolved the issue.  This is a great example of the power of GitHub - everyone contributes in whatever way they can, and all contributions are appreciated.  In my case, by suggesting an improvement and helping test.  It&rsquo;s why I continue to recommend that everyone participate in that community.  And thanks again to Ilya!</p>
+<h2 id="running-tsukae">Running Tsukae</h2>
+<p>When you run Tsukae you must specify the shell, as well as the number of commands to pull.  In the example below, I&rsquo;ve gotten the top six bash commands.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./tsukae bash <span style="color:#ae81ff">6</span>  
+<span style="color:#ae81ff">10</span> Most Used bash Commands  
+<span style="color:#f92672">[</span>255<span style="color:#f92672">]</span> git  
+<span style="color:#f92672">[</span>148<span style="color:#f92672">]</span> apt  
+<span style="color:#f92672">[</span>148<span style="color:#f92672">]</span> cd  
+<span style="color:#f92672">[</span>107<span style="color:#f92672">]</span> ls  
+<span style="color:#f92672">[</span>74<span style="color:#f92672">]</span> hugo  
+<span style="color:#f92672">[</span>43<span style="color:#f92672">]</span> nano  
+</code></pre></div><p>Commands list <em>cd</em> and <em>ls</em> might be uninteresting.  Adding those to the <em>blacklist</em> text file will omit them in the future.</p>
+<p>Git is a weird command to run most often, but I tend to run it a lot to sync the blog and upload new content.  I use the hugo command in development mode at the same time.  Tsukae is an interesting insight into how I&rsquo;m using this computer.  It&rsquo;s not a vital command to accomplish work, but the next time you see one of those &ldquo;Top 25 Linux Command&rdquo; articles you can see how closely their list matches yours.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/irevenko/tsukae">https://github.com/irevenko/tsukae</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/"></a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210501_cockpit/">Cockpit</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210318_changecontrol/">Rational Change Control</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210306_tsukae/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Tsukae - A tool for graphing command usage</a></nav>
+</div>
+  </body>

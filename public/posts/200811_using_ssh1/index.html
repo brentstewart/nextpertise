@@ -1,0 +1,161 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Using SSH - Part 1 (Basics and Banners)</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="SSH is a pretty well known protocol that&rsquo;s used for a lot of different things. Most of us are familiar with the basics and a trick or two. This article is to try to consolidate a lot of the uses I have for SSH and share them. The article is a quick review of basic terminal access and banners. This is the first in a series, so more advanced topics are covered in succeeding posts.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Using SSH - Part 1 (Basics and Banners)</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Aug 11, 2020</i><br></div></h6>
+  <p><p>SSH is a pretty well known protocol that&rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.</p>
+<h2 id="the-basics">The Basics</h2>
+<p>SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.</p>
+<p>My walk through assumes you are using a command-line client.  Note that the ssh <em>client</em> is typically installed in the *nix world.  If you want your box to be the server then you&rsquo;ll need to add it via <strong>sudo apt install openssh-server</strong> (Debian/Ubuntu).</p>
+<p>Most of us encounter SSH as a secure replacement for telnet.  SSH allows us to connect to a remote terminal from the command line.  Assuming that I wanted to connect to my firewall by it&rsquo;s IP address and that there was an account named &ldquo;brent&rdquo; there, I can connect using _<em>ssh <em>username</em>@<em>Destination</em></em>.  If this is the first time you&rsquo;ve connected, you&rsquo;ll be asked to confirm the fingerprint.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">brent@MintyTwenty:~$ ssh brent@192.168.24.230  
+The authenticity of host &#39;192.168.24.230 (192.168.24.230)&#39; can&#39;t be established.  
+ECDSA key fingerprint is SHA256:1XYZ12MBd5Sb345ABOBhoKx42D+STU56szGR/d3LkGs.  
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes  
+Warning: Permanently added &#39;192.168.24.230&#39; (ECDSA) to the list of known hosts.  
+brent@192.168.24.230&#39;s password:  
+brent@inspiron:~$  
+</code></pre></div><p>The fingerprint is to protect against a man-in-the-middle attack, where your traffic is being re-directed to a malicious third party.  Before you type in (and reveal) your password, best to make sure that this is a trusted server!  So, where do we find the fingerprint to match it to?  The easiest way to get it is to go to your server and use ssh to connect to itself: <strong>ssh <em>username</em>@127.0.0.1</strong>.  This will show the local fingerprint.  If someone has already used this trick and accepted the fingerprint, you can delete ~/.ssh/knownhosts (<em>not recommended</em>) or use ssh-keygen to examine the local public key.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">brent@MintyTwenty:~$ __ssh-keygen -lf .ssh/id_rsa.pub  
+4096 SHA256:cjyCsHXYZ12dESNo+12AB/oGGaxY1JHSTU%1p3Aeouw brent@X (RSA)
+</code></pre></div><h2 id="banners">Banners</h2>
+<p>SSH banners are specified in the ssh daemon configuration (<em>/etc/sshd_config</em>),  To specify a banner, find the line reads &ldquo;#banner none&rdquo; and edit it to specify a file.  The contents of this file will be displayed <em>before</em> the password prompt.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">sudo nano /etc/sshd_config  
+banner /etc/banner.txt
+</code></pre></div><p><img src="/neofetch.png#floatsmallright" alt="neofetch"></p>
+<p>After authentication the prompt displays the server hostname.  You can display a banner <em>after</em> authentication by editing <em>~/.bashrc</em>.  This has a side benefit - the terminal, when connected to locally or remotely, processes <em>~/.bashrc</em> before it produces a prompt.  Go to the end of that file and add whatever you like - that output will be displayed before a prompt is produced.  I&rsquo;ve listed some cool ideas to build a dynamic banner below.</p>
+<ul>
+<li><strong>neofetech</strong> is a popular script that summarizes system information.  There&rsquo;s a ppa available to add this from apt.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:dawidd0811/neofetch  
+sudo apt install neofetch  
+echo <span style="color:#e6db74">&#34;neofetch&#34;</span> &gt;&gt; /home/brent/.bashrc  <span style="color:#75715e"># Add the command to the end of .bashrc  </span>
+</code></pre></div><p><img src="/figlet.png#floatright" alt="figlet"></p>
+<ul>
+<li>
+<p><strong>Figlet</strong> - draws letters in ASCII for a nice banner and any command can be piped through it (echo &ldquo;for example&rdquo; | figlet).  It&rsquo;s available in the standard Ubuntu repository.</p>
+</li>
+<li>
+<p><strong>Curl</strong> - pull in data from the web.  Try <strong>curl v2.wttr.in/Hickory+NC</strong>.  A more practical example might be:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl wttr.in/Hickory+NC?format<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e"># check out the github page for lots more options</span>
+</code></pre></div><ul>
+<li><strong>Server stats</strong> - display information about the server such as IP (<strong>hostname -I)</strong> or temperature (<strong>sensors</strong>).  This snippet will display just the main temperature.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">data<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>sensors | grep <span style="color:#e6db74">&#34;id 0:&#34;</span> | cut -c16-23<span style="color:#66d9ef">)</span>      <span style="color:#75715e">#sensors displays a lot of data.</span>
+                            <span style="color:#75715e"># Grep just grabs the one line, and cut pulls temp out.  </span>
+echo <span style="color:#e6db74">&#34;CPU Temp:</span><span style="color:#e6db74">${</span>data<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  
+</code></pre></div><p>Part two of this series will cover secure authentication options.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse</a><br> &nbsp&nbsp<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">https://www.chiark.greenend.org.uk/~sgtatham/putty/</a><br> &nbsp&nbsp<a href="https://www.solarwinds.com/free-tools/solar-putty">https://www.solarwinds.com/free-tools/solar-putty</a><br> &nbsp&nbsp<a href="https://github.com/chubin/wttr.in">https://github.com/chubin/wttr.in</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/how-to">How To</a> 
+       
+        <a href="/tags/ssh">SSH</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210830_apache/">Simple Apache Setup on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210413_cpufetch/">CPUFetch</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210308_kdenlive/">Making a Memorial DVD</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210207_installscript/">Linux Install Script</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210201-deskreen/">Deskreen</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200811_using_ssh1/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Using SSH - Part 1 (Basics and Banners)</a></nav>
+</div>
+  </body>

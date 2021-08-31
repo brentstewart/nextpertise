@@ -1,0 +1,640 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH on </title>
+    <link>https://www.nextpertise.net/tags/ssh/</link>
+    <description>Recent content in SSH on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Apr 2021 15:40:47 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using the SSH client config file</title>
+      <link>https://www.nextpertise.net/posts/210402_ssh_config/</link>
+      <pubDate>Fri, 02 Apr 2021 15:40:47 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210402_ssh_config/</guid>
+      <description>&lt;p&gt;This article continues a series of articles I&amp;rsquo;ve done on SSH.  We&amp;rsquo;ve used the server configuration file (sshd_config) to set parameters, but many folks do not realize that there is a client configuration file as well.  In fact, ssh uses command line options, then the &lt;em&gt;client&lt;/em&gt; file, then the server file when building the capabilities of a new connection.&lt;/p&gt;
+&lt;h2 id=&#34;simple-example&#34;&gt;Simple Example&lt;/h2&gt;
+&lt;p&gt;The file is a plain text file found in &lt;strong&gt;~/.ssh&lt;/strong&gt;.  It doesn&amp;rsquo;t exist by default, so a new file with that name needs to be created.  The simplest version of an ssh config file looks something like this.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;host server  
+hostname 10.1.1.1  
+user brent  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Even at this stage, this is beneficial.  We can use the &lt;strong&gt;host&lt;/strong&gt; to resolve a name, so even without DNS we don&amp;rsquo;t have to remember IPs.  Because the user is specified we can now simplify our ssh command to: &lt;strong&gt;ssh server&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I am often moving between locations and don&amp;rsquo;t have access to internal DNS.  I can share this file between my desktop and laptop and ease some of the memorization required to move through the environment.&lt;/p&gt;
+&lt;h2 id=&#34;what-else-can-we-do&#34;&gt;What Else Can We do?&lt;/h2&gt;
+&lt;p&gt;Building on the previous example, we can also specify a non-standard port or a specific key.  We can add additional hosts as well.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;host server  
+hostname 10.1.1.1  
+user root  
+port &lt;span style=&#34;color:#ae81ff&#34;&gt;2222&lt;/span&gt;  
+
+host server2  
+hostname 10.2.2.2  
+user vagrant  
+localforward &lt;span style=&#34;color:#ae81ff&#34;&gt;2222&lt;/span&gt; 10.1.1.1:2222
+
+host home    
+hostname 192.168.1.10  
+user brent 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example includes three servers.  The first now uses a non-standard port.  The second is setup to forward tcp traffic on 2222 to the first server.  Each has a different username specified.&lt;/p&gt;
+&lt;p&gt;Other examples of additional commands can be found in the OpenSSH documentation (referenced below).&lt;/p&gt;
+&lt;h2 id=&#34;wildcards&#34;&gt;Wildcards&lt;/h2&gt;
+&lt;p&gt;The last complication I&amp;rsquo;ll add is to add the following to the config file above.  Wildcards allow us to specify things that apply to multiple hosts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;host serv*  
+identityfile server_id_rsa  
+
+host *  
+ ForwardX11Trusted yes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Connecting to &amp;ldquo;server&amp;rdquo; will now pull in the the key file and X11 command.  For &amp;ldquo;home&amp;rdquo; only the X11 forwarding would be added.&lt;/p&gt;
+&lt;p&gt;These days we&amp;rsquo;re connecting to local servers with one set of credentials and cloud hosts with a different set.  Often there&amp;rsquo;s some specific options that have to be used when connecting to the cloud host - to specify a keyfile for instance.  Particularly given the complication of managing cloud assets, the client config file can be an important tool.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll close by discussing security.  Building an ssh client config file can make life easier and there&amp;rsquo;s a natural desire to share that work in a team.  This is probably safe, assuming that servers are locked down with something more than passwords.  Reference my article on &lt;a href=&#34;https://www.nextpertise.net/200812_using_ssh2&#34;&gt;PAM changes&lt;/a&gt; if you are interested in that.  If you are managing a large environment, it&amp;rsquo;s probably good to think about some centralized authentication (like sssd) so that you can quickly update credentials.  The config file - by itself - doesn&amp;rsquo;t compromise security except for allowing an outsider to &amp;ldquo;case the joint&amp;rdquo;.  Still, I&amp;rsquo;d suggest handling the config file conservatively and limiting distribution.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Eternal Terminal</title>
+      <link>https://www.nextpertise.net/posts/210125_et/</link>
+      <pubDate>Mon, 25 Jan 2021 12:43:51 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210125_et/</guid>
+      <description>&lt;p&gt;Eternal Terminal acts like ssh - you start a console session on a remote device by typing &lt;strong&gt;et username@host&lt;/strong&gt; and it connects.  ET adds to ssh by allowing reconnects.&lt;/p&gt;
+&lt;p&gt;A lot of ssh sessions are short affairs - login, put in a few commands, get some output, logout.  If the session is interrupted it&amp;rsquo;s not a big deal.  Occassionally, however, it&amp;rsquo;s important to stay connected for a period of time.&lt;/p&gt;
+&lt;p&gt;In a past life, I used to have to run reports against a database at the data center.  The script I used took a while and any interruption meant starting over.  Eternal Terminal wasn&amp;rsquo;t around at that time, so I solved the problem by deploying a jump server and I could connect to it using x2go and start the session from there.  I could disconnect and reattach later&lt;/p&gt;
+&lt;p&gt;That solution required a dedicated VM, which requires some money.  It wasn&amp;rsquo;t a bad solution, but it didn&amp;rsquo;t really address the underlying problem.&lt;/p&gt;
+&lt;p&gt;With et (Eternal Terminal), a disconnected session is maintained.  The server continues processing and the client can continue to accept keyboard input.  When the connection is re-established, the environment is still in place.  Frankly, for day-to-day use you won&amp;rsquo;t see much difference between et and a normal SSH session.  If you have workflows that require long-duration connectivity, this could be a great tool.&lt;/p&gt;
+&lt;p&gt;Et uses SSH for the initial connection and to exchange keys.  Authentication is handled by SSH.  Once the session is established, et sets up a console.&lt;/p&gt;
+&lt;h2 id=&#34;installing-and-using&#34;&gt;Installing and Using&lt;/h2&gt;
+&lt;p&gt;To use et, both the client and server must have it installed.  Eternal Terminal can be installed on Ubuntu from the archives:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install et
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Usage is just like ssh, except that if a username is not specified it is assumed to be the same as the client.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;et brent@10.1.1.100
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Eternal Terminal survives roaming, rebooting, and disconnection.  A simple way to try it out is to disconnect your network card and reconnect.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VMWare File Transfer Options including SFTP </title>
+      <link>https://www.nextpertise.net/posts/210110_vmware-sftp/</link>
+      <pubDate>Sun, 10 Jan 2021 16:51:18 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210110_vmware-sftp/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210110_VMWare-SFTP.png#floatright&#34; alt=&#34;VMWare SFTP&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m going to be upgrading my home VMware server and need to backup the VMs.  My server uses ESXi 6.5 and I&amp;rsquo;ll need to backup the files before upgrading.  Longtime readers may recall that I&amp;rsquo;m using &lt;a href=&#34;https://www.nextpertise.net/posts/200804_homebackup&#34;&gt;Backblaze&lt;/a&gt; to backup the &lt;em&gt;data&lt;/em&gt; on my server.  That is going swimmingly so far.  I want to backup the images so I don&amp;rsquo;t have to rebuild the VMs after this is done.&lt;/p&gt;
+&lt;h2 id=&#34;admin-interface&#34;&gt;Admin interface&lt;/h2&gt;
+&lt;p&gt;One way to accomplish this is to login to the admin web portal and export the VMs.  Under each VM, go to Actions &amp;gt; Export and this queues downloading the component files.  Exporting over HTTP is slow though.&lt;/p&gt;
+&lt;h2 id=&#34;vmware-workstation&#34;&gt;VMWare Workstation&lt;/h2&gt;
+&lt;p&gt;A second option is to backup from VMWare Workstation.  I prefer using this to manage server VMs anyway.  First, connect to the server under &lt;em&gt;File&amp;gt;Connect to Server&lt;/em&gt;.  Once the server is attached to workstation and you can see the VMs, right click a machine and choose &lt;em&gt;Manage &amp;gt; Download&lt;/em&gt;. This is also fairly slow.&lt;/p&gt;
+&lt;h2 id=&#34;using-ssh-with-vmware&#34;&gt;Using SSH with VMWare&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210110_Filezilla.png#floatright&#34; alt=&#34;Filezilla to VMWare&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To speed up the action, I wanted to grab the VMDKs directly from the server using SFTP.  To set this up, login to the administrative interface of ESXi and look under &amp;ldquo;Host&amp;rdquo;.  Choose &amp;ldquo;Actions&amp;rdquo; and &amp;ldquo;Enable SSH&amp;rdquo;. SFTP is a part of SSH, so this also enables SFTP.  This isn&amp;rsquo;t the best way to grab the backup, since it will take a little work to stand these up again, but it is faster.&lt;/p&gt;
+&lt;p&gt;To make this super easy, I used Filezilla.  Under the site manager, I selected SFTP, entered the IP address, and username.  When connecting, you&amp;rsquo;ll need to accept the host key and navigate to /vmfs/volumes/YOUR_VOLUME_NAME/ and each of the VMs will have a directory.  You can also easily upload images this way - ISOs can be saved to to VMWare easily this way.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SSH Crypto</title>
+      <link>https://www.nextpertise.net/posts/201229_ssh-crypto/</link>
+      <pubDate>Tue, 29 Dec 2020 13:01:35 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201229_ssh-crypto/</guid>
+      <description>&lt;h1 id=&#34;cleaning-up-crypto&#34;&gt;Cleaning up Crypto&lt;/h1&gt;
+&lt;p&gt;A previous article - &lt;a href=&#34;https://www.nextpertise.net/ssh-admin&#34;&gt;SSH Admin&lt;/a&gt; - went through understanding who was logging into a Linux server using SSH or SFTP.  To continue that thought, let&amp;rsquo;s suppose that we are required to make sure that only cypher suites recommended in the CIS benchmarks are in use on a server.  Before we disable old options, we need to check and make sure that no one is using them!&lt;/p&gt;
+&lt;h2 id=&#34;understanding-local-crypto&#34;&gt;Understanding local crypto&lt;/h2&gt;
+&lt;p&gt;From a client, we can see which cipher elements are supported.  Each of these commands outputs a range of protocols.  When connecting to a server, the client transmits protocols that it supports and the server reciprocates.  They then agree to use the first option from the client&amp;rsquo;s list that is supported on the server (or the connection fails).  The table below lists commands used to see the protocols supported on a client.  The examples were chosen because they were well known and establish context, and not as a recommendation.&lt;/p&gt;
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table: SSH options&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th&gt;Element&lt;/th&gt;
+&lt;th&gt;Command&lt;/th&gt;
+&lt;th&gt;Example options&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Cipher&lt;/td&gt;
+&lt;td&gt;ssh -Q cipher&lt;/td&gt;
+&lt;td&gt;3des-cbc, aes256-cbc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MAC&lt;/td&gt;
+&lt;td&gt;ssh -Q mac&lt;/td&gt;
+&lt;td&gt;hmac-md5, hmac-sh2-256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Key&lt;/td&gt;
+&lt;td&gt;ssh -Q key&lt;/td&gt;
+&lt;td&gt;ssh-rsa, ecdsa-sha2-nistp256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Kex&lt;/td&gt;
+&lt;td&gt;ssh -Q kex&lt;/td&gt;
+&lt;td&gt;diffie-hellman-group1-sha1, curve25519-sha256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Setting up an SSH connection goes through some basic phases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kex (key-exchange) is used to complete an asymmetrically encrypted initial key exchange.&lt;/li&gt;
+&lt;li&gt;Keys are exchange.  The key list is types of keys supported.&lt;/li&gt;
+&lt;li&gt;The body of the communication is encrypted symmetricly.&lt;/li&gt;
+&lt;li&gt;MAC or &amp;ldquo;message authentication code&amp;rdquo; is a hash that verifies the integrity of transmissions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;understanding-remote-clients-crypto&#34;&gt;Understanding remote clients crypto&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s surprising that there isn&amp;rsquo;t a command to show which cipher suites are in use by particular clients.  To build a tool, I went into /etc/ssh/sshd_config and set the logging level to grab everything.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;# Logging&lt;br&gt;
+SyslogFacility AUTH&lt;br&gt;
+LogLevel DEBUG3&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This can then be reviewed using &lt;strong&gt;journalctl -u ssh&lt;/strong&gt; to display entries related to the sshd unit.  I noticed that the relevant lines were at DEBUG1 level and that each sequence completed with the &amp;ldquo;password accepted&amp;rdquo; line.  Based on this pattern, I wrote a utility in Python to create a report.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: algorithm: curve25519-sha256 [preauth]&lt;br&gt;
+Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: host key algorithm: ecdsa-sha2-nistp256 [preauth]&lt;br&gt;
+Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: client-&amp;gt;server cipher: &lt;a href=&#34;mailto:chacha20-poly1305@openssh.com&#34;&gt;chacha20-poly1305@openssh.com&lt;/a&gt; MAC: &lt;!-- raw HTML omitted --&gt; compression: none [preauth]&lt;br&gt;
+Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: server-&amp;gt;client cipher: &lt;a href=&#34;mailto:chacha20-poly1305@openssh.com&#34;&gt;chacha20-poly1305@openssh.com&lt;/a&gt; MAC: &lt;!-- raw HTML omitted --&gt; compression: none [preauth]&lt;br&gt;
+Dec 28 15:56:46 pop-os sshd[701591]: debug1: PAM: password authentication accepted for pop&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/brentstewart/ssh-crypto&#34;&gt;&lt;strong&gt;ssh-crypto&lt;/strong&gt;&lt;/a&gt; is a Python3 program to read ssh debugging and identify who has logged in and what settings were used.  It expects a file name, which is a text file that contains ssh logging output.  First make sure that sshd is logging at least at DEBUG1.  Restart the SSH service for the new logging setting to take effect.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo service sshd restart&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Keep in mind that the crypto fields won&amp;rsquo;t be populated for logins before the loggin change takes effect.  To create the text file for analysis, export from journalctl.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;journalctl -u ssh &amp;gt; ~/ssh.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Again, __ssh-crypto assumes that the system has Python3, uses Systemd, has debugging setup.&lt;/p&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt; pop  pop-os  ~  $  ~/git/ssh-crypto/ssh-crypto.py ~/ssh.txt
+-------------------------------------------------------------------------------------------------------------------
+| # |       User        |       IP       |     Algorithm      |        Host        |            Cipher            |
+-------------------------------------------------------------------------------------------------------------------
+|  0|pop                |192.168.25.2    |undefined           |undefined           |undefined                     |
+|  1|pop                |192.168.25.72   |undefined           |undefined           |undefined                     |
+|  2|pop                |192.168.25.81   |undefined           |undefined           |undefined                     |
+|  3|pop                |192.168.25.81   |undefined           |undefined           |undefined                     |
+|  4|pop                |192.168.25.81   |undefined           |undefined           |undefined                     |
+|  5|pop                |192.168.25.81   |curve25519-sha256   |ecdsa-sha2-nistp256 |chacha20-poly1305@openssh.com |
+|  6|pop                |192.168.25.81   |curve25519-sha256   |ecdsa-sha2-nistp256 |chacha20-poly1305@openssh.com |
+-------------------------------------------------------------------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;removing-weak-ciphers&#34;&gt;Removing Weak Ciphers&lt;/h2&gt;
+&lt;p&gt;Per the CIS Ubuntu 20.04 Standard (5.2.12), FIPS compliant ciphers include aes256-ctr, aes192-ctr, aes128-ctr.  FIPS compliant MACs include hmac-sha2-256 and 512.  FIPS allows a pretty broad range of key exchange protocols, including ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, diffie-hellman-group-exchange-sha256, diffie-hellman-group16-sha512, diffie-hellman-group18-sha512, and diffie-hellman-group14-sha256.
+To limit the server to only accept these options, edit /etc/ssh/sshd_config.  Here are the ones I&amp;rsquo;ve chosen to support.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr&lt;br&gt;
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256&lt;br&gt;
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using ssh-crypto will allow review of recent client connections and unused ciphers can be weeded out.  After communicating the change to users, specific recalcitrant users can be identified for follow-up with the utility before ultimately removing the old protocols.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SSH Administrative Trivia</title>
+      <link>https://www.nextpertise.net/posts/201223_ssh-admin/</link>
+      <pubDate>Wed, 23 Dec 2020 18:47:30 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201223_ssh-admin/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s consider an interesting case: we&amp;rsquo;d like to identify remote ssh users.  Remember that SFTP is a part of SSH, so these commands will also identify SSH users.  There are a variety of ways to do this and some are even fairly obviouis.&lt;/p&gt;
+&lt;h2 id=&#34;who-or-w&#34;&gt;Who or w&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt; is a utility to display logged in users.  The man page can walk you through the various switches, but the two I find most valuable are &lt;em&gt;-a&lt;/em&gt; to show all and &lt;em&gt;-H&lt;/em&gt; to show headings.  The &lt;em&gt;all&lt;/em&gt; option includes the time that the session has been active, how it&amp;rsquo;s attached, and where it&amp;rsquo;s coming from.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;who -aH
+    NAME       LINE         TIME             IDLE          PID COMMENT  EXIT  
+               system boot  2020-12-02 05:47  
+               run-level &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;  2020-12-02 05:47  
+    pop      ? :1           2020-12-02 08:08   ?          &lt;span style=&#34;color:#ae81ff&#34;&gt;3663&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;:1&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    pop      + pts/2        2020-12-23 18:14  old       &lt;span style=&#34;color:#ae81ff&#34;&gt;570072&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;192.168.1.72&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    pop      + pts/6        2020-12-27 15:36 00:01      &lt;span style=&#34;color:#ae81ff&#34;&gt;665161&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;192.168.1.81&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first column - Name - is the local name that these users are logged in as.  In this example, I&amp;rsquo;m logged in as &amp;ldquo;brent&amp;rdquo; on 192.168.1.81 but my ssh session to this computer uses the username &amp;ldquo;pop&amp;rdquo;.  The LINE identifies connection - &lt;em&gt;pts&lt;/em&gt; stands for psuedo terminal slave, or a sub  process of &lt;em&gt;pty&lt;/em&gt; (psuedo-tty).  You may be more familiar with &lt;em&gt;tty&lt;/em&gt; connections - those are direct connections like a local terminal.  Notice that there&amp;rsquo;s a local connection and two remote connections in this example.&lt;/p&gt;
+&lt;p&gt;If &lt;strong&gt;who&lt;/strong&gt; is too much typing for you, try &lt;strong&gt;w&lt;/strong&gt;.  It provides very similar output, no switches required&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;w
+     16:22:45 up &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; days, 10:35,  &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; users,  load average: 1.90, 1.70, 1.53  
+    USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+    pop      :1       :1               02Dec20 ?xdm?  12days  0.00s /usr/libexec/gdm-x-session --run-sc
+    pop      pts/2    192.168.1.72    Wed18    3days  0.09s  0.09s -bash
+    pop      pts/6    192.168.1.81    15:36   46:35   0.02s  0.02s -bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can also derive this information from &lt;strong&gt;ps&lt;/strong&gt;.  This command lists active processes and includes active ssh sessions.  Note that you can pipe to &lt;strong&gt;grep&lt;/strong&gt; to limit it to lines that include &amp;lsquo;pts&amp;rsquo; or &amp;lsquo;ssh&amp;rsquo;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ps  ax&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;last&#34;&gt;Last&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Last&lt;/strong&gt; looks through /var/log/wtmp and shows login activity.  You can specify a username to see when that user logged in and out.  Note that a psuedo-user named &lt;em&gt;reboot&lt;/em&gt; logs in when the system reboots, so &lt;strong&gt;last reboot&lt;/strong&gt; will show a list of all reboots.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;last
+    pop      pts/6        192.168.1.81    Sun Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:36   still logged in  
+    pop      pts/2        192.168.1.72    Wed Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:14   still logged in  
+    pop      pts/2        192.168.1.2     Wed Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:11 - 18:11  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;00:00&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    pop      :1           :1               Wed Dec  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; 08:08   still logged in  
+    reboot   system boot  5.8.0-7630-gener Wed Dec  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; 05:47   still running  
+    pop      :1           :1               Wed Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; 18:02 - down  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;6+11:44&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    reboot   system boot  5.8.0-7630-gener Wed Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; 17:56 - 05:46 &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;6+11:50&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    pop      :1           :1               Mon Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 08:31 - down  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;2+09:24&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    reboot   system boot  5.8.0-7630-gener Mon Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 08:29 - 17:56 &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;2+09:26&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    pop      :1           :1               Sat Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt; 17:40 - down  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8+14:47&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+    reboot   system boot  5.8.0-7625-gener Sat Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt; 17:39 - 08:28 &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8+14:48&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Last&lt;/strong&gt; shows similar information to &lt;strong&gt;who&lt;/strong&gt;, but shows activity over time instead of just current activity.  On a busy server, &lt;strong&gt;w&lt;/strong&gt; might do a better job of concisely showing current users.  A related utility is &lt;strong&gt;lastb&lt;/strong&gt; which shows &lt;em&gt;bad&lt;/em&gt; login attempts.  In the previous example I mentioned that my account is &amp;ldquo;brent&amp;rdquo; on 192.168.1.81.  I forgot that there was a different user on this machine and you can see here the failed login attempts.  Notice that this command requires elevated priviledges.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo lastb  
+brent    ssh:notty    192.168.1.81    Sun Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35 - 15:35  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;00:00&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+brent    ssh:notty    192.168.1.81    Sun Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35 - 15:35  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;00:00&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+brent    ssh:notty    192.168.1.81    Sun Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35 - 15:35  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;00:00&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Paranoid users may want to review failed logins every time they open a terminal.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sudo lastb&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /home/user/.bashrc  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A similar command is &lt;strong&gt;journalctl -u ssh&lt;/strong&gt;.  This shows the systemd journal, so obviously it&amp;rsquo;s only of use on systemd-based systems.  Modern Fedora/RHEL and Ubuntu are on that list.  The switch &lt;em&gt;-u&lt;/em&gt; limits output to certain units, in this case &lt;em&gt;ssh&lt;/em&gt;.  Note that some systems will require the unit to be listed as &amp;ldquo;sshd&amp;rdquo;.   Notice that this shows socket information and failed attempts and is organized chronologically.  This might be useful if you&amp;rsquo;re trying to match events in troubleshooting.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;journalctl -u ssh  
+-- Logs begin at Sat 2020-11-14 17:39:49 EST, end at Sun 2020-12-27 18:10:11 EST. --  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:11:37 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;569656&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Accepted password &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; pop from 192.168.1.2 port &lt;span style=&#34;color:#ae81ff&#34;&gt;52778&lt;/span&gt; ssh2  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:11:37 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;569656&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:session&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: session opened &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; user pop by &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:14:55 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;570072&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Accepted password &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; pop from 192.168.25.72 port &lt;span style=&#34;color:#ae81ff&#34;&gt;23639&lt;/span&gt; ssh2  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;23&lt;/span&gt; 18:14:55 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;570072&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:session&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: session opened &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; user pop by &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:39 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Invalid user brent from 192.168.25.81 port &lt;span style=&#34;color:#ae81ff&#34;&gt;54850&lt;/span&gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:41 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:auth&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: check pass; user unknown  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:41 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:auth&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: authentication failure; logname&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; eu&amp;gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:43 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Failed password &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; invalid user brent from 192.168.25.81 port&amp;gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:48 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:auth&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: check pass; user unknown  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:51 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Failed password &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; invalid user brent from 192.168.25.81 port&amp;gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:57 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Connection closed by invalid user brent 192.168.25.81 port 548&amp;gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:35:57 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665153&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: PAM &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; more authentication failure; logname&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; euid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; tty&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;s&amp;gt;  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:36:07 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665161&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Accepted password &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; pop from 192.168.25.81 port &lt;span style=&#34;color:#ae81ff&#34;&gt;54862&lt;/span&gt; ssh2  
+Dec &lt;span style=&#34;color:#ae81ff&#34;&gt;27&lt;/span&gt; 15:36:07 pop-os sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;665161&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: pam_unix&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sshd:session&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: session opened &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; user pop by &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;network-commands&#34;&gt;Network commands&lt;/h2&gt;
+&lt;p&gt;Finally, there are also a few ways to look at this from a network perspective.  You can show socket statistics with _&lt;em&gt;ss&lt;/em&gt;.  This can be interesting for associating unknown traffic to a process id.  The following example is truncated to give a sense of the output, but the full dump is long.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ss | more
+    Netid State Recv-Q  Send-Q  Local Address:Port         Peer Address:Port    Process
+    u_seq ESTAB      &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;   @00031 &lt;span style=&#34;color:#ae81ff&#34;&gt;4813785&lt;/span&gt;                 *                &lt;span style=&#34;color:#ae81ff&#34;&gt;4813786&lt;/span&gt;        
+    u_seq ESTAB      &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;   @00041 &lt;span style=&#34;color:#ae81ff&#34;&gt;8426824&lt;/span&gt;                 *                &lt;span style=&#34;color:#ae81ff&#34;&gt;8426825&lt;/span&gt;        
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; provides another network perspective, this time organized as conversations.  The tabular form of netstat is a little easier to digest.  The version shown uses switches for numeric output, processes info, and all.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;netstat -npa  
+&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Not all processes could be identified, non-owned process info  
+ will not be shown, you would have to be root to see it all.&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+Active Internet connections &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;servers and established&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name      
+tcp        &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; 192.168.25.2:22         192.168.25.81:54862     ESTABLISHED -  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;These networking commands give you a different view into what&amp;rsquo;s happening on your server, but for our original purpose they&amp;rsquo;re abstract.  I&amp;rsquo;d recommend trying all these techniques to gain wider familiarity with your server, but I find the most common commands I use are &lt;strong&gt;w&lt;/strong&gt;, &lt;strong&gt;lastb&lt;/strong&gt;, and &lt;strong&gt;journalctl -u ssh&lt;/strong&gt; (depending on what I&amp;rsquo;m trying to troubleshoot).&lt;/p&gt;
+&lt;p&gt;Future articles will continue to review some of the administrative issues with maintaining an SSH/SFTP server, such as understanding encryption in use and limiting it to &amp;ldquo;modern&amp;rdquo; protocols.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Powerline Windows</title>
+      <link>https://www.nextpertise.net/posts/201130_powerline-windows/</link>
+      <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201130_powerline-windows/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
+I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;https://www.nextpertise.net/tilix&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
+&lt;h2 id=&#34;step-0-we-_are_-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha&#34;&gt;Windows Terminal&lt;/a&gt; is a nice addition to Windows, but doesn&amp;rsquo;t ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn&amp;rsquo;t do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.&lt;/p&gt;
+&lt;h2 id=&#34;step-1---install-a-font-that-supports-ligatures&#34;&gt;Step 1 - Install a Font that Supports Ligatures&lt;/h2&gt;
+&lt;p&gt;I prefer &lt;a href=&#34;https://www.jetbrains.com/lp/mono/&#34;&gt;JetBrains Mono&lt;/a&gt;, but this is definitely a question of art.  Microsoft&amp;rsquo;s &lt;a href=&#34;https://github.com/microsoft/cascadia-code/releases&#34;&gt;Cascadia&lt;/a&gt; is one option.  Other options, like the excellent Inconsolata can be found at sites like &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;Nerd Fonts&lt;/a&gt; or &lt;a href=&#34;https://www.programmingfonts.org/&#34;&gt;Programming Fonts&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-2---install-git&#34;&gt;Step 2 - Install Git&lt;/h2&gt;
+&lt;p&gt;Because Powerline support Git, I recommend going ahead and getting it installed so you can see it work.  You can download and install it from &lt;img src=&#34;https://git-scm.com/downloads&#34; alt=&#34;here&#34;&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---setup-in-powershell&#34;&gt;Step 3 - Setup in Powershell&lt;/h2&gt;
+&lt;p&gt;Open a Powershell session and install the posh-git and &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh&#34;&gt;oh-my-posh&lt;/a&gt; add-ins.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Install-Module posh-git -Scope CurrentUser  
+Install-Module oh-my-posh -Scope CurrentUser  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Enable these modules to start with each new session via the terminal profile.  To open the profile, type &lt;strong&gt;notepad $profile&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#add these lines  &lt;/span&gt;
+Import-Module posh-git  
+Import-Module oh-my-posh  
+Set-Theme agnoster  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that many &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh#themes&#34;&gt;themes&lt;/a&gt; are pre-built for oh-my-posh.  Refer to the github site to see samples.  Agnoster is my personal favorite because it&amp;rsquo;s less busy and keeps the prompt on one line.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/WinTerminal.png#floatright&#34; alt=&#34;Settings&#34;&gt;
+Next, you&amp;rsquo;ll need to update the terminal settings to use the font.  In Windows Termianl, go to &lt;em&gt;Menu &amp;gt; settings&lt;/em&gt; (this will open VSCode if you have it installed).  Search for the &lt;em&gt;profiles&lt;/em&gt; section and add the &lt;em&gt;fontFace&lt;/em&gt; directive as shown below.  Note that we&amp;rsquo;re setting up Powerline to work with Powershell, not in the other environments, but I also went into the Command Prompt, Ubuntu, and Azure sections and changed them to use my new font.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profiles&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+    {  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;defaults&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+      {  
+       // Put settings here that you want to apply to all profiles.  
+      },  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;list&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+        [  
+          {  
+            // Make changes here to the powershell.exe profile.  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Windows PowerShell&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;commandline&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;powershell.exe&amp;#34;&lt;/span&gt;,  
+            __&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fontFace&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JetBrains Mono&amp;#34;&lt;/span&gt;,__  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hidden&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; false  
+            },  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;##Step 4 - Setup in WSL
+For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;sudo apt install golang-go  
+go get -u github.com/justjanne/powerline-go  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then edit the terminal settings to make sure it&amp;rsquo;s used to display new lines.  Edit via &lt;strong&gt;nano ~/.bashrc&lt;/strong&gt; and add the following snippet to the end.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GOPATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/go  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; _update_ps1&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;  
+  PS1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;$GOPATH/bin/powerline-go -error $?&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$TERM&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -f &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$GOPATH&lt;span style=&#34;color:#e6db74&#34;&gt;/bin/powerline-go&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+  PROMPT_COMMAND&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_update_ps1; &lt;/span&gt;$PROMPT_COMMAND&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Voila!&lt;/em&gt;  You should have Powerline functionality and cool fonts working in the different prompts available in Windows.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SSHFS Automount</title>
+      <link>https://www.nextpertise.net/posts/201017_sshfs_automount/</link>
+      <pubDate>Sat, 17 Oct 2020 12:13:01 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201017_sshfs_automount/</guid>
+      <description>&lt;p&gt;I described using SSHFS as an alternative to NFS back in &lt;a href=&#34;https://www.nextpertise.net/using_ssh3&#34;&gt;Using SSH3&lt;/a&gt;. I&amp;rsquo;ve been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I&amp;rsquo;ve been using a batch file to mount drives and that&amp;rsquo;s getting old. I&amp;rsquo;d like to just add the SSHFS targets into &lt;em&gt;/etc/fstab&lt;/em&gt; and get them to automount.
+As a general rule, the Arch Wiki is a great place to find all things Linux. Even though I&amp;rsquo;m running an Ubuntu variant, the Arch Wiki set me straight. For this to work there are a number of things that have to be set.
+First, as described in &lt;a href=&#34;using_ssh2&#34;&gt;Using SSH2&lt;/a&gt; I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh-keygen  
+ssh-copy-id brent@192.168.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;test&#34;&gt;test&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh brent@192.168.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Second, edit &lt;em&gt;/etc/fuse.conf&lt;/em&gt; to allow non-root users to access drives when they&amp;rsquo;re mounted with the &lt;em&gt;allowother&lt;/em&gt; option.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/fuse.conf
+&lt;span style=&#34;color:#75715e&#34;&gt;# add or uncomment the following line&lt;/span&gt;
+user_allow_other
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Find out your user id and group id. This is easy: there&amp;rsquo;s an &lt;strong&gt;id&lt;/strong&gt; &lt;em&gt;username&lt;/em&gt; command. Note that the ellipsis below just indicate that I&amp;rsquo;m in other groups and I&amp;rsquo;ve edited those out.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;➜ id brent
+uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1000&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;brent&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; gid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1000&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;brent&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;** ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finally, add the targets to your &lt;em&gt;etc/fstab&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/fstab  
+sshfs#brent@192.168.1.1:/home /home/remote fuse user,_netdev,
+ reconnect,uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;UID,gid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;GID,idmap&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;user,allow_other &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When you exit nano the remote directory should be mounted and active! It will also be there automatically each time you log back in. Hope this is helpful!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH (Part 5) - Remotely Possible</title>
+      <link>https://www.nextpertise.net/posts/200922_using_ssh5/</link>
+      <pubDate>Tue, 22 Sep 2020 14:47:47 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200922_using_ssh5/</guid>
+      <description>&lt;p&gt;I confess that I never meant for this to be an SSH blog. It was an easy topic to write about when we started, but friends keep suggesting new things I should cover. The takeaway then is that SSH is a heck of a tool and can be used to accomplish a lot of different things.&lt;/p&gt;
+&lt;p&gt;Today&amp;rsquo;s topic is running a GUI program on a remote computer and displaying the output locally. Pretty cool, right? This is suprisingly easy to do.&lt;/p&gt;
+&lt;p&gt;Why would we want to do this? I already covered that under &amp;ldquo;pretty cool&amp;rdquo;, but I suppose I could say something about using your netbook to run a big program that needs lots of RAM and CPU.&lt;/p&gt;
+&lt;p&gt;To demonstrate, I&amp;rsquo;m going to run the text editor from my server on my desktop.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -X brent@192.168.1.1 &lt;span style=&#34;color:#75715e&#34;&gt;# -X or -Y work  &lt;/span&gt;
+pluma
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/XRemote.png#center&#34; alt=&#34;Displaying a remote program&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Simply SSH into a remote host using either the -X or -Y switch. From the remote prompt, enter the command to run the graphical program of your choosing and the window will be displayed locally. Using &amp;ldquo;-X&amp;rdquo; (as shown in the code) allows this to work but keeps the X11 Security extension restrictions. Using &amp;ldquo;-Y&amp;rdquo; like I did in the screen capture bypasses those restrictions. From an operative point of view, they act identically.&lt;/p&gt;
+&lt;p&gt;This has been the most straightforward of the series. If you&amp;rsquo;re interested in SSH, check out:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nextpertise.net/using_ssh1&#34;&gt;SSH - Part 1 Basics and Banners&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nextpertise.net/using_ssh2&#34;&gt;SSH - Part 2 Authentication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nextpertise.net/using_ssh3&#34;&gt;SSH - Part 3 File Shares&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nextpertise.net/using_ssh4&#34;&gt;SSH - Part 1 Port Forwarding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH Part 4 - Port Forwarding</title>
+      <link>https://www.nextpertise.net/posts/200830_using_ssh4/</link>
+      <pubDate>Sun, 30 Aug 2020 15:12:24 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200830_using_ssh4/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/SSH-Tunnel.png#floatright&#34; alt=&#34;SSH Tunnel&#34;&gt;&lt;strong&gt;Problem&lt;/strong&gt;: We want to access an internal web page that is behind a firewall.  We have SSH access to a server behind the firewall, and &lt;em&gt;that&lt;/em&gt; server can see the intranet.&lt;/p&gt;
+&lt;p&gt;SSH has a solution for this type of problem - tunneling.  Most people use SSH as a telnet replacement &amp;ndash; as just a way to get a terminal session.  SSH is capable of much more than mere terminal access.  There are several ways to accomplish out goal, so let&amp;rsquo;s sort through them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This article demonstrates an obscure and useful way to use a tool, but raises two important points.  First, don&amp;rsquo;t take any part of this to be an example of good design.  I&amp;rsquo;ve constructed a case that allows demonstrating a technique.  Second, using the tool this way may short-circuit your organizations&#39; security design and so security folks may want to mitigate against allowing this use.&lt;/p&gt;
+&lt;h2 id=&#34;option-1---ssh-from-the-client&#34;&gt;Option 1 - SSH from the client&lt;/h2&gt;
+&lt;p&gt;For this to work, the intermediate host (10.0.0.22 in this case) needs to allow itself to pass ports.  Open the &lt;strong&gt;sshd_config&lt;/strong&gt; file and set GatewayPorts to &lt;em&gt;yes&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/ssh/sshd_config
+&lt;span style=&#34;color:#75715e&#34;&gt;# edit line to remove remark and change to yes&lt;/span&gt;
+GatewayPorts yes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, ssh from the external device to the intermediate device and link a local port to an address and port reachable from the ssh target.  In the example below, we connect into 2.2.2.2 (&amp;ldquo;server&amp;rdquo;) and then we map &lt;em&gt;local (on the external device)&lt;/em&gt; port 8080 to a target reachable from the server - webserver port 80.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -L 8080:10.0.0.80:80 2.2.2.2
+&lt;span style=&#34;color:#75715e&#34;&gt;# -L maps a local port&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# 8080:10.0.0.80:80 ties port 8080 to a remote destination of 10.0.0.80:80&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# 2.2.2.2 is the ssh target&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After running this command, you&amp;rsquo;ll be asked to log into the ssh server normally.  Once logged in, open a web browser on the external client to http://localhost:8080 and the remote internal webpage will be visible.&lt;/p&gt;
+&lt;h2 id=&#34;option-2---ssh-from-the-inside-reverse-tunnel&#34;&gt;Option 2 - SSH from the inside (Reverse Tunnel)&lt;/h2&gt;
+&lt;p&gt;Another option is to make a port available to a remote computer.  In this case, we start ssh from the server and connect to the remote client (which we&amp;rsquo;ll imagine is me.myself.com).  Again, the command prompts us to login to the remote machine.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -R 8080:10.0.0.80:80 me.myself.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At this point the remote user can open a browser to http://localhost:8080 and see the internal page.  In fact, the firewall may allow ssh traffic to originate from the webserver.  In that case the reverse tunnel could be established from the webserver without having to use an intermediate host.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -R 8080:localhost:80 me.myself.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;option-3---http-from-the-outside&#34;&gt;Option 3 - HTTP from the outside&lt;/h2&gt;
+&lt;p&gt;The final scenario to consider is to allow the server to listen on a port and forward traffic to the intranet server.  Obviously this would require the firewall configuration to allow some port in addition to tcp/22 (SSH) into the server.  In this case, we&amp;rsquo;ll ask the server to listen on port 8001 and forward that traffic to the internal web server.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -R 8001:10.0.0.80:80 localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The client can now browse to http://2.2.2.2:8001 to see the webpage.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;SSH port forwarding and reverse SSH connections are powerful tools that can circumvent network policy.  Being familiar with this use may be helpful in troubleshooting, and may be important to you when considering how ssh servers are deployed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 3 (File Shares)</title>
+      <link>https://www.nextpertise.net/posts/200813_using_ssh3/</link>
+      <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200813_using_ssh3/</guid>
+      <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
+&lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
+&lt;h2 id=&#34;sftp-filezillafilezillapngfloatright&#34;&gt;SFTP &lt;img src=&#34;https://www.nextpertise.net/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;SFTP is a Secure File Transfer Protocol built on top of SSH, and the two are usually bundled together since they are complementary.  One of the easiest ways to use SFTP to transfer files on all platforms is to use &lt;em&gt;Filezilla&lt;/em&gt;.  Filezilla presents a left/right here/there file manager that allows easy drag and drop between locations.  It works most places SSH works.  Login using your SSH credentials and set the port to 22.  If you use Filezilla often, the first button on the left is the Site Manager and remembers common destinations.  Filezilla works, but there&amp;rsquo;s no way to open a file in an application from the other disk.  It must be copied locally and this creates multiple file versions and is onerous to use.  So - Filezilla if nothing else works.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/caja.png#floatleft&#34; alt=&#34;Caja&#34;&gt;Linux file managers like &lt;em&gt;Caja&lt;/em&gt; and Finder on the Mac allow you to attach to an arbitrary destination in an ad-hoc fashion (Windows does not).  For Linux and Mac, just use existing SSH credentials.  This method also supports FTP, CIFS, and WebDav.  I don&amp;rsquo;t recommend FTP because it&amp;rsquo;s not secure and it&amp;rsquo;s a very old protocol and can be difficult to handle on firewalls.  WebDav is slow and involves some Apache setup.  It can be secure, but most folks setting up a quick file share won&amp;rsquo;t take the time to make it so.  I recommend SSH/SFTP.  File managers generally allow bookmarking, but don&amp;rsquo;t automatically reconnect.  I&amp;rsquo;ll walk through a technique that builds the connection at startup later in the article.&lt;/p&gt;
+&lt;p&gt;On Android, I&amp;rsquo;m using &lt;em&gt;Cx File Explorer&lt;/em&gt;.  This application allows me to connect to SFTP resources and bookmark them.  Cx integrates with the rest of Android, so I can do things like type an email and use Cx to attach a file from the server.  Cx has the same requirements SSH does - a network path to the server and credentials. For me, a common use is to grab a PDF from the server and transfer them to my Kindle.&lt;/p&gt;
+&lt;h2 id=&#34;aside---nfs&#34;&gt;Aside - NFS&lt;/h2&gt;
+&lt;p&gt;Network File System (NFS) is a dream for devices that support it.  It lacks the ad hoc browsing you might do on a Windows network, but at home I want all the files on the servers and if I have to do horizontal file sharing I can figure it out.  Setting up NFS on the server involves getting the NFS server, setting up the &lt;em&gt;/etc/fstab&lt;/em&gt; configuration file, and publishing the share using &lt;strong&gt;exportfs&lt;/strong&gt;.  The example below publishes my user directory from the server.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install nfs-kernel-server nfs-common
+sudo nano /etc/exports
+add lines similar to this one
+/home/brent 192.168.1.0/255.255.255.0&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;rw,anonuid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1000,anongid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1000,sync&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;save file and . . .&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exportfs -avf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On the client, I&amp;rsquo;ll map this share to a folder so it sits in my directory tree.  In this case, I want my server user directory to fit under my local user directory as the &lt;em&gt;server&lt;/em&gt; sub-directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir ~/server
+sudo nano /etc/fstab
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;add lines similar to this one&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;192.168.1.1:/home/brent /home/brent/server nfs default &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;save file&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo mount ~/server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It should just work, but you may need to use &lt;strong&gt;mount&lt;/strong&gt; to kick it in the rear.  Because this is setup in your &lt;em&gt;fstab&lt;/em&gt; file, it will automatically reconnect when you restart.  My personal workflow is to save all my work products to the server because that&amp;rsquo;s what is being backed up.  I use the local folders for scratch files, downloads, etc.  I like to try new things and end up re-installing my OS on my desktop about three times a year.  I can throw my Ventoy USB stick in the PC, pick a distro, and be back up with no lost data in minutes!&lt;/p&gt;
+&lt;p&gt;NFS works great for Linux to Linux filesharing.  I didn&amp;rsquo;t have great success with Windows.  There is a process that includes using &lt;em&gt;Services for NFS&lt;/em&gt;, but I won&amp;rsquo;t even link to it.  It was difficult to get working and didn&amp;rsquo;t &amp;ldquo;just work&amp;rdquo; in the way that I wanted for my wife&amp;rsquo;s PC.  I haven&amp;rsquo;t seen a way to use this with Android and haven&amp;rsquo;t attempted with Chrome.  On the Mac, this works fine and is supported by Finder.  The procedure is just:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;showmount -e 192.168.1.1 &lt;span style=&#34;color:#75715e&#34;&gt;#view available shares&lt;/span&gt;
+sudo mkdir /server-files &lt;span style=&#34;color:#75715e&#34;&gt;#depending on where you put it, you may not need sudo&lt;/span&gt;
+sudo mount -o rw -t nfs 192.168.1.1:/home/brent /server-files__
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;NFS can be secure.  NFSv4 encrypts traffic in-transit and v2/3 allow you to limit promiscuous connections using a mask.  In the enterprise or if your traffic crosses a public network you &lt;em&gt;really&lt;/em&gt; need to use v4.
+&lt;img src=&#34;https://raw.githubusercontent.com/billziss-gh/sshfs-win/master/cap.gif#floatsmallright&#34; alt=&#34;SSHFS Win&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sshfs&#34;&gt;SSHFS&lt;/h2&gt;
+&lt;p&gt;SSHFS is a file system using SFTP.  Since SFTP is built on top of SSH, SSHFS inherits all the goodness of SSH.  SSHFS  works for everything I&amp;rsquo;ve tested so far - I haven&amp;rsquo;t gotten to the Chromebooks yet, but I &lt;em&gt;have&lt;/em&gt; used it in Windows, Mac, Linux, Haiku, BSD, and others.  SSHFS requires installing the sshfs package and installing the SSH server daemon.  File permissions are communicated based on how you login.&lt;/p&gt;
+&lt;p&gt;On Linux, the command to mount a directory using SSHFS looks like this (the server is 192.168.1.1).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install sshfs
+mkdir ~/server &lt;span style=&#34;color:#75715e&#34;&gt;#if it doesn&amp;#39;t already exist_  &lt;/span&gt;
+sudo sshfs -o allow_other,default_permissions brent@192.168.1.1:/home/brent /home/brent/server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can add this to fstab if you want it to be automatic.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/fstab
+&lt;span style=&#34;color:#75715e&#34;&gt;# add this line&lt;/span&gt;
+sshfs#brent@192.168.1.1:/home/brent /home/brent/server fuse.sshfs _netdev,idmap&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;user,uid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1001,gid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1002,allow_other,default_permissions &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For Windows, I&amp;rsquo;m using a stack of WinFsp, SSHFS-Win, and SSHFS-Win-Manager (links in notes).  Here&amp;rsquo;s the procedure:&lt;img src=&#34;https://www.nextpertise.net/SSHFS-Win-Manager.png#floatleft&#34; alt=&#34;SSHFS-WIn-Manager&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install &lt;em&gt;WinFsp&lt;/em&gt; from Github - there&amp;rsquo;s an MSI attached to the latest release (I tested with winfsp-1.7.20172.msi)&lt;/li&gt;
+&lt;li&gt;Install &lt;em&gt;SSHFS-Win&lt;/em&gt; from Github - again using an MSI (I tested with SSHFS-Win-3.5.20024-x64.msi).  At this point you can map drives using the UNC \sshfs\user@server.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/SSHFS-Win-Manager-Add.png#floatright&#34; alt=&#34;SSH-Win-Manager Adding a Conneciton&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This is aimed at the family members who &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; want to futz around with computers all day, so install &lt;em&gt;SSHFS-Win Manager&lt;/em&gt; from Github (I tested with sshfs-win-manager-setup-v1.0.1.exe).  Once installed, click &amp;ldquo;add connection&amp;rdquo;.  The connection information is standard SSH information.  To attach my remote user directory to my local one as in the earlier example, I would specify a Remote path of &lt;em&gt;/home/brent&lt;/em&gt; and a Local Path of &lt;em&gt;/home/brent/server&lt;/em&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 2 (Authentication)</title>
+      <link>https://www.nextpertise.net/posts/200812_using_ssh2/</link>
+      <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200812_using_ssh2/</guid>
+      <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
+&lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
+&lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
+&lt;p&gt;One way to secure the ssh interface is to limit the devices allowed to access your server.  This can be done at different places - on your network firewall, in the OS firewall, or in the ssh process.   SSH uses TCP port 22, so blocking that at the firewall is one way to mitigate against maliciousness.  Since this article is about using SSH, we&amp;rsquo;ll focus on the latter.  Go into sshd_config and add a line for AllowUsers.  The example below allows anyone to login from the 192.168.1.0/24 network. Remember to restart the ssh service after changing sshd_config: &lt;strong&gt;sudo systemctl restart ssh&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/sshd_config  
+allowUsers &lt;span style=&#34;color:#ae81ff&#34;&gt;\*&lt;/span&gt;@192.168.1.*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Blocking source addresses only works up to a point.  Bad actors from within can still attack, and outside actors can use another host as a jump server (SSH to there, then start a new SSH session from the inside box).  Picking a good password helps make brute-force attacks take longer, but we need to prevent opportunities to work through every combination of letters.  Fail2ban is a service that blocks IP addresses that exhibit suspicious behavior.  Install it using &lt;strong&gt;sudo apt install fail2ban&lt;/strong&gt;.  Below is a script that will setup fail2ban to block IPs that fail three consecutive login attempts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo setup fail2ban
+systemctl start fail2ban
+systemctl enable fail2ban
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/[sshd]
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;enabled = true
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;port = 22
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;filter = sshd
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;logpath = /var/log/auth.log
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;maxretry = 3&amp;#34;&lt;/span&gt; &amp;gt;  /etc/fail2ban/jail.local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;authentication-with-keys&#34;&gt;Authentication with keys&lt;/h2&gt;
+&lt;p&gt;Another way to login is using keys.  A key pair - public and private - can be generated on a client and authenticates the client to the server.  Since the keys are stored in the &lt;em&gt;user&lt;/em&gt; account, they also in theory are associated with identity.  There are two advantages of using keys.  First, it can eliminate remembering and typing a knuckle-busting password and supports automation.  Second, keys are more secure than passwords &lt;em&gt;on the assumption that the key file is secure&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To use public-key authentication, you first need to generate a key pair using the command &lt;strong&gt;ssh-keygen&lt;/strong&gt;.  You can optionally enter a passphrase to use to unlock the key.  By default, the public key is saved as &lt;em&gt;~/.ssh/id_rsa&lt;/em&gt; and the private key as &lt;em&gt;~/.ssh/id_rsa.pub&lt;/em&gt;.  This process is shown below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brent@inspiron:~$ ssh-keygen
+Generating public/private rsa key pair.  
+Enter file in which to save the key &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;/home/brent/.ssh/id_rsa&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;:   
+Enter passphrase &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;empty &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; no passphrase&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;:   
+Enter same passphrase again:   
+Your identification has been saved in /home/brent/.ssh/id_rsa  
+Your public key has been saved in /home/brent/.ssh/id_rsa.pub  
+The key fingerprint is:  
+SHA256:A5RBWIxVGMCAQbzAfenno9hlwQAeafZgnCPJCylrnz8 brent@inspiron  
+The key&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;s randomart image is:  
++---&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;RSA 3072&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;----+  
+|*&lt;span style=&#34;color:#f92672&#34;&gt;====&lt;/span&gt;OO*.        |  
+|**.@&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;+          |  
+|+.B.* +          |  
+|.+   o &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;         |  
+|. . . o S        |  
+|   o   &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; .       |  
+|    + + .        |  
+|   . G           |  
+|      .          |  
++----&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;SHA256&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;-----+  
+brent@inspiron:~$   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I don&amp;rsquo;t want to publish my keys to the world, so I just re-ran &lt;strong&gt;ssh-keygen&lt;/strong&gt; and accepted the prompt to overwrite the old set.&lt;/p&gt;
+&lt;p&gt;Once a key pair is generated, the public key needs to be copied to the host that you want to login to.  To do this, you need password access to the host and this process doesn&amp;rsquo;t disable password access.  Unless you opt to turn that off, you still need to secure the password access using ACLs and fail2ban as previously discussed.  That said, ssh includes a utility to push your public key to a target device - &lt;strong&gt;ssh-copy-id&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brent@MintyTwenty:~$ ssh-copy-id brent@192.168.1.1   
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, to filter out any that are already installed  
+/usr/bin/ssh-copy-id: INFO: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; remain to be installed -- &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; you are prompted now it is to install the new keys  
+brent@192.168.1.1&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;s password:   
+ 
+Number of key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; added: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now try logging into the machine, with:   &amp;ldquo;ssh &amp;lsquo;&lt;a href=&#34;mailto:brent@192.168.1.1&#34;&gt;brent@192.168.1.1&lt;/a&gt;&amp;rsquo;&amp;rdquo;  and check to make sure that only the key(s) you wanted were added.&lt;/p&gt;
+&lt;p&gt;Now I should be able to just type &lt;strong&gt;ssh brent@192.168.1.1&lt;/strong&gt; and be attached to the server without a password prompt!  Easier administration and easier to script.&lt;/p&gt;
+&lt;h2 id=&#34;authentication-with-totp&#34;&gt;Authentication with TOTP&lt;/h2&gt;
+&lt;p&gt;TOTP is for the &lt;em&gt;really&lt;/em&gt; paranoid and for those uber-geeks that want to impress their friends.  Digital Ocean has a really nice write up on this, and that was my primary source for learning.  I&amp;rsquo;ve referenced it in the notes.  Their procedure is written for Ubuntu 16.04 but I&amp;rsquo;ve personally used it up through 20.04 without a problem.&lt;/p&gt;
+&lt;p&gt;Ideally authentication involves something you &lt;em&gt;know&lt;/em&gt; and something you &lt;em&gt;have&lt;/em&gt;.  Time-based One Time Passwords are six-digit codes that change periodically.  Hopefully, you already use this to secure critical online resources like your email.  TOTP utilities generate a 3D barcode that can be read by the camera on a phone, and use that to set a unique nugget that can be combined with the time to give random number strings.  Google authenticator is the &amp;ldquo;go-to&amp;rdquo; app on the phone for entering and holding these authenticators.  I use &lt;em&gt;Enpass&lt;/em&gt;, which does a similarly good job.&lt;/p&gt;
+&lt;p&gt;Before you begin, you&amp;rsquo;ll need the authenticator app loaded on your phone and you&amp;rsquo;ll need to be physically in front of the server.  On the server, install the authenticator module and initiate the settings.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install libpam-google-authenticator  
+google-authenticator -t -d -f -r &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; -R &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; -W   &lt;span style=&#34;color:#75715e&#34;&gt;# NOTE: using cmd w/o flags will walk you through prompts  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;google-authenticator&lt;/strong&gt; command will show you a 3D barcode and your first code.  Scan that in on your phone and verify the code.  The output will also include five &amp;ldquo;emergency scratch codes&amp;rdquo;.  These would be used if you lose your phone.  Write them down somewhere for emergencies before continuing.&lt;/p&gt;
+&lt;p&gt;Next, add a line to &lt;em&gt;/etc/pam.d/sshd&lt;/em&gt; for authentication and edit a line in &lt;em&gt;sshd_config&lt;/em&gt; for Challenges.  Restart the service and you&amp;rsquo;ll be ready to test.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/pam.d/sshd
+&lt;span style=&#34;color:#75715e&#34;&gt;#_add this line, then close the file&lt;/span&gt;
+auth required pam_google_authenticator.so nullok
+ 
+sudo nano /etc/.ssh/sshd_config
+&lt;span style=&#34;color:#75715e&#34;&gt;#_find and change this line, then close the file&lt;/span&gt;
+ChallengeResponseAuthentication yes
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#_restart sshd&lt;/span&gt;
+sudo systemctl restart sshd.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At this point, try connecting to this server using ssh.  It should &lt;em&gt;either&lt;/em&gt; use a key or prompt you for your password and then for the current TOTP code.  If you want it to require TOTP when using a key, you&amp;rsquo;ll need to edit sshd_config and restart the process again.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/.ssh/sshd_config
+&lt;span style=&#34;color:#75715e&#34;&gt;#_add this line&lt;/span&gt;
+AuthenticationMethods publickey,password publickey,keyboard-interactive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;recommendations&#34;&gt;Recommendations&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve presented a lot of ideas here, so I want to conclude by giving you my recommendations for personal machines.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install SSH server by default&lt;/li&gt;
+&lt;li&gt;Use a banner in .bashrc to make clear which device you are currently logged into&lt;/li&gt;
+&lt;li&gt;Limit SSH to local IPs unless there&amp;rsquo;s a specific requirement otherwise.  If you can&amp;rsquo;t limit by IP, use TOTP.&lt;/li&gt;
+&lt;li&gt;Use fail2ban&lt;/li&gt;
+&lt;li&gt;Use keys.  Don&amp;rsquo;t try to use the same keys on all devices, just generate new ones every time you re-install or get a new PC.  At least for me, this cuts down on the risk of keys falling into outside hands.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 1 (Basics and Banners)</title>
+      <link>https://www.nextpertise.net/posts/200811_using_ssh1/</link>
+      <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200811_using_ssh1/</guid>
+      <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
+&lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
+&lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;
+&lt;p&gt;My walk through assumes you are using a command-line client.  Note that the ssh &lt;em&gt;client&lt;/em&gt; is typically installed in the *nix world.  If you want your box to be the server then you&amp;rsquo;ll need to add it via &lt;strong&gt;sudo apt install openssh-server&lt;/strong&gt; (Debian/Ubuntu).&lt;/p&gt;
+&lt;p&gt;Most of us encounter SSH as a secure replacement for telnet.  SSH allows us to connect to a remote terminal from the command line.  Assuming that I wanted to connect to my firewall by it&amp;rsquo;s IP address and that there was an account named &amp;ldquo;brent&amp;rdquo; there, I can connect using _&lt;em&gt;ssh &lt;em&gt;username&lt;/em&gt;@&lt;em&gt;Destination&lt;/em&gt;&lt;/em&gt;.  If this is the first time you&amp;rsquo;ve connected, you&amp;rsquo;ll be asked to confirm the fingerprint.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;brent@MintyTwenty:~$ ssh brent@192.168.24.230  
+The authenticity of host &amp;#39;192.168.24.230 (192.168.24.230)&amp;#39; can&amp;#39;t be established.  
+ECDSA key fingerprint is SHA256:1XYZ12MBd5Sb345ABOBhoKx42D+STU56szGR/d3LkGs.  
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes  
+Warning: Permanently added &amp;#39;192.168.24.230&amp;#39; (ECDSA) to the list of known hosts.  
+brent@192.168.24.230&amp;#39;s password:  
+brent@inspiron:~$  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The fingerprint is to protect against a man-in-the-middle attack, where your traffic is being re-directed to a malicious third party.  Before you type in (and reveal) your password, best to make sure that this is a trusted server!  So, where do we find the fingerprint to match it to?  The easiest way to get it is to go to your server and use ssh to connect to itself: &lt;strong&gt;ssh &lt;em&gt;username&lt;/em&gt;@127.0.0.1&lt;/strong&gt;.  This will show the local fingerprint.  If someone has already used this trick and accepted the fingerprint, you can delete ~/.ssh/knownhosts (&lt;em&gt;not recommended&lt;/em&gt;) or use ssh-keygen to examine the local public key.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;brent@MintyTwenty:~$ __ssh-keygen -lf .ssh/id_rsa.pub  
+4096 SHA256:cjyCsHXYZ12dESNo+12AB/oGGaxY1JHSTU%1p3Aeouw brent@X (RSA)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;banners&#34;&gt;Banners&lt;/h2&gt;
+&lt;p&gt;SSH banners are specified in the ssh daemon configuration (&lt;em&gt;/etc/sshd_config&lt;/em&gt;),  To specify a banner, find the line reads &amp;ldquo;#banner none&amp;rdquo; and edit it to specify a file.  The contents of this file will be displayed &lt;em&gt;before&lt;/em&gt; the password prompt.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;sudo nano /etc/sshd_config  
+banner /etc/banner.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/neofetch.png#floatsmallright&#34; alt=&#34;neofetch&#34;&gt;&lt;/p&gt;
+&lt;p&gt;After authentication the prompt displays the server hostname.  You can display a banner &lt;em&gt;after&lt;/em&gt; authentication by editing &lt;em&gt;~/.bashrc&lt;/em&gt;.  This has a side benefit - the terminal, when connected to locally or remotely, processes &lt;em&gt;~/.bashrc&lt;/em&gt; before it produces a prompt.  Go to the end of that file and add whatever you like - that output will be displayed before a prompt is produced.  I&amp;rsquo;ve listed some cool ideas to build a dynamic banner below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;neofetech&lt;/strong&gt; is a popular script that summarizes system information.  There&amp;rsquo;s a ppa available to add this from apt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:dawidd0811/neofetch  
+sudo apt install neofetch  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neofetch&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /home/brent/.bashrc  &lt;span style=&#34;color:#75715e&#34;&gt;# Add the command to the end of .bashrc  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/figlet.png#floatright&#34; alt=&#34;figlet&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Figlet&lt;/strong&gt; - draws letters in ASCII for a nice banner and any command can be piped through it (echo &amp;ldquo;for example&amp;rdquo; | figlet).  It&amp;rsquo;s available in the standard Ubuntu repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Curl&lt;/strong&gt; - pull in data from the web.  Try &lt;strong&gt;curl v2.wttr.in/Hickory+NC&lt;/strong&gt;.  A more practical example might be:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl wttr.in/Hickory+NC?format&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# check out the github page for lots more options&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server stats&lt;/strong&gt; - display information about the server such as IP (&lt;strong&gt;hostname -I)&lt;/strong&gt; or temperature (&lt;strong&gt;sensors&lt;/strong&gt;).  This snippet will display just the main temperature.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;data&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;sensors | grep &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id 0:&amp;#34;&lt;/span&gt; | cut -c16-23&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;#sensors displays a lot of data.&lt;/span&gt;
+                            &lt;span style=&#34;color:#75715e&#34;&gt;# Grep just grabs the one line, and cut pulls temp out.  &lt;/span&gt;
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CPU Temp:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;data&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Part two of this series will cover secure authentication options.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

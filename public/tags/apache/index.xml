@@ -1,0 +1,31 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on </title>
+    <link>https://www.nextpertise.net/tags/apache/</link>
+    <description>Recent content in Apache on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Aug 2021 16:38:48 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Simple Apache Setup on Linux</title>
+      <link>https://www.nextpertise.net/posts/210830_apache/</link>
+      <pubDate>Mon, 30 Aug 2021 16:38:48 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210830_apache/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been running the free version of ESXi 6.5 for a while, but the vulnerabilities kept piling up and I had issues upgrading it.  I&amp;rsquo;ve been looking at ProxMox VE for a while and last week I decided to give it a chance.  I&amp;rsquo;ll write about Proxmox another time, but I&amp;rsquo;m building out my local infrastructure on ProxMox and wanted to start by walking through a simple Apache website setup.&lt;/p&gt;
+&lt;p&gt;First, a disclaimer: this isn&amp;rsquo;t a public site, it&amp;rsquo;s intended for internal use as a landing page when the browser starts.&lt;/p&gt;
+&lt;p&gt;I built an Ubuntu 21.04 Server VM on proxmox.  My intention is to use this machine for a variety of services.  For this first piece, I installed a webserver.  At this point you should be able to browse to http://127.0.0.1 and see the default Apache page.  Ubuntu 21.04 has the firewall up by default, so I needed to allow the Apache.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt update
+sudo apt install apache2
+sudo ufw allow &#39;Apache&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I created a directory for my site user at &lt;em&gt;/var/www/stewart&lt;/em&gt; and copied my simple start page .  Then I and then created a profile for my new site.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,79 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meraki on </title>
+    <link>https://www.nextpertise.net/tags/meraki/</link>
+    <description>Recent content in Meraki on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Apr 2021 10:48:58 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/meraki/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Connecting GNS3 to Real Networks</title>
+      <link>https://www.nextpertise.net/posts/210417_connecting_gns3/</link>
+      <pubDate>Sat, 17 Apr 2021 10:48:58 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210417_connecting_gns3/</guid>
+      <description>&lt;p&gt;I mentioned a month or so ago that I wanted to set out on a journey to create a set of template networks and then substitute in the various appliances that are supported under GNS3.  The idea is to start with Cisco, which I know best, and then explore the differences.  I&amp;rsquo;m still really excited about that but . . .  life.  So we&amp;rsquo;re off to a slow start.  I&amp;rsquo;m going to break down some of the topics into smaller pieces so I can keep that project moving forward.  First up - how to connect you GNS3 lab environment to a &amp;ldquo;real&amp;rdquo; network.&lt;/p&gt;
+&lt;h2 id=&#34;current-lab-state&#34;&gt;Current Lab State&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210417_labinprogress.png#floatright&#34; alt=&#34;GNS3 Lab state&#34;&gt;
+My home network is built using Meraki gear.  That&amp;rsquo;s not a typical home setup, but I was supporting a lot of Meraki for a while and it was a good way to &amp;ldquo;eat the dogfood&amp;rdquo;.  I divide the home into subnets so that high risk devices (IoT, kids computers) are isolated.  I have an ESXi server that hosts my GNS3 VM, but I haven&amp;rsquo;t switched over to the web client yet.  I&amp;rsquo;m still using the GNS3 front end running on PopOS!&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a diagram of the lab I&amp;rsquo;m building.  In this first step we want to use 192.168.28.0/22 for our GNS3 environment and communicate from it to the local network and the Internet.&lt;/p&gt;
+&lt;h2 id=&#34;attaching-the-cloud&#34;&gt;Attaching the Cloud&lt;/h2&gt;
+&lt;p&gt;My local network is represented by &amp;ldquo;Cloud1&amp;rdquo;.  I placed this into the lab and attached a connection to the virtual Cisco router.  I chose the G0/1 interface when I placed the connection, but this can later be found by hovering over the virtual router in GNS3.  You can label connections in GNS3 by clicking the &amp;ldquo;Show/Hide Inteface Labels&amp;rdquo; button.  In this case I just placed some text.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210417_LocalRouting.png#floatleft&#34; alt=&#34;Understanding Local Routing&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The Meraki device isn&amp;rsquo;t really within the GNS3 topology, it&amp;rsquo;s just a link to the Meraki Dashboard.  It&amp;rsquo;s convenient to have this easily accessible - refer to &lt;a href=&#34;https://www.nextpertise.net/210113_gns3_links/&#34;&gt;Adding Hyperlinks to GNS3 Topologies&lt;/a&gt; for a walk through on how to do that.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-routing&#34;&gt;Setting up routing&lt;/h2&gt;
+&lt;p&gt;My &amp;ldquo;real&amp;rdquo; Meraki router knows how to reach all the local VLANs because it&amp;rsquo;s directly attached to each of them.  It&amp;rsquo;s going to need to know how to reach the lab environment.  This is done under &amp;ldquo;Security &amp;amp; SD-WAN&amp;rdquo; &amp;gt; &amp;ldquo;Addressing and VLANs&amp;rdquo;.  At the bottom of that page is a place for static routes.  Identify an IP on the local network that you&amp;rsquo;ll use for the virtual router and then add a static route.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210417_MerakiStatic.png#floatleft&#34; alt=&#34;Meraki Static Route&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I added a route to 192.168.28.0/22 going to the virtual router.  Even though I&amp;rsquo;m setting up a simple switching lab, giving a block of addresses to the lab means that I won&amp;rsquo;t have to revisit this process when we start talking about more complicated networks.&lt;/p&gt;
+&lt;p&gt;The virtual router needs a default route pointing to the home router.  It&amp;rsquo;s also worth noting that I&amp;rsquo;m &lt;strong&gt;not&lt;/strong&gt; using a DHCP address for the virtual router.  You can do this and it &lt;em&gt;will&lt;/em&gt; work, but the address will change with each reboot and you&amp;rsquo;ll need to update the router configuration constantly.  Another option would be to use DHCP and a routing protocol.  This might be more of an option with another home router, but the Meraki is particularly weak in supporting dynamic routing.  Finally, I put an address on the inside of the virtual router.&lt;/p&gt;
+&lt;p&gt;The following output has been edited for brevity, but shows the added commands and the test ping to Google.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;Router# sh run  
+
+hostname Router  
+ 
+interface GigabitEthernet0/0  
+ ip address 192.168.28.1 255.255.255.0  
+ interface GigabitEthernet0/1  
+ ip address 192.168.25.82 255.255.255.0  
+!  
+ip route 0.0.0.0 0.0.0.0 192.168.25.1  
+
+Router#ping __8.8.8.8__  
+Type escape sequence to abort.  
+!!!!!  
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/25/29 ms  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also want to verify that traffic is flowing from the Internet into our virtual GNS3 lab environment.  To do this I&amp;rsquo;ll source a ping from the G0/0 interface.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;Router# ping  
+Protocol [ip]:  
+Target IP address: 8.8.8.8  
+Repeat count [5]:  
+Datagram size [100]:   
+Timeout in seconds [2]:   
+Extended commands [n]: y  
+Ingress ping [n]:   
+Source address or interface: 192.168.28.1  
+Type of service [0]:  
+Set DF bit in IP header? [no]:   
+Validate reply data? [no]:  
+Data pattern [0x0000ABCD]:  
+Loose, Strict, Record, Timestamp, Verbose[none]:  
+Sweep range of sizes [n]:  
+Type escape sequence to abort.  
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:  
+Packet sent with a source address of 192.168.28.1   
+!!!!!  
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/27/31 ms  
+Router#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-1-complete&#34;&gt;Step 1 complete&lt;/h2&gt;
+&lt;p&gt;Our lab environment is reachable from the local network and it can reach out to the public Internet as needed at this point.  The next step will be to setup the switches!&lt;/p&gt;
+&lt;h2 id=&#34;play-along-at-home&#34;&gt;Play along at home&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s an associated Github repository for these labs (brentstewart/gns3labs).  So far it just has this initial version of the switching lab in it.  The topology is there, but it doesn&amp;rsquo;t have configurations anything other than the router.  I&amp;rsquo;ll continue to refine this lab and add more labs to that repository as we continue this adventure.  Please clone the repo and work these with me!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
