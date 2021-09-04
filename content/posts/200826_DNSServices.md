@@ -9,7 +9,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://www.opendns.com","https:/1.1.1.1","https://quad9.net"]
-tags: ["Security","Non-technical"]
+tags: ["Security","Non-technical","DNS"]
 ---
 This post is to continue the conversation started in [Reasonably Secure Browsing](/ReasonablySecureBrowsing) with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don't share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.
 
