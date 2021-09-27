@@ -11,7 +11,7 @@ youtube: ""
 refs: [""]
 tags: ["Linux","Bind","DNS"]
 ---
-Continuing from my [previous post](/210830_Apache), I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I'm still getting the hang of Proxmox, although I'm feel favorable so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I'll provide a walk through of a simple local DNS server.  My goal at home is to create a "stewart.lan" network that I can use to reference local resources.
+Continuing from my [previous post](/210830_Apache), I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I'm still getting the hang of Proxmox, although I'm feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I'll provide a walk through of a simple local DNS server.  My goal at home is to create a "stewart.lan" network that I can use to reference local resources.
 
 Like the Apache server I built last time, this server is running Ubuntu 21.04 Server and my instructions are written from that perspective.  Some commands may change as you move to non-Debian distributions or with different versions.  Installation of DNS services is done with __bind9__.
 
