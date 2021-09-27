@@ -1,7 +1,7 @@
 ---
 title: "Czkawka"
 date: 2021-09-26T15:07:20-04:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Czkawka"
@@ -15,7 +15,7 @@ Czkawka is a "simple, fast, and free app to remove unnecessary files".  I heard 
 
 ![Czkawka logo](/210924_Czkawka.png#floatsmallleft)
 
-I have a server that I map folders to using NFS or SFTP that has a lot of accumulated junk.  I've got twenty plus years of kids pictures, and as the computer expert in the family I'm expected to protect these like crown jewels.  However, backing up pictures all the time leads to a lot of duplicates.  Not only are duplicate files a problem for local storage, but I pay to back (not much) it all up to Backblaze B2.  Czkawka would be a big help if it helped me sort all those files and conserve space. 
+I have a server that I map folders to using NFS or SFTP that has a lot of accumulated junk.  I've got twenty plus years of kids pictures, and as the computer expert in the family I'm expected to protect these like crown jewels.  However, backing up pictures all the time leads to a lot of duplicates.  I also keep all my the family files there - school, work, personal, hobbies - and there ends up being a lot of duplication there as well.  Not only are duplicate files a problem for local storage, but I pay to back (not much) it all up to Backblaze B2.  Czkawka would be a big help if it helped me sort all those files and conserve space. 
 
 ## Installation
 Czkawka is available as an AppImage file from Github.  I'm using version 3.2 to test.  
