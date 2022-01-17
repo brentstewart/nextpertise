@@ -5,7 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "WebDAV"
-picture: "how%20to"
+picture: "apache"
 github: ""
 youtube: ""
 refs: ["https://httpd.apache.org","https://www.isc.org/bind/"]
