@@ -9,7 +9,7 @@ picture: "linux"
 github: ""
 youtube: ""
 refs: ["https://cockpit-project.org/"]
-tags: [""]
+tags: ["linux"]
 ---
 
 If "web-based graphical interface for administering Linux" makes you think _Webmin_,  then you  need to look at _Cockpit_.  Cockpit is a modern web-based management tool for all your Linux servers.  It's similar to webmin, but slicker.

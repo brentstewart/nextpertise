@@ -9,7 +9,7 @@ picture: "linux"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["Linux"]
+tags: ["Linux","FTP"]
 ---
 
 # Brother Printers work well with Linux

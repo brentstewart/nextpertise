@@ -9,7 +9,7 @@ picture: "management"
 github: ""
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["management"]
 ---
 
 Nobody likes change but a baby.  That's the saying anyway.  Yet in IT, we have to deal with constant change.  Not only that, we have to manage it to minimize risk and harm.  __And__ we have to balance the natural tendency to manage through bureaucracy against the need to get things done without paperwork getting in the way.

@@ -9,7 +9,7 @@ picture: "linux"
 github: ""
 youtube: ""
 refs: ["https://qarmin.github.io/czkawka/"]
-tags: [""]
+tags: ["linux"]
 ---
 Czkawka is a "simple, fast, and free app to remove unnecessary files".  I heard it mentioned on one of the Jupiter Broadcasting shows and decided to look into it.
 
