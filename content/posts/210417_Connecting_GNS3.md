@@ -24,7 +24,7 @@ My local network is represented by "Cloud1".  I placed this into the lab and att
 
 ![Understanding Local Routing](/210417_LocalRouting.png#floatleft)
 
-The Meraki device isn't really within the GNS3 topology, it's just a link to the Meraki Dashboard.  It's convenient to have this easily accessible - refer to [Adding Hyperlinks to GNS3 Topologies](/210113_gns3_links/) for a walk through on how to do that.
+The Meraki device isn't really within the GNS3 topology, it's just a link to the Meraki Dashboard.  It's convenient to have this easily accessible - refer to [Adding Hyperlinks to GNS3 Topologies](/posts/210113_gns3_links/) for a walk through on how to do that.
 
 ## Setting up routing
 My "real" Meraki router knows how to reach all the local VLANs because it's directly attached to each of them.  It's going to need to know how to reach the lab environment.  This is done under "Security & SD-WAN" > "Addressing and VLANs".  At the bottom of that page is a place for static routes.  Identify an IP on the local network that you'll use for the virtual router and then add a static route.

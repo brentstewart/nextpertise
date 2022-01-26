@@ -16,7 +16,7 @@ tags: ["GNS3","Virtualization"]
 
 I got a little distracted.  I have been coming up to speed on Ansible, which got me started on Vagrant.  Vagrant got me building VMs in VMWare Workstation , which got me thinking how neat it would be to place those _automagically_ into my GNS3VM environment hosted on ESXi.  Didn't get that far - yet  - but the progress I made is pretty cool in it's own right.
 
-Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see [Connecting GNS3](/210417_Connecting_GNS3)). Here I want to do something more complex - I'd like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection "out" to the home network and Internet, but I want to add an ESXi VM "inside" the network as well.
+Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see [Connecting GNS3](/posts/210417_Connecting_GNS3)). Here I want to do something more complex - I'd like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection "out" to the home network and Internet, but I want to add an ESXi VM "inside" the network as well.
 
 The approach I used was to attach the VMs into an ESXi VSwitch VLAN and then use additional cloud appliances to attach those VLAN into the GNS3 topology.  _This seems obvious in retrospect_.
 
@@ -60,9 +60,9 @@ network:
 When I did this step, it replaced the existing eth0 on the GNS3VM and made my old interface eth1.  This disconnected the VM because the IP information was associated with eth0.  I diagnosed this by using the VMWare interface and the _ifconfig_ command on the GNS3VM to identify and associate names and MAC addresses, but it took a little time to understand what happened.  I'm still not sure why, but be alert for this issue if you add an interface.  My Internet GNS3 cloud appliance had to be disconnected (you cannot add interfaces to a cloud with existing connections), eth1 added, and reconnected to get it to work.
 
 ## Adding to GNS3 Topology
-Recall from [Connecting GNS3](/210417_Connecting_GNS3) that I've setup my home network to expect a GNS3 border router at 192.168.25.82 and it will be the route to 192.168.28.0/22.  In this simplest case, I'm attaching another interface on that same router to a different vSwitch VLAN and routing between them.  I _could_ have put the new VLAN deep in the GNS3 topology.
+Recall from [Connecting GNS3](/posts/210417_Connecting_GNS3) that I've setup my home network to expect a GNS3 border router at 192.168.25.82 and it will be the route to 192.168.28.0/22.  In this simplest case, I'm attaching another interface on that same router to a different vSwitch VLAN and routing between them.  I _could_ have put the new VLAN deep in the GNS3 topology.
 
-![Setup in GNS3](/210422_AddingACloud.png#center)
+![Setup in GNS3](/posts/210422_AddingACloud.png#center)
 
 So pause before this next paragraph.  Recall that there are three contexts, one physical, one in terms of the ESXi vSwitch, and one inside GNS3.
 

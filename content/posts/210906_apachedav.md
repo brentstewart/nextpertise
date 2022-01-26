@@ -11,7 +11,7 @@ youtube: ""
 refs: ["https://httpd.apache.org","https://www.isc.org/bind/"]
 tags: ["Apache","How To","Linux"]
 ---
-In recent articles, I walked through how to setup a home [webserver](/210830_apache) with [Apache](https://httpd.apache.org) on Linux and how to configure home [DNS server](/210831_dnsonubuntu) using [bind](https://www.isc.org/bind/) on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.
+In recent articles, I walked through how to setup a home [webserver](/posts/210830_apache) with [Apache](https://httpd.apache.org) on Linux and how to configure home [DNS server](/posts/210831_dnsonubuntu) using [bind](https://www.isc.org/bind/) on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.
 
 WebDAV is a file sharing protocol built on top of HTTP.  Many operating systems can attach to WebDAV folders to upload and download files, including Linux, Windows, Mac, IOS, and Android.  I have a password database that I want to keep sync'd between different computers and phones and I'm not comfortable hosting that "in the cloud", so this allows me to self-host.
 
