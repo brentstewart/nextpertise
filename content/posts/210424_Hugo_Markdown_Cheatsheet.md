@@ -42,11 +42,14 @@ Unnumbered and ordered list are easy and intuitive.
 ~~~
 ## Headings
 Headings are created by successive hash symbols.
+# Heading One
+## Heading Two
+### Heading Three
 
 ```markdown
-\# H1  
-\## H2     
-\### H3
+# H1  
+## H2     
+### H3
 ```
 
 _I usually use Heading one for the title and heading two inside an article._
@@ -54,20 +57,50 @@ _I usually use Heading one for the title and heading two inside an article._
 ## Blockquotes
 Block quotes are accomplished by tabs.  Consecutive lines are assumed to be a continuation.  You can also use the "greater than" sign to indicate a section is a blockquote.  When presenting this way add two spaces at the end of every line to indicate the following line is also a part of the block and a new line, otherwise it won't respect returns.  You can also use multiple greater thans to create an indented section.  This comes in using my CSS Blockquote style.
 
-> Code line 1  
-line 2  
->> Indented Code
+> This is a block quote.  “Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”
+― Albert Einstein 
+>> This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches 
 
 and here's the actual typed Markdown.
 ```markdown
-> \> Code  
-line 2
-\>> Indented Code
+> This is a block quote.  “Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”
+― Albert Einstein 
+>> This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches 
 ```
+
+## Code
+Code can be accomplished a number of ways.  It can be surrounded by three ticks (`).  The easiest way to create a code block is to add a line to the block, then tab and add your code.  Leave a line after the block and the tabbed section will be treated as a code block.
+
+### Tick block
+```
+Print ("tick block")
+Print ("using three ticks before and after")
+```
+and here's what that looks like:
+
+    ```
+    Print ("tick block")
+    Print ("using three ticks before and after")
+    ```
+
+## Tab block
+
+    Print ("tick block")
+    Print ("using three ticks before and after")
+
+and here's what that looks like - line before and after, tabbed block.
+
+     
+              Print ("tick block")
+              Print ("using three ticks before and after")
+     
 
 ### Non-printing characters
 You can also make this work with non-printing characters as demonstrated below.  Pretty weak approach, but sometimes I don't have a better way to make columns line up.
->           non-printing characters
+
+          non-printing characters were used to indent this line . . .
 
 ## Tables
 Tables are created using a table shortcode as demonstrated below.
@@ -79,6 +112,7 @@ Tables are created using a table shortcode as demonstrated below.
 | C |  | 2 | | % |
 {{</bootstrap-table>}}
 
+Ignore the backslashes below - the shortcut kicks in when displaying if I leave them out.
 ```markdown
 \{\{\< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table: Demonstration" \>\}\}  
 | Letters | | Numbers | | Symbols  |  

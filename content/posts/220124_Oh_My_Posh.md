@@ -45,7 +45,7 @@ As mentioned, Oh My Posh works swimmingly with PowerShell on Windows.  I have it
 
 ![Om My Posh in Windows Terminal](/omp_windows.png)
 
-OMP can be installed on Windows using PowerShell, [Chocolatey](/posts/220118_Choco/), [Winget](/posts/211228_Winget/), or scoop.  I prefer Choco, so that's what is used in the examples below.
+OMP can be installed on Windows using PowerShell, [Chocolatey](/posts/220118_choco/), [Winget](/posts/211228_winget/), or scoop.  I prefer Choco, so that's what is used in the examples below.
 
     choco install oh-my-posh
 
