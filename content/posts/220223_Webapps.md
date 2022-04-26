@@ -5,7 +5,7 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Webapp"
-picture: "Linux"
+picture: "linux"
 github: ""
 youtube: ""
 refs: ["https://github.com/nativefier/nativefier"]
