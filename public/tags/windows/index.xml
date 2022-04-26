@@ -1,0 +1,385 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on </title>
+    <link>https://www.nextpertise.net/tags/windows/</link>
+    <description>Recent content in Windows on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Jan 2022 19:05:41 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Oh My Posh</title>
+      <link>https://www.nextpertise.net/posts/220124_oh_my_posh/</link>
+      <pubDate>Tue, 25 Jan 2022 19:05:41 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/220124_oh_my_posh/</guid>
+      <description>&lt;p&gt;I really like the powerline-style prompts that jazz up the command line and I&amp;rsquo;d like to be able to carry that experience through from Linux to Windows.  It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar.  Recently I found &lt;em&gt;Oh My Posh&lt;/em&gt;, which is designed to support Windows, Linux, and MacOS.  The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s an example of OMP installed in Linux running inside Tilix.  You can see that it&amp;rsquo;s providing me collapsed directory information, git info, and the time of the last command.  OMP can be customized and the details of that are described extensively in the online docs.
+&lt;img src=&#34;https://www.nextpertise.net/omp_tilix.png#center&#34; alt=&#34;Oh My Posh in Tilix on Linux&#34;&gt;
+This has some marginal productivity - the Agnoster theme condenses directory structure in a very visible way and helps me understand the state of Git.  Regardless, it looks cool and a little terminal rice establishes some credibility.  If it looks cool to you too, I&amp;rsquo;ve put together some notes on how it&amp;rsquo;s done.  Follow along!&lt;/p&gt;
+&lt;h2 id=&#34;linux&#34;&gt;Linux&lt;/h2&gt;
+&lt;p&gt;Installation on Linux involves grabbing the file from Github and making it executable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, grab the themes JSON collection, uncompress them, and set the permissions appropriately.  With the themes locally stored, you can easily switch as the mode strikes.  Agnoster fits my needs, so that&amp;rsquo;s what is used in the examples, but you can substitute anywhere you see it mentioned.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mkdir ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+chmod u+rw ~/.poshthemes/*.json
+rm ~/.poshthemes/themes.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, edit ~/.bashrc to run Oh My Posh as part of the shell.  Notice in the code below that I&amp;rsquo;ve specified the &amp;ldquo;agnosterplus&amp;rdquo; layout.  Substitute whichever theme you are interested in there.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eval &amp;quot;$(oh-my-posh --init --shell bash --config ~/poshthemes/agnosterplus.omp.json)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You&amp;rsquo;ll need to specify the terminal font in your terminal application.  A lot of the styling is done through extra ligatures included in &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;nerd fonts&lt;/a&gt; - font files that are re-compiled to include additional symbols.  Grab a font you like (I&amp;rsquo;m using Meslo in this example, but I&amp;rsquo;m also partial to JetBrains NF) and set it as the default in the terminal profile.&lt;/p&gt;
+&lt;p&gt;This setup is used by bash, regardless of the terminal application.  I have Tabby, Tilix, and the included Terminal from Pop! and all three &amp;ldquo;just work&amp;rdquo;.  As mentioned, the only cavaet is getting a good font setup in the terminal profile.&lt;/p&gt;
+&lt;h2 id=&#34;windows-powershell&#34;&gt;Windows PowerShell&lt;/h2&gt;
+&lt;p&gt;As mentioned, Oh My Posh works swimmingly with PowerShell on Windows.  I have it working in the Powershell terminal and in the Windows Terminal (but recommend the later).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/omp_windows.png&#34; alt=&#34;Om My Posh in Windows Terminal&#34;&gt;&lt;/p&gt;
+&lt;p&gt;OMP can be installed on Windows using PowerShell, &lt;a href=&#34;https://www.nextpertise.net/posts/220118_choco/&#34;&gt;Chocolatey&lt;/a&gt;, &lt;a href=&#34;https://www.nextpertise.net/posts/211228_winget/&#34;&gt;Winget&lt;/a&gt;, or scoop.  I prefer Choco, so that&amp;rsquo;s what is used in the examples below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;choco install oh-my-posh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then edit the profile.  You may get an error because there&amp;rsquo;s not an existing profile.  If so, just create one.  Type &lt;strong&gt;$profile&lt;/strong&gt; in PowerShell to see what the filename and location should be.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;notepad $profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;add the following into the profile:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Import-Module oh-my-posh
+oh-my-posh --init --shell pwsh --config ~/agnosterplus.omp.json | Invoke-Expression
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, you&amp;rsquo;ll need to use the &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;nerd font&lt;/a&gt; of your choice.  Set this up in the PowerShell Terminal or Microsoft Terminal.  Both apps use the same $profile, so you just need to change the font in the terminal.&lt;/p&gt;
+&lt;h2 id=&#34;windows-cmd&#34;&gt;Windows CMD&lt;/h2&gt;
+&lt;p&gt;OMP is even available for the traditional command line.  For cmd, install &lt;a href=&#34;https://chrisant996.github.io/clink/&#34;&gt;clink&lt;/a&gt;.  Clink adds some of the editing features of Bash to the traditional CMD.  Download clink and run the installer.  You can verify the installer by running &lt;strong&gt;clink info&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;clink info
+version  : 1.3.2.222baa
+session  : 8504
+binaries : C:\Program Files (x86)\clink\1.3.2.222baa
+state    : C:\Users\Brent\AppData\Local\clink
+    &amp;lt; output trimmed&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next create a file called oh-my-posh.lua in your clink directory.  Note that this directory is given from &lt;strong&gt;clink info&lt;/strong&gt;.  The load string below starts OMP - note the theme is specified as well.  This section of text can be replaced if you disagree with me on the theme to be used.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;notepad AppData\Local\clink\oh-my-posh.lua
+    &amp;lt;add this text&amp;gt;
+load(io.popen(&#39;oh-my-posh --config=&amp;quot;C:/Users/Brent/.oh-my-posh/themes/agnosterplus.omp.json&amp;quot; --init --shell cmd&#39;):read(&amp;quot;*a&amp;quot;))()
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sudo for Windows Powershell</title>
+      <link>https://www.nextpertise.net/posts/220124_sudo_on_windows/</link>
+      <pubDate>Sun, 23 Jan 2022 18:28:41 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/220124_sudo_on_windows/</guid>
+      <description>&lt;p&gt;Some Windows Powershell commands must be run from Powershell running in an administrative context.  It&amp;rsquo;s a little bit of a pain when you need to invoke Powershell this way (right click it in the menu).  The real problem is once there&amp;rsquo;s a terminal up, do you limit this to just the command that requires it or do you just work out of the open (administrative) terminal window?  Choosing to remain in that admin context could lead to trouble.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/sudologo.png#floatsmallleft&#34; alt=&#34;Sudo Logo&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;the-need-for-sudo&#34;&gt;The need for sudo&lt;/h2&gt;
+&lt;p&gt;Unix has a nice way of handling this.  The command prompt starts with your user priviledges.  It can be escalated for a single command with &amp;ldquo;sudo&amp;rdquo; - substitute user do.  Wouldn&amp;rsquo;t it be cool (and more secure) if a similar command existed for Powershell on Windows?&lt;/p&gt;
+&lt;p&gt;Luke Sampson has a set of powershell scripts that appropximate Linux commands on &lt;a href=&#34;https://github.com/lukesampson/psutils/blob/master/sudo.ps1&#34;&gt;Github&lt;/a&gt;.  These include sudo and are meant to be installed using &lt;em&gt;scoop&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;using-scoop&#34;&gt;Using Scoop&lt;/h2&gt;
+&lt;p&gt;Scoop is an installer, like winget or choco, but it&amp;rsquo;s aimed more at simple installs.  Scoop doesn&amp;rsquo;t require a developer to make a special installer - it can use a ZIP and instructions in a JSON.  These JSON files are stored in buckets - basically these are curated compilations of JSON files stored in a Git.&lt;/p&gt;
+&lt;p&gt;Scoop specializes in simple programs, like command-line tools such as sudo.  In fact, many linux-like tools can be easily installed by scoop such as sudo, git, and curl.  Scoop puts everything in your users directory, so it doesn&amp;rsquo;t cause a lot of UAC pop-ups.&lt;/p&gt;
+&lt;p&gt;Scoop and sudo can be installed as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# allow powershell scripts
+Set-ExecutionPolicy unrestricted
+# install scoop
+iwr -useb get.scoop.sh |iex
+# install sudo 
+scoop install sudo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can use &lt;strong&gt;scoop search&lt;/strong&gt; to see if a program is available through scoop.  Check out the github site to see other buckets that are available as well.&lt;/p&gt;
+&lt;h2 id=&#34;using-sudo-in-powershell-for-windows&#34;&gt;Using Sudo in Powershell for Windows&lt;/h2&gt;
+&lt;p&gt;Once installed, you can escalate priviledges on a command-by-command basis by prefixing them with &amp;ldquo;sudo&amp;rdquo;, just like you would on Linux.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo set-executionpolicy
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploying a WIM Image to VMWare</title>
+      <link>https://www.nextpertise.net/posts/220122_deploying_wim/</link>
+      <pubDate>Sat, 22 Jan 2022 12:54:46 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/220122_deploying_wim/</guid>
+      <description>&lt;p&gt;Work uses Windows, but I need a Linux workstation with that set of tools.  I find WSL2 incomplete . . . partly because my personal workflow is Linux based.  I spoke with the Windows expert and we agreed to use VMWare Workstation to deploy my Windows environment alongside my Linux system.  Deploying the standard Windows image to a remote VMWare environment wasn&amp;rsquo;t something we had setup already.  Since I&amp;rsquo;m trying to be a special case, he sent me the WIM file to figure out how to deploy.&lt;/p&gt;
+&lt;h1 id=&#34;what-the-heck-is-a-wim&#34;&gt;What the heck is a WIM?&lt;/h1&gt;
+&lt;p&gt;A WIM is a file-based Windows Image that is made to be easy to test and deploy.   It&amp;rsquo;s kind of like a ZIP, to my understanding, in that it captures all the files and the directory structure of a partition in a file.  Being file-based makes it easy to modify (more on this later).  Because it&amp;rsquo;s not a sector-by-sector image you can deploy it to different sized drives.&lt;/p&gt;
+&lt;h2 id=&#34;how-dont-you-deploy-it&#34;&gt;How don&amp;rsquo;t you deploy it?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/fogserver.png#floatsmallleft&#34; alt=&#34;Fog Project&#34;&gt;
+I tried several approaches to using the WIM file.  I&amp;rsquo;ll mention them briefly here so that you can learn from my experience.&lt;/p&gt;
+&lt;p&gt;The first thing I tried was making a Windows VM using the Windows 10 downloadable &lt;a href=&#34;https://www.microsoft.com/en-us/software-download/windows10ISO&#34;&gt;disk image&lt;/a&gt; from Microsoft. Once booted, I added a drive and expanded the WIM to the new drive.  I deleted my drive with generic Windows and rebooted.  I think this didn&amp;rsquo;t work because the new disk wasn&amp;rsquo;t set as a primary partition.  This approach may be doable, but I moved on pretty quickly.&lt;/p&gt;
+&lt;p&gt;The next thing I tried was to deploy it via netboot using a &lt;a href=&#34;https://github.com/FOGProject/fogproject&#34;&gt;Fog Server&lt;/a&gt;.  That project is pretty stinking cool!  I was able to get a VM to reference the server for boot information.  The problem here was that I didn&amp;rsquo;t know what it was looking for (first time with PXE).  When I decided it wanted an ISO, I thought &amp;ldquo;if I knew how to convert to the WIM to an ISO, I could just boot that directly in the VM!&amp;rdquo; and abandoned the Fog Server approach.  I may come back to this to learn more about PXE booting.&lt;/p&gt;
+&lt;h1 id=&#34;how-do-you-deploy-wim&#34;&gt;How do you deploy WIM?&lt;/h1&gt;
+&lt;p&gt;Microsoft has a series of articles that you&amp;rsquo;ll need to read to understand how to do this.  I&amp;rsquo;ve referenced them, but be warned that they reference each other circlically and there&amp;rsquo;s not a good starting point.  To help you, I&amp;rsquo;m going to attempt to draw a straight line through how &lt;em&gt;I&lt;/em&gt; accomplished this.&lt;/p&gt;
+&lt;h2 id=&#34;1---build-a-winpe-dvd-image&#34;&gt;1 - build a WinPE DVD Image&lt;/h2&gt;
+&lt;p&gt;You need to boot into a &lt;a href=&#34;https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-intro?view=windows-11&#34;&gt;WinPE&lt;/a&gt; environment to deploy the WIM image.   Windows PE is a small OS made to facilitate installation, used by Windows as a &amp;ldquo;pre-boot&amp;rdquo; environment.  To build your WinPE boot disk, download the &lt;a href=&#34;https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install&#34;&gt;Windows Assessment and Deployment Kit&lt;/a&gt; on a Windows PC and install the ADK executable.&lt;/p&gt;
+&lt;p&gt;Start the &lt;strong&gt;Deployment and Imaging Tools Environment&lt;/strong&gt; as an administrator and create a working set of files using the &lt;strong&gt;copype&lt;/strong&gt; command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;copype amd64 C:\WinPE_amd64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The documentation says you can build an ISO now.  &lt;strong&gt;Don&amp;rsquo;t!&lt;/strong&gt;  There are some batch files that will make this easier - download a zip from &lt;a href=&#34;https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/oem-deployment-of-windows-desktop-editions-sample-scripts?preserve-view=true&amp;amp;view=windows-10#apply-image&#34;&gt;here&lt;/a&gt; and pull the scripts out and place them in the root of your WinPE directory.  Also, grab the WIM file that you&amp;rsquo;re trying to deploy and stick that in the WinPE directory as well.  Now you can build the ISO using the &lt;strong&gt;MakeWinMedia&lt;/strong&gt; command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_amd64\Acme_Installer.iso
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That should create an ISO that&amp;rsquo;s about a half-gig larger than the WIM file.
+&lt;img src=&#34;https://www.nextpertise.net/tpm.png#floatsmallright&#34; alt=&#34;TPM&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2---build-a-blank-vm-and-enable-secure-boot&#34;&gt;2 - Build a blank VM and enable Secure Boot&lt;/h2&gt;
+&lt;p&gt;I created an empty VM with an empty hard drive.  The critical piece here is that my image expects to be deployed to a TPM environment.  TPM requires UEFI and that the VM be encrypted.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/vmsetup.png#floatsmallright&#34; alt=&#34;VM Configuration&#34;&gt;
+In VMWare Workstation, enable UEFI under Virtual Machine Settings: go to the Options tab, select Advanced, and set the Firmware type to UEFI and Enable Secure Boot.  This is shown in the picture to the right.  While at the Options tab, select Access Control, click the button to encrypt the virtual machine, and choose a password.&lt;/p&gt;
+&lt;p&gt;Next add the Trusted Platform Module.   Add it under the Hardware tab by clicking the Add button at the left-bottom of the window.&lt;/p&gt;
+&lt;p&gt;Finally, we need the new VM to boot from the ISO we created earlier.  Add the new WinPE ISO to the CD drive and make sure it&amp;rsquo;s marked connected.&lt;/p&gt;
+&lt;h2 id=&#34;3---boot-winpe-and-deploy-the-image&#34;&gt;3 - Boot WinPE and deploy the image&lt;/h2&gt;
+&lt;p&gt;Now we&amp;rsquo;re ready to install the WIM image!  Boot the new VM using the WinPE boot disk.  It will boot to a prompt.  The procedure here is laid out by &lt;a href=&#34;https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/capture-and-apply-windows-using-a-single-wim?view=windows-11&#34;&gt;Microsoft&lt;/a&gt;.  Use the scripts that you added to the boot disk to first help partition the drive and then to apply the image.  &lt;em&gt;CreatePartition-UEFI.txt&lt;/em&gt; and &lt;em&gt;ApplyImage.bat&lt;/em&gt; were included in those scripts.  Obviously image names will change.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;diskpart /s CreatePartitions-UEFI.txt
+D:\ApplyImage.bat D:\Images\ACME-Standard.wim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The ApplyImage batch file will ask a few questions you need to be prepared for.  You can safely answer &amp;ldquo;no&amp;rdquo; to all of them.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You will be asked if you want to create a recovery partition.  Recovery Partitions are a great tool, but I want to keep this VM as small as possible and I&amp;rsquo;ll setup recovery mechanisms at the VM level, so I answered no.&lt;/li&gt;
+&lt;li&gt;Do you want a compact OS install?  This runs the OS from compressed files, saving a lot of disk space.  Of course, everything has to be uncompressed to be run, so it will slow things down and might take more memory.  Even though I want a small VM, I chose to not install it as a compressed OS because I want to have good performance.&lt;/li&gt;
+&lt;li&gt;Does the WIM file have extended attributes? I&amp;rsquo;m not a Windows guy, but I chose &amp;ldquo;no&amp;rdquo; and everything was fine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;From this point, the VM will go through a preliminary setup, doing things like setting the keyboard type.  It will reboot, ask you to login, and then continue the higher level (Cortana led) part of setup.  From here, everything should install as you would expect!&lt;/p&gt;
+&lt;p&gt;As an interesting side-note, the WinPE boot disk includes an FTP client.  That might be useful script out some additional file copies to the new machine.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chocolatey Installer for Windows</title>
+      <link>https://www.nextpertise.net/posts/220118_choco/</link>
+      <pubDate>Tue, 18 Jan 2022 15:27:47 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/220118_choco/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m setting up a new Windows 10 VM (this time in VMWare) and decided to use Chocolatey to install applications this time, since I tried &lt;em&gt;winget&lt;/em&gt; last time.  I haven&amp;rsquo;t tried Chocolatey in a while, and I&amp;rsquo;ve spent a lot of time exclusively in Linux since then so I was curious what I would make of it, especially in comparison to &lt;a href=&#34;https://www.nextpertise.net/posts/211228_winget/&#34;&gt;Winget&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://chocolatey.org/&#34;&gt;Chocolatey&lt;/a&gt; is a package manager like apt.  You can use it to search for, install, update, and uninstall programs.  This is particularly useful if you have a &amp;ldquo;standard setup&amp;rdquo; for new computers - it&amp;rsquo;s possible to build a script to install the apps you expect.  Windows Update only covers Microsoft programs, so Chocolatey fills another gap by updating all the programs it installs from the command line.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/chco-square.svg#floatsmallleft&#34; alt=&#34;Logo&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;chocolatey&#34;&gt;Chocolatey&lt;/h2&gt;
+&lt;p&gt;Chocolatey is free open-souce software that has been around for a while and I&amp;rsquo;ve used it before.  Chocolatey works like &lt;em&gt;apt&lt;/em&gt;, using the &lt;em&gt;choco&lt;/em&gt; command.  You can search for a package, install it, or uninstall it. &lt;em&gt;Choco upgrade&lt;/em&gt; will upgrade all the Chocolatey-managed applications on your system.  This last piece is especially useful, since Windows Update focuses just on Microsoft properties.&lt;/p&gt;
+&lt;p&gt;Chocolatey uses the command &lt;em&gt;choco&lt;/em&gt;.  The command sequence below shows looking for all packages in the repository that are include &amp;ldquo;libre&amp;rdquo;.  That allows me to see the name of the LibreWolf package, which I then choose to install.  Finally, the upgrade command can be used to upgrade specific packages or to get them all.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;choco list libre
+choco install librewolf
+choco upgrade all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Use &lt;em&gt;choco list &amp;ndash;local-only&lt;/em&gt; to see a list of programs installed on the local system by choco.  There&amp;rsquo;s also a GUI, installed by &lt;em&gt;choco install chocolateygui&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Choco compares very well to Microsoft&amp;rsquo;s &lt;em&gt;winget&lt;/em&gt;.  The application set available seems a little larger.  Like &lt;em&gt;winget&lt;/em&gt;, choco will be familiar to &lt;em&gt;apt&lt;/em&gt; users (but there are some syntactical differences.  I used winget to easily install Git, WinFSP, SSHFS, the Microsoft Terminal, and Librewolf.   A later upgrade picked up new versions of Librewolf and Git and installed them without difficulty.   &lt;em&gt;Choco&lt;/em&gt; also seemed to apply some KB patches I was missing and even upgraded itself!&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Setup is very easy.  Installation can be done from an administrative powershell using these commands:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Set-ExecutionPolicy AllSigned
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;pretty-solid&#34;&gt;Pretty Solid&lt;/h2&gt;
+&lt;p&gt;When I tried winget, I had issues with dependencies.  Chocolatey picked these up and installed without an issue, so Librewolf grabbed the Visual C redistributable module and installed it without prompting, for instance.  &lt;em&gt;Choco&lt;/em&gt; has a wide range of supported applications, particularly if you like to use FOSS.&lt;/p&gt;
+&lt;p&gt;The biggest issue with Chocolatey is image.  The name doesn&amp;rsquo;t build credibility, and with Microsoft building a competing product now I expect IT departments to focus on &lt;em&gt;winget&lt;/em&gt;.  That said, &lt;em&gt;choco&lt;/em&gt; is a more complete solution with a bigger catalog as of today and it&amp;rsquo;s definitely the better fit for home.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Winget</title>
+      <link>https://www.nextpertise.net/posts/211228_winget/</link>
+      <pubDate>Tue, 28 Dec 2021 11:46:32 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/211228_winget/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m experimenting with KVM and decided to build a new Windows VM.  I&amp;rsquo;m currently using Pop!_OS 21.10 which uses the 5.15 kernel.  Turns out that breaks Windows on VMWare workstation and it looks like the cause is VMWare not keeping up with the latest kernels.  There are some patches available, but it&amp;rsquo;s the week between Christmas and New Years and seemed like a good chance to review the FOSS alternative.&lt;/p&gt;
+&lt;p&gt;Part of my troubleshooting process on Linux was to make sure that I haven&amp;rsquo;t made a change that&amp;rsquo;s impacting VMWare.  Pop! has a really cool feature that will roll-back to a clean install, but leave your personal files.  Reinstalling missing applications is pretty easy in linux.  Installing hugo again is as easy as:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install hugo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;chocolatey&#34;&gt;Chocolatey&lt;/h2&gt;
+&lt;p&gt;Chocolatey is free open-souce software that has been around for a while and I&amp;rsquo;ve used it before.  Chocolatey works like &lt;em&gt;apt&lt;/em&gt;, using the &lt;em&gt;choco&lt;/em&gt; command.  You can search for a package, install it, or uninstall it. &lt;em&gt;Choco upgrade&lt;/em&gt; will upgrade all the Chocolatey-managed applications on your system.  This last piece is especially useful, since Windows Update focuses just on Microsoft properties.&lt;/p&gt;
+&lt;h2 id=&#34;winget&#34;&gt;Winget&lt;/h2&gt;
+&lt;p&gt;Microsoft has developed a similar tool called &lt;em&gt;winget&lt;/em&gt;.  I have a bias toward open source, but my job is in a corporate Windows environment.  I&amp;rsquo;m not sure that I could get Chocolatey in the door, but Winget might be something that could be used.  I decided to give it a whirl in this VM and try to get some experience.&lt;/p&gt;
+&lt;p&gt;Installation is a little non-obvious.  If you go to the &lt;a href=&#34;https://github.com/microsoft/winget-cli/&#34;&gt;Github page&lt;/a&gt;, it recommends installation through the Windows Store.  However, I searched the store and didn&amp;rsquo;t find anything.  Instead, I downloaded the &lt;strong&gt;msixbundle&lt;/strong&gt; file from the latest release and ran it.&lt;/p&gt;
+&lt;p&gt;Winget will be intuitive for apt users.  &lt;strong&gt;Winget search libre&lt;/strong&gt; showed me available applications with &lt;em&gt;libre&lt;/em&gt; in the title including LibreOffice and Librewolf.  &lt;strong&gt;Winget install librewolf&lt;/strong&gt; installed the firefox-based web browser.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/211228_Winget.png&#34; alt=&#34;Winget Example&#34;&gt;&lt;/p&gt;
+&lt;p&gt;One of the best features of apt is the easy way that components are upgraded.  Running &lt;strong&gt;winget upgrade&lt;/strong&gt; will list installed applications that have an upgrade avaialable.  It even caught an application I did not install with winget!  &lt;strong&gt;Winget upgrade &amp;ndash;all&lt;/strong&gt; will install all available upgrades.  You can also specify specific applications that you want to upgrade.&lt;/p&gt;
+&lt;h2 id=&#34;not-baked-yet&#34;&gt;Not baked yet&lt;/h2&gt;
+&lt;p&gt;I identified three issues in my early experimentation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Apt&lt;/strong&gt; will identify dependencies and include them during the application installation.  Librewolf completed installation without an error, but wouldn&amp;rsquo;t run without the &lt;a href=&#34;https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170&#34;&gt;Visual C redistributable module&lt;/a&gt;.  &lt;strong&gt;Winget search&lt;/strong&gt; didn&amp;rsquo;t turn up a way to install the dependency, so I installed it directly from the Microsoft site.&lt;/p&gt;
+&lt;p&gt;I mentioned earlier that winget identified upgrades even for applications it didn&amp;rsquo;t install.  That true and would be an enormous advantage of the tool.  But . . . it didn&amp;rsquo;t work.  The upgrade failed and pointed me to a log.  The log showed that the service needed to be stopped before upgrading.  Once I stopped the service and re-ran the &lt;strong&gt;winget upgrade &amp;ndash;all&lt;/strong&gt; command, the process completed successfully.&lt;/p&gt;
+&lt;p&gt;Winget doesn&amp;rsquo;t get a &amp;ldquo;half-point&amp;rdquo; with the upgrade problem.  Instead of a simple update, this requires that I identify and shutdown services before running the upgrade, then manually restart them.  It&amp;rsquo;s doable, but far from the easy process that is expected on Linux.&lt;/p&gt;
+&lt;p&gt;The third issue I found was that the Windows Decrapifier wasn&amp;rsquo;t included in winget.  Is this because the pool of installable applications is comparitvely shallow?  This seems reasonable since it&amp;rsquo;s a relatively new project.  You can see the complete list of currently supported applications (here)[https://github.com/microsoft/winget-pkgs/tree/master/manifests/d].  Is the lack of the decrapifier an editorial decision?  Possibly, but if so it portends an anemic future for the tool.&lt;/p&gt;
+&lt;p&gt;##So?
+Winget shows promise and it&amp;rsquo;s worth keeping an eye on.  But I won&amp;rsquo;t be recommending it to the end-user support group today.  Give me dependency recognition, easy upgrading, and broader support and this will be a standard part of the tool bag.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deskreen</title>
+      <link>https://www.nextpertise.net/posts/210201-deskreen/</link>
+      <pubDate>Mon, 01 Feb 2021 13:43:09 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210201-deskreen/</guid>
+      <description>&lt;p&gt;Deskreen is an open-source utility that allows you to send your Windows, Mac, or Linux desktop onto another screen, including another computer, a tablet, or even a phone.  It can duplicate an application, duplicate an entire display, or extend the desktop and treat the other computer as an additional monitor.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://deskreen.com/img/plugs/hdmi.jpg#floatsmallleft&#34; alt=&#34;HDMI Plug&#34;&gt;
+Deskreen outputs your display to a webpage with an embedded video.  Running the application prompts you to choose an application, existing display, or new display.  It then displays the produced webpage in text and with a 2D barcode.  The page, when opened on a separate device, allows you to play the video stream.&lt;/p&gt;
+&lt;h2 id=&#34;testing-deskreen&#34;&gt;Testing Deskreen&lt;/h2&gt;
+&lt;p&gt;An easy scenario to imagine would be using a tablet as a second screen for a laptop sitting in a coffee shop.  I tested exactly this setup using PopOS! on a 3rd Gen i7 and a Fire HD 10 9th gen tablet.  I downloaded Deskreen from Github as a DEB and installed it.  In order to fool my laptop into thinking it should produce a second screen, I bought &lt;a href=&#34;https://www.amazon.com/gp/product/B07C4TWZRM/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&amp;amp;psc=1&#34;&gt;HDMI dummy plugs&lt;/a&gt;.  I used Deskreen version 1.02 and 1.03 while testing.&lt;/p&gt;
+&lt;p&gt;Once running, Deskreen produced a barcode that I was able to scan from the tablet and use to connect to a webpage.  You can manually type in the link, but it&amp;rsquo;s long and it&amp;rsquo;s randomly generated each time the app start sharing.  I clicked a button on the web page to register.  Back to the PC, where I accepted the connection and chose the output.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210201_Deskreen.jpg#floatsmallright&#34; alt=&#34;My Setup&#34;&gt;
+The new display was initially set to the same as my main screen - 1920x1080.  The video was down-converted, but everything was too small to be usable.  I used the display options in PopOS! to adjust the size to 1280x720 and this created a very usable display.  The new screen is responsive, with maybe barely a touch of latency similar to using a low-refresh-rate monitor.  I imagine that the quality and usage of wifi will impact this, but I wasn&amp;rsquo;t able to test that scenario.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210201_Deskreen2.jpg#floatsmallleft&#34; alt=&#34;Phone&#34;&gt;
+Just for fun, I sent the settings app to my phone at the same time.  Running two displays didn&amp;rsquo;t seem to bother the PC.  I left the webpage running on the tablet for hours and battery life on the tablet seemed surprisingly good.  I think I could run it for a full day (or more) without having to charge the tablet.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I could imagine a variety of cases where this could be useful.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extra screens&lt;/li&gt;
+&lt;li&gt;sharing screens for troubleshooting&lt;/li&gt;
+&lt;li&gt;connecting to smart TVs or displays&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The developer, Pavlo Buidenkov, has an excellent set of directions about using Deskreen at deskreen.com.  He also mentions that he&amp;rsquo;s hoping to find developers to collaborate with, so check it out!&lt;/p&gt;
+&lt;p&gt;For me, this utility works well and fills a niche in my toolset.  It will be a part of my standard build from here on out!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Powerline Windows</title>
+      <link>https://www.nextpertise.net/posts/201130_powerline-windows/</link>
+      <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201130_powerline-windows/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
+I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;https://www.nextpertise.net/tilix&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
+&lt;h2 id=&#34;step-0-we-_are_-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha&#34;&gt;Windows Terminal&lt;/a&gt; is a nice addition to Windows, but doesn&amp;rsquo;t ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn&amp;rsquo;t do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.&lt;/p&gt;
+&lt;h2 id=&#34;step-1---install-a-font-that-supports-ligatures&#34;&gt;Step 1 - Install a Font that Supports Ligatures&lt;/h2&gt;
+&lt;p&gt;I prefer &lt;a href=&#34;https://www.jetbrains.com/lp/mono/&#34;&gt;JetBrains Mono&lt;/a&gt;, but this is definitely a question of art.  Microsoft&amp;rsquo;s &lt;a href=&#34;https://github.com/microsoft/cascadia-code/releases&#34;&gt;Cascadia&lt;/a&gt; is one option.  Other options, like the excellent Inconsolata can be found at sites like &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;Nerd Fonts&lt;/a&gt; or &lt;a href=&#34;https://www.programmingfonts.org/&#34;&gt;Programming Fonts&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-2---install-git&#34;&gt;Step 2 - Install Git&lt;/h2&gt;
+&lt;p&gt;Because Powerline support Git, I recommend going ahead and getting it installed so you can see it work.  You can download and install it from &lt;img src=&#34;https://git-scm.com/downloads&#34; alt=&#34;here&#34;&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---setup-in-powershell&#34;&gt;Step 3 - Setup in Powershell&lt;/h2&gt;
+&lt;p&gt;Open a Powershell session and install the posh-git and &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh&#34;&gt;oh-my-posh&lt;/a&gt; add-ins.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Install-Module posh-git -Scope CurrentUser  
+Install-Module oh-my-posh -Scope CurrentUser  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Enable these modules to start with each new session via the terminal profile.  To open the profile, type &lt;strong&gt;notepad $profile&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#add these lines  &lt;/span&gt;
+Import-Module posh-git  
+Import-Module oh-my-posh  
+Set-Theme agnoster  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that many &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh#themes&#34;&gt;themes&lt;/a&gt; are pre-built for oh-my-posh.  Refer to the github site to see samples.  Agnoster is my personal favorite because it&amp;rsquo;s less busy and keeps the prompt on one line.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/WinTerminal.png#floatright&#34; alt=&#34;Settings&#34;&gt;
+Next, you&amp;rsquo;ll need to update the terminal settings to use the font.  In Windows Termianl, go to &lt;em&gt;Menu &amp;gt; settings&lt;/em&gt; (this will open VSCode if you have it installed).  Search for the &lt;em&gt;profiles&lt;/em&gt; section and add the &lt;em&gt;fontFace&lt;/em&gt; directive as shown below.  Note that we&amp;rsquo;re setting up Powerline to work with Powershell, not in the other environments, but I also went into the Command Prompt, Ubuntu, and Azure sections and changed them to use my new font.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profiles&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+    {  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;defaults&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+      {  
+       // Put settings here that you want to apply to all profiles.  
+      },  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;list&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+        [  
+          {  
+            // Make changes here to the powershell.exe profile.  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Windows PowerShell&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;commandline&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;powershell.exe&amp;#34;&lt;/span&gt;,  
+            __&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fontFace&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JetBrains Mono&amp;#34;&lt;/span&gt;,__  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hidden&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; false  
+            },  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;##Step 4 - Setup in WSL
+For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;sudo apt install golang-go  
+go get -u github.com/justjanne/powerline-go  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then edit the terminal settings to make sure it&amp;rsquo;s used to display new lines.  Edit via &lt;strong&gt;nano ~/.bashrc&lt;/strong&gt; and add the following snippet to the end.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GOPATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/go  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; _update_ps1&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;  
+  PS1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;$GOPATH/bin/powerline-go -error $?&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$TERM&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -f &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$GOPATH&lt;span style=&#34;color:#e6db74&#34;&gt;/bin/powerline-go&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+  PROMPT_COMMAND&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_update_ps1; &lt;/span&gt;$PROMPT_COMMAND&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Voila!&lt;/em&gt;  You should have Powerline functionality and cool fonts working in the different prompts available in Windows.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Winapps</title>
+      <link>https://www.nextpertise.net/posts/201110_winapps/</link>
+      <pubDate>Tue, 10 Nov 2020 08:24:53 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201110_winapps/</guid>
+      <description>&lt;p&gt;Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&amp;rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&amp;rsquo;s you use &amp;ldquo;open with&amp;rdquo; types of functionality.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright&#34; alt=&#34;WinApps&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To give it a try, clone the code from &lt;a href=&#34;https://github.com/Fmstrat/winapps&#34;&gt;GitHub&lt;/a&gt;. Remember that it&amp;rsquo;s running programs that are installed on a VM. If you don&amp;rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&amp;rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&amp;rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &amp;ldquo;Windows source&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Create a text file at _~/.config/winapps/winapps.conf that looks like this.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;RDP_USER&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyWindowsUser&amp;#34;&lt;/span&gt;  
+RDP_PASS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyWindowsPassword&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#75715e&#34;&gt;#RDP_IP=&amp;#34;192.168.123.111&amp;#34;  &lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#DEBUG=&amp;#34;true&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The IP is only required if Windows is remote. The Debug command tells it to create a log and is optional.&lt;/p&gt;
+&lt;p&gt;Finally, run the &lt;strong&gt;install.sh&lt;/strong&gt; script. This script will use the variables defined in the config file and login and scan Windows. If it finds a file it knows, it will setup the link, put an icon and entry in the local application menu, and link the appropriate mime-types.&lt;/p&gt;
+&lt;p&gt;When I tested this, I ran into a couple issues running the install script. The script would timeout. Looking at the script, I saw that it was trying to use xfreerdp to login to Windows. I ran that command from the command line and saw that it wasn&amp;rsquo;t connecting. Troubleshooting on Windows revealed that I needed to enable remote desktop under settings&amp;gt;system&amp;gt;remote desktop. Doh! Re-testing with xfreerdp revealed that I needed to accept a certificate.&lt;/p&gt;
+&lt;p&gt;With the RDP part confirmed working, I re-ran the script and &lt;em&gt;voila!&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;A lot of folks will be interested in running Office and those apps are defined, but I use my Windows VM mostly for things that can&amp;rsquo;t be done on Linux like running the Kindle application. Look in the repository under &lt;em&gt;apps&lt;/em&gt; and you&amp;rsquo;ll see that various programs are defined, each to a directory. In the directory is a definition file that includes mime-types consumed and a path to the application in Windows. There&amp;rsquo;s also an icon in the directory. This is what the install script references when it runs.&lt;/p&gt;
+&lt;p&gt;I was able to create a Kindle definition file. I grabbed an SVG icon from Google Images and created an &lt;em&gt;info&lt;/em&gt; file that contained the following.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME shortcut name  &lt;/span&gt;
+NAME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Kindle&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Used for descriptions and window class  &lt;/span&gt;
+FULL_NAME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Amazon Kindle&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# The executable inside windows  &lt;/span&gt;
+WIN_EXECUTABLE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:\users\brent\appdata\local\amazon\kindle\application\kindle.exe&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME categories  &lt;/span&gt;
+CATEGORIES&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Education&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME mimetypes  &lt;/span&gt;
+MIME_TYPES&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://microfilums.files.wordpress.com/2010/01/2260894625_ea1feecb2a.jpg#floatleft&#34; alt=&#34;Big Brains&#34;&gt;
+I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the &lt;em&gt;develop&lt;/em&gt; branch, added the files, and submitted a Pull Request back to &amp;ldquo;fmstrat&amp;rdquo;. I also added some troubleshooting suggestions for them based on my experience.&lt;/p&gt;
+&lt;p&gt;This was a neat adventure to write up because it combines a lot of the things we&amp;rsquo;ve been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in &lt;a href=&#34;https://www.nextpertise.net/Using_SSH5&#34;&gt;Remotely Possible&lt;/a&gt;. Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.&lt;/p&gt;
+&lt;p&gt;But this is another chance to hit on a favorite theme of mine. You don&amp;rsquo;t need to be gods-gift-to-programming to make meaningful and appreciated contributions to the open source community. In the day I took to play with this and contribute the Kindle definition, several other people also submitted apps and the library is quickly growing. Similar to defining GNS3 appliances, there&amp;rsquo;s a lot of ways to give back. There&amp;rsquo;s a real satisfaction to contributing in this way that I hope you have a chance to experience.&lt;/p&gt;
+&lt;p&gt;As far as Winapps, as I mentioned at the beginning, it&amp;rsquo;s interesting and definitely looks cool. I&amp;rsquo;m not complete sold that it&amp;rsquo;s that much more useful than just pulling up a Windows VM, but it&amp;rsquo;s close enough that it will fit the work styles of some folks really well. It&amp;rsquo;s worth a look!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to write an event to Windows and Linux logs</title>
+      <link>https://www.nextpertise.net/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
+&lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
+&lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
+&lt;p&gt;A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the built-in terminal in Visual Studio Code (or VSCodium) for Windows, which uses a &amp;ldquo;non-admin&amp;rdquo; session.&lt;/p&gt;
+&lt;p&gt;Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses &lt;em&gt;scoop&lt;/em&gt; to grab a &amp;ldquo;sudo&amp;rdquo; application for Powershell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;iex (new-object net.webclient).downloadstring(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;https://get.scoop.sh&amp;#39;&lt;/span&gt;)
+set-executionpolicy unrestricted -s cu &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt;  
+scoop install sudo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;how-to-write-an-event-to-windows-event-log&#34;&gt;How to write an Event to Windows Event Log&lt;/h2&gt;
+&lt;p&gt;This technique allows you to place comments into the Windows event logs, for instance to mark the beginning or completion of a change window.  We could also build this into certain scripts so that they left an entry when they ran.  It could even be automated into systems so that the markings took place without a person having to remember.&lt;/p&gt;
+&lt;p&gt;The general process is to create an information &amp;ldquo;source&amp;rdquo; to write into (if it doesn&amp;rsquo;t already exist) and then to write the event.&lt;/p&gt;
+&lt;h3 id=&#34;creating-a-log-source&#34;&gt;Creating a log source&lt;/h3&gt;
+&lt;p&gt;Since we&amp;rsquo;re creating log events for comments, let&amp;rsquo;s create a log source that matches our username.  If there are several admins, it may be a good idea to use a format like &amp;ldquo;admin-username&amp;rdquo; so that we can later search logs for &amp;ldquo;admin*&amp;rdquo;.  Creating a new source requires PowerShell to run with Administrator priviledges.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;New-eventlog -logname application -source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that you can use the environment variable &lt;em&gt;$env:username&lt;/em&gt;.  You can build this into a script - if the source already exists, the command will return an error to that effect.&lt;/p&gt;
+&lt;h2 id=&#34;logging-an-entry&#34;&gt;Logging an entry&lt;/h2&gt;
+&lt;p&gt;To create a log entry use the &amp;ldquo;write-eventlog&amp;rdquo; cmdlet.  Specify the log (like Application or Security), the source that we defined, and the message.  The EventID isn&amp;rsquo;t significant, so you could also use this numeric field if you had something suitable (like a ticket number).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Write-EventLog -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is also possible to write an entry on a remote computer. The example below assumes that the source &amp;ldquo;bstewart&amp;rdquo; exists on the remote computer.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Write-EventLog -computername &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Server&amp;#34;&lt;/span&gt; -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bstewart&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID 1__  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;scripting&#34;&gt;Scripting&lt;/h2&gt;
+&lt;p&gt;This can all be simplified in a script, saved as &amp;ldquo;log.ps1&amp;rdquo;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;  
+{  
+        sudo New-eventlog -logname application -source $env:username  
+}  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;Catch&lt;/span&gt;  
+{  
+    Write-Output &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Log source already exists&amp;#34;&lt;/span&gt;  
+}  
+Write-eventlog -logname application -source $env:username -entrytype information -message $args[0] -eventid 1  
+write-host &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The following was written to the Application log using the source $env:username for that log.&amp;#34;&lt;/span&gt;  
+write-host $args[0]  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&amp;gt; .\log.ps1 &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Something happened&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;linux-much-easier&#34;&gt;Linux (much easier)&lt;/h1&gt;
+&lt;p&gt;Writing to the Linux journal is pretty straight-forward.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Sample text&amp;#39;&lt;/span&gt; | Systemd-cat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To take a look at this, just use &lt;strong&gt;journalctl -f&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll talk about logging to syslog another time, or maybe I can talk Myron into delving in because he has great experience with pulling things out of SIEMs.  Whether you use this in the scope of a SIEM or just for local logging, I&amp;rsquo;m sure you&amp;rsquo;ll find this idea useful.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,123 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Alternate GNS3 Symbols</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="GNS3 is a graphical network simulation tool. Imagine something like Visio that let you place network devices and draw connections, then boot them up and interact with them. The screenshot above is a simulation I ran that used five Cisco CSR routers to demonstrate BGP for a class. The devices typically run in KVM or Docker, but can use VMWare or Virtualbox. This article assumes that you are familiar with the project.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/gns3.png#floatright" height="140">
+<h1>Alternate GNS3 Symbols</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Aug 21, 2020</i><br></div></h6>
+  <p><p>GNS3 is a graphical network simulation tool.  Imagine something like Visio that let you place network devices and draw connections, then boot them up and interact with them.  The screenshot above is a simulation I ran that used five Cisco CSR routers to demonstrate BGP for a class.  The devices typically run in KVM or Docker, but can use VMWare or Virtualbox.  This article assumes that you are familiar with the project.
+<img src="/GNS3Lab.png#center" alt="GNS3 Screen Capture"></p>
+<p>I&rsquo;ve found GNS3 to be an invaluable tool.  I used it to do labs while writing books years ago.  I&rsquo;ve used it to teach networking and security to the people who work with me, and to do labs to teach myself.  I&rsquo;ve also used it to simulate an environment and walk through a change process to practice, verify steps, and perfect configuration updates.</p>
+<p>GNS3 originally had one set of symbols that could be used for the various virtual machines.  The switches labeled &ldquo;Home&rdquo; and &ldquo;Remote&rdquo; in the screenshot are in this style.  The GNS3 team added a family of symbols labeled &ldquo;Affinity&rdquo; (the CSRs use this type of symbol) which is very clean and modern.</p>
+<p><img src="/untangle2.png#floatright" alt="Untangle">
+<img src="/vyos.png#floatright" alt="VyOS">
+The Affinity symbols work very well for most of my labs, but sometimes I need to differentiate between a <em>Cisco</em> router and <em>VyOS</em>.  Sometimes you just need to call out a particular device.  In fact, one of the symbols in my library is a big red X that I used to denote a server in a special project.  For this reason, I created a library of symbols using vendor/project logos.  The link for that project is in the reference section.  Here are two sample icons I created.</p>
+<p>Per the specifications posted in the GNS3 Registry project, symbols should be SVG less than 70 pixels tall.  I&rsquo;ve found that PNG with transparent background also looks good.  I typically use the scaling feature in GIMP (<em>Image&gt;Scale Image</em>) to adjust image size.</p>
+<p>If you&rsquo;d like to use these symbols, clone my repository.  In GNS3, you can update the device template (and thus all future devices) by right clicking in the device selection window, choosing <em>Configure Template</em>, and then browsing for the Symbol.  Alternatively, you can use a symbol for one instance by right clicking on the VM in the topology and choosing <em>Change Symbol</em>.</p>
+<p>I add to the repository periodically and I&rsquo;d love to have contributions from you.  You can also submit them to the GNS3 project as a pull request on the <em>GNS3 Registry</em> project.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://gns3.com/">https://gns3.com/</a><br> &nbsp&nbsp<a href="https://github.com/GNS3/gns3-registry.git">https://github.com/GNS3/gns3-registry.git</a><br> 
+    
+    <strong>Github:</strong> https://github.com/brentstewart/GNS3Symbols
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/gns3">GNS3</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210211_gns3_february21/">GNS3 Update for February, 2021</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200821_gns3symbols/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Alternate GNS3 Symbols</a></nav>
+</div>
+  </body>

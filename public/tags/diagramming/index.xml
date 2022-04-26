@@ -1,0 +1,40 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diagramming on </title>
+    <link>https://www.nextpertise.net/tags/diagramming/</link>
+    <description>Recent content in Diagramming on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Nov 2020 08:00:28 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/diagramming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visio Shapes</title>
+      <link>https://www.nextpertise.net/posts/201117_visio_shapes/</link>
+      <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201117_visio_shapes/</guid>
+      <description>&lt;h2 id=&#34;stencil-sets-for-you-to-use&#34;&gt;Stencil sets for you to use&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/AffinityBlue.PNG#floatright&#34; alt=&#34;Affinity Blue&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve created a new repository for Visio Stencils.&lt;/p&gt;
+&lt;p&gt;Affinity Blue is a set of abstract network icons set in circles.  These are the alternative icons used in the GNS3 project.  I like using them in GNS3 because they provide a nice &amp;ldquo;clean&amp;rdquo; look that makes diagrams easy to quickly understand.  Vendor-specific icons for each type of firewall, for instance, can quickly distract from the function being provided and the flow of traffic.  These icons have been given four cardinal connections points.&lt;/p&gt;
+&lt;p&gt;A second set is called &amp;ldquo;Brent&amp;rsquo;s Stencil&amp;rdquo;.  This is a collection of &amp;ldquo;standard&amp;rdquo; shapes taken from a variety of online sources - mostly old Cisco drawings.  If you like the old Cisco documentation diagrams, these give that same look.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/BrentsStencil.PNG#floatleft&#34; alt=&#34;Brent&amp;rsquo;s Stencil&#34;&gt;
+This second stencil has been more heavily customized.  Several of the icons have extra connection points (this makes it easier to label lines going to a switch, for instance).  The &amp;ldquo;link&amp;rdquo; lines have been set so that the text will be at the same angle as the line, which helps to clean up diagrams.&lt;/p&gt;
+&lt;p&gt;This set is older - I&amp;rsquo;ve used it for at least a decade.  It has some icons that show time has passed like a TDM PBX, analog phone, and ISDN switch.  It also doesn&amp;rsquo;t have much in the way of containers, VMs, or clouds.  Still, this collects a variety of useful icons and puts them in one place.  I hope it is useful to you.&lt;/p&gt;
+&lt;h2 id=&#34;creating-a-custom-visio-stencil&#34;&gt;Creating a Custom Visio Stencil&lt;/h2&gt;
+&lt;p&gt;For those interested in creating their own stencil set, the process is easy.&lt;br&gt;
+&lt;img src=&#34;https://www.nextpertise.net/Visio_Dev_Mode.PNG#floatright&#34; alt=&#34;Visio Developer Mode&#34;&gt;
+First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/strong&gt; and enable Developer Mode.  This will allow you to edit the stencil later.&lt;/p&gt;
+&lt;p&gt;Grab an icon that you want to use and place it in Visio (either import it or just paste it in).  &lt;img src=&#34;https://google.com/images&#34; alt=&#34;Google Images&#34;&gt; is a pretty good place to find icons or images to use, or you can paste them in from other programs. If you&amp;rsquo;re using an image, make sure to resize the imported image to the size that you&amp;rsquo;ll want it to be most commonly.  Most icons are about a half-inch square or so.&lt;/p&gt;
+&lt;p&gt;Next, edit the icons properties.  Right click the image and open the ShapeSheet (top option).  Go to the Connection Points section.  If that section doesn&amp;rsquo;t exist, right click and choose &amp;ldquo;add section&amp;rdquo;.  You can add lines to the connection point table to make it look the way you want.  Each connection point exists on a grid where (0,0) is the bottom left corner and (width,height) is the upper right.  Add a connection point to the middle of the right side by putting it at (width,height*.5).  Right click the grid to add additional lines as needed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/Visio_angle.PNG&#34; alt=&#34;Angled Text&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In &amp;ldquo;Brent&amp;rsquo;s Stencil&amp;rdquo; I added a line which has text that is angled with the line.  I did that by opening the ShapeSheet for the line and editing the Text Transform box to set the TxtAngle property to ATAN(Height/Width).&lt;/p&gt;
+&lt;p&gt;Whether you just clone the repo and use these or want to contribute to the collection, I hope this inspires you to do something cool!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

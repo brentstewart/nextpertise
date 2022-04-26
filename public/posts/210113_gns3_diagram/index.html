@@ -1,0 +1,188 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Diagrams on Linux</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="The articles I post generally start out as a way to share something I&rsquo;ve learned through years of experience. Less often, they are a way to share something that I&rsquo;m researching currently. This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&rsquo;ve learned.
+I thought that options for creating diagrams on Linux were few and most of them were poor.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/lucidchart.png#floatright" height="140">
+<h1>Diagrams on Linux</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Thursday, Jan 21, 2021</i><br></div></h6>
+  <p><p>The articles I post generally start out as a way to share something I&rsquo;ve learned through years of experience.  Less often, they are a way to share something that I&rsquo;m researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&rsquo;ve learned.</p>
+<p>I thought that options for creating diagrams on Linux were few and most of them were poor.  What I found is that now (2021!) there are several <em>good</em> options and that all the tools have matured.  I reviewed Creately, Dia, Draw.io, GNS3, LibreOffice Draw, Lucidchart, Pencil, SmartDraw, Visio, and yEd.   About half are desktop applications and the other half web applications.</p>
+<h2 id="diagramming-software">Diagramming Software</h2>
+<p>Diagrams are an essential part of IT.  IT teams suffer with poor and out-of-date documentation and the biggest impediment to compiling it are usually the effort required to write and maintain.  It&rsquo;s also true that not everyone in IT enjoys writing.</p>
+<p>Diagramming software solves this by allowing complex architectures to be summarized visually.  Diagrams can pack a lot of detail, can be quickly understood, and relevant information is easily accessible.  In short, being able to produce a clean diagram is a job requirement.</p>
+<p>Diagramming software is different from &ldquo;drawing&rdquo; applications like GIMP because it includes icons that can be quickly placed on a page and connected, along with basic shapes and annotations.  These shapes are layered, so you can bring one into the foreground, and the connecting lines are anchored to shapes so that the line endpoints move as shapes move. This workflow allows the production of well produced pictures with a minimal amount of effort.</p>
+<p>The <em>de facto</em> standard here is Visio.  Many of us have to exchange diagrams in a team, and for those folks, being able to import and export in Visio format is critical in the same way that any word processor should be able to work with *.DOC files.</p>
+<h2 id="evaluation-criteria">Evaluation Criteria</h2>
+<p>My most typical use of this software is to produce network diagrams.  Other common diagrams for me include flowcharts, swim lanes, and org charts.  For purposes of this review, I&rsquo;m focusing on network diagrams.</p>
+<p>Each program was evaluated based on the following criteria.  These are listed in  order of importance.</p>
+<ul>
+<li>Visio Import/Export</li>
+<li>Stencils available and easily expandable</li>
+<li>Output to PDF, HTML, and standard graphics formats</li>
+<li>Easy annotation and supported hyperlinks</li>
+</ul>
+<h2 id="desktop-applications">Desktop Applications</h2>
+<p>This group includes Dia, GNS3, LibreOffice Draw, Pencil, Visio on WINE, and yEd. The default answer for many of us is Visio, but this recent review shows progress in the open-source competitors.</p>
+<p><img src="/2021-01-13_GNS3_Home.png#floatsmallleft" alt="GNS3 Diagramming"></p>
+<h3 id="visio">Visio</h3>
+<p>Visio is the standard, but it&rsquo;s not made for Linux.  I&rsquo;ve been able to run 2010 using WINE without issues and 2013 with a little finessing.  The current version (2019) is a little too automated for my taste - it keeps trying to guess what I want and gets in my way.</p>
+<p>Visio checks all the boxes.  It is compatible with Visio, obviously (with the cavaet that the new VSDX format is not supported).  It has plenty of available stencils and most manufacturers produce their own additions.  Visio will output to a ton of formats, including PDF and HTML.  It is easy to annotate and you can create hyperlinks straight from icons (I have created links so that clicking a router opened a PuTTY session).</p>
+<p>Cons for Visio are 1) it&rsquo;s running under WINE, 2) you can&rsquo;t run the later versions (but the 2010 and 2013 are plenty good), and 3) it&rsquo;s expensive.  Currently $270 from <a href="https://www.amazon.com/Microsoft-D86-05555-Visio-Standard-2016/dp/B012F7PC3U/ref=sr_1_3?dchild=1&amp;keywords=visio&amp;qid=1610591015&amp;sr=8-3c">Amazon</a>.</p>
+<h3 id="gns3httpsgns3org"><a href="https://gns3.org">GNS3</a></h3>
+<p>I included this as a lark because I recently wrote about creating hyperlinks in GNS3 and realized it <em>could</em> be used for this purpose.  If you want to try this out, take a look at <a href="210113_GNS3_Links">GNS3 HyperLinks</a>.  This is free and there are some good diagram primitives you can use, but it doesn&rsquo;t work with Visio.  Annotation and linking is fairly easy.  Not great for this purpose, but it does work in a pinch!</p>
+<p>For me, this can work very well for my home network.  I&rsquo;m not interested in exchanging it with other users, and it allows me to build a &ldquo;live&rdquo; image of the physical network outside the virtual GNS3 world.  The two networks meet sometimes when I connect to the Internet or use a service like syslog.</p>
+<p>Diagramming isn&rsquo;t really what GNS3 is designed for and this probably isn&rsquo;t the tool you&rsquo;re loooking for.</p>
+<p><img src="/2021-01-19_LibreOfficeDraw.png#floatsmallright" alt="LibreOffice Draw"></p>
+<h3 id="libreoffice-drawhttpswwwlibreofficeorgdiscoverdraw"><a href="https://www.libreoffice.org/discover/draw/">LibreOffice Draw</a></h3>
+<p>LibreOffice can import Visio files, but can&rsquo;t export.  The importing sometimes has errors - items that aren&rsquo;t placed correctly or dimensions that are changed.  In my opinion, this is an okay way to view and print more than a serious tool for creating.  Even in the case of importing a picture into a text file, I&rsquo;d export a PNG from something else to import into LibreOffice before trying to mess with Draw.</p>
+<h3 id="pencilhttpspencilevolusvn"><a href="https://pencil.evolus.vn/">Pencil</a></h3>
+<p>The Pencil project was something I used a few years ago and it showed a lot of promise.  I remembered it and tried to include it in this review.  If you are interested, grab executables from <a href="https://github.com/prikhi/pencil/releases">GitHub</a>.</p>
+<p>I messed around with compiling and tried the executable, but had issues with it running.  It now starts, but never displays a window.  It looks like there is active development, so I probably just tested at the wrong point.  Nonetheless, I got tired of messing with it and never did get a chance to try it.</p>
+<p><img src="/2021-01-18_yEd.png#floatsmallleft" alt="yEd"></p>
+<h3 id="yedhttpswwwyworkscomproductsyed"><a href="https://www.yworks.com/products/yed">yEd</a></h3>
+<p>yEd exists as several editions - there&rsquo;s a desktop version, a web version, and one designed to work with Confluence (Graphity).  yEd is offered free, except in the Confluence tie-in model.
+This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is it&rsquo;s inability to use Visio drawings or stencils.  You can export to PDF and HTML though.  I haven&rsquo;t figured out a way to do Hyperlinking and you have to deal with a limited set of graphics primitives.</p>
+<p>However, if you have simple diagramming needs this is an awesome tool.  yWorks has provided a real service to the community by making this available for free.  I&rsquo;ve used it over the years and it&rsquo;s always been solid.</p>
+<p>From my perspective, it&rsquo;s not as mature as other options but the price is right and it&rsquo;s worth considering.</p>
+<p><img src="http://dia-installer.de/en/images/dia_screenshot.png#floatsmallright" alt="Dia"></p>
+<h3 id="dia-httpdia-installerde">Dia (<a href="http://dia-installer.de/">http://dia-installer.de/</a>)</h3>
+<p>I haven&rsquo;t used Dia as much - the last time I looked at it I was disappointed.  Since then it&rsquo;s added some support for Visio VDX files and a wealth of new templates.  The interface has a much more solid feel and it is much easier to use.</p>
+<p>I was able to quickly put together good-looking diagrams and came away impressed and appreciative about what the team has produced.  That said, I had trouble importing and exporting Visio files when I tested.  Annotation was less developed than Visio or Lucidchart - text couldn&rsquo;t be rotated, icons couldn&rsquo;t be labeled.  I couldn&rsquo;t create hyperlinks and I couldn&rsquo;t import stencils.</p>
+<p>This is a much improved project and it&rsquo;s obvious they&rsquo;re on the right track.  For professional use, I don&rsquo;t think it&rsquo;s on the Visio or Lucidchart level.  As a free application that is native to Linux, it seems great for more casual usage and bears further watching.</p>
+<h2 id="web-applications">Web Applications</h2>
+<p>This group includes LucidChart, Draw.io, Creately and SmartDraw. Like the desktop category, significant work has been done here and there are new and exciting options.</p>
+<p><img src="/2021-01-18_lucidchart.png#floatsmallright" alt="Lucidchart"></p>
+<h3 id="lucidcharthttpslucidchartcom"><a href="https://lucidchart.com">Lucidchart</a></h3>
+<p>Lucidchart is a web service, using HTML5 and Javascript.  Although it&rsquo;s not technically written for Linux, it works well with most browsers.</p>
+<p>I&rsquo;ve had very good success with Lucidchart and I think it is on-par or better than Visio.  It can import and export Visio files and stencils and can work with a variety of formats.  It has superior features for annotation and you can easily create hyperlinks.  There are a ton of stencils and templates.  Lucidchart sends out an email each month that walks through example uses - I&rsquo;ve picked up a lot of ideas from reviewing these emails.</p>
+<p>You can use it for personal use for free.  The individual plan includes a gigabyte of storage, includes tags and grouping, and unlimited objects.  There are also team plans with more storage and a few more features.  Lucidchart is a little cheaper than buying Visio and upgrading it every few years if you subscribe to an individual plan.</p>
+<p>After a year of using it, I have come to appreciate Lucidchart <em>more</em> than Visio.  I&rsquo;ve even come to enjoy that it&rsquo;s online, because this makes it easy to access my diagrams wherever I am.  I particularly like the database/flat-file import option and find the annotation tools more flexible than Visio.  The website is responsive, even over moderate links.</p>
+<p>The con here is that you have to be online and it&rsquo;s running in a browser, but ubiquitous access can also be a plus.  Lucidchart has a free option, but an individual account is $9.95/mo or $108 per year.</p>
+<h3 id="drawiohttpsappdiagramsnet"><a href="https://app.diagrams.net">Draw.io</a></h3>
+<p>Draw.io, like Lucidchart, is a webapp.  It was another surprise in this recap.  Since the last time I tested it, they&rsquo;ve improved the Visio support so that it&rsquo;s now possible to import and export!  It&rsquo;s a little rough because connections don&rsquo;t flow smoothly and the layout is not precise, but it&rsquo;s close and a very valuable addition.</p>
+<p>Draw.io is responsive online and it supports real-tiome collaboration.  You can save your work to a cloud provider or you can download it locally.  The Visio support is a work in progress, so you can&rsquo;t import stencils, but I could imagine working around that by importing a page with all my objects on it.  The built-in stencils are horrible.</p>
+<p>Draw.io allows hyperlinking to objects and annotation is easy to add and format.  On the whole, it&rsquo;s a rougher but similar experience to Lucidchart.</p>
+<p>If you do occassional diagrams and don&rsquo;t want to spend money, Draw.io is a very solid choice.  Be prepared to do a little extra work, but it is sufficient.</p>
+<h3 id="createlycreatelycom-and-smartdrawsmartdrawcom"><a href="creately.com">Creately</a> and <a href="smartdraw.com">Smartdraw</a></h3>
+<p>Creately and SmartDraw are web SaaS packages.  Both have free trail accounts available.  Smartdraw personal accounts run $9.95 and Creately is $4.95 per month.  Creately seems more limited in file formats, but interestingly has a desktop version available for Windows, Mac, and Linux.  SmartDraw has the ability to import and export to major formats, including Visio.  Both include stencil sets that are comprehensive and SmartDraw has a facility to import Visio stencils.</p>
+<p>I tested Creately online and it&rsquo;s quite good.  The connectors worked really well and flowed in a visually attractive way.  There was a full set of built in stencils, but I didn&rsquo;t find any import features.  The lack of Visio import and export is a big deal.  I&rsquo;m curious if that is resolved in the paid or desktop versions, but I was unable to verify that from the website.</p>
+<p>I used SmartDraw for some sample diagrams.  It seems well-built and easy to use, but I had trouble getting the connectors to work.  It supports hyperlinking to objects and annotation was easy, but less flexible than Lucidchart.</p>
+<p>My impression of SmartDraw was that it was responsive and fully featured, and I&rsquo;m open to using it more.  It felt a little less capable than Lucidchart, but that may just be that I&rsquo;m much more familiar with Lucidchart.  Worth checking out.</p>
+<p>As for Creately, I was also impressed and some features seemed more developed than SmartDraw, but the lack of import/export features would limit my use.</p>
+<h2 id="conclusion---lucidchart">Conclusion - Lucidchart</h2>
+<p>If you are producing diagrams as part of your job, I would opt for Lucidchart.  It seems to be the most mature option and it uses being a SaaS product to it&rsquo;s advantage to make this information available across platforms and for collaboration within a team.  It started as a Visio clone, but it&rsquo;s mature enough to start forming an identity of it&rsquo;s own and I prefer it.  On Linux, this is an obvious option.</p>
+<p>If you need to create diagrams, but you don&rsquo;t need to share them (except as PNGs or such) then consider Dia.  This is especially true if you want to use FOSS or want to use a local application.  There are a lot of honorable mentions here - SmartDraw and Creately are at an analogous stage, Draw.io and yEd are free.</p>
+<p>All told I&rsquo;m very encouraged by my findings.  This has gone from a sparse set of options that involved compromise to a rich group of choices that are starting to differentiate themselves.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/gns3">GNS3</a> 
+       
+        <a href="/tags/visio">Visio</a> 
+       
+        <a href="/tags/lucidchart">Lucidchart</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220223_webapps/">Webapps</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220124_oh_my_posh/">Oh My Posh</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220117_linux_ftp/">Setting up a Basic FTP server on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210911_distrohoppingwventoy/">Distro Hopping in Style</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210906_apachedav/">Using WebDAV on Apache</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210113_gns3_diagram/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Diagrams on Linux</a></nav>
+</div>
+  </body>

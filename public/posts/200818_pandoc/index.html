@@ -1,0 +1,144 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Team Documentation Using GitHub and Pandoc</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Building team documentation is a critical part of IT. After all, you can&rsquo;t manage what you don&rsquo;t know about. You can&rsquo;t follow policies you don&rsquo;t know about. It&rsquo;s common in IT that documentation is divided between shared files and updated copies on individual laptops. The problem is that it&rsquo;s difficult for any one person to collect all the most recent files. I&rsquo;ve learned a lot about Git in the last few years and I wanted to explore whether it could be an answer.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/201230_n.png#floatright" height="140">
+<h1>Team Documentation Using GitHub and Pandoc</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Aug 18, 2020</i><br></div></h6>
+  <p><p><img src="https://thumbs.gfycat.com/GargantuanScaryAnura-max-1mb.gif#floatleft" alt="Dean Wormer">
+Building team documentation is a critical part of IT.  After all, you can&rsquo;t manage what you don&rsquo;t know about.  You can&rsquo;t follow policies you don&rsquo;t know about.  It&rsquo;s common in IT that documentation is divided between shared files and updated copies on individual laptops.  The problem is that it&rsquo;s difficult for any one person to collect all the most recent files.  I&rsquo;ve learned a lot about Git in the last few years and I wanted to explore whether it could be an answer.</p>
+<p>Various attempts have been made to resolve this versioning issue.  One common approach is to ask everyone to contribute their individual documents to a shared folder.  This has the advantage that everyone can be a contributor and the files are accessible and easy to update.  However, different team members may update the file at different times and in different ways and there&rsquo;s no clear editorial process to bring everything back together.  A second approach is to have a strict editorial process &ndash; maybe a dedicated person who &ldquo;checks in&rdquo; so the boss can &ldquo;approve&rdquo;.  There&rsquo;s typically a drop box for proposed documents and then a locked-down directory with a PDF for the final version.  This process can take a while, can occupy a person, and is discouraging to contributors.</p>
+<p>Using Git has a lot of advantages.  Everyone can have an up-to-date copy using <strong>git clone</strong> and <strong>git fetch</strong>.  Team members can edit documents and submit them as Pull Requests (PRs).  There&rsquo;s a built in process for the repo owner to accept or reject those changes.  GitHub already has an issues process that would make it easy to note deficiencies and discrepancies.  Finally, Github repos can be marked private, are available even when internal systems are down, and maintain historical versions.</p>
+<p>Having a repository of Word files would be useful, but formatting can be maddening.  All those files will use different fonts, sizes, margins, colors, headings . . . sigh.  Another problem is that you&rsquo;ll have a directory full of files with names like <strong>ITPROC1.docx</strong>.  As an administrator, I would like to have one place where I can easily browse through documentation and be confident that I&rsquo;m up to date!</p>
+<p>My proposal is to use Markdown files for documentation.  They&rsquo;re easy to create and reasonably readable in a text editor.  As pushes or PRs occur, these files can be combined into a PDF using <strong>pandoc</strong>.  I&rsquo;ve built a demonstration of this in the referenced Github repository.  There&rsquo;s a Continuous Integration (CI) process built out of Github Actions.  Setting that up adds a <em>.github/workflows/name.yaml</em> file to your repository.</p>
+<p><strong>Be careful!</strong>  <em>I originally built my repository locally and pushed it to Github, then used the Github actions &ldquo;wizard&rdquo; to setup the CI process.  That builds an initial configuration file for you and puts it into your repository.  The next time I pushed, this directory and file were wiped out!  The result was that the CI process didn&rsquo;t run and it took me a while to understand what I had done.</em></p>
+<p>Here&rsquo;s my YAML file to handle the CI process.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">CI  </span>
+<span style="color:#f92672">on</span>:  
+ <span style="color:#f92672">push</span>:  
+   <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]  </span>
+ <span style="color:#f92672">pull_request</span>:  
+   <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]  </span>
+<span style="color:#f92672">jobs</span>:  
+  <span style="color:#f92672">build</span>:  
+   <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest  </span>
+   <span style="color:#f92672">steps</span>:  
+    <span style="color:#f92672">\- uses</span>: <span style="color:#ae81ff">actions/checkout@v2  </span>
+    <span style="color:#f92672">\- run</span>: <span style="color:#ae81ff">echo &#34;::set-env name=FILELIST::$(printf &#39;%s &#39; *.md)&#34;  </span>
+    <span style="color:#f92672">\- uses</span>: <span style="color:#ae81ff">docker://pandoc/latex:2.9  </span>
+   <span style="color:#f92672">with</span>:  
+    <span style="color:#f92672">args</span>: --<span style="color:#ae81ff">toc --output=output/result.pdf ${{env.FILELIST}}  </span>
+    <span style="color:#f92672">\- uses</span>: <span style="color:#ae81ff">actions/upload-artifact@master  </span>
+   <span style="color:#f92672">with</span>:  
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">output  </span>
+    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">output  </span>
+</code></pre></div><p><img src="/githubartifact.png#floatright" alt="Artifact">
+This process will pull all the md files into a PDF, ordering them alphabetically.  It will then add a table of contents to the front, based on headings found in the files.  I&rsquo;ve cribbed this together using the pandoc example on github (referenced below).</p>
+<p>The <a href="/result.pdf">result</a> is a zip file named <em>output</em> that will show up under Actions.  The latest run should be at the top of the screen, and clicking the link should show you the Artifacts produced.  Note that if there are problems with the CI process, you can review those by looking at the <em>build</em> section.  You could add to the CI process to have the output file emailed to you or stored in a convenient place.  For instance, you could send the PDF directly to your Kindle!  I&rsquo;ve chosen not to bother with that since this is a public repository.  Another idea would be to have this process output HTML files that could be placed on a local web server.  Pandoc can handle PDF, HTML, EPUB, and a lot of other formats.</p>
+<p>My repository is public and you are welcome to clone it and play with this process.  The markdown files currently in place are filled with Lorem Ipsum nonsense but they give you a sense of how it might look as a finished PDF.  I&rsquo;d like to build in an automatic way to add a cover page.  The Pandoc documentation also references using a CSS file to dictate formatting when outputting to EPUB, so I&rsquo;d like to see if I could get that supported in PDF.  PRs are welcome if you have any ideas!</p>
+<p>What do you think?  Would this be a good way for your IT group to maintain documentation?  I&rsquo;d welcome your comments in the section below!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://pandoc.org/">https://pandoc.org/</a><br> &nbsp&nbsp<a href="https://github.com/pandoc/pandoc-action-example">https://github.com/pandoc/pandoc-action-example</a><br> 
+    
+    <strong>Github:</strong> https://github.com/brentstewart/Pandoc-CI
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/git">Git</a> 
+       
+        <a href="/tags/pandoc">Pandoc</a> 
+       
+        <a href="/tags/ci">CI</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/201130_powerline-windows/">Powerline Windows</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200919_pandoc_improved/">CI for Docs with Pandoc (take 2)</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200910_git_a_file/">Git (and run) a File!</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200902_updatinggns3appliances/">Updating a GNS3 Appliance File</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200818_pandoc/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Team Documentation Using GitHub and Pandoc</a></nav>
+</div>
+  </body>

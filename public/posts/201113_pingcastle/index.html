@@ -1,0 +1,126 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Active Directory Security Assessment with PingCastle</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Microsoft Active Directory (AD) is one of the technologies that is predominantly used in several organizations around the world. While we all know its purpose, most of the time it keeps growing or gets convoluted with uncontrolled Organizational Units, ever growing Users, ever increasing Computers, Policies, Integrations etc. While the Administrators remain busy in putting out the fires at work, they rarely get time to optimize, tune, clean or deploy best practices on the AD, and lock it down by implementing good security controls.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/windows.png#floatright" height="140">
+<h1>Active Directory Security Assessment with PingCastle</h1> 
+  <h6><div style="text-align: right"><i>by Myron Estibeiro</a>  on Friday, Nov 13, 2020</i><br></div></h6>
+  <p><p>Microsoft Active Directory (AD) is one of the technologies that is predominantly used in several organizations around the world. While we all know its purpose, most of the time it keeps growing or gets convoluted with uncontrolled Organizational Units, ever growing Users, ever increasing Computers, Policies, Integrations etc. While the Administrators remain busy in putting out the fires at work, they rarely get time to optimize, tune, clean or deploy best practices on the AD, and lock it down by implementing good security controls.</p>
+<p>Enter PingCastle. I found this tool through an auditor who was using mimkatz to perform a pentest on an AD, and I found it to be super valuable. This may help some of the AD Admins to quickly identify some of the areas that they can fix within their AD deployments.
+The entire Pingcastle project is written in C# and it is available on GitHub, located at: <a href="https://github.com/vletoux/pingcastle">https://github.com/vletoux/pingcastle</a></p>
+<p>It is an AD security assessment tool, designed to quickly assess the AD security level with a methodology based on a risk assessment and maturity framework.</p>
+<p><img src="/pingcastle.PNG#center" alt="PC"></p>
+<p><strong>Features of PingCastle</strong></p>
+<ol>
+<li>Health Check - This is the default report produced by PingCastle. It quickly collects the most important information of the Active Directory and establishes an overview. Based on a model and rules, it evaluates the score of the sub-processes of the Active Directory. Then it reports the risks.</li>
+<li>Active Directory Map - This report produces a map of all Active Directory that PingCastle knows about. This map is built based on existing health check reports or when none is available, via a special mode collecting the required information as fast as possible</li>
+<li>Consolidation - When multiple reports of PingCastle have been collected, they can be regrouped in a single report. This facilitates the benchmark of all domains</li>
+<li>Scanner - Checking workstations for local admin privileges, open shares, start-up time is usually complex and requires an admin. PingCastle’s scanner bypasses these classic limits. This feature is awesome and can help to cover some of the most blind spots on the network that are often overlooked</li>
+</ol>
+<p>To learn more about this tool, please visit <a href="https://www.pingcastle.com/">https://www.pingcastle.com/</a></p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.pingcastle.com/">https://www.pingcastle.com/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/security">Security</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/201120_kali_linux_2020_4/">Kali Linux 2020.4</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201025_how_to_write_an_event_to_windows_event/">How to write an event to Windows and Linux logs</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201110_whitelisting_approach/">Whitelisting Approach to Security</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200930_opendnsforhome/">OpenDNS For Home</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200921_privacyenabledsearchengines/">Privacy Enabled Search Engines</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201113_pingcastle/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Active Directory Security Assessment with PingCastle</a></nav>
+</div>
+  </body>

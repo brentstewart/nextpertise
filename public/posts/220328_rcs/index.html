@@ -1,0 +1,114 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Disabling RCS on Android</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Google&rsquo;s move to RCS/Chat You really shouldn&rsquo;t care about Google&rsquo;s supported messaging app. They certainly don&rsquo;t. They change ideas about messaging more often then their underwear. Still, they&rsquo;ve made a move from SMS to RCS recently and they&rsquo;re taking you along with them.
+SMS is about thirty years old. It allows 160 character messages and has features built in to support carrier billing. Despite it&rsquo;s limitations, it&rsquo;s become the default way to communicate for a certain portion of the population and a part of nearly everyone&rsquo;s life.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/Android.png#floatright" height="140">
+<h1>Disabling RCS on Android</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Mar 28, 2022</i><br></div></h6>
+  <p><p><img src="/disable_chat.jpg#floatsmallright" alt="Disabling Chat"></p>
+<h1 id="googles-move-to-rcschat">Google&rsquo;s move to RCS/Chat</h1>
+<p>You really shouldn&rsquo;t care about Google&rsquo;s supported messaging app.  They certainly don&rsquo;t.  They change ideas about messaging more often then their underwear.  Still, they&rsquo;ve made a move from SMS to RCS recently and they&rsquo;re taking you along with them.</p>
+<p>SMS is about thirty years old.  It allows 160 character messages and has features built in to support carrier billing.  Despite it&rsquo;s limitations, it&rsquo;s become the default way to communicate for a certain portion of the population and a part of nearly everyone&rsquo;s life.</p>
+<p>Apple has led the way in showing the limitations of SMS with their chat app.  SMS is run by the carriers, who have seen it as a cash-cow and not an area for innovation.  Apple didn&rsquo;t try to shoe-horn their offering onto SMS, they built a whole new IP-based application.  Apple added in features like end-to-end encryption for privacy, read receipts, activity indicators, and high-res photos.</p>
+<p>Google has recently been shamed for the poor state of messaging on Android and as a result has tried to create an alternative to iMessage around RCS.  Google&rsquo;s take on RCS is called Chat, and there&rsquo;s a protocol built out to support the new service.  Chat takes up many of the improvements that iMessage (and others) have brought to messaging - things like read receipts, activity indicators, and integration with video.  It <em>doesn&rsquo;t</em> include support for end-to-end encryption.  I&rsquo;ve heard this is in development, but I&rsquo;m suspecious that the carriers are loath to give up access to the data.</p>
+<h2 id="should-you-care">Should you care?</h2>
+<p><img src="/digits_app.png#floatsmallleft" alt="Digits"></p>
+<p>No.  As mentioned, if this effort fails it will become the new cherry on the pile of failed messaging apps from Google.  If it succeeds, it will work like Slack/iMessage/etc and you won&rsquo;t really think about it.</p>
+<p>I have a bit of a unique case.  My personal phone is an S9 and I have a seperate work phone.  My personal carrier, T-Mobile, has a DGITS app that carries your T-Mobile phone number to another device via IP.  So I have the DIGITS app on my work phone and only have to carry one phone.  DIGITS supports voice and text - SMS texts.  I leave my personal phone turned on at my desk at home.</p>
+<h2 id="disabling-chat">Disabling Chat</h2>
+<p>I&rsquo;ve been missing texts in DIGITS that come to the old phone.  It didn&rsquo;t make sense until I spoke to a close friend (Hi Mike!) and he mentioned RCS and speculated that since I was missing his texts maybe my app didn&rsquo;t support it.  He tested by turning off RCS when communicating with me.</p>
+<p>So this leads to my current theory: when users message my personal number, my home phone negotiates chat and receives the message, leaving my DIGITS app out of the loop.  I&rsquo;ve resolved this by going into my personal phone and turning off &ldquo;chat&rdquo; and forcing it to use SMS.</p>
+<p>To do this, open the (Google) messages app and choose the three vertical dots to find the settings.  Under settings, choose <em>chat features</em>.  That brings you to the options shown on the left.  The first option - Enable chat features - is the one that disables the chat protocol.</p>
+<p>This is a solution for folks that have two places to receive texts, which is a small group.  It&rsquo;s not a bad tradeoff.  I don&rsquo;t really care about longer bodies of texts or the little blinking activity indication.  If Chat supported end-to-end encryption I might reconsider and hopefully DIGITS will support chat before I have to make that choice.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/"></a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220404_winkey/">Finding Windows Keys on Hardware</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220329_teams/">Powerpoint Live (or You don&rsquo;t know now to share Powerpoint with Teams)</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220328_rcs/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Disabling RCS on Android</a></nav>
+</div>
+  </body>

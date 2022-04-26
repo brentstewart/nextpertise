@@ -1,0 +1,135 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Making a Memorial DVD</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="A good friend lost his father to COVID last week. It was unexpected - he was only about 60 and in good health. My friend asked for help putting together a memorial DVD. Perhaps you&rsquo;ve seen these - at a receiving in the US it&rsquo;s common these days to find a TV that displays a collection of pictures of the deceased, perhaps with some background music.
+I don&rsquo;t have any special expertise in Video and I didn&rsquo;t have long to figure it out.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/how%20to.png#floatright" height="140">
+<h1>Making a Memorial DVD</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Mar 8, 2021</i><br></div></h6>
+  <p><p>A good friend lost his father to COVID last week.  It was unexpected - he was only about 60 and in good health.  My friend asked for help putting together a memorial DVD.  Perhaps you&rsquo;ve seen these - at a receiving in the US it&rsquo;s common these days to find a TV that displays a collection of pictures of the deceased, perhaps with some background music.</p>
+<p>I don&rsquo;t have any special expertise in Video and I didn&rsquo;t have long to figure it out.  If you&rsquo;re in a similar situation then 1) leave a note in the comments and I&rsquo;ll pray for your friends family and 2) here are some quick and dirty instructions that will let you be of service.</p>
+<h2 id="gathering-input">Gathering input</h2>
+<p>I received a collection of sixty photos, a few digital pictures, as well as some MP3 files that were some of his Dad&rsquo;s favorites.  I scanned all the pictures in as JPG at 300 dpi and put them in a directory with the MP3s.  I used GIMP to crop the photos.  I originally left the white borders around some pictures, but later found this created artifacts on the slideshow and re-edited to crop to just the picture.  I found the obituary online for some of the details I would need for the title page.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install gimp
+</code></pre></div><h2 id="creating-the-dvd">Creating the DVD</h2>
+<p>This section isn&rsquo;t a software recommendation.  I wanted something that I could quickly understand and that wasn&rsquo;t overly complicated to use.  I tried a few video editors and quickly picked kdenlive.  Even though I&rsquo;m using Pop!OS Gnome, kdenlive worked fine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install kdenlive
+</code></pre></div><p>By default, kdenlive shows two video tracks and two audio tracks.  I deleted the extra tracks.  Right clicking in the resources box (below the file menu) allowed me to import the audio files and an <em>image sequence</em>.  The image sequence importer allowed me to bring in a group of pictures in the same format from a single directory.  The picture files I received were PNG, so I used GIMP to convert them and then imported the entire set of pictures from the working directory.  The image sequence sorts by default to alphabetical order.  I had been given the pictures in rough chronological order and numbered them as they scanned, so they were already in the right order and I didn&rsquo;t have to spend a lot of time.  I was lucky, but I definitely suggest that technique if you need to make this on short notice.</p>
+<p>The image sequence import allows you to specify how long each picture displays as well.  These DVDs are typically played in the background where they provide a distraction to folks in the receiving line and I wanted it to have enough tempo so it wouldn&rsquo;t be boring.  I decided to change photos every 10 seconds and this turned out to be well received.</p>
+<p><img src="/210308_kdenlive.png#center" alt="The Memorial DVD"></p>
+<p>I created a title by right clicking in the resource box and &ldquo;adding title clip&rdquo;.  This gave me a PowerPoint-like interface where I could add some text.   In this case, I created a simple title with the name, birth date and date of death.  It also let me specify how long it would display.</p>
+<p>Dragging the image sequence or the title onto the video track (&ldquo;V1&rdquo;) blocked off a period of time and labeled it &ldquo;Image Sequence&rdquo;.  Sixty photos displayed for 10 seconds each gives ten minutes of video, so I dragged out a few more copies of the Image Sequence to fill out the DVD.  I left a brief black screen between sequences, then a copy of the title to show the name of the deceased, before restarting the slide show.</p>
+<p>Dragging the audio files onto the audio track (&ldquo;A1&rdquo;) was a similar process.  I simply dragged enough songs to cover the time, leaving brief spaces between.  I was able to watch the video and I paid special attention to the transitions to make sure they were clean and not distracting.  I <em>think</em> kdenlive will handle fancy image transitions but I elected not to spend too much time on them.  I had a day to put this together and the &ldquo;plain vanilla&rdquo; transitions were respectful and not distracting.</p>
+<p>At this point you can go to <strong>Project &gt; Render</strong> to compile the ensemble to an ISO file.  Here I hit another problem - I don&rsquo;t have a DVD burner!  I have an old laptop running Linux, so I used SFTP to transfer the file to it and used brasero to burn the DVD.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install brasero
+</code></pre></div><p>Last step!  I dug out an old DVD player to verify that the burned DVD would read okay.  It did and the resulting display looked sharp and clean.  I burned a copy for the funeral, and extras for my friend and his siblings.</p>
+<h2 id="the-reception">The Reception</h2>
+<p>This was a rush job by an stark amatuer, but the result was appreciated by the family.  I want to the thank the folks at kdenlive - it&rsquo;s a slick program, worked reliably, and was easy to pick up.  The DVD I made probably was more of a credit to their hard work and gift to the community than to my contribution.  That said, this is a doable project.  I could see this idea being a nice feature at an anniversary or birthday party, or even at a company Christmas party.  If you have the opportunity to be of service in this way, I hope this walk through will be a beneficial introduction.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.gimp.org/downloads/">https://www.gimp.org/downloads/</a><br> &nbsp&nbsp<a href="https://kdenlive.org/en/">https://kdenlive.org/en/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux">Linux</a> 
+       
+        <a href="/tags/how-to">How To</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220223_webapps/">Webapps</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220124_oh_my_posh/">Oh My Posh</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220117_linux_ftp/">Setting up a Basic FTP server on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210911_distrohoppingwventoy/">Distro Hopping in Style</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210906_apachedav/">Using WebDAV on Apache</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210308_kdenlive/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Making a Memorial DVD</a></nav>
+</div>
+  </body>

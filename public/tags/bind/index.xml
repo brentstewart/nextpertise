@@ -1,0 +1,149 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bind on </title>
+    <link>https://www.nextpertise.net/tags/bind/</link>
+    <description>Recent content in Bind on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Aug 2021 19:08:11 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/bind/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DNS on Ubuntu</title>
+      <link>https://www.nextpertise.net/posts/210831_dnsonubuntu/</link>
+      <pubDate>Tue, 31 Aug 2021 19:08:11 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210831_dnsonubuntu/</guid>
+      <description>&lt;p&gt;Continuing from my &lt;a href=&#34;https://www.nextpertise.net/posts/210830_apache/&#34;&gt;previous post&lt;/a&gt;, I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I&amp;rsquo;m still getting the hang of Proxmox, although I&amp;rsquo;m feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I&amp;rsquo;ll provide a walk through of a simple local DNS server.  My goal at home is to create a &amp;ldquo;stewart.lan&amp;rdquo; network that I can use to reference local resources.&lt;/p&gt;
+&lt;p&gt;Like the Apache server I built last time, this server is running Ubuntu 21.04 Server and my instructions are written from that perspective.  Some commands may change as you move to non-Debian distributions or with different versions.  Installation of DNS services is done with &lt;strong&gt;bind9&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt update
+sudo apt install bind9
+sudo ufw allow 53
+sudo ufw allow 53/udp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the service is installed, &lt;strong&gt;bind&lt;/strong&gt; configuration files are found in &lt;em&gt;/etc/bind&lt;/em&gt;.  In my configuration there are five files that I modified or created: the service configuration file &lt;em&gt;named.conf&lt;/em&gt; which loads in &lt;em&gt;named.conf.local&lt;/em&gt; and &lt;em&gt;named.conf.options&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@webnamer:/etc/bind# cat named.conf
+include &amp;quot;/etc/bind/named.conf.options&amp;quot;;
+include &amp;quot;/etc/bind/named.conf.local&amp;quot;;
+
+###
+
+root@webnamer:/etc/bind# cat named.conf.local
+//
+// Do any local configuration here
+//
+zone &amp;quot;stewart.lan&amp;quot; {
+    type master;
+    file &amp;quot;/etc/bind/forward.stewart.lan&amp;quot;;
+    allow-query { any; };
+};
+
+###
+
+root@webnamer:/etc/bind# cat named.conf.options 
+acl internal-network {
+    192.168.24.0/22;
+    localhost;
+    localnets;
+};
+options {
+    directory &amp;quot;/var/cache/bind&amp;quot;;
+    forwarders {
+	    192.168.26.53;  //this server
+	    208.67.222.222; //OpenDNS1
+	    208.67.220.220; //OpenDNS2
+	    8.8.8.8;        //Google DNS1
+	    8.8.4.4;        //Google DNS2
+    };
+    allow-query { internal-network; };
+    allow-query-cache { internal-network; };
+    allow-recursion { internal-network; };
+    allow-transfer { none; };
+    allow-update { none; };
+    dnssec-validation yes;
+    auth-nxdomain no;
+    recursion yes;
+    notify no;
+    listen-on { any; };
+    listen-on-v6 { none; };
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Anytime DNS config files are changed the system will need to be restarted.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;systemctl restart named
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With these files in place recursive lookups (like &lt;em&gt;google.com&lt;/em&gt;) should be working.  This can be tested by changing DNS on a machine, or by using &lt;strong&gt;dig&lt;/strong&gt; or &lt;strong&gt;nslookup&lt;/strong&gt;.  &lt;strong&gt;Dig&lt;/strong&gt; accepts arguments for the DNS server to use, the domain to be queried, and the type of record (by default A) to be returned.  In the example below, the server and the domain to be returned are specified.   &lt;strong&gt;NSLookup&lt;/strong&gt; is a similar command that queries DNS servers.  In the example below, the server command tells it to connect to the new server and then the &amp;ldquo;www&amp;rdquo; is a query for a record (haven&amp;rsquo;t gotten to the local zone setup yet).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@webnamer:/etc/bind# dig 192.168.26.3 stewart.lan
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.16.8-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; stewart.lan
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 35138
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 1b490288965657d7010000006131687c06bba43e1f56fdbc (good)
+;; QUESTION SECTION:
+;stewart.lan.			IN	A
+
+;; AUTHORITY SECTION:
+stewart.lan.		604600	IN	SOA	localhost. root.localhost. 6 604820 86600 2419600 604600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.26.53#53(192.168.26.53)
+;; WHEN: Thu Sep 02 20:12:44 EDT 2021
+;; MSG SIZE  rcvd: 118
+
+root@webnamer:/etc/bind# nslookup
+&amp;gt; server 192.168.26.53
+Default server: 192.168.26.53
+Address: 192.168.26.53#53
+&amp;gt; www
+Server:		192.168.26.53
+Address:	192.168.26.53#53
+
+&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If there are problems at this point this point, use &lt;strong&gt;named-checkconf&lt;/strong&gt; to review the configuration files for errors.  By default, &lt;em&gt;named&lt;/em&gt; logs can be reviewed with &lt;strong&gt;tail /var/log/syslog&lt;/strong&gt; as well.&lt;/p&gt;
+&lt;p&gt;A forward lookup zone (which matches names to numbers) needs to be created if we want a local zone.  My house is named &lt;em&gt;stewart.lan&lt;/em&gt;, but any name is fine with the caveat that collisions with valid public name spaces should be avoided.  A forward lookup zone is a text file similar to the one below.  Note that this file was referenced in the &lt;em&gt;named.conf&lt;/em&gt; setup.  A records link names to IPs.  CNAMEs are alias records.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@webnamer:/etc/bind$ cat forward.stewart.lan
+$TTL    604800
+@       IN      SOA     localhost. root.localhost. (
+                            6         ; Serial
+                        604820         ; Refresh
+                        86600         ; Retry
+                        2419600         ; Expire
+                        604600 )       ; Negative Cache TTL
+;
+;Name Server Information
+@       IN      NS      ns.stewart.lan.
+
+;IP address of Your Domain Name Server(DNS)
+ns IN       A      192.168.26.53
+
+;A Record for Host names
+gw     IN       A       192.168.26.1
+ns	IN	A	192.168.26.53
+pop	IN	A	192.168.25.7
+print	IN	A	192.168.24.17
+oldprint	IN	A	192.168.24.11
+server	IN	A	192.168.26.9
+proxmox	IN	A	192.168.26.10
+library	IN	A	192.168.26.11
+
+
+;CNAME Record
+www	IN	CNAME	ns.stewart.lan.
+dav	IN	CNAME	ns.stewart.lan.
+newprint	IN	CNAME	print.stewart.lan.
+pve	IN	CNAME	proxmox.stewart.lan.
+webnamer	IN	CNAME	ns.stewart.lan
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This setup doesn&amp;rsquo;t show the reverse lookup zone (24.168.192.in-addr.arpa), but that can be built easily and added if needed.  Reverse zones link numbers to names and are used for authentication usually.  With DNS setup and the forward zone in place, we should be able to ping by name (link &lt;em&gt;printer.stewart.lan&lt;/em&gt;).  If there are problems, use &lt;strong&gt;named-checkzone&lt;/strong&gt; to confirm that the format of your zone file is correct.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

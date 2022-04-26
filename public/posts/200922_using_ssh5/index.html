@@ -1,0 +1,131 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Using SSH (Part 5) - Remotely Possible</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="I confess that I never meant for this to be an SSH blog. It was an easy topic to write about when we started, but friends keep suggesting new things I should cover. The takeaway then is that SSH is a heck of a tool and can be used to accomplish a lot of different things.
+Today&rsquo;s topic is running a GUI program on a remote computer and displaying the output locally.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Using SSH (Part 5) - Remotely Possible</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Sep 22, 2020</i><br></div></h6>
+  <p><p>I confess that I never meant for this to be an SSH blog. It was an easy topic to write about when we started, but friends keep suggesting new things I should cover. The takeaway then is that SSH is a heck of a tool and can be used to accomplish a lot of different things.</p>
+<p>Today&rsquo;s topic is running a GUI program on a remote computer and displaying the output locally. Pretty cool, right? This is suprisingly easy to do.</p>
+<p>Why would we want to do this? I already covered that under &ldquo;pretty cool&rdquo;, but I suppose I could say something about using your netbook to run a big program that needs lots of RAM and CPU.</p>
+<p>To demonstrate, I&rsquo;m going to run the text editor from my server on my desktop.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -X brent@192.168.1.1 <span style="color:#75715e"># -X or -Y work  </span>
+pluma
+</code></pre></div><p><img src="/XRemote.png#center" alt="Displaying a remote program"></p>
+<p>Simply SSH into a remote host using either the -X or -Y switch. From the remote prompt, enter the command to run the graphical program of your choosing and the window will be displayed locally. Using &ldquo;-X&rdquo; (as shown in the code) allows this to work but keeps the X11 Security extension restrictions. Using &ldquo;-Y&rdquo; like I did in the screen capture bypasses those restrictions. From an operative point of view, they act identically.</p>
+<p>This has been the most straightforward of the series. If you&rsquo;re interested in SSH, check out:</p>
+<ul>
+<li><a href="/using_ssh1">SSH - Part 1 Basics and Banners</a></li>
+<li><a href="/using_ssh2">SSH - Part 2 Authentication</a></li>
+<li><a href="/using_ssh3">SSH - Part 3 File Shares</a></li>
+<li><a href="/using_ssh4">SSH - Part 1 Port Forwarding</a></li>
+</ul>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/ssh">SSH</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220223_webapps/">Webapps</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220124_oh_my_posh/">Oh My Posh</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220117_linux_ftp/">Setting up a Basic FTP server on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210911_distrohoppingwventoy/">Distro Hopping in Style</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210906_apachedav/">Using WebDAV on Apache</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200922_using_ssh5/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Using SSH (Part 5) - Remotely Possible</a></nav>
+</div>
+  </body>

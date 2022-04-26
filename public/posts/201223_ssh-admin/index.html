@@ -1,0 +1,192 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise SSH Administrative Trivia</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Let&rsquo;s consider an interesting case: we&rsquo;d like to identify remote ssh users. Remember that SFTP is a part of SSH, so these commands will also identify SSH users. There are a variety of ways to do this and some are even fairly obviouis.
+Who or w Who is a utility to display logged in users. The man page can walk you through the various switches, but the two I find most valuable are -a to show all and -H to show headings.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>SSH Administrative Trivia</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Dec 23, 2020</i><br></div></h6>
+  <p><p>Let&rsquo;s consider an interesting case: we&rsquo;d like to identify remote ssh users.  Remember that SFTP is a part of SSH, so these commands will also identify SSH users.  There are a variety of ways to do this and some are even fairly obviouis.</p>
+<h2 id="who-or-w">Who or w</h2>
+<p><strong>Who</strong> is a utility to display logged in users.  The man page can walk you through the various switches, but the two I find most valuable are <em>-a</em> to show all and <em>-H</em> to show headings.  The <em>all</em> option includes the time that the session has been active, how it&rsquo;s attached, and where it&rsquo;s coming from.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">who -aH
+    NAME       LINE         TIME             IDLE          PID COMMENT  EXIT  
+               system boot  2020-12-02 05:47  
+               run-level <span style="color:#ae81ff">5</span>  2020-12-02 05:47  
+    pop      ? :1           2020-12-02 08:08   ?          <span style="color:#ae81ff">3663</span> <span style="color:#f92672">(</span>:1<span style="color:#f92672">)</span>  
+    pop      + pts/2        2020-12-23 18:14  old       <span style="color:#ae81ff">570072</span> <span style="color:#f92672">(</span>192.168.1.72<span style="color:#f92672">)</span>  
+    pop      + pts/6        2020-12-27 15:36 00:01      <span style="color:#ae81ff">665161</span> <span style="color:#f92672">(</span>192.168.1.81<span style="color:#f92672">)</span>  
+</code></pre></div><p>The first column - Name - is the local name that these users are logged in as.  In this example, I&rsquo;m logged in as &ldquo;brent&rdquo; on 192.168.1.81 but my ssh session to this computer uses the username &ldquo;pop&rdquo;.  The LINE identifies connection - <em>pts</em> stands for psuedo terminal slave, or a sub  process of <em>pty</em> (psuedo-tty).  You may be more familiar with <em>tty</em> connections - those are direct connections like a local terminal.  Notice that there&rsquo;s a local connection and two remote connections in this example.</p>
+<p>If <strong>who</strong> is too much typing for you, try <strong>w</strong>.  It provides very similar output, no switches required</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">w
+     16:22:45 up <span style="color:#ae81ff">25</span> days, 10:35,  <span style="color:#ae81ff">3</span> users,  load average: 1.90, 1.70, 1.53  
+    USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+    pop      :1       :1               02Dec20 ?xdm?  12days  0.00s /usr/libexec/gdm-x-session --run-sc
+    pop      pts/2    192.168.1.72    Wed18    3days  0.09s  0.09s -bash
+    pop      pts/6    192.168.1.81    15:36   46:35   0.02s  0.02s -bash
+</code></pre></div><p>You can also derive this information from <strong>ps</strong>.  This command lists active processes and includes active ssh sessions.  Note that you can pipe to <strong>grep</strong> to limit it to lines that include &lsquo;pts&rsquo; or &lsquo;ssh&rsquo;.</p>
+<blockquote>
+<p>ps  ax</p>
+</blockquote>
+<h2 id="last">Last</h2>
+<p><strong>Last</strong> looks through /var/log/wtmp and shows login activity.  You can specify a username to see when that user logged in and out.  Note that a psuedo-user named <em>reboot</em> logs in when the system reboots, so <strong>last reboot</strong> will show a list of all reboots.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">last
+    pop      pts/6        192.168.1.81    Sun Dec <span style="color:#ae81ff">27</span> 15:36   still logged in  
+    pop      pts/2        192.168.1.72    Wed Dec <span style="color:#ae81ff">23</span> 18:14   still logged in  
+    pop      pts/2        192.168.1.2     Wed Dec <span style="color:#ae81ff">23</span> 18:11 - 18:11  <span style="color:#f92672">(</span>00:00<span style="color:#f92672">)</span>  
+    pop      :1           :1               Wed Dec  <span style="color:#ae81ff">2</span> 08:08   still logged in  
+    reboot   system boot  5.8.0-7630-gener Wed Dec  <span style="color:#ae81ff">2</span> 05:47   still running  
+    pop      :1           :1               Wed Nov <span style="color:#ae81ff">25</span> 18:02 - down  <span style="color:#f92672">(</span>6+11:44<span style="color:#f92672">)</span>  
+    reboot   system boot  5.8.0-7630-gener Wed Nov <span style="color:#ae81ff">25</span> 17:56 - 05:46 <span style="color:#f92672">(</span>6+11:50<span style="color:#f92672">)</span>  
+    pop      :1           :1               Mon Nov <span style="color:#ae81ff">23</span> 08:31 - down  <span style="color:#f92672">(</span>2+09:24<span style="color:#f92672">)</span>  
+    reboot   system boot  5.8.0-7630-gener Mon Nov <span style="color:#ae81ff">23</span> 08:29 - 17:56 <span style="color:#f92672">(</span>2+09:26<span style="color:#f92672">)</span>  
+    pop      :1           :1               Sat Nov <span style="color:#ae81ff">14</span> 17:40 - down  <span style="color:#f92672">(</span>8+14:47<span style="color:#f92672">)</span>  
+    reboot   system boot  5.8.0-7625-gener Sat Nov <span style="color:#ae81ff">14</span> 17:39 - 08:28 <span style="color:#f92672">(</span>8+14:48<span style="color:#f92672">)</span> 
+</code></pre></div><p><strong>Last</strong> shows similar information to <strong>who</strong>, but shows activity over time instead of just current activity.  On a busy server, <strong>w</strong> might do a better job of concisely showing current users.  A related utility is <strong>lastb</strong> which shows <em>bad</em> login attempts.  In the previous example I mentioned that my account is &ldquo;brent&rdquo; on 192.168.1.81.  I forgot that there was a different user on this machine and you can see here the failed login attempts.  Notice that this command requires elevated priviledges.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo lastb  
+brent    ssh:notty    192.168.1.81    Sun Dec <span style="color:#ae81ff">27</span> 15:35 - 15:35  <span style="color:#f92672">(</span>00:00<span style="color:#f92672">)</span>  
+brent    ssh:notty    192.168.1.81    Sun Dec <span style="color:#ae81ff">27</span> 15:35 - 15:35  <span style="color:#f92672">(</span>00:00<span style="color:#f92672">)</span>  
+brent    ssh:notty    192.168.1.81    Sun Dec <span style="color:#ae81ff">27</span> 15:35 - 15:35  <span style="color:#f92672">(</span>00:00<span style="color:#f92672">)</span>  
+</code></pre></div><p>Paranoid users may want to review failed logins every time they open a terminal.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;sudo lastb&#34;</span> &gt;&gt; /home/user/.bashrc  
+</code></pre></div><p>A similar command is <strong>journalctl -u ssh</strong>.  This shows the systemd journal, so obviously it&rsquo;s only of use on systemd-based systems.  Modern Fedora/RHEL and Ubuntu are on that list.  The switch <em>-u</em> limits output to certain units, in this case <em>ssh</em>.  Note that some systems will require the unit to be listed as &ldquo;sshd&rdquo;.   Notice that this shows socket information and failed attempts and is organized chronologically.  This might be useful if you&rsquo;re trying to match events in troubleshooting.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">journalctl -u ssh  
+-- Logs begin at Sat 2020-11-14 17:39:49 EST, end at Sun 2020-12-27 18:10:11 EST. --  
+Dec <span style="color:#ae81ff">23</span> 18:11:37 pop-os sshd<span style="color:#f92672">[</span>569656<span style="color:#f92672">]</span>: Accepted password <span style="color:#66d9ef">for</span> pop from 192.168.1.2 port <span style="color:#ae81ff">52778</span> ssh2  
+Dec <span style="color:#ae81ff">23</span> 18:11:37 pop-os sshd<span style="color:#f92672">[</span>569656<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:session<span style="color:#f92672">)</span>: session opened <span style="color:#66d9ef">for</span> user pop by <span style="color:#f92672">(</span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span>  
+Dec <span style="color:#ae81ff">23</span> 18:14:55 pop-os sshd<span style="color:#f92672">[</span>570072<span style="color:#f92672">]</span>: Accepted password <span style="color:#66d9ef">for</span> pop from 192.168.25.72 port <span style="color:#ae81ff">23639</span> ssh2  
+Dec <span style="color:#ae81ff">23</span> 18:14:55 pop-os sshd<span style="color:#f92672">[</span>570072<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:session<span style="color:#f92672">)</span>: session opened <span style="color:#66d9ef">for</span> user pop by <span style="color:#f92672">(</span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span>  
+Dec <span style="color:#ae81ff">27</span> 15:35:39 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: Invalid user brent from 192.168.25.81 port <span style="color:#ae81ff">54850</span>  
+Dec <span style="color:#ae81ff">27</span> 15:35:41 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:auth<span style="color:#f92672">)</span>: check pass; user unknown  
+Dec <span style="color:#ae81ff">27</span> 15:35:41 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:auth<span style="color:#f92672">)</span>: authentication failure; logname<span style="color:#f92672">=</span> uid<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> eu&gt;  
+Dec <span style="color:#ae81ff">27</span> 15:35:43 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: Failed password <span style="color:#66d9ef">for</span> invalid user brent from 192.168.25.81 port&gt;  
+Dec <span style="color:#ae81ff">27</span> 15:35:48 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:auth<span style="color:#f92672">)</span>: check pass; user unknown  
+Dec <span style="color:#ae81ff">27</span> 15:35:51 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: Failed password <span style="color:#66d9ef">for</span> invalid user brent from 192.168.25.81 port&gt;  
+Dec <span style="color:#ae81ff">27</span> 15:35:57 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: Connection closed by invalid user brent 192.168.25.81 port 548&gt;  
+Dec <span style="color:#ae81ff">27</span> 15:35:57 pop-os sshd<span style="color:#f92672">[</span>665153<span style="color:#f92672">]</span>: PAM <span style="color:#ae81ff">1</span> more authentication failure; logname<span style="color:#f92672">=</span> uid<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> euid<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> tty<span style="color:#f92672">=</span>s&gt;  
+Dec <span style="color:#ae81ff">27</span> 15:36:07 pop-os sshd<span style="color:#f92672">[</span>665161<span style="color:#f92672">]</span>: Accepted password <span style="color:#66d9ef">for</span> pop from 192.168.25.81 port <span style="color:#ae81ff">54862</span> ssh2  
+Dec <span style="color:#ae81ff">27</span> 15:36:07 pop-os sshd<span style="color:#f92672">[</span>665161<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:session<span style="color:#f92672">)</span>: session opened <span style="color:#66d9ef">for</span> user pop by <span style="color:#f92672">(</span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span>  
+</code></pre></div><h2 id="network-commands">Network commands</h2>
+<p>Finally, there are also a few ways to look at this from a network perspective.  You can show socket statistics with _<em>ss</em>.  This can be interesting for associating unknown traffic to a process id.  The following example is truncated to give a sense of the output, but the full dump is long.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ss | more
+    Netid State Recv-Q  Send-Q  Local Address:Port         Peer Address:Port    Process
+    u_seq ESTAB      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   @00031 <span style="color:#ae81ff">4813785</span>                 *                <span style="color:#ae81ff">4813786</span>        
+    u_seq ESTAB      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   @00041 <span style="color:#ae81ff">8426824</span>                 *                <span style="color:#ae81ff">8426825</span>        
+</code></pre></div><p><strong>Netstat</strong> provides another network perspective, this time organized as conversations.  The tabular form of netstat is a little easier to digest.  The version shown uses switches for numeric output, processes info, and all.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat -npa  
+<span style="color:#f92672">(</span>Not all processes could be identified, non-owned process info  
+ will not be shown, you would have to be root to see it all.<span style="color:#f92672">)</span>  
+Active Internet connections <span style="color:#f92672">(</span>servers and established<span style="color:#f92672">)</span>  
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name      
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 192.168.25.2:22         192.168.25.81:54862     ESTABLISHED -  
+</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>These networking commands give you a different view into what&rsquo;s happening on your server, but for our original purpose they&rsquo;re abstract.  I&rsquo;d recommend trying all these techniques to gain wider familiarity with your server, but I find the most common commands I use are <strong>w</strong>, <strong>lastb</strong>, and <strong>journalctl -u ssh</strong> (depending on what I&rsquo;m trying to troubleshoot).</p>
+<p>Future articles will continue to review some of the administrative issues with maintaining an SSH/SFTP server, such as understanding encryption in use and limiting it to &ldquo;modern&rdquo; protocols.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/ssh">SSH</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220223_webapps/">Webapps</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220124_oh_my_posh/">Oh My Posh</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220117_linux_ftp/">Setting up a Basic FTP server on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210911_distrohoppingwventoy/">Distro Hopping in Style</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210906_apachedav/">Using WebDAV on Apache</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201223_ssh-admin/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">SSH Administrative Trivia</a></nav>
+</div>
+  </body>

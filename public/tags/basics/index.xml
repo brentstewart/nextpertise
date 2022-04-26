@@ -1,0 +1,93 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basics on </title>
+    <link>https://www.nextpertise.net/tags/basics/</link>
+    <description>Recent content in Basics on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Dec 2020 02:00:15 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/basics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Technically Correct Verbage Rant</title>
+      <link>https://www.nextpertise.net/posts/201220_networkingrant/</link>
+      <pubDate>Sun, 20 Dec 2020 02:00:15 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201220_networkingrant/</guid>
+      <description>&lt;p&gt;Part of our industry is the need to constantly keep up to date.  I&amp;rsquo;ve been going through some training and flipped the &amp;ldquo;bozo&amp;rdquo; bit on the instructor because he was struggling to explain some basic network concepts.  I&amp;rsquo;m in management these days and often have to quickly evaluate other technical people.  Whether it&amp;rsquo;s hiring, considering contract work, or talking to a potential &amp;ldquo;partner&amp;rdquo;, I form an opinion of you, your company, and your product based on your technical vocabulary.&lt;/p&gt;
+&lt;p&gt;Here are three terms that are commonly misused and make me suspecious.&lt;/p&gt;
+&lt;h2 id=&#34;bandwith&#34;&gt;Bandwith&lt;/h2&gt;
+&lt;p&gt;This one is so common, that even people who understand concepts will slip into a vernacular.  In untechnical slang, &amp;ldquo;bandwidth&amp;rdquo; has come to be synonymous with time and capacity.  A colleague might ask you &amp;ldquo;do you have the bandwidth to handle this?&amp;rdquo;  What they mean is &amp;ldquo;do you have the time?&amp;rdquo;  In this sense, it&amp;rsquo;s trendy and hip and can be more easily forgiven.&lt;/p&gt;
+&lt;p&gt;When your ISP says that their bandwidth is 10Mbps they are describing &lt;em&gt;network capacity&lt;/em&gt; or how fully it can be &lt;em&gt;utilized&lt;/em&gt;.  This usage is technically wrong and either indicates that the speaker doesn&amp;rsquo;t understand the term or is pitching the discussion toward a non-technical audience.  Either of these uses is incorrect even in an analogous sense because they both speak to the amount of information over time.&lt;br&gt;
+&lt;strong&gt;Bandwidth&lt;/strong&gt; properly describes the difference between the upper and lower frequencies being considered at an instant.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/TCP_CLOSE.svg/260px-TCP_CLOSE.svg.png#floatright&#34; alt=&#34;TCP Acks&#34;&gt;
+Further, even the adulterated version of the term is misused.  When a link is said to be &amp;ldquo;10Mbps&amp;rdquo;, it doesn&amp;rsquo;t mean that a 10MB file can be downloaded in one second!&lt;/p&gt;
+&lt;p&gt;Notice that ISP speeds are small &amp;ldquo;b&amp;rdquo; bits.  There are eight bits to a byte, so a 10 Megabyte file is 80 Megabits.  Further, files are transmitted a little bit at a time.  The client has to acknowledge receipt periodically.  That means that the server has to pause and wait for that acknowledgement.  Actual file transfer has as much to do with the round-trip time for this ack as with the size of the connection.&lt;/p&gt;
+&lt;h2 id=&#34;ip-is-classless&#34;&gt;IP is Classless&lt;/h2&gt;
+&lt;p&gt;The thing that really set me off was an AWS networking discussion where the instructor mentioned that we would use the &amp;ldquo;10.10.0.0/16 Class B network&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;A long time ago, IP addresses were just numbers.  I could be &amp;ldquo;1&amp;rdquo; and you could be &amp;ldquo;2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;At a certain point, the network was divided into smaller networks of different sizes and the idea of an implicit class was used.  In this &lt;em&gt;classful&lt;/em&gt; structure, one could tell what portion of the address was the network prefix based on  the first octet.&lt;/p&gt;
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table: Classful addressing&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Class&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;First Octet&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Assumed Mask&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;A&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;0-127&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;255.0.0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;B&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;128-191&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;255.255.0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;C&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;192-223&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;255.255.255.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Later (mid-90s) as the Internet started to grow it became obvious that this system lacked necessary flexibility.  IP addresses began to use &lt;em&gt;explicit masks&lt;/em&gt;, so that they could specify network prefixes of any number of bits.  At that point (25 years ago!) class became a thing of the past.&lt;/p&gt;
+&lt;h2 id=&#34;slash-notation&#34;&gt;Slash notation&lt;/h2&gt;
+&lt;p&gt;Finally, it&amp;rsquo;s technically correct to describe a mask as &amp;ldquo;255.255.240.0&amp;rdquo; but the cool kids would say &amp;ldquo;/20&amp;rdquo;.  That means the first 20 bits are used as the network prefix.  Not understanding this usage is a clear indication I&amp;rsquo;m dealing with a noobie.&lt;/p&gt;
+&lt;h2 id=&#34;my-point&#34;&gt;My point&lt;/h2&gt;
+&lt;p&gt;Words are important.  The words we choose carry meaning, sometimes beyond their strict definition.  They identify us as knowledgeable and up-to-date in a given subject and inspire confidence in our audience.  I hope you take care to communicate clearly and accurately and avoid these all-too-common flags.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What other mis-uses of technical language am I missing?&lt;/em&gt; I&amp;rsquo;d love your comments.  I&amp;rsquo;ll try to update this discussion as we go forward together!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

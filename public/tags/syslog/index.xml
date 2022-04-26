@@ -1,0 +1,63 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syslog on </title>
+    <link>https://www.nextpertise.net/tags/syslog/</link>
+    <description>Recent content in Syslog on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Oct 2020 16:29:57 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/syslog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to write an event to Windows and Linux logs</title>
+      <link>https://www.nextpertise.net/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
+&lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
+&lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
+&lt;p&gt;A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the built-in terminal in Visual Studio Code (or VSCodium) for Windows, which uses a &amp;ldquo;non-admin&amp;rdquo; session.&lt;/p&gt;
+&lt;p&gt;Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses &lt;em&gt;scoop&lt;/em&gt; to grab a &amp;ldquo;sudo&amp;rdquo; application for Powershell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;iex (new-object net.webclient).downloadstring(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;https://get.scoop.sh&amp;#39;&lt;/span&gt;)
+set-executionpolicy unrestricted -s cu &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt;  
+scoop install sudo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;how-to-write-an-event-to-windows-event-log&#34;&gt;How to write an Event to Windows Event Log&lt;/h2&gt;
+&lt;p&gt;This technique allows you to place comments into the Windows event logs, for instance to mark the beginning or completion of a change window.  We could also build this into certain scripts so that they left an entry when they ran.  It could even be automated into systems so that the markings took place without a person having to remember.&lt;/p&gt;
+&lt;p&gt;The general process is to create an information &amp;ldquo;source&amp;rdquo; to write into (if it doesn&amp;rsquo;t already exist) and then to write the event.&lt;/p&gt;
+&lt;h3 id=&#34;creating-a-log-source&#34;&gt;Creating a log source&lt;/h3&gt;
+&lt;p&gt;Since we&amp;rsquo;re creating log events for comments, let&amp;rsquo;s create a log source that matches our username.  If there are several admins, it may be a good idea to use a format like &amp;ldquo;admin-username&amp;rdquo; so that we can later search logs for &amp;ldquo;admin*&amp;rdquo;.  Creating a new source requires PowerShell to run with Administrator priviledges.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;New-eventlog -logname application -source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that you can use the environment variable &lt;em&gt;$env:username&lt;/em&gt;.  You can build this into a script - if the source already exists, the command will return an error to that effect.&lt;/p&gt;
+&lt;h2 id=&#34;logging-an-entry&#34;&gt;Logging an entry&lt;/h2&gt;
+&lt;p&gt;To create a log entry use the &amp;ldquo;write-eventlog&amp;rdquo; cmdlet.  Specify the log (like Application or Security), the source that we defined, and the message.  The EventID isn&amp;rsquo;t significant, so you could also use this numeric field if you had something suitable (like a ticket number).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Write-EventLog -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is also possible to write an entry on a remote computer. The example below assumes that the source &amp;ldquo;bstewart&amp;rdquo; exists on the remote computer.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Write-EventLog -computername &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Server&amp;#34;&lt;/span&gt; -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bstewart&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID 1__  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;scripting&#34;&gt;Scripting&lt;/h2&gt;
+&lt;p&gt;This can all be simplified in a script, saved as &amp;ldquo;log.ps1&amp;rdquo;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;  
+{  
+        sudo New-eventlog -logname application -source $env:username  
+}  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;Catch&lt;/span&gt;  
+{  
+    Write-Output &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Log source already exists&amp;#34;&lt;/span&gt;  
+}  
+Write-eventlog -logname application -source $env:username -entrytype information -message $args[0] -eventid 1  
+write-host &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The following was written to the Application log using the source $env:username for that log.&amp;#34;&lt;/span&gt;  
+write-host $args[0]  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&amp;gt; .\log.ps1 &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Something happened&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;linux-much-easier&#34;&gt;Linux (much easier)&lt;/h1&gt;
+&lt;p&gt;Writing to the Linux journal is pretty straight-forward.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Sample text&amp;#39;&lt;/span&gt; | Systemd-cat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To take a look at this, just use &lt;strong&gt;journalctl -f&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll talk about logging to syslog another time, or maybe I can talk Myron into delving in because he has great experience with pulling things out of SIEMs.  Whether you use this in the scope of a SIEM or just for local logging, I&amp;rsquo;m sure you&amp;rsquo;ll find this idea useful.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

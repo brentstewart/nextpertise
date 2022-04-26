@@ -1,0 +1,117 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visio on </title>
+    <link>https://www.nextpertise.net/tags/visio/</link>
+    <description>Recent content in Visio on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Jan 2021 17:42:48 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/visio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Diagrams on Linux</title>
+      <link>https://www.nextpertise.net/posts/210113_gns3_diagram/</link>
+      <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210113_gns3_diagram/</guid>
+      <description>&lt;p&gt;The articles I post generally start out as a way to share something I&amp;rsquo;ve learned through years of experience.  Less often, they are a way to share something that I&amp;rsquo;m researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&amp;rsquo;ve learned.&lt;/p&gt;
+&lt;p&gt;I thought that options for creating diagrams on Linux were few and most of them were poor.  What I found is that now (2021!) there are several &lt;em&gt;good&lt;/em&gt; options and that all the tools have matured.  I reviewed Creately, Dia, Draw.io, GNS3, LibreOffice Draw, Lucidchart, Pencil, SmartDraw, Visio, and yEd.   About half are desktop applications and the other half web applications.&lt;/p&gt;
+&lt;h2 id=&#34;diagramming-software&#34;&gt;Diagramming Software&lt;/h2&gt;
+&lt;p&gt;Diagrams are an essential part of IT.  IT teams suffer with poor and out-of-date documentation and the biggest impediment to compiling it are usually the effort required to write and maintain.  It&amp;rsquo;s also true that not everyone in IT enjoys writing.&lt;/p&gt;
+&lt;p&gt;Diagramming software solves this by allowing complex architectures to be summarized visually.  Diagrams can pack a lot of detail, can be quickly understood, and relevant information is easily accessible.  In short, being able to produce a clean diagram is a job requirement.&lt;/p&gt;
+&lt;p&gt;Diagramming software is different from &amp;ldquo;drawing&amp;rdquo; applications like GIMP because it includes icons that can be quickly placed on a page and connected, along with basic shapes and annotations.  These shapes are layered, so you can bring one into the foreground, and the connecting lines are anchored to shapes so that the line endpoints move as shapes move. This workflow allows the production of well produced pictures with a minimal amount of effort.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;de facto&lt;/em&gt; standard here is Visio.  Many of us have to exchange diagrams in a team, and for those folks, being able to import and export in Visio format is critical in the same way that any word processor should be able to work with *.DOC files.&lt;/p&gt;
+&lt;h2 id=&#34;evaluation-criteria&#34;&gt;Evaluation Criteria&lt;/h2&gt;
+&lt;p&gt;My most typical use of this software is to produce network diagrams.  Other common diagrams for me include flowcharts, swim lanes, and org charts.  For purposes of this review, I&amp;rsquo;m focusing on network diagrams.&lt;/p&gt;
+&lt;p&gt;Each program was evaluated based on the following criteria.  These are listed in  order of importance.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Visio Import/Export&lt;/li&gt;
+&lt;li&gt;Stencils available and easily expandable&lt;/li&gt;
+&lt;li&gt;Output to PDF, HTML, and standard graphics formats&lt;/li&gt;
+&lt;li&gt;Easy annotation and supported hyperlinks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;desktop-applications&#34;&gt;Desktop Applications&lt;/h2&gt;
+&lt;p&gt;This group includes Dia, GNS3, LibreOffice Draw, Pencil, Visio on WINE, and yEd. The default answer for many of us is Visio, but this recent review shows progress in the open-source competitors.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/2021-01-13_GNS3_Home.png#floatsmallleft&#34; alt=&#34;GNS3 Diagramming&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;visio&#34;&gt;Visio&lt;/h3&gt;
+&lt;p&gt;Visio is the standard, but it&amp;rsquo;s not made for Linux.  I&amp;rsquo;ve been able to run 2010 using WINE without issues and 2013 with a little finessing.  The current version (2019) is a little too automated for my taste - it keeps trying to guess what I want and gets in my way.&lt;/p&gt;
+&lt;p&gt;Visio checks all the boxes.  It is compatible with Visio, obviously (with the cavaet that the new VSDX format is not supported).  It has plenty of available stencils and most manufacturers produce their own additions.  Visio will output to a ton of formats, including PDF and HTML.  It is easy to annotate and you can create hyperlinks straight from icons (I have created links so that clicking a router opened a PuTTY session).&lt;/p&gt;
+&lt;p&gt;Cons for Visio are 1) it&amp;rsquo;s running under WINE, 2) you can&amp;rsquo;t run the later versions (but the 2010 and 2013 are plenty good), and 3) it&amp;rsquo;s expensive.  Currently $270 from &lt;a href=&#34;https://www.amazon.com/Microsoft-D86-05555-Visio-Standard-2016/dp/B012F7PC3U/ref=sr_1_3?dchild=1&amp;amp;keywords=visio&amp;amp;qid=1610591015&amp;amp;sr=8-3c&#34;&gt;Amazon&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;gns3httpsgns3org&#34;&gt;&lt;a href=&#34;https://gns3.org&#34;&gt;GNS3&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I included this as a lark because I recently wrote about creating hyperlinks in GNS3 and realized it &lt;em&gt;could&lt;/em&gt; be used for this purpose.  If you want to try this out, take a look at &lt;a href=&#34;210113_GNS3_Links&#34;&gt;GNS3 HyperLinks&lt;/a&gt;.  This is free and there are some good diagram primitives you can use, but it doesn&amp;rsquo;t work with Visio.  Annotation and linking is fairly easy.  Not great for this purpose, but it does work in a pinch!&lt;/p&gt;
+&lt;p&gt;For me, this can work very well for my home network.  I&amp;rsquo;m not interested in exchanging it with other users, and it allows me to build a &amp;ldquo;live&amp;rdquo; image of the physical network outside the virtual GNS3 world.  The two networks meet sometimes when I connect to the Internet or use a service like syslog.&lt;/p&gt;
+&lt;p&gt;Diagramming isn&amp;rsquo;t really what GNS3 is designed for and this probably isn&amp;rsquo;t the tool you&amp;rsquo;re loooking for.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/2021-01-19_LibreOfficeDraw.png#floatsmallright&#34; alt=&#34;LibreOffice Draw&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;libreoffice-drawhttpswwwlibreofficeorgdiscoverdraw&#34;&gt;&lt;a href=&#34;https://www.libreoffice.org/discover/draw/&#34;&gt;LibreOffice Draw&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;LibreOffice can import Visio files, but can&amp;rsquo;t export.  The importing sometimes has errors - items that aren&amp;rsquo;t placed correctly or dimensions that are changed.  In my opinion, this is an okay way to view and print more than a serious tool for creating.  Even in the case of importing a picture into a text file, I&amp;rsquo;d export a PNG from something else to import into LibreOffice before trying to mess with Draw.&lt;/p&gt;
+&lt;h3 id=&#34;pencilhttpspencilevolusvn&#34;&gt;&lt;a href=&#34;https://pencil.evolus.vn/&#34;&gt;Pencil&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Pencil project was something I used a few years ago and it showed a lot of promise.  I remembered it and tried to include it in this review.  If you are interested, grab executables from &lt;a href=&#34;https://github.com/prikhi/pencil/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I messed around with compiling and tried the executable, but had issues with it running.  It now starts, but never displays a window.  It looks like there is active development, so I probably just tested at the wrong point.  Nonetheless, I got tired of messing with it and never did get a chance to try it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/2021-01-18_yEd.png#floatsmallleft&#34; alt=&#34;yEd&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;yedhttpswwwyworkscomproductsyed&#34;&gt;&lt;a href=&#34;https://www.yworks.com/products/yed&#34;&gt;yEd&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;yEd exists as several editions - there&amp;rsquo;s a desktop version, a web version, and one designed to work with Confluence (Graphity).  yEd is offered free, except in the Confluence tie-in model.
+This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is it&amp;rsquo;s inability to use Visio drawings or stencils.  You can export to PDF and HTML though.  I haven&amp;rsquo;t figured out a way to do Hyperlinking and you have to deal with a limited set of graphics primitives.&lt;/p&gt;
+&lt;p&gt;However, if you have simple diagramming needs this is an awesome tool.  yWorks has provided a real service to the community by making this available for free.  I&amp;rsquo;ve used it over the years and it&amp;rsquo;s always been solid.&lt;/p&gt;
+&lt;p&gt;From my perspective, it&amp;rsquo;s not as mature as other options but the price is right and it&amp;rsquo;s worth considering.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://dia-installer.de/en/images/dia_screenshot.png#floatsmallright&#34; alt=&#34;Dia&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dia-httpdia-installerde&#34;&gt;Dia (&lt;a href=&#34;http://dia-installer.de/&#34;&gt;http://dia-installer.de/&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;I haven&amp;rsquo;t used Dia as much - the last time I looked at it I was disappointed.  Since then it&amp;rsquo;s added some support for Visio VDX files and a wealth of new templates.  The interface has a much more solid feel and it is much easier to use.&lt;/p&gt;
+&lt;p&gt;I was able to quickly put together good-looking diagrams and came away impressed and appreciative about what the team has produced.  That said, I had trouble importing and exporting Visio files when I tested.  Annotation was less developed than Visio or Lucidchart - text couldn&amp;rsquo;t be rotated, icons couldn&amp;rsquo;t be labeled.  I couldn&amp;rsquo;t create hyperlinks and I couldn&amp;rsquo;t import stencils.&lt;/p&gt;
+&lt;p&gt;This is a much improved project and it&amp;rsquo;s obvious they&amp;rsquo;re on the right track.  For professional use, I don&amp;rsquo;t think it&amp;rsquo;s on the Visio or Lucidchart level.  As a free application that is native to Linux, it seems great for more casual usage and bears further watching.&lt;/p&gt;
+&lt;h2 id=&#34;web-applications&#34;&gt;Web Applications&lt;/h2&gt;
+&lt;p&gt;This group includes LucidChart, Draw.io, Creately and SmartDraw. Like the desktop category, significant work has been done here and there are new and exciting options.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/2021-01-18_lucidchart.png#floatsmallright&#34; alt=&#34;Lucidchart&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;lucidcharthttpslucidchartcom&#34;&gt;&lt;a href=&#34;https://lucidchart.com&#34;&gt;Lucidchart&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Lucidchart is a web service, using HTML5 and Javascript.  Although it&amp;rsquo;s not technically written for Linux, it works well with most browsers.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve had very good success with Lucidchart and I think it is on-par or better than Visio.  It can import and export Visio files and stencils and can work with a variety of formats.  It has superior features for annotation and you can easily create hyperlinks.  There are a ton of stencils and templates.  Lucidchart sends out an email each month that walks through example uses - I&amp;rsquo;ve picked up a lot of ideas from reviewing these emails.&lt;/p&gt;
+&lt;p&gt;You can use it for personal use for free.  The individual plan includes a gigabyte of storage, includes tags and grouping, and unlimited objects.  There are also team plans with more storage and a few more features.  Lucidchart is a little cheaper than buying Visio and upgrading it every few years if you subscribe to an individual plan.&lt;/p&gt;
+&lt;p&gt;After a year of using it, I have come to appreciate Lucidchart &lt;em&gt;more&lt;/em&gt; than Visio.  I&amp;rsquo;ve even come to enjoy that it&amp;rsquo;s online, because this makes it easy to access my diagrams wherever I am.  I particularly like the database/flat-file import option and find the annotation tools more flexible than Visio.  The website is responsive, even over moderate links.&lt;/p&gt;
+&lt;p&gt;The con here is that you have to be online and it&amp;rsquo;s running in a browser, but ubiquitous access can also be a plus.  Lucidchart has a free option, but an individual account is $9.95/mo or $108 per year.&lt;/p&gt;
+&lt;h3 id=&#34;drawiohttpsappdiagramsnet&#34;&gt;&lt;a href=&#34;https://app.diagrams.net&#34;&gt;Draw.io&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Draw.io, like Lucidchart, is a webapp.  It was another surprise in this recap.  Since the last time I tested it, they&amp;rsquo;ve improved the Visio support so that it&amp;rsquo;s now possible to import and export!  It&amp;rsquo;s a little rough because connections don&amp;rsquo;t flow smoothly and the layout is not precise, but it&amp;rsquo;s close and a very valuable addition.&lt;/p&gt;
+&lt;p&gt;Draw.io is responsive online and it supports real-tiome collaboration.  You can save your work to a cloud provider or you can download it locally.  The Visio support is a work in progress, so you can&amp;rsquo;t import stencils, but I could imagine working around that by importing a page with all my objects on it.  The built-in stencils are horrible.&lt;/p&gt;
+&lt;p&gt;Draw.io allows hyperlinking to objects and annotation is easy to add and format.  On the whole, it&amp;rsquo;s a rougher but similar experience to Lucidchart.&lt;/p&gt;
+&lt;p&gt;If you do occassional diagrams and don&amp;rsquo;t want to spend money, Draw.io is a very solid choice.  Be prepared to do a little extra work, but it is sufficient.&lt;/p&gt;
+&lt;h3 id=&#34;createlycreatelycom-and-smartdrawsmartdrawcom&#34;&gt;&lt;a href=&#34;creately.com&#34;&gt;Creately&lt;/a&gt; and &lt;a href=&#34;smartdraw.com&#34;&gt;Smartdraw&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Creately and SmartDraw are web SaaS packages.  Both have free trail accounts available.  Smartdraw personal accounts run $9.95 and Creately is $4.95 per month.  Creately seems more limited in file formats, but interestingly has a desktop version available for Windows, Mac, and Linux.  SmartDraw has the ability to import and export to major formats, including Visio.  Both include stencil sets that are comprehensive and SmartDraw has a facility to import Visio stencils.&lt;/p&gt;
+&lt;p&gt;I tested Creately online and it&amp;rsquo;s quite good.  The connectors worked really well and flowed in a visually attractive way.  There was a full set of built in stencils, but I didn&amp;rsquo;t find any import features.  The lack of Visio import and export is a big deal.  I&amp;rsquo;m curious if that is resolved in the paid or desktop versions, but I was unable to verify that from the website.&lt;/p&gt;
+&lt;p&gt;I used SmartDraw for some sample diagrams.  It seems well-built and easy to use, but I had trouble getting the connectors to work.  It supports hyperlinking to objects and annotation was easy, but less flexible than Lucidchart.&lt;/p&gt;
+&lt;p&gt;My impression of SmartDraw was that it was responsive and fully featured, and I&amp;rsquo;m open to using it more.  It felt a little less capable than Lucidchart, but that may just be that I&amp;rsquo;m much more familiar with Lucidchart.  Worth checking out.&lt;/p&gt;
+&lt;p&gt;As for Creately, I was also impressed and some features seemed more developed than SmartDraw, but the lack of import/export features would limit my use.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion---lucidchart&#34;&gt;Conclusion - Lucidchart&lt;/h2&gt;
+&lt;p&gt;If you are producing diagrams as part of your job, I would opt for Lucidchart.  It seems to be the most mature option and it uses being a SaaS product to it&amp;rsquo;s advantage to make this information available across platforms and for collaboration within a team.  It started as a Visio clone, but it&amp;rsquo;s mature enough to start forming an identity of it&amp;rsquo;s own and I prefer it.  On Linux, this is an obvious option.&lt;/p&gt;
+&lt;p&gt;If you need to create diagrams, but you don&amp;rsquo;t need to share them (except as PNGs or such) then consider Dia.  This is especially true if you want to use FOSS or want to use a local application.  There are a lot of honorable mentions here - SmartDraw and Creately are at an analogous stage, Draw.io and yEd are free.&lt;/p&gt;
+&lt;p&gt;All told I&amp;rsquo;m very encouraged by my findings.  This has gone from a sparse set of options that involved compromise to a rich group of choices that are starting to differentiate themselves.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visio Shapes</title>
+      <link>https://www.nextpertise.net/posts/201117_visio_shapes/</link>
+      <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201117_visio_shapes/</guid>
+      <description>&lt;h2 id=&#34;stencil-sets-for-you-to-use&#34;&gt;Stencil sets for you to use&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/AffinityBlue.PNG#floatright&#34; alt=&#34;Affinity Blue&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve created a new repository for Visio Stencils.&lt;/p&gt;
+&lt;p&gt;Affinity Blue is a set of abstract network icons set in circles.  These are the alternative icons used in the GNS3 project.  I like using them in GNS3 because they provide a nice &amp;ldquo;clean&amp;rdquo; look that makes diagrams easy to quickly understand.  Vendor-specific icons for each type of firewall, for instance, can quickly distract from the function being provided and the flow of traffic.  These icons have been given four cardinal connections points.&lt;/p&gt;
+&lt;p&gt;A second set is called &amp;ldquo;Brent&amp;rsquo;s Stencil&amp;rdquo;.  This is a collection of &amp;ldquo;standard&amp;rdquo; shapes taken from a variety of online sources - mostly old Cisco drawings.  If you like the old Cisco documentation diagrams, these give that same look.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/BrentsStencil.PNG#floatleft&#34; alt=&#34;Brent&amp;rsquo;s Stencil&#34;&gt;
+This second stencil has been more heavily customized.  Several of the icons have extra connection points (this makes it easier to label lines going to a switch, for instance).  The &amp;ldquo;link&amp;rdquo; lines have been set so that the text will be at the same angle as the line, which helps to clean up diagrams.&lt;/p&gt;
+&lt;p&gt;This set is older - I&amp;rsquo;ve used it for at least a decade.  It has some icons that show time has passed like a TDM PBX, analog phone, and ISDN switch.  It also doesn&amp;rsquo;t have much in the way of containers, VMs, or clouds.  Still, this collects a variety of useful icons and puts them in one place.  I hope it is useful to you.&lt;/p&gt;
+&lt;h2 id=&#34;creating-a-custom-visio-stencil&#34;&gt;Creating a Custom Visio Stencil&lt;/h2&gt;
+&lt;p&gt;For those interested in creating their own stencil set, the process is easy.&lt;br&gt;
+&lt;img src=&#34;https://www.nextpertise.net/Visio_Dev_Mode.PNG#floatright&#34; alt=&#34;Visio Developer Mode&#34;&gt;
+First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/strong&gt; and enable Developer Mode.  This will allow you to edit the stencil later.&lt;/p&gt;
+&lt;p&gt;Grab an icon that you want to use and place it in Visio (either import it or just paste it in).  &lt;img src=&#34;https://google.com/images&#34; alt=&#34;Google Images&#34;&gt; is a pretty good place to find icons or images to use, or you can paste them in from other programs. If you&amp;rsquo;re using an image, make sure to resize the imported image to the size that you&amp;rsquo;ll want it to be most commonly.  Most icons are about a half-inch square or so.&lt;/p&gt;
+&lt;p&gt;Next, edit the icons properties.  Right click the image and open the ShapeSheet (top option).  Go to the Connection Points section.  If that section doesn&amp;rsquo;t exist, right click and choose &amp;ldquo;add section&amp;rdquo;.  You can add lines to the connection point table to make it look the way you want.  Each connection point exists on a grid where (0,0) is the bottom left corner and (width,height) is the upper right.  Add a connection point to the middle of the right side by putting it at (width,height*.5).  Right click the grid to add additional lines as needed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/Visio_angle.PNG&#34; alt=&#34;Angled Text&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In &amp;ldquo;Brent&amp;rsquo;s Stencil&amp;rdquo; I added a line which has text that is angled with the line.  I did that by opening the ShapeSheet for the line and editing the Text Transform box to set the TxtAngle property to ATAN(Height/Width).&lt;/p&gt;
+&lt;p&gt;Whether you just clone the repo and use these or want to contribute to the collection, I hope this inspires you to do something cool!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

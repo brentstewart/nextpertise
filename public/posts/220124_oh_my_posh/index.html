@@ -1,0 +1,166 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://www.nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Oh My Posh</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="I really like the powerline-style prompts that jazz up the command line and I&rsquo;d like to be able to carry that experience through from Linux to Windows. It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar. Recently I found Oh My Posh, which is designed to support Windows, Linux, and MacOS. The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://www.nextpertise.net/bootstrap-table.css">
+<div class="nav"style="text-align: left">
+  <img src="/nextpertise_rays.png" alt="Nextpertise" height="75" >
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
+    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Oh My Posh</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Jan 25, 2022</i><br></div></h6>
+  <p><p>I really like the powerline-style prompts that jazz up the command line and I&rsquo;d like to be able to carry that experience through from Linux to Windows.  It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar.  Recently I found <em>Oh My Posh</em>, which is designed to support Windows, Linux, and MacOS.  The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.</p>
+<p>Here&rsquo;s an example of OMP installed in Linux running inside Tilix.  You can see that it&rsquo;s providing me collapsed directory information, git info, and the time of the last command.  OMP can be customized and the details of that are described extensively in the online docs.
+<img src="/omp_tilix.png#center" alt="Oh My Posh in Tilix on Linux">
+This has some marginal productivity - the Agnoster theme condenses directory structure in a very visible way and helps me understand the state of Git.  Regardless, it looks cool and a little terminal rice establishes some credibility.  If it looks cool to you too, I&rsquo;ve put together some notes on how it&rsquo;s done.  Follow along!</p>
+<h2 id="linux">Linux</h2>
+<p>Installation on Linux involves grabbing the file from Github and making it executable.</p>
+<pre><code>sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+</code></pre>
+<p>Next, grab the themes JSON collection, uncompress them, and set the permissions appropriately.  With the themes locally stored, you can easily switch as the mode strikes.  Agnoster fits my needs, so that&rsquo;s what is used in the examples, but you can substitute anywhere you see it mentioned.</p>
+<pre><code>mkdir ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+chmod u+rw ~/.poshthemes/*.json
+rm ~/.poshthemes/themes.zip
+</code></pre>
+<p>Finally, edit ~/.bashrc to run Oh My Posh as part of the shell.  Notice in the code below that I&rsquo;ve specified the &ldquo;agnosterplus&rdquo; layout.  Substitute whichever theme you are interested in there.</p>
+<pre><code>eval &quot;$(oh-my-posh --init --shell bash --config ~/poshthemes/agnosterplus.omp.json)&quot;
+</code></pre>
+<p>You&rsquo;ll need to specify the terminal font in your terminal application.  A lot of the styling is done through extra ligatures included in <a href="https://www.nerdfonts.com/">nerd fonts</a> - font files that are re-compiled to include additional symbols.  Grab a font you like (I&rsquo;m using Meslo in this example, but I&rsquo;m also partial to JetBrains NF) and set it as the default in the terminal profile.</p>
+<p>This setup is used by bash, regardless of the terminal application.  I have Tabby, Tilix, and the included Terminal from Pop! and all three &ldquo;just work&rdquo;.  As mentioned, the only cavaet is getting a good font setup in the terminal profile.</p>
+<h2 id="windows-powershell">Windows PowerShell</h2>
+<p>As mentioned, Oh My Posh works swimmingly with PowerShell on Windows.  I have it working in the Powershell terminal and in the Windows Terminal (but recommend the later).</p>
+<p><img src="/omp_windows.png" alt="Om My Posh in Windows Terminal"></p>
+<p>OMP can be installed on Windows using PowerShell, <a href="/posts/220118_choco/">Chocolatey</a>, <a href="/posts/211228_winget/">Winget</a>, or scoop.  I prefer Choco, so that&rsquo;s what is used in the examples below.</p>
+<pre><code>choco install oh-my-posh
+</code></pre>
+<p>Then edit the profile.  You may get an error because there&rsquo;s not an existing profile.  If so, just create one.  Type <strong>$profile</strong> in PowerShell to see what the filename and location should be.</p>
+<pre><code>notepad $profile
+</code></pre>
+<p>add the following into the profile:</p>
+<pre><code>Import-Module oh-my-posh
+oh-my-posh --init --shell pwsh --config ~/agnosterplus.omp.json | Invoke-Expression
+</code></pre>
+<p>Again, you&rsquo;ll need to use the <a href="https://www.nerdfonts.com/">nerd font</a> of your choice.  Set this up in the PowerShell Terminal or Microsoft Terminal.  Both apps use the same $profile, so you just need to change the font in the terminal.</p>
+<h2 id="windows-cmd">Windows CMD</h2>
+<p>OMP is even available for the traditional command line.  For cmd, install <a href="https://chrisant996.github.io/clink/">clink</a>.  Clink adds some of the editing features of Bash to the traditional CMD.  Download clink and run the installer.  You can verify the installer by running <strong>clink info</strong>.</p>
+<pre><code>clink info
+version  : 1.3.2.222baa
+session  : 8504
+binaries : C:\Program Files (x86)\clink\1.3.2.222baa
+state    : C:\Users\Brent\AppData\Local\clink
+    &lt; output trimmed&gt;
+</code></pre>
+<p>Next create a file called oh-my-posh.lua in your clink directory.  Note that this directory is given from <strong>clink info</strong>.  The load string below starts OMP - note the theme is specified as well.  This section of text can be replaced if you disagree with me on the theme to be used.</p>
+<pre><code>notepad AppData\Local\clink\oh-my-posh.lua
+    &lt;add this text&gt;
+load(io.popen('oh-my-posh --config=&quot;C:/Users/Brent/.oh-my-posh/themes/agnosterplus.omp.json&quot; --init --shell cmd'):read(&quot;*a&quot;))()
+</code></pre>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://ohmyposh.dev/docs/">https://ohmyposh.dev/docs/</a><br> &nbsp&nbsp<a href="https://chrisant996.github.io/clink/">https://chrisant996.github.io/clink/</a><br> &nbsp&nbsp<a href="https://www.nerdfonts.com/">https://www.nerdfonts.com/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/shell">Shell</a> 
+       
+        <a href="/tags/windows">Windows</a> 
+       
+        <a href="/tags/linux">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220223_webapps/">Webapps</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220124_sudo_on_windows/">Sudo for Windows Powershell</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220117_linux_ftp/">Setting up a Basic FTP server on Linux</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/211228_winget/">Winget</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210911_distrohoppingwventoy/">Distro Hopping in Style</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220124_oh_my_posh/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Oh My Posh</a></nav>
+</div>
+  </body>

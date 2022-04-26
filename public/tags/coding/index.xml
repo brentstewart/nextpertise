@@ -1,0 +1,241 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coding on </title>
+    <link>https://www.nextpertise.net/tags/coding/</link>
+    <description>Recent content in Coding on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Feb 2021 20:07:38 -0500</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VHEditor - Visual Studio Code for Android</title>
+      <link>https://www.nextpertise.net/posts/210218_vheditor/</link>
+      <pubDate>Thu, 18 Feb 2021 20:07:38 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210218_vheditor/</guid>
+      <description>&lt;p&gt;These days I live in VSCode.  I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years.  O365 runs like a champ in a browser.  Teams is a really well done application, which I&amp;rsquo;ve come to &lt;em&gt;prefer&lt;/em&gt; over Zoom and (especially) Webex.  But VScode is in a league of it&amp;rsquo;s own.  I didn&amp;rsquo;t know how much I needed a really well done IDE, but it&amp;rsquo;s become a must-have.&lt;/p&gt;
+&lt;p&gt;I use VSCode for writing this blog.  There are extensions that make working with MarkUp easy and that facilitate uploading to Github.  I use the built-in terminal to execute Hugo commands while I&amp;rsquo;m working (like &lt;em&gt;hugo server -D&lt;/em&gt; to preview articles in a browser).  The workspace allows me to move files around or quickly move between files for comparison or editing.&lt;/p&gt;
+&lt;p&gt;I also use VSCode to write Python (again, with some great extensions).  The biggest surprise is that I&amp;rsquo;ve moved my notes into VSCode.  I sync my notes to a private Github repo, so that I can make them available on whichever machine I&amp;rsquo;m working with.  I used to use Simplenote for this, and there&amp;rsquo;s nothing wrong with Simplenote.  But by handling this in VSCode I can consolidate tools.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/vheditor.png#floatright&#34; alt=&#34;VHEditor&#34;&gt;
+I am going to do some traveling and it occurred to me that I didn&amp;rsquo;t want to lug a laptop.  Wouldn&amp;rsquo;t it be &lt;em&gt;cool&lt;/em&gt; if I could use my Kindle HD for VSCode?  I already travel with the Kindle for books, and VSCode would fit in the 8&amp;quot; display.  It seemed possible, but looking through the Google Play store didn&amp;rsquo;t turn up a Microsoft VSCode app.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s when I stumbled on VHEditor.  But the story goes a little further back to two other projects I&amp;rsquo;ve been watching with interest: VSCodium and Code-Server.&lt;/p&gt;
+&lt;p&gt;VSCode is mostly open source, with some &amp;ldquo;special&amp;rdquo; parts added onto the FOSS bits.  Microsoft add telemetry, the gallery, a logo and other pieces.  VSCodium takes the open pieces and compiles a clean version with no telemetry.  The downside is that Microsoft prohibits clones from accessing the VS Code Marketplace, which means that some extensions you need aren&amp;rsquo;t available.  An open Marketplace is available at &lt;a href=&#34;https://open-vsx.org&#34;&gt;open-vsx.org&lt;/a&gt;, but not all extensions are published to that service yet.  For me, the Github extension I use is an issue, so I currently use the original MicroSoft version.  But I like VSCodium and have used it a lot.&lt;/p&gt;
+&lt;p&gt;Code-Server takes the same source code and produces a web version.  I don&amp;rsquo;t have a use-case for Code-Server currently, but it seems like a fascinating idea.  All of this brings us back to VHEditor.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/vheditorpic.jpeg#floatleft&#34; alt=&#34;VHEditor in action&#34;&gt;&lt;/p&gt;
+&lt;p&gt;VHEditor takes Code-Server and Termux and creates a space in the Android OS for this to run.  There&amp;rsquo;s a terminal that works and code-server is running locally.  Basically, when you run VHEditor, it starts Code-Server and accesses it via a loopback address.  VHEditor runs pretty well on my Kindle HD - paired with a small bluetooth keyboard, I can definitely use this to write notes and blog posts.  I have cloned multiple repositories down to the Kindle.&lt;/p&gt;
+&lt;p&gt;It feels like there are some kinks to work out.  You use &amp;ldquo;pkg install git&amp;rdquo; on the terminal to setup Git (there&amp;rsquo;s a note about this on GitHub), and that format makes me wonder if it&amp;rsquo;s running in a BSD container.  Also, the first repo I cloned worked straight from VHEditor.  The second required me to &lt;strong&gt;git clone&lt;/strong&gt; from the shell.  Still, the result is not only usable but useful.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve expressed the opinion that the secret sauce in IT right now is Git + Python + WebAPIs.  VSCode has become this tool that fits into that mix of products perfectly.  VHEditor allows me to bring that all the way down to my tablet and is definitely worth a look.&lt;/p&gt;
+&lt;p&gt;If you are familiar with VSCode, you know there&amp;rsquo;s a lot of things on the screen.  I have a large phone, but I just don&amp;rsquo;t see this being useful on a display below 8&amp;quot;.  You are also really going to need a bluetooth keyboard, especially to use any of the key combinations.  The app is currently sitting at 3 1/2 stars - I read through the reviews and the issues I see relate to unfamiliar or less technical users.  Be prepared to put a little thought into it, but I recommend checking this out.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Linux Install Script</title>
+      <link>https://www.nextpertise.net/posts/210207_installscript/</link>
+      <pubDate>Sun, 07 Feb 2021 10:32:29 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210207_installscript/</guid>
+      <description>&lt;p&gt;I install Linux pretty regularly.  Sometimes I&amp;rsquo;m setting up a new server instance, sometimes I&amp;rsquo;m deploying it to new hardware.  Many times I&amp;rsquo;m doing a clean install on a new release.  Very often, I&amp;rsquo;m reinstalling my workstation because I want to try a new flavor.  Whether you are a distro-hopper or just need to handle Disaster Recovery process, installing Linux and customizing it to fit your particular needs can take a half day or more.&lt;/p&gt;
+&lt;p&gt;In addition to the time, installing requires you to make sure that you bring critical applications forward, attach to required printers and servers, and put expected security elements in place.  It&amp;rsquo;s easy to forget a step.  If you haven&amp;rsquo;t done it in a while, it&amp;rsquo;s difficult to remember &lt;em&gt;how&lt;/em&gt; to handle a step.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why years ago I started building an install script.  These days my I keep it in a private Github repository.  When setting up a new instance, I just grab the repo and run script.  For the record, it still takes a while, but I don&amp;rsquo;t have to babysit it.&lt;/p&gt;
+&lt;h2 id=&#34;creating-a-private-github-repository&#34;&gt;Creating a private GitHub Repository&lt;/h2&gt;
+&lt;p&gt;Login to Github, go to the Repositories tab and click new.  Give your repository a name and select &amp;ldquo;Private&amp;rdquo;.  If you have an existing repository, go to the Settings tab and scroll to the bottom where it says &amp;ldquo;Danger Zone&amp;rdquo;.  There&amp;rsquo;s an option to make the repository private.  Not everyone makes their install script private, but I worry about revealing details of the programs I use, internal resources, or paths.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210207_GitNew.png#floatcenter&#34; alt=&#34;New Repo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my &lt;a href=&#34;https://www.nextpertise.net/200919_Pandoc_Improved&#34;&gt;article&lt;/a&gt;).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.&lt;/p&gt;
+&lt;h2 id=&#34;building-an-install-script&#34;&gt;Building an Install Script&lt;/h2&gt;
+&lt;p&gt;Nope, I&amp;rsquo;m not going to share my install script.  As I said before, it&amp;rsquo;s &lt;em&gt;private&lt;/em&gt;.  But let&amp;rsquo;s talk about what&amp;rsquo;s in it and how it&amp;rsquo;s built.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First, it specifies the execution environment.  Not all versions of Linux use bash as the default shell for scripts and that other environment may not support the commands I use, so I want to nail this down.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Install some cool essential tools ============================&amp;#34;&lt;/span&gt;  
+apt update  
+apt upgrade -y  
+apt install traceroute nmap snapd flatpak htop net-tools gconf2 hugo git geary unzip -y  
+apt install vlc filezilla pithos pdfshuffler thunderbird wireshark -y  
+apt install gigolo gvfs-fuse flameshot network-manager-openvpn network-manager-vpnc -y  
+apt install network-manager-openconnect network-manager-pptp network-manager-openvpn-gnome -y  
+apt install network-manager-vpnc-gnome network-manager-openconnect-gnome network-manager-pptp-gnome -y  
+apt install python-software-properties libkf5globalaccel-bin libfreerdp-plugins-standard network-manager-applet -y  
+add-apt-repository ppa:graphics-drivers/ppa -y  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Setup Profile Sync Daemon https://github.com/graysky2/profile-sync-daemon&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#75715e&#34;&gt;#https://github.com/graysky2/profile-sync-daemon  &lt;/span&gt;
+sudo apt install profile-sync-daemon  
+systemctl --user enable psd.service  
+systemctl --user start psd.service  
+apt update  
+apt upgrade -y  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, I install a bunch of stuff that I want on any machine I use.  For instance, &lt;em&gt;why isn&amp;rsquo;t traceroute included in everything?&lt;/em&gt;  Other common pieces include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Networking and Security tools like nmap, htop, filezilla, and wireshark.  Gigolo for mounting drives.&lt;/li&gt;
+&lt;li&gt;VPN support (that&amp;rsquo;s the network-manager stuff)&lt;/li&gt;
+&lt;li&gt;I&amp;rsquo;m agnostic on packaging, so I install support for snaps and flatpaks&lt;/li&gt;
+&lt;li&gt;and finally some applications I really like (hugo, pithos, vlc, pdfshuffler, and &lt;a href=&#34;https://www.nextpertise.net/201210_flameshot&#34;&gt;flameshot&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notice that I break the installs into groups - this makes it easier to track down problems if they occur.  The &amp;ldquo;-y&amp;rdquo; at the end answers &amp;ldquo;yes&amp;rdquo; and allows the command to continue without waiting for a response from me.  Some of the things I install are already present, but they&amp;rsquo;re not present on &lt;em&gt;all&lt;/em&gt; distros so specifying the tools I want just makes sure that they&amp;rsquo;re there (if they&amp;rsquo;re already installed, apt just skips them).  A special word about Profile Sync Daemon, since not many folks have heard of it.  This puts the browser profile into a ram disk and speeds up the browser.&lt;/p&gt;
+&lt;h2 id=&#34;fixing-the-terminal&#34;&gt;Fixing the Terminal&lt;/h2&gt;
+&lt;p&gt;I wrote about the &lt;a href=&#34;https://www.nextpertise.net/201130_Powerline-Windows&#34;&gt;Powerline shell&lt;/a&gt; a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer &lt;a href=&#34;https://www.nextpertise.net/201125_tilix&#34;&gt;Tilix&lt;/a&gt; to the default terminal.  This sections makes all those things happen.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fix terminal ====================================================&amp;#34;&lt;/span&gt;  
+pip3 install powerline-shell  
+wget https://download.jetbrains.com/fonts/JetBrainsMono-2.225.zip  
+unzip JetBrainsMono-2.225.zip  
+cp -R fonts /usr/share/ -r  
+fc-cache -f -v  
+apt install tilix -y  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;function _update_ps1() {  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    PS1=$(powerline-shell $?)  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;}  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;if [[ $TERM != linux &amp;amp;&amp;amp; ! $PROMPT_COMMAND =~ _update_ps1 ]]; then  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    PROMPT_COMMAND=&amp;#34;_update_ps1; $PROMPT_COMMAND&amp;#34;  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;fi&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; /home/brent/.bashrc  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that I&amp;rsquo;m using an echo to give some feedback about where we are in the process. I download the font, move it to the correct directory, and update the font cache so it&amp;rsquo;s usable.  The rest of this downloads Powerline and sets it up, plus grabs Tilix.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cleaning up................&amp;#34;&lt;/span&gt;  
+rm JetBrainsMono* -f  
+rm -rf fonts  
+&lt;span style=&#34;color:#ae81ff&#34;&gt;\#&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Reminders  &lt;/span&gt;
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Set JetBrains Mono as terminal font&amp;#34;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/neofetch.png#floatsmallright&#34; alt=&#34;Neofetch&#34;&gt;&lt;/p&gt;
+&lt;p&gt;At the end of the script, I have a clean up section and remove the Font files that were left in the install directory.  I don&amp;rsquo;t know how to programmatically tell Tilix to use JetBrains Mono in it&amp;rsquo;s default profile (help!), so I just remind myself to do that.&lt;/p&gt;
+&lt;h2 id=&#34;option-stuff&#34;&gt;Option stuff&lt;/h2&gt;
+&lt;p&gt;I have a series of sections for handling optional components.  The first three optional sections are almost always turned on: the Firewall, Neofetch, SSH and NFS.&lt;/p&gt;
+&lt;p&gt;The structure of these loops is a for statement terminated by done.  Since the conditions of the for are empty, it will loop continually until told to break.  Pressing a &amp;ldquo;y&amp;rdquo; or &amp;ldquo;n&amp;rdquo; executes some logic and breaks, any other key causes it to loop again.  I&amp;rsquo;m not sure this is the best way to do it, but it works.  In Bash, watch the spacing around the brackets and parentheses because it is required!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;((&lt;/span&gt; ; ; &lt;span style=&#34;color:#f92672&#34;&gt;))&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Would you like to enable the firewall (y/n)?  &amp;#34;&lt;/span&gt;  
+Read VAR  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;y&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Enable Firewall&amp;#34;&lt;/span&gt;  
+ufw enable  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;skipping.............&amp;#34;&lt;/span&gt;  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+Done  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;((&lt;/span&gt; ; ; &lt;span style=&#34;color:#f92672&#34;&gt;))&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;  
+read VAR  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;y&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+add-apt-repository ppa:dawidd0811/neofetch -y  
+apt-update  
+apt install neofetch -y  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neofetch&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /home/brent/.bashrc  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+If &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;skipping.............&amp;#34;&lt;/span&gt;  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;((&lt;/span&gt; ; ; &lt;span style=&#34;color:#f92672&#34;&gt;))&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Would you like to install SSH and NFS (y/n)?  &amp;#34;&lt;/span&gt;  
+read VAR  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;y&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Setup SSH and nfs ===========================================&amp;#34;&lt;/span&gt;  
+apt install openssh-server sshfs fail2ban nfs-kernel-server nfs-common -y  
+systemctl start fail2ban  
+systemctl enable fail2van  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/[sshd]  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;enabled = true  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;port = 22  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;filter = sshd  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;logpath = /var/log/auth.log  
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;maxretry = 3&amp;#34;&lt;/span&gt; &amp;gt;  /etc/fail2ban/jail.local  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $VAR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;skipping.............&amp;#34;&lt;/span&gt;  
+break  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/calibre.png#floatright&#34; alt=&#34;Calibre&#34;&gt;
+The next sections are things that I would usually want, but not always.  One example is KDE Connect - on Gnome I use the &lt;em&gt;Gnome Connect&lt;/em&gt; extension and don&amp;rsquo;t need to load it.  Other critical tools that I present as an option to myself include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GNS3&lt;/li&gt;
+&lt;li&gt;X2Go&lt;/li&gt;
+&lt;li&gt;Remina&lt;/li&gt;
+&lt;li&gt;Foliate&lt;/li&gt;
+&lt;li&gt;VSCode&lt;/li&gt;
+&lt;li&gt;Chromium&lt;/li&gt;
+&lt;li&gt;Node-Red&lt;/li&gt;
+&lt;li&gt;Signal&lt;/li&gt;
+&lt;li&gt;Printer drivers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This isn&amp;rsquo;t a perfect script, but the structure allows me to re-run it as many times as I need to and skip the sections that are already installed.  The biggest issue is that new versions (like 21.04 when it comes out in a few months) typically aren&amp;rsquo;t represented in PPAs.  The fix is to specify an older version to pull from, but that&amp;rsquo;s not automated.  Still, this speeds up the process and takes less of my time.&lt;/p&gt;
+&lt;h2 id=&#34;drive-mapping&#34;&gt;Drive Mapping&lt;/h2&gt;
+&lt;p&gt;Another major piece missing here is drive mapping.  I typically &lt;a href=&#34;https://www.nextpertise.net/200813_Using_SSH3&#34;&gt;mount foreign drives&lt;/a&gt; using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn&amp;rsquo;t actually connect shares.  I&amp;rsquo;ve chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.&lt;/p&gt;
+&lt;p&gt;One of the things that makes it &lt;em&gt;so&lt;/em&gt; easy for me to stand up new machines or to distro-hop is that all my files are saved onto a central server.  I have an Ubuntu Mate install that just acts like a big file share.  This also simplifies backup, since I can concentrate on one server.  The files on the workstations are all transient.&lt;/p&gt;
+&lt;h2 id=&#34;so---&#34;&gt;So . . .&lt;/h2&gt;
+&lt;p&gt;That&amp;rsquo;s the deal.  I can run this script, make a few selections, and be up and running on a new machine pretty quickly with minimal effort.  I&amp;rsquo;m tried to show some examples of different kinds of installations, including web downloads and apt-based.  The basic structure is 1) Must Haves, then 2) Optional components encased in loops for easy selection, and 3) a clean-up section.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d love to include VSCode extensions, Gnome extensions, and auto-checking for PPA support into the script.  If anyone has a good refence, I&amp;rsquo;d appreciate it.  In the meantime, this automates 90%.  Good luck creating a similar project!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fun with Postscript</title>
+      <link>https://www.nextpertise.net/posts/200803_funwithpostscript/</link>
+      <pubDate>Mon, 03 Aug 2020 16:59:30 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200803_funwithpostscript/</guid>
+      <description>&lt;p&gt;I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&amp;rsquo;s just &lt;em&gt;fun&lt;/em&gt;.  One example of the latter is Postscript.&lt;/p&gt;
+&lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
+&lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1 2 add&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In college, I &amp;ldquo;discovered&amp;rdquo; postscript by printing a file for an Apple LaserWriter to an HP Laserjet. Since the Laserjet didn&amp;rsquo;t speak Postscript (they use PCL) it just dumped raw text onto a stack of paper. I was fascinated because I could kinda read it, so I researched it and bought three books and just started playing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Postscript Language: Tutorial and Cookbook by Adobe
+Graphic Design with Postscript by Gerard Kunkel
+Postscript by Example by Henry McGilton and Mary Campione&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At first, I wrote text files and dumped them to the LaserWriter.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;copy myfile.ps &amp;gt; lpt1:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Later I started using early ghostscript to output to my dot matrix printer. I recently rediscoverd some of my files from the 1980&amp;rsquo;s and found that I could display them in Linux with modern Ghostscript.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a simple Postscript program I took from the Postscript Cookbook:
+&lt;img src=&#34;https://www.nextpertise.net/CircleofBrent.png#floatright&#34; alt=&#34;Circle of Brent&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/Helvetica-Bold findfont  
+        30 scalefont setfont  
+        /oshow  %stack: {string}  
+        {true charpath stroke} def  
+    /circleofBrent  
+        { 20 20 340  
+            { gsave  
+                rotate 0 0 moveto  
+                (Brent) oshow  
+                grestore  
+            } for  
+        } def  
+    % --Begin Program --  
+    250 400 translate  
+    .5 setlinewidth  
+    circleofBrent  
+    0 0 moveto  
+    (Brent Stewart) true charpath  
+    gsave 1 setgray fill grestore  
+    stroke  
+    showpage  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Without a lot of explanation, you get the sense of how postscript works.  There&amp;rsquo;s a routine to print my name and rotate the coordinate system in increments of 20 degrees.  That routine is looped through and then the final full name is printed at the end.  Instead of printing this page, in Linux I just typed:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gs CircleofBrent.ps
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and the page is rendered in a window.  I discovered that you GIMP can directly load postscript files (!) and used that to create the logo and favicon for this site.  You can print the file to a postscript printer using lpr.  MFC9340CDW is a brother printer I use, and I opened system-config-printer to confirm the name.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lpr -P MFC9340CDW rays.ps
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ve built a repo with some examples.  I actually found some of my code from 30 years ago! PostScript is a simple enough language to quickly accomplish things with, but complicated enough to get some interesting results.  In fact, you can do things in the language that I&amp;rsquo;ve never seen translated to an app.  I hope this post will encourage you to give it a try and have some fun!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

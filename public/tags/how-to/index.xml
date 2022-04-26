@@ -1,0 +1,380 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How To on </title>
+    <link>https://www.nextpertise.net/tags/how-to/</link>
+    <description>Recent content in How To on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Sep 2021 13:00:30 -0400</lastBuildDate>
+    
+        <atom:link href="https://www.nextpertise.net/tags/how-to/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using WebDAV on Apache</title>
+      <link>https://www.nextpertise.net/posts/210906_apachedav/</link>
+      <pubDate>Mon, 06 Sep 2021 13:00:30 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210906_apachedav/</guid>
+      <description>&lt;p&gt;In recent articles, I walked through how to setup a home &lt;a href=&#34;https://www.nextpertise.net/posts/210830_apache&#34;&gt;webserver&lt;/a&gt; with &lt;a href=&#34;https://httpd.apache.org&#34;&gt;Apache&lt;/a&gt; on Linux and how to configure home &lt;a href=&#34;https://www.nextpertise.net/posts/210831_dnsonubuntu&#34;&gt;DNS server&lt;/a&gt; using &lt;a href=&#34;https://www.isc.org/bind/&#34;&gt;bind&lt;/a&gt; on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.&lt;/p&gt;
+&lt;p&gt;WebDAV is a file sharing protocol built on top of HTTP.  Many operating systems can attach to WebDAV folders to upload and download files, including Linux, Windows, Mac, IOS, and Android.  I have a password database that I want to keep sync&amp;rsquo;d between different computers and phones and I&amp;rsquo;m not comfortable hosting that &amp;ldquo;in the cloud&amp;rdquo;, so this allows me to self-host.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m using Ubuntu Server 21.04 for this exercise.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-dns&#34;&gt;Setting Up DNS&lt;/h2&gt;
+&lt;p&gt;My forward lookup zone file includes an A record for the server and a CNAME for the dav share, similar to the output below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;www IN  A   192.168.26.53
+dav IN  CNAME   www.stewart.lan
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the zone file is updated and &lt;strong&gt;named&lt;/strong&gt; restarted, this can be tested by pinging &amp;ldquo;&lt;a href=&#34;http://www.stewart.lan&#34;&gt;www.stewart.lan&lt;/a&gt;&amp;rdquo; and &amp;ldquo;dav.stewart.lan&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-apache&#34;&gt;Setting up Apache&lt;/h2&gt;
+&lt;p&gt;If you haven&amp;rsquo;t already done so, the first thing to do is to install apache2.  Next, enable the webdav Apache modules.  Apache using &lt;strong&gt;a2enmod&lt;/strong&gt; and &lt;strong&gt;a2dismod&lt;/strong&gt; for handling modules.  Finally, create a folder to handle the WebDAV files and set the permissions up.  When complete, restart Apache to load the modules.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install apache2
+sudo a2enmod dav
+sudo a2enmod dav_fs
+sudo mkdir /var/www/dav
+sudo chown -R wwwroot:wwwroot /var/www/dav
+sudo systemctl restart apache2.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;setting-up-the-dav-site&#34;&gt;Setting up the DAV site&lt;/h2&gt;
+&lt;p&gt;Apache is now ready to host a WebDAV site, but needs a configuration.  For this, create a text file under /etc/apache2/sites-available (I named mine &lt;em&gt;dav.conf&lt;/em&gt;).  The serveralis parameter tells it to respond to requests to dav.stewart.lan and the alias directive tells Apache the root location is the &lt;em&gt;dav&lt;/em&gt; folder.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@webnamer:/etc/apache2/sites-available$ cat dav.conf 
+DavLockDB /var/www/DavLock                      #database file Apache uses to lock files
+&amp;lt;VirtualHost *:80&amp;gt;
+    ServerName stewart.lan
+    ServerAlias dav.stewart.lan
+    alias / /var/www/dav
+        ServerAdmin brent@stewart.tc
+        DocumentRoot /var/www/dav/
+        &amp;lt;Directory /var/www/dav/&amp;gt;
+                Options Indexes MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+    &amp;lt;/Directory&amp;gt;
+    &amp;lt;Location /dav&amp;gt;
+        DAV On
+        AuthType Basic
+        AuthName &amp;quot;webdav&amp;quot;
+        AuthUserFile /var/www/passwd.dav
+        Require valid-user
+    &amp;lt;/Location&amp;gt;
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Enable the site and reload Apache&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;a2ensite dav.conf
+sudo systemctl restart apache2.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;add-authentication&#34;&gt;Add Authentication&lt;/h2&gt;
+&lt;p&gt;Go to the directory referenced by DavLockDB and create an empty file named &lt;em&gt;users.password&lt;/em&gt;.  Set the file ownership to www-data.  Finally, add users to this file using htdigest (you&amp;rsquo;ll be prompted for passwords).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo touch /var/www/users.password
+sudo chown www-data:www-data /var/www/passwd.dav
+sudo htdigest /var/www/passwd.dav webdav newuser
+Adding user newuser in realm webdav
+New password:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;confirming-the-setup&#34;&gt;Confirming the setup&lt;/h2&gt;
+&lt;p&gt;There are a &lt;em&gt;lot&lt;/em&gt; of ways to test.  You can browse to that URL, use an application, or attach to it from your file manager using the url webdav://dav.myserver.  Confirm that you are prompted for a password as expected!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Making a Memorial DVD</title>
+      <link>https://www.nextpertise.net/posts/210308_kdenlive/</link>
+      <pubDate>Mon, 08 Mar 2021 21:59:17 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210308_kdenlive/</guid>
+      <description>&lt;p&gt;A good friend lost his father to COVID last week.  It was unexpected - he was only about 60 and in good health.  My friend asked for help putting together a memorial DVD.  Perhaps you&amp;rsquo;ve seen these - at a receiving in the US it&amp;rsquo;s common these days to find a TV that displays a collection of pictures of the deceased, perhaps with some background music.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t have any special expertise in Video and I didn&amp;rsquo;t have long to figure it out.  If you&amp;rsquo;re in a similar situation then 1) leave a note in the comments and I&amp;rsquo;ll pray for your friends family and 2) here are some quick and dirty instructions that will let you be of service.&lt;/p&gt;
+&lt;h2 id=&#34;gathering-input&#34;&gt;Gathering input&lt;/h2&gt;
+&lt;p&gt;I received a collection of sixty photos, a few digital pictures, as well as some MP3 files that were some of his Dad&amp;rsquo;s favorites.  I scanned all the pictures in as JPG at 300 dpi and put them in a directory with the MP3s.  I used GIMP to crop the photos.  I originally left the white borders around some pictures, but later found this created artifacts on the slideshow and re-edited to crop to just the picture.  I found the obituary online for some of the details I would need for the title page.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install gimp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;creating-the-dvd&#34;&gt;Creating the DVD&lt;/h2&gt;
+&lt;p&gt;This section isn&amp;rsquo;t a software recommendation.  I wanted something that I could quickly understand and that wasn&amp;rsquo;t overly complicated to use.  I tried a few video editors and quickly picked kdenlive.  Even though I&amp;rsquo;m using Pop!OS Gnome, kdenlive worked fine.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install kdenlive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;By default, kdenlive shows two video tracks and two audio tracks.  I deleted the extra tracks.  Right clicking in the resources box (below the file menu) allowed me to import the audio files and an &lt;em&gt;image sequence&lt;/em&gt;.  The image sequence importer allowed me to bring in a group of pictures in the same format from a single directory.  The picture files I received were PNG, so I used GIMP to convert them and then imported the entire set of pictures from the working directory.  The image sequence sorts by default to alphabetical order.  I had been given the pictures in rough chronological order and numbered them as they scanned, so they were already in the right order and I didn&amp;rsquo;t have to spend a lot of time.  I was lucky, but I definitely suggest that technique if you need to make this on short notice.&lt;/p&gt;
+&lt;p&gt;The image sequence import allows you to specify how long each picture displays as well.  These DVDs are typically played in the background where they provide a distraction to folks in the receiving line and I wanted it to have enough tempo so it wouldn&amp;rsquo;t be boring.  I decided to change photos every 10 seconds and this turned out to be well received.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/210308_kdenlive.png#center&#34; alt=&#34;The Memorial DVD&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I created a title by right clicking in the resource box and &amp;ldquo;adding title clip&amp;rdquo;.  This gave me a PowerPoint-like interface where I could add some text.   In this case, I created a simple title with the name, birth date and date of death.  It also let me specify how long it would display.&lt;/p&gt;
+&lt;p&gt;Dragging the image sequence or the title onto the video track (&amp;ldquo;V1&amp;rdquo;) blocked off a period of time and labeled it &amp;ldquo;Image Sequence&amp;rdquo;.  Sixty photos displayed for 10 seconds each gives ten minutes of video, so I dragged out a few more copies of the Image Sequence to fill out the DVD.  I left a brief black screen between sequences, then a copy of the title to show the name of the deceased, before restarting the slide show.&lt;/p&gt;
+&lt;p&gt;Dragging the audio files onto the audio track (&amp;ldquo;A1&amp;rdquo;) was a similar process.  I simply dragged enough songs to cover the time, leaving brief spaces between.  I was able to watch the video and I paid special attention to the transitions to make sure they were clean and not distracting.  I &lt;em&gt;think&lt;/em&gt; kdenlive will handle fancy image transitions but I elected not to spend too much time on them.  I had a day to put this together and the &amp;ldquo;plain vanilla&amp;rdquo; transitions were respectful and not distracting.&lt;/p&gt;
+&lt;p&gt;At this point you can go to &lt;strong&gt;Project &amp;gt; Render&lt;/strong&gt; to compile the ensemble to an ISO file.  Here I hit another problem - I don&amp;rsquo;t have a DVD burner!  I have an old laptop running Linux, so I used SFTP to transfer the file to it and used brasero to burn the DVD.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install brasero
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Last step!  I dug out an old DVD player to verify that the burned DVD would read okay.  It did and the resulting display looked sharp and clean.  I burned a copy for the funeral, and extras for my friend and his siblings.&lt;/p&gt;
+&lt;h2 id=&#34;the-reception&#34;&gt;The Reception&lt;/h2&gt;
+&lt;p&gt;This was a rush job by an stark amatuer, but the result was appreciated by the family.  I want to the thank the folks at kdenlive - it&amp;rsquo;s a slick program, worked reliably, and was easy to pick up.  The DVD I made probably was more of a credit to their hard work and gift to the community than to my contribution.  That said, this is a doable project.  I could see this idea being a nice feature at an anniversary or birthday party, or even at a company Christmas party.  If you have the opportunity to be of service in this way, I hope this walk through will be a beneficial introduction.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Plan Good Downtime</title>
+      <link>https://www.nextpertise.net/posts/210126_downtime/</link>
+      <pubDate>Tue, 26 Jan 2021 20:18:24 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/210126_downtime/</guid>
+      <description>&lt;p&gt;In another blog, planning downtime would involve tropical pictures.  Sigh.&lt;/p&gt;
+&lt;h2 id=&#34;downtime&#34;&gt;Downtime&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright&#34; alt=&#34;Time&#34;&gt;
+IT downtime is a period when IT systems have a planned outage.  These periods are negotiated with internal and external stakeholders and communicated so that no one is surprised by the lack of availability.  During this time, changes take place to improve performance, enhance reliability, address security concerns, or add features.&lt;/p&gt;
+&lt;p&gt;It is a good idea to have a recurring scheduled downtime at least once a month.  Most organizations sync their downtime to &amp;ldquo;patch Tuesday&amp;rdquo;.  Microsoft, Oracle, and other big organizations release patches on the second Tuesday each month.  Since there&amp;rsquo;s a good chance that something in an environment will need to be patched and this leads to a disruption, it&amp;rsquo;s a good time to do other changes as well.&lt;/p&gt;
+&lt;p&gt;Sometimes changes must be deployed to react to events.  In those cases the process is hastily put together and it&amp;rsquo;s more critical to have a clear idea of how to structure that time.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/plan.jpeg#floatsmallleft&#34; alt=&#34;Plan&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;checklist-for-good-downtime&#34;&gt;Checklist for Good Downtime&lt;/h2&gt;
+&lt;p&gt;A six step process for thinking it through.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Plan testing&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Communication Plan&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Build a Script&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Recognize Risks&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Negotiate Window&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Make the change!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;plan-testing&#34;&gt;Plan Testing&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s an old adage to &amp;ldquo;start with the end in mind&amp;rdquo; and that&amp;rsquo;s appropriate when planning changes.  Start by thinking through &lt;em&gt;what&lt;/em&gt; should be tested to confirm success and &lt;em&gt;how&lt;/em&gt; it will be tested.&lt;/p&gt;
+&lt;p&gt;Circulate that testing plan within the parties of interest and allow them to modify the tests.  There are cases where a change passes testing but problems are later revealed.  In such cases, you will &lt;em&gt;always&lt;/em&gt; be asked &amp;ldquo;Didn&amp;rsquo;t you test for that?&amp;rdquo;  Having those other folks review the testing plan provides space to skip the blame game in those cases and focus on restoring service.&lt;/p&gt;
+&lt;p&gt;How does this apply to &amp;ldquo;emergency&amp;rdquo; changes?  Build a &amp;ldquo;Crown Jewels&amp;rdquo; testing list.  These are the critical services for your organization.  Any testing plan should include these tests, but in a pinch this can serve as a base level set of tests.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll want to automate these tests as much as possible.  Automation allows you to easily re-run the tests many times as you make adjustments.  &amp;ldquo;Ping scripts&amp;rdquo; are a good place to start, but be creative (for instance, wget can serve to test browsing).
+&lt;img src=&#34;https://www.nextpertise.net/process.jpeg#floatsmallright&#34; alt=&#34;Process&#34;&gt;
+Finally, make sure to include testing of monitoring.  If you expect alarms when a redundant power supply fails, test that.  When you make a change, confirm that your change didn&amp;rsquo;t interfere with critical monitoring.&lt;/p&gt;
+&lt;h2 id=&#34;communication-plan&#34;&gt;Communication Plan&lt;/h2&gt;
+&lt;p&gt;With a testing plan in place, the next step is to build a communication plan.  &lt;em&gt;Who&lt;/em&gt; should be updated, &lt;em&gt;how&lt;/em&gt; should they be updated, and &lt;em&gt;when&lt;/em&gt; or &lt;em&gt;how often&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;Updates need to go to your management, the equipment owners (internal or external), and the group that is dependent on the service.  Generally, updates to users should be to the point and limited to how the change impacts their use.&lt;/p&gt;
+&lt;p&gt;Updates should be sent at critical points in the process:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When the change is proposed&lt;/li&gt;
+&lt;li&gt;At the beginning of the change window&lt;/li&gt;
+&lt;li&gt;If the change needs to be backed out, when that decision is made&lt;/li&gt;
+&lt;li&gt;When backout is complete, if applicable&lt;/li&gt;
+&lt;li&gt;When the change is complete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keep in mind that your change may impact your ability to get to corporate directories, phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers &amp;ldquo;just in case&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Another aspect of communications is setting up the time for the change, getting it on people&amp;rsquo;s calendars, insuring they can participate, and publishing the meeting information.&lt;/p&gt;
+&lt;h2 id=&#34;build-a-script&#34;&gt;Build a Script&lt;/h2&gt;
+&lt;p&gt;A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The &lt;em&gt;time&lt;/em&gt; column tells the clock-time when that task should be complete.&lt;/p&gt;
+&lt;p&gt;Having a script allows the team to do a walk-through and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.&lt;/p&gt;
+&lt;p&gt;This process also applies to the backout script.  Understand how the change will be unwound, roles, and make sure you preserve adequate time to accomplish it.&lt;/p&gt;
+&lt;p&gt;A word on time estimates - they&amp;rsquo;re going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each step helps you to get a sense of where things stand relative to expectations at any point.&lt;/p&gt;
+&lt;h2 id=&#34;recognize-risks&#34;&gt;Recognize Risks&lt;/h2&gt;
+&lt;p&gt;Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted by those impacted.  Anticipating likely scenarios also provides opportunities to mitigate.&lt;/p&gt;
+&lt;p&gt;Is there a risk of disconnection to a remote facility?  Plan on having someone on site or available.&lt;/p&gt;
+&lt;p&gt;Is there a risk that an upgrade doesn&amp;rsquo;t work?  Have a backup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;One risk that isn&amp;rsquo;t often discussed is the risk that comes from asking your family to tolerate your work schedule.  As you prep for the activity, take some time to be at home (awake, alert, and agreeable) and spend time with them, especially if your work means that you have to be up all night Saturday night!&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;negotiate-window&#34;&gt;Negotiate Window&lt;/h2&gt;
+&lt;p&gt;Changes take place within a window.  This period of time needs to be agreed upon by everyone, short enough to minimize the disruption for users and long enough for the IT team to complete it&amp;rsquo;s work with quality.&lt;/p&gt;
+&lt;p&gt;One question that needs to be asked - what happens if the work isn&amp;rsquo;t complete by the close of the window?  In other words, is it a &amp;ldquo;hard window&amp;rdquo;?  Unless otherwise advised, assume that it is.&lt;/p&gt;
+&lt;p&gt;Take the time estimate from your script (above) and apply a &amp;ldquo;confidence&amp;rdquo; factor of between 50% and 100%.  In other words, if the script calls for thirty minutes, assume it will &lt;em&gt;really&lt;/em&gt; take between 45 minutes and an hour.  This helps to account for the unknown but inevitable stuff that pops up when working.  Adjust your confidence factor over time as you gain insight into task complexity, team competence, and your ability to estimate.&lt;/p&gt;
+&lt;p&gt;Next, make sure that a third of the time is for backout.  This is time to work through the recovery process if the change goes awry.  For a half-hour change, we&amp;rsquo;ll budget an hour for implementation.  If at the end of the hour it&amp;rsquo;s not done, we immediately go into backing out the change so that we&amp;rsquo;re done within an hour an a half.  And that&amp;rsquo;s the right period of time to ask for - 300% of your estimate.  Unless you can get more.&lt;/p&gt;
+&lt;p&gt;Seriously though, this drop-dead time to begin backout is crucial to being able to have integrity about honoring the window.  IT folks are always &amp;ldquo;5 minutes!&amp;rdquo; away from fixing things and can easily get lost in a spiral without maintaining discipline about when the backout has to begin.&lt;/p&gt;
+&lt;h2 id=&#34;make-the-change&#34;&gt;Make the Change!&lt;/h2&gt;
+&lt;p&gt;Finally it&amp;rsquo;s time to make the change.  Ask everyone to arrive early and join the conference.  Make sure that backups are up to date and configurations saved before beginning.  Also before beginning, run the test script to make sure that all elements are working before the change to prevent confusion afterward.
+&lt;img src=&#34;https://www.nextpertise.net/winner.jpeg#floatleft&#34; alt=&#34;Winner&#34;&gt;
+If the change is a group exercise, it is usually a good idea to have one person act as tracker.  In addition to making sure that the team is ready to begin backout at the right time, the tracker can check off items as they are accomplished, recognize any slippage, and suggest strategies to keep things moving.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s a good idea to communicate to stakeholders at the beginning of the window.&lt;/p&gt;
+&lt;p&gt;Run the test script again when things are complete (win or lose).  Each script run should produce output, which can be saved, in case there are questions afterward.&lt;/p&gt;
+&lt;p&gt;Finally, communicate to stakeholders when things are complete.&lt;/p&gt;
+&lt;p&gt;I realize the process is complicated, but it encompasses &lt;em&gt;years&lt;/em&gt; of hard-won ideas.  Each point has a story about the incident where it was learned.  However, well planned exercises run smoothly and feel like a victory lap, making all the effort worthwhile.  I sincerely hope that this helps you to move swiftly past these learning experiences and on to greater success!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Powerline Windows</title>
+      <link>https://www.nextpertise.net/posts/201130_powerline-windows/</link>
+      <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/201130_powerline-windows/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
+I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;https://www.nextpertise.net/tilix&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
+&lt;h2 id=&#34;step-0-we-_are_-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha&#34;&gt;Windows Terminal&lt;/a&gt; is a nice addition to Windows, but doesn&amp;rsquo;t ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn&amp;rsquo;t do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.&lt;/p&gt;
+&lt;h2 id=&#34;step-1---install-a-font-that-supports-ligatures&#34;&gt;Step 1 - Install a Font that Supports Ligatures&lt;/h2&gt;
+&lt;p&gt;I prefer &lt;a href=&#34;https://www.jetbrains.com/lp/mono/&#34;&gt;JetBrains Mono&lt;/a&gt;, but this is definitely a question of art.  Microsoft&amp;rsquo;s &lt;a href=&#34;https://github.com/microsoft/cascadia-code/releases&#34;&gt;Cascadia&lt;/a&gt; is one option.  Other options, like the excellent Inconsolata can be found at sites like &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;Nerd Fonts&lt;/a&gt; or &lt;a href=&#34;https://www.programmingfonts.org/&#34;&gt;Programming Fonts&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-2---install-git&#34;&gt;Step 2 - Install Git&lt;/h2&gt;
+&lt;p&gt;Because Powerline support Git, I recommend going ahead and getting it installed so you can see it work.  You can download and install it from &lt;img src=&#34;https://git-scm.com/downloads&#34; alt=&#34;here&#34;&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---setup-in-powershell&#34;&gt;Step 3 - Setup in Powershell&lt;/h2&gt;
+&lt;p&gt;Open a Powershell session and install the posh-git and &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh&#34;&gt;oh-my-posh&lt;/a&gt; add-ins.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;Install-Module posh-git -Scope CurrentUser  
+Install-Module oh-my-posh -Scope CurrentUser  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Enable these modules to start with each new session via the terminal profile.  To open the profile, type &lt;strong&gt;notepad $profile&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#add these lines  &lt;/span&gt;
+Import-Module posh-git  
+Import-Module oh-my-posh  
+Set-Theme agnoster  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that many &lt;a href=&#34;https://github.com/JanDeDobbeleer/oh-my-posh#themes&#34;&gt;themes&lt;/a&gt; are pre-built for oh-my-posh.  Refer to the github site to see samples.  Agnoster is my personal favorite because it&amp;rsquo;s less busy and keeps the prompt on one line.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/WinTerminal.png#floatright&#34; alt=&#34;Settings&#34;&gt;
+Next, you&amp;rsquo;ll need to update the terminal settings to use the font.  In Windows Termianl, go to &lt;em&gt;Menu &amp;gt; settings&lt;/em&gt; (this will open VSCode if you have it installed).  Search for the &lt;em&gt;profiles&lt;/em&gt; section and add the &lt;em&gt;fontFace&lt;/em&gt; directive as shown below.  Note that we&amp;rsquo;re setting up Powerline to work with Powershell, not in the other environments, but I also went into the Command Prompt, Ubuntu, and Azure sections and changed them to use my new font.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profiles&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+    {  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;defaults&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+      {  
+       // Put settings here that you want to apply to all profiles.  
+      },  
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;list&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  
+        [  
+          {  
+            // Make changes here to the powershell.exe profile.  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Windows PowerShell&amp;#34;&lt;/span&gt;,  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;commandline&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;powershell.exe&amp;#34;&lt;/span&gt;,  
+            __&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fontFace&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JetBrains Mono&amp;#34;&lt;/span&gt;,__  
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hidden&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; false  
+            },  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;##Step 4 - Setup in WSL
+For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;sudo apt install golang-go  
+go get -u github.com/justjanne/powerline-go  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then edit the terminal settings to make sure it&amp;rsquo;s used to display new lines.  Edit via &lt;strong&gt;nano ~/.bashrc&lt;/strong&gt; and add the following snippet to the end.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;GOPATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/go  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; _update_ps1&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;  
+  PS1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;$GOPATH/bin/powerline-go -error $?&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$TERM&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -f &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$GOPATH&lt;span style=&#34;color:#e6db74&#34;&gt;/bin/powerline-go&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;  
+  PROMPT_COMMAND&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_update_ps1; &lt;/span&gt;$PROMPT_COMMAND&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Voila!&lt;/em&gt;  You should have Powerline functionality and cool fonts working in the different prompts available in Windows.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 2 (Authentication)</title>
+      <link>https://www.nextpertise.net/posts/200812_using_ssh2/</link>
+      <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200812_using_ssh2/</guid>
+      <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
+&lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
+&lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
+&lt;p&gt;One way to secure the ssh interface is to limit the devices allowed to access your server.  This can be done at different places - on your network firewall, in the OS firewall, or in the ssh process.   SSH uses TCP port 22, so blocking that at the firewall is one way to mitigate against maliciousness.  Since this article is about using SSH, we&amp;rsquo;ll focus on the latter.  Go into sshd_config and add a line for AllowUsers.  The example below allows anyone to login from the 192.168.1.0/24 network. Remember to restart the ssh service after changing sshd_config: &lt;strong&gt;sudo systemctl restart ssh&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/sshd_config  
+allowUsers &lt;span style=&#34;color:#ae81ff&#34;&gt;\*&lt;/span&gt;@192.168.1.*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Blocking source addresses only works up to a point.  Bad actors from within can still attack, and outside actors can use another host as a jump server (SSH to there, then start a new SSH session from the inside box).  Picking a good password helps make brute-force attacks take longer, but we need to prevent opportunities to work through every combination of letters.  Fail2ban is a service that blocks IP addresses that exhibit suspicious behavior.  Install it using &lt;strong&gt;sudo apt install fail2ban&lt;/strong&gt;.  Below is a script that will setup fail2ban to block IPs that fail three consecutive login attempts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo setup fail2ban
+systemctl start fail2ban
+systemctl enable fail2ban
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/[sshd]
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;enabled = true
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;port = 22
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;filter = sshd
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;logpath = /var/log/auth.log
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;maxretry = 3&amp;#34;&lt;/span&gt; &amp;gt;  /etc/fail2ban/jail.local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;authentication-with-keys&#34;&gt;Authentication with keys&lt;/h2&gt;
+&lt;p&gt;Another way to login is using keys.  A key pair - public and private - can be generated on a client and authenticates the client to the server.  Since the keys are stored in the &lt;em&gt;user&lt;/em&gt; account, they also in theory are associated with identity.  There are two advantages of using keys.  First, it can eliminate remembering and typing a knuckle-busting password and supports automation.  Second, keys are more secure than passwords &lt;em&gt;on the assumption that the key file is secure&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To use public-key authentication, you first need to generate a key pair using the command &lt;strong&gt;ssh-keygen&lt;/strong&gt;.  You can optionally enter a passphrase to use to unlock the key.  By default, the public key is saved as &lt;em&gt;~/.ssh/id_rsa&lt;/em&gt; and the private key as &lt;em&gt;~/.ssh/id_rsa.pub&lt;/em&gt;.  This process is shown below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brent@inspiron:~$ ssh-keygen
+Generating public/private rsa key pair.  
+Enter file in which to save the key &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;/home/brent/.ssh/id_rsa&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;:   
+Enter passphrase &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;empty &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; no passphrase&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;:   
+Enter same passphrase again:   
+Your identification has been saved in /home/brent/.ssh/id_rsa  
+Your public key has been saved in /home/brent/.ssh/id_rsa.pub  
+The key fingerprint is:  
+SHA256:A5RBWIxVGMCAQbzAfenno9hlwQAeafZgnCPJCylrnz8 brent@inspiron  
+The key&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;s randomart image is:  
++---&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;RSA 3072&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;----+  
+|*&lt;span style=&#34;color:#f92672&#34;&gt;====&lt;/span&gt;OO*.        |  
+|**.@&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;+          |  
+|+.B.* +          |  
+|.+   o &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;         |  
+|. . . o S        |  
+|   o   &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; .       |  
+|    + + .        |  
+|   . G           |  
+|      .          |  
++----&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;SHA256&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;-----+  
+brent@inspiron:~$   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I don&amp;rsquo;t want to publish my keys to the world, so I just re-ran &lt;strong&gt;ssh-keygen&lt;/strong&gt; and accepted the prompt to overwrite the old set.&lt;/p&gt;
+&lt;p&gt;Once a key pair is generated, the public key needs to be copied to the host that you want to login to.  To do this, you need password access to the host and this process doesn&amp;rsquo;t disable password access.  Unless you opt to turn that off, you still need to secure the password access using ACLs and fail2ban as previously discussed.  That said, ssh includes a utility to push your public key to a target device - &lt;strong&gt;ssh-copy-id&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;brent@MintyTwenty:~$ ssh-copy-id brent@192.168.1.1   
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, to filter out any that are already installed  
+/usr/bin/ssh-copy-id: INFO: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; remain to be installed -- &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; you are prompted now it is to install the new keys  
+brent@192.168.1.1&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;s password:   
+ 
+Number of key&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; added: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now try logging into the machine, with:   &amp;ldquo;ssh &amp;lsquo;&lt;a href=&#34;mailto:brent@192.168.1.1&#34;&gt;brent@192.168.1.1&lt;/a&gt;&amp;rsquo;&amp;rdquo;  and check to make sure that only the key(s) you wanted were added.&lt;/p&gt;
+&lt;p&gt;Now I should be able to just type &lt;strong&gt;ssh brent@192.168.1.1&lt;/strong&gt; and be attached to the server without a password prompt!  Easier administration and easier to script.&lt;/p&gt;
+&lt;h2 id=&#34;authentication-with-totp&#34;&gt;Authentication with TOTP&lt;/h2&gt;
+&lt;p&gt;TOTP is for the &lt;em&gt;really&lt;/em&gt; paranoid and for those uber-geeks that want to impress their friends.  Digital Ocean has a really nice write up on this, and that was my primary source for learning.  I&amp;rsquo;ve referenced it in the notes.  Their procedure is written for Ubuntu 16.04 but I&amp;rsquo;ve personally used it up through 20.04 without a problem.&lt;/p&gt;
+&lt;p&gt;Ideally authentication involves something you &lt;em&gt;know&lt;/em&gt; and something you &lt;em&gt;have&lt;/em&gt;.  Time-based One Time Passwords are six-digit codes that change periodically.  Hopefully, you already use this to secure critical online resources like your email.  TOTP utilities generate a 3D barcode that can be read by the camera on a phone, and use that to set a unique nugget that can be combined with the time to give random number strings.  Google authenticator is the &amp;ldquo;go-to&amp;rdquo; app on the phone for entering and holding these authenticators.  I use &lt;em&gt;Enpass&lt;/em&gt;, which does a similarly good job.&lt;/p&gt;
+&lt;p&gt;Before you begin, you&amp;rsquo;ll need the authenticator app loaded on your phone and you&amp;rsquo;ll need to be physically in front of the server.  On the server, install the authenticator module and initiate the settings.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install libpam-google-authenticator  
+google-authenticator -t -d -f -r &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; -R &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; -W   &lt;span style=&#34;color:#75715e&#34;&gt;# NOTE: using cmd w/o flags will walk you through prompts  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;google-authenticator&lt;/strong&gt; command will show you a 3D barcode and your first code.  Scan that in on your phone and verify the code.  The output will also include five &amp;ldquo;emergency scratch codes&amp;rdquo;.  These would be used if you lose your phone.  Write them down somewhere for emergencies before continuing.&lt;/p&gt;
+&lt;p&gt;Next, add a line to &lt;em&gt;/etc/pam.d/sshd&lt;/em&gt; for authentication and edit a line in &lt;em&gt;sshd_config&lt;/em&gt; for Challenges.  Restart the service and you&amp;rsquo;ll be ready to test.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/pam.d/sshd
+&lt;span style=&#34;color:#75715e&#34;&gt;#_add this line, then close the file&lt;/span&gt;
+auth required pam_google_authenticator.so nullok
+ 
+sudo nano /etc/.ssh/sshd_config
+&lt;span style=&#34;color:#75715e&#34;&gt;#_find and change this line, then close the file&lt;/span&gt;
+ChallengeResponseAuthentication yes
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#_restart sshd&lt;/span&gt;
+sudo systemctl restart sshd.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At this point, try connecting to this server using ssh.  It should &lt;em&gt;either&lt;/em&gt; use a key or prompt you for your password and then for the current TOTP code.  If you want it to require TOTP when using a key, you&amp;rsquo;ll need to edit sshd_config and restart the process again.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/.ssh/sshd_config
+&lt;span style=&#34;color:#75715e&#34;&gt;#_add this line&lt;/span&gt;
+AuthenticationMethods publickey,password publickey,keyboard-interactive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;recommendations&#34;&gt;Recommendations&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve presented a lot of ideas here, so I want to conclude by giving you my recommendations for personal machines.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install SSH server by default&lt;/li&gt;
+&lt;li&gt;Use a banner in .bashrc to make clear which device you are currently logged into&lt;/li&gt;
+&lt;li&gt;Limit SSH to local IPs unless there&amp;rsquo;s a specific requirement otherwise.  If you can&amp;rsquo;t limit by IP, use TOTP.&lt;/li&gt;
+&lt;li&gt;Use fail2ban&lt;/li&gt;
+&lt;li&gt;Use keys.  Don&amp;rsquo;t try to use the same keys on all devices, just generate new ones every time you re-install or get a new PC.  At least for me, this cuts down on the risk of keys falling into outside hands.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using SSH - Part 1 (Basics and Banners)</title>
+      <link>https://www.nextpertise.net/posts/200811_using_ssh1/</link>
+      <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
+      
+      <guid>https://www.nextpertise.net/posts/200811_using_ssh1/</guid>
+      <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
+&lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
+&lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;
+&lt;p&gt;My walk through assumes you are using a command-line client.  Note that the ssh &lt;em&gt;client&lt;/em&gt; is typically installed in the *nix world.  If you want your box to be the server then you&amp;rsquo;ll need to add it via &lt;strong&gt;sudo apt install openssh-server&lt;/strong&gt; (Debian/Ubuntu).&lt;/p&gt;
+&lt;p&gt;Most of us encounter SSH as a secure replacement for telnet.  SSH allows us to connect to a remote terminal from the command line.  Assuming that I wanted to connect to my firewall by it&amp;rsquo;s IP address and that there was an account named &amp;ldquo;brent&amp;rdquo; there, I can connect using _&lt;em&gt;ssh &lt;em&gt;username&lt;/em&gt;@&lt;em&gt;Destination&lt;/em&gt;&lt;/em&gt;.  If this is the first time you&amp;rsquo;ve connected, you&amp;rsquo;ll be asked to confirm the fingerprint.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;brent@MintyTwenty:~$ ssh brent@192.168.24.230  
+The authenticity of host &amp;#39;192.168.24.230 (192.168.24.230)&amp;#39; can&amp;#39;t be established.  
+ECDSA key fingerprint is SHA256:1XYZ12MBd5Sb345ABOBhoKx42D+STU56szGR/d3LkGs.  
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes  
+Warning: Permanently added &amp;#39;192.168.24.230&amp;#39; (ECDSA) to the list of known hosts.  
+brent@192.168.24.230&amp;#39;s password:  
+brent@inspiron:~$  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The fingerprint is to protect against a man-in-the-middle attack, where your traffic is being re-directed to a malicious third party.  Before you type in (and reveal) your password, best to make sure that this is a trusted server!  So, where do we find the fingerprint to match it to?  The easiest way to get it is to go to your server and use ssh to connect to itself: &lt;strong&gt;ssh &lt;em&gt;username&lt;/em&gt;@127.0.0.1&lt;/strong&gt;.  This will show the local fingerprint.  If someone has already used this trick and accepted the fingerprint, you can delete ~/.ssh/knownhosts (&lt;em&gt;not recommended&lt;/em&gt;) or use ssh-keygen to examine the local public key.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;brent@MintyTwenty:~$ __ssh-keygen -lf .ssh/id_rsa.pub  
+4096 SHA256:cjyCsHXYZ12dESNo+12AB/oGGaxY1JHSTU%1p3Aeouw brent@X (RSA)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;banners&#34;&gt;Banners&lt;/h2&gt;
+&lt;p&gt;SSH banners are specified in the ssh daemon configuration (&lt;em&gt;/etc/sshd_config&lt;/em&gt;),  To specify a banner, find the line reads &amp;ldquo;#banner none&amp;rdquo; and edit it to specify a file.  The contents of this file will be displayed &lt;em&gt;before&lt;/em&gt; the password prompt.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;sudo nano /etc/sshd_config  
+banner /etc/banner.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/neofetch.png#floatsmallright&#34; alt=&#34;neofetch&#34;&gt;&lt;/p&gt;
+&lt;p&gt;After authentication the prompt displays the server hostname.  You can display a banner &lt;em&gt;after&lt;/em&gt; authentication by editing &lt;em&gt;~/.bashrc&lt;/em&gt;.  This has a side benefit - the terminal, when connected to locally or remotely, processes &lt;em&gt;~/.bashrc&lt;/em&gt; before it produces a prompt.  Go to the end of that file and add whatever you like - that output will be displayed before a prompt is produced.  I&amp;rsquo;ve listed some cool ideas to build a dynamic banner below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;neofetech&lt;/strong&gt; is a popular script that summarizes system information.  There&amp;rsquo;s a ppa available to add this from apt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:dawidd0811/neofetch  
+sudo apt install neofetch  
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neofetch&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /home/brent/.bashrc  &lt;span style=&#34;color:#75715e&#34;&gt;# Add the command to the end of .bashrc  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.nextpertise.net/figlet.png#floatright&#34; alt=&#34;figlet&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Figlet&lt;/strong&gt; - draws letters in ASCII for a nice banner and any command can be piped through it (echo &amp;ldquo;for example&amp;rdquo; | figlet).  It&amp;rsquo;s available in the standard Ubuntu repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Curl&lt;/strong&gt; - pull in data from the web.  Try &lt;strong&gt;curl v2.wttr.in/Hickory+NC&lt;/strong&gt;.  A more practical example might be:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl wttr.in/Hickory+NC?format&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# check out the github page for lots more options&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server stats&lt;/strong&gt; - display information about the server such as IP (&lt;strong&gt;hostname -I)&lt;/strong&gt; or temperature (&lt;strong&gt;sensors&lt;/strong&gt;).  This snippet will display just the main temperature.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;data&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;sensors | grep &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id 0:&amp;#34;&lt;/span&gt; | cut -c16-23&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;#sensors displays a lot of data.&lt;/span&gt;
+                            &lt;span style=&#34;color:#75715e&#34;&gt;# Grep just grabs the one line, and cut pulls temp out.  &lt;/span&gt;
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CPU Temp:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;data&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Part two of this series will cover secure authentication options.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
