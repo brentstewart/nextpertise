@@ -7,7 +7,7 @@
     <h3>{{.Key}}<br></h3>
     <ul style="list-style: none;">
     {{range .Pages}}
-      <li>{{if .Params.picture }}<img src="/{{.Params.picture}}.png" height="20">{{end}}&nbsp; &nbsp;<a href="{{.URL}}">{{.Title}}</a></li><br>
+      <li>{{if .Params.picture }}<img src="/{{.Params.picture}}.png" height="20">{{end}}&nbsp; &nbsp;<a href="{{.RelPermalink}}">{{.Title}}</a></li><br>
     {{end}}
     </ul><br></body>
   {{end}}
