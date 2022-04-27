@@ -6,7 +6,7 @@
   <div class="child">
     <a href="{{.RelPermalink}}">{{.Title}}</a><br>
     <div class="tags"> 
-
+      {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | RelPermalink }}">{{ . }}</a> {{end}}{{end}}
     </div>
   <br>
   </div>
