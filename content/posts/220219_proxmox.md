@@ -34,3 +34,5 @@ I tried several approaches to resolve this.  You can see the error from the PVE 
     vgchange -ay
 
 So this post is a note to myself for the next time.  Hopefully it's helpful to you as well.
+
+### Update: I had a power outage in late April and had to follow this procedure again.  Apparently it's a common failure state.
