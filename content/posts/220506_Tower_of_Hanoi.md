@@ -42,3 +42,4 @@ This is an efficient and rational way to commit the few resources to retain a lo
 All that said, throughout my career it's been true that concepts recycle on a predictable basis and what's old is new again.  Understanding some of these ideas has a way of paying off eventually.  
 
 It's also true that I owe my long career to a mentor who took an interest in a younger me.  I'm blessed that I get to see him occassionally to this day.  I'll never be able to repay him, but I try to pay it forward a little bit at a time.
+
