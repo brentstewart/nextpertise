@@ -1,7 +1,7 @@
 ---
 title: "Nautilus Tweaks"
 date: 2022-07-17T17:04:02-04:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Nautilus"
