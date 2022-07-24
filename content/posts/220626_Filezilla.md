@@ -9,7 +9,7 @@ picture: "ftp"
 github: ""
 youtube: ""
 refs: ["https://filezilla-project.org/"]
-tags: [""]
+tags: ["ftp"]
 ---
 
 Filezilla produces a set of graphical file transfer tools and this has been a high-quality product for a very long time.  I've used Filezilla since the early 2000s, as have a lot of other folks, and it's something of a standard in industry where FTP/FTPS is used.  Part of the charm is that the Filezilla client is very accessible for non-technical folks - a little introduction and they can manage their own downloads.
