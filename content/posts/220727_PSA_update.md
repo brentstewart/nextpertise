@@ -1,7 +1,7 @@
 ---
 title: "VMWare PSA update"
 date: 2022-07-27T13:00:36-04:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
