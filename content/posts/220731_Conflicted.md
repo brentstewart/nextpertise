@@ -1,7 +1,7 @@
 ---
 title: "Conflicted by Ian Leslie"
 date: 2022-07-31T20:57:59-04:00
-draft: true
+draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Conflicted"
