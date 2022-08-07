@@ -6,7 +6,7 @@ author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Conflicted"
 picture: "book"
-github: ""
+github: "https://github.com/brentstewart/bookbackgrounds"
 youtube: ""
 refs: [""]
 tags: ["book"]
@@ -30,6 +30,9 @@ Leslie's writing is engaging and his examples make the concepts real.  In my opi
 _Conflicted_ also is told from a first-person perspective.  Again, this can make the ideas easier to read, but it also moves the book toward opinion.  Of course, any book on relationships involves opinion and personal perspective, but I think that decision runs counter to some very interesting research that is being related.
 
 _Conflicted_ is an interesting and thought-provoking book.  After I finished it, I wanted to share the ideas with my family, particularly my daughter who is studying Psychology.  It's worth the read if you are thinking about your relationships, business or personal.
+
+### Book Backgrounds
+I've started created desktop backgrounds that summarize important books I've read.  I set them to rotate so that I'm periodically reminded of ideas.  If you like _Conflicted_, the images are in a [github repository](https://github.com/brentstewart/bookbackgrounds) and you are welcome to check them out!
 
 ### Amazon Associate link
 
