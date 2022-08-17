@@ -195,3 +195,9 @@ img[src$='#floatsmallright']
   .tags {font-size: 32px;}
   .sidebar-nav-item { font-size: 32px;}
 }
+code.has-jax {
+  -webkit-font-smoothing: antialiased;
+  background: inherit !important;
+  border: none !important;
+  font-size: 100%;
+}
