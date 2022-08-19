@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2022-08-19T09:07:14-04:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: "cisco"
 Focus_Keyword: "Legacy Flash support"
