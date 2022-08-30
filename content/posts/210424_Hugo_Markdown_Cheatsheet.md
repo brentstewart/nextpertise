@@ -9,7 +9,7 @@ picture: "hugo"
 github: "https://github.com/brentstewart/nextpertise"
 youtube: ""
 refs: ["https://gohugo.io","https://codingnconcepts.com/hugo/","https://www.mybluelinux.com/how-create-bootstrap-tables-in-hugo/"]
-tags: ["hugo","JAMStack"]
+tags: ["hugo","JAMStack","markdown"]
 ---
 Markdown is a fantastic distraction-free way to write.  Using Markdown in VSCode is one of the things I like most about building this blog with Hugo.  It's important to realize that the site CSS and Hugo shortcodes that are present play a big role in the way you write for the Hugo platform.  Those elements are usually included in the theme.  My theme is called _next_ and you can clone it from Github.
 

@@ -1,7 +1,7 @@
 ---
 title: "Length of a bit"
 date: 2022-08-15T12:59:02-04:00
-draft: true
+draft: false
 author: "J. D. Wegner"
 Victor_Hugo: "true"
 Focus_Keyword: "network"
@@ -9,7 +9,7 @@ picture: "network"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["Network"]
+tags: ["network"]
 math: true
 markup: 'mmark'
 ---
@@ -26,28 +26,15 @@ I affirmed that they do - in a perfect vacuum. Wanna just go with that?  "Sure, 
 
 Since he was asking about the length of a single bit, we need a unit of distance; meters (m) works well here I think. We'll start with a frequency of 1MHz. 
 
-The basic formula is $ length = \frac{speed}{frequency} $.
+The basic formula is $ length = \frac{speed}{frequency} $ so ...
 
-$$ length = \frac{300000000}{1000000} $$
-$$ E=mc^2 $$
-$$ \sqrt{x^2+1} $$
+$$ length = \frac{300,000,000 m/s}{1,000,000 b/s} = 300 m/b$$
 
-
-length = 300,000,000 m/sec
-         -----------------
-          1,000,000 cycles/sec (Hz)
-
-length = 300 meters / cycle (bit)	
-
-![Length of a bit](/lengthofbit.png)
 
 "That's a lot longer than I thought it would be" he said.  
 
-You want it shorter?  Increase the frequency of the signal. How about 1GHz?
-
-len = 300,000,000 m/sec
-      -----------------
-     1,000,000,000 bits/sec  =  0.3 meters (just under a foot)
+You want it shorter?  Increase the frequency of the signal. How about 1GHz?  It's just under a foot.
+$$ length = \frac{300,000,000 m/s}{1,000,000,000 b/s} = 0.3 m/b$$
 
 He said he got that, but what about the carrying medium? 
 
@@ -59,10 +46,10 @@ engineers, the VF depends on the line's tendency to impede the progress of the s
 
 So, in space, a 1GHz "bit" is about a foot long.  In a Cat 6 twisted pair cable it would be
 
-len = 300,000,000 m/sec x 65%
-      -----------------------
-     1,000,000,000 bits/sec   ~ 7.7 inches
-	  
+$$ length = \frac{300,000,000 m/s \times 0.65}{1,000,000,000/s} = 0.195 m/b$$
+
 So as the signal goes through a higher impedance cable, the bits get shorter.
 
 There are, of course, other factors to consider when engineering signal transmission systems in the real world.  Very high- and low signaling rates need their own special considerations.  One of the big advances in recent years is the ability to build smaller and more efficient integrated circuit (IC) chips that allow for faster and faster signal processing at lower power consumption. This is why we have supercomputers that can use so-called 5G frequencies and protocols - and also fit in your pocket.  Sometimes we can even use them to make phone calls.
+
+![Length of a bit](/lengthofbit.png)
