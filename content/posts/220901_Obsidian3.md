@@ -1,8 +1,8 @@
 ---
-title: "Obsidian Tasks (Part 2)"
+title: "Using Obsidian (Part 3)"
 description: ""
 author: "Brent Stewart"
-date: "2022-08-31T06:24:59-04:00"
+date: "2022-09-01T06:24:59-04:00"
 markup: 'mmark'
 math: false
 draft: true
@@ -12,15 +12,27 @@ Focus_Keyword: "Obsidian"
 youtube: ""
 github: ""
 refs:
+  - https://theproductiveengineer.net/the-beginners-guide-to-obsidian-notes-step-by-step/
+  - https://notes.nicolevanderhoeven.com/Obsidian+Dataview
+  - https://mermaid-js.github.io/mermaid/#/gantt?id=styling
+  - https://fortelabs.co/blog/para/
+  - https://www.sitepoint.com/obsidian-beginner-guide/
   - https://help.obsidian.md/Obsidian/Index
   - https://help.obsidian.md/How+to/Working+with+tags
+  - https://www.zylstra.org/blog/2020/10/100-days-in-obsidian-pt-1/
+  - https://www.youtube.com/watch?app=desktop&v=uqVx22lo9_4&themeRefresh=1
+  - https://thesweetsetup.com/our-favorite-obsidian-plugins/
+  - https://medium.com/produclivity/my-3-favourite-obsidian-themes-and-most-useful-plug-ins-e130aba1103a
+  - https://medium.datadriveninvestor.com/the-only-10-obsidian-plugins-i-need-to-have-the-best-and-simplest-pkm-of-my-life-c3a3b9d1ebda
+  - https://fortelabs.co/blog/para/
+  - https://blacksmithgu.github.io/obsidian-dataview/query/queries/
 tags:
   - "markdown"
 ---
 
-In [Part 1](/220829_obsidian_intro), I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it's a good place to start.  
+In [Part 1](/220829_Obsidian_Intro), I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it's a good place to start.  
 
-Part 2 will focus more on tasks within notes.  We'll use tasks to also introduce plugins and tags.   Future articles will discuss links, embeds, tags and some of the other plugins that add functionality, such as Dataview.
+Part 2 will focus more on some the ways that notes are constructed in Obsidian.  This article covers the basics of tasks, links, embeds, and tags.  Future articles will discuss some of the specific plugins that add functionality, such as Dataview.
 
 ## Tasks
 ![Obsidian Tasks](/220831_Obsidian_Tasks.png#floatright)
@@ -32,8 +44,7 @@ In the last article, we discussed the basics of creating a note using Obsidian. 
 - [ ] Post article
 ```
 
-## Checklist Plugin
-Notice that I've tagged this list with _#todo_.  That is necessitated by a plugin I use - __Checklist__.  This also presents a chance to introduce the usage of plugins and tags.  The tag will be used by the plugin to generate a consolidated list of open to-dos across all documents.
+Notice that I've tagged this list with _#todo_.  I recommend adding the __Checklist__ plugin, and this also serves to introduce the usage of plugins.
 
 To configure plugins, select the gear button (bottom left).  Plugins are grouped as "Core" - the ones included with the application and supported by the developer - and "community" - those that are created by third parties and made available to other Obsidian users.  Checklist is a community plugin, so step one is to go to the Community Plugins page in options and Turn Off restricted mode.  This will allow you to browse and install community plugins.
 
@@ -44,24 +55,33 @@ Browsing plugins gives you a _huge_ list.  There are 637 plugins listed in Augus
 > Using plugins requires that they be downloaded (installed) and then enabled.  If you forget to enable, just go back into options.  Scroll down to the bottom where Community Plugins are listed and they can be enabled from there.
 
 ![Configuring Plugins](/220831_Obsidian_Checklist.png#floatleft)
-![Configuring Plugins](/220831_Obsidian_Tasklist.png#floatleft)
-![Working with tags](/220831_Obsidian_Tags.png#floatleft)
 
 Once the Checklist plugin is installed, you'll be able to configure it under options.  Select the gear icon (lower left) to get into options and scroll down to the bottom.  You'll find a header called "community plugins" and the Checklist plugin should be under that.  Notice that my screen shows several plugins, while you may only have Checklist to this point.
 
-## Tags to build our Checklist
-
 Check four settings while here.  First, multiple tags can be specified to pull in tasks.  You might have #honeydo and #worktasks for instance.  In this case, a generic #todo tag is specified.  Some other settings to check (to get this to work the way one might intuitively expect) are Show Completed - OFF, Group By - Tags, and Auto-Refresh ON.
 
-Once the plugin is configured, create a couple notes with tasks.  Remember to tag the tasks using a tag you defined in the Checklist seutp.  In the example screenshot, I took our sample list above and named the note "Sample 1".  I created a second list and named it "Sample 2".
 
-The vault pane shows that I'm editing "Sample 2".  You can see the new note defined in the editing pane.  Because the checklist plugin is installed, the "action" pane on the right should now have a "check" tab (I've circled it in the example). Selecting this tab will show a consolidated list of incomplete tasks.  Marking an item complete in the pane will remove it from the list and mark it complete in the original document.  Similarly, you can complete tasks in the document and the update will carry over to the checklist sidebar. 
 
-Tags are used by Obsidian to group things - in this case checklist.  They can also be used to group notes.  To see where we have tags defined, click the hashmark tab in the right "action" pane.  My example vault, built to demonstrate these concepts, has three tags in use: #todo, #evil, and #work.
-Choosing _todo_ changes the left pane to show us which notes contain that tag and allow us to quickly jump to related entries.
 
-## Scratching the surface
 
-At this point, we have [introduced](/220829_obsidian_intro) Obsidian as a [markdown](/210424_hugo_markdown_cheatsheet)-based note taking tool. Obsidian has great tools to help manage tasks, and we've demonstrated the basics of using tasks.  Finally, we've started to cover the concepts of plugins and tags.
 
-There is a lot more to discuss!  Once I started using Obsidian, my use cases grew and the way I built notes started to fundamentally change.  I'm very excited by the possibilities.  I'm equally excited to share the journey.  
+	Markdown
+		checkboxes
+    
+## Links
+		links to heading  
+		external links
+		backlinks
+
+## Embeds
+	Embeds to pics, audio/video, pdfs, etc.
+		Graph
+	Latex
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+	code blocks
+```python
+	print("Hello World")
+```
+
+## Tags
+	Tags (#tag, tag pane)
