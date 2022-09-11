@@ -8,12 +8,13 @@ math: True
 draft: false
 Victor_Hugo: "true"
 picture: "book"
-Focus_Keyword: "Toyota Produciton System (TPS)"
+Focus_Keyword: "Toyota Production System (TPS)"
 youtube: ""
 github: "https://github.com/brentstewart/bookbackgrounds"
 refs: ["https://global.toyota/en/company/vision-and-philosophy/production-system/","https://www.youtube.com/watch?v=yZDRB_z51MQ"]
 tags:
-  - ""
+  - "books"
+  - "management"
 ---
 Toyota has been known for high quality for decades.  That quality is widely attributed to a philosophy of manufacturing referred to as the Toyota Production System.  That system focuses on single-piece flow manufacturing which makes things right the first time, eliminating waste, continuous improvement, automation, and Just-In-Time processes.  Those goals are achieved by a motivated and aligned workforce.  Other parts of the automotive industry (and other industries) study Toyota and try to understand how to emulate it's success.
 
@@ -21,9 +22,7 @@ There's a fascinating lineage of thought that goes from TPS to _Lean_, to _DevOp
 
 Toyota's manufacturing philosophy is well worth your time to consider, but that philosophy is only realized when the people involved buy into it.  _The Toyota Engagement Equation_ is about how the people at the Kentucky Toyota plant (TMMK) came to understand and implement TPS. It's written by Tracey Richardson and her husband, Ernie Richardson.  The Richardsons were in the first group of employees at TMMK and absorbed TPS as they grew through their careers.  After Toyota, they founded Teaching Lean, Inc., and are part of the Lean Enterprise Institute.
 
-{{<rawhtml>}}
-<iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=nextpertise-20&language=en_US&marketplace=amazon&region=US&placement=1259837424&asins=1259837424&linkId=0121e84b76936b8dae85c252442c7916&show_border=true&link_opens_in_new_window=true"></iframe>
-{{</rawhtml>}}
+[The Toyota Engagement Equation](https://amzn.to/3BxPg4Y)
 
 The Richardsons moved from being inside a TPS environment to trying to teach the concepts to others.  It's clear they've had time to think about and distill that process.  However, _The Toyota Engagement Equation_ doesn't really all of TPS.  This book focuses on the mindset and approach that make people successful in that philosophy, and by extension how one manages consistent with TPS.  As a consequence, it serves as a companion book to something like _Modern Toyota Production System_ (Yasuhiro Monden).
 
