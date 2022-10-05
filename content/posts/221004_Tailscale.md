@@ -60,6 +60,19 @@ I looked at the IPs assigned to me and all tailscale IPs fit into 100.64/10.  I 
 
 The remaining issue is that local devices have my firewall as their default gateway.  When they receive traffic from a tailscale-connected IP, they reply using their default route back to the firewall.  The firewall then uses it's default route to pass the traffic to the public Internet!  To fix this, I went into firewall (for those of you with Meraki, it's on the dashboard under _Security & SD-WAN > Addressing & VLAN_) and added a static route.  The route should target 10.64.0.0/10 and the next hop should be the IP of the tailscale exit node.  With this in place, everything works!
 
+## Nix setup
+Setup in Nix involves two steps and also varied slightly for me from the docs.  First, add tailscale to _configuration.nix_.
+
+  environment.systemPackages = with pkgs; [
+    . . .
+    pkgs.tailscale
+  ]
+  services.tailscale.enable=true;
+  # exit the text editor
+  > sudo nixos-rebuild switch
+
+Once tailscale is installed, run __sudo tailscale up__ as before.  This will provide a URL for authentication.  Finally, go into the tailscale dashboard and authorize the new machine (click the ellipsis to the right of the machine and choose authorize).  Nix runs on my travel laptop, so I didn't try to advertise it as an exit node.
+
 ![Dashboard](/221005_Tailscale.png#floatright)
 ## Tailscale Dashboard
 
