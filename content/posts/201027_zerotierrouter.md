@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "zerotier"
-picture: "zerotier"
+picture: "network"
 github: ""
 youtube: ""
 refs: ["https://zerotier.com"]
-tags: ["ZeroTier","VPN","GNS3"]
+tags: ["ZeroTier","VPN","GNS3","Network"]
 ---
 This article continues the exploration of ZeroTier started in a previous [posting](/zerotier).  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.
 

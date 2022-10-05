@@ -22,7 +22,7 @@ There's a fascinating lineage of thought that goes from TPS to _Lean_, to _DevOp
 
 Toyota's manufacturing philosophy is well worth your time to consider, but that philosophy is only realized when the people involved buy into it.  _The Toyota Engagement Equation_ is about how the people at the Kentucky Toyota plant (TMMK) came to understand and implement TPS. It's written by Tracey Richardson and her husband, Ernie Richardson.  The Richardsons were in the first group of employees at TMMK and absorbed TPS as they grew through their careers.  After Toyota, they founded Teaching Lean, Inc., and are part of the Lean Enterprise Institute.
 
-[The Toyota Engagement Equation](https://amzn.to/3BxPg4Y)
+[Purchase _The Toyota Engagement Equation_ at Amazon](https://amzn.to/3BxPg4Y)
 
 The Richardsons moved from being inside a TPS environment to trying to teach the concepts to others.  It's clear they've had time to think about and distill that process.  However, _The Toyota Engagement Equation_ doesn't really all of TPS.  This book focuses on the mindset and approach that make people successful in that philosophy, and by extension how one manages consistent with TPS.  As a consequence, it serves as a companion book to something like _Modern Toyota Production System_ (Yasuhiro Monden).
 
