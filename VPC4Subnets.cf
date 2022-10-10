@@ -1,0 +1,131 @@
+Resources:
+#ref: https://godof.cloud/vpc-with-nat-gateway/
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.64.0.0/16
+      Tags:
+        - Key: "Name"
+        - Value: "BDS-vpc"
+         
+# Subnets-------------------------
+  Subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.64.0.0/24
+      VpcID: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Public-E1A-Subnet"
+         
+  Subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 10.64.1.0/24
+      VpcID: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Public-E1B-Subnet"
+         
+  Subnet3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.64.2.0/24
+      VpcID: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Private-E1A-Subnet"
+
+  Subnet4:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 10.64.3.0/24
+      VpcID: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Private-E1B"
+
+# Route Tables --------------------
+  PublicRouteTable:
+    Type:  AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Public Route Table"
+        
+  PrivateRouteTable:
+    Type:  AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: "Name"
+        - Value: "Public Route Table"
+         
+  PublicRouteTableAssociation1:
+    Type:  AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet1
+      RouteTableId: !Ref PublicRouteTable
+        
+  PublicRouteTableAssociation2:
+    Type:  AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet2
+      RouteTableId: !Ref PublicRouteTable
+        
+  PrivateRouteTableAssociation3:
+    Type:  AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet3
+      RouteTableId: !Ref PrivateRouteTable
+        
+  PrivateRouteTableAssociation:
+    Type:  AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet4
+      RouteTableId: !Ref PrivateRouteTable
+        
+# Internet Gateway ------------------------
+  InternetGateway:
+    Type:  AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: "Name"
+        - Value: "BDS-IG"
+
+  VpcIgAttachment:
+    Type:  AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+        
+  Route2Ig:
+      Type: AWS::EC2::Route
+      Properties:
+        RouteTableId: !Ref PublicRouteTable
+        DestinationCidrBlock: '0.0.0.0/0'
+        GatewayId: !Ref InternetGateway
+          
+# NAT Gateway ------------------------------------
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  NatGateway:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt ElasticIP.AllocationId
+      SubnetId: !Ref Subnet1
+
+  Route2Ng:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref NatGateway
