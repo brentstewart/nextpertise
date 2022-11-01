@@ -49,12 +49,7 @@ At this point, routing onto the local network from Tailscale will still not work
 
     >route
     Kernel IP routing table
-    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-    default         _gateway        0.0.0.0         UG    102    0        0 enp3s0
-    192.168.1.0     0.0.0.0         255.255.255.0   U     102    0        0 enp3s0
-    # note - the routing table has been edited to remove virtualization and container routes to aid reading
-
-I looked at the IPs assigned to me and all tailscale IPs fit into 100.64/10.  I therefore added that route to the host as shown below.  With this in place, routing from TailScale-connected devices to the host worked, but not to other devices in the same VLAN or to other VLANs.
+    Destination     Gateway         Genmask http://192.168.26.53/ worked, but not to other devices in the same VLAN or to other VLANs.
 
     sudo route add -net 100.64.0.0/10 dev tailscale0
 
