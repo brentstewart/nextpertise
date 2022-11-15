@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2022-11-14T17:27:51-05:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: "linux"
 Focus_Keyword: "Linux Upgrade"
