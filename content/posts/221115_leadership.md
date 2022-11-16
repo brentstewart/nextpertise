@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2022-11-15T14:41:10-05:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: "leadership"
 Focus_Keyword: "Sayings"
