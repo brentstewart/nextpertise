@@ -1,5 +1,5 @@
 ---
-title: "Wisdom in 16 sayings"
+title: "Wisdom in 17 sayings"
 description: ""
 author: "Brent Stewart"
 date: "2022-11-15T14:41:10-05:00"
@@ -102,6 +102,11 @@ I've carried around this quote since I was a kid.  I think I picked it up from r
 
 >Never attribute to malice what can be adequately explained by stupidity.
 > -  Hanlon's razor, perhaps a restatement from Winston Churchill
+
+__Extreme Ownership__ as a book is like a Mel Brooks movie - everyone remembers just the bits that hit it out of the park.  Still, there's an undeniable relevation about leadership in this quote and I repeat it when mentoring young managers.
+
+> It's not what you preach, it's what you tolerate.
+> - Jocko Willink
 
 # On Gratitude
 I finish with the subject that has most influenced my "mature" years.  I've worked to become a grateful person and to recognize that I'm blessed in myriad ways.  To list just three: I have a wonderful wife and amazing children, I have friends around the world who want nothing but good for me, and I have the opportunity to do meaningful work.  Focusing on those gifts has brought a peace and happiness to my life.
