@@ -14,7 +14,7 @@ github: "https://github.com/brentstewart/bookbackgrounds"
 refs: ["https://global.toyota/en/company/vision-and-philosophy/production-system/","https://www.youtube.com/watch?v=yZDRB_z51MQ"]
 tags:
   - "books"
-  - "management"
+  - "leadership"
 ---
 Toyota has been known for high quality for decades.  That quality is widely attributed to a philosophy of manufacturing referred to as the Toyota Production System.  That system focuses on single-piece flow manufacturing which makes things right the first time, eliminating waste, continuous improvement, automation, and Just-In-Time processes.  Those goals are achieved by a motivated and aligned workforce.  Other parts of the automotive industry (and other industries) study Toyota and try to understand how to emulate it's success.
 
