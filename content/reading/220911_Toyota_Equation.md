@@ -1,5 +1,5 @@
 ---
-title: "The Toyota Engagement Equation"
+title: "The Toyota Engagement Equation by Tracie and Ernie Richardson"
 description: ""
 author: "Brent Stewart"
 date: "2022-09-11T13:39:09-04:00"
@@ -8,6 +8,7 @@ math: True
 draft: false
 Victor_Hugo: "true"
 picture: "book"
+image: https://m.media-amazon.com/images/I/51Ijl2pDcUL.jpg
 Focus_Keyword: "Toyota Production System (TPS)"
 youtube: ""
 github: "https://github.com/brentstewart/bookbackgrounds"

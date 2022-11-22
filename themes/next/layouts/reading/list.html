@@ -1,0 +1,15 @@
+
+{{define "main"}}
+<h1>Recent articles:</h1>
+<div id="parent">
+{{range .Pages}}
+  <div class="child">
+    <a href="{{.RelPermalink}}">{{.Title}}</a><br>
+    <div class="tags"> 
+
+    </div>
+  <br>
+  </div>
+  {{end}}
+</div>
+{{end}}

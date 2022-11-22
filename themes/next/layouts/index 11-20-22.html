@@ -1,22 +1,17 @@
 {{define "main"}}
 
-<h1>Most Recent Books I've Finished:</h1>
-{{range first 5 (where .Site.RegularPages "File.Dir" "reading/") }}
-  <div class="parent">
-    <div class="child">
-      {{if .Params.image }} <a href="{{.RelPermalink}}"><img src="{{.Params.image}}#floatleft" height="100" alt="{{.Params.image}}"></a>{{end}}
+<h1>Most Recent Book I've Finished:</h1>
+{{range first 2 (where .Site.RegularPages "File.Dir" "reading/") }}
+  <div class="child">
+    {{if .Params.image }} <img src="{{.Params.image}}#floatleft" height="140" alt="{{.Params.image}}">{{end}}
+    <a href="{{.RelPermalink}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
+    {{ .Summary}}<div class="tags"> 
     </div>
-      {{end}}
-      <div class="child">
-      <note>I've been a voracious reader my whole life, but in recent years short articles have been replacing books.  I'm trying to rebuild that discipline and I'm sharing my impressions on the journey.
-      </note></div>
-  </div>
-<br>
-<br>
-<br>
-<br>
-<h1>Recent Technical Posts:</h1>
-{{range first 5 (where .Site.RegularPages "File.Dir" "posts/") }}
+    <br>
+    </div>
+  {{end}}
+<h1>Most Recent Posts:</h1>
+{{range first 4 .Site.RegularPages }}
 <div class="child">
   {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatleft" height="140" alt="{{.Params.picture}}">{{end}}
   <a href="{{.RelPermalink}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>

@@ -23,6 +23,10 @@ enableRobotsTXT = "true"
   url="/posts/"
   weight=3
 [[menu.main]]
+  name="Reading"
+  url="/reading/"
+  weight=3
+[[menu.main]]
   name="About"
   url = "/contributors"
   weight = 5
