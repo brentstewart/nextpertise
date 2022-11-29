@@ -1,6 +1,6 @@
 {{define "main"}}
 
-<h1>Most Recent Books I've Finished:</h1>
+<h1>Most Recent Reading:</h1>
 {{range first 5 (where .Site.RegularPages "File.Dir" "reading/") }}
   <div class="parent">
     <div class="child">
@@ -8,7 +8,7 @@
     </div>
       {{end}}
       <div class="child">
-      <note>I've been a voracious reader my whole life, but in recent years short articles have been replacing books.  I'm trying to rebuild that discipline and I'm sharing my impressions on the journey.
+      <note>I've been a voracious reader my whole life, but in recent years short articles and social media have been replacing more thoughtful fare.  I'm trying to rebuild that discipline of investing in long-form work and I'm sharing my impressions on the journey.
       </note></div>
   </div>
 <br>
