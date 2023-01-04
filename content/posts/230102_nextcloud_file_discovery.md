@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2023-01-02T14:47:26-05:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: "self-host"
 Focus_Keyword: "Nextcloud"
