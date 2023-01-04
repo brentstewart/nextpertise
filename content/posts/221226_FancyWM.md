@@ -7,7 +7,7 @@ markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: "Windows"
+picture: "windows"
 Focus_Keyword: "FancyWM"
 youtube: ""
 github: ""
