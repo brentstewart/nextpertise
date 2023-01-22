@@ -23,8 +23,12 @@ enableRobotsTXT = "true"
   url="/posts/"
   weight=3
 [[menu.main]]
+  name="Personal"
+  url="https://stewart.tc/"
+  weight=3
+[[menu.main]]
   name="Reading"
-  url="/reading/"
+  url="https://stewart.tc/reading/"
   weight=3
 [[menu.main]]
   name="About"

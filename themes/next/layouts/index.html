@@ -1,21 +1,7 @@
 {{define "main"}}
 
-<h1>Most Recent Reading:</h1>
-{{range first 5 (where .Site.RegularPages "File.Dir" "reading/") }}
-  <div class="parent">
-    <div class="child">
-      {{if .Params.image }} <a href="{{.RelPermalink}}"><img src="{{.Params.image}}#floatleft" height="100" alt="{{.Params.image}}"></a>{{end}}
-    </div>
-      {{end}}
-      <div class="child">
-      <note>I've been a voracious reader my whole life, but in recent years short articles and social media have been replacing more thoughtful fare.  I'm trying to rebuild that discipline of investing in long-form work and I'm sharing my impressions on the journey.
-      </note></div>
-  </div>
 <br>
-<br>
-<br>
-<br>
-<h1>Recent Technical Posts:</h1>
+<h1>Most Recent Posts:</h1>
 {{range first 5 (where .Site.RegularPages "File.Dir" "posts/") }}
 <div class="child">
   {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatleft" height="140" alt="{{.Params.picture}}">{{end}}
