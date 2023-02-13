@@ -34,7 +34,7 @@ Next, grab the themes JSON collection, uncompress them, and set the permissions 
 
 Finally, edit ~/.bashrc to run Oh My Posh as part of the shell.  Notice in the code below that I've specified the "agnosterplus" layout.  Substitute whichever theme you are interested in there.
 
-    eval "$(oh-my-posh --init --shell bash --config ~/poshthemes/agnosterplus.omp.json)"
+    eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/agnosterplus.omp.json)"
 
 You'll need to specify the terminal font in your terminal application.  A lot of the styling is done through extra ligatures included in [nerd fonts](https://www.nerdfonts.com/) - font files that are re-compiled to include additional symbols.  Grab a font you like (I'm using Meslo in this example, but I'm also partial to JetBrains NF) and set it as the default in the terminal profile.
 
