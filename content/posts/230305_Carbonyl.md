@@ -32,9 +32,9 @@ Use Control-C to exit the browser experience.  In the meantime, the mouse can be
 
 ### Why?
 
-So, who cares?  Certainly, the Carbonyl experience doesn't match a full browser in terms of resolution or functionality.  I think there are two use cases that are worth considering.  The first is as a demonstration - if a full browser can be supported from the command line, what else is possible?  Are there modalities where web content could be used on the command line.  One possibility that occurs to me is _man_ pages.  Imagine if the result of typing "man ls" was a set of linked hypertext, formatted to present cleanly in the shell!
+So, who cares?  Certainly, the Carbonyl experience doesn't match a full browser in terms of resolution or functionality.  I think there are two use cases that are worth considering.  The first is as a demonstration - if a full browser can be supported from the command line, what else is possible?  Are there modalities where web content could be used on the command line?  One possibility that occurs to me is _man_ pages.  Imagine if the result of typing "man ls" was a set of linked hypertext, formatted to present cleanly in the shell!
 
-Carbonyl conceivably has some current advantages as well.  It's a single small stand-alone binary, so shouldn't be subject to dependencies or system limitations.  It's small and easily downloaded, installed, and executed.
+Carbonyl conceivably has some current advantages as well.  It's a single stand-alone binary, so shouldn't be subject to dependencies or system limitations.  It's small and easily downloaded, installed, and executed.
 
 Carbonyl doesn't render exactly like a regular browser - I am currently using it to check the rendering of my page and you can't trust the layout and CSS seems to be mostly hit but some miss.  I'm unclear if a seperate Chrome binary is good or bad from a security standpoint.  Is it a new attack surface or is it a sand-box to play in?  My gut is to stick it in a container to isolate it from the system.
 

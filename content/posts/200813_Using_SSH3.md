@@ -9,7 +9,7 @@ author: "Brent Stewart"
 github: ""
 youtube: ""
 refs: ["https://filezilla-project.org/","https://play.google.com/store/apps/details?id=com.cxinventor.file.explorer&hl=en_US", "https://github.com/billziss-gh/winfsp/releases/tag/v1.7", "https://github.com/billziss-gh/sshfs-win", "https://github.com/evsar3/sshfs-win-manager"]
-tags: ["NFS","SSH", "Linux"]
+tags: ["NFS","SSH", "Linux","Windows"]
 ---
 
 One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn't an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you _could_ do this; I'm going to share how I'm currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.
