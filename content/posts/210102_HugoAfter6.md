@@ -9,7 +9,7 @@ picture: "hugo"
 github: ""
 youtube: ""
 refs: ["https://www.markdownguide.org/","https://jamstack.org/","https://vscodium.com/","https://render.com","https://mikedane.com","https://analytics.google.com/analytics/academy/"]
-tags: ["Hugo","JAMStack","Render"]
+tags: ["Hugo","JAMStack","Cloud"]
 ---
 I started writing this blog back in July of 2020.  There was a lot going on at that point, and yet a lot of nothing.  My employer was acquired in May and management was cut, so I was surprised to be out of job.  We were quarantining, which added a degree of difficulty to the job search, and summer is a slow time to find work anyway.  Against all this uncertainty, I wanted to do _something_ and decided to start writing.  I hoped that the blog might provide a way to establish my _bona fides_, and if nothing else it gave me a chance to share what I was working on (since I no longer had co-workers to share with).
 

@@ -9,7 +9,7 @@ picture: "aws"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["AWS"]
+tags: ["Cloud"]
 ---
 I had an issue that required changing the IP address of an EC2 instance.  __The short version: you can't change the primary IP of an EC2 instance.__
 

@@ -9,7 +9,7 @@ picture: "linux"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["Linux","Bind","DNS"]
+tags: ["Linux","DNS"]
 ---
 Continuing from my [previous post](/posts/210830_apache/), I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I'm still getting the hang of Proxmox, although I'm feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I'll provide a walk through of a simple local DNS server.  My goal at home is to create a "stewart.lan" network that I can use to reference local resources.
 

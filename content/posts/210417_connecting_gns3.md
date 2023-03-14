@@ -9,7 +9,7 @@ picture: "gns3"
 github: "https://github.com/brentstewart/gns3labs"
 youtube: ""
 refs: [""]
-tags: ["GNS3","Cisco","Meraki"]
+tags: ["GNS3","Cisco","Network"]
 ---
 I mentioned a month or so ago that I wanted to set out on a journey to create a set of template networks and then substitute in the various appliances that are supported under GNS3.  The idea is to start with Cisco, which I know best, and then explore the differences.  I'm still really excited about that but . . .  life.  So we're off to a slow start.  I'm going to break down some of the topics into smaller pieces so I can keep that project moving forward.  First up - how to connect you GNS3 lab environment to a "real" network.
 
