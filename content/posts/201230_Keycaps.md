@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "Keycaps"
-picture: "mechanical keyboard"
+picture: "keyboard"
 github: "https://github.com/brentstewart/postscript_projects"
 youtube: ""
 refs: ["https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html"]
-tags: ["Mechanical Keyboard","Postscript"]
+tags: ["Keyboard","Postscript"]
 ---
 ## From 12-30-20
 

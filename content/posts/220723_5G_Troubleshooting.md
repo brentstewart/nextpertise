@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "5G Signal Strength"
-picture: "n"
+picture: "network"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["How To", "Android"]
+tags: ["Network","How To","Android"]
 ---
 ![Signal Strength on Android](/220723_droid_signal.jpg#floatsmallleft)
 
