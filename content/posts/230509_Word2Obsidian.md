@@ -8,7 +8,7 @@ math: false
 draft: false
 Victor_Hugo: "true"
 picture: "pandoc"
-Focus_Keyword: ["linux","obsidian"]
+Focus_Keyword: "linux obsidian"
 youtube: ""
 github: ""
 refs: ["https://www.writage.com/", "https://pandoc.org/", "https://www.linuxjournal.com/content/linux-filesystem-events-inotify"]
@@ -18,7 +18,7 @@ tags:
   - "pandoc"
 ---
 
-I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I'd like to include in that journal.  One example is Word docs, such as my weekly reports.  I've copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to MD.
+I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I'd like to include in that journal.  One example is Word docs, such as my weekly reports.  I've copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.
 
 ## What Didn't Work
 
@@ -27,9 +27,9 @@ Just to save you time, I'll mention a few ideas that I tried and discarded on th
 I also found an old github repo that purported to address this issue.  That project has pivoted to HTML and deprecated the markdown code.
 
 ## The beginning of an idea
-Of course, looking for a FOSS solution lead me back to Pandoc.  Long, _long_ time readers may recall one of my early [experiments](/200919_pandoc_improved) with Pandoc.  [Pandoc](https://pandoc.org/) is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.
+Looking for a FOSS solution lead me back to Pandoc.  Long, _long_ time readers may recall one of my early [experiments](/200919_pandoc_improved) with Pandoc.  [Pandoc](https://pandoc.org/) is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.
 
-I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here's the command I came up with.  I've tested this with business memos and it worked fine.  I haven't tried it with tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.
+I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here's the command I came up with.  I've tested this with business memos and it worked fine.  I haven't tried it with complex tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.
 
     pandoc -wrap=none -f docx -t markdown "test.doc" -o "test.md"
 
@@ -64,7 +64,9 @@ Let's take that script step by step and explain a little more.
 
 This batch of done defines the directory to be monitored.  If your Linux of choice doesn't have __inotify__, it can be loaded using yum or apt as inotify-tools.  -m tells it to monitor, -e defines the events to be monitored.  You can notify on a variety of events.
 
-{{< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table of Tor Country Codes" >}}
+{{< bootstrap-table table_class="table table-responsive table-hover" thead_class="table-info" caption="Table of inotify events" >}}
+|  |  |  |
+| --- | --- | --- |
 | access |	create |	move_self |
 | attrib |	delete |	moved_to |
 | close_write |	delete_self |	moved_from |
@@ -76,14 +78,13 @@ The __echo__ commands are present for debugging.  Note that the __mv__ moves the
 
 ## Automating the script
 
-So the script is ready.  I can run it and it will monitor the _doc2obs_ directory until I stop it or reboot.  The next step is to make that something that just runs automatically, so I don't have to open a shell and worry about restarting it.
+So the script is ready.  I can run it and it will monitor the _doc2obs_ directory until I stop it or reboot.  The next step is to make this into something that just runs automatically, so I don't have to open a shell and worry about restarting it.
 
 Here I'll refer back to the process I used in [Automatically adding Hugo articles to Obsidian](/230313_blog2obsidian/), which is to use __cron__.  That script ran periodically and this one runs continuously, so we'll modify the approach to ask __cron__ to run it once at startup.
 
-
-
-crontab -e
-@reboot /home/brent/watch-doc2obs.sh
+    crontab -e  # gets us into edit mode
+    # add below entry
+    @reboot /home/brent/watch-doc2obs.sh
 
 ## Things to fix
 This does what I need it to do, but I have a few ideas about how it could be improved.  I'm not sure if I'll ever get to them, but they're worth noting.
