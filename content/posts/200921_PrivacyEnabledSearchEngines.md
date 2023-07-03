@@ -14,7 +14,7 @@ In the early days, when we didn’t know something, we would ask our parents or 
 
 Yes, you’ve guessed it right. They index it in their large data warehouses where they run complex machine learning algorithms to profile users, predict patterns and harness intelligence from this big data. This information is used to make product recommendations, shared to third parties to boost sales, etc. The real question is, how far would you trust these search engines with respect to your personal privacy? 
 
-This post is a follow-up to [reasonable secure browsing](https://www.nextpertise.net/reasonablysecurebrowsing/). As a Security and a Privacy paranoid person, I would always recommend alternate search engines for better privacy protection. Below are two widely used Secure and Privacy focussed search engines that I use:
+This post is a follow-up to [reasonable secure browsing](https://www.nextpertise.net/200805_reasonablysecurebrowsing/). As a Security and a Privacy paranoid person, I would always recommend alternate search engines for better privacy protection. Below are two widely used Secure and Privacy focussed search engines that I use:
 
 1.	__DuckDuckGo__ – This is my personal favourite and it is integrated in my Firefox browser. I absolutely love it for it's Security, Trackers Blocking and Sleek Integration features. It has a feature-rich plugin for the Firefox browser that ranks all the sites you visit and displays a privacy score, while blocking the violating content. It can also be used on your Android and iOS based mobile devices – Do give this a try, and feel the difference! https://duckduckgo.com/
 
