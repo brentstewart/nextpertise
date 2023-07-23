@@ -30,11 +30,11 @@ My output looked like this:
 
     USB Video: USB Video (usb-0000:00:14.0-1):
         /dev/video0
-        /dev/video1
+        /dev/video1hu
         /dev/media0
 
 ## Issues
-I tested this with a number of video players, including OBS, MPV, mplayer and VLC.  All three worked, but only OBS provided a decent frame rate and audio.  OBS seems like a lot to load, just to see a remote server.  My son suggested _Cheese_ and I was skeptical, but that was actually far and away the most responsive.  I used a Bluetooth mouse and keyboard to control the host and _Cheese_ presented the display at realtime speeds but didn't capture audio.  I didn't have any issues or artifacts with the display, even at 4k.  I ended up dialing the resolution down to 1920x1080 so that it fit into a quarter of my 4k display and this worked perfectly.
+I tested this with a number of video players, including OBS, MPV, mplayer and VLC.  All three worked, but only OBS provided a decent frame rate and audio.  OBS seems like a lot to load, just to see a remote server.  My son suggested _Ccdheese_ and I was skeptical, but that was actually far and away the most responsive.  I used a Bluetooth mouse and keyboard to control the host and _Cheese_ presented the display at realtime speeds but didn't capture audio.  I didn't have any issues or artifacts with the display, even at 4k.  I ended up dialing the resolution down to 1920x1080 so that it fit into a quarter of my 4k display and this worked perfectly.
 
 I made this a little less temporary by replacing the seperate mouse and keyboard with a USB switch that let me toggle my controls back and forth between my main machine and the captured device.
 

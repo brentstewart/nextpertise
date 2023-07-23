@@ -27,11 +27,9 @@ Firefox can encrypt your DNS traffic from "snoopers".  Go to the menu button and
 ## OpenDNS (208.67.222.222) - Best for home use
 OpenDNS is a great choice.  By default, their free service is excellent.  It recognizes many cases where you've been directed to a malicious site, and keeps you out of trouble by blocking it.  OpenDNS is owned by Cisco, and it benefits from the huge investments they've made in Internet security.  It also blocks adult content by default.  You can create an account and customize your home's experience - for instance, do you want to block Gambling or Tobacco advertising?  These settings are tied to your home IP, so your laptop goes back to the "default" when not at home.  Especially for public places, like church wifi, or for a home with children this allows you to control what portion of the Internet is available to users.
 
-![CloudFlare](https://cloudflare.com/#floatright)
-## Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3) - best for travelers
+## Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3)
 Cloudflare is very easy to setup.  Use the IP address that matches your use case.  These settings can carry over when you are away from home if you change them on your device.  There's also an app that provides this service no matter where you are (just for mobile with Windows and Mac coming soon).  Cloudflare has good settings for most cases, is easy to setup, and has the mobile apps, but lacks the customization of OpenDNS.
 
-![Quad9](https://www.quad9.net/wp-content/uploads/2017/11/quad9-logo-white@2x.png#floatright)
 ## Quad9 (9.9.9.9)
 Quad9 provides a service that is very similar to Cloudflare 1.1.1.2 - just set the DNS and forget it and it provides DNS with malicious sites blocked.  My experience with Quad9 has been largely indistinguishable from Cloudflare or OpenDNS with default settings, when testing blocking or response speed.  However, Quad9 doesn't have the customization of OpenDNS or the apps that Cloudflare has.
 

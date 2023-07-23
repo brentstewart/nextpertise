@@ -2,7 +2,7 @@ baseURL = "https://www.nextpertise.net/"
 languageCode = "en-us"
 title = ""
 theme = "next"
-enableRobotsTXT = "true"
+enableRobotsTXT = true
 [params]
   css = ["/style.css"]
   github="https://github.com/brentstewart"

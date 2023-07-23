@@ -45,8 +45,6 @@ Another mistake has been setting __draft=false__ in the Archtype.  Turning off t
 
 Finally, when I started I didn't really design the site for growth.  I put all the files in the "content" directory and let them pile up, making them hard to organize.  Over New Year's, I went back and prepended dates to file names and moved everything under a "posts" subdirectory.  This also allowed me to create the "Archives" link and made curation easier.
 
-![Climbing](https://www.outsideonline.com/sites/default/files/styles/img_600x600/public/2019/04/10/thegunks-climber-climbing_s.jpg?itok=-a7IJPpA#floatsmallleft)
-
 ## Conclusions
 
 I started the blog with two goals: sharing some cool things I've learned and marketing myself during a period of unemployment.  The blog  didn't really help get a job, but it kept me busy and focused on moving forward during a potentially depressing period.  However, I've found it cathartic to write and I hope that people have read and found value in this work.  
