@@ -17,7 +17,7 @@ tags:
   - "Proxmox"
   - "Virtualization"
 ---
-I used to run [GNS3 on ESXi](/210421_gns3_attached_to_esxi/), by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I've been using [Proxmox VE](/220219_proxmox/) for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it's been pretty much a drop-in replacement.
+I used to run [GNS3 on ESXi](/posts/210421_gns3_attached_to_esxi/), by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I've been using [Proxmox VE](/posts/220219_proxmox/) for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it's been pretty much a drop-in replacement.
 
 ## The Issue
 Proxmox virtualization is Qemu-based and the [GNS3 VM](https://gns3.com/software/download-vm) is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I've worked around that by running GNS3 in VMWare Workstation, but I've run into some issues with Workstation causing my machine to "freeze" so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.

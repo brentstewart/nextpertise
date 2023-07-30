@@ -23,7 +23,7 @@ Login to Github, go to the Repositories tab and click new.  Give your repository
 
 ![New Repo](/210207_GitNew.png#floatcenter)
 
-Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my [article](/200919_Pandoc_Improved)).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.
+Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my [article](/posts/200919_Pandoc_Improved/)).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.
 
 ## Building an Install Script
 Nope, I'm not going to share my install script.  As I said before, it's _private_.  But let's talk about what's in it and how it's built.
@@ -56,13 +56,13 @@ Next, I install a bunch of stuff that I want on any machine I use.  For instance
 * Networking and Security tools like nmap, htop, filezilla, and wireshark.  Gigolo for mounting drives.
 * VPN support (that's the network-manager stuff)
 * I'm agnostic on packaging, so I install support for snaps and flatpaks
-* and finally some applications I really like (hugo, pithos, vlc, pdfshuffler, and [flameshot](/201210_flameshot))
+* and finally some applications I really like (hugo, pithos, vlc, pdfshuffler, and [flameshot](/posts/201210_flameshot/))
 
 Notice that I break the installs into groups - this makes it easier to track down problems if they occur.  The "-y" at the end answers "yes" and allows the command to continue without waiting for a response from me.  Some of the things I install are already present, but they're not present on _all_ distros so specifying the tools I want just makes sure that they're there (if they're already installed, apt just skips them).  A special word about Profile Sync Daemon, since not many folks have heard of it.  This puts the browser profile into a ram disk and speeds up the browser.
 
 ## Fixing the Terminal
 
-I wrote about the [Powerline shell](/201130_Powerline-Windows) a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer [Tilix](/201125_tilix) to the default terminal.  This sections makes all those things happen.
+I wrote about the [Powerline shell](/posts/201130_Powerline-Windows/) a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer [Tilix](/posts/201125_tilix/) to the default terminal.  This sections makes all those things happen.
 ```bash
 echo "Fix terminal ===================================================="  
 pip3 install powerline-shell  
@@ -174,7 +174,7 @@ The next sections are things that I would usually want, but not always.  One exa
 This isn't a perfect script, but the structure allows me to re-run it as many times as I need to and skip the sections that are already installed.  The biggest issue is that new versions (like 21.04 when it comes out in a few months) typically aren't represented in PPAs.  The fix is to specify an older version to pull from, but that's not automated.  Still, this speeds up the process and takes less of my time.
 
 ## Drive Mapping
-Another major piece missing here is drive mapping.  I typically [mount foreign drives](/200813_Using_SSH3) using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn't actually connect shares.  I've chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.
+Another major piece missing here is drive mapping.  I typically [mount foreign drives](/posts//200813_Using_SSH3) using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn't actually connect shares.  I've chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.
 
 One of the things that makes it _so_ easy for me to stand up new machines or to distro-hop is that all my files are saved onto a central server.  I have an Ubuntu Mate install that just acts like a big file share.  This also simplifies backup, since I can concentrate on one server.  The files on the workstations are all transient.
 

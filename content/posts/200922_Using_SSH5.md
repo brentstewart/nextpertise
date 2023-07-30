@@ -31,7 +31,7 @@ Simply SSH into a remote host using either the -X or -Y switch. From the remote 
 
 This has been the most straightforward of the series. If you're interested in SSH, check out:
 
-- [SSH - Part 1 Basics and Banners](/using_ssh1)
-- [SSH - Part 2 Authentication](/using_ssh2)
-- [SSH - Part 3 File Shares](/using_ssh3)
-- [SSH - Part 1 Port Forwarding](/using_ssh4)
+- [SSH - Part 1 Basics and Banners](/posts/using_ssh1)
+- [SSH - Part 2 Authentication](/posts/using_ssh2)
+- [SSH - Part 3 File Shares](/posts/using_ssh3)
+- [SSH - Part 1 Port Forwarding](/posts/using_ssh4)

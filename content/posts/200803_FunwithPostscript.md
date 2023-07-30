@@ -6,9 +6,9 @@ Victor_Hugo: "true"
 Focus_Keyword: "PostScript"
 picture: "201230_n"
 author: "Brent Stewart"
-github: "https://github.com/brentstewart/postscript_projects"
+github: https://github.com/brentstewart/postscript_projects
 youtube: ""
-refs: ["Postscript Langauge - Tutorial and Cookbook ISBN 0-201-10179-3"]
+refs: [https://www.amazon.com/Postscript-Language-Tutorial-Cookbook-Systems/dp/0201101793]
 tags: ["Postscript","Coding"]
 ---
 
