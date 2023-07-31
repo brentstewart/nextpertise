@@ -12,9 +12,9 @@ refs: ["https://wiki.archlinux.org/index.php/SSHFS"]
 tags: ["SSH", "Linux"]
 ---
 
-I described using SSHFS as an alternative to NFS back in [Using SSH3](/using_ssh3). I've been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I've been using a batch file to mount drives and that's getting old. I'd like to just add the SSHFS targets into _/etc/fstab_ and get them to automount.
+I described using SSHFS as an alternative to NFS back in [Using SSH3](/posts/using_ssh3). I've been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I've been using a batch file to mount drives and that's getting old. I'd like to just add the SSHFS targets into _/etc/fstab_ and get them to automount.
 As a general rule, the Arch Wiki is a great place to find all things Linux. Even though I'm running an Ubuntu variant, the Arch Wiki set me straight. For this to work there are a number of things that have to be set.
-First, as described in [Using SSH2](using_ssh2) I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:
+First, as described in [Using SSH2](/posts/using_ssh2) I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:
 
 ```bash
 ssh-keygen  

@@ -42,7 +42,7 @@ Calibre (like iTunes) makes it easy to plug in an ebook and transfer files from 
 
 ## Other Major Features
 
-Calibre is written in Python, and has been packaged to run on pretty much any OS. Downloads are available for Linux, Windows and Mac, plus I've seen it ported to Haiku and AmiOS. If the different machines can reach the same share drive, the different Calibre implementations can all work out of the same library (see [SSH File Sharing](/Using_SSH3) article).
+Calibre is written in Python, and has been packaged to run on pretty much any OS. Downloads are available for Linux, Windows and Mac, plus I've seen it ported to Haiku and AmiOS. If the different machines can reach the same share drive, the different Calibre implementations can all work out of the same library (see [SSH File Sharing](/posts/Using_SSH3) article).
 
 Calibre has a feature that will run a scheduled job to grab articles from the web. You can use this to build a virtual newspaper delivered fresh every morning. This feature is interesting, but I've found it less compelling as the world has become more "always connected".
 

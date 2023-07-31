@@ -10,7 +10,7 @@ refs: ["https://fonts.google.com", "https://www.google.com/get/noto/"]
 tags: ["linux"]
 ---
 
-I'm a little bit of a font nerd.  In the early 90s, someone who knew computers and had a laser printer had an easy opportunity to get into graphic design.  I knew computers and the college had a laser printer, so I got a copy of __Looking Good in Print__ and dabbled.  I've written about this earlier in describing my love of [Postscript](/FunwithPostscript).
+I'm a little bit of a font nerd.  In the early 90s, someone who knew computers and had a laser printer had an easy opportunity to get into graphic design.  I knew computers and the college had a laser printer, so I got a copy of __Looking Good in Print__ and dabbled.  I've written about this earlier in describing my love of [Postscript](/posts/FunwithPostscript/).
 
 If you'd like to have some font options on Linux, there are some great places to get high-quality fonts that work well with Linux applications.  This is a minor, but hopefully useful tip!
 

@@ -18,7 +18,7 @@ refs:
 tags: ["Git", "Pandoc", "CI"]
 ---
 
-In a previous [post](/Pandoc), I built out a Continuous Integration process for documentation. That process allowed the team to pull a Github repository and keep a local copy of documentation. As the markdown files were updated and the repository pushed, a clean PDF with table of contents was generated.
+In a previous [post](/posts/Pandoc), I built out a Continuous Integration process for documentation. That process allowed the team to pull a Github repository and keep a local copy of documentation. As the markdown files were updated and the repository pushed, a clean PDF with table of contents was generated.
 I identified a few problems with that and I've been working to improve the process. If you take a look at the associated github project you can follow my struggles. Here's where we are with the open issues from last time:
 
 The generated document placed the cover _after_ the table of contents. It also include the github README.md in the generated file. The Github CI process uses _.github/workflows/test.yml_ to build the workflow and my file pulled in all the markdown files alphabetically.

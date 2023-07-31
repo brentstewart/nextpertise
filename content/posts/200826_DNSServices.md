@@ -11,7 +11,7 @@ youtube: ""
 refs: ["https://www.opendns.com","https:/1.1.1.1","https://quad9.net"]
 tags: ["Security","Non-technical","DNS"]
 ---
-This post is to continue the conversation started in [Reasonably Secure Browsing](/200805_reasonablysecurebrowsing) with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don't share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.
+This post is to continue the conversation started in [Reasonably Secure Browsing](/posts/200805_reasonablysecurebrowsing) with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don't share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.
 
 The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like "amazon.com" with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call "Brent" or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more "human friendly".
 

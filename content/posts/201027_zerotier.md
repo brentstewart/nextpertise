@@ -8,7 +8,7 @@ Focus_Keyword: "zerotier"
 picture: "network"
 github: ""
 youtube: ""
-refs: ["https://zerotier.com","http://adamierymenko.com/decentralization.html","https://www.zerotier.com/manual/#2_1_3", "https://github.com/zerotier"]
+refs: ["https://zerotier.com","http://adamierymenko.com/decentralization.html", "https://github.com/zerotier"]
 tags: ["Zerotier","VPN","Review","Network"]
 ---
 Zerotier is a virtualized network that runs "on top of" the Internet.

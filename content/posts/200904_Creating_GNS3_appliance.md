@@ -12,7 +12,7 @@ refs: ["https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linu
 tags: ["GNS3"]
 ---
 ![GNS3](https://gns3.com/assets/custom/gns3/images/logo-colour.png#floatleft)
-In [_Updating a GNS3 Appliance File_](/200902_updatinggns3appliances/) I described editing a GNS3a file to update an appliance.  That is the method I've used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.
+In [_Updating a GNS3 Appliance File_](/posts/200902_updatinggns3appliances/) I described editing a GNS3a file to update an appliance.  That is the method I've used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.
 
 I was listening to the most recent Linux Unplugged, and they were doing interesting networking using a Pi to connect two different 4G providers.  Their setup allowed choosing an active path based on throughput or errors, or for balancing between multiple paths.  The discussion touched on multi-link, policy-based routing, using Linux routing.  It sounded like something I'd like to experiment with!  I've linked to the show in the references.  In addition, Raspian is a prettty good "light" desktop for testing in GNS3 and a lot of folks use it with their Pis, so I thought this would be an interesting appliance. 
 
