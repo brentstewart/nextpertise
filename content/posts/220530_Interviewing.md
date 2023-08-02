@@ -11,7 +11,7 @@ youtube: ""
 refs: [""]
 tags: ["management"]
 ---
-After the [Tower of Hanoi](/220506_Tower_of_Hanoi) discussion, I was trying to think about other tricks I've picked up over my career that aren't really taught anywhere.  We've been filling an open position at work and I had the opportunity to coach the process, and I thought that would be a good topic to share.  I'm going to try to have this discussion from both perspectives, the person looking and the person hiring, and point out how each can contribute to a better outcome.  
+After the [Tower of Hanoi](/posts/220506_Tower_of_Hanoi) discussion, I was trying to think about other tricks I've picked up over my career that aren't really taught anywhere.  We've been filling an open position at work and I had the opportunity to coach the process, and I thought that would be a good topic to share.  I'm going to try to have this discussion from both perspectives, the person looking and the person hiring, and point out how each can contribute to a better outcome.  
 
 ## Looking for a Job
 There are two sides to the hiring process - the person looking for the job and the person who is trying to fill a job.  We're going to approach this discussion from both sides to understand (my opinion) of how each of those people can help the other. There are a lot of other people in the middle - recruiters and HR for instance - but their job is to define the broad band of acceptability.  As a job seeker, the whole point of your resume is to get through this filtering.  As a hiring manager, your job is to make sure that the automated processes used here don't filter out good candidates.

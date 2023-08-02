@@ -33,7 +33,7 @@ Backup your Obsidian vault before experimenting with sync options.
 {{< /danger >}}
 
 ## Shared Drive
-The first idea is the easiest and most obvious: use a shared drive.  I put my Obsidian vault on a server and published that folder using NFS, then mounted it on my PC.  I used SSHFS to map to it from a Linux laptop and from Windows.  Read more about using SSHFS and NFS [here](/200813_using_ssh3).  No problems.  All three devices were able to co-edit within the same vault - I even noticed open files being updated dynamically.  This method is free, but requires access to the devices (local LAN) and doesn't work for mobile devices.
+The first idea is the easiest and most obvious: use a shared drive.  I put my Obsidian vault on a server and published that folder using NFS, then mounted it on my PC.  I used SSHFS to map to it from a Linux laptop and from Windows.  Read more about using SSHFS and NFS [here](/posts200813_using_ssh3).  No problems.  All three devices were able to co-edit within the same vault - I even noticed open files being updated dynamically.  This method is free, but requires access to the devices (local LAN) and doesn't work for mobile devices.
 
 The private network can be extended using VPN to get this to work remotely.  In fact, I used [Zerotier](/posts/201027_zerotierrouter) and [Tailscale](/posts/221004_tailscale) to test this and things worked perfectly for laptops.  There might be sync issues if someone was editing on both sides, but as long as it's being used as a personal vault, this shouldn't be an issue.  IOS and Android both support various VPN mechanisms, but Obsidian on those platforms expects a device-local vault. 
 ![Syncthing](/221210_Syncthing.png#floatright)
@@ -46,7 +46,7 @@ Like a shared drive, it's free and devices need to be local to each other.  As s
 So my experience of Syncthing was that it worked, but required local software and had some rough edges.
 ![WebDav](/221211_Obsidian_webdav.png#floatright)
 ## Remotely Save Plug-in
-The [Remotely Save](https://github.com/remotely-save/remotely-save) plug-in is the option that I've personally settled on.  Remotely Save allows syncing using S3-compatible storage, Dropbox, OneDrive, or WebDav.  I already have a local WebDav server running on Apache (see [Using WebDAV on Apache](/210906_apachedav)).  This required minimal self-hosted infrastructure, supported PC and mobile operating systems, and was free.  I've had no issues with it working or losing data.
+The [Remotely Save](https://github.com/remotely-save/remotely-save) plug-in is the option that I've personally settled on.  Remotely Save allows syncing using S3-compatible storage, Dropbox, OneDrive, or WebDav.  I already have a local WebDav server running on Apache (see [Using WebDAV on Apache](/posts/210906_apachedav)).  This required minimal self-hosted infrastructure, supported PC and mobile operating systems, and was free.  I've had no issues with it working or losing data.
 
 The screenshot to the right shows the setup of Remotely Save.  The first selection is for the storage type and Webdav is chosen.  Next I specified the server address.  I use other applications that will just take the IP address of the server and Remotely Save required the protocol prefix "http://".  This brings up the one problem I had - there's very little in the way of error messages or debugging output if you have a problem.  If failed when I used a raw IP, but didn't provide clues as how to remedy the issue and it took a bit of trial and error.
 

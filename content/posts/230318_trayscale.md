@@ -15,7 +15,7 @@ refs: ["https://flathub.org/apps/details/dev.deedles.Trayscale", "https://github
 tags:
   - "VPN"
 ---
-I've covered a few items in recent months around my home network, including using [Tailscale](/221004_tailscale) as a VPN overlay and setting up a home [DNS](/230226_home) server.  This entry is an update on living with those elements.
+I've covered a few items in recent months around my home network, including using [Tailscale](/posts/221004_tailscale) as a VPN overlay and setting up a home [DNS](/posts/230226_home) server.  This entry is an update on living with those elements.
 
 As a point of comparison, I've used Zerotier in the recent past and really liked it.  With Zerotier, I had a dedicated Ubuntu server VM to route the local network onto the Zerotier VPN.  That worked beautifully.  Tailscale has been a little uneven, but it's becoming more comfortable.
 

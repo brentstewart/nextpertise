@@ -16,7 +16,7 @@ tags:
   - "Markdown"
 ---
 
-This article is the third I've written on Obsidian.  [Part 1](/220829_obsidian_intro) describes the basics and [Part 2](220831_using_obsidian/) covers tasks, this article will describe using Dataview.
+This article is the third I've written on Obsidian.  [Part 1](/posts/220829_obsidian_intro) describes the basics and [Part 2](/posts/220831_using_obsidian/) covers tasks, this article will describe using Dataview.
 
 Core Obsidian is "just" a markdown editor with some Wiki functionality and a pretty good understanding of tasks.  The magic comes through add-ons.  The process of adding plugins is described in the second article where I discussed "Checklist", which pulled all your open tasks together on one list in a sidebar.  The Dataview plugin is also a way to collect information across notes, but much more powerful.
 

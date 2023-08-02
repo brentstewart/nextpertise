@@ -18,7 +18,7 @@ tags:
   - "shell"
 ---
 
-My [previous post](/230509_Word2Obsidian) dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I'd like to use a similar approach.
+My [previous post](/posts/230509_Word2Obsidian) dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I'd like to use a similar approach.
 
 # Print to Tablet
 
@@ -28,7 +28,7 @@ This really galls me because sometimes I'll print out a document and think, "Thi
 
 ## Ingredients
 
-How did I get this to work?  In my mind, the basic building blocks would be __inotifywait__ (discussed in the previous post), kindle's email import function and ssmtp (discussed in [Command Line Email](/230313_Command_Line_Email)).  Expiriments with ssmtp determined that it's hard to use with attachments, but researching that led me to __mpack__.
+How did I get this to work?  In my mind, the basic building blocks would be __inotifywait__ (discussed in the previous post), kindle's email import function and ssmtp (discussed in [Command Line Email](/posts/230313_Command_Line_Email)).  Expiriments with ssmtp determined that it's hard to use with attachments, but researching that led me to __mpack__.
 
 This project will use __inotifywait__ to monitor a directory.  When a file is put in that directory it will be copied out to the kindle app on my tablet.  There's a little longer discussion of inotifywait in the previous post.
 
