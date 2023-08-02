@@ -174,7 +174,7 @@ The next sections are things that I would usually want, but not always.  One exa
 This isn't a perfect script, but the structure allows me to re-run it as many times as I need to and skip the sections that are already installed.  The biggest issue is that new versions (like 21.04 when it comes out in a few months) typically aren't represented in PPAs.  The fix is to specify an older version to pull from, but that's not automated.  Still, this speeds up the process and takes less of my time.
 
 ## Drive Mapping
-Another major piece missing here is drive mapping.  I typically [mount foreign drives](/posts//200813_Using_SSH3) using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn't actually connect shares.  I've chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.
+Another major piece missing here is drive mapping.  I typically [mount foreign drives](/posts/200813_Using_SSH3) using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn't actually connect shares.  I've chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.
 
 One of the things that makes it _so_ easy for me to stand up new machines or to distro-hop is that all my files are saved onto a central server.  I have an Ubuntu Mate install that just acts like a big file share.  This also simplifies backup, since I can concentrate on one server.  The files on the workstations are all transient.
 

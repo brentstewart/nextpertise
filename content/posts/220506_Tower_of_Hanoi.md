@@ -9,7 +9,7 @@ picture: "n"
 github: ""
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["basics"]
 ---
 
 When I was getting started in IT in the late 80s, my mentor taught me the most effecient way to handle backup tapes.  He called it the "Tower of Hanoi" strategy.  This has come up in various contexts through the years, and I've had to explain it.  I thought it might be interesting, particularly to younger professionals, to understand the problem and how it was solved using this algorithm.  Who knows? Maybe there will be a new application you run across!

@@ -13,7 +13,7 @@ youtube: ""
 github: "https://github.com/brentstewart/nextpertise"
 refs: ["https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/","https://katex.org/docs/browser.html","https://www.overleaf.com/learn/latex/Mathematical_expressions"]
 tags:
-  - ""
+  - "hugo"
 ---
 
 An upcoming article features some basic math, but rendering it in markdown is unaesthetic.  What you get is _E=mc^2_ when what you want is $ E=mc^2$.  My search led me to [KaTeX](https://katex.org/) which is a JavaScript library that let's you put $\LaTeX$ code into an HTML document.  LaTeX was created to typeset scientific papers, so it is built for displaying things like matrices and integrals.  I don't plan to publish math that intense, but LaTeX can help clearly display even a simple division equation and improve the readability of the post.  The best source of information I found was [Mert Bakir's blog](https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/) and my usage is based on his work.
