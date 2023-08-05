@@ -7,13 +7,13 @@ markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: ""
+picture: "n"
 Focus_Keyword: ""
 youtube: ""
 github: ""
 refs: [""]
 tags:
-  - ""
+  - "non-technical"
 ---
 
 My friends know that I am an avid reader and that I love Science Fiction.  I've read that Science Fiction only became possible when people could see technology changing in their lifetime, and although we had slow changes for a long time it wasn't until the last half of the 19th Century that we got _Frankenstein_.  Even in Mary Shelley's time, though, the pace of change was slow compared to now.
