@@ -43,7 +43,7 @@ There are another three icons at the bottom of the bar - switching vaults, help,
 
 ## First note
 
-Writing a note is easy - just click the "new note" button and start typing.  Markdown is pretty sparse - you can't specify things like fonts or headers.  This can be a plus - it allows you to focus on the content.  Refer to my previous [Markdown Cheatsheet](/210424_hugo_markdown_cheatsheet) for a review of markdown syntax. 
+Writing a note is easy - just click the "new note" button and start typing.  Markdown is pretty sparse - you can't specify things like fonts or headers.  This can be a plus - it allows you to focus on the content.  Refer to my previous [Markdown Cheatsheet](/posts/210424_hugo_markdown_cheatsheet) for a review of markdown syntax. 
 
 Using the "new note" will put your file in the root of the vault.  Because I sort my notes into folders, I prefer to right-click the folder and choose new note so that it is created in the folder.
 

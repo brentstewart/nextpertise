@@ -39,7 +39,7 @@ So the next step was to have this run as a _cron_ job.  On Linux, use __crontab 
     MAILTO=MYEMAILADDRESS
     0 0 * * * /home/brent/blog2obs.sh
 ![It works!](/230314_Linux_Email.jpg#floatright)
-The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my [last post](/posts/230313_Command_Line_Email).
+The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my [last post](/posts/230313_command_line_email/).
 
 The received email is on the right, and now it's clear why the _echo_ command is in the batch file.  The echo provides some text - without that text there's no output from the script and nothing to email.
 

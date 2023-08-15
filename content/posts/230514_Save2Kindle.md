@@ -18,7 +18,7 @@ tags:
   - "shell"
 ---
 
-My [previous post](/posts/230509_Word2Obsidian) dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I'd like to use a similar approach.
+My [previous post](/posts/230509_word2obsidian/) dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I'd like to use a similar approach.
 
 # Print to Tablet
 
