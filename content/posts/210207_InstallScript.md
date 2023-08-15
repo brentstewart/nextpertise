@@ -23,7 +23,7 @@ Login to Github, go to the Repositories tab and click new.  Give your repository
 
 ![New Repo](/210207_GitNew.png#floatcenter)
 
-Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my [article](/posts/200919_Pandoc_Improved/)).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.
+Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my [article](/posts/200919_pandoc_improved/)).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.
 
 ## Building an Install Script
 Nope, I'm not going to share my install script.  As I said before, it's _private_.  But let's talk about what's in it and how it's built.
@@ -62,7 +62,7 @@ Notice that I break the installs into groups - this makes it easier to track dow
 
 ## Fixing the Terminal
 
-I wrote about the [Powerline shell](/posts/201130_Powerline-Windows/) a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer [Tilix](/posts/201125_tilix/) to the default terminal.  This sections makes all those things happen.
+I wrote about the [Powerline shell](/posts/201130_powerline-windows/) a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer [Tilix](/posts/201125_tilix/) to the default terminal.  This sections makes all those things happen.
 ```bash
 echo "Fix terminal ===================================================="  
 pip3 install powerline-shell  
