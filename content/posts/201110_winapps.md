@@ -58,7 +58,7 @@ MIME_TYPES=";"
 ![Big Brains](https://microfilums.files.wordpress.com/2010/01/2260894625_ea1feecb2a.jpg#floatleft)
 I wanted to add the work I'd done back to the project, so I forked the _develop_ branch, added the files, and submitted a Pull Request back to "fmstrat". I also added some troubleshooting suggestions for them based on my experience.
 
-This was a neat adventure to write up because it combines a lot of the things we've been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in [Remotely Possible](/posts/Using_SSH5). Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.
+This was a neat adventure to write up because it combines a lot of the things we've been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in [Remotely Possible](/posts/200922_using_ssh5/). Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.
 
 But this is another chance to hit on a favorite theme of mine. You don't need to be gods-gift-to-programming to make meaningful and appreciated contributions to the open source community. In the day I took to play with this and contribute the Kindle definition, several other people also submitted apps and the library is quickly growing. Similar to defining GNS3 appliances, there's a lot of ways to give back. There's a real satisfaction to contributing in this way that I hope you have a chance to experience.
 

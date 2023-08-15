@@ -12,7 +12,7 @@ refs: ["https://www.cisecurity.org/", "https://www.digitalocean.com/community/tu
 tags: ["SSH","Linux"]
 ---
 # Cleaning up Crypto
-A previous article - [SSH Admin](/posts/ssh-admin) - went through understanding who was logging into a Linux server using SSH or SFTP.  To continue that thought, let's suppose that we are required to make sure that only cypher suites recommended in the CIS benchmarks are in use on a server.  Before we disable old options, we need to check and make sure that no one is using them!
+A previous article - [SSH Admin](/posts/201223_ssh-admin/) - went through understanding who was logging into a Linux server using SSH or SFTP.  To continue that thought, let's suppose that we are required to make sure that only cypher suites recommended in the CIS benchmarks are in use on a server.  Before we disable old options, we need to check and make sure that no one is using them!
 
 ## Understanding local crypto
 

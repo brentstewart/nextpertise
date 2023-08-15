@@ -11,7 +11,7 @@ youtube: ""
 refs: ["https://zerotier.com"]
 tags: ["ZeroTier","VPN","GNS3","Network"]
 ---
-This article continues the exploration of ZeroTier started in a previous [posting](/posts/zerotier).  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.
+This article continues the exploration of ZeroTier started in a previous [posting](/posts/201027_zerotier/).  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.
 
 I'll continue the thought describing how to connect your local home network to your Zerotier virtual network.  For purposes of this article, let's consider a home network with a little complexity.
 ![Sample Network](/ZeroTier_Routing.png#center)

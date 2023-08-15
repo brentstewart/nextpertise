@@ -13,7 +13,7 @@ refs: ["https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?
 tags: ["Windows","SSH","Git","How To"]
 ---
 ![Powerline on Windows](https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright)
-I work in Windows from time to time.  Writing the article on the [Tilix](/tilix) Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let's step through how to set that up!
+I work in Windows from time to time.  Writing the article on the [Tilix](/posts/201125_tilix/) Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let's step through how to set that up!
 
 ## Step 0 (We _are_ programmers) - Windows Terminal
 The [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha) is a nice addition to Windows, but doesn't ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn't do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.
