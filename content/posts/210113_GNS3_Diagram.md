@@ -48,7 +48,7 @@ Visio checks all the boxes.  It is compatible with Visio, obviously (with the ca
 Cons for Visio are 1) it's running under WINE, 2) you can't run the later versions (but the 2010 and 2013 are plenty good), and 3) it's expensive.  Currently $270 from [Amazon](https://www.amazon.com/Microsoft-D86-05555-Visio-Standard-2016/dp/B012F7PC3U/ref=sr_1_3?dchild=1&keywords=visio&qid=1610591015&sr=8-3c).
 
 ### [GNS3](https://gns3.org)
-I included this as a lark because I recently wrote about creating hyperlinks in GNS3 and realized it _could_ be used for this purpose.  If you want to try this out, take a look at [GNS3 HyperLinks](210113_GNS3_Links).  This is free and there are some good diagram primitives you can use, but it doesn't work with Visio.  Annotation and linking is fairly easy.  Not great for this purpose, but it does work in a pinch!
+I included this as a lark because I recently wrote about creating hyperlinks in GNS3 and realized it _could_ be used for this purpose.  If you want to try this out, take a look at [GNS3 HyperLinks](/posts/210113_gns3_links/).  This is free and there are some good diagram primitives you can use, but it doesn't work with Visio.  Annotation and linking is fairly easy.  Not great for this purpose, but it does work in a pinch!
 
 For me, this can work very well for my home network.  I'm not interested in exchanging it with other users, and it allows me to build a "live" image of the physical network outside the virtual GNS3 world.  The two networks meet sometimes when I connect to the Internet or use a service like syslog.
 
