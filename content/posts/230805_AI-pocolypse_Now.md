@@ -1,5 +1,5 @@
 ---
-title: "AI-Pocolypse_Now"
+title: "AI-Pocolypse Now"
 description: ""
 author: "Brent Stewart"
 date: "2023-08-05T15:58:38-04:00"
