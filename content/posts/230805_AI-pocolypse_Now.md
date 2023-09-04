@@ -1,6 +1,6 @@
 ---
 title: "AI-Pocolypse Now"
-description: ""
+description: "Brent's thoughts on a possible AI driven future"
 author: "Brent Stewart"
 date: "2023-08-05T15:58:38-04:00"
 markup: 'mmark'

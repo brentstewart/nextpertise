@@ -1,6 +1,6 @@
 ---
 title: "Save to Kindle with a DIY CI"
-description: ""
+description: "A simple CI-like process for sending personal documents to a Kindle"
 author: "Brent Stewart"
 date: "2023-05-09T21:20:24-04:00"
 markup: 'mmark'

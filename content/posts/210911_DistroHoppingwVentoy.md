@@ -8,7 +8,7 @@ Focus_Keyword: "Ventoy"
 picture: "linux"
 github: ""
 youtube: ""
-refs: ["https://pop.system76.com/","https://kubuntu.org/","https://github.com/kwin-scripts/kwin-tiling","https://regolith-linux.org/","https://ubuntudde.com/","https://cutefish-ubuntu.github.io/","https://www.haiku-os.org/","https://reactos.org/","https://en.wikipedia.org/wiki/AROS_Research_Operating_System","https://www.ventoy.net/","https://www.amazon.com/gp/product/B082NRJ5MS/","https://www.amazon.com/gp/product/B079X7K6VP/"]
+refs: ["https://pop.system76.com/","https://kubuntu.org/","https://github.com/kwin-scripts/kwin-tiling","https://regolith-linux.org/","https://ubuntudde.com/","https://cutefish-ubuntu.github.io/","https://www.haiku-os.org/","https://reactos.org/","https://en.wikipedia.org/wiki/AROS_Research_Operating_System","https://www.ventoy.net/","https://www.amazon.com/gp/product/B082NRJ5MS/"]
 tags: ["linux"]
 ---
 One of the many things I love about Linux is all the competing ideas about how computing should be done and how desktop environments should be organized.  I've pretty much settled in with Debian-derived systems.  This isn't a religious decision, but I've found that most of the things that I want to do are easily supported and I've grown comfortable with the commands and structure.  

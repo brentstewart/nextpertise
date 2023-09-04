@@ -9,7 +9,7 @@ picture: "linux"
 github: ""
 youtube: ""
 refs: [""]
-tags: [""]
+tags: ["linux"]
 ---
 Nautilus, the Gnome file manager, has a number of available plug-ins available that make it much easier to use.  It also supports a scripting function that you can use to develop your own extensions.  The extentions can be easily added using _apt_, but many of them will not be active until a reboot.  You can short-circuit that process by using __nautilus -q__ to quit all open instances of nautilus and then opening a new window.  I'm using all of the following extensions with _Pop! OS 22.04_, so I can verify they work in COSMIC. 
 

@@ -1,6 +1,6 @@
 ---
 title: "I'm cooler than you"
-description: ""
+description: "Getting VSCode to work on Android"
 author: "Brent Stewart"
 date: "2023-04-27T17:38:24-04:00"
 markup: 'mmark'
@@ -38,7 +38,7 @@ I was able to use __git__ to pull down a copy of this website from Github.  I co
 
 ## Visual Studio Code
 
-![VS Code running on Android](/posts/230427_Code_on_Droid.png#floatsmallright)
+![VS Code running on Android](/230427_Code_on_Droid.png#floatsmallright)
 
 There's no version of Visual Studio Code for Android.  [Code-server](https://github.com/coder/code-server) is an open-source version of VS Code that runs in a web page, and given my success with hugo I immediately thought of it as an alternative.  There are a _lot_ of instructions online for how to do this, some of them quite complicated, but I ultimately got it to work in a fairly straight-forward way.  In the end, what worked was:
 

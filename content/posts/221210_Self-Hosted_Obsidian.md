@@ -36,7 +36,7 @@ Backup your Obsidian vault before experimenting with sync options.
 The first idea is the easiest and most obvious: use a shared drive.  I put my Obsidian vault on a server and published that folder using NFS, then mounted it on my PC.  I used SSHFS to map to it from a Linux laptop and from Windows.  Read more about using SSHFS and NFS [here](/posts/200813_using_ssh3).  No problems.  All three devices were able to co-edit within the same vault - I even noticed open files being updated dynamically.  This method is free, but requires access to the devices (local LAN) and doesn't work for mobile devices.
 
 The private network can be extended using VPN to get this to work remotely.  In fact, I used [Zerotier](/posts/201027_zerotierrouter) and [Tailscale](/posts/221004_tailscale) to test this and things worked perfectly for laptops.  There might be sync issues if someone was editing on both sides, but as long as it's being used as a personal vault, this shouldn't be an issue.  IOS and Android both support various VPN mechanisms, but Obsidian on those platforms expects a device-local vault. 
-![Syncthing](/posts/221210_Syncthing.png#floatright)
+![Syncthing](/221210_Syncthing.png#floatright)
 ## Syncthing
 
 [Syncthing](https://syncthing.net/) is a tool that many people use to keep files sync'd between computers.  It's free, and is supported on just about every OS short of Haiku (nope, I checked).  Once Syncthing is downloaded to a device, it needs to have a  relationship approved on a remote device.  The devices agree on local directories that are to be sync'd, then syncthing runs periodically to update files.

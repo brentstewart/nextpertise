@@ -45,7 +45,7 @@ Visio is the standard, but it's not made for Linux.  I've been able to run 2010 
 
 Visio checks all the boxes.  It is compatible with Visio, obviously (with the cavaet that the new VSDX format is not supported).  It has plenty of available stencils and most manufacturers produce their own additions.  Visio will output to a ton of formats, including PDF and HTML.  It is easy to annotate and you can create hyperlinks straight from icons (I have created links so that clicking a router opened a PuTTY session).
 
-Cons for Visio are 1) it's running under WINE, 2) you can't run the later versions (but the 2010 and 2013 are plenty good), and 3) it's expensive.  Currently $270 from [Amazon](https://www.amazon.com/Microsoft-D86-05555-Visio-Standard-2016/dp/B012F7PC3U/ref=sr_1_3?dchild=1&keywords=visio&qid=1610591015&sr=8-3c).
+Cons for Visio are 1) it's running under WINE, 2) you can't run the later versions (but the 2010 and 2013 are plenty good), and 3) it's expensive.  Currently $270 from Amazon.
 
 ### [GNS3](https://gns3.org)
 I included this as a lark because I recently wrote about creating hyperlinks in GNS3 and realized it _could_ be used for this purpose.  If you want to try this out, take a look at [GNS3 HyperLinks](/posts/210113_gns3_links/).  This is free and there are some good diagram primitives you can use, but it doesn't work with Visio.  Annotation and linking is fairly easy.  Not great for this purpose, but it does work in a pinch!

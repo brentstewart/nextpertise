@@ -1,6 +1,6 @@
 ---
 title: "Anonymous Browsing"
-description: ""
+description: "Running TOR"
 author: "Brent Stewart"
 date: "2023-04-05T22:04:50-04:00"
 markup: 'mmark'

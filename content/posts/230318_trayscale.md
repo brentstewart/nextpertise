@@ -1,6 +1,6 @@
 ---
 title: "Trayscale"
-description: ""
+description: "Trayscale is an top-bar indicator for Tailscale"
 author: "Brent Stewart"
 date: "2023-03-18T15:46:32-04:00"
 markup: 'mmark'

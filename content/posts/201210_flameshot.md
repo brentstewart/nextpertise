@@ -11,7 +11,7 @@ youtube: ""
 refs: ["https://en.wikipedia.org/wiki/Unix_philosophy","https://flameshot.org/"]
 tags: ["Linux","Review"]
 ---
-![Flameshot](https://flameshot.org/media/animatedUsage.gif#floatright) My friend Jared always extols the Unix philosophy that programs should "do one thing and do it well".  One program that fits that description is _flameshot_.  Flameshot makes great screenshots and allows you to easily annotate them.
+![Flameshot](/flameshot-demo.gif#floatright) My friend Jared always extols the Unix philosophy that programs should "do one thing and do it well".  One program that fits that description is _flameshot_.  Flameshot makes great screenshots and allows you to easily annotate them.
 
 A few years ago I was put in a position where I had to produce monthly reports that included screenshots from our tools.  The default gnome-screenshot application is difficult to work with.  It has to be re-invoked for each capture and it doesn't allow you to easily adjust the parameters or annotate the picture.  As a result, I'd take a bunch of screenshots and each one involved a try or two to capture the right section, then opening in Gimp to edit.  It took _forever_.
 
