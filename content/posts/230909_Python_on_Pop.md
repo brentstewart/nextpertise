@@ -35,6 +35,10 @@ I used __python -V__ or __python --version__ to determine my current version.  T
     sudo apt update
     sudo apt install python3.10
 
+you can check this by looking at the installed packages.
+
+    apt list | grep python
+
 At this point, both 3.8 and 3.10 were installed on my system.  I used __sudo update-alternatives --config python3__ to select the version that I wanted to use by default.  Running the command will show you a list of python installs and allow you to select one.    Using __update-alternatives__ instead of deleting Python 3.8 maintains the old version for any dependencies. When I used it, I found I had a copy of _miniconda_ that I no longer needed and I ended up uninstalling it.
 
 I also like to be able to type __python3__ or just __python__.  To set that up, I added an alias as well.
@@ -44,3 +48,7 @@ I also like to be able to type __python3__ or just __python__.  To set that up, 
 So now I'm up to date!
 
     python --version
+
+You may also need to update PIP.
+
+    python3.10 -m  pip install --upgrade pip
