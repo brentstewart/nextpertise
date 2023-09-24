@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2023-09-22T08:17:00-04:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: ""
 Focus_Keyword: "Pandoc Obsidian Hugo"
