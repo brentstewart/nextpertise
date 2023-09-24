@@ -39,4 +39,4 @@ This has been a popular alternative for the geek set for a long time.  It's easy
 ## Summary
 Using one of these services helps to protect your home.  I use OpenDNS at home and have customized it to filter out a range of categories.  It doesn't block everything on the Internet, but it addresses some of the obvious sites and it helps prevent "oops" experiences.  It seems to help with advertising too.  I use Cloudflare on my office network and it does a great job as well.
 
-If you've benefitted from the [Reasonably Secure Browsing](/200805_reasonablysecurebrowsing) discussion, this is another "reasonable" step that you can take to improve your families Internet experience.
+If you've benefitted from the [Reasonably Secure Browsing](/posts/200805_reasonablysecurebrowsing) discussion, this is another "reasonable" step that you can take to improve your families Internet experience.

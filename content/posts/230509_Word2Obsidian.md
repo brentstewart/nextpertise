@@ -29,7 +29,7 @@ Just to save you time, I'll mention a few ideas that I tried and discarded on th
 I also found an old github repo that purported to address this issue.  That project has pivoted to HTML and deprecated the markdown code.
 
 ## The beginning of an idea
-Looking for a FOSS solution lead me back to Pandoc.  Long, _long_ time readers may recall one of my early [experiments](/200919_pandoc_improved) with Pandoc.  [Pandoc](https://pandoc.org/) is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.
+Looking for a FOSS solution lead me back to Pandoc.  Long, _long_ time readers may recall one of my early [experiments](/posts/200919_pandoc_improved/) with Pandoc.  [Pandoc](https://pandoc.org/) is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.
 
 I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here's the command I came up with.  I've tested this with business memos and it worked fine.  I haven't tried it with complex tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.
 
@@ -82,7 +82,7 @@ The __echo__ commands are present for debugging.  Note that the __mv__ moves the
 
 So the script is ready.  I can run it and it will monitor the _doc2obs_ directory until I stop it or reboot.  The next step is to make this into something that just runs automatically, so I don't have to open a shell and worry about restarting it.
 
-Here I'll refer back to the process I used in [Automatically adding Hugo articles to Obsidian](/230313_blog2obsidian/), which is to use __cron__.  That script ran periodically and this one runs continuously, so we'll modify the approach to ask __cron__ to run it once at startup.
+Here I'll refer back to the process I used in [Automatically adding Hugo articles to Obsidian](/posts/230313_blog2obsidian/), which is to use __cron__.  That script ran periodically and this one runs continuously, so we'll modify the approach to ask __cron__ to run it once at startup.
 
     crontab -e  # gets us into edit mode
     # add below entry

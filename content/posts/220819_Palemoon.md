@@ -24,7 +24,7 @@ I hadn't accessed the CIMC in a long time.  Rebooting the server displays the as
 
 With the CIMC port responding, I could browse to it using it's IP address.  The next problem is that the site presents a security warning.  Although the CIMC uses TLS 1.2 (which is still supported), it uses 128b keys (which are not).  Mozilla [phased out](https://wiki.mozilla.org/Security/Features/Certs_Disallow_Weak_Keys) key sizes smaller than 2048b at the end of 2013.  Even getting around this issue still leaves us with the Flash problem.
 
-[Palemoon](Palemoon) is a browser forked from Firefox years ago and developed in the years since.  It maintains compatibility with the older XUL-based plugins.  It is distributed as a tar-ball, so I just extracted it to my _apps_ directory and ran the palemoon executable.
+[Palemoon](https://linux.palemoon.org/download/mainline/) is a browser forked from Firefox years ago and developed in the years since.  It maintains compatibility with the older XUL-based plugins.  It is distributed as a tar-ball, so I just extracted it to my _apps_ directory and ran the palemoon executable.
 > Step 2 - Download Palemoon, extract and run
 
 The flash plugin was abandoned at version 34.0.0.137 and can be obtained from [Github](https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7).  Again, it can be installed directly from github using the following command.

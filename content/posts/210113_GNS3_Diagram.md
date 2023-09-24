@@ -107,7 +107,7 @@ Draw.io is responsive online and it supports real-tiome collaboration.  You can 
 Draw.io allows hyperlinking to objects and annotation is easy to add and format.  On the whole, it's a rougher but similar experience to Lucidchart.
 
 If you do occassional diagrams and don't want to spend money, Draw.io is a very solid choice.  Be prepared to do a little extra work, but it is sufficient.
-### [Creately](creately.com) and [Smartdraw](smartdraw.com)
+### [Creately](https://creately.com) and [Smartdraw](https://smartdraw.com)
 Creately and SmartDraw are web SaaS packages.  Both have free trail accounts available.  Smartdraw personal accounts run $9.95 and Creately is $4.95 per month.  Creately seems more limited in file formats, but interestingly has a desktop version available for Windows, Mac, and Linux.  SmartDraw has the ability to import and export to major formats, including Visio.  Both include stencil sets that are comprehensive and SmartDraw has a facility to import Visio stencils.
 
 I tested Creately online and it's quite good.  The connectors worked really well and flowed in a visually attractive way.  There was a full set of built in stencils, but I didn't find any import features.  The lack of Visio import and export is a big deal.  I'm curious if that is resolved in the paid or desktop versions, but I was unable to verify that from the website.

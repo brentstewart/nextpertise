@@ -19,7 +19,7 @@ tags:
   - "markdown"
 ---
 
-Obsidian has been a great way to organize my work and my personal activities.  This is the third article I've written in this series.  [Part 1](/posts/220829_Obsidian_Intro) was an introduction and [Part 2](/posts/220831_using_obsidian) focused on _tasks_ and used that as an introduction to plugins and tags.
+Obsidian has been a great way to organize my work and my personal activities.  This is the third article I've written in this series.  [Part 1](posts/220829_Obsidian_Intro) was an introduction and [Part 2](/posts/220831_using_obsidian) focused on _tasks_ and used that as an introduction to plugins and tags.
 
 This entry will focus on linking and embedding.  At this point we're focusing on using Obsidian to take notes as we go.  After this, the series will turn to more advanced and non-obvious uses.
 

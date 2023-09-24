@@ -18,7 +18,7 @@ tags:
   - "markdown"
 ---
 
-In [Part 1](/220829_obsidian_intro), I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it's a good place to start.  
+In [Part 1](/posts/220829_obsidian_intro), I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it's a good place to start.  
 
 Part 2 will focus more on tasks within notes.  We'll use tasks to also introduce plugins and tags.   Future articles will discuss links, embeds, tags and some of the other plugins that add functionality, such as Dataview.
 
@@ -62,6 +62,6 @@ Choosing _todo_ changes the left pane to show us which notes contain that tag an
 
 ## Scratching the surface
 
-At this point, we have [introduced](/220829_obsidian_intro) Obsidian as a [markdown](/210424_hugo_markdown_cheatsheet)-based note taking tool. Obsidian has great tools to help manage tasks, and we've demonstrated the basics of using tasks.  Finally, we've started to cover the concepts of plugins and tags.
+At this point, we have [introduced](/posts/220829_obsidian_intro) Obsidian as a [markdown](/posts/210424_hugo_markdown_cheatsheet)-based note taking tool. Obsidian has great tools to help manage tasks, and we've demonstrated the basics of using tasks.  Finally, we've started to cover the concepts of plugins and tags.
 
 There is a lot more to discuss!  Once I started using Obsidian, my use cases grew and the way I built notes started to fundamentally change.  I'm very excited by the possibilities.  I'm equally excited to share the journey.  
