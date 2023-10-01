@@ -1,5 +1,6 @@
 ---
 title: "Using SSH - Part 1 (Basics and Banners)"
+description: "Some basic SSH tips"
 date: 2020-08-11T12:36:12-04:00
 draft: false
 Victor_Hugo: "true"

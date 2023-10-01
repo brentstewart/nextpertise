@@ -1,5 +1,6 @@
 ---
 title: "Reasonably Secure Browsing"
+description: "Browser security suggestions"
 date: 2020-08-05T11:23:41-04:00
 draft: false
 Victor_Hugo: "true"

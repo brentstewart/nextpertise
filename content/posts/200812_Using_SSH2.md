@@ -1,5 +1,6 @@
 ---
 title: "Using SSH - Part 2 (Authentication)"
+description: "More SSH tips"
 date: 2020-08-12T11:36:12-04:00
 draft: false
 Victor_Hugo: "true"

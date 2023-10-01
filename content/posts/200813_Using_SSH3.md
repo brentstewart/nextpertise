@@ -1,5 +1,6 @@
 ---
 title: "Using SSH - Part 3 (File Shares)"
+description: "Even more SSH tips"
 date: 2020-08-13T11:15:42-04:00
 draft: false
 Victor_Hugo: "true"

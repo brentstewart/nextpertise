@@ -1,5 +1,6 @@
 ---
 title: "JAMStack"
+description: "defining the JAMStack"
 date: 2020-08-17T08:25:02-04:00
 draft: false
 Victor_Hugo: "true"

@@ -1,5 +1,6 @@
 ---
 title: "VMWare 3D Acceleration"
+description: "VMWare using 3D acceleration"
 date: 2020-07-28T15:44:02-04:00
 draft: false
 Victor_Hugo: "true"

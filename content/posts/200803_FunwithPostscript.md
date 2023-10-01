@@ -1,5 +1,6 @@
 ---
 title: "Fun with Postscript"
+description: "Postscript is a fun programming language to learn"
 date: 2020-08-03T16:59:30-04:00
 draft: false
 Victor_Hugo: "true"

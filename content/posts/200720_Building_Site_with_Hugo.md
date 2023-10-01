@@ -1,5 +1,6 @@
 ---
 title: "Building this site using Hugo"
+description: "My first post!"
 date: 2020-07-20T11:38:07-04:00
 draft: false
 Victor_Hugo: "true"
