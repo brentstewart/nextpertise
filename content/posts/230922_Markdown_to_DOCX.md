@@ -7,7 +7,7 @@ markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: ""
+picture: "markdown"
 Focus_Keyword: "Pandoc Obsidian Hugo"
 youtube: ""
 github: ""
