@@ -14,6 +14,7 @@ github: ""
 refs: ["https://www.pcmag.com/reviews/obsidian","https://www.resilio.com/platforms/desktop/"]
 tags:
   - "markdown"
+  - "obsidian"
 ---
 I've recently written about using Obsidian - an [intro](/posts/220829_obsidian_intro), a discussion of [tasks](/posts/220831_using_obsidian) and add-ins, and a discussion of [dataview](/posts/221002_dataview).  The number of add-ins and the ideas that are being implemented using Obsidian has exploded, and hopefully I've provided enough to get you started and help you discover how it could work for you.  
 

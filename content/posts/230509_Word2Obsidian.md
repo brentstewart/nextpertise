@@ -18,6 +18,7 @@ tags:
   - "pandoc"
   - "CI"
   - "shell"
+  - "obsidian"
 ---
 
 I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I'd like to include in that journal.  One example is Word docs, such as my weekly reports.  I've copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.

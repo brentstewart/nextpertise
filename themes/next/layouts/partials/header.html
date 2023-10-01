@@ -2,9 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextpertise - A Journal of Interesting Ideas in Technology</title>
-    <meta name="description" content="Nextpertise is a journal of interesting ideas in technology, covering topics such as Linux use at home and in the cloud, self-hosting, and cybersecurity.">
-    <meta name="keywords" content="{{.Params.Focus_Keyword}},linux, VPN, Virtual Machine, cybersecurity, Virtualization, self-hosting">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: {{.Summary}}">
+    <meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", "}}{{ end }},{{.Params.Focus_Keyword}}" />
     <meta name="twitter:card" content="{{.Params.description}}">
     <meta property="og:title" content="{{.Params.Title}}" >
     <meta property="og:url" content="{{.Permalink}}" >
@@ -23,7 +22,5 @@
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
     <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
     <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
-    <a href="https://twitter.com/nextpertise"><img src="/twitter.png" alt="twitter" height="25" ></a>
-    <a href="https://t.me/joinchat/MRl-MxqCHWolIoWanYeLJw"><img src="/whitelogo.svg" alt="telegram" height="25" ></a>
     {{ if .Params.math }}{{ partial "katex.html" . }}{{ end }}
   </div>

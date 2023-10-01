@@ -17,6 +17,7 @@ refs:
   - https://www.youtube.com/watch?app=desktop&v=uqVx22lo9_4&themeRefresh=1
 tags:
   - "markdown"
+  - "obsidian"
 ---
 
 I've kept notes using a lot of different tools over the years.  I've used Outlook, Simple Note, Visual Studio Code, and even just Notepad.  At the start of the pandemic, I switched back to writing on paper.  I like paper because the mechanical act of writing helps keep me present in a meeting, it engages my brain, and it's not distracting to the other folks in the meeting.  On the other hand, writing notes on my computer makes them easier to read (I have bad handwriting), easier to transport and easier to refer back to.

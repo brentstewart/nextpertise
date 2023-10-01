@@ -25,7 +25,7 @@ I found this extension, available on the [Gnome extension site](https://extensio
 
 ![Sample](/WorkspaceLabel.png#floatsmallright)
 
-The easy way to add the extension is to go to the [gnome extension site](extensions.gnome.org) and enable it.  There are two ways to set workspace names: long clicking on the label or via command line.  Long clicking I eventually got to work, sometimes.  Sometimes a long click is results in showing all the workspaces, but this may be an artifact of runnign on Pop!.  Option #2, which is easy and always works for me, is to set it via the command line.  Here's the command I use to name my four workspaces.
+The easy way to add the extension is to go to the [gnome extension site](https://extensions.gnome.org) and enable it.  There are two ways to set workspace names: long clicking on the label or via command line.  Long clicking I eventually got to work, sometimes.  Sometimes a long click is results in showing all the workspaces, but this may be an artifact of runnign on Pop!.  Option #2, which is easy and always works for me, is to set it via the command line.  Here's the command I use to name my four workspaces.
 
     gsettings set org.gnome.desktop.wm.preferences workspace-names "['Work', 'Writing', 'Dev','Learning']"
 

@@ -17,6 +17,7 @@ tags:
   - "linux"
   - "shell"
   - "Hugo"
+  - "obsidian"
 ---
 ## Incorporating blog articles in Obsidian
 

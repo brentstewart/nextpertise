@@ -16,7 +16,7 @@ tags: ["GNS3","Virtualization"]
 
 I got a little distracted.  I have been coming up to speed on Ansible, which got me started on Vagrant.  Vagrant got me building VMs in VMWare Workstation , which got me thinking how neat it would be to place those _automagically_ into my GNS3VM environment hosted on ESXi.  Didn't get that far - yet  - but the progress I made is pretty cool in it's own right.
 
-Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see [Connecting GNS3](/posts/210417_connecting_gns3)). Here I want to do something more complex - I'd like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection "out" to the home network and Internet, but I want to add an ESXi VM "inside" the network as well.
+Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see [Connecting GNS3](/posts/210417_connecting_gns3/). Here I want to do something more complex - I'd like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection "out" to the home network and Internet, but I want to add an ESXi VM "inside" the network as well.
 
 The approach I used was to attach the VMs into an ESXi VSwitch VLAN and then use additional cloud appliances to attach those VLAN into the GNS3 topology.  _This seems obvious in retrospect_.
 

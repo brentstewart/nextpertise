@@ -16,6 +16,7 @@ refs:
   - https://help.obsidian.md/How+to/Working+with+tags
 tags:
   - "markdown"
+  - "obsidian"
 ---
 
 In [Part 1](/posts/220829_obsidian_intro), I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it's a good place to start.  
