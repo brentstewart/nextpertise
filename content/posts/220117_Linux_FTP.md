@@ -24,7 +24,7 @@ My Brother MFC-L3770CDW printer can scan to SMB, FTP, or a flash drive you plug 
 
 FTP is a very old file transfer protocol.  VSFTP ("Very Secure") is the default FTP server for Linux.  Regardless of the name, plain vanilla FTP transmits usernames and passwords in clear text and setting it up to be "Very Secure" takes a little extra effort.  I'm also using it because it's compatible with my printer, but securing it might interfere with that connection.  So this setup isn't security optimized and is really only appropriate for a home network.
 
-_As a note, if secure file transfer is interesting to you, check out the articles on [SSHFS](/posts/200813_Using_SSH3)._
+_As a note, if secure file transfer is interesting to you, check out the articles on [SSHFS](/posts/200813_using_ssh3/)._
 
 On Ubuntu, installation can be done through apt.  Configuration is done by editing the _/etc/vsftpd.conf_ file.  After editing, you'll need to restart the service.
 
