@@ -14,7 +14,6 @@ github: ""
 refs: ["https://www.amazon.com/The-Phoenix-Project-audiobook/dp/B00VATFAMI/ref=sr_1_4?crid=3G15KXSXD13CK&keywords=gene+kim&qid=1697910897&sprefix=gene+kim%2Caps%2C189&sr=8-4"]
 tags:
   - "management"
-  - "philosophy"
 ---
 I'm going to wander into some concepts from my day job.  Give me a little room and I'll relate how this insight is relevant to everyone and what I've learned.  By the time I start to make that turn, though, I'm guessing you'll be well ahead of me.
 
