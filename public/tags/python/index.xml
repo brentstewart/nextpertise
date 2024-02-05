@@ -1,0 +1,51 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on </title>
+    <link>https://nextpertise.net/tags/python/</link>
+    <description>Recent content in python on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Oct 2023 11:47:23 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JiraReport</title>
+      <link>https://nextpertise.net/posts/231021_jirareport/</link>
+      <pubDate>Sat, 21 Oct 2023 11:47:23 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/231021_jirareport/</guid>
+      <description>&lt;p&gt;I recently had a lot of fun building a quick program to pull data from Jira Cloud and produce Word reports.  I&amp;rsquo;ve shared &lt;a href=&#34;https://github.com/brentstewart/jirareport&#34;&gt;jirareport&lt;/a&gt; at Github if you are curious.  If you use Jira, this may be of interest (although most folks who use Jira are well beyond my meager abilities).&lt;/p&gt;
+&lt;p&gt;Even if you don&amp;rsquo;t use Jira, this was an interesting experience.  It was a fairly simple re-introduction to Python, something that I&amp;rsquo;ve tried to get started in on-and-off over the years.  Seeing it work though was a huge feeling of empowerment and encourgagement, something I hope you are able to experience (whatever cloud resource you need to use).&lt;/p&gt;
+&lt;h2 id=&#34;using-my-tools&#34;&gt;Using my tools&lt;/h2&gt;
+&lt;p&gt;My project contains two Python 3 programs - &lt;strong&gt;jirareport&lt;/strong&gt; and &lt;strong&gt;lsFields&lt;/strong&gt;. To run these programs, you&amp;rsquo;ll need the following information:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jira Cloud URL (like &lt;a href=&#34;https://yourcompany.atlassian.com&#34;&gt;https://yourcompany.atlassian.com&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Your Jira username (like &lt;a href=&#34;mailto:me@mycompany.com&#34;&gt;me@mycompany.com&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Your Jira API Key.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you don&amp;rsquo;t have an API key already&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In Jira, click your picture in the upper right and choose manage account&lt;/li&gt;
+&lt;li&gt;In the profile page, choose the Security tab on the top.&lt;/li&gt;
+&lt;li&gt;Under Security, go to Create and manage API tokens&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;lsfields&#34;&gt;lsFields&lt;/h3&gt;
+&lt;p&gt;This program will take the above input and produce a list of fields and field IDs used in your instance of Jira Cloud. In our instance, we&amp;rsquo;ve added fields and the ID shows as customfield_00000. I&amp;rsquo;m positive that you&amp;rsquo;ll want to change the fields I print in the report, since some of mine are custom. Use this tool to list the fields in your instance and replace the fields that I use.&lt;/p&gt;
+&lt;h3 id=&#34;jirareport&#34;&gt;JiraReport&lt;/h3&gt;
+&lt;p&gt;This is the one that does the work. JiraReport will take the above inputs plus a JQL query to produce a report. I use the Filters page in Jira Cloud to produce and test my queries as needed, then just paste JQL into the report. Finally, it will ask for an output filename. If you press enter, it will just use jira_report.docx.&lt;/p&gt;
+&lt;p&gt;The report includes story keys that are hyperlinks back to the story in Jira Cloud. The Assignee field also displays the persons name and is a hyperlink to their email address.&lt;/p&gt;
+&lt;h2 id=&#34;developing&#34;&gt;Developing&lt;/h2&gt;
+&lt;p&gt;This is my first really useful program in a few years, since I wrote a program to parse SSH logs a while back.  There are a few things I wanted to note about the experience that may be helpful for you.&lt;/p&gt;
+&lt;p&gt;First, ChatGPT was mostly useful.  General web searches came up with a lot of different snippets, but just asking ChatGPT to write the program gave me most of the bones.  I asked ChatGPT for a program to access Jira, for instance, then I asked it for a program to output Word files.  I relied on my hackery to stitch the pieces together.  As I encountered issues, I&amp;rsquo;d ask ChatGPT something like, &amp;ldquo;The above is great, but how would I do it in &lt;em&gt;yellow&lt;/em&gt;?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;This is probably significant for this point in time (2023).  A few years ago, places like Stack Overflow were reliably the best places to work through coding issues.  Stack Overflow has become, over time, a less forgivning environment and some questions result in contradictory solutions.&lt;/p&gt;
+&lt;p&gt;Vendor documentation used to be filled with examples as well, but I didn&amp;rsquo;t find what I needed from Jira.  I used the open-source Python-docx library and it&amp;rsquo;s great, but I really struggled with understanding how to apply what I found in their documentation.  I don&amp;rsquo;t want that to sound like complaining - I am grateful for the volunteers at Python-docx and the great tool that their providing to the community.  As a beginner, I just found it hard to get started.  I found ChatGPT to be a useful way to bridge the gap in both cases.&lt;/p&gt;
+&lt;p&gt;Second, ChatGPT has it&amp;rsquo;s limits.  At certain points, ChatGPT gave me code that just didn&amp;rsquo;t work and I was off to Lemmy or Reddit.  I found that ChatGPT was a pretty good place to start, but you need to be prepared to drop it if you realize it&amp;rsquo;s giving you junk.&lt;/p&gt;
+&lt;p&gt;The Python-docx library is a huge gift.  There are some places where I had to spend some time expirimenting to get it to do what I wanted, so be prepared to do some tinkering.  I&amp;rsquo;ve got some good examples in the code that you may want to look at for other projects.  For example, the process of building links took some time to put together, especially when those links are part of a paragraph.&lt;/p&gt;
+&lt;p&gt;Finally, my users don&amp;rsquo;t always fill out all fields and the program would fail if the linking information wasn&amp;rsquo;t present which led to the try/except bracketing.  That was a really good lesson in graceful error handling.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

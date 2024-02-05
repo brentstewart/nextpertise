@@ -1,0 +1,223 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Biz card - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: One of the guys on Jupiter Broadcasting spoke about a curl-able business card and I thought, &ldquo;Gotta try it&rdquo;.
+A little searching led me to an example - the card of Bryan Jenks.">
+    <meta name="keywords" content="shell,curl business card" />
+    <meta name="twitter:card" content="Creating a curl-able business card">
+    <meta property="og:title" content="Biz card" >
+    <meta property="og:url" content="https://nextpertise.net/posts/2310255_bizcard/" >
+    <meta property="og:description" content="Creating a curl-able business card" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Biz card</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Oct 25, 2023</i><br></div></h6>
+  <p><p>One of the guys on Jupiter Broadcasting spoke about a curl-able business card and I thought, &ldquo;Gotta try it&rdquo;.</p>
+<p>A little searching led me to an example - the card of <a href="https://github.com/tallguyjenks/BusinessCard/blob/master/business_card">Bryan Jenks</a>.  I used Bryan&rsquo;s work as a template.  Here&rsquo;s what my finished version looks like.</p>
+<p><img src="/bizcard.png#floatleft" alt="My curlable business card"></p>
+<p>The basic concept is simple enough - put a slug of text on a web server and anyone can curl it.  Following Bryan&rsquo;s example, I&rsquo;m using console escape codes to provide color.  Here&rsquo;s a few I find useful.</p>
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+<table class="table table-responsive table-hover">
+<caption>Table: Console escape codes</caption>
+<thead class="table-info">
+<tr>
+<th style="text-align:center">Esc</th>
+<th style="text-align:center">Effect</th>
+<th></th>
+<th style="text-align:center">Esc</th>
+<th style="text-align:center">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">[0m</td>
+<td style="text-align:center">Plain text</td>
+<td></td>
+<td style="text-align:center">[30m</td>
+<td style="text-align:center">Black</td>
+</tr>
+<tr>
+<td style="text-align:center">[1m</td>
+<td style="text-align:center">bold</td>
+<td></td>
+<td style="text-align:center">[31m</td>
+<td style="text-align:center">Red</td>
+</tr>
+<tr>
+<td style="text-align:center">[2m</td>
+<td style="text-align:center">dim</td>
+<td></td>
+<td style="text-align:center">[32m</td>
+<td style="text-align:center">Green</td>
+</tr>
+<tr>
+<td style="text-align:center">[4m</td>
+<td style="text-align:center">underscore</td>
+<td></td>
+<td style="text-align:center">[33m</td>
+<td style="text-align:center">Gold</td>
+</tr>
+<tr>
+<td style="text-align:center">[5m</td>
+<td style="text-align:center">blink</td>
+<td></td>
+<td style="text-align:center">[34m</td>
+<td style="text-align:center">Blue</td>
+</tr>
+<tr>
+<td style="text-align:center">[7m</td>
+<td style="text-align:center">reverse</td>
+<td></td>
+<td style="text-align:center">[35m</td>
+<td style="text-align:center">Magenta</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td style="text-align:center">[36m</td>
+<td style="text-align:center">Cyan</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td style="text-align:center">[37m</td>
+<td style="text-align:center">White</td>
+</tr>
+</tbody>
+</table>
+
+<p>You&rsquo;ll notice from the screen shot that I was able to test this with Hugo&rsquo;s built-in server.  I want to deploy this publicly though, so I went to <strong>bit.ly</strong> and took the long URL <em><a href="http://nextpertise.net/business">http://nextpertise.net/business</a>_card.text</em> and shortened it to <em>bit.ly/brentbizcard</em>.</p>
+<p>The hardest part of this short project was getting the spacing to work out.  There&rsquo;s no magic, just testing, adjusting, and retesting.  Not the most useful project, but it has a certain geek-cred.  To access the card, just use curl.</p>
+<pre><code>curl -sL http://bit.ly/brentbizcard</code></pre>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/shell/">shell</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        A simple Ci-like process to send word files to Obsidian
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230514_save2kindle/">Save to Kindle with a DIY CI</a><br />
+        A simple CI-like process for sending personal documents to a Kindle
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_command_line_email/">Sending Email through Google from the Command Line</a><br />
+        How to send email from bash
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/2310255_bizcard/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Biz card</a></nav>
+</div>
+  </body>
+  </html>

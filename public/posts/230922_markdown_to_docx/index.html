@@ -1,0 +1,160 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Markdown to DOCX - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Exporting Markdown Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.">
+    <meta name="keywords" content="Pandoc, Hugo, Markdown, Obsidian,Pandoc Obsidian Hugo" />
+    <meta name="twitter:card" content="Converting markdown files">
+    <meta property="og:title" content="Markdown to DOCX" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230922_markdown_to_docx/" >
+    <meta property="og:description" content="Converting markdown files" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/markdown.png#floatright" height="140">
+<h1>Markdown to DOCX</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Sep 22, 2023</i><br></div></h6>
+  <p><h1 id="exporting-markdown">Exporting Markdown</h1>
+<p>Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.  Although initially reluctant, I&rsquo;ve grown to appreciate the portability and easy reuse that markdown allows.  The problem is that the rest of the world doesn&rsquo;t always appreciate what is obvious to me.  As an example, the folks at work prefer their documents in Office formats.</p>
+<h2 id="office-to-obsidian">Office to Obsidian</h2>
+<p>One of the things I love about markdown is that it&rsquo;s an easy format to migrate to and from, perhaps because it&rsquo;s a simple format.  I wrote about an automated process to take Word documents, convert them to markdown, and incorporate them into your Obsidian vault in <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a>.</p>
+<h2 id="obsidian-to-word">Obsidian to Word</h2>
+<p><img src="/ObsPandoc.png#floatleft" alt="Pandoc Plugin">
+The techniques I used in the above article <em>could</em> be used for any type of file format changes, but exporting from Obsidian isn&rsquo;t always to DOCX and isn&rsquo;t always aimed at a particular directory.  In fact, if you are using O365 then it may need to be uploaded to an arbitrary place on OneDrive/Sharepoint in a seperate step.  Instead, I&rsquo;ve found the best method to be the <a href="https://github.com/OliverBalfour/obsidian-pandoc">Pandoc Plugin</a>.</p>
+<p>In Obsidian, go to <em>options</em> (the cog in the lower right), then to _Community Plugins&quot; and search for Pandoc.  This presents an &ldquo;install&rdquo; button, which adds the plugin to your vault and it can then be enabled.  Don&rsquo;t forget to enable it!  I do that sometimes and then wonder why it&rsquo;s not working.</p>
+<p>I&rsquo;ve found that the plugin exposes Pandoc options pretty well and that default settings work well (I&rsquo;ve mostly used it to export to DOCX and PDF).  There are options to supply default formating to the document, but they&rsquo;re not necessary.</p>
+<h2 id="hugo-markdown-to-word">Hugo Markdown to Word</h2>
+<p>Other sources of markdown files, such as those from Hugo or Github, can be converted using Pandoc on the commandline.  The issue here is that Hugo files typically include embedded images, and the images are specified based on where the image ends up after compilation.  When you run <em>hugo</em> it takes the markdown directories and produces a set of html files in a new structure.  On this blog, my images are refrenced at the &ldquo;root&rdquo; pre-compilation, for instance &ldquo;/image.png&rdquo;, alongside the written content.  In the on-disk structure (and you can see this in the github) my writing is under &ldquo;/post/file.md&rdquo; and the images are under &ldquo;/static/image.png&rdquo;.</p>
+<p>When Pandoc runs against the raw Hugo markdown, it just references the path and produces compilation errors.  I also use CSS to style images, which modifies the URL (for instance &ldquo;/image.png#floatright&rdquo;).  The CSS markings are also lost on Pandoc and will cause errors. There are three ways to deal with this.  The first is to manually edit the markdown to remove the image or correct the path.  Options two and three involve a pre-processor, a piece of lua code that Pandoc runs mid-conversion.  Option two is to use a lua pre-processor to remove all images.</p>
+<pre><code>brent@hyper &gt; cat filterimagesinpandoc.lua 
+function Image () return {} end
+</code></pre>
+<p>Option three is to use a lua pre-processor to correct the path and remove the styling.  No code demonstrated here because I use option 2 and the code would depend on your directory structure.</p>
+<p>The final trick to converting markdown - Hugo, Obsidian, or any other - is to understand that Pandoc expects markdown to begin with a YAML header.  That header can be as simple as an authors name.  The YAML ends with a line of three dashses.</p>
+<pre><code>author: Brent
+---
+</code></pre>
+<p>Pandoc will fail if it doesn&rsquo;t see that YAML header.  Most Hugo files and most Obsidian files are going to include that header, so you should be okay.  Pandoc also gets confused if it sees three dashes on a line later in the file.  I used that to generate a seperator line in Obsidian and caused Pandoc to blow up.  Make sure that there is at least a primitive YAML header AND that there&rsquo;s only one line of three dashes.</p>
+<p>Converting ends up looking like this.  This command specifies the source (markdown.doc), the output file and format (Word.docx) and the filter.</p>
+<pre><code>pandoc ~/Folder/markdown.md -o Word.docx --lua-filter filterimagesinpandoc.lua
+</code></pre>
+<p>So rock on with Markdown and convert to Word as you need to live with the normies.  Hope this helps!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/OliverBalfour/obsidian-pandoc">https://github.com/OliverBalfour/obsidian-pandoc</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/pandoc/">Pandoc</a> 
+       
+        <a href="/tags/hugo/">Hugo</a> 
+       
+        <a href="/tags/markdown/">Markdown</a> 
+       
+        <a href="/tags/obsidian/">Obsidian</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230731_ahrefs/">ahrefs</a><br />
+        A review of Ahrefs, a website with tools for web developers
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221002_dataview/">Obsidian Dataview (Part 3)</a><br />
+        Obsidian Dataview
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210102_hugoafter6/">Writing a Blog - Reflections after a half year</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200919_pandoc_improved/">CI for Docs with Pandoc (take 2)</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230922_markdown_to_docx/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Markdown to DOCX</a></nav>
+</div>
+  </body>
+  </html>

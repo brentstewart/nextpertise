@@ -1,0 +1,193 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise How to Plan Good Downtime - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: In another blog, planning downtime would involve tropical pictures. Sigh.
+Downtime IT downtime is a period when IT systems have a planned outage. These periods are negotiated with internal and external stakeholders and communicated so that no one is surprised by the lack of availability.">
+    <meta name="keywords" content="How To, Management,Downtime" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="How to Plan Good Downtime" >
+    <meta property="og:url" content="https://nextpertise.net/posts/210126_downtime/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/life.png#floatright" height="140">
+<h1>How to Plan Good Downtime</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Jan 26, 2021</i><br></div></h6>
+  <p><p>In another blog, planning downtime would involve tropical pictures.  Sigh.</p>
+<h2 id="downtime">Downtime</h2>
+<p><img src="https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright" alt="Time">
+IT downtime is a period when IT systems have a planned outage.  These periods are negotiated with internal and external stakeholders and communicated so that no one is surprised by the lack of availability.  During this time, changes take place to improve performance, enhance reliability, address security concerns, or add features.</p>
+<p>It is a good idea to have a recurring scheduled downtime at least once a month.  Most organizations sync their downtime to &ldquo;patch Tuesday&rdquo;.  Microsoft, Oracle, and other big organizations release patches on the second Tuesday each month.  Since there&rsquo;s a good chance that something in an environment will need to be patched and this leads to a disruption, it&rsquo;s a good time to do other changes as well.</p>
+<p>Sometimes changes must be deployed to react to events.  In those cases the process is hastily put together and it&rsquo;s more critical to have a clear idea of how to structure that time.</p>
+<p><img src="/plan.jpeg#floatsmallleft" alt="Plan"></p>
+<h2 id="checklist-for-good-downtime">Checklist for Good Downtime</h2>
+<p>A six step process for thinking it through.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Plan testing</li>
+<li><input disabled="" type="checkbox"> Communication Plan</li>
+<li><input disabled="" type="checkbox"> Build a Script</li>
+<li><input disabled="" type="checkbox"> Recognize Risks</li>
+<li><input disabled="" type="checkbox"> Negotiate Window</li>
+<li><input disabled="" type="checkbox"> Make the change!</li>
+</ul>
+<h2 id="plan-testing">Plan Testing</h2>
+<p>There&rsquo;s an old adage to &ldquo;start with the end in mind&rdquo; and that&rsquo;s appropriate when planning changes.  Start by thinking through <em>what</em> should be tested to confirm success and <em>how</em> it will be tested.</p>
+<p>Circulate that testing plan within the parties of interest and allow them to modify the tests.  There are cases where a change passes testing but problems are later revealed.  In such cases, you will <em>always</em> be asked &ldquo;Didn&rsquo;t you test for that?&rdquo;  Having those other folks review the testing plan provides space to skip the blame game in those cases and focus on restoring service.</p>
+<p>How does this apply to &ldquo;emergency&rdquo; changes?  Build a &ldquo;Crown Jewels&rdquo; testing list.  These are the critical services for your organization.  Any testing plan should include these tests, but in a pinch this can serve as a base level set of tests.</p>
+<p>You&rsquo;ll want to automate these tests as much as possible.  Automation allows you to easily re-run the tests many times as you make adjustments.  &ldquo;Ping scripts&rdquo; are a good place to start, but be creative (for instance, wget can serve to test browsing).
+<img src="/process.jpeg#floatsmallright" alt="Process">
+Finally, make sure to include testing of monitoring.  If you expect alarms when a redundant power supply fails, test that.  When you make a change, confirm that your change didn&rsquo;t interfere with critical monitoring.</p>
+<h2 id="communication-plan">Communication Plan</h2>
+<p>With a testing plan in place, the next step is to build a communication plan.  <em>Who</em> should be updated, <em>how</em> should they be updated, and <em>when</em> or <em>how often</em>?</p>
+<p>Updates need to go to your management, the equipment owners (internal or external), and the group that is dependent on the service.  Generally, updates to users should be to the point and limited to how the change impacts their use.</p>
+<p>Updates should be sent at critical points in the process:</p>
+<ul>
+<li>When the change is proposed</li>
+<li>At the beginning of the change window</li>
+<li>If the change needs to be backed out, when that decision is made</li>
+<li>When backout is complete, if applicable</li>
+<li>When the change is complete</li>
+</ul>
+<p>Keep in mind that your change may impact your ability to get to corporate directories, phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers &ldquo;just in case&rdquo;.</p>
+<p>Another aspect of communications is setting up the time for the change, getting it on people&rsquo;s calendars, insuring they can participate, and publishing the meeting information.</p>
+<h2 id="build-a-script">Build a Script</h2>
+<p>A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The <em>time</em> column tells the clock-time when that task should be complete.</p>
+<p>Having a script allows the team to do a walk-through and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.</p>
+<p>This process also applies to the backout script.  Understand how the change will be unwound, roles, and make sure you preserve adequate time to accomplish it.</p>
+<p>A word on time estimates - they&rsquo;re going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each step helps you to get a sense of where things stand relative to expectations at any point.</p>
+<h2 id="recognize-risks">Recognize Risks</h2>
+<p>Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted by those impacted.  Anticipating likely scenarios also provides opportunities to mitigate.</p>
+<p>Is there a risk of disconnection to a remote facility?  Plan on having someone on site or available.</p>
+<p>Is there a risk that an upgrade doesn&rsquo;t work?  Have a backup.</p>
+<p><em>One risk that isn&rsquo;t often discussed is the risk that comes from asking your family to tolerate your work schedule.  As you prep for the activity, take some time to be at home (awake, alert, and agreeable) and spend time with them, especially if your work means that you have to be up all night Saturday night!</em></p>
+<h2 id="negotiate-window">Negotiate Window</h2>
+<p>Changes take place within a window.  This period of time needs to be agreed upon by everyone, short enough to minimize the disruption for users and long enough for the IT team to complete it&rsquo;s work with quality.</p>
+<p>One question that needs to be asked - what happens if the work isn&rsquo;t complete by the close of the window?  In other words, is it a &ldquo;hard window&rdquo;?  Unless otherwise advised, assume that it is.</p>
+<p>Take the time estimate from your script (above) and apply a &ldquo;confidence&rdquo; factor of between 50% and 100%.  In other words, if the script calls for thirty minutes, assume it will <em>really</em> take between 45 minutes and an hour.  This helps to account for the unknown but inevitable stuff that pops up when working.  Adjust your confidence factor over time as you gain insight into task complexity, team competence, and your ability to estimate.</p>
+<p>Next, make sure that a third of the time is for backout.  This is time to work through the recovery process if the change goes awry.  For a half-hour change, we&rsquo;ll budget an hour for implementation.  If at the end of the hour it&rsquo;s not done, we immediately go into backing out the change so that we&rsquo;re done within an hour an a half.  And that&rsquo;s the right period of time to ask for - 300% of your estimate.  Unless you can get more.</p>
+<p>Seriously though, this drop-dead time to begin backout is crucial to being able to have integrity about honoring the window.  IT folks are always &ldquo;5 minutes!&rdquo; away from fixing things and can easily get lost in a spiral without maintaining discipline about when the backout has to begin.</p>
+<h2 id="make-the-change">Make the Change!</h2>
+<p>Finally it&rsquo;s time to make the change.  Ask everyone to arrive early and join the conference.  Make sure that backups are up to date and configurations saved before beginning.  Also before beginning, run the test script to make sure that all elements are working before the change to prevent confusion afterward.
+<img src="/winner.jpeg#floatleft" alt="Winner">
+If the change is a group exercise, it is usually a good idea to have one person act as tracker.  In addition to making sure that the team is ready to begin backout at the right time, the tracker can check off items as they are accomplished, recognize any slippage, and suggest strategies to keep things moving.</p>
+<p>It&rsquo;s a good idea to communicate to stakeholders at the beginning of the window.</p>
+<p>Run the test script again when things are complete (win or lose).  Each script run should produce output, which can be saved, in case there are questions afterward.</p>
+<p>Finally, communicate to stakeholders when things are complete.</p>
+<p>I realize the process is complicated, but it encompasses <em>years</em> of hard-won ideas.  Each point has a story about the incident where it was learned.  However, well planned exercises run smoothly and feel like a victory lap, making all the effort worthwhile.  I sincerely hope that this helps you to move swiftly past these learning experiences and on to greater success!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/how-to/">How To</a> 
+       
+        <a href="/tags/management/">Management</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        Running TOR
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220723_5g_troubleshooting/">5G Troubleshooting</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220404_winkey/">Finding Windows Keys on Hardware</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220329_teams/">Powerpoint Live (or You don&rsquo;t know how to share Powerpoint with Teams)</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210906_apachedav/">Using WebDAV on Apache</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210126_downtime/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">How to Plan Good Downtime</a></nav>
+</div>
+  </body>
+  </html>

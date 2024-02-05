@@ -1,0 +1,179 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Fun with Postscript - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I really enjoy being a computer professional. I like the creativity, problem solving, and the sense that things can be understood. Sometimes this is directly applicable, sometimes it&rsquo;s just fun.">
+    <meta name="keywords" content="Postscript, Coding,PostScript" />
+    <meta name="twitter:card" content="Postscript is a fun programming language to learn">
+    <meta property="og:title" content="Fun with Postscript" >
+    <meta property="og:url" content="https://nextpertise.net/posts/200803_funwithpostscript/" >
+    <meta property="og:description" content="Postscript is a fun programming language to learn" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/201230_n.png#floatright" height="140">
+<h1>Fun with Postscript</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Aug 3, 2020</i><br></div></h6>
+  <p><p>I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&rsquo;s just <em>fun</em>.  One example of the latter is Postscript.</p>
+<p>Most of you know Postscript only as a printer thing, but it&rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.</p>
+<p>Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:</p>
+<blockquote>
+<p>1 2 add</p>
+</blockquote>
+<p>In college, I &ldquo;discovered&rdquo; postscript by printing a file for an Apple LaserWriter to an HP Laserjet. Since the Laserjet didn&rsquo;t speak Postscript (they use PCL) it just dumped raw text onto a stack of paper. I was fascinated because I could kinda read it, so I researched it and bought three books and just started playing:</p>
+<blockquote>
+<p>Postscript Language: Tutorial and Cookbook by Adobe
+Graphic Design with Postscript by Gerard Kunkel
+Postscript by Example by Henry McGilton and Mary Campione</p>
+</blockquote>
+<p>At first, I wrote text files and dumped them to the LaserWriter.</p>
+<blockquote>
+<p>copy myfile.ps &gt; lpt1:</p>
+</blockquote>
+<p>Later I started using early ghostscript to output to my dot matrix printer. I recently rediscoverd some of my files from the 1980&rsquo;s and found that I could display them in Linux with modern Ghostscript.</p>
+<p>Here&rsquo;s a simple Postscript program I took from the Postscript Cookbook:
+<img src="/CircleofBrent.png#floatright" alt="Circle of Brent"></p>
+<pre><code>/Helvetica-Bold findfont  
+        30 scalefont setfont  
+        /oshow  %stack: {string}  
+        {true charpath stroke} def  
+    /circleofBrent  
+        { 20 20 340  
+            { gsave  
+                rotate 0 0 moveto  
+                (Brent) oshow  
+                grestore  
+            } for  
+        } def  
+    % --Begin Program --  
+    250 400 translate  
+    .5 setlinewidth  
+    circleofBrent  
+    0 0 moveto  
+    (Brent Stewart) true charpath  
+    gsave 1 setgray fill grestore  
+    stroke  
+    showpage  
+</code></pre>
+<p>Without a lot of explanation, you get the sense of how postscript works.  There&rsquo;s a routine to print my name and rotate the coordinate system in increments of 20 degrees.  That routine is looped through and then the final full name is printed at the end.  Instead of printing this page, in Linux I just typed:</p>
+<pre><code>gs CircleofBrent.ps
+</code></pre>
+<p>and the page is rendered in a window.  I discovered that you GIMP can directly load postscript files (!) and used that to create the logo and favicon for this site.  You can print the file to a postscript printer using lpr.  MFC9340CDW is a brother printer I use, and I opened system-config-printer to confirm the name.</p>
+<pre><code>lpr -P MFC9340CDW rays.ps
+</code></pre>
+<p>I&rsquo;ve built a repo with some examples.  I actually found some of my code from 30 years ago! PostScript is a simple enough language to quickly accomplish things with, but complicated enough to get some interesting results.  In fact, you can do things in the language that I&rsquo;ve never seen translated to an app.  I hope this post will encourage you to give it a try and have some fun!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.amazon.com/Postscript-Language-Tutorial-Cookbook-Systems/dp/0201101793">https://www.amazon.com/Postscript-Language-Tutorial-Cookbook-Systems/dp/0201101793</a><br> 
+    
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/postscript_projects">Nextpertise on Github</a><br></strong>
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/postscript/">Postscript</a> 
+       
+        <a href="/tags/coding/">Coding</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230930_dashboards/">Building a Home Web Dashboard</a><br />
+        Trying out a few options for a home dashboard
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210218_vheditor/">VHEditor - Visual Studio Code for Android</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210207_installscript/">Linux Install Script</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201230_keycaps/">Custom Keycaps - Updated</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/200803_funwithpostscript/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Fun with Postscript</a></nav>
+</div>
+  </body>
+  </html>

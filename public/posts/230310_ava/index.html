@@ -1,0 +1,151 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Obsidian Ava ChatGPT Plugin - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: ChatGPT is all the rage these days. It can carry on a chat conversation and compose text. Folks are using it to help write business letters, to help write documents, and to explore the state of modern Artificial Intelligence.">
+    <meta name="keywords" content="markdown,ChatGPT" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Obsidian Ava ChatGPT Plugin" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230310_ava/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/markdown.png#floatright" height="140">
+<h1>Obsidian Ava ChatGPT Plugin</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Mar 10, 2023</i><br></div></h6>
+  <p><p>ChatGPT is all the rage  these days.  It can carry on a chat conversation and compose text.  Folks are using it to help write business letters, to help write documents, and to explore the state of modern Artificial Intelligence.  Because ChatGPT has ingested a lot of background data, it&rsquo;s able to write coherently on a number of topics and sometimes can make insightful inferences.  Contrarily, because it doesn&rsquo;t really &ldquo;know&rdquo; so much as form statistical relationships, it sometimes speaks authoritatively against the facts.</p>
+<h2 id="installing-the-ava-plugin">Installing the Ava Plugin</h2>
+<p><img src="/230310_ava.png#center" alt="Ava Installed">
+The <a href="https://github.com/louis030195/obsidian-ava">Obsidian Ava</a> plugin pulls ChatGPT into Obsidian.  To install the plugin:</p>
+<ul>
+<li>In Obsidian  open settings by clicking on the gear icon at the bottom of the left-hand toolbar.</li>
+<li>Click on &ldquo;Third-Party Plugins&rdquo; and select &ldquo;Community Plugins.&rdquo; Search for &ldquo;Obsidian Ava&rdquo; in the search bar, and once you find it, click on &ldquo;Install&rdquo; to install the plugin.  You&rsquo;ll need to enable the plugin while you are there.</li>
+<li>Then open your command palette by pressing &ldquo;Ctrl/Cmd + P&rdquo; and type &ldquo;Ava&rdquo; to launch the chatbot. Follow the instructions to link to the chatbot, and you&rsquo;re good to go!</li>
+</ul>
+<h3 id="what-can-it-do">What can it do?</h3>
+<p>Once installed, the plugin can compose text, create links, or generate an image based on text you provide.</p>
+<p>There are options for Ava to take a prompt and write a paragraph, to rewrite something you&rsquo;ve written, or to finish writing something you&rsquo;ve started.  I&rsquo;ve been expirimenting with this capability and found it to be potentially helpful.  I often have trouble finding a way to start writing, but found that I could take the ChatGPT-generated paragraph, edit and rework it, and this made getting started on a topic easier.</p>
+<p>I said &ldquo;potentially&rdquo; for two reasons.  First, the generated text commonly begins with a boiler-plate cavaet like &ldquo;As an AI language model, I am unable to determine subjective motives or reasons, but . . .&rdquo;  Second, in most cases I found that ChatGPT generated structurally correct sentences, but that they lacked content, direction, and few concepts that weren&rsquo;t already in my prompt.</p>
+<p><img src="/230310_ava_tags.png#floatsmallright" alt="Tagging">
+Ava can analyze a file and your vault and suggest linking to other files.  The whole &ldquo;Second brain&rdquo; concept is built off of these connections, so this is could be a powerful tool.  Ava installs a link icon that will suggest similar notes.  It will rank them using a &ldquo;similarity percentage&rdquo;.  I&rsquo;m not sure what &ldquo;86% similar&rdquo; means, but I found that it did a reasonable job of surfacing other content that includes the same words.</p>
+<p>In the same vein, Ava can analyze a file and suggest tags.  I&rsquo;m a sparse user of tags, so I can&rsquo;t testify to the utility here.  The image to the right shows the tags suggested for this file, so you can see that these generally make sense.</p>
+<p><img src="/If_ChatGPT_was_a_human_girl_named_Ava.jpg#floatsmallleft" alt="Ava">
+Ava can also generate images based on text.  Select a block of text, open the command prompt, and choose &ldquo;Ava:Generate Image&rdquo; and the image will be placed below the selected text.  As an example, I typed &ldquo;If ChatGPT was a human girl named Ava&rdquo; and it created the image to the left.  I&rsquo;ve been playing with this and have yet to generate a really compelling picture, but it&rsquo;s intriguing.  This may be a way around writers block by engaging a different part of the brain and I&rsquo;ll continue to fiddle with it.</p>
+<h2 id="final-notes">Final notes</h2>
+<p>The cute thing these days is to have ChatGPT write an article on it&rsquo;s on.  Bonus points to have it write an article about itself for you.  In my opinion, Ava doesn&rsquo;t represent the day when a Chatbot can produce text at the level of a common human writer.  I tried different prompts as I was writing this piece and Ava failed to produce output that ended up in the final piece.</p>
+<p>That said, I found that Ava was useful as a tool to spur my writing.  Generating the prompt text backed me into outlining the article.  The returned copy provided a starting point, even if none of it was incorporated in the final product.  Ava made useful suggestions about tags and links within my Obsidian vault.  Finally, playing with the image generation was fun and I could see how it could be used as a way to creatively engage with your writing.</p>
+<p>I understand there are other integrations and I&rsquo;ll try them out as I have time.  I intend to leave this plugin enabled and continue to investigate the best way to use it.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/louis030195/obsidian-ava">https://github.com/louis030195/obsidian-ava</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/markdown/">markdown</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        A simple Ci-like process to send word files to Obsidian
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221210_self-hosted_obsidian/">Self-Hosted Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220901_obsidian3/">Linking and Embedding in Obsidian Notes (Part 3)</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220831_using_obsidian/">Obsidian Tasks (Part 2)</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230310_ava/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Obsidian Ava ChatGPT Plugin</a></nav>
+</div>
+  </body>
+  </html>

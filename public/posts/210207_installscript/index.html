@@ -1,0 +1,270 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Linux Install Script - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I install Linux pretty regularly. Sometimes I&rsquo;m setting up a new server instance, sometimes I&rsquo;m deploying it to new hardware. Many times I&rsquo;m doing a clean install on a new release.">
+    <meta name="keywords" content="Linux, Coding,Linux Install Script" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Linux Install Script" >
+    <meta property="og:url" content="https://nextpertise.net/posts/210207_installscript/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/shell.png#floatright" height="140">
+<h1>Linux Install Script</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Feb 7, 2021</i><br></div></h6>
+  <p><p>I install Linux pretty regularly.  Sometimes I&rsquo;m setting up a new server instance, sometimes I&rsquo;m deploying it to new hardware.  Many times I&rsquo;m doing a clean install on a new release.  Very often, I&rsquo;m reinstalling my workstation because I want to try a new flavor.  Whether you are a distro-hopper or just need to handle Disaster Recovery process, installing Linux and customizing it to fit your particular needs can take a half day or more.</p>
+<p>In addition to the time, installing requires you to make sure that you bring critical applications forward, attach to required printers and servers, and put expected security elements in place.  It&rsquo;s easy to forget a step.  If you haven&rsquo;t done it in a while, it&rsquo;s difficult to remember <em>how</em> to handle a step.</p>
+<p>That&rsquo;s why years ago I started building an install script.  These days my I keep it in a private Github repository.  When setting up a new instance, I just grab the repo and run script.  For the record, it still takes a while, but I don&rsquo;t have to babysit it.</p>
+<h2 id="creating-a-private-github-repository">Creating a private GitHub Repository</h2>
+<p>Login to Github, go to the Repositories tab and click new.  Give your repository a name and select &ldquo;Private&rdquo;.  If you have an existing repository, go to the Settings tab and scroll to the bottom where it says &ldquo;Danger Zone&rdquo;.  There&rsquo;s an option to make the repository private.  Not everyone makes their install script private, but I worry about revealing details of the programs I use, internal resources, or paths.</p>
+<p><img src="/210207_GitNew.png#floatcenter" alt="New Repo"></p>
+<p>Private repos are also good for personal notes and documentation.  I used to keep notes in Simplenote, but now I use Visual Studio Code and a private repository.  I like having everything I need to reference in my Code workspace.  You could also use a private repository for documentation, with a slick pandoc CI process to build EPUB or PDF versions that you deliver (see my <a href="/posts/200919_pandoc_improved/">article</a>).  I used to use Scrivner for writing, but you can setup a similar workflow using Visual Studio Code and Github.</p>
+<h2 id="building-an-install-script">Building an Install Script</h2>
+<p>Nope, I&rsquo;m not going to share my install script.  As I said before, it&rsquo;s <em>private</em>.  But let&rsquo;s talk about what&rsquo;s in it and how it&rsquo;s built.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span></code></pre></div><p>First, it specifies the execution environment.  Not all versions of Linux use bash as the default shell for scripts and that other environment may not support the commands I use, so I want to nail this down.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Install some cool essential tools ============================&#34;</span>  
+</span></span><span style="display:flex;"><span>apt update  
+</span></span><span style="display:flex;"><span>apt upgrade -y  
+</span></span><span style="display:flex;"><span>apt install traceroute nmap snapd flatpak htop net-tools gconf2 hugo git geary unzip -y  
+</span></span><span style="display:flex;"><span>apt install vlc filezilla pithos pdfshuffler thunderbird wireshark -y  
+</span></span><span style="display:flex;"><span>apt install gigolo gvfs-fuse flameshot network-manager-openvpn network-manager-vpnc -y  
+</span></span><span style="display:flex;"><span>apt install network-manager-openconnect network-manager-pptp network-manager-openvpn-gnome -y  
+</span></span><span style="display:flex;"><span>apt install network-manager-vpnc-gnome network-manager-openconnect-gnome network-manager-pptp-gnome -y  
+</span></span><span style="display:flex;"><span>apt install python-software-properties libkf5globalaccel-bin libfreerdp-plugins-standard network-manager-applet -y  
+</span></span><span style="display:flex;"><span>add-apt-repository ppa:graphics-drivers/ppa -y  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Setup Profile Sync Daemon https://github.com/graysky2/profile-sync-daemon&#34;</span>  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#https://github.com/graysky2/profile-sync-daemon  </span>
+</span></span><span style="display:flex;"><span>sudo apt install profile-sync-daemon  
+</span></span><span style="display:flex;"><span>systemctl --user enable psd.service  
+</span></span><span style="display:flex;"><span>systemctl --user start psd.service  
+</span></span><span style="display:flex;"><span>apt update  
+</span></span><span style="display:flex;"><span>apt upgrade -y  
+</span></span></code></pre></div><p>Next, I install a bunch of stuff that I want on any machine I use.  For instance, <em>why isn&rsquo;t traceroute included in everything?</em>  Other common pieces include:</p>
+<ul>
+<li>Networking and Security tools like nmap, htop, filezilla, and wireshark.  Gigolo for mounting drives.</li>
+<li>VPN support (that&rsquo;s the network-manager stuff)</li>
+<li>I&rsquo;m agnostic on packaging, so I install support for snaps and flatpaks</li>
+<li>and finally some applications I really like (hugo, pithos, vlc, pdfshuffler, and <a href="/posts/201210_flameshot/">flameshot</a>)</li>
+</ul>
+<p>Notice that I break the installs into groups - this makes it easier to track down problems if they occur.  The &ldquo;-y&rdquo; at the end answers &ldquo;yes&rdquo; and allows the command to continue without waiting for a response from me.  Some of the things I install are already present, but they&rsquo;re not present on <em>all</em> distros so specifying the tools I want just makes sure that they&rsquo;re there (if they&rsquo;re already installed, apt just skips them).  A special word about Profile Sync Daemon, since not many folks have heard of it.  This puts the browser profile into a ram disk and speeds up the browser.</p>
+<h2 id="fixing-the-terminal">Fixing the Terminal</h2>
+<p>I wrote about the <a href="/posts/201130_powerline-windows/">Powerline shell</a> a while back.  Since I started using it, I hate to be without it.  Powerline depends on having an appropriate font and I use JetBrainsMono.  Finally, I prefer <a href="/posts/201125_tilix/">Tilix</a> to the default terminal.  This sections makes all those things happen.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Fix terminal ====================================================&#34;</span>  
+</span></span><span style="display:flex;"><span>pip3 install powerline-shell  
+</span></span><span style="display:flex;"><span>wget https://download.jetbrains.com/fonts/JetBrainsMono-2.225.zip  
+</span></span><span style="display:flex;"><span>unzip JetBrainsMono-2.225.zip  
+</span></span><span style="display:flex;"><span>cp -R fonts /usr/share/ -r  
+</span></span><span style="display:flex;"><span>fc-cache -f -v  
+</span></span><span style="display:flex;"><span>apt install tilix -y  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;function _update_ps1() {  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    PS1=$(powerline-shell $?)  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">if [[ $TERM != linux &amp;&amp; ! $PROMPT_COMMAND =~ _update_ps1 ]]; then  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    PROMPT_COMMAND=&#34;_update_ps1; $PROMPT_COMMAND&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">fi&#39;</span> &gt;&gt; /home/brent/.bashrc  
+</span></span></code></pre></div><p>Note that I&rsquo;m using an echo to give some feedback about where we are in the process. I download the font, move it to the correct directory, and update the font cache so it&rsquo;s usable.  The rest of this downloads Powerline and sets it up, plus grabs Tilix.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Cleaning up................&#34;</span>  
+</span></span><span style="display:flex;"><span>rm JetBrainsMono* -f  
+</span></span><span style="display:flex;"><span>rm -rf fonts  
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">\#</span><span style="color:#75715e"># Reminders  </span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Set JetBrains Mono as terminal font&#34;</span>  
+</span></span></code></pre></div><p><img src="/neofetch.png#floatsmallright" alt="Neofetch"></p>
+<p>At the end of the script, I have a clean up section and remove the Font files that were left in the install directory.  I don&rsquo;t know how to programmatically tell Tilix to use JetBrains Mono in it&rsquo;s default profile (help!), so I just remind myself to do that.</p>
+<h2 id="option-stuff">Option stuff</h2>
+<p>I have a series of sections for handling optional components.  The first three optional sections are almost always turned on: the Firewall, Neofetch, SSH and NFS.</p>
+<p>The structure of these loops is a for statement terminated by done.  Since the conditions of the for are empty, it will loop continually until told to break.  Pressing a &ldquo;y&rdquo; or &ldquo;n&rdquo; executes some logic and breaks, any other key causes it to loop again.  I&rsquo;m not sure this is the best way to do it, but it works.  In Bash, watch the spacing around the brackets and parentheses because it is required!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span> ; ; <span style="color:#f92672">))</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Would you like to enable the firewall (y/n)?  &#34;</span>  
+</span></span><span style="display:flex;"><span>Read VAR  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Enable Firewall&#34;</span>  
+</span></span><span style="display:flex;"><span>ufw enable  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;skipping.............&#34;</span>  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span>Done  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span> ; ; <span style="color:#f92672">))</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>  
+</span></span><span style="display:flex;"><span>read VAR  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>add-apt-repository ppa:dawidd0811/neofetch -y  
+</span></span><span style="display:flex;"><span>apt-update  
+</span></span><span style="display:flex;"><span>apt install neofetch -y  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;neofetch&#34;</span> &gt;&gt; /home/brent/.bashrc  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span>If <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;skipping.............&#34;</span>  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span> ; ; <span style="color:#f92672">))</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Would you like to install SSH and NFS (y/n)?  &#34;</span>  
+</span></span><span style="display:flex;"><span>read VAR  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Setup SSH and nfs ===========================================&#34;</span>  
+</span></span><span style="display:flex;"><span>apt install openssh-server sshfs fail2ban nfs-kernel-server nfs-common -y  
+</span></span><span style="display:flex;"><span>systemctl start fail2ban  
+</span></span><span style="display:flex;"><span>systemctl enable fail2van  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;/[sshd]  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">enabled = true  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">port = 22  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">filter = sshd  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">logpath = /var/log/auth.log  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">maxretry = 3&#34;</span> &gt;  /etc/fail2ban/jail.local  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span> <span style="color:#f92672">]]</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>  
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;skipping.............&#34;</span>  
+</span></span><span style="display:flex;"><span>break  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>  
+</span></span></code></pre></div><p><img src="/calibre.png#floatright" alt="Calibre">
+The next sections are things that I would usually want, but not always.  One example is KDE Connect - on Gnome I use the <em>Gnome Connect</em> extension and don&rsquo;t need to load it.  Other critical tools that I present as an option to myself include:</p>
+<ul>
+<li>GNS3</li>
+<li>X2Go</li>
+<li>Remina</li>
+<li>Foliate</li>
+<li>VSCode</li>
+<li>Chromium</li>
+<li>Node-Red</li>
+<li>Signal</li>
+<li>Printer drivers</li>
+</ul>
+<p>This isn&rsquo;t a perfect script, but the structure allows me to re-run it as many times as I need to and skip the sections that are already installed.  The biggest issue is that new versions (like 21.04 when it comes out in a few months) typically aren&rsquo;t represented in PPAs.  The fix is to specify an older version to pull from, but that&rsquo;s not automated.  Still, this speeds up the process and takes less of my time.</p>
+<h2 id="drive-mapping">Drive Mapping</h2>
+<p>Another major piece missing here is drive mapping.  I typically <a href="/posts/200813_using_ssh3">mount foreign drives</a> using either NFS or SSH.  Although my script pulls in SSH and NFS utilities, it doesn&rsquo;t actually connect shares.  I&rsquo;ve chosen to leave that out and create a separate file for doing that.  This is easier to maintain, and there are cases where I want to rerun the mappping file without all the other installs.</p>
+<p>One of the things that makes it <em>so</em> easy for me to stand up new machines or to distro-hop is that all my files are saved onto a central server.  I have an Ubuntu Mate install that just acts like a big file share.  This also simplifies backup, since I can concentrate on one server.  The files on the workstations are all transient.</p>
+<h2 id="so---">So . . .</h2>
+<p>That&rsquo;s the deal.  I can run this script, make a few selections, and be up and running on a new machine pretty quickly with minimal effort.  I&rsquo;m tried to show some examples of different kinds of installations, including web downloads and apt-based.  The basic structure is 1) Must Haves, then 2) Optional components encased in loops for easy selection, and 3) a clean-up section.</p>
+<p>I&rsquo;d love to include VSCode extensions, Gnome extensions, and auto-checking for PPA support into the script.  If anyone has a good refence, I&rsquo;d appreciate it.  In the meantime, this automates 90%.  Good luck creating a similar project!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com">https://github.com</a><br> &nbsp&nbsp<a href="https://www.literatureandlatte.com/scrivener/overview">https://www.literatureandlatte.com/scrivener/overview</a><br> &nbsp&nbsp<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a><br> &nbsp&nbsp<a href="https://wiki.archlinux.org/index.php/Profile-sync-daemon">https://wiki.archlinux.org/index.php/Profile-sync-daemon</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">Linux</a> 
+       
+        <a href="/tags/coding/">Coding</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230930_dashboards/">Building a Home Web Dashboard</a><br />
+        Trying out a few options for a home dashboard
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        A Gnome extension, compatible with Pop! that lables workspaces
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        Getting VSCode to work on Android
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        Running TOR
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210207_installscript/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Linux Install Script</a></nav>
+</div>
+  </body>
+  </html>

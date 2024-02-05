@@ -9,7 +9,7 @@ picture: "windows"
 github: ""
 youtube: ""
 refs: ["https://www.microsoft.com/en-us/software-download/windows10ISO","https://github.com/FOGProject/fogproject","https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/work-with-windows-images?view=windows-11","https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/capture-and-apply-windows-using-a-single-wim?view=windows-11","https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install", "https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive?view=windows-11","https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/oem-deployment-of-windows-desktop-editions-sample-scripts?preserve-view=true&view=windows-10#apply-image","https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/compact-os?view=windows-11"]
-tags: ["windows","vmware","virtualization"]
+tags: ["windows","virtualization"]
 ---
 Work uses Windows, but I need a Linux workstation with that set of tools.  I find WSL2 incomplete . . . partly because my personal workflow is Linux based.  I spoke with the Windows expert and we agreed to use VMWare Workstation to deploy my Windows environment alongside my Linux system.  Deploying the standard Windows image to a remote VMWare environment wasn't something we had setup already.  Since I'm trying to be a special case, he sent me the WIM file to figure out how to deploy.
 

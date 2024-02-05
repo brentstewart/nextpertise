@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
-picture: "vmware"
+picture: "virtualization"
 github: ""
 youtube: ""
 refs: ["https://github.com/mkubecek/vmware-host-modules"]
-tags: ["VMWare"]
+tags: ["virtualization"]
 ---
 
 # Public Service Annoucement on VMWare Workstation

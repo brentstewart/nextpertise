@@ -1,0 +1,381 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Management on </title>
+    <link>https://nextpertise.net/tags/management/</link>
+    <description>Recent content in Management on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Oct 2023 09:59:14 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Technical Debt</title>
+      <link>https://nextpertise.net/posts/231002_technicaldebt/</link>
+      <pubDate>Mon, 02 Oct 2023 09:59:14 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/231002_technicaldebt/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m going to wander into some concepts from my day job.  Give me a little room and I&amp;rsquo;ll relate how this insight is relevant to everyone and what I&amp;rsquo;ve learned.  By the time I start to make that turn, though, I&amp;rsquo;m guessing you&amp;rsquo;ll be well ahead of me.&lt;/p&gt;
+&lt;h2 id=&#34;technical-debt&#34;&gt;Technical Debt&lt;/h2&gt;
+&lt;p&gt;Technical debt is a concept that commonly discussed in IT.  It&amp;rsquo;s generally understood to be the cost of delayed license and hardware upgrades.  For instance, if you&amp;rsquo;re still running Window 10 then at some point you&amp;rsquo;ll need to migrate to Windows 11.  There will be a cost to that upgrade.  Running Windows 10 today means that cost is something you&amp;rsquo;ll have to bear in the future.&lt;/p&gt;
+&lt;p&gt;At budget time, IT folks talk about this version of technical debt (future costs of delayed licenses or hardware replacmeents).  Doing some of these needed upgrades is referred to as &amp;ldquo;paying down technical debt&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id=&#34;gene-kims-revised-definition&#34;&gt;Gene Kim&amp;rsquo;s revised definition&lt;/h2&gt;
+&lt;p&gt;Gene Kim, who&amp;rsquo;s written several thoughtful books on IT management including &lt;a href=&#34;https://www.amazon.com/The-Phoenix-Project-audiobook/dp/B00VATFAMI/ref=sr_1_4?crid=3G15KXSXD13CK&amp;amp;keywords=gene+kim&amp;amp;qid=1697910897&amp;amp;sprefix=gene+kim%2Caps%2C189&amp;amp;sr=8-4&#34;&gt;&lt;em&gt;The Phoenix Project&lt;/em&gt;&lt;/a&gt;, wrote about technical debt in a slightly different way.  He wrote that technical debt is the total future costs you are committed to based on current decisions.  The two are similar at a surface level, but Kim&amp;rsquo;s idea gets to a deeper truth.&lt;/p&gt;
+&lt;p&gt;I know that several of you thought about ways to avoid that Windows 10 debt.  If you thought about Linux, I approve.  But there&amp;rsquo;s still costs.  There are costs involved with learning something new (in time and perhaps money), there are opportunity costs with not being able to conveniently use Windows stuff.&lt;/p&gt;
+&lt;p&gt;Kim&amp;rsquo;s definition gets at this &lt;em&gt;total&lt;/em&gt; costs - actual outlay to vendors, commitments of time, and associated costs.  It also speaks to the ongoing costs of not upgrading - maybe security risks or incompatibilities - as well as the normal costs of operation.  Normal costs of operation for Windows include things like &amp;ldquo;blue screens of death&amp;rdquo;, ongoing privacy impingement, and troubleshooting.&lt;/p&gt;
+&lt;p&gt;The typical definition - future license and hardware costs - assumes that technical debt is something to be avoided and that larger technical debt is a sign of underinvestment.  Kim&amp;rsquo;s definition - future total costs of today&amp;rsquo;s commitments - speaks to a larger truth that every decision, good or bad, carries some consequences and that larger technical debt is actually just a deeper understanding of those commitments.&lt;/p&gt;
+&lt;p&gt;Both definitions have a place in IT discussions.  Kim&amp;rsquo;s is not limited to budget time, though, and speaks to a larger self-awareness.&lt;/p&gt;
+&lt;h2 id=&#34;likewise&#34;&gt;Likewise&lt;/h2&gt;
+&lt;p&gt;And here&amp;rsquo;s the turn you saw coming.  Technical debt is something we all have to face and think about.&lt;/p&gt;
+&lt;p&gt;Imagine you purchase the car of your dreams.  This purchase makes you unbelievably happy!  Still, you have incurred technical debt (and not just the monthly payment kind).  Purchasing a car means that you need to budget for gas.  It means that at some point you&amp;rsquo;ll need to make repairs on the car, or have someone do that upkeep for you.  It means you&amp;rsquo;ll need time on Saturday&amp;rsquo;s to wash the darn thing!&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re taught that debt is bad and I&amp;rsquo;m not going to disagree.  This philosophical kind of debt is basically a consequence of living.  It&amp;rsquo;s not so much about avoiding it, which is impossible, as managing it.&lt;/p&gt;
+&lt;h2 id=&#34;managing-technical-debt&#34;&gt;Managing Technical Debt&lt;/h2&gt;
+&lt;p&gt;So, how does one manage it?  This section gets into my opinion, so be warned.&lt;/p&gt;
+&lt;p&gt;The most important outcome of this discussion is just being aware and thinking through the logical consequences of our decisions.  Your decisions today might mean that you&amp;rsquo;ll need to know a new language, need to learn a new skill, or need to spend money in the future.  Being aware of those commitments, listing them out and thinking about them, gives us the chance to deal with them proactively.  Generally, I&amp;rsquo;ve found that anticipating issues and dealing with them early is cheaper than waiting for &amp;ldquo;Boom!&amp;rdquo; and scrambling.&lt;/p&gt;
+&lt;p&gt;For example, if you purchased a car you&amp;rsquo;re going to have to repair something at some point.  If you want to do that yourself, you&amp;rsquo;re going to need tools and know-how.  Today might be a good time to visit Autozone or to register for a community college class.&lt;/p&gt;
+&lt;p&gt;Technical debt is a part of life and largely beyond our control.  However, we can typically choose the type of repayment.  In the car example, we can balance monetary costs, time commitments, and other costs.  One might purchase a used car to save money, and choose to do as many repairs as possible at home.  A different person might find that their time at work allows them to earn more money than they&amp;rsquo;d spend on repairs, and might choose to start saving.  Spending money for durability is another example of this same concept.&lt;/p&gt;
+&lt;p&gt;All this discussion of debt does require one last thought.  The point of living is to &lt;em&gt;live&lt;/em&gt;!  Don&amp;rsquo;t let this discussion keep you from doing the things the add value to your life and your family.  Things that have value, some of which can be frivilous, give life meaning.  Just choose those things wisely and understand the natural consequences of your decisions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Goodhardt&#39;s Law</title>
+      <link>https://nextpertise.net/posts/230127_goodhardt/</link>
+      <pubDate>Thu, 26 Jan 2023 17:48:13 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/230127_goodhardt/</guid>
+      <description>&lt;p&gt;Goodhard&amp;rsquo;t law is a good example of why we say management is an art.  Many of you won&amp;rsquo;t be familiar with this, but you should.  The law says . . .&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When a measure becomes a target, it ceases to be a good measure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Goodhardt&amp;rsquo;s law speaks to the tendency of people to optimize around a measurement.  A &amp;ldquo;measure&amp;rdquo; is anything that you track, such as what percentage of folks worked from home today.  A target is a goal attached to that measurement, such as 50%.  Post that as a graph on the wall, and people will spontaneously start working from the office.&lt;/p&gt;
+&lt;p&gt;Goodhardt&amp;rsquo;s law has two applications when manageing people.  The first is manipulative: by measuring desired behavior, we end up game-ifying it and create a positive feedback loop.  I use manipulative in a non-judgemental sense - there are times when we want to encourage virtuous behavior.  Examples here might include drivers wearing seatbelts, or days without an accident.&lt;/p&gt;
+&lt;p&gt;Of course, Goodhardt&amp;rsquo;s law can be mis-used in this way as well.  There are many examples of businesspeople operating in unwise ways to meet this kind of metric.  For instance, a bank might track loan originations which might discourage scrutiny of borrowers.  This behavior is commonly called &amp;ldquo;gaming the system&amp;rdquo; because it rewards people for outcomes that may not add value.&lt;/p&gt;
+&lt;p&gt;The Volkswagen emissions scandal is an example of this behavior.  The measurement - tailpipe pollution - was made a target and VW ended up optimizing their cars for the test rig and not for real-world driving.  Anotehr example is the sub-prime mortgage crisis (see: 2008).&lt;/p&gt;
+&lt;p&gt;The second use of Goodhardt&amp;rsquo;s law is not seeking to change behavior.  If you want to know about a behavior without influencing behavior, don&amp;rsquo;t make it a target.  Using the bank example, the bank might track originations and use that data to identify successful practices that can be retaught.&lt;/p&gt;
+&lt;p&gt;Goodhardt&amp;rsquo;s law can be used for good, for evil, or for insight.  It plays off the social dynamics of defining success.  Think about the cashiers and waiters that ask for a &amp;ldquo;5&amp;rdquo; on a feedback form - what exactly is that data telling their managers?  In IT, many organizations use Key Performance Indicators (KPIs) to optimize performance.  Goodhardt&amp;rsquo;s law advises caution and thought before rolling out that kind of program.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wisdom in 17 sayings</title>
+      <link>https://nextpertise.net/posts/221115_leadership/</link>
+      <pubDate>Tue, 15 Nov 2022 14:41:10 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/221115_leadership/</guid>
+      <description>&lt;p&gt;I grab onto quotes.  Some I hold onto long enough to consider and they pop up in conversation at odd times.  Others seem to bubble up consistently.  To me, these favorite quotes are the compass that I use to retain my sense of direction in difficult times and circumstances.&lt;/p&gt;
+&lt;p&gt;Folks who have worked with me over the years will have heard versions of these sayings (and probably some that I am forgetting right now).  Some may complain for hearing them too much.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m preparing for a new job and thinking about how I want to approach new responsibilities.  I&amp;rsquo;ve never tried to compile a list but it&amp;rsquo;s a good time for reviewing these touchstones.  I wanted to share that list with you.&lt;/p&gt;
+&lt;p&gt;So here are sixteen sayings pertinent to leadership, collected over about that many years of leading.  I&amp;rsquo;ve tried to organize these into themes.  I&amp;rsquo;ve researched attribution and exact quote where possible.&lt;/p&gt;
+&lt;h1 id=&#34;general&#34;&gt;General&lt;/h1&gt;
+&lt;p&gt;These sayings can be employed in a variety of circumstances.&lt;/p&gt;
+&lt;p&gt;I heard this first while teaching computer networking at Camp Lejeune.  I was told it was an &amp;ldquo;old Marine Corps saying&amp;rdquo;, which I suppose is like the Klingons talking about Shakespeare &amp;ldquo;in the original Klingon&amp;rdquo;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don&amp;rsquo;t know where you&amp;rsquo;re going, any road will get you there.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lewis Carroll&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I had a wonderful boss in the early &amp;rsquo;teens.  He coached me on promotions and, as best I remember, here&amp;rsquo;s his advice.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want to be promoted, take responsiblity.  Being responsible attracts opportunities, and eventually someone in management will say &amp;ldquo;get that guy a hat&amp;rdquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;John Phelan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think I first heard this last one from &lt;strong&gt;12 Rules for Life&lt;/strong&gt; by Jordan Peterson.  The metaphor, about self-discipline and being in control of yourself and your emotions, struck a chord.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you get hurt, say, by an arrow, that is pain. . .  However, there is a second arrow, which is your reaction to the arrow, the getting angry, the planning revenge, this is beyond pain, this is suffering.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Buddhist saying&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;on-preparation&#34;&gt;On Preparation&lt;/h1&gt;
+&lt;p&gt;Ideally, we&amp;rsquo;d anticipate possible issues and make plans to mitigate.  These quotes deal with the issues and rewards of being ready.&lt;/p&gt;
+&lt;p&gt;These start with some cynical reminders.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Bad security looks just like good security until seriously attacked.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bruce Schneier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and one of my favorites in the same vein.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Everyone has a plan until they get hit.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mike Tyson&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Two of my former CIOs gave me solid advice about preparation that I&amp;rsquo;ve carried forward in my career.  Mike said the first when talking about the constraints of budgeting, but it&amp;rsquo;s a good reminder to not over-commit.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can only fit 5 lbs of sugar into a 5 lb bag.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mike Cross&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Kap intimidated me in those days and I regret not getting to know him better.  He had a very clear vision about the way the world works, illustrated below.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Play the cards you&amp;rsquo;ve got in your hand, not the ones you want.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kap Kim&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I saved the best for last.  I use this to encourage preparation and to commend it&amp;rsquo;s results.  I saw Gregg Easterbrook attribute this to Bear Bryant in a Tuesday Morning Quaterback article, but it turns out the original quote is from Neyland.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gentlemen, touchdowns follow blocking as sure night follows day.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;General Robert Neyland&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As I recall, Easterbrook added the aside that &amp;ldquo;it&amp;rsquo;s a lot of fun to run a hundred yards when everyone in front of you is on their back.&amp;rdquo;&lt;/p&gt;
+&lt;h1 id=&#34;on-troubleshooting&#34;&gt;On Troubleshooting&lt;/h1&gt;
+&lt;p&gt;Troubleshooting requires deep understanding.  It is often denigrated, but I&amp;rsquo;ve always found it to require tremendous imagination and to reward patience and persistence.  I&amp;rsquo;ve had many opportunities to mentor troubleshooting over the years and here are some of my favorite aphorisms.&lt;/p&gt;
+&lt;p&gt;This first was one of Dad&amp;rsquo;s favorites.  As it has become well known, it&amp;rsquo;s grown a little trite but still makes a great point for technologists.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you only have a hammer, you tend to see every problem as a nail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Abraham Maslow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Many times the way forward is not clear.  Here I took an example from being a parent.  This has always been solid advice because there&amp;rsquo;s always some technical cruft that can be cleared up and the act of cleaning either reveals the issue or puts the person in the right headspace.  Although Peterson has a similar saying, mine preceeded his.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My kids would ask me if I&amp;rsquo;ve seen their favorite toy.  I&amp;rsquo;d say, &amp;ldquo;No, but I bet if you clean your room you&amp;rsquo;ll find it&amp;rdquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Brent Stewart&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;No one likes change, but sometimes troubleshooting presents opportunities to move forward.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You never let a serious crisis go to waste.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rohm Emmanuel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;on-people&#34;&gt;On people&lt;/h1&gt;
+&lt;p&gt;Many of these, such as the &amp;ldquo;second arrow&amp;rdquo; also address dealing with other people.  These are the two best quotes I have specifically on the topic of the trials of co-workers.&lt;/p&gt;
+&lt;p&gt;My father could be pithy and a little cynical, but he understood something about people.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you went to the mall and gave out $20 bills at the door, someone would compain that you didn&amp;rsquo;t have change or were at the wrong door.  You cannot make everyone happy.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bill Stewart&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&amp;rsquo;ve carried around this quote since I was a kid.  I think I picked it up from reading Robert Heinlein.  It, or something like it, has been said in various forms for a long time.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Never attribute to malice what can be adequately explained by stupidity.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hanlon&amp;rsquo;s razor, perhaps a restatement from Winston Churchill&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Extreme Ownership&lt;/strong&gt; as a book is like a Mel Brooks movie - everyone remembers just the bits that hit it out of the park.  Still, there&amp;rsquo;s an undeniable relevation about leadership in this quote and I repeat it when mentoring young managers.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s not what you preach, it&amp;rsquo;s what you tolerate.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jocko Willink&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;on-gratitude&#34;&gt;On Gratitude&lt;/h1&gt;
+&lt;p&gt;I finish with the subject that has most influenced my &amp;ldquo;mature&amp;rdquo; years.  I&amp;rsquo;ve worked to become a grateful person and to recognize that I&amp;rsquo;m blessed in myriad ways.  To list just three: I have a wonderful wife and amazing children, I have friends around the world who want nothing but good for me, and I have the opportunity to do meaningful work.  Focusing on those gifts has brought a peace and happiness to my life.&lt;/p&gt;
+&lt;p&gt;When I was younger, I thought that Stoicism was depressing.  I&amp;rsquo;ve come to realize that it provides perfect perspective for a grateful life.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nothing is more honorable than a grateful heart.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Seneca&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and also&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;He is a wise man who does not grieve for the things which he has not, but rejoices for those which he has.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Epictetus&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I sincerely hope that - if you take nothing else - these thoughts on gratitude will resonate and be useful.  As a Christian, I&amp;rsquo;ll end with the most meaningful quote to me, taken from the end of the Sermon on the Mount.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mark 6:34&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Interviewing</title>
+      <link>https://nextpertise.net/posts/220530_interviewing/</link>
+      <pubDate>Mon, 30 May 2022 14:41:15 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/220530_interviewing/</guid>
+      <description>&lt;p&gt;After the &lt;a href=&#34;https://nextpertise.net/posts/220506_tower_of_hanoi/&#34;&gt;Tower of Hanoi&lt;/a&gt; discussion, I was trying to think about other tricks I&amp;rsquo;ve picked up over my career that aren&amp;rsquo;t really taught anywhere.  We&amp;rsquo;ve been filling an open position at work and I had the opportunity to coach the process, and I thought that would be a good topic to share.  I&amp;rsquo;m going to try to have this discussion from both perspectives, the person looking and the person hiring, and point out how each can contribute to a better outcome.&lt;/p&gt;
+&lt;h2 id=&#34;looking-for-a-job&#34;&gt;Looking for a Job&lt;/h2&gt;
+&lt;p&gt;There are two sides to the hiring process - the person looking for the job and the person who is trying to fill a job.  We&amp;rsquo;re going to approach this discussion from both sides to understand (my opinion) of how each of those people can help the other. There are a lot of other people in the middle - recruiters and HR for instance - but their job is to define the broad band of acceptability.  As a job seeker, the whole point of your resume is to get through this filtering.  As a hiring manager, your job is to make sure that the automated processes used here don&amp;rsquo;t filter out good candidates.&lt;/p&gt;
+&lt;p&gt;Both sides are under a lot of stress.  The hiring manager is worried about only getting to talk to someone for an hour and then making a decision about hiring.  Done poorly, it&amp;rsquo;s like speed dating into marriage!  Keeping in mind that we spend more time with our co-workers than our spouses and it&amp;rsquo;s easy to see that making a bad decision will make everyone&amp;rsquo;s life some shade of miserable.  The job seeker is worried about landing a job, particularly if they are unemployed.  The seeker doesn&amp;rsquo;t always realize that the only thing worse than getting a job is getting the &lt;em&gt;wrong&lt;/em&gt; job.&lt;/p&gt;
+&lt;p&gt;Story time: One of the best hires I ever made, a man of deep experience who has a real love for helping people, drove the office nuts.  He was a talker, and our office was a bunch of introverts who liked to keep the lights off and stay in their cubicles with their heads down.  Everyone involved in this story are good people, but throwing an extrovert into a pool of introverts made everyone uncomfortable.  This is the classic example of the importance of finding a good fit.&lt;/p&gt;
+&lt;p&gt;A story from the other side: I once interviewed for an IT Director position at a hospital.  It went well, but the CIO told me he wanted to fire everyone in that department and have me re-hire from scratch.  That was a heck of an opportunity and would have been a somewhat prestigious position, but what they wanted just wasn&amp;rsquo;t me.  When I think about the person I want and try to be, I see myself as a teacher and mentor.  Cutting an entire department as soon as I walked in the door would have been tough and it would have left me with a target on my back that I&amp;rsquo;m unprepared to handle.  We had some discussions about alternatives approaches but I couldn&amp;rsquo;t get the CIO to at least give me time to do an evaluation.  In the end I withdrew, and I am thankful that I had that insight into the organization and was able to back out.&lt;/p&gt;
+&lt;h2 id=&#34;the-goal-of-an-interview&#34;&gt;The Goal of an Interview&lt;/h2&gt;
+&lt;p&gt;In my opinion, the &lt;strong&gt;goal of an interview isn&amp;rsquo;t to get hired&lt;/strong&gt;.  It&amp;rsquo;s to find a job where you and the organization can be successful together.  Yes, part of that is talking about your experience and the programming languages you&amp;rsquo;ve used, but that &lt;em&gt;should be&lt;/em&gt; the smallest part.  Your resume and all those intermediaries should have filtered out the people who didn&amp;rsquo;t have the right set of buzzwords.  By the time an interview is happening those hurdles should be mostly past.&lt;/p&gt;
+&lt;p&gt;When I interview, whichever side of the table I&amp;rsquo;m on, I want to understand the people I would be working with.  Would I be comfortable working with them for a long time?  I also want to understand the culture.  Culture can be overused and become an empty word, but I&amp;rsquo;m trying to describe the constellation of things that describe the work environment.  Here&amp;rsquo;s a quick set of examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Am I comfortable with the jokes and discussion?  I wouldn&amp;rsquo;t want to work in a group that was constantly vulgar, for instance.&lt;/li&gt;
+&lt;li&gt;How are they organized?  Do they have a take on ITIL, is it a free-for-all?  How do they handle priortization and disagreements?&lt;/li&gt;
+&lt;li&gt;Most importantly: Do they need me?  How could I see myself contributing to the relationship?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bad-interviews&#34;&gt;Bad Interviews&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ve all had them.  I once sat through an hour long interview where the guy barely asked a question.  He got wound up explaining the job, talked for an hour, then shook my hand and offered me the job.  I thought, &lt;em&gt;&amp;ldquo;Wow, what makes you think I&amp;rsquo;d be a good fit?&amp;rdquo;&lt;/em&gt;  I&amp;rsquo;m positive that readers have their own tales.&lt;/p&gt;
+&lt;p&gt;There are a lot of stock questions that can be used.  Job seekers can (and should) have a canned response to these.  &lt;em&gt;What is your biggest failure?  Give me an example of a good team you were on?&lt;/em&gt;  Really, the whole process of sitting down at a desk and going over a resume is pretty predictable.  The biggest thing either side learns is how prepared the other was.&lt;/p&gt;
+&lt;p&gt;Bad interviewers, in my experience, basically hire at random.  Most of the work is done by the HR screening.  Even if you are a good hire, there&amp;rsquo;s a good possibility that other people in the group aren&amp;rsquo;t.  If you are unsure of what kind of interviewer you are, just think back to who did most of the talking and how much actual memorable information was shared.  I have no advice for the interviewer here - until they recognize the issue the advice is wasted.  For the job seeker, when you experience this kind of interview then assume the job is a bad fit until proven otherwise.&lt;/p&gt;
+&lt;h2 id=&#34;my-approach-to-a-job-interview&#34;&gt;My approach to a job interview&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve worked in the industry for 30 years and been interviewed a number of times.  I&amp;rsquo;ve hired people on five continents and from a variety of backgrounds.  I&amp;rsquo;ve learned from a variety of places and people.  I hesitate to say that my way is the best, but I think it&amp;rsquo;s teachable and reliably pretty good at finding people who are good fits.&lt;/p&gt;
+&lt;p&gt;The first thing I suggest is breaking the format.  Don&amp;rsquo;t sit down at a desk or in a conference room.  Conduct the interview while doing a plant tour or while walking around the office and introducing the person.  Go for a walk outside.  I once drove someone around to show them the area and talk about housing while we did the interview.  Do something to get out of the programmed responses.  If you are the job seeker, ask to be shown around to try to get out of that stilted situation.&lt;/p&gt;
+&lt;p&gt;The second thing I suggest is to start with some soft questions that just re-iterate the basics.  Sometimes there&amp;rsquo;s a story that the needs to be shared, and this presents a great opportunity for getting that off the chest.  This is reciprocally true - both sides have opening statements they want to get out.&lt;/p&gt;
+&lt;p&gt;The place I try to work to and to spend most of the interview is &amp;ldquo;joint troubleshooting&amp;rdquo;.  I take an example of a recent issue, simplify it, and present it for discussion.  I&amp;rsquo;ve found this works really well when I don&amp;rsquo;t know the answer - we&amp;rsquo;re trying to collaboratively turn the problem in different orientations and think it through together.  This gives me an idea of what the person is like to work with and how they think on their feet.  When it doesn&amp;rsquo;t go well, I still get some ideas.  As a job seeker, the agenda of the interview is outside your control but you can sometimes prompt this kind of discussion with a question such as &amp;ldquo;Tell me about your most worrying issue.  I&amp;rsquo;d like to hear about the kind of problems you face and how you are working through them.&amp;rdquo;&lt;/p&gt;
+&lt;h2 id=&#34;an-alerternative-to-interviewing&#34;&gt;An alerternative to Interviewing&lt;/h2&gt;
+&lt;p&gt;Recommendations.&lt;/p&gt;
+&lt;p&gt;This is my final thought on this subject.  As a manager, I hope that I&amp;rsquo;ve done a good job of hiring good people who are invested in our success.  I try to reiterate to those folks that hiring good people is the #1 thing we can do to improve the work environment.  If I&amp;rsquo;ve hired good people and they understand how important it is to bring in new employees who &amp;ldquo;fit&amp;rdquo; and who add value, then it&amp;rsquo;s the height of chutzpah to believe that I&amp;rsquo;m going to learn something in an interview that trumps a recommendation.  Many times, people recommend folks that they worked with for years.  These are folks that they&amp;rsquo;ve had good and bad times with and they still recommend them.  I&amp;rsquo;d rather have a referral from a trusted co-worker than a perfect interview.&lt;/p&gt;
+&lt;p&gt;Regardless of which side of the table you&amp;rsquo;re seated at, I wish you the best and hope these ideas are helpful!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Rational Change Control</title>
+      <link>https://nextpertise.net/posts/210318_changecontrol/</link>
+      <pubDate>Wed, 17 Mar 2021 19:42:22 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/210318_changecontrol/</guid>
+      <description>&lt;p&gt;Nobody likes change but a baby.  That&amp;rsquo;s the saying anyway.  Yet in IT, we have to deal with constant change.  Not only that, we have to manage it to minimize risk and harm.  &lt;strong&gt;And&lt;/strong&gt; we have to balance the natural tendency to manage through bureaucracy against the need to get things done without paperwork getting in the way.&lt;/p&gt;
+&lt;p&gt;This article isn&amp;rsquo;t about why you need change control: &lt;strong&gt;you do&lt;/strong&gt;.  It&amp;rsquo;s not about the value of ITIL or ticketing: &lt;strong&gt;they&amp;rsquo;re necessary&lt;/strong&gt;.  But if you&amp;rsquo;re going to turn this &amp;ldquo;computer-thing&amp;rdquo; into a career, you need to figure out change control and that&amp;rsquo;s what this article is about.&lt;/p&gt;
+&lt;p&gt;A lot of my thinking on this topic comes from working with people like Dan and Umesh.  These are thoughts that we developed together and made work, and that&amp;rsquo;s why I feel confident recommending them to you.&lt;/p&gt;
+&lt;h2 id=&#34;planning-and-oversight&#34;&gt;Planning and oversight&lt;/h2&gt;
+&lt;p&gt;Change control documentation needs to layout the change for review.  Review is not a second-guessing session, although if you propose something stupid it can be.  Good change review is going to make sure that the plan makes sense, that the right people are notified, that there are no conflicts with other IT changes or business requirements, and that the appropriate level of specificity is present in the docs.&lt;/p&gt;
+&lt;p&gt;The right level of specificity . . . that sounds tricky.  Generally, I&amp;rsquo;ve found that proposed changes fall into three piles.  The easy pile really doesn&amp;rsquo;t need to be reviewed, it just needs a little documentation.  The medium pile needs a little review, perhaps by a manager, and a little more verbiage in the docs.  The hard pile needs a lot of careful thought and benefits from a collaborative and thorough review.  It needs to be reviewed at several stages, including by a Change Advistory Board.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210321_Change_Matrix.png#floatsmallleft&#34; alt=&#34;Change Matrix&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The table on the left is the one that I&amp;rsquo;ve developed and used.  Changes are described by risk and asset criticality.&lt;br&gt;
+&lt;strong&gt;Risk&lt;/strong&gt; – risk is subjective from the perspective of the person performing the change. What is not risky for you might be more risky for me.&lt;br&gt;
+• Low – I’ve done this a million times and it always works. There is a redundant system and backout plan.&lt;br&gt;
+• Medium – I’ve done this a few times and it usually works. There is a redundant system and backout plan.&lt;br&gt;
+• High – I don’t have a lot of experience OR there isn’t a redundant system or backout process that meets the availability budget.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Asset Criticality&lt;/strong&gt; – This is defined per CI or environment. Availability budget is an SRE concept that specifies the target availability based on budgeting and does not include regular scheduled downtime. The exact AB percentages and how they are measured will change based on the environment, but they might look something like this.&lt;br&gt;
+• Low – interruption or loss impact one or a small number of non-critical systems/users at non-critical times&lt;br&gt;
+• Medium – interruption or loss impacts ability to conduct business (availability budget &amp;gt;98%)&lt;br&gt;
+• High – an interruption or loss of this system would impact clients (availability budget &amp;gt; 99.99%)&lt;/p&gt;
+&lt;p&gt;Yes, this ranking is a little arbitrary.  My experience is that having an overly complicated system leads to folks using the system to justify making changes &amp;ldquo;less critical&amp;rdquo;.  A simpler system trusts the engineers more and they typically respond to that trust with more conservative assessments.  That said, if nothing bad happens then changes will be viewed as less risky over time.  One important component is that the CAB needs to review a sample of non-critical changes and push back by calling out some examples of mis-classified changes.&lt;/p&gt;
+&lt;h2 id=&#34;documentation-and-review&#34;&gt;Documentation and review&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210321_Change_Control.png#floatsmallright&#34; alt=&#34;Change Matrix&#34;&gt;&lt;/p&gt;
+&lt;p&gt;CAB documentation needs the full kit and caboodle and here&amp;rsquo;s what that looks like:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;  Why is this change necessary?  What is being done (in 20 words or less)?&lt;br&gt;
+&lt;strong&gt;Basics:&lt;/strong&gt; Who is doing the work?  What is the proposed change window?  &lt;strong&gt;NOTE&lt;/strong&gt;: I recommend that a change window include recovery time.  If that&amp;rsquo;s not known, I generally allocate 1/3 of the window for the change, 1/3 for the troubleshooting, and 1/3 for backout.  In a complicated change, I actually script steps and expected time of completion for each, plus have a hard fail-back moment.&lt;br&gt;
+&lt;strong&gt;Affected devices (CIs):&lt;/strong&gt; Which pieces are being changed?&lt;br&gt;
+&lt;strong&gt;Risk of Change:&lt;/strong&gt; If we go forward, what&amp;rsquo;s the worst that could happen?&lt;br&gt;
+&lt;strong&gt;Risk of NOT making the change:&lt;/strong&gt; &lt;em&gt;Ah&lt;/em&gt;, here&amp;rsquo;s an important point.  In IT there is often risk in making a change, but if you DON&amp;rsquo;T apply that patch you are vulnerable.  If you DON&amp;rsquo;T upgrade, power supplies fail.  Stuff will happen and it&amp;rsquo;s important to point out that sitting on our hands won&amp;rsquo;t save us.&lt;br&gt;
+&lt;strong&gt;Impact:&lt;/strong&gt;  Describe the impact &lt;em&gt;assuming everything goes as planned&lt;/em&gt;.  For instance, the plan is to upgrade an OS which will require a reboot.  Users will &lt;em&gt;at minimum&lt;/em&gt; see an impact for minutes while the device reboots.&lt;br&gt;
+&lt;strong&gt;Details:&lt;/strong&gt; This section is a breakdown of the steps involved.  The level of detail has to be worked out in each organization, but I generally find that it needs to be detailed enough that multiple people familiar with the equipment could read the doc and would interpret it similarly and complete the same steps.  Using the exact commands can be good, but it&amp;rsquo;s best to be a little vague so that a missed detail doesn&amp;rsquo;t require another change control document.&lt;br&gt;
+I like to breakdown the activity into three areas.  Pre-downtime and Downtime cover the preparation and the activity during the change window.  These steps also need to describe how the change will be tested.  Backout Plan talks about steps to be taken if it doesn&amp;rsquo;t go well.  Each of these steps need to include communications - who will be notified and when will they be notified?&lt;/p&gt;
+&lt;p&gt;In my opinion, CAB level changes should be previewed by the manager to prevent wasting the Boards&amp;rsquo; time.  The manager should also review the result to ensure it meets the commitment.  Less complicated changes don&amp;rsquo;t need this level of detail.  &amp;ldquo;Medium&amp;rdquo; changes can usually focus on the details and just be approved by a manager.&lt;/p&gt;
+&lt;h2 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h2&gt;
+&lt;p&gt;Change systems are about organizing people and getting them to talk to one another.  They&amp;rsquo;re also about holding folks accountable for a professional level of forethought.  Notice that I didn&amp;rsquo;t say results - we all recognize that even the best planned and most predictable upgrades can go sideways without it being someone&amp;rsquo;s fault.  But if the right kind of thought process was used, we&amp;rsquo;re equipped to recognize the problems and correct them, or at least escape unharmed.&lt;/p&gt;
+&lt;p&gt;Similarly, making sure that the right people are consulted and updated means that these little &amp;ldquo;oops&amp;rdquo; moments become events that generate &lt;em&gt;more&lt;/em&gt; trust.  Imagine a VIP saying, &amp;ldquo;You told me something might happen, when it did you were prepared for it and kept me in the loop, and harm was minimize because of the thoughtful approach.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;I like to say that a good change process is like a victory lap - all the hard work is done before the change ever starts.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Plan Good Downtime</title>
+      <link>https://nextpertise.net/posts/210126_downtime/</link>
+      <pubDate>Tue, 26 Jan 2021 20:18:24 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/210126_downtime/</guid>
+      <description>&lt;p&gt;In another blog, planning downtime would involve tropical pictures.  Sigh.&lt;/p&gt;
+&lt;h2 id=&#34;downtime&#34;&gt;Downtime&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright&#34; alt=&#34;Time&#34;&gt;
+IT downtime is a period when IT systems have a planned outage.  These periods are negotiated with internal and external stakeholders and communicated so that no one is surprised by the lack of availability.  During this time, changes take place to improve performance, enhance reliability, address security concerns, or add features.&lt;/p&gt;
+&lt;p&gt;It is a good idea to have a recurring scheduled downtime at least once a month.  Most organizations sync their downtime to &amp;ldquo;patch Tuesday&amp;rdquo;.  Microsoft, Oracle, and other big organizations release patches on the second Tuesday each month.  Since there&amp;rsquo;s a good chance that something in an environment will need to be patched and this leads to a disruption, it&amp;rsquo;s a good time to do other changes as well.&lt;/p&gt;
+&lt;p&gt;Sometimes changes must be deployed to react to events.  In those cases the process is hastily put together and it&amp;rsquo;s more critical to have a clear idea of how to structure that time.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/plan.jpeg#floatsmallleft&#34; alt=&#34;Plan&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;checklist-for-good-downtime&#34;&gt;Checklist for Good Downtime&lt;/h2&gt;
+&lt;p&gt;A six step process for thinking it through.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Plan testing&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Communication Plan&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Build a Script&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Recognize Risks&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Negotiate Window&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Make the change!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;plan-testing&#34;&gt;Plan Testing&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s an old adage to &amp;ldquo;start with the end in mind&amp;rdquo; and that&amp;rsquo;s appropriate when planning changes.  Start by thinking through &lt;em&gt;what&lt;/em&gt; should be tested to confirm success and &lt;em&gt;how&lt;/em&gt; it will be tested.&lt;/p&gt;
+&lt;p&gt;Circulate that testing plan within the parties of interest and allow them to modify the tests.  There are cases where a change passes testing but problems are later revealed.  In such cases, you will &lt;em&gt;always&lt;/em&gt; be asked &amp;ldquo;Didn&amp;rsquo;t you test for that?&amp;rdquo;  Having those other folks review the testing plan provides space to skip the blame game in those cases and focus on restoring service.&lt;/p&gt;
+&lt;p&gt;How does this apply to &amp;ldquo;emergency&amp;rdquo; changes?  Build a &amp;ldquo;Crown Jewels&amp;rdquo; testing list.  These are the critical services for your organization.  Any testing plan should include these tests, but in a pinch this can serve as a base level set of tests.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll want to automate these tests as much as possible.  Automation allows you to easily re-run the tests many times as you make adjustments.  &amp;ldquo;Ping scripts&amp;rdquo; are a good place to start, but be creative (for instance, wget can serve to test browsing).
+&lt;img src=&#34;https://nextpertise.net/process.jpeg#floatsmallright&#34; alt=&#34;Process&#34;&gt;
+Finally, make sure to include testing of monitoring.  If you expect alarms when a redundant power supply fails, test that.  When you make a change, confirm that your change didn&amp;rsquo;t interfere with critical monitoring.&lt;/p&gt;
+&lt;h2 id=&#34;communication-plan&#34;&gt;Communication Plan&lt;/h2&gt;
+&lt;p&gt;With a testing plan in place, the next step is to build a communication plan.  &lt;em&gt;Who&lt;/em&gt; should be updated, &lt;em&gt;how&lt;/em&gt; should they be updated, and &lt;em&gt;when&lt;/em&gt; or &lt;em&gt;how often&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;Updates need to go to your management, the equipment owners (internal or external), and the group that is dependent on the service.  Generally, updates to users should be to the point and limited to how the change impacts their use.&lt;/p&gt;
+&lt;p&gt;Updates should be sent at critical points in the process:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When the change is proposed&lt;/li&gt;
+&lt;li&gt;At the beginning of the change window&lt;/li&gt;
+&lt;li&gt;If the change needs to be backed out, when that decision is made&lt;/li&gt;
+&lt;li&gt;When backout is complete, if applicable&lt;/li&gt;
+&lt;li&gt;When the change is complete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keep in mind that your change may impact your ability to get to corporate directories, phone systems, or email.  Make sure you have a way to communicate with this group that is not dependent on things affected by the change.  I usually use corporate email as the primary path, but have cell phone numbers &amp;ldquo;just in case&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Another aspect of communications is setting up the time for the change, getting it on people&amp;rsquo;s calendars, insuring they can participate, and publishing the meeting information.&lt;/p&gt;
+&lt;h2 id=&#34;build-a-script&#34;&gt;Build a Script&lt;/h2&gt;
+&lt;p&gt;A downtime script can be as simple as a spreadsheet.  It needs to have columns for description, time, and responsible party.  Each row describes a task.  The &lt;em&gt;time&lt;/em&gt; column tells the clock-time when that task should be complete.&lt;/p&gt;
+&lt;p&gt;Having a script allows the team to do a walk-through and to be aware of what others are doing.  It makes it easier to coordinate and easier to track whether things are progressing as expected.&lt;/p&gt;
+&lt;p&gt;This process also applies to the backout script.  Understand how the change will be unwound, roles, and make sure you preserve adequate time to accomplish it.&lt;/p&gt;
+&lt;p&gt;A word on time estimates - they&amp;rsquo;re going to be wrong.  Stuff always comes up.  Still, a good faith estimate of each step helps you to get a sense of where things stand relative to expectations at any point.&lt;/p&gt;
+&lt;h2 id=&#34;recognize-risks&#34;&gt;Recognize Risks&lt;/h2&gt;
+&lt;p&gt;Recognizing risks in a change allows that risk to be communicated to stakeholders so that it can be accepted by those impacted.  Anticipating likely scenarios also provides opportunities to mitigate.&lt;/p&gt;
+&lt;p&gt;Is there a risk of disconnection to a remote facility?  Plan on having someone on site or available.&lt;/p&gt;
+&lt;p&gt;Is there a risk that an upgrade doesn&amp;rsquo;t work?  Have a backup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;One risk that isn&amp;rsquo;t often discussed is the risk that comes from asking your family to tolerate your work schedule.  As you prep for the activity, take some time to be at home (awake, alert, and agreeable) and spend time with them, especially if your work means that you have to be up all night Saturday night!&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;negotiate-window&#34;&gt;Negotiate Window&lt;/h2&gt;
+&lt;p&gt;Changes take place within a window.  This period of time needs to be agreed upon by everyone, short enough to minimize the disruption for users and long enough for the IT team to complete it&amp;rsquo;s work with quality.&lt;/p&gt;
+&lt;p&gt;One question that needs to be asked - what happens if the work isn&amp;rsquo;t complete by the close of the window?  In other words, is it a &amp;ldquo;hard window&amp;rdquo;?  Unless otherwise advised, assume that it is.&lt;/p&gt;
+&lt;p&gt;Take the time estimate from your script (above) and apply a &amp;ldquo;confidence&amp;rdquo; factor of between 50% and 100%.  In other words, if the script calls for thirty minutes, assume it will &lt;em&gt;really&lt;/em&gt; take between 45 minutes and an hour.  This helps to account for the unknown but inevitable stuff that pops up when working.  Adjust your confidence factor over time as you gain insight into task complexity, team competence, and your ability to estimate.&lt;/p&gt;
+&lt;p&gt;Next, make sure that a third of the time is for backout.  This is time to work through the recovery process if the change goes awry.  For a half-hour change, we&amp;rsquo;ll budget an hour for implementation.  If at the end of the hour it&amp;rsquo;s not done, we immediately go into backing out the change so that we&amp;rsquo;re done within an hour an a half.  And that&amp;rsquo;s the right period of time to ask for - 300% of your estimate.  Unless you can get more.&lt;/p&gt;
+&lt;p&gt;Seriously though, this drop-dead time to begin backout is crucial to being able to have integrity about honoring the window.  IT folks are always &amp;ldquo;5 minutes!&amp;rdquo; away from fixing things and can easily get lost in a spiral without maintaining discipline about when the backout has to begin.&lt;/p&gt;
+&lt;h2 id=&#34;make-the-change&#34;&gt;Make the Change!&lt;/h2&gt;
+&lt;p&gt;Finally it&amp;rsquo;s time to make the change.  Ask everyone to arrive early and join the conference.  Make sure that backups are up to date and configurations saved before beginning.  Also before beginning, run the test script to make sure that all elements are working before the change to prevent confusion afterward.
+&lt;img src=&#34;https://nextpertise.net/winner.jpeg#floatleft&#34; alt=&#34;Winner&#34;&gt;
+If the change is a group exercise, it is usually a good idea to have one person act as tracker.  In addition to making sure that the team is ready to begin backout at the right time, the tracker can check off items as they are accomplished, recognize any slippage, and suggest strategies to keep things moving.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s a good idea to communicate to stakeholders at the beginning of the window.&lt;/p&gt;
+&lt;p&gt;Run the test script again when things are complete (win or lose).  Each script run should produce output, which can be saved, in case there are questions afterward.&lt;/p&gt;
+&lt;p&gt;Finally, communicate to stakeholders when things are complete.&lt;/p&gt;
+&lt;p&gt;I realize the process is complicated, but it encompasses &lt;em&gt;years&lt;/em&gt; of hard-won ideas.  Each point has a story about the incident where it was learned.  However, well planned exercises run smoothly and feel like a victory lap, making all the effort worthwhile.  I sincerely hope that this helps you to move swiftly past these learning experiences and on to greater success!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Personal Readme</title>
+      <link>https://nextpertise.net/posts/201206_personal-readme/</link>
+      <pubDate>Sun, 06 Dec 2020 14:58:31 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201206_personal-readme/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/GoaDinner.jpg#floatright&#34; alt=&#34;Goa Friends&#34;&gt;
+I recently came across the concept of a personal README.  Conceptually, this is an introduction to workstyles and the preferred ways to work with someone.  Usually these are written by folks in management, because you have to be at a certain level before you can dictate how others should interact with you.  The idea comes from Michael Lopp (the VP of Engineering at Slack).  It&amp;rsquo;s a good concept to be familiar with in our industry because it is becoming more common.&lt;/p&gt;
+&lt;p&gt;I moved into a new team where this was an expected introduction for a new manager.  I&amp;rsquo;ve put one together and posted it to a Github repository along with my professional documentation, like resume and publication list.  I&amp;rsquo;d like to say I&amp;rsquo;ve extended the concept from a personal readme to a personal Repo, but I suspect that I&amp;rsquo;m behind the times and don&amp;rsquo;t realize it.&lt;/p&gt;
+&lt;h2 id=&#34;the-good&#34;&gt;The Good&lt;/h2&gt;
+&lt;p&gt;Putting together my personal README wasn&amp;rsquo;t hard.  I found some examples online, but I found many of them to be preachy or self-involved.  Making big moralistic statements seems like the kind of thing that is used to bludgeon the author at a later date.  As far as writing something self-centered, I just don&amp;rsquo;t think anyone cares.&lt;/p&gt;
+&lt;p&gt;I decided to focus on the parts that would matter to someone who worked for me.  I wrote about where I believe an IT team adds value, about my expectations and about my communications preferences.&lt;/p&gt;
+&lt;p&gt;I found the exercise to have introspective value.  Very few of us are lucky enough to have training about how to manage a team, so we pick it up by reflecting on our own experiences, by ideas we see others use, and by expirimenting.  It&amp;rsquo;s not surprising that everyone ends up with a different style.&lt;/p&gt;
+&lt;p&gt;A brief aside: One of the guys I used to work with (Joe - are you out there?) used to mix metaphors when he got upset or excited.  My favorite was &lt;em&gt;&amp;ldquo;throw it up against the wall and see who salutes&amp;rdquo;&lt;/em&gt;.  Still one of my favorite sayings.&lt;/p&gt;
+&lt;h2 id=&#34;the-bad&#34;&gt;The Bad&lt;/h2&gt;
+&lt;p&gt;I don&amp;rsquo;t think it did any harm.  However retrospectively, I don&amp;rsquo;t think this exercise really held value for the people it was intended to.  The new team dutifully sat through the presentation, but there were &lt;em&gt;no&lt;/em&gt; questions and it hasn&amp;rsquo;t ever come up in conversation.&lt;/p&gt;
+&lt;h2 id=&#34;my-conclusion&#34;&gt;My conclusion&lt;/h2&gt;
+&lt;p&gt;I tell my Trail Life boys, &amp;ldquo;Leadership is about working together to accomplish goals&amp;rdquo;.  It&amp;rsquo;s a definition that is easily understood by teenagers.  So on a certain level, I don&amp;rsquo;t think the personal readme really empowered me to work more effectively or to accomplish goals more easily.&lt;/p&gt;
+&lt;p&gt;The truth, as much as I can discern it, is that people are more impressed by the things you tolerate and not by what you say.  To the extent they listen to what you say, simple heuristics repeated consistently seem to work best.&lt;/p&gt;
+&lt;p&gt;Some of my favorite things to say include &amp;ldquo;Play the cards in your hand and not the cards you want&amp;rdquo; (credit to Kap Kim) and &amp;ldquo;be creatively impatient&amp;rdquo; (that one is mine).  Jim Guido, a man I admire immensely, used to say &amp;ldquo;early is on-time, on-time is late, and late is dead&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;In spite of all the negatives, I would still recommend writing a readme.  Even though no one else paid attention, I did.  It helped me clarify and organize thoughts that had been bouncing around in my head for a long time.  And I&amp;rsquo;ve referred back to it to ground myself, to think about what I&amp;rsquo;ve learned and where I&amp;rsquo;ve veered off course.&lt;/p&gt;
+&lt;p&gt;I think management generally spends too little time thinking about how they know what they think they know.&lt;/p&gt;
+&lt;p&gt;So take a look at my &lt;a href=&#34;https://github.com/brentstewart/about-brent.git&#34;&gt;repo&lt;/a&gt; and think about how you would describe yourself.  Writers say that the best way to get to a good second draft is to start with a bad first draft, by which they mean that it&amp;rsquo;s better to just start and get ideas on paper and then edit them later.  So start a text file with your thoughts and worry about editing it once it reaches critical mass.&lt;/p&gt;
+&lt;p&gt;I think you&amp;rsquo;ll find this a valuable exercise.&lt;/p&gt;
+&lt;p&gt;The picture at the top of the article is me with a group of men I worked with in Goa, India, seven years ago.  I met many good friends through that time, friends that I wouldn&amp;rsquo;t have today if I hadn&amp;rsquo;t become a manager.  They kept this picture at the office and during a conversation last year they took this picture-of-a-picture and sent it to me.  That feeling - that our work together had value and was a memory they cherished the same way I did - was one of the the highs of my career.  That&amp;rsquo;s why it&amp;rsquo;s important to me to try to do it right.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,159 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Howdy - Linux face recognition authentication - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: My friend Jared recommended that I checkout Howdy, which is a PAM add-in to support authentication by facial recognition.
+The first thing I did was install cheese so that I could make sure that my face was in the camera&rsquo;s field of view.">
+    <meta name="keywords" content="linux,face recognition" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Howdy - Linux face recognition authentication" >
+    <meta property="og:url" content="https://nextpertise.net/posts/220501_howdy/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>Howdy - Linux face recognition authentication</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, May 1, 2022</i><br></div></h6>
+  <p><p>My friend Jared recommended that I checkout <a href="https://github.com/boltgolt/howdy/">Howdy</a>, which is a PAM add-in to support authentication by <em>facial recognition</em>.</p>
+<p>The first thing I did was install <strong>cheese</strong> so that I could make sure that my face was in the camera&rsquo;s field of view.  Next was installing Howdy.</p>
+<pre><code>sudo add-apt-repository ppa:boltgolt/howdy
+sudo apt update
+sudo apt install howdy
+</code></pre>
+<p><img src="/howdy.png#floatsmallright" alt="Howdy">
+Howdy offfers three levels of certainty that a face is a match - Fast, Balanced, or Secure.  I chose Fast each time.  I&rsquo;ve installed PAM modules (yes, I know that&rsquo;s redundant) before and I remember it being a bit of a trick.  In this case, the howdy installation takes care of all the details and you are (almost) ready to roll.  I&rsquo;ve installed Howdy on a few different machines and in both cases it said &ldquo;Camera ID set&rdquo; at the end of the install but neither worked.  We&rsquo;ll list the video devices as shown below.</p>
+<pre><code>root@pop-os:~# ls -ltr /dev/video*
+crw-rw----+ 1 root video 81, 1 Apr 29 20:11 /dev/video1
+crw-rw----+ 1 root video 81, 0 Apr 29 20:11 /dev/video0
+</code></pre>
+<p>On the machines I&rsquo;ve tested with, this reports multiple camera paths for each physical camera.  I read at one point that these correspond to different camera modes, but that doesn&rsquo;t match my testing here.  On the machines I tested, I could use either camera path and it worked fine.</p>
+<p>With that in mind, pick a camera path and type <strong>sudo howdy config</strong> (this edits the config file without having to use nano to find the path).  Scroll down (for me it was about in the middle of the file) and replace the existing <em>device_path</em> variable as shown.</p>
+<pre><code># The path of the device to capture frames from
+# Should be set automatically by an installer if your distro has one
+device_path = /dev/video0
+</code></pre>
+<p>Almost there.  At this point, your camera should work but you need to train the system on your face.  To do that, use <strong>sudo howdy add</strong>.  Look into the camera - you&rsquo;ll see it come on and take a picure.</p>
+<pre><code>root@pop-os:~# sudo howdy add
+No face model folder found, creating one
+Adding face model for the user brent
+Enter a label for this new model [Initial model] (max 24 characters): Brent
+</code></pre>
+<p><img src="/Brent_and_William.jpg#floatsmallright" alt="William and I">
+To confirm its working, open a <em>new</em> termainal and escalate to root (sudo -i).  If it works, the camera will come on and then you will be authenticated.  Howdy works for authentication into the GUI and for sudo or wherever you need to authenticate.  I tested authentication for initial login and for sudo.</p>
+<p>I installed this on a laptop one night and enrolled with the light on beside me.  Later, the light was off and it wouldn&rsquo;t authenticate until I turned the light back on.  The Howdy algorithm is somewhat sensative to lighting conditions, but I didn&rsquo;t make a study of exactly how far I could push this.  It&rsquo;s worth mentioning that Howdy supplements existing authentication, so if your face isn&rsquo;t detected after a few seconds it rolls back to the traditional password prompt.</p>
+<p>Just for fun, I tried to fool Howdy.  It was able to correctly deny access to my wife and my youngest son.  William and I look similar, so I thought that might work.  William then tried to make himself look like me - smiling and even putting on glasses.  Howdy worked perfectly for these casual bypass attempts.  I also tried using my driver&rsquo;s license, but Howdy denied this as well (it says it&rsquo;s using IR, so I didn&rsquo;t expect that to work).</p>
+<p>This was a lot of fun to setup and test.  I was initially wary about locking myself out, but never really felt like that was a danger.  For casual home use, this seems like a pretty cool idea.  I&rsquo;m going to be a little more conservative on my work laptop.  It&rsquo;s exposed to more potentially serious and malicious people at the office and at Starbucks.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/boltgolt/howdy/">https://github.com/boltgolt/howdy/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
+        Update on NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
+        Remote access via Cheese
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220501_howdy/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Howdy - Linux face recognition authentication</a></nav>
+</div>
+  </body>
+  </html>

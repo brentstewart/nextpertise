@@ -1,0 +1,455 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on </title>
+    <link>https://nextpertise.net/tags/</link>
+    <description>Recent content in Tags on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Oct 2023 21:14:12 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>shell</title>
+      <link>https://nextpertise.net/tags/shell/</link>
+      <pubDate>Wed, 25 Oct 2023 21:14:12 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://nextpertise.net/tags/python/</link>
+      <pubDate>Sat, 21 Oct 2023 11:47:23 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://nextpertise.net/tags/linux/</link>
+      <pubDate>Thu, 19 Oct 2023 08:32:41 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Management</title>
+      <link>https://nextpertise.net/tags/management/</link>
+      <pubDate>Mon, 02 Oct 2023 09:59:14 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apache</title>
+      <link>https://nextpertise.net/tags/apache/</link>
+      <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coding</title>
+      <link>https://nextpertise.net/tags/coding/</link>
+      <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HowTo</title>
+      <link>https://nextpertise.net/tags/howto/</link>
+      <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/howto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>self-host</title>
+      <link>https://nextpertise.net/tags/self-host/</link>
+      <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/self-host/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://nextpertise.net/tags/hugo/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>https://nextpertise.net/tags/markdown/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>obsidian</title>
+      <link>https://nextpertise.net/tags/obsidian/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/obsidian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pandoc</title>
+      <link>https://nextpertise.net/tags/pandoc/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/pandoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JAMStack</title>
+      <link>https://nextpertise.net/tags/jamstack/</link>
+      <pubDate>Mon, 04 Sep 2023 08:43:45 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/jamstack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Non-Technical</title>
+      <link>https://nextpertise.net/tags/non-technical/</link>
+      <pubDate>Sat, 05 Aug 2023 15:58:38 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/non-technical/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Review</title>
+      <link>https://nextpertise.net/tags/review/</link>
+      <pubDate>Mon, 31 Jul 2023 21:28:53 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI</title>
+      <link>https://nextpertise.net/tags/ci/</link>
+      <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>https://nextpertise.net/tags/android/</link>
+      <pubDate>Thu, 27 Apr 2023 17:38:24 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Basics</title>
+      <link>https://nextpertise.net/tags/basics/</link>
+      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/basics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How To</title>
+      <link>https://nextpertise.net/tags/how-to/</link>
+      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/how-to/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://nextpertise.net/tags/security/</link>
+      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualization</title>
+      <link>https://nextpertise.net/tags/virtualization/</link>
+      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/virtualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPN</title>
+      <link>https://nextpertise.net/tags/vpn/</link>
+      <pubDate>Sat, 18 Mar 2023 15:46:32 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/vpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://nextpertise.net/tags/windows/</link>
+      <pubDate>Sun, 05 Mar 2023 21:54:31 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DNS</title>
+      <link>https://nextpertise.net/tags/dns/</link>
+      <pubDate>Sun, 26 Feb 2023 14:56:13 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GNS3</title>
+      <link>https://nextpertise.net/tags/gns3/</link>
+      <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/gns3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Proxmox</title>
+      <link>https://nextpertise.net/tags/proxmox/</link>
+      <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Games</title>
+      <link>https://nextpertise.net/tags/games/</link>
+      <pubDate>Sun, 15 Jan 2023 15:03:12 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/games/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tiling</title>
+      <link>https://nextpertise.net/tags/tiling/</link>
+      <pubDate>Mon, 26 Dec 2022 12:00:26 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/tiling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leadership</title>
+      <link>https://nextpertise.net/tags/leadership/</link>
+      <pubDate>Thu, 17 Nov 2022 16:00:14 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/leadership/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud</title>
+      <link>https://nextpertise.net/tags/cloud/</link>
+      <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://nextpertise.net/tags/network/</link>
+      <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zerotier</title>
+      <link>https://nextpertise.net/tags/zerotier/</link>
+      <pubDate>Tue, 04 Oct 2022 14:48:18 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/zerotier/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cisco</title>
+      <link>https://nextpertise.net/tags/cisco/</link>
+      <pubDate>Fri, 19 Aug 2022 09:07:14 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/cisco/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VMWare</title>
+      <link>https://nextpertise.net/tags/vmware/</link>
+      <pubDate>Wed, 27 Jul 2022 13:00:36 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/vmware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FTP</title>
+      <link>https://nextpertise.net/tags/ftp/</link>
+      <pubDate>Sun, 26 Jun 2022 18:00:16 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/ftp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>https://nextpertise.net/tags/ssh/</link>
+      <pubDate>Fri, 02 Apr 2021 15:40:47 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lucidchart</title>
+      <link>https://nextpertise.net/tags/lucidchart/</link>
+      <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/lucidchart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visio</title>
+      <link>https://nextpertise.net/tags/visio/</link>
+      <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/visio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Keyboard</title>
+      <link>https://nextpertise.net/tags/keyboard/</link>
+      <pubDate>Tue, 12 Jan 2021 17:30:38 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/keyboard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postscript</title>
+      <link>https://nextpertise.net/tags/postscript/</link>
+      <pubDate>Tue, 12 Jan 2021 17:30:38 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/postscript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://nextpertise.net/tags/git/</link>
+      <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Diagramming</title>
+      <link>https://nextpertise.net/tags/diagramming/</link>
+      <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/diagramming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lighthouse</title>
+      <link>https://nextpertise.net/tags/lighthouse/</link>
+      <pubDate>Fri, 06 Nov 2020 04:30:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/lighthouse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Application Testing</title>
+      <link>https://nextpertise.net/tags/web-application-testing/</link>
+      <pubDate>Fri, 06 Nov 2020 04:30:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/web-application-testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Syslog</title>
+      <link>https://nextpertise.net/tags/syslog/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/syslog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Calibre</title>
+      <link>https://nextpertise.net/tags/calibre/</link>
+      <pubDate>Thu, 01 Oct 2020 20:27:16 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/calibre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NFS</title>
+      <link>https://nextpertise.net/tags/nfs/</link>
+      <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Backup</title>
+      <link>https://nextpertise.net/tags/backup/</link>
+      <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/backup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Writers</title>
+      <link>https://nextpertise.net/tags/writers/</link>
+      <pubDate>Mon, 20 Jul 2020 11:38:01 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/writers/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

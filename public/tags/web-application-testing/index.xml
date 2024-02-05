@@ -1,0 +1,49 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Application Testing on </title>
+    <link>https://nextpertise.net/tags/web-application-testing/</link>
+    <description>Recent content in Web Application Testing on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Nov 2020 04:30:50 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/web-application-testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Web Application Performance Assessment - Quick &amp; Easy</title>
+      <link>https://nextpertise.net/posts/201106_webappperfassessment/</link>
+      <pubDate>Fri, 06 Nov 2020 04:30:50 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201106_webappperfassessment/</guid>
+      <description>&lt;p&gt;Today, developers and content creators that maintain web applications are often looking out for ways to improve their site or web apps. This could be for High Performance (lower response time), Better Accessibility (consistent experience across all device types e.g. Tablet, Smartphone, PC), better Search Engine Optimization (SEO) score and other ways to improve the content by following industry best practices. There are many tools out there, which can be very expensive, and some have a steep learning curve.&lt;/p&gt;
+&lt;p&gt;I needed something that was very minimalistic, one that provides good information on issues that I can fix quickly and make my web application better. I came across Lighthouse.&lt;/p&gt;
+&lt;p&gt;Lighthouse is a tool supported and backed by Google Developers that helps to measure performance and provide recommendations on how to fix some of the issues that are discovered. It is very minimalistic and powerful. Here is a snapshot of the scores and a set of recommendations it provides to improve the web content – I was amazed by this!&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-lighthouse&#34;&gt;Setting up Lighthouse&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;As a Google Chrome extension – Simply visit the Google Chrome Extensions and search for Lighthouse plugin&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/lighthouse_extension.PNG#center&#34; alt=&#34;LH&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;CLI Usage and Programmatic Access (requires Google Chrome Browser)&lt;/p&gt;
+&lt;p&gt;a.	Install the Node.JS  package, which matches your Operating System (OS) - &lt;a href=&#34;https://nodejs.org/en/download/&#34;&gt;https://nodejs.org/en/download/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;b.	Open a Terminal or Command Window and issue the command&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NPM install -g lighthouse
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;c.	To run a scan against a webpage, open terminal or command windows and issue:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;lighthouse &amp;lt;url&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/lighthouse_cmd1.PNG#center&#34; alt=&#34;LH&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;reports-generated&#34;&gt;Reports Generated&lt;/h2&gt;
+&lt;p&gt;An HTML report is generated that shows the Performance and other metrics along with the recommendations on how fix potential issues.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/lighthouseresults.PNG#center&#34; alt=&#34;LH&#34;&gt; &lt;img src=&#34;https://nextpertise.net/lighthouse_opportunities.PNG#center&#34; alt=&#34;LH&#34;&gt;
+&lt;img src=&#34;https://nextpertise.net/lighthouse_best_practices.PNG#center&#34; alt=&#34;LH&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;enhancements--recommendations&#34;&gt;Enhancements &amp;amp; Recommendations&lt;/h2&gt;
+&lt;p&gt;You can setup scheduled commands or scripts to makes Lighhouse run on a daily or weekly basis, and generate the output as a CSV or JSON format, instead of HTML. Subsequently, you can use the CSV or JSON format and parse the data to setup thresholds and alerts to trigger when the data points deviate below the predefined threshold levels.&lt;/p&gt;
+&lt;p&gt;This way you can setup a repetitive process to monitor your web apps. You can also use the tool internally on your test environment and ensure that all the bugs and performance hindering elements are rectified before you move the web applications to a live environment.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

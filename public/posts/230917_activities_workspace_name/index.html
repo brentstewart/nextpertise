@@ -1,0 +1,141 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Gnome Activities Workspace Name Extension - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Cool Extension The Activities Workspace Name allows you to change the &ldquo;Activities&rdquo; label in the top left of a Gnome desktop to reflect a name for each workspace.">
+    <meta name="keywords" content="Linux,Gnome Workspace Labels" />
+    <meta name="twitter:card" content="A Gnome extension, compatible with Pop! that lables workspaces">
+    <meta property="og:title" content="Gnome Activities Workspace Name Extension" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230917_activities_workspace_name/" >
+    <meta property="og:description" content="A Gnome extension, compatible with Pop! that lables workspaces" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>Gnome Activities Workspace Name Extension</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Sep 17, 2023</i><br></div></h6>
+  <p><h1 id="cool-extension">Cool Extension</h1>
+<p>The <strong>Activities Workspace Name</strong> allows you to change the &ldquo;Activities&rdquo; label in the top left of a Gnome desktop to reflect a name for each workspace.  I find it really useful.</p>
+<p>My current setup is to use workspaces to seperate the different types of activities, so I have one for work, one for writing, one for development, and one for learning.  I have a 4K display, run Pop! tiling or use that tiling extension in Gnome, and use the to left corner to flip desktops. Maybe I&rsquo;m a little too obsessive, but I&rsquo;ve wanted a way to label those spaces to make them easy to identify.</p>
+<p>I found this extension, available on the <a href="https://extensions.gnome.org/extension/5311/activities-workspace-name">Gnome extension site</a> and at <a href="https://github.com/ahmafi/gnome-activities-workspace-nam">Github</a>, and it does a great job of filling this gap.  Below is a sample with the Workspace label applied (I zoomed in):</p>
+<p><img src="/WorkspaceLabel.png#floatsmallright" alt="Sample"></p>
+<p>The easy way to add the extension is to go to the <a href="https://extensions.gnome.org">gnome extension site</a> and enable it.  There are two ways to set workspace names: long clicking on the label or via command line.  Long clicking I eventually got to work, sometimes.  Sometimes a long click is results in showing all the workspaces, but this may be an artifact of runnign on Pop!.  Option #2, which is easy and always works for me, is to set it via the command line.  Here&rsquo;s the command I use to name my four workspaces.</p>
+<pre><code>gsettings set org.gnome.desktop.wm.preferences workspace-names &quot;['Work', 'Writing', 'Dev','Learning']&quot;
+</code></pre>
+<h1 id="a-lament">A lament</h1>
+<p>Extensions on Gnome have recently been in better shape.  There was a long time where I found them to be a problem.  My understanding is that Gnome changed pieces of the environment between versions which tended to break extensions.  It seems like the last year or so has been a good period, even with a couple versions of Gnome revving.  However, word is that Gnome 45 will break every extension.  Will this one be updated, or any of the other extensions I&rsquo;ve built my workflow around?</p>
+<p>I ran Cinnamon for a long time and really liked it.  It was very stable, easy, and attractive.  I spent a little time bouncing around between KDE and Gnome (and really liked KDE better), then discovered tiling in i3 and started trying to incorporate that into a richer DE.  Pop! came out about that time and settled the issue and has been a dream for years.  Pop! is creating their own DE for the next version, Gnome is back to breaking things, and KDE is undergoing a major version shift (to 6) in February 2024, so I may be in for another of those periods of flitting between desktops.  The winner, for me, will be the one that enables the workflow I&rsquo;ve become used to - easy and automated tiling and easy access to multiple desktops.</p>
+<p>None of that discussion takes anythig away from the Workspace Name extension, which has been a good fit and stable addition to my desktop.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://extensions.gnome.org/extension/5311/activities-workspace-name/">https://extensions.gnome.org/extension/5311/activities-workspace-name/</a><br> &nbsp&nbsp<a href="https://github.com/ahmafi/gnome-activities-workspace-name">https://github.com/ahmafi/gnome-activities-workspace-name</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">Linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        Getting VSCode to work on Android
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        Running TOR
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220819_palemoon/">Palemoon for legacy Flash support</a><br />
+        Palemoon iu
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230917_activities_workspace_name/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Gnome Activities Workspace Name Extension</a></nav>
+</div>
+  </body>
+  </html>

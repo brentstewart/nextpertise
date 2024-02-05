@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
-picture: "vmware"
+picture: "virtualization"
 github: ""
 youtube: ""
 refs: ["https://github.com/mkubecek/vmware-host-modules","https://github.com/LinuxEuphony/vmware-host-modules-builder-cli"]
-tags: ["vmware"]
+tags: ["virtualization"]
 ---
 I wrote back on [January 5th](/posts/220105_psa_vmware) about an issue with VMWare Workstation on the latest Linux kernels.  I'm using Pop! OS and it is fairly aggressive about keeping the system on fairly recent kernels.  VMWare doesn't support the newest kernels and Workstaion thus can't recompile vmmon and vmnet after a kernel upgrade.  This is probably a problem shared by anyone who keeps their kernel updated, but it's worth saying that - if your goal is stability - you don't have to upgrade the kernel when offered.  
 

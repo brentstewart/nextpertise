@@ -1,0 +1,151 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Chocolatey Installer for Windows - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I&rsquo;m setting up a new Windows 10 VM (this time in VMWare) and decided to use Chocolatey to install applications this time, since I tried winget last time.">
+    <meta name="keywords" content="windows, shell,Chocolatey" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Chocolatey Installer for Windows" >
+    <meta property="og:url" content="https://nextpertise.net/posts/220118_choco/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/windows.png#floatright" height="140">
+<h1>Chocolatey Installer for Windows</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Jan 18, 2022</i><br></div></h6>
+  <p><p>I&rsquo;m setting up a new Windows 10 VM (this time in VMWare) and decided to use Chocolatey to install applications this time, since I tried <em>winget</em> last time.  I haven&rsquo;t tried Chocolatey in a while, and I&rsquo;ve spent a lot of time exclusively in Linux since then so I was curious what I would make of it, especially in comparison to <a href="/posts/211228_winget/">Winget</a>.</p>
+<p><a href="https://chocolatey.org/">Chocolatey</a> is a package manager like apt.  You can use it to search for, install, update, and uninstall programs.  This is particularly useful if you have a &ldquo;standard setup&rdquo; for new computers - it&rsquo;s possible to build a script to install the apps you expect.  Windows Update only covers Microsoft programs, so Chocolatey fills another gap by updating all the programs it installs from the command line.</p>
+<p><img src="/chco-square.svg#floatsmallleft" alt="Logo"></p>
+<h2 id="chocolatey">Chocolatey</h2>
+<p>Chocolatey is free open-souce software that has been around for a while and I&rsquo;ve used it before.  Chocolatey works like <em>apt</em>, using the <em>choco</em> command.  You can search for a package, install it, or uninstall it. <em>Choco upgrade</em> will upgrade all the Chocolatey-managed applications on your system.  This last piece is especially useful, since Windows Update focuses just on Microsoft properties.</p>
+<p>Chocolatey uses the command <em>choco</em>.  The command sequence below shows looking for all packages in the repository that are include &ldquo;libre&rdquo;.  That allows me to see the name of the LibreWolf package, which I then choose to install.  Finally, the upgrade command can be used to upgrade specific packages or to get them all.</p>
+<pre><code>choco list libre
+choco install librewolf
+choco upgrade all
+</code></pre>
+<p>Use <em>choco list &ndash;local-only</em> to see a list of programs installed on the local system by choco.  There&rsquo;s also a GUI, installed by <em>choco install chocolateygui</em>.</p>
+<p>Choco compares very well to Microsoft&rsquo;s <em>winget</em>.  The application set available seems a little larger.  Like <em>winget</em>, choco will be familiar to <em>apt</em> users (but there are some syntactical differences.  I used winget to easily install Git, WinFSP, SSHFS, the Microsoft Terminal, and Librewolf.   A later upgrade picked up new versions of Librewolf and Git and installed them without difficulty.   <em>Choco</em> also seemed to apply some KB patches I was missing and even upgraded itself!</p>
+<h2 id="installation">Installation</h2>
+<p>Setup is very easy.  Installation can be done from an administrative powershell using these commands:</p>
+<pre><code>Set-ExecutionPolicy AllSigned
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+</code></pre>
+<h2 id="pretty-solid">Pretty Solid</h2>
+<p>When I tried winget, I had issues with dependencies.  Chocolatey picked these up and installed without an issue, so Librewolf grabbed the Visual C redistributable module and installed it without prompting, for instance.  <em>Choco</em> has a wide range of supported applications, particularly if you like to use FOSS.</p>
+<p>The biggest issue with Chocolatey is image.  The name doesn&rsquo;t build credibility, and with Microsoft building a competing product now I expect IT departments to focus on <em>winget</em>.  That said, <em>choco</em> is a more complete solution with a bigger catalog as of today and it&rsquo;s definitely the better fit for home.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://chocolatey.org/">https://chocolatey.org/</a><br> &nbsp&nbsp<a href="https://ohmyposh.dev/docs/windows">https://ohmyposh.dev/docs/windows</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/windows/">windows</a> 
+       
+        <a href="/tags/shell/">shell</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/2310255_bizcard/">Biz card</a><br />
+        Creating a curl-able business card
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        A simple Ci-like process to send word files to Obsidian
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230514_save2kindle/">Save to Kindle with a DIY CI</a><br />
+        A simple CI-like process for sending personal documents to a Kindle
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220118_choco/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Chocolatey Installer for Windows</a></nav>
+</div>
+  </body>
+  </html>

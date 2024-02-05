@@ -1,0 +1,117 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Postscript on </title>
+    <link>https://nextpertise.net/tags/postscript/</link>
+    <description>Recent content in Postscript on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jan 2021 17:30:38 -0500</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/postscript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Custom Keycaps - Updated</title>
+      <link>https://nextpertise.net/posts/201230_keycaps/</link>
+      <pubDate>Tue, 12 Jan 2021 17:30:38 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201230_keycaps/</guid>
+      <description>&lt;h2 id=&#34;from-12-30-20&#34;&gt;From 12-30-20&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/201230_n.png#floatsmallleft&#34; alt=&#34;N&#34;&gt;&lt;/p&gt;
+&lt;p&gt;My kids got me a Ducky mechanical keyboard for Christmas.  It&amp;rsquo;s a wonderful keyboard, but the Windows keys are hurting my sensibilities.  I decided that I wanted to replace the default Windows logo with the &amp;ldquo;starburst N&amp;rdquo; from my Nextpertise logo.&lt;/p&gt;
+&lt;p&gt;I found that &lt;a href=&#34;https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html&#34;&gt;Max Keyboard&lt;/a&gt; will custom print keycaps.  At the ordering page there&amp;rsquo;s a link to a chart showing the &lt;a href=&#34;https://www.maxkeyboard.com/mechanical-keycap-layout-and-size-chart.html&#34;&gt;size&lt;/a&gt; of the various keys on different keyboards.  I already new that I needed R1 1.25 keys from Ducky, but MaxKeyboard had the Ducky layout as well so I was able to confirm.&lt;/p&gt;
+&lt;p&gt;MaxKeyboard wanted a file to print the image from.  I used a postscript program called &amp;ldquo;rays.ps&amp;rdquo; (available in my postscript github repo) for the original graphic, but MK wanted at least 300x300 and the resolution on my existing picture was a quarter that.&lt;/p&gt;
+&lt;p&gt;I decided to update the postscript to just output the &amp;ldquo;N&amp;rdquo; and used a larger size.  Here&amp;rsquo;s the code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-postscript&#34; data-lang=&#34;postscript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/Times &lt;span style=&#34;color:#a6e22e&#34;&gt;findfont&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;300&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;scalefont&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;setfont&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    /rays  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    { &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1.5&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;359&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {&lt;span style=&#34;color:#a6e22e&#34;&gt;gsave&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;rotate&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;moveto&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1200&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lineto&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;stroke&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;grestore&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            } &lt;span style=&#34;color:#a6e22e&#34;&gt;for&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#a6e22e&#34;&gt;def&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;translate&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ae81ff&#34;&gt;1.5&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;setlinewidth&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;newpath&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;moveto&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;(N)&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;true&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;charpath&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;clip&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;newpath&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ae81ff&#34;&gt;98&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;translate&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;rays&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;showpage&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Of course, you can easily show this onscreen using: &lt;strong&gt;gs rays.ps&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In the past, I&amp;rsquo;ve used GIMP to read the Postscript and produce other formats.  Yes, GIMP can do that!  But to simplify the operation, I had Ghostscript output directly to PNG.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gs -r600 -sDEVICE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pngmonod -sOutputFile&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n.png rays.ps
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;MaxKeyboards has an easy to follow ordering page where you can upload your graphic and specify how you want the image placed.  You can even have them print on the front of the keys.  The black part of the image will be translucent to fit with my backlit keyboard.&lt;/p&gt;
+&lt;p&gt;I should get my new keys next week!  Looks like the total cost will be about $10 per key.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210112_NewKeycaps.webp#floatright&#34; alt=&#34;Nextpertise Keycaps&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;update-1-12-21&#34;&gt;Update 1-12-21&lt;/h2&gt;
+&lt;p&gt;I received the new keys today!  You can see the new keys in the picture here.&lt;/p&gt;
+&lt;p&gt;As a side story, after I sent in my purchase I noticed that the PNG file I created had a lot of white space.  I was a little worried that the logo would be small and printed to the side.  MaxKeyboard apparently recognized my error and fixed it.  I was also worried that the fine lines of the rays wouldn&amp;rsquo;t translate well through the 3D printing process.  As you can tell from the picture, they came through perfect.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s really fun when small things like this give you happiness.  I giggled a little taking off the Windows keys and replacing them!  The new keys fit perfectly and the size was dead on.&lt;/p&gt;
+&lt;p&gt;MaxKeyboard did a great job!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fun with Postscript</title>
+      <link>https://nextpertise.net/posts/200803_funwithpostscript/</link>
+      <pubDate>Mon, 03 Aug 2020 16:59:30 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200803_funwithpostscript/</guid>
+      <description>&lt;p&gt;I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&amp;rsquo;s just &lt;em&gt;fun&lt;/em&gt;.  One example of the latter is Postscript.&lt;/p&gt;
+&lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
+&lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1 2 add&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In college, I &amp;ldquo;discovered&amp;rdquo; postscript by printing a file for an Apple LaserWriter to an HP Laserjet. Since the Laserjet didn&amp;rsquo;t speak Postscript (they use PCL) it just dumped raw text onto a stack of paper. I was fascinated because I could kinda read it, so I researched it and bought three books and just started playing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Postscript Language: Tutorial and Cookbook by Adobe
+Graphic Design with Postscript by Gerard Kunkel
+Postscript by Example by Henry McGilton and Mary Campione&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At first, I wrote text files and dumped them to the LaserWriter.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;copy myfile.ps &amp;gt; lpt1:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Later I started using early ghostscript to output to my dot matrix printer. I recently rediscoverd some of my files from the 1980&amp;rsquo;s and found that I could display them in Linux with modern Ghostscript.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a simple Postscript program I took from the Postscript Cookbook:
+&lt;img src=&#34;https://nextpertise.net/CircleofBrent.png#floatright&#34; alt=&#34;Circle of Brent&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/Helvetica-Bold findfont  
+        30 scalefont setfont  
+        /oshow  %stack: {string}  
+        {true charpath stroke} def  
+    /circleofBrent  
+        { 20 20 340  
+            { gsave  
+                rotate 0 0 moveto  
+                (Brent) oshow  
+                grestore  
+            } for  
+        } def  
+    % --Begin Program --  
+    250 400 translate  
+    .5 setlinewidth  
+    circleofBrent  
+    0 0 moveto  
+    (Brent Stewart) true charpath  
+    gsave 1 setgray fill grestore  
+    stroke  
+    showpage  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Without a lot of explanation, you get the sense of how postscript works.  There&amp;rsquo;s a routine to print my name and rotate the coordinate system in increments of 20 degrees.  That routine is looped through and then the final full name is printed at the end.  Instead of printing this page, in Linux I just typed:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gs CircleofBrent.ps
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and the page is rendered in a window.  I discovered that you GIMP can directly load postscript files (!) and used that to create the logo and favicon for this site.  You can print the file to a postscript printer using lpr.  MFC9340CDW is a brother printer I use, and I opened system-config-printer to confirm the name.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lpr -P MFC9340CDW rays.ps
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ve built a repo with some examples.  I actually found some of my code from 30 years ago! PostScript is a simple enough language to quickly accomplish things with, but complicated enough to get some interesting results.  In fact, you can do things in the language that I&amp;rsquo;ve never seen translated to an app.  I hope this post will encourage you to give it a try and have some fun!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

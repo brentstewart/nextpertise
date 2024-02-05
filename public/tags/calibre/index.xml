@@ -1,0 +1,44 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Calibre on </title>
+    <link>https://nextpertise.net/tags/calibre/</link>
+    <description>Recent content in Calibre on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Oct 2020 20:27:16 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/calibre/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Calibre 5.0</title>
+      <link>https://nextpertise.net/posts/201001_calibre/</link>
+      <pubDate>Thu, 01 Oct 2020 20:27:16 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201001_calibre/</guid>
+      <description>&lt;p&gt;One of my favorite open-source programs is &lt;strong&gt;Calibre&lt;/strong&gt;. Calibre is like iTunes for books, in the sense that it allows you to build a library and helps with indexing and completing metadata. It even fetches book art!
+&lt;img src=&#34;https://lh3.googleusercontent.com/rXiQJLi7-4RUi9MPoBBBHvNkI9GmuEnhhNlsdkDLavAhH0K5R_vINazBmxOR_kc1TAT0BGEG1iLlcBU2yLV2X9Cr7BZ0tF140P2AZZ_nuRyAmtqffTQdxlVrppjW0KDVI-D-7yKG=d#center&#34; alt=&#34;Calibre&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I like e-readers. I have an Amazon Kindle Tablet and a Likebook Mars. Before that I used a Kobo and I&amp;rsquo;ve had a Nook and the old Sony Reader. I mostly read technical PDFs and sci-fi books in EPUB or MOBI. The Kindle is great for technical books because its easy to pinch in and out of diagrams. The Kindle is also harder on the eyes and can be distracting (it also has games and email, etc.). The Likebook is great for reading things like a good Science Fiction novel. It&amp;rsquo;s built to be a straight-up reader, so it&amp;rsquo;s not as distracting. I like the e-paper screen and it&amp;rsquo;s easy on the eyes. The Likebook has a quad-core processor and runs Android, so it&amp;rsquo;s reasonably fast (it&amp;rsquo;s just that epaper as a medium has a low refresh rate).&lt;/p&gt;
+&lt;p&gt;I get books from all over the place. I buy books that are interesting, I purchase &amp;ldquo;humble bundles&amp;rdquo; of programming books, and I subscribe to lists of free books like Bookbub and Centsless Ebooks.&lt;/p&gt;
+&lt;h2 id=&#34;how-i-use-calibre&#34;&gt;How I Use Calibre&lt;/h2&gt;
+&lt;p&gt;My first use-case is to build and maintain my &amp;ldquo;pleasure reading&amp;rdquo; library of ebooks.&lt;/p&gt;
+&lt;p&gt;Calibre can import all the different ebook formats and convert to any other. It supports TXT, AZW, MOBI, PRC, PDF, RTF, DOC, EPUB and others. In fact, you can tell Calibre the ebook model you are using and it will automatically convert books to the correct format for that device and use the screensize to format the book to work with your reader. Calibre can also look up missing metadata, like authors, descriptions, and art.&lt;/p&gt;
+&lt;p&gt;I use Apprentice Alf&amp;rsquo;s de-DRM tools to allow converting and formatting. To be clear - I&amp;rsquo;m an author and piracy deprives me of a reason to write so &lt;em&gt;don&amp;rsquo;t steal&lt;/em&gt;! But it&amp;rsquo;s annoying that ebooks are locked in to a particular reader (what if that store goes Zune?) and it&amp;rsquo;s nice to be able to buy a book at the lowest price. DeDRM installs into Calibre as a plugin and just automatically strips DRM as a step in the conversion process.&lt;/p&gt;
+&lt;p&gt;The second place I use Calibre is for technical material. Open source projects and IT vendors put out a lot of their information as PDFs. I also put user manuals and other reference material into Calibre. The program allows me to curate those documents, apply meta-data, and easily search for &amp;ldquo;all docs by Cisco&amp;rdquo; or &amp;ldquo;recent books about Python&amp;rdquo; or &amp;ldquo;books by Brent Stewart&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Libraries are directories and you can easily use Calibre to curate a library that can be shared - for instance, important documentation with appropriate metadata. Multiple instances of Calibre can access the same library as well - a technique I used for a while to access books from my desk or my laptop.&lt;/p&gt;
+&lt;p&gt;Calibre (like iTunes) makes it easy to plug in an ebook and transfer files from your library. More and more I&amp;rsquo;m using a feature in Calibre that produces a web interface and allows you to grab books over wifi. Both my Kindle tablet and Likebook can open the OPDR-compatible web page and use it to search and download. I can still plug them into local USB, but wireless access is easier.&lt;/p&gt;
+&lt;h2 id=&#34;other-major-features&#34;&gt;Other Major Features&lt;/h2&gt;
+&lt;p&gt;Calibre is written in Python, and has been packaged to run on pretty much any OS. Downloads are available for Linux, Windows and Mac, plus I&amp;rsquo;ve seen it ported to Haiku and AmiOS. If the different machines can reach the same share drive, the different Calibre implementations can all work out of the same library (see &lt;a href=&#34;https://nextpertise.net/posts/200813_using_ssh3/&#34;&gt;SSH File Sharing&lt;/a&gt; article).&lt;/p&gt;
+&lt;p&gt;Calibre has a feature that will run a scheduled job to grab articles from the web. You can use this to build a virtual newspaper delivered fresh every morning. This feature is interesting, but I&amp;rsquo;ve found it less compelling as the world has become more &amp;ldquo;always connected&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Calibre also includes a reader that will open all the ebook formats it supports. This makes it easy to read on the desktop. If you are reading for work - for instance, a programming book where you want to work examples as you go - or using books for reference, this can be particularly helpful.&lt;/p&gt;
+&lt;p&gt;Calibre has a large set of plug-ins to help catalog ebooks, set the appropriate metadata, and clean up formatting.&lt;/p&gt;
+&lt;h2 id=&#34;calibre-50&#34;&gt;Calibre 5.0&lt;/h2&gt;
+&lt;p&gt;The author of Calibre, Kovid Goyal, continues to develop the program and has released point versions pretty consistently for years. He recently released version 5 and for the most part this major version shows continued incremental improvement. There&amp;rsquo;s now a dark mode (check that off the buzzword list!), better in-book searching, and the ability to highlight text in books.&lt;/p&gt;
+&lt;p&gt;The big news is that the code has been updated to Python 3. Python 2 has been deprecated, so this was an important step for the continuation of the project. It doesn&amp;rsquo;t make a difference from the usability perspective, but it&amp;rsquo;s nice to know that the project is in good shape.&lt;/p&gt;
+&lt;h2 id=&#34;recommendation&#34;&gt;Recommendation&lt;/h2&gt;
+&lt;p&gt;I maintain a &amp;ldquo;reinstall script&amp;rdquo; to quickly setup the programs that I depend on when I do a new install (for the record, I have versions of this for Windows, RHEL-based Linux,Debian-based Linux, and Mac). Calibre is on that august list of programs that I can&amp;rsquo;t live without. Calibre has always been a great program, but Kovid continues to improve it bit by bit and maintained a high level of quality throughout. I depend on Calibre and &lt;em&gt;highly&lt;/em&gt; recommend it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,111 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cisco on </title>
+    <link>https://nextpertise.net/tags/cisco/</link>
+    <description>Recent content in Cisco on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Aug 2022 09:07:14 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Palemoon for legacy Flash support</title>
+      <link>https://nextpertise.net/posts/220819_palemoon/</link>
+      <pubDate>Fri, 19 Aug 2022 09:07:14 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/220819_palemoon/</guid>
+      <description>&lt;p&gt;Flash was a technology to extend the functionality of websites past what was possible with HTML at the time.  It allowed for highly interactive experiences and was used for streaming, video games, and for &amp;ldquo;application like&amp;rdquo; experiences inside the browser.  Flash was implemented on the client-side via a browser &amp;ldquo;plug-in&amp;rdquo; and was notorious for security issues.  In my experience, a big part of the problem with Flash was the update process.  The plug-in was updated seperately from the Operating System and browser, leading to many cases to persistence of older versions.  Furthermore, the installer would commonly not clean up old versions, leaving an attack surface.&lt;/p&gt;
+&lt;p&gt;Why do we care?  For the most part we don&amp;rsquo;t.  Flash was deprecated in 2020 and is no longer supported by the major browsers.  The functionality of Flash has been ably replaced by HTML5.  However, there was a range of IT products created in the mid-teens that used a Flash console for administrative access.  Cisco used Flash in equipment like ASA firewalls, SOHO switches, and UCS servers.  Much of that equipment is ageing out, but some of it is still in good shape and capable of delivering value.  One example is my home server, which is an old Cisco UCS M3.&lt;/p&gt;
+&lt;h2 id=&#34;accessing-a-flash-console&#34;&gt;Accessing a Flash Console&lt;/h2&gt;
+&lt;p&gt;ProxMox recently crashed - I&amp;rsquo;ll write about that seperately - but I suspected a disk issue.  The best way to access the information I needed was through the CIMC (Cisco Integrated Management Console), an out-of-band server management interface other vendors refer to as Integrated Lights Out access (ILO) or DRAC (Cell Remote Access Controller).&lt;br&gt;
+I hadn&amp;rsquo;t accessed the CIMC in a long time.  Rebooting the server displays the assigned IP and let&amp;rsquo;s you setup the interface.  I had assigned an IP and identified it as in a VLAN on a trunk port.  However, pinging the IP was unsuccessful.  I used the Meraki &amp;ldquo;clients&amp;rdquo; display to identify the switch port used and setup a continuous ping from my workstation.  I tried a variety of configurations on the CIMC and switch, but ultimately what worked was to set the port as access (turn off 802.1q) and let the speed and duplex auto-negotiate.  I originally had this set for trunk, then tried trunk and identified the VLAN as the &amp;ldquo;native&amp;rdquo; VLAN which should have removed the .1Q shim from the header.  I &lt;em&gt;suspect&lt;/em&gt; that the UCS wanted to run fast ethernet and had some compatibility issue with .1Q as spoken by the Meraki.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Step 1 - set the port to auto/auto, define the VLAN and set the mode to access&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With the CIMC port responding, I could browse to it using it&amp;rsquo;s IP address.  The next problem is that the site presents a security warning.  Although the CIMC uses TLS 1.2 (which is still supported), it uses 128b keys (which are not).  Mozilla &lt;a href=&#34;https://wiki.mozilla.org/Security/Features/Certs_Disallow_Weak_Keys&#34;&gt;phased out&lt;/a&gt; key sizes smaller than 2048b at the end of 2013.  Even getting around this issue still leaves us with the Flash problem.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://linux.palemoon.org/download/mainline/&#34;&gt;Palemoon&lt;/a&gt; is a browser forked from Firefox years ago and developed in the years since.  It maintains compatibility with the older XUL-based plugins.  It is distributed as a tar-ball, so I just extracted it to my &lt;em&gt;apps&lt;/em&gt; directory and ran the palemoon executable.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Step 2 - Download Palemoon, extract and run&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The flash plugin was abandoned at version 34.0.0.137 and can be obtained from &lt;a href=&#34;https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7&#34;&gt;Github&lt;/a&gt;.  Again, it can be installed directly from github using the following command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; mkdir -p ~/.mozilla/plugins &amp;amp;&amp;amp; wget -q https://github.com/darktohka/clean-flash-builds/releases/download/v1.7/flash_player_patched_npapi_linux.$( (( $(getconf LONG_BIT) == 32 )) &amp;amp;&amp;amp; echo &amp;quot;i386&amp;quot; || echo &amp;quot;x86_64&amp;quot;).tar.gz -O - | tar -zxf - -C ~/.mozilla/plugins libflashplayer.so
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After installation, Palemoon is able to access the Flash-based admin console for the UCS server.  The installation did not impact my current (104) version of Firefox.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Step 3 - Install Flash from Github&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;this-is-a-bad-idea&#34;&gt;This is a bad idea&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Palemoon&lt;/em&gt; is an interesting browser and - to my knowledge - hasn&amp;rsquo;t had security concerns associated with it specifically.  However, Flash was deprecated for a reason and this article walks through installing unpatched and unsupported legacy software into a browser.  I would limit Palemoon to internal trusted addresses as long as the Flash plug-in is present and active. This can be addressed to some extent by limiting when Flash is allowed to run, as shown below, but I would still be very cautious.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/220818_palemoon_always_activate.png&#34; alt=&#34;Limiting Palemoon/Flash exposure&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Connecting GNS3 to Real Networks</title>
+      <link>https://nextpertise.net/posts/210417_connecting_gns3/</link>
+      <pubDate>Sat, 17 Apr 2021 10:48:58 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/210417_connecting_gns3/</guid>
+      <description>&lt;p&gt;I mentioned a month or so ago that I wanted to set out on a journey to create a set of template networks and then substitute in the various appliances that are supported under GNS3.  The idea is to start with Cisco, which I know best, and then explore the differences.  I&amp;rsquo;m still really excited about that but . . .  life.  So we&amp;rsquo;re off to a slow start.  I&amp;rsquo;m going to break down some of the topics into smaller pieces so I can keep that project moving forward.  First up - how to connect you GNS3 lab environment to a &amp;ldquo;real&amp;rdquo; network.&lt;/p&gt;
+&lt;h2 id=&#34;current-lab-state&#34;&gt;Current Lab State&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210417_labinprogress.png#floatright&#34; alt=&#34;GNS3 Lab state&#34;&gt;
+My home network is built using Meraki gear.  That&amp;rsquo;s not a typical home setup, but I was supporting a lot of Meraki for a while and it was a good way to &amp;ldquo;eat the dogfood&amp;rdquo;.  I divide the home into subnets so that high risk devices (IoT, kids computers) are isolated.  I have an ESXi server that hosts my GNS3 VM, but I haven&amp;rsquo;t switched over to the web client yet.  I&amp;rsquo;m still using the GNS3 front end running on PopOS!&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a diagram of the lab I&amp;rsquo;m building.  In this first step we want to use 192.168.28.0/22 for our GNS3 environment and communicate from it to the local network and the Internet.&lt;/p&gt;
+&lt;h2 id=&#34;attaching-the-cloud&#34;&gt;Attaching the Cloud&lt;/h2&gt;
+&lt;p&gt;My local network is represented by &amp;ldquo;Cloud1&amp;rdquo;.  I placed this into the lab and attached a connection to the virtual Cisco router.  I chose the G0/1 interface when I placed the connection, but this can later be found by hovering over the virtual router in GNS3.  You can label connections in GNS3 by clicking the &amp;ldquo;Show/Hide Inteface Labels&amp;rdquo; button.  In this case I just placed some text.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210417_LocalRouting.png#floatleft&#34; alt=&#34;Understanding Local Routing&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The Meraki device isn&amp;rsquo;t really within the GNS3 topology, it&amp;rsquo;s just a link to the Meraki Dashboard.  It&amp;rsquo;s convenient to have this easily accessible - refer to &lt;a href=&#34;https://nextpertise.net/posts/210113_gns3_links/&#34;&gt;Adding Hyperlinks to GNS3 Topologies&lt;/a&gt; for a walk through on how to do that.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-routing&#34;&gt;Setting up routing&lt;/h2&gt;
+&lt;p&gt;My &amp;ldquo;real&amp;rdquo; Meraki router knows how to reach all the local VLANs because it&amp;rsquo;s directly attached to each of them.  It&amp;rsquo;s going to need to know how to reach the lab environment.  This is done under &amp;ldquo;Security &amp;amp; SD-WAN&amp;rdquo; &amp;gt; &amp;ldquo;Addressing and VLANs&amp;rdquo;.  At the bottom of that page is a place for static routes.  Identify an IP on the local network that you&amp;rsquo;ll use for the virtual router and then add a static route.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210417_MerakiStatic.png#floatleft&#34; alt=&#34;Meraki Static Route&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I added a route to 192.168.28.0/22 going to the virtual router.  Even though I&amp;rsquo;m setting up a simple switching lab, giving a block of addresses to the lab means that I won&amp;rsquo;t have to revisit this process when we start talking about more complicated networks.&lt;/p&gt;
+&lt;p&gt;The virtual router needs a default route pointing to the home router.  It&amp;rsquo;s also worth noting that I&amp;rsquo;m &lt;strong&gt;not&lt;/strong&gt; using a DHCP address for the virtual router.  You can do this and it &lt;em&gt;will&lt;/em&gt; work, but the address will change with each reboot and you&amp;rsquo;ll need to update the router configuration constantly.  Another option would be to use DHCP and a routing protocol.  This might be more of an option with another home router, but the Meraki is particularly weak in supporting dynamic routing.  Finally, I put an address on the inside of the virtual router.&lt;/p&gt;
+&lt;p&gt;The following output has been edited for brevity, but shows the added commands and the test ping to Google.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Router# sh run  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hostname Router  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;interface GigabitEthernet0/0  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; ip address 192.168.28.1 255.255.255.0  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; interface GigabitEthernet0/1  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; ip address 192.168.25.82 255.255.255.0  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;!  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ip route 0.0.0.0 0.0.0.0 192.168.25.1  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Router#ping __8.8.8.8__  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Type escape sequence to abort.  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;!!!!!  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 20/25/29 ms  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also want to verify that traffic is flowing from the Internet into our virtual GNS3 lab environment.  To do this I&amp;rsquo;ll source a ping from the G0/0 interface.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Router# ping  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Protocol [ip]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Target IP address: 8.8.8.8  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Repeat count [5]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Datagram size [100]:   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Timeout in seconds [2]:   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Extended commands [n]: y  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Ingress ping [n]:   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Source address or interface: 192.168.28.1  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Type of service [0]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Set DF bit in IP header? [no]:   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Validate reply data? [no]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Data pattern [0x0000ABCD]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Loose, Strict, Record, Timestamp, Verbose[none]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Sweep range of sizes [n]:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Type escape sequence to abort.  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Packet sent with a source address of 192.168.28.1   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;!!!!!  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 20/27/31 ms  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Router#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-1-complete&#34;&gt;Step 1 complete&lt;/h2&gt;
+&lt;p&gt;Our lab environment is reachable from the local network and it can reach out to the public Internet as needed at this point.  The next step will be to setup the switches!&lt;/p&gt;
+&lt;h2 id=&#34;play-along-at-home&#34;&gt;Play along at home&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s an associated Github repository for these labs (brentstewart/gns3labs).  So far it just has this initial version of the switching lab in it.  The topology is there, but it doesn&amp;rsquo;t have configurations anything other than the router.  I&amp;rsquo;ll continue to refine this lab and add more labs to that repository as we continue this adventure.  Please clone the repo and work these with me!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,150 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise ahrefs - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I&rsquo;ve been writing in this space for about three years. I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.">
+    <meta name="keywords" content="review, Hugo, Jamstack,Blogging" />
+    <meta name="twitter:card" content="A review of Ahrefs, a website with tools for web developers">
+    <meta property="og:title" content="ahrefs" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230731_ahrefs/" >
+    <meta property="og:description" content="A review of Ahrefs, a website with tools for web developers" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/review.png#floatright" height="140">
+<h1>ahrefs</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Jul 31, 2023</i><br></div></h6>
+  <p><p>I&rsquo;ve been writing in this space for about three years.  I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.  My source files, for instance, were fairly easy to organize in the first year but over time have sprawled.  Changes to my Hugo template have broken some older internal URLs as well.  Even when I recognize the possibility of an issue, it&rsquo;s hard to track down every instance that broke.</p>
+<p>One simple example is that I originally put my entries into the root folder and later moved them to <em>/posts</em>.  The issue is that all my older files referenced each other withoot that directory.  I&rsquo;ve corrected this when I see it, but I&rsquo;m sure that readers have stumbled onto these inadvertant issues.</p>
+<p><em>Mea culpa</em>, but I have a day job and it&rsquo;s hard to keep up sometimes.</p>
+<p><img src="/ahrefs.png#floatright" alt="Ahrefs logo">
+A few months ago I found <a href="https://app.ahrefs.com/">Ahrefs</a>.  Ahrefs is a website that has a gazillion tools that are useful in improving website quality.  There are a few of these sites and most include a &ldquo;try before you buy&rdquo;, but Ahrefs actually has a free tier that provides valuable feedback.</p>
+<h2 id="website-quality">Website Quality</h2>
+<p>Ahrefs scans this site every Sunday and sends me a report.  It has taken a little time to understand how to use the data they provide - remember, this isn&rsquo;t really what I do.  That said, anyone who is interested in maintaining a blog is already putting in a certain amount of work to figure things out and Ahrefs is accessible with little effort.</p>
+<p>There are a ton of QA metrics, including all kinds of different types of returned errors.  One of the errors is &ldquo;image file size too large&rdquo;.  It clearly points to the source image and the page where it is used.  I was able to load that image into Gimp, change the JPEG quality and scale, and resave to resolve the issue.
+<img src="/230731_healthscore.png#floatleft" alt="Health Score">
+Broken links are another area where I&rsquo;ve been able to drive improvement.  Hugo makes it easy to apply a template to markdown and generate a site, but errors in the template get propogated across a lot of places (and I&rsquo;m sure are annoying to read).  I&rsquo;ve used Ahrefs to quickly point at the offenders and resolve.</p>
+<p>If you are developing in Hugo, theres a &ldquo;compiling&rdquo; step to get from raw markdown to a website.  It&rsquo;s not always clear where some of the errors come from, so I&rsquo;ve found that I need to run <strong>hugo server -D</strong> to generate a live copy of the page for debugging.  Sometimes my error is in the page, but I&rsquo;ve found several instances where the issue was in the interaction of the page with my templates.  None fo the issue have been hard to resolve, they just take some thought.</p>
+<p>I particularly like that Ahrefs summarizes all the issues into a &ldquo;Health Score&rdquo;.  This makes it easy to see how you are doing at-a-glance.  You can see from my score, I have some improvements to make.  That said, Ahrefs also makes it easy to browse the issues and prioritize your time.  I have 237 issues with &ldquo;Multiple meta description tags&rdquo;.  Clearly that&rsquo;s a tag thats being duplicated at the default template and in a partial.  That said, it doesn&rsquo;t impact the user experience and so I&rsquo;ve been prioritizing the more mundane link issues.</p>
+<h2 id="seo">SEO</h2>
+<p>Ahrefs has a number of tools around search engine optimization.  I&rsquo;m sure that this would be fantastically interesting if I were building an ecommerce site, but even at an amatuer level it&rsquo;s cool to see what other sites link back to me.  There are also tools around what keywords will bring people to the site, what my most popular pages are, and what topics are most popular.</p>
+<p>The SEO side includes errors around mistakes I&rsquo;ve made that inhibit indexing.  Right now I&rsquo;m missing &ldquo;Social Graph Tags&rdquo; that are used by LinkedIn and Facebook - who knew?  But the error includes a brief explanation, a link to details, and a &ldquo;How to Fix&rdquo; link with good instructions.  Of course, Hugo is not HTML, so there&rsquo;s some level of translation.</p>
+<h2 id="paid-accounts">Paid Accounts</h2>
+<p>Serious webmasters will want to conssider a paid account.  The paid account includes a lot more SEO tools and analysis.  Accounts start at $83/mo (paid annually), so they&rsquo;re not for the faint of heart, but I&rsquo;m really impressed by the quality of what I see.  I appreciate that Ahrefs makes valuable information available for hobbiest and recommend it as a good way to start understanding more about how HTML, the web, and the world work.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://ahrefs.com">https://ahrefs.com</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/review/">review</a> 
+       
+        <a href="/tags/hugo/">Hugo</a> 
+       
+        <a href="/tags/jamstack/">Jamstack</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230922_markdown_to_docx/">Markdown to DOCX</a><br />
+        Converting markdown files
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/210102_hugoafter6/">Writing a Blog - Reflections after a half year</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200817_jamstack/">JAMStack</a><br />
+        defining the JAMStack
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200724_render/">Render</a><br />
+        Using Render for hosting
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230731_ahrefs/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">ahrefs</a></nav>
+</div>
+  </body>
+  </html>

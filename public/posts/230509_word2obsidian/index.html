@@ -1,0 +1,243 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Word to Obsidian with a DIY CI - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&rsquo;d like to include in that journal.">
+    <meta name="keywords" content="linux, markdown, pandoc, CI, shell, obsidian,linux obsidian" />
+    <meta name="twitter:card" content="A simple Ci-like process to send word files to Obsidian">
+    <meta property="og:title" content="Word to Obsidian with a DIY CI" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230509_word2obsidian/" >
+    <meta property="og:description" content="A simple Ci-like process to send word files to Obsidian" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/pandoc.png#floatright" height="140">
+<h1>Word to Obsidian with a DIY CI</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, May 9, 2023</i><br></div></h6>
+  <p><p>I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.</p>
+<h2 id="what-didnt-work">What Didn&rsquo;t Work</h2>
+<p>Just to save you time, I&rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called <a href="https://www.writage.com/">Writage</a>.  It&rsquo;s $29, but a trial version is available.  I&rsquo;m obstinately opposed to closed source and I&rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&rsquo;t tried it.</p>
+<p>I also found an old github repo that purported to address this issue.  That project has pivoted to HTML and deprecated the markdown code.</p>
+<h2 id="the-beginning-of-an-idea">The beginning of an idea</h2>
+<p>Looking for a FOSS solution lead me back to Pandoc.  Long, <em>long</em> time readers may recall one of my early <a href="/posts/200919_pandoc_improved/">experiments</a> with Pandoc.  <a href="https://pandoc.org/">Pandoc</a> is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.</p>
+<p>I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here&rsquo;s the command I came up with.  I&rsquo;ve tested this with business memos and it worked fine.  I haven&rsquo;t tried it with complex tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.</p>
+<pre><code>pandoc -wrap=none -f docx -t markdown &quot;test.doc&quot; -o &quot;test.md&quot;
+</code></pre>
+<h2 id="automating-markdown-conversion-and-ingestion">Automating markdown conversion and ingestion</h2>
+<p>Pandoc gets the conversion, but I really don&rsquo;t want to have to remember that command and then move files around.  I want something that is a DIY pipeline to go from DOCX to Markdown.  Here&rsquo;s how I did it - explanation to follow.</p>
+<pre><code>#!/bin/bash
+TARGET=~/doc2obs/
+PROCESSED=~/Downloads
+
+inotifywait -m -e create -e moved_to --format &quot;%f&quot; $TARGET | while read FILENAME
+do
+  echo Detected $FILENAME
+  pandoc -wrap=none -f docx -t markdown &quot;/home/brent/doc2obs/$FILENAME&quot; -o &quot;/home/brent/doc2obs/$FILENAME.md&quot;
+  echo converted to Markdown
+  rm &quot;/home/brent/doc2obs/$FILENAME&quot;
+  echo removed doc file
+  mv &quot;/home/brent/doc2obs/$FILENAME.md&quot; &quot;/home/brent/2nd Brain/Notes/$(date +%y%m%d)_$FILENAME.md&quot;
+done
+</code></pre>
+<p>I created a directory (doc2obs) and created a watcher shell script.  It waits for a DOCX file to be copied into <em>doc2obs</em>.  When that occurs, it converts the file into markdown, deletes the DOCX, and renames and moves the markdown file.  Of course, the script needs to be executable.</p>
+<pre><code>chmod +x watch-doc2obs.sh
+</code></pre>
+<p>Let&rsquo;s take that script step by step and explain a little more.</p>
+<pre><code>TARGET=~/doc2obs/
+inotifywait -m -e create -e moved_to --format &quot;%f&quot; $TARGET | while read FILENAME
+do
+  ...
+done
+</code></pre>
+<p>This batch of done defines the directory to be monitored.  If your Linux of choice doesn&rsquo;t have <strong>inotify</strong>, it can be loaded using yum or apt as inotify-tools.  -m tells it to monitor, -e defines the events to be monitored.  You can notify on a variety of events.</p>
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+<table class="table table-responsive table-hover">
+<caption>Table of inotify events</caption>
+<thead class="table-info">
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>access</td>
+<td>create</td>
+<td>move_self</td>
+</tr>
+<tr>
+<td>attrib</td>
+<td>delete</td>
+<td>moved_to</td>
+</tr>
+<tr>
+<td>close_write</td>
+<td>delete_self</td>
+<td>moved_from</td>
+</tr>
+<tr>
+<td>close_nowrite</td>
+<td>modify</td>
+<td>open</td>
+</tr>
+<tr>
+<td>close</td>
+<td>move</td>
+<td>unmount</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <strong>echo</strong> commands are present for debugging.  Note that the <strong>mv</strong> moves the markdown file into my Obsidian vault and names it.  My daily notes all start with a date prefix like 230510 (two digits for year, month, and date), so the date command embedded in the move automatically prefixes the markdown file with the current date in the correct format.</p>
+<h2 id="automating-the-script">Automating the script</h2>
+<p>So the script is ready.  I can run it and it will monitor the <em>doc2obs</em> directory until I stop it or reboot.  The next step is to make this into something that just runs automatically, so I don&rsquo;t have to open a shell and worry about restarting it.</p>
+<p>Here I&rsquo;ll refer back to the process I used in <a href="/posts/230313_blog2obsidian/">Automatically adding Hugo articles to Obsidian</a>, which is to use <strong>cron</strong>.  That script ran periodically and this one runs continuously, so we&rsquo;ll modify the approach to ask <strong>cron</strong> to run it once at startup.</p>
+<pre><code>crontab -e  # gets us into edit mode
+# add below entry
+@reboot /home/brent/watch-doc2obs.sh
+</code></pre>
+<h2 id="things-to-fix">Things to fix</h2>
+<p>This does what I need it to do, but I have a few ideas about how it could be improved.  I&rsquo;m not sure if I&rsquo;ll ever get to them, but they&rsquo;re worth noting.</p>
+<p>I build daily notes from a template.  The template is essentially some buttons, backlinks, tags, and such.  I may try to add those elements into the markdown output.  Right now my thought is just to append the tags at the end, which would be easy.</p>
+<p>I could build a set of these CI actions.  Sometimes I get business documents and want to read them later on my tablet, so another idea is to setup a directory that converts to PDF or EPUB and emails it to my kindle email address.  This one I really think I&rsquo;ll do, and will probably blog about.</p>
+<p>This version of the script generates an error when the markdown is created because it&rsquo;s created in the directory I&rsquo;m monitoring.  I could maybe just create it straight into my vault, but I&rsquo;d need to handle the date prepending.  That&rsquo;s not a big issue, but it&rsquo;s a bigger issue than just ignoring an error that doesn&rsquo;t really do anything.</p>
+<h2 id="toodles">Toodles</h2>
+<p>So that&rsquo;s it.  This is a cool project for Obsidian obsessives (hand raised) because it makes it easy to ingest all the <em>other</em> documents in our lives.  But the part I&rsquo;m most excited about is that in a clumsy and hacky way, this is a really easy home delivery pipeline that could be adopted for <em>anything</em> that you want to automate.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.writage.com/">https://www.writage.com/</a><br> &nbsp&nbsp<a href="https://pandoc.org/">https://pandoc.org/</a><br> &nbsp&nbsp<a href="https://www.linuxjournal.com/content/linux-filesystem-events-inotify">https://www.linuxjournal.com/content/linux-filesystem-events-inotify</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+        <a href="/tags/markdown/">markdown</a> 
+       
+        <a href="/tags/pandoc/">pandoc</a> 
+       
+        <a href="/tags/ci/">CI</a> 
+       
+        <a href="/tags/shell/">shell</a> 
+       
+        <a href="/tags/obsidian/">obsidian</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/2310255_bizcard/">Biz card</a><br />
+        Creating a curl-able business card
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
+        Update on NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230509_word2obsidian/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Word to Obsidian with a DIY CI</a></nav>
+</div>
+  </body>
+  </html>

@@ -1,0 +1,148 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Custom Keycaps - Updated - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: From 12-30-20 My kids got me a Ducky mechanical keyboard for Christmas. It&rsquo;s a wonderful keyboard, but the Windows keys are hurting my sensibilities. I decided that I wanted to replace the default Windows logo with the &ldquo;starburst N&rdquo; from my Nextpertise logo.">
+    <meta name="keywords" content="Keyboard, Postscript,Keycaps" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Custom Keycaps - Updated" >
+    <meta property="og:url" content="https://nextpertise.net/posts/201230_keycaps/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/keyboard.png#floatright" height="140">
+<h1>Custom Keycaps - Updated</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Jan 12, 2021</i><br></div></h6>
+  <p><h2 id="from-12-30-20">From 12-30-20</h2>
+<p><img src="/201230_n.png#floatsmallleft" alt="N"></p>
+<p>My kids got me a Ducky mechanical keyboard for Christmas.  It&rsquo;s a wonderful keyboard, but the Windows keys are hurting my sensibilities.  I decided that I wanted to replace the default Windows logo with the &ldquo;starburst N&rdquo; from my Nextpertise logo.</p>
+<p>I found that <a href="https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html">Max Keyboard</a> will custom print keycaps.  At the ordering page there&rsquo;s a link to a chart showing the <a href="https://www.maxkeyboard.com/mechanical-keycap-layout-and-size-chart.html">size</a> of the various keys on different keyboards.  I already new that I needed R1 1.25 keys from Ducky, but MaxKeyboard had the Ducky layout as well so I was able to confirm.</p>
+<p>MaxKeyboard wanted a file to print the image from.  I used a postscript program called &ldquo;rays.ps&rdquo; (available in my postscript github repo) for the original graphic, but MK wanted at least 300x300 and the resolution on my existing picture was a quarter that.</p>
+<p>I decided to update the postscript to just output the &ldquo;N&rdquo; and used a larger size.  Here&rsquo;s the code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-postscript" data-lang="postscript"><span style="display:flex;"><span>/Times <span style="color:#a6e22e">findfont</span> <span style="color:#ae81ff">300</span> <span style="color:#a6e22e">scalefont</span> <span style="color:#a6e22e">setfont</span>  
+</span></span><span style="display:flex;"><span>    /rays  
+</span></span><span style="display:flex;"><span>    { <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1.5</span> <span style="color:#ae81ff">359</span>  
+</span></span><span style="display:flex;"><span>            {<span style="color:#a6e22e">gsave</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">rotate</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">moveto</span> <span style="color:#ae81ff">1200</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">lineto</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">stroke</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">grestore</span>  
+</span></span><span style="display:flex;"><span>            } <span style="color:#a6e22e">for</span>  
+</span></span><span style="display:flex;"><span>    } <span style="color:#a6e22e">def</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">500</span> <span style="color:#a6e22e">translate</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1.5</span> <span style="color:#a6e22e">setlinewidth</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newpath</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">moveto</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">(N)</span> <span style="color:#a6e22e">true</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">charpath</span> <span style="color:#a6e22e">clip</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newpath</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">98</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">translate</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">rays</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">showpage</span>  
+</span></span></code></pre></div><p>Of course, you can easily show this onscreen using: <strong>gs rays.ps</strong></p>
+<p>In the past, I&rsquo;ve used GIMP to read the Postscript and produce other formats.  Yes, GIMP can do that!  But to simplify the operation, I had Ghostscript output directly to PNG.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gs -r600 -sDEVICE<span style="color:#f92672">=</span>pngmonod -sOutputFile<span style="color:#f92672">=</span>n.png rays.ps
+</span></span></code></pre></div><p>MaxKeyboards has an easy to follow ordering page where you can upload your graphic and specify how you want the image placed.  You can even have them print on the front of the keys.  The black part of the image will be translucent to fit with my backlit keyboard.</p>
+<p>I should get my new keys next week!  Looks like the total cost will be about $10 per key.</p>
+<p><img src="/210112_NewKeycaps.webp#floatright" alt="Nextpertise Keycaps"></p>
+<h2 id="update-1-12-21">Update 1-12-21</h2>
+<p>I received the new keys today!  You can see the new keys in the picture here.</p>
+<p>As a side story, after I sent in my purchase I noticed that the PNG file I created had a lot of white space.  I was a little worried that the logo would be small and printed to the side.  MaxKeyboard apparently recognized my error and fixed it.  I was also worried that the fine lines of the rays wouldn&rsquo;t translate well through the 3D printing process.  As you can tell from the picture, they came through perfect.</p>
+<p>It&rsquo;s really fun when small things like this give you happiness.  I giggled a little taking off the Windows keys and replacing them!  The new keys fit perfectly and the size was dead on.</p>
+<p>MaxKeyboard did a great job!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html">https://www.maxkeyboard.com/custom-backlight-compatible-keycap-for-backlit-keyboard.html</a><br> 
+    
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/postscript_projects">Nextpertise on Github</a><br></strong>
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/keyboard/">Keyboard</a> 
+       
+        <a href="/tags/postscript/">Postscript</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/200803_funwithpostscript/">Fun with Postscript</a><br />
+        Postscript is a fun programming language to learn
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201230_keycaps/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Custom Keycaps - Updated</a></nav>
+</div>
+  </body>
+  </html>

@@ -1,0 +1,140 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise NVidia 5.35 Update - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Two months ago, I warned of issues with the 5.35 driver Since the initial post, I tried 5.35 after a rev and found that it worked well.">
+    <meta name="keywords" content="linux,NVidia driver" />
+    <meta name="twitter:card" content="Update on NVidia 5.35">
+    <meta property="og:title" content="NVidia 5.35 Update" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230819_nvidia535/" >
+    <meta property="og:description" content="Update on NVidia 5.35" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>NVidia 5.35 Update</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Thursday, Oct 19, 2023</i><br></div></h6>
+  <p><h1 id="two-months-ago-i-warned-of-issues-with-the-535-driver">Two months ago, I warned of issues with the 5.35 driver</h1>
+<p>Since the initial post, I tried 5.35 after a rev and found that it worked well.  Until today.</p>
+<pre><code>nvidia-smi
+</code></pre>
+<p>I used <em>nvidia-smi</em> this time and was able to see that - although dpkg showed the files installed, the driver wasn&rsquo;t loaded.  I found some instructions from Michael Murphy on [Lemmy.world] that helped to resolve this.</p>
+<pre><code>sudo apt purge ~nnvidia
+sudo apt install nvidia-driver-535
+sudo reboot
+</code></pre>
+<h2 id="keep-this-handy">Keep this handy</h2>
+<p>There&rsquo;s definitely something funky about 5.35.  I haven&rsquo;t had this problem before and this machine has been stable for a couple years now.  It&rsquo;s probably a good idea to keep this idea in mind when you install the latest drivers.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
+        Remote access via Cheese
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        A simple Ci-like process to send word files to Obsidian
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230819_nvidia535/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">NVidia 5.35 Update</a></nav>
+</div>
+  </body>
+  </html>

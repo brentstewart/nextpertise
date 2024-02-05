@@ -1,0 +1,157 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Rational Change Control - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Nobody likes change but a baby. That&rsquo;s the saying anyway. Yet in IT, we have to deal with constant change. Not only that, we have to manage it to minimize risk and harm.">
+    <meta name="keywords" content="management,Change Control" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Rational Change Control" >
+    <meta property="og:url" content="https://nextpertise.net/posts/210318_changecontrol/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/management.png#floatright" height="140">
+<h1>Rational Change Control</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Mar 17, 2021</i><br></div></h6>
+  <p><p>Nobody likes change but a baby.  That&rsquo;s the saying anyway.  Yet in IT, we have to deal with constant change.  Not only that, we have to manage it to minimize risk and harm.  <strong>And</strong> we have to balance the natural tendency to manage through bureaucracy against the need to get things done without paperwork getting in the way.</p>
+<p>This article isn&rsquo;t about why you need change control: <strong>you do</strong>.  It&rsquo;s not about the value of ITIL or ticketing: <strong>they&rsquo;re necessary</strong>.  But if you&rsquo;re going to turn this &ldquo;computer-thing&rdquo; into a career, you need to figure out change control and that&rsquo;s what this article is about.</p>
+<p>A lot of my thinking on this topic comes from working with people like Dan and Umesh.  These are thoughts that we developed together and made work, and that&rsquo;s why I feel confident recommending them to you.</p>
+<h2 id="planning-and-oversight">Planning and oversight</h2>
+<p>Change control documentation needs to layout the change for review.  Review is not a second-guessing session, although if you propose something stupid it can be.  Good change review is going to make sure that the plan makes sense, that the right people are notified, that there are no conflicts with other IT changes or business requirements, and that the appropriate level of specificity is present in the docs.</p>
+<p>The right level of specificity . . . that sounds tricky.  Generally, I&rsquo;ve found that proposed changes fall into three piles.  The easy pile really doesn&rsquo;t need to be reviewed, it just needs a little documentation.  The medium pile needs a little review, perhaps by a manager, and a little more verbiage in the docs.  The hard pile needs a lot of careful thought and benefits from a collaborative and thorough review.  It needs to be reviewed at several stages, including by a Change Advistory Board.</p>
+<p><img src="/210321_Change_Matrix.png#floatsmallleft" alt="Change Matrix"></p>
+<p>The table on the left is the one that I&rsquo;ve developed and used.  Changes are described by risk and asset criticality.<br>
+<strong>Risk</strong> – risk is subjective from the perspective of the person performing the change. What is not risky for you might be more risky for me.<br>
+• Low – I’ve done this a million times and it always works. There is a redundant system and backout plan.<br>
+• Medium – I’ve done this a few times and it usually works. There is a redundant system and backout plan.<br>
+• High – I don’t have a lot of experience OR there isn’t a redundant system or backout process that meets the availability budget.</p>
+<p><strong>Asset Criticality</strong> – This is defined per CI or environment. Availability budget is an SRE concept that specifies the target availability based on budgeting and does not include regular scheduled downtime. The exact AB percentages and how they are measured will change based on the environment, but they might look something like this.<br>
+• Low – interruption or loss impact one or a small number of non-critical systems/users at non-critical times<br>
+• Medium – interruption or loss impacts ability to conduct business (availability budget &gt;98%)<br>
+• High – an interruption or loss of this system would impact clients (availability budget &gt; 99.99%)</p>
+<p>Yes, this ranking is a little arbitrary.  My experience is that having an overly complicated system leads to folks using the system to justify making changes &ldquo;less critical&rdquo;.  A simpler system trusts the engineers more and they typically respond to that trust with more conservative assessments.  That said, if nothing bad happens then changes will be viewed as less risky over time.  One important component is that the CAB needs to review a sample of non-critical changes and push back by calling out some examples of mis-classified changes.</p>
+<h2 id="documentation-and-review">Documentation and review</h2>
+<p><img src="/210321_Change_Control.png#floatsmallright" alt="Change Matrix"></p>
+<p>CAB documentation needs the full kit and caboodle and here&rsquo;s what that looks like:</p>
+<p><strong>Purpose:</strong>  Why is this change necessary?  What is being done (in 20 words or less)?<br>
+<strong>Basics:</strong> Who is doing the work?  What is the proposed change window?  <strong>NOTE</strong>: I recommend that a change window include recovery time.  If that&rsquo;s not known, I generally allocate 1/3 of the window for the change, 1/3 for the troubleshooting, and 1/3 for backout.  In a complicated change, I actually script steps and expected time of completion for each, plus have a hard fail-back moment.<br>
+<strong>Affected devices (CIs):</strong> Which pieces are being changed?<br>
+<strong>Risk of Change:</strong> If we go forward, what&rsquo;s the worst that could happen?<br>
+<strong>Risk of NOT making the change:</strong> <em>Ah</em>, here&rsquo;s an important point.  In IT there is often risk in making a change, but if you DON&rsquo;T apply that patch you are vulnerable.  If you DON&rsquo;T upgrade, power supplies fail.  Stuff will happen and it&rsquo;s important to point out that sitting on our hands won&rsquo;t save us.<br>
+<strong>Impact:</strong>  Describe the impact <em>assuming everything goes as planned</em>.  For instance, the plan is to upgrade an OS which will require a reboot.  Users will <em>at minimum</em> see an impact for minutes while the device reboots.<br>
+<strong>Details:</strong> This section is a breakdown of the steps involved.  The level of detail has to be worked out in each organization, but I generally find that it needs to be detailed enough that multiple people familiar with the equipment could read the doc and would interpret it similarly and complete the same steps.  Using the exact commands can be good, but it&rsquo;s best to be a little vague so that a missed detail doesn&rsquo;t require another change control document.<br>
+I like to breakdown the activity into three areas.  Pre-downtime and Downtime cover the preparation and the activity during the change window.  These steps also need to describe how the change will be tested.  Backout Plan talks about steps to be taken if it doesn&rsquo;t go well.  Each of these steps need to include communications - who will be notified and when will they be notified?</p>
+<p>In my opinion, CAB level changes should be previewed by the manager to prevent wasting the Boards&rsquo; time.  The manager should also review the result to ensure it meets the commitment.  Less complicated changes don&rsquo;t need this level of detail.  &ldquo;Medium&rdquo; changes can usually focus on the details and just be approved by a manager.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>Change systems are about organizing people and getting them to talk to one another.  They&rsquo;re also about holding folks accountable for a professional level of forethought.  Notice that I didn&rsquo;t say results - we all recognize that even the best planned and most predictable upgrades can go sideways without it being someone&rsquo;s fault.  But if the right kind of thought process was used, we&rsquo;re equipped to recognize the problems and correct them, or at least escape unharmed.</p>
+<p>Similarly, making sure that the right people are consulted and updated means that these little &ldquo;oops&rdquo; moments become events that generate <em>more</em> trust.  Imagine a VIP saying, &ldquo;You told me something might happen, when it did you were prepared for it and kept me in the loop, and harm was minimize because of the thoughtful approach.&rdquo;</p>
+<p>I like to say that a good change process is like a victory lap - all the hard work is done before the change ever starts.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/management/">management</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/231002_technicaldebt/">Technical Debt</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230127_goodhardt/">Goodhardt&rsquo;s Law</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221115_leadership/">Wisdom in 17 sayings</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220530_interviewing/">Interviewing</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210318_changecontrol/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Rational Change Control</a></nav>
+</div>
+  </body>
+  </html>

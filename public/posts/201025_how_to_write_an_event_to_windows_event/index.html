@@ -1,0 +1,175 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise How to write an event to Windows and Linux logs - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Anyone who has trouble sleeping should discover the joys of reviewing Syslog data. System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.">
+    <meta name="keywords" content="Syslog, Windows, Linux, Security,Logs" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="How to write an event to Windows and Linux logs" >
+    <meta property="og:url" content="https://nextpertise.net/posts/201025_how_to_write_an_event_to_windows_event/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/security.png#floatright" height="140">
+<h1>How to write an event to Windows and Linux logs</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Oct 25, 2020</i><br></div></h6>
+  <p><p>Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.</p>
+<p>One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.</p>
+<h2 id="powershell-sudo">PowerShell sudo</h2>
+<p>A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the built-in terminal in Visual Studio Code (or VSCodium) for Windows, which uses a &ldquo;non-admin&rdquo; session.</p>
+<p>Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses <em>scoop</em> to grab a &ldquo;sudo&rdquo; application for Powershell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>iex (new-object net.webclient).downloadstring(<span style="color:#e6db74">&#39;https://get.scoop.sh&#39;</span>)
+</span></span><span style="display:flex;"><span>set-executionpolicy unrestricted -s cu <span style="color:#f92672">-f</span>  
+</span></span><span style="display:flex;"><span>scoop install sudo
+</span></span></code></pre></div><h2 id="how-to-write-an-event-to-windows-event-log">How to write an Event to Windows Event Log</h2>
+<p>This technique allows you to place comments into the Windows event logs, for instance to mark the beginning or completion of a change window.  We could also build this into certain scripts so that they left an entry when they ran.  It could even be automated into systems so that the markings took place without a person having to remember.</p>
+<p>The general process is to create an information &ldquo;source&rdquo; to write into (if it doesn&rsquo;t already exist) and then to write the event.</p>
+<h3 id="creating-a-log-source">Creating a log source</h3>
+<p>Since we&rsquo;re creating log events for comments, let&rsquo;s create a log source that matches our username.  If there are several admins, it may be a good idea to use a format like &ldquo;admin-username&rdquo; so that we can later search logs for &ldquo;admin*&rdquo;.  Creating a new source requires PowerShell to run with Administrator priviledges.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>New-eventlog -logname application -source <span style="color:#e6db74">&#34;brent&#34;</span>
+</span></span></code></pre></div><p>Note that you can use the environment variable <em>$env:username</em>.  You can build this into a script - if the source already exists, the command will return an error to that effect.</p>
+<h2 id="logging-an-entry">Logging an entry</h2>
+<p>To create a log entry use the &ldquo;write-eventlog&rdquo; cmdlet.  Specify the log (like Application or Security), the source that we defined, and the message.  The EventID isn&rsquo;t significant, so you could also use this numeric field if you had something suitable (like a ticket number).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Write-EventLog -LogName Application -Source <span style="color:#e6db74">&#34;brent&#34;</span> -EntryType Information -Message <span style="color:#e6db74">&#34;Sample text&#34;</span> -EventID <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>It is also possible to write an entry on a remote computer. The example below assumes that the source &ldquo;bstewart&rdquo; exists on the remote computer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Write-EventLog -computername <span style="color:#e6db74">&#34;Server&#34;</span> -LogName Application -Source <span style="color:#e6db74">&#34;bstewart&#34;</span> -EntryType Information -Message <span style="color:#e6db74">&#34;Sample text&#34;</span> -EventID 1__  
+</span></span></code></pre></div><h2 id="scripting">Scripting</h2>
+<p>This can all be simplified in a script, saved as &ldquo;log.ps1&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>  
+</span></span><span style="display:flex;"><span>{  
+</span></span><span style="display:flex;"><span>        sudo New-eventlog -logname application -source $env:username  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Catch</span>  
+</span></span><span style="display:flex;"><span>{  
+</span></span><span style="display:flex;"><span>    Write-Output <span style="color:#e6db74">&#34;Log source already exists&#34;</span>  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span>Write-eventlog -logname application -source $env:username -entrytype information -message $args[<span style="color:#ae81ff">0</span>] -eventid <span style="color:#ae81ff">1</span>  
+</span></span><span style="display:flex;"><span>write-host <span style="color:#e6db74">&#34;The following was written to the Application log using the source </span>$env:username<span style="color:#e6db74"> for that log.&#34;</span>  
+</span></span><span style="display:flex;"><span>write-host $args[<span style="color:#ae81ff">0</span>]  
+</span></span></code></pre></div><p>Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&gt; .\log.ps1 <span style="color:#e6db74">&#34;Something happened&#34;</span>
+</span></span></code></pre></div><h1 id="linux-much-easier">Linux (much easier)</h1>
+<p>Writing to the Linux journal is pretty straight-forward.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;Sample text&#39;</span> | Systemd-cat
+</span></span></code></pre></div><p>To take a look at this, just use <strong>journalctl -f</strong>.</p>
+<p>We&rsquo;ll talk about logging to syslog another time, or maybe I can talk Myron into delving in because he has great experience with pulling things out of SIEMs.  Whether you use this in the scope of a SIEM or just for local logging, I&rsquo;m sure you&rsquo;ll find this idea useful.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://scoop.sh/">https://scoop.sh/</a><br> &nbsp&nbsp<a href="https://github.com/lukesampson/scoop">https://github.com/lukesampson/scoop</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/syslog/">Syslog</a> 
+       
+        <a href="/tags/windows/">Windows</a> 
+       
+        <a href="/tags/linux/">Linux</a> 
+       
+        <a href="/tags/security/">Security</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        A Gnome extension, compatible with Pop! that lables workspaces
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        Getting VSCode to work on Android
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        Running TOR
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221226_fancywm/">FancyWM</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201025_how_to_write_an_event_to_windows_event/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">How to write an event to Windows and Linux logs</a></nav>
+</div>
+  </body>
+  </html>

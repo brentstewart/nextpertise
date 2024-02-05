@@ -1,0 +1,122 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Filezilla - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Filezilla produces a set of graphical file transfer tools and this has been a high-quality product for a very long time. I&rsquo;ve used Filezilla since the early 2000s, as have a lot of other folks, and it&rsquo;s something of a standard in industry where FTP/FTPS is used.">
+    <meta name="keywords" content="ftp,Filezilla" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Filezilla" >
+    <meta property="og:url" content="https://nextpertise.net/posts/220626_filezilla/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/ftp.png#floatright" height="140">
+<h1>Filezilla</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Jun 26, 2022</i><br></div></h6>
+  <p><p>Filezilla produces a set of graphical file transfer tools and this has been a high-quality product for a very long time.  I&rsquo;ve used Filezilla since the early 2000s, as have a lot of other folks, and it&rsquo;s something of a standard in industry where FTP/FTPS is used.  Part of the charm is that the Filezilla client is very accessible for non-technical folks - a little introduction and they can manage their own downloads.</p>
+<p>The traditional Filezilla open-source client supports FTP and SFTP.  Filezilla makes an open-source FTP/FTPS server that makes it easy to host an FTP site.  Filezilla server used to be a great way to support FTP on a Windows server (and I used it that way 15 years ago), but researching this article I see that it is now offered for other OS as well.  They have also released a <a href="https://filezilla-project.org/filezilla_pro.php">Filezilla Pro</a> client that includes support for things like WebDAV, S3, and various cloud file stores.</p>
+<p><img src="/220626_Filezilla.png#floatright" alt="Filezilla"></p>
+<h2 id="using-filezilla">Using Filezilla</h2>
+<p>I still occassionally have to explain Filezilla to new folks, so I thought I&rsquo;d document a quick run through.</p>
+<p>When you first start Filezilla, local files are on the left and remote files are on the right.  Because you haven&rsquo;t connected anywhere, the right pane will be blank to start.  Note the path for each side is shown above the files (marked (1)).</p>
+<p>You can &ldquo;quick connect&rdquo; by typing in the particulars in the top row (marked (2) in the picture).  To attach to a remote FTP server, for instance, you might fill in host with an IP address (like 1.2.3.4) or a Fully Qualified Domain Name (an FQDN looks like &ldquo;ftp.makingthisup.com&rdquo;).  Username and password are for the remote system and will be supplied by the administrator of that system.  Most FTP systems use port 21 and most FTPS systems use port 22, so it&rsquo;s safe to assume these port numbers unless you&rsquo;ve been given an alternative.  When everything is ready, click the button!</p>
+<p>Another way to connect is to use bookmarks.  This is particularly useful if you attach to the same remote systems repeatedly.  To create a bookmark, click the top left icon that looks like a file folder (marked (3) in the picture).  Once that screen opens, click New Site and fill in the same particulars that were used for the quick connect.  Bookmarks offer a range of logon types including:</p>
+<ul>
+<li>Anonymous - don&rsquo;t trust any site using this 🙂</li>
+<li>Normal - just fill in the user/pass below.</li>
+<li>Ask - it will pop a box for login when you connect.</li>
+<li>Interactive - not really sure, don&rsquo;t recall using that</li>
+<li>Key file - used if you have a cryptographic key supplied by an SFTP server owner.  If you are using FTP you don&rsquo;t need this.</li>
+</ul>
+<p>Once you&rsquo;re done, click OK to save it or &ldquo;Connect&rdquo; to save and to start a session immediately.</p>
+<p>Remote files will appear in the area marked (4).  Filezilla functions like a normal file manager with two side-by-side windows open.  Click &ldquo;..&rdquo; to go up a level, click a directory to open it.  Once you&rsquo;ve found the files you need, either double-click the remote files to start a transfer or drag them to a local directory.</p>
+<p>Filezilla has a lot of features that address more advanced cases, but this introduction covers the basics that are used 99% of the time.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://filezilla-project.org/">https://filezilla-project.org/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/ftp/">ftp</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220626_filezilla/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Filezilla</a></nav>
+</div>
+  </body>
+  </html>

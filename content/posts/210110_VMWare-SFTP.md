@@ -5,11 +5,11 @@ draft: false
 author: "Brent Stewart"
 Victor_Hugo: "true"
 Focus_Keyword: "VMWare"
-picture: "vmware"
+picture: "virtualization"
 github: ""
 youtube: ""
 refs: [""]
-tags: ["VMWare","SSH"]
+tags: ["virtualization","SSH"]
 ---
 
 ![VMWare SFTP](/210110_VMWare-SFTP.png#floatright)

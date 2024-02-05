@@ -1,0 +1,135 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Whitelisting Approach to Security - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Today, I am sure that you would be hearing a lot of buzz around ransomware and other malware outbreaks. To combat some of these threats on a home consumer scale, we mostly use a traditional Anti-Malware (Anti-Virus) software.">
+    <meta name="keywords" content="Security,Whitelisting, AppSamvid" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Whitelisting Approach to Security" >
+    <meta property="og:url" content="https://nextpertise.net/posts/201110_whitelisting_approach/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/security.png#floatright" height="140">
+<h1>Whitelisting Approach to Security</h1> 
+  <h6><div style="text-align: right"><i>by Myron Estibeiro</a>  on Wednesday, Oct 7, 2020</i><br></div></h6>
+  <p><p>Today, I am sure that you would be hearing a lot of buzz around ransomware and other malware outbreaks.  To combat some of these threats on a home consumer scale, we mostly use a traditional <strong>Anti-Malware</strong> (Anti-Virus) software. As you may know, this technology is based on signatures, patterns and heuristics, which are extracted from the malware behaviour or type; thus, as the number of malware instances increase, becoming more sophisticated in the ever increasing threat landscape, it becomes very hard for the Anti-Virus companies to keep up with the pace. I would like to call this a “Cat and a Mouse Chase”.  Anti-Virus software may give you the best protection against known malware, but it may never give you adequate protection against unknown malware, whose signatures, patterns and heuristics are not known to anyone. By design, the traditional Anti-Virus fails miserably and is unable to keep up with todays sophisticated and evolving malware. This post is a follow-up to <a href="/posts/200805_reasonablysecurebrowsing/">reasonable secure browsing</a>.</p>
+<p>Instead of focussing on blocking known malware through an Anti-Virus software, how about we only allow the applications and programs we trust and use on daily basis, and block everything else? Well, this is exactly what is called a <strong>“Whitelist”</strong> approach, while the former that we discussed above is called a <strong>“Blacklist”</strong> approach. This approach can be nearly 100% effective in blocking all malware if used correctly; however, most of the Whitelisting software out there is very expensive and only targeted towards enterprise use.</p>
+<p><img src="/whitelist.png" alt="WL"></p>
+<p>I use something called as <strong>AppSamvid</strong>, which is a free utility that is freely available at: <a href="https://cdac.in/index.aspx?id=cs_eps_appsamvid">https://cdac.in/index.aspx?id=cs_eps_appsamvid</a>
+You can use this on any of your Windows based system and have it run as a Whitelisting software. Once installed, you would need to provide the list of applications and software utilities that you trust and use daily. Ideally, you should setup your system and create an effective “Baseline” that is a known ‘good’ or ‘trusted’ system state. Beyond this, any attempts to execute applications that are not listed in the Trusted list would be automatically blocked. You can unblock applications by providing the path or the file Hash. This is highly effective in blocking known and known malware.</p>
+<p>Give this a try and get one step closer in perfecting your system security!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://cdac.in/index.aspx?id=cs_eps_appsamvid">https://cdac.in/index.aspx?id=cs_eps_appsamvid</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/security/">Security</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        Running TOR
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201120_kali_linux_2020_4/">Kali Linux 2020.4</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201113_pingcastle/">Active Directory Security Assessment with PingCastle</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/201025_how_to_write_an_event_to_windows_event/">How to write an event to Windows and Linux logs</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/200930_opendnsforhome/">OpenDNS For Home</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/201110_whitelisting_approach/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Whitelisting Approach to Security</a></nav>
+</div>
+  </body>
+  </html>

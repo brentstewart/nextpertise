@@ -1,0 +1,169 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Nautilus Tweaks - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Nautilus, the Gnome file manager, has a number of available plug-ins available that make it much easier to use. It also supports a scripting function that you can use to develop your own extensions.">
+    <meta name="keywords" content="linux,Nautilus" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Nautilus Tweaks" >
+    <meta property="og:url" content="https://nextpertise.net/posts/220717_nautilus_tweaks/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>Nautilus Tweaks</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Jul 17, 2022</i><br></div></h6>
+  <p><p>Nautilus, the Gnome file manager, has a number of available plug-ins available that make it much easier to use.  It also supports a scripting function that you can use to develop your own extensions.  The extentions can be easily added using <em>apt</em>, but many of them will not be active until a reboot.  You can short-circuit that process by using <strong>nautilus -q</strong> to quit all open instances of nautilus and then opening a new window.  I&rsquo;m using all of the following extensions with <em>Pop! OS 22.04</em>, so I can verify they work in COSMIC.</p>
+<p><img src="/220717_gnomeimageresize.png#floatsmallright" alt="Nautlus Image Resize"></p>
+<h2 id="easily-downsize-an-image">Easily Downsize an Image</h2>
+<p>The first plug-in, and the one I use the most, is the image converter.  I maintain a simple internal web page with the sites I use the most and I like to grab an image to use as a site icon.  There are a lot of ways to get a good icon - some sites allow you to right click and save as.  Some icons are available on <a href="https://images.google.com">Google Images</a>.  I also sometimes just use Flameshot to grab a screen portion.  The problem with all these methods is that they don&rsquo;t create a standard image size.  I can dynamically resize, but that slows down my page display.  I can also use GIMP to resize, but that&rsquo;s an involved process.</p>
+<p>This is a problem that pops up fairly often.  There&rsquo;s never the exact right icon in Lucidchart, so I want to pull one in.  I create a new GNS3 device and want to put a cool image on it.  In all these cases, I want a standard size.  The solution is the Nautilus Image Converter.  This can be installed from the command line as shown.</p>
+<pre><code>sudo apt install nautilus-image-converter
+</code></pre>
+<p>Right click an image and you&rsquo;ll be offered two new menu options - rotate and resize.  This let&rsquo;s you easily scale the image or set it to a desired size (96x96 works well for a lot of icons, I use 72x72 for GNS3 icons per their style guide).  You can change the current file or save it as a new file.</p>
+<h2 id="preview-a-file">Preview a File</h2>
+<p>Gnome Sushi is a way to quickly preview a file.  Sushi works with most text, music, image, and video formats.  Install this using apt:</p>
+<pre><code>sudo apt install gnome-sushi
+</code></pre>
+<p>Once installed, choose a file and hit [space] to open a preview.  Arrow keys can be used to move through the Nautilus directory with the preview window updating to show each file.  [Esc] can be used to close the preview.</p>
+<h2 id="admin">Admin!</h2>
+<p>Windows has a cool right-click option to &ldquo;open as Administrator&rdquo;.  This plug-in is similar - the context window will show &ldquo;Edit as Administrator&rdquo;.  Choosing it will open a prompt to escalate priviledges (side note, this works really well with <a href="/posts/220501_howdy/">Howdy</a>.  This extension is trying to open whatever file as a text file, so it doesn&rsquo;t work with images (for instance).  Install this as shown below.</p>
+<pre><code>sudo apt install nautilus-admin
+</code></pre>
+<p><img src="/220717_foldercolors.png#floatsmallright" alt="Nautlus Image Resize"></p>
+<h2 id="folder-colors">Folder Colors</h2>
+<p>Folder colors is an arguably less useful add-in.  This allows particular folders be be changed from the default color.  My experience is that this is most useful when applied sparingly.  I use this to highlight important folders that I want to be able to easily zoon in on in a list.  Install this plug in as shown below.</p>
+<pre><code>sudo apt install folder-color
+</code></pre>
+<p>Once installed and Nautilus is restarted, there should be a &ldquo;Folder&rsquo;s Color&rdquo; option in the context menu.</p>
+<p><img src="/220717_hash.png#floatsmallright" alt="Hashing"></p>
+<h2 id="hash">Hash</h2>
+<p>Hashing is a mathematical technique for testifying that a file has not changed since it&rsquo;s originator created it.  A hash takes a set of numbers and converts them to a specific length code, or &ldquo;hash&rdquo;.  It&rsquo;s important that the length is consistent - we don&rsquo;t want that to provide a clue to the length of the file!  The simplest hash would be just to add up all the binary ones in a file and return &ldquo;0&rdquo; if there are an even number and &ldquo;1&rdquo; to indicate odd.  Obviously, that&rsquo;s not a real hash, but it starts to convey the idea.  Modification to the file might change the hash and alert users.  A clever miscreant might recognize the problem and change the file in a way that keeps the same hash and file size, so we need more complicated math to make this more difficult.</p>
+<p>If you download a file from the Internet, the originator may publish a hash that you can use to verify your download.  Typically you&rsquo;d do this from the command line using an implementation of the hashing algorithym (examples follow).</p>
+<pre><code>md5sum myfile
+sha1sum myfile
+sha256sum myfile
+</code></pre>
+<p>You can install a Nautilus add-in, as shown below, to do this as well.</p>
+<pre><code>sudo apt install nautilus-gtkhash
+</code></pre>
+<p>Go to &ldquo;properties&rdquo; in the context menu and you&rsquo;ll see a window similar to the example.  Go to the Digest tab (1) and select the hashes you&rsquo;d like to computer (2).  Press the Hash button(3) and it will compute your hashes.  Is this easier than the command line?  Probably not, but if you&rsquo;re in a graphical workflow sometimes this is easier.</p>
+<h2 id="new-document">New Document</h2>
+<p>The last tip is around creating new blank documents.  Windows allows you to create a new text file, for instance, so this feature allows you to do the same in Gnome.  There&rsquo;s nothing to add-in.  Gnome has a templates folder in your home directory (~/Templates).  Any file you place here will be available under New Document.  To play with this, just create a document in that directory.</p>
+<pre><code>touch ~/Templates/&quot;New Document&quot;
+</code></pre>
+<p>Next, in any directory, right click and you should see a &ldquo;New Document&rdquo; option with an indicator that you can create a variety of documents based on templates.  You could, for instance, create a markdown file with Hugo header information already defaulted and name it &ldquo;New Markdown&rdquo;.  You could take a spreadsheet formatted for accounting and call it &ldquo;New Expense Report&rdquo;.  That said, this is the feature I use the least.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
+        Update on NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
+        Remote access via Cheese
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220717_nautilus_tweaks/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Nautilus Tweaks</a></nav>
+</div>
+  </body>
+  </html>

@@ -1,0 +1,415 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Review on </title>
+    <link>https://nextpertise.net/tags/review/</link>
+    <description>Recent content in Review on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Jul 2023 21:28:53 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/review/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ahrefs</title>
+      <link>https://nextpertise.net/posts/230731_ahrefs/</link>
+      <pubDate>Mon, 31 Jul 2023 21:28:53 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/230731_ahrefs/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been writing in this space for about three years.  I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.  My source files, for instance, were fairly easy to organize in the first year but over time have sprawled.  Changes to my Hugo template have broken some older internal URLs as well.  Even when I recognize the possibility of an issue, it&amp;rsquo;s hard to track down every instance that broke.&lt;/p&gt;
+&lt;p&gt;One simple example is that I originally put my entries into the root folder and later moved them to &lt;em&gt;/posts&lt;/em&gt;.  The issue is that all my older files referenced each other withoot that directory.  I&amp;rsquo;ve corrected this when I see it, but I&amp;rsquo;m sure that readers have stumbled onto these inadvertant issues.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Mea culpa&lt;/em&gt;, but I have a day job and it&amp;rsquo;s hard to keep up sometimes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/ahrefs.png#floatright&#34; alt=&#34;Ahrefs logo&#34;&gt;
+A few months ago I found &lt;a href=&#34;https://app.ahrefs.com/&#34;&gt;Ahrefs&lt;/a&gt;.  Ahrefs is a website that has a gazillion tools that are useful in improving website quality.  There are a few of these sites and most include a &amp;ldquo;try before you buy&amp;rdquo;, but Ahrefs actually has a free tier that provides valuable feedback.&lt;/p&gt;
+&lt;h2 id=&#34;website-quality&#34;&gt;Website Quality&lt;/h2&gt;
+&lt;p&gt;Ahrefs scans this site every Sunday and sends me a report.  It has taken a little time to understand how to use the data they provide - remember, this isn&amp;rsquo;t really what I do.  That said, anyone who is interested in maintaining a blog is already putting in a certain amount of work to figure things out and Ahrefs is accessible with little effort.&lt;/p&gt;
+&lt;p&gt;There are a ton of QA metrics, including all kinds of different types of returned errors.  One of the errors is &amp;ldquo;image file size too large&amp;rdquo;.  It clearly points to the source image and the page where it is used.  I was able to load that image into Gimp, change the JPEG quality and scale, and resave to resolve the issue.
+&lt;img src=&#34;https://nextpertise.net/230731_healthscore.png#floatleft&#34; alt=&#34;Health Score&#34;&gt;
+Broken links are another area where I&amp;rsquo;ve been able to drive improvement.  Hugo makes it easy to apply a template to markdown and generate a site, but errors in the template get propogated across a lot of places (and I&amp;rsquo;m sure are annoying to read).  I&amp;rsquo;ve used Ahrefs to quickly point at the offenders and resolve.&lt;/p&gt;
+&lt;p&gt;If you are developing in Hugo, theres a &amp;ldquo;compiling&amp;rdquo; step to get from raw markdown to a website.  It&amp;rsquo;s not always clear where some of the errors come from, so I&amp;rsquo;ve found that I need to run &lt;strong&gt;hugo server -D&lt;/strong&gt; to generate a live copy of the page for debugging.  Sometimes my error is in the page, but I&amp;rsquo;ve found several instances where the issue was in the interaction of the page with my templates.  None fo the issue have been hard to resolve, they just take some thought.&lt;/p&gt;
+&lt;p&gt;I particularly like that Ahrefs summarizes all the issues into a &amp;ldquo;Health Score&amp;rdquo;.  This makes it easy to see how you are doing at-a-glance.  You can see from my score, I have some improvements to make.  That said, Ahrefs also makes it easy to browse the issues and prioritize your time.  I have 237 issues with &amp;ldquo;Multiple meta description tags&amp;rdquo;.  Clearly that&amp;rsquo;s a tag thats being duplicated at the default template and in a partial.  That said, it doesn&amp;rsquo;t impact the user experience and so I&amp;rsquo;ve been prioritizing the more mundane link issues.&lt;/p&gt;
+&lt;h2 id=&#34;seo&#34;&gt;SEO&lt;/h2&gt;
+&lt;p&gt;Ahrefs has a number of tools around search engine optimization.  I&amp;rsquo;m sure that this would be fantastically interesting if I were building an ecommerce site, but even at an amatuer level it&amp;rsquo;s cool to see what other sites link back to me.  There are also tools around what keywords will bring people to the site, what my most popular pages are, and what topics are most popular.&lt;/p&gt;
+&lt;p&gt;The SEO side includes errors around mistakes I&amp;rsquo;ve made that inhibit indexing.  Right now I&amp;rsquo;m missing &amp;ldquo;Social Graph Tags&amp;rdquo; that are used by LinkedIn and Facebook - who knew?  But the error includes a brief explanation, a link to details, and a &amp;ldquo;How to Fix&amp;rdquo; link with good instructions.  Of course, Hugo is not HTML, so there&amp;rsquo;s some level of translation.&lt;/p&gt;
+&lt;h2 id=&#34;paid-accounts&#34;&gt;Paid Accounts&lt;/h2&gt;
+&lt;p&gt;Serious webmasters will want to conssider a paid account.  The paid account includes a lot more SEO tools and analysis.  Accounts start at $83/mo (paid annually), so they&amp;rsquo;re not for the faint of heart, but I&amp;rsquo;m really impressed by the quality of what I see.  I appreciate that Ahrefs makes valuable information available for hobbiest and recommend it as a good way to start understanding more about how HTML, the web, and the world work.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tailscale</title>
+      <link>https://nextpertise.net/posts/221004_tailscale/</link>
+      <pubDate>Tue, 04 Oct 2022 14:48:18 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/221004_tailscale/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m interested in TailScale.  I&amp;rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (&lt;a href=&#34;https://nextpertise.net/posts/201027_zerotier/&#34;&gt;Zerotier Basic Configuration&lt;/a&gt; and &lt;a href=&#34;https://nextpertise.net/posts/201027_zerotierrouter/&#34;&gt;ZeroTier Router&lt;/a&gt;).  ZeroTier continues to work well, but I haven&amp;rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&amp;rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.&lt;/p&gt;
+&lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
+&lt;p&gt;Both ZeroTier and TailScale are &amp;ldquo;overlay networks&amp;rdquo;.  I have a Meraki stack at home with two Internet connections (WISP and Starlink).  Meraki has horrible VPN support and I&amp;rsquo;m not over-enthused about cutting holes in my firewall.  Plus, anything that requires an ISP failover would kill VPN, so these overlay-style connections fit my needs closely.&lt;/p&gt;
+&lt;p&gt;Both solutions use NAT traversal techniques and some of the same encryption suite.  Tailscale is an implementation of Wireguard (which is all the rage in Linux circles), but Zerotier predates wireguard and is a custom solution.  I&amp;rsquo;m not aware of any active security issues with either.  Obviously though, you&amp;rsquo;re only as secure as who you trust.&lt;/p&gt;
+&lt;p&gt;Both ZeroTier and Tailscale operate in a &amp;ldquo;freemium&amp;rdquo; model, where the rendezvous server allows 20 connections.  Larger networks require a subscription, but both have self-hosted rendezvous servers as an option (presumably you&amp;rsquo;d set these up on something like EC2). I solved this with ZeroTier by configuring an Ubuntu server as a router from the ZT network into my home network.&lt;/p&gt;
+&lt;h2 id=&#34;experience-with-tailscale&#34;&gt;Experience with TailScale&lt;/h2&gt;
+&lt;p&gt;The Tailscale experience starts with signing up on the &lt;a href=&#34;https://tailscale.com&#34;&gt;website&lt;/a&gt;.  Instructions are provided for all the supported operating systems - Windows, Mac, Linux, iOS and Android.  Mobile operating systems send you to the respective App Stores to pick up a client.  My Pop! desktop is Ubuntu-based, so I was able to add a PPA and install from there.  TailScale doesn&amp;rsquo;t have a Linux GUI client, it is invoked through the command line as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale up 
+tailscale ip -4  #shows private TS IP, can also be seen using &amp;quot;ip a&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once clients are instantiated, the VPN network is maintained at the &lt;a href=&#34;https://tailscale.com&#34;&gt;tailscale website&lt;/a&gt;.  My machines were given addresses in the 100.64/10 range, but not in the same /24, which is a little different than Zerotier.  Clients &lt;em&gt;should&lt;/em&gt; be able to communicate after they are registered and visible on the dashboard.  Tailscale functions as expected - I was able to access internal TailScale-attached resources without having to provision access on the firewall and speeds were comporable to ZeroTier.&lt;/p&gt;
+&lt;p&gt;With Zerotier, I had to build a router to access non-attached devices.  TailScale allows any device to be an &amp;ldquo;exit node&amp;rdquo; and to route traffic into the local network.  Here I ran into some minor issues.  Tailscale documentation is pretty good, but there are still some mental hurdles to getting this to work correctly.&lt;/p&gt;
+&lt;p&gt;First, the node has to be setup as an exit node.  To enable this, I re-enabled the tailscale client with the advertise flag.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale down
+sudo tailscale up --advertise-exit-node 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The node will now show in the dashboard as an available exit, but it won&amp;rsquo;t have any routes.  It turns out the node has to explicitly advertise local routes.  In ZT, this is controlled through the dashboard.  To enable this, I re-enabled the tailscale client with the routes.  For the record, I&amp;rsquo;m not sure that you have to take the service down everytime you make the change.  That might just be years of conditioning coming out on my part.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale down
+sudo tailscale up --advertise-routes=192.168.0.0/22 --advertise-exit-node --accept-routes=true  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By way of reference, I have four VLANs locally.  I could use seperate tailscale endpoints to attach into each of them, but I want to advertise them all as a block and thus have the /22 above.&lt;/p&gt;
+&lt;p&gt;At this point, routing onto the local network from Tailscale will still not work.  There are two issues left to deal with, one obvious and one bug.  Let&amp;rsquo;s deal with the bug first.  When I review the Linux routing table, it does not show the tailscale network.  After beseeching the Great Google, I found references to a known bug in Ubuntu that doesn&amp;rsquo;t add these routes.  Since the computer doesn&amp;rsquo;t have a route in the tailscale network, it can&amp;rsquo;t pass traffic back.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;route
+Kernel IP routing table
+Destination     Gateway         Genmask http://192.168.26.53/ worked, but not to other devices in the same VLAN or to other VLANs.
+
+sudo route add -net 100.64.0.0/10 dev tailscale0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The remaining issue is that local devices have my firewall as their default gateway.  When they receive traffic from a tailscale-connected IP, they reply using their default route back to the firewall.  The firewall then uses it&amp;rsquo;s default route to pass the traffic to the public Internet!  To fix this, I went into firewall (for those of you with Meraki, it&amp;rsquo;s on the dashboard under &lt;em&gt;Security &amp;amp; SD-WAN &amp;gt; Addressing &amp;amp; VLAN&lt;/em&gt;) and added a static route.  The route should target 10.64.0.0/10 and the next hop should be the IP of the tailscale exit node.  With this in place, everything works!&lt;/p&gt;
+&lt;h2 id=&#34;nix-setup&#34;&gt;Nix setup&lt;/h2&gt;
+&lt;p&gt;Setup in Nix involves two steps and also varied slightly for me from the docs.  First, add tailscale to &lt;em&gt;configuration.nix&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;environment.systemPackages = with pkgs; [
+. . .
+pkgs.tailscale
+]
+services.tailscale.enable=true;&lt;/p&gt;
+&lt;h1 id=&#34;exit-the-text-editor&#34;&gt;exit the text editor&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once tailscale is installed, run &lt;strong&gt;sudo tailscale up&lt;/strong&gt; as before.  This will provide a URL for authentication.  Finally, go into the tailscale dashboard and authorize the new machine (click the ellipsis to the right of the machine and choose authorize).  Nix runs on my travel laptop, so I didn&amp;rsquo;t try to advertise it as an exit node.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/221005_Tailscale.png#floatright&#34; alt=&#34;Dashboard&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tailscale-dashboard&#34;&gt;Tailscale Dashboard&lt;/h2&gt;
+&lt;p&gt;My impression of the Tailscale dashboard is mixed.  There&amp;rsquo;s a download link, and a place to add users.  Free accounts cannot have multiple users, so the main user would have to setup the client on each device (like my wifes&amp;rsquo; or kids&amp;rsquo; computers).&lt;/p&gt;
+&lt;p&gt;The documentation is pretty good, but I ran into several questions where it gave insufficient answers and I needed to just experiment to get things working.  The &lt;strong&gt;Machines&lt;/strong&gt; tab shows devices that are currently connected.  This also allows you to set tags and enable routing (assuming that the client is also configured to support routing).  The &lt;strong&gt;Services&lt;/strong&gt; tab collects a list of services so that you are aware of what you are sharing into the TailScale network.  This has the potential to be very useful, but you cannot &amp;ldquo;click to block&amp;rdquo; on this screen and it only shows services from the Tailscale-connected machine.  No services were shown from elsewhere on the connected network.  This could lead someone to a misunderstanding about their risk profile.&lt;/p&gt;
+&lt;p&gt;Other dashboard tabs allow you to setup access-lists and control DNS.  &lt;strong&gt;Access control&lt;/strong&gt; is configured through a JSON document.  The controls available are pretty good - they allow you to block access by user or group (both rendered useless on the free account), by host IP, or by service port.  The JSON ACL can be managed through Github using Github actions which is very exciting, but you&amp;rsquo;d have to make sure that repo is marked private.  The &lt;strong&gt;DNS&lt;/strong&gt; tab allows you to point Tailscale clients to an internal resolver or to use &amp;ldquo;MagicDNS&amp;rdquo;.  MagicDNS, as near as I can tell, is basically a shared &lt;em&gt;hosts&lt;/em&gt; file, but it&amp;rsquo;s nice for folks who don&amp;rsquo;t have a private name server.&lt;/p&gt;
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;What does this all boil down to?  I&amp;rsquo;m attracted to Tailscale because it uses wireguard and because it doesn&amp;rsquo;t require a dedicated router-vm.  Zerotier seems to have better access controls.  In both cases, the free-tier accounts offer analogous features (20 devices, 1 user).  Setup complexity is different, but equal.  If one or the other is working for you already,  I don&amp;rsquo;t think a change is necessary.  I&amp;rsquo;ve decided to keep Tailscale in place for at least a little while and I&amp;rsquo;m very interested in investigating the self-hosted option and seeing what additional capabilities that would provide.  Tailscale also offers a $5/month package of five users that would support a family and less work than spinning up an EC2 instance.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>VHEditor - Visual Studio Code for Android</title>
+      <link>https://nextpertise.net/posts/210218_vheditor/</link>
+      <pubDate>Thu, 18 Feb 2021 20:07:38 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/210218_vheditor/</guid>
+      <description>&lt;p&gt;These days I live in VSCode.  I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years.  O365 runs like a champ in a browser.  Teams is a really well done application, which I&amp;rsquo;ve come to &lt;em&gt;prefer&lt;/em&gt; over Zoom and (especially) Webex.  But VScode is in a league of it&amp;rsquo;s own.  I didn&amp;rsquo;t know how much I needed a really well done IDE, but it&amp;rsquo;s become a must-have.&lt;/p&gt;
+&lt;p&gt;I use VSCode for writing this blog.  There are extensions that make working with MarkUp easy and that facilitate uploading to Github.  I use the built-in terminal to execute Hugo commands while I&amp;rsquo;m working (like &lt;em&gt;hugo server -D&lt;/em&gt; to preview articles in a browser).  The workspace allows me to move files around or quickly move between files for comparison or editing.&lt;/p&gt;
+&lt;p&gt;I also use VSCode to write Python (again, with some great extensions).  The biggest surprise is that I&amp;rsquo;ve moved my notes into VSCode.  I sync my notes to a private Github repo, so that I can make them available on whichever machine I&amp;rsquo;m working with.  I used to use Simplenote for this, and there&amp;rsquo;s nothing wrong with Simplenote.  But by handling this in VSCode I can consolidate tools.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/vheditor.png#floatright&#34; alt=&#34;VHEditor&#34;&gt;
+I am going to do some traveling and it occurred to me that I didn&amp;rsquo;t want to lug a laptop.  Wouldn&amp;rsquo;t it be &lt;em&gt;cool&lt;/em&gt; if I could use my Kindle HD for VSCode?  I already travel with the Kindle for books, and VSCode would fit in the 8&amp;quot; display.  It seemed possible, but looking through the Google Play store didn&amp;rsquo;t turn up a Microsoft VSCode app.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s when I stumbled on VHEditor.  But the story goes a little further back to two other projects I&amp;rsquo;ve been watching with interest: VSCodium and Code-Server.&lt;/p&gt;
+&lt;p&gt;VSCode is mostly open source, with some &amp;ldquo;special&amp;rdquo; parts added onto the FOSS bits.  Microsoft add telemetry, the gallery, a logo and other pieces.  VSCodium takes the open pieces and compiles a clean version with no telemetry.  The downside is that Microsoft prohibits clones from accessing the VS Code Marketplace, which means that some extensions you need aren&amp;rsquo;t available.  An open Marketplace is available at &lt;a href=&#34;https://open-vsx.org&#34;&gt;open-vsx.org&lt;/a&gt;, but not all extensions are published to that service yet.  For me, the Github extension I use is an issue, so I currently use the original MicroSoft version.  But I like VSCodium and have used it a lot.&lt;/p&gt;
+&lt;p&gt;Code-Server takes the same source code and produces a web version.  I don&amp;rsquo;t have a use-case for Code-Server currently, but it seems like a fascinating idea.  All of this brings us back to VHEditor.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/vheditorpic.jpeg#floatleft&#34; alt=&#34;VHEditor in action&#34;&gt;&lt;/p&gt;
+&lt;p&gt;VHEditor takes Code-Server and Termux and creates a space in the Android OS for this to run.  There&amp;rsquo;s a terminal that works and code-server is running locally.  Basically, when you run VHEditor, it starts Code-Server and accesses it via a loopback address.  VHEditor runs pretty well on my Kindle HD - paired with a small bluetooth keyboard, I can definitely use this to write notes and blog posts.  I have cloned multiple repositories down to the Kindle.&lt;/p&gt;
+&lt;p&gt;It feels like there are some kinks to work out.  You use &amp;ldquo;pkg install git&amp;rdquo; on the terminal to setup Git (there&amp;rsquo;s a note about this on GitHub), and that format makes me wonder if it&amp;rsquo;s running in a BSD container.  Also, the first repo I cloned worked straight from VHEditor.  The second required me to &lt;strong&gt;git clone&lt;/strong&gt; from the shell.  Still, the result is not only usable but useful.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve expressed the opinion that the secret sauce in IT right now is Git + Python + WebAPIs.  VSCode has become this tool that fits into that mix of products perfectly.  VHEditor allows me to bring that all the way down to my tablet and is definitely worth a look.&lt;/p&gt;
+&lt;p&gt;If you are familiar with VSCode, you know there&amp;rsquo;s a lot of things on the screen.  I have a large phone, but I just don&amp;rsquo;t see this being useful on a display below 8&amp;quot;.  You are also really going to need a bluetooth keyboard, especially to use any of the key combinations.  The app is currently sitting at 3 1/2 stars - I read through the reviews and the issues I see relate to unfamiliar or less technical users.  Be prepared to put a little thought into it, but I recommend checking this out.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deskreen</title>
+      <link>https://nextpertise.net/posts/210201-deskreen/</link>
+      <pubDate>Mon, 01 Feb 2021 13:43:09 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/210201-deskreen/</guid>
+      <description>&lt;p&gt;Deskreen is an open-source utility that allows you to send your Windows, Mac, or Linux desktop onto another screen, including another computer, a tablet, or even a phone.  It can duplicate an application, duplicate an entire display, or extend the desktop and treat the other computer as an additional monitor.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://deskreen.com/img/plugs/hdmi.jpg#floatsmallleft&#34; alt=&#34;HDMI Plug&#34;&gt;
+Deskreen outputs your display to a webpage with an embedded video.  Running the application prompts you to choose an application, existing display, or new display.  It then displays the produced webpage in text and with a 2D barcode.  The page, when opened on a separate device, allows you to play the video stream.&lt;/p&gt;
+&lt;h2 id=&#34;testing-deskreen&#34;&gt;Testing Deskreen&lt;/h2&gt;
+&lt;p&gt;An easy scenario to imagine would be using a tablet as a second screen for a laptop sitting in a coffee shop.  I tested exactly this setup using PopOS! on a 3rd Gen i7 and a Fire HD 10 9th gen tablet.  I downloaded Deskreen from Github as a DEB and installed it.  In order to fool my laptop into thinking it should produce a second screen, I bought &lt;a href=&#34;https://www.amazon.com/gp/product/B07C4TWZRM/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&amp;amp;psc=1&#34;&gt;HDMI dummy plugs&lt;/a&gt;.  I used Deskreen version 1.02 and 1.03 while testing.&lt;/p&gt;
+&lt;p&gt;Once running, Deskreen produced a barcode that I was able to scan from the tablet and use to connect to a webpage.  You can manually type in the link, but it&amp;rsquo;s long and it&amp;rsquo;s randomly generated each time the app start sharing.  I clicked a button on the web page to register.  Back to the PC, where I accepted the connection and chose the output.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210201_Deskreen.jpg#floatsmallright&#34; alt=&#34;My Setup&#34;&gt;
+The new display was initially set to the same as my main screen - 1920x1080.  The video was down-converted, but everything was too small to be usable.  I used the display options in PopOS! to adjust the size to 1280x720 and this created a very usable display.  The new screen is responsive, with maybe barely a touch of latency similar to using a low-refresh-rate monitor.  I imagine that the quality and usage of wifi will impact this, but I wasn&amp;rsquo;t able to test that scenario.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/210201_Deskreen2.jpg#floatsmallleft&#34; alt=&#34;Phone&#34;&gt;
+Just for fun, I sent the settings app to my phone at the same time.  Running two displays didn&amp;rsquo;t seem to bother the PC.  I left the webpage running on the tablet for hours and battery life on the tablet seemed surprisingly good.  I think I could run it for a full day (or more) without having to charge the tablet.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I could imagine a variety of cases where this could be useful.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extra screens&lt;/li&gt;
+&lt;li&gt;sharing screens for troubleshooting&lt;/li&gt;
+&lt;li&gt;connecting to smart TVs or displays&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The developer, Pavlo Buidenkov, has an excellent set of directions about using Deskreen at deskreen.com.  He also mentions that he&amp;rsquo;s hoping to find developers to collaborate with, so check it out!&lt;/p&gt;
+&lt;p&gt;For me, this utility works well and fills a niche in my toolset.  It will be a part of my standard build from here on out!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Love Letter to Flameshot</title>
+      <link>https://nextpertise.net/posts/201210_flameshot/</link>
+      <pubDate>Thu, 10 Dec 2020 14:28:39 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201210_flameshot/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/flameshot-demo.gif#floatright&#34; alt=&#34;Flameshot&#34;&gt; My friend Jared always extols the Unix philosophy that programs should &amp;ldquo;do one thing and do it well&amp;rdquo;.  One program that fits that description is &lt;em&gt;flameshot&lt;/em&gt;.  Flameshot makes great screenshots and allows you to easily annotate them.&lt;/p&gt;
+&lt;p&gt;A few years ago I was put in a position where I had to produce monthly reports that included screenshots from our tools.  The default gnome-screenshot application is difficult to work with.  It has to be re-invoked for each capture and it doesn&amp;rsquo;t allow you to easily adjust the parameters or annotate the picture.  As a result, I&amp;rsquo;d take a bunch of screenshots and each one involved a try or two to capture the right section, then opening in Gimp to edit.  It took &lt;em&gt;forever&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Flameshot made this an easy process.  Since then, I very commonly want to take a screenshot for this blog or for an email.  Usually I&amp;rsquo;m trying to demonstrate a function or show what a screen looks like.  This program allows me to quickly grab the section of the screen I need, highlight, draw, and even obfuscate sensitive portions (like credentials).&lt;/p&gt;
+&lt;p&gt;Flameshot can be downloaded from Github, but most distros have it in their archives.  It&amp;rsquo;s available as a flatpak, snap, AppImage, rpm, or deb.  It&amp;rsquo;s even available for Windows.  On Ubuntu, it can be pulled down using:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install flameshot  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For snap:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo install snap
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For flatpak:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;flatpak install https://github.com/flameshot-org/flameshot/releases/download/v0.8.0/org.flameshot.flameshot_0.8.0_x86_64.flatpak  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;or grab the AppImage version from the website.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a lot of gnashing of teeth about which of these formats is better.  Personally, grabbing the DEB means that I update it with the rest of my applications and I haven&amp;rsquo;t had issues with DEB.  I&amp;rsquo;ve used all three of the portable formats and found them to be fungible.  Appimage is both the most portable and the easiest to forget updates with.&lt;/p&gt;
+&lt;h2 id=&#34;invoking-flameshot&#34;&gt;Invoking Flameshot&lt;/h2&gt;
+&lt;p&gt;Flameshot can be launched from the menu.  It will also install an icon on the bar - on Gnome you need the &lt;a href=&#34;https://extensions.gnome.org/extension/1031/topicons/&#34;&gt;TopIcons&lt;/a&gt; extension to see it.&lt;br&gt;
+It also works well to map a keybinding to it, such as PrintScreen.  Link the keypress to the command: &lt;strong&gt;flameshot gui&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;using-flameshot&#34;&gt;Using Flameshot&lt;/h2&gt;
+&lt;p&gt;Once you start Flameshot, the screen immediately dims and you are prompted to drag a box around the area of the screen you want to snip.  Once the box is defined, a series of circular option buttons surround the selection to allow editing.&lt;/p&gt;
+&lt;p&gt;The animated graphic above does a good job showing this action.  Some of the features I most commonly use are arrows, lines and boxes,and the &amp;ldquo;smear&amp;rdquo; tool to hide sensative parts.  Once done, click the disk icon and save your file.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;As I said, Flameshot takes great screen captures.  Since I titled this a &amp;ldquo;love letter&amp;rdquo;, it&amp;rsquo;s obviously a program that I find valuable.  It makes it easy to annotate them.  It&amp;rsquo;s easy to adjust the capture and it&amp;rsquo;s easy to re-invoke if needed.&lt;/p&gt;
+&lt;p&gt;Flameshot has become a part of my standard install - frankly I&amp;rsquo;m not clear why it&amp;rsquo;s not included standard with most distributions.  It does one thing really well.  I encourage you to give it a try!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pop! OS</title>
+      <link>https://nextpertise.net/posts/201126_pop-os/</link>
+      <pubDate>Thu, 26 Nov 2020 10:17:03 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201126_pop-os/</guid>
+      <description>&lt;p&gt;I recently wrote about my experiences with &lt;a href=&#34;https://nextpertise.net/posts/201024_ubuntu2010/&#34;&gt;Ubuntu 20.10&lt;/a&gt;.  In that article, I mentioned that I previously found Gnome laggy and the app picker to be annoyingly unsorted.  That article got into Gnome 3.38, which seems to answer my issues by being perkier and providing a way to organize applications.  I also mentioend how much I appreciated Material Design, a tiling extension for Gnome.  That setup - Ubuntu 20.10 with Gnome 3.38 and Material Design - has worked really well on my laptop and a month later I remain enthusiastic about the way it organizes my work.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pop.system76.com/_nuxt/img/623f266-700.png#floatright&#34; alt=&#34;Pop OS&#34;&gt;
+But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is an i7 with 64GB of memory (perfect for GNS3!) and a 2K and 4K display.  The Material Design extension didn&amp;rsquo;t adapt well to the dual displays.  Gnome was still great, so I started hunting for a different tiling extension but the others didn&amp;rsquo;t install on 3.38.  I had tried &lt;em&gt;Pop! OS&lt;/em&gt; six months ago and really liked where System 76 was headed with auto-tiling, but had been frustrated by Gnome.  I decided to give the distribution another chance.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Pop! OS&lt;/em&gt; is an opinionated re-distribution of stock (Gnome) Ubuntu.  System 76 is a long time manufacturer of Linux computers.  They have a great reputation in the community and have been a big promoter and sponsor within the community.  A couple years ago, they decided to customize Ubuntu to optimize the experience for their hardware.  They labeled the result &lt;em&gt;Pop! OS&lt;/em&gt; and made it available for anyone to use.  &lt;em&gt;Pop! OS&lt;/em&gt; 20.10 came out shortly after Ubuntu 20.10 in seperate releases for computers with NVidia cards and those with AMD.&lt;/p&gt;
+&lt;p&gt;The most obvious differnce between stock Ubuntu and &lt;em&gt;Pop! OS&lt;/em&gt; is the Gnome setup and skin.  Ubuntu has a very specific user experience and they have their own take on Gnome.  This isn&amp;rsquo;t a criticism.  System 76 has built a different experience, with a more &amp;ldquo;standard&amp;rdquo; Gnome setup but with their Auto-tiling extension.  There is also a relentlessly upbeat feel to the skinning and backgrounds.  It&amp;rsquo;s a peppiness that belies how darn useful the OS is.  Ubuntu is also moving very heavily toward snaps and &lt;em&gt;Pop! OS&lt;/em&gt; supports snaps but is built more along &lt;strong&gt;apt&lt;/strong&gt; lines.&lt;/p&gt;
+&lt;p&gt;My experience is that 20.10 improves on 19.10, as one would expect.  The lagginess I saw before is now gone, which may be attributable to updated Gnome desktop.  All the things that I loved about Auto-Tiling are still present, they just work better.  On big displays, I really don&amp;rsquo;t see why you wouldn&amp;rsquo;t want this experience.  Opening a new window automatically divides the display either vertically or horizontally.  Gnome supports multiple workspaces, and I have been setting up desktops for specific workflows (like one for blogging that I&amp;rsquo;m using now).  I don&amp;rsquo;t like the workspace switcher that ships with &lt;em&gt;Pop! OS&lt;/em&gt;, so I installed Workspace Matrix.  I also added &lt;em&gt;Dash to Dock&lt;/em&gt; to give a dock and put the application button in a better location.&lt;/p&gt;
+&lt;p&gt;I first experimented with Tiling using i3 and later Regolith.  Regolith in particular has a lot going for it and really opened my eyes to the possibilities, but I found both to be a lot of trouble to setup and work inside.  i3 is very keyboard heavy and the folks who enjoy it the most are very keyboard oriented.  &lt;em&gt;Pop! OS&lt;/em&gt; provides a similar experience, but it&amp;rsquo;s less laborious in a number of ways.  Tiling happens automatically, but if you don&amp;rsquo;t like the arrangement you can drag windows around to adjust the tiling.  It&amp;rsquo;s easier to setup exceptions (pop-up windows, like my password database, that should float and not re-tile the screen).  Keyboard shortcuts are supported, if you are oriented that way, but I rarely have used them in my testing.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Pop! OS&lt;/em&gt; also has a conventional Gnome app picker.  Here I have a quibble - I would still prefer a heirarchical menu.  If anyone can suggest a good &lt;em&gt;Dash to Dock&lt;/em&gt; or Gnome extension in the comments, I&amp;rsquo;d appreciate it!&lt;/p&gt;
+&lt;p&gt;The animated GIF here is me playing around.  I have two displays - a horizontal 4k on the right and a vertical 2k on the left.  There&amp;rsquo;s a gray area above the 4k because of the way the resolutions match up.  You can see Tilix and GNS3 open on the 4k, and Wireshark and an additional Tilix window open and automatically Tile.  Then I open the application picker on and fonts on the other display.  You can see &lt;em&gt;Dash to Dock&lt;/em&gt; and get a sense of how the system works.  You can also see that Gnome 3.38 now supports grouping applications, like Android, which I find a big improvement.&lt;/p&gt;
+&lt;p&gt;There are other differences besides tiling between &lt;em&gt;Pop! OS&lt;/em&gt; and Ubuntu.  There are different application &amp;ldquo;stores&amp;rdquo; and update interfaces, but both accomplish the same things in similar ways.  There are different packaged apps, but you can install anything you need from PPA or snap on either system so this doesn&amp;rsquo;t strike me as worth cataloging.  I used my standard Ubuntu post-install script when I setup &lt;em&gt;Pop! OS&lt;/em&gt; and everything worked.&lt;/p&gt;
+&lt;p&gt;So, why not just install the &lt;em&gt;Pop! OS&lt;/em&gt; extension on Ubuntu?  Well, it can be done.  System 76 publishes it to their Github.  They&amp;rsquo;ve packaged it for Fedora, but not yet for Ubuntu, so it would have to be built.  That&amp;rsquo;s not a mountain to climb, but I was ready for a clean install anyway and opted for the full &lt;em&gt;Pop! OS&lt;/em&gt; experience.&lt;/p&gt;
+&lt;p&gt;I can&amp;rsquo;t say how much I appreciate what System 76 has done.  They&amp;rsquo;ve created a slightly different take on Ubuntu that looks great on their hardware and they&amp;rsquo;ve made all the parts - from a full OS install to the &amp;ldquo;secret sauce&amp;rdquo; extension easily accessible to the community.  I find &lt;em&gt;Pop! OS&lt;/em&gt; enjoyable and useful and plan on keeping it installed on this machine.&lt;/p&gt;
+&lt;p&gt;My laptop is running fine using Ubuntu 20.10 with the Material Design extension, and there&amp;rsquo;s not enough of a difference to make me re-install it.   Besides, I&amp;rsquo;d like to see where each tiler goes.  There&amp;rsquo;s a lot in Material Design to recommend it and it&amp;rsquo;s still early days for that extension.  Frankly, &lt;em&gt;Pop! OS&lt;/em&gt; wasn&amp;rsquo;t quite baked at that stage either.  I intend to keep &lt;em&gt;Pop! OS&lt;/em&gt; on the Desktop. The current &lt;em&gt;Pop! OS&lt;/em&gt; 20.10 feels sharp, responsive, and really well done and I look forward to seeing where System 76 takes this idea next.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Winapps</title>
+      <link>https://nextpertise.net/posts/201110_winapps/</link>
+      <pubDate>Tue, 10 Nov 2020 08:24:53 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201110_winapps/</guid>
+      <description>&lt;p&gt;Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&amp;rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&amp;rsquo;s you use &amp;ldquo;open with&amp;rdquo; types of functionality.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright&#34; alt=&#34;WinApps&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To give it a try, clone the code from &lt;a href=&#34;https://github.com/Fmstrat/winapps&#34;&gt;GitHub&lt;/a&gt;. Remember that it&amp;rsquo;s running programs that are installed on a VM. If you don&amp;rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&amp;rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&amp;rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &amp;ldquo;Windows source&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Create a text file at _~/.config/winapps/winapps.conf that looks like this.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RDP_USER&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyWindowsUser&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RDP_PASS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyWindowsPassword&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#RDP_IP=&amp;#34;192.168.123.111&amp;#34;  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#DEBUG=&amp;#34;true&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The IP is only required if Windows is remote. The Debug command tells it to create a log and is optional.&lt;/p&gt;
+&lt;p&gt;Finally, run the &lt;strong&gt;install.sh&lt;/strong&gt; script. This script will use the variables defined in the config file and login and scan Windows. If it finds a file it knows, it will setup the link, put an icon and entry in the local application menu, and link the appropriate mime-types.&lt;/p&gt;
+&lt;p&gt;When I tested this, I ran into a couple issues running the install script. The script would timeout. Looking at the script, I saw that it was trying to use xfreerdp to login to Windows. I ran that command from the command line and saw that it wasn&amp;rsquo;t connecting. Troubleshooting on Windows revealed that I needed to enable remote desktop under settings&amp;gt;system&amp;gt;remote desktop. Doh! Re-testing with xfreerdp revealed that I needed to accept a certificate.&lt;/p&gt;
+&lt;p&gt;With the RDP part confirmed working, I re-ran the script and &lt;em&gt;voila!&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;A lot of folks will be interested in running Office and those apps are defined, but I use my Windows VM mostly for things that can&amp;rsquo;t be done on Linux like running the Kindle application. Look in the repository under &lt;em&gt;apps&lt;/em&gt; and you&amp;rsquo;ll see that various programs are defined, each to a directory. In the directory is a definition file that includes mime-types consumed and a path to the application in Windows. There&amp;rsquo;s also an icon in the directory. This is what the install script references when it runs.&lt;/p&gt;
+&lt;p&gt;I was able to create a Kindle definition file. I grabbed an SVG icon from Google Images and created an &lt;em&gt;info&lt;/em&gt; file that contained the following.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME shortcut name  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NAME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Kindle&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Used for descriptions and window class  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;FULL_NAME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Amazon Kindle&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# The executable inside windows  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;WIN_EXECUTABLE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:\users\brent\appdata\local\amazon\kindle\application\kindle.exe&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME categories  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CATEGORIES&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Education&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# GNOME mimetypes  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;MIME_TYPES&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://microfilums.files.wordpress.com/2010/01/2260894625_ea1feecb2a.jpg#floatleft&#34; alt=&#34;Big Brains&#34;&gt;
+I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the &lt;em&gt;develop&lt;/em&gt; branch, added the files, and submitted a Pull Request back to &amp;ldquo;fmstrat&amp;rdquo;. I also added some troubleshooting suggestions for them based on my experience.&lt;/p&gt;
+&lt;p&gt;This was a neat adventure to write up because it combines a lot of the things we&amp;rsquo;ve been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in &lt;a href=&#34;https://nextpertise.net/posts/200922_using_ssh5/&#34;&gt;Remotely Possible&lt;/a&gt;. Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.&lt;/p&gt;
+&lt;p&gt;But this is another chance to hit on a favorite theme of mine. You don&amp;rsquo;t need to be gods-gift-to-programming to make meaningful and appreciated contributions to the open source community. In the day I took to play with this and contribute the Kindle definition, several other people also submitted apps and the library is quickly growing. Similar to defining GNS3 appliances, there&amp;rsquo;s a lot of ways to give back. There&amp;rsquo;s a real satisfaction to contributing in this way that I hope you have a chance to experience.&lt;/p&gt;
+&lt;p&gt;As far as Winapps, as I mentioned at the beginning, it&amp;rsquo;s interesting and definitely looks cool. I&amp;rsquo;m not complete sold that it&amp;rsquo;s that much more useful than just pulling up a Windows VM, but it&amp;rsquo;s close enough that it will fit the work styles of some folks really well. It&amp;rsquo;s worth a look!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier Basic Configuration</title>
+      <link>https://nextpertise.net/posts/201027_zerotier/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201027_zerotier/</guid>
+      <description>&lt;p&gt;Zerotier is a virtualized network that runs &amp;ldquo;on top of&amp;rdquo; the Internet.&lt;/p&gt;
+&lt;p&gt;Traditional VPN solutions are built around a VPN server, which acts as a hub location with a stable IP.  Modern teams feature mobile workers and home connections with random IPs behind service-provider NATs.  Start-up teams and home users are left with few options, all of which involve some level of compromise.&lt;/p&gt;
+&lt;p&gt;Zerotier works around this by offering a stable point to connect end-points.  The connection strategy resembles VoIP connections - there&amp;rsquo;s a registration to a central point, that tries a variety of ways to create a connection to end points.  It then allows the end-points to speak directly.  All traffic between end-points is encrypted peer-to-peer.&lt;/p&gt;
+&lt;p&gt;Zerotier allows the creation of a &amp;ldquo;virtual ethernet&amp;rdquo; that connects disparate endpoints.  I created a ZeroTier network and tested it with Fedora and Ubuntu Linux, as well as an Android phone.  I was able to connect to the ZeroTier network from a guest wifi and over a 4G connection.  Once connected, it behaved like a local network.  I was able to SSH, browse and download files, access a Calibre server, and use KDE Connect.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-a-zerotier-network&#34;&gt;Setting up a ZeroTier network&lt;/h2&gt;
+&lt;p&gt;Go to &lt;a href=&#34;https://www.zerotier.com&#34;&gt;ZeroTier&lt;/a&gt; and scroll down to the bottom to &lt;strong&gt;Sign Up&lt;/strong&gt;.  After signing up, you&amp;rsquo;ll be taken to the ZeroTier Central page and be given a 16-digit hex network id and a made up name (like &amp;ldquo;gratious_donut&amp;rdquo;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/ZTnetworks.png#floatright&#34; alt=&#34;Zero Tier Networking&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Make sure under Access Control that you set your network to private.  This will not allow new connections without your permission.&lt;/p&gt;
+&lt;p&gt;Under advanced, choose a network range.  You can use one of the &amp;ldquo;easy&amp;rdquo; options or select an IP address range of your own.  For now, just choose a pre-defined range.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s an option to use IPv6.  The easy way is to click the ZeroTier 6PLANE option.  It&amp;rsquo;s a great idea to be learning about IPv6, but most of us are still using v4 and if that&amp;rsquo;s the case for you then just leave this turned off.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for Central for now.  Copy your network ID (the 16 digit hex number).  We&amp;rsquo;ll need to revisit Central later, but next we need to setup devices.&lt;/p&gt;
+&lt;h2 id=&#34;client-installation&#34;&gt;Client installation&lt;/h2&gt;
+&lt;p&gt;The instructions  for setting up clients can be found at &lt;a href=&#34;https://www.zerotier.com/download&#34;&gt;ZeroTier Downloads&lt;/a&gt;.  There&amp;rsquo;s a clicky MSI installer for Windows, and a pkg for Mac.  Smartphone users are directed to their stores.&lt;/p&gt;
+&lt;p&gt;On Linux, the software can be installed with this command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -s https://install.zerotier.com | sudo bash  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After installation, use &lt;strong&gt;zerotier-cli&lt;/strong&gt; to join the new virtual network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli join 123456789ABCDEF  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/ZTclient.png#floatright&#34; alt=&#34;ZeroTier Client&#34;&gt;
+Go back to Central and scroll down to clients.  Find the new client and check the Auth? box.  You should add a name and description here as well to help identify this client as you add more endpoints.&lt;/p&gt;
+&lt;p&gt;Back at Linux, confirm that you&amp;rsquo;re on the network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, let&amp;rsquo;s setup an Android endpoint to have something to talk to.  Grab the app from the Play store.  Click the + in the upper right and type in the network ID.  Slide the ON button over and go back to Central and Authorize the client.&lt;/p&gt;
+&lt;p&gt;You can continue to add clients in this manner, but I suggest you pause here.  My next article will be about routing between networks with Zerotier and that may be useful before you move further.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.10</title>
+      <link>https://nextpertise.net/posts/201024_ubuntu2010/</link>
+      <pubDate>Sat, 24 Oct 2020 18:40:56 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/201024_ubuntu2010/</guid>
+      <description>&lt;p&gt;I had a chance to download Ubuntu 20.10 and install it on a gen 8 i5 laptop.  I typically use Cinnamon for a desktop environment, which I have long found to be mature, usable, and stable.  In the past, I&amp;rsquo;ve found Gnome to be laggy but I&amp;rsquo;ve heard good things about 3.38.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve become enamored of tiling windows as well.  I&amp;rsquo;ve tried i3, Pop OS!, and others.  So another thing I wanted to look into was the Material Design extension.&lt;/p&gt;
+&lt;h2 id=&#34;about-ubuntu-2010&#34;&gt;About Ubuntu 20.10&lt;/h2&gt;
+&lt;p&gt;Ubuntu releases a Long Term Support (LTS) release biannually.  LTS versions, like 20.04,  are supported for five years and are appropriate for business servers.  Interim releases like 20.10 are supported for nine months.  These releases are kept current and represent the most up-to-date implementation of Ubuntu&amp;rsquo;s vision for the Linux desktop.  Ubuntu supports a variety of DEs including KDE, Budgie, MATE and others. There are unsupported versions for Cinnamon and Deepin as well.  I&amp;rsquo;ve used the MATE version for VMs in the past and it&amp;rsquo;s performed very well, but this time I wanted to check out Gnome.&lt;/p&gt;
+&lt;p&gt;The first two things that jumped out at me have to do with login.  First, there&amp;rsquo;s now a built in choice to authenticate via Active Directory.  I have several workstations and servers and the idea of being able to easily centralize authentication is &lt;em&gt;very&lt;/em&gt; appealing.  I haven&amp;rsquo;t had time to build that part out, but I will be looking into that process in the months ahead.  I&amp;rsquo;m hoping I can make it work with FreeIPA.&lt;/p&gt;
+&lt;p&gt;The other thing - and this sounds minor - is the responsiveness of the login screen.  It&amp;rsquo;s been my past opinion that Gnome was slow, but logging in is breezy.  I use Windows 10 at work and the Ubuntu lock screen is especially quick comparted to that.&lt;/p&gt;
+&lt;p&gt;The default Gnome experience has an &lt;em&gt;application grid&lt;/em&gt; like Android (all the apps in alphabetical order).  This was always annoying to me - partly because I&amp;rsquo;m a heirarchical organizer and partly because I could never remember the name of the app I wanted.  The new 3.38 allows you to organize your apps in whatever order makes sense to you and to pull icons into folders.  This is a big win for me.&lt;/p&gt;
+&lt;p&gt;Ubuntu is still running Gnome on X.  X Windows is stable and mature and has better support for NVidia video cards, but the next generation Wayland is coming and Ubuntu hasn&amp;rsquo;t pushed that envelope yet.&lt;/p&gt;
+&lt;p&gt;Ubuntu 20.10 includes Linux kernel 5.8.0.25.  This was billed as the &amp;ldquo;biggest release of all time&amp;rdquo; by Linux Torvalds.  Most of the improvements are around drivers and the Spectre patch.  According to Phoronix, there&amp;rsquo;s good benefit for ATI graphics.  Otherwise, from a desktop perspective, this won&amp;rsquo;t be a big deal.&lt;/p&gt;
+&lt;p&gt;Applications, such as LibreOffice (7.0), Firefox (82), and Thunderbird (78.3.2), have been updated to latest versions.&lt;/p&gt;
+&lt;p&gt;To me, the biggest difference between Gnome and Mate or Cinnamon is app selection.  At the end of the day, despite the improved performance, it&amp;rsquo;s not enough to make me want to switch.&lt;/p&gt;
+&lt;h2 id=&#34;tiling-with-material-design&#34;&gt;Tiling with Material Design&lt;/h2&gt;
+&lt;p&gt;As I mentioned before, the window tiling paradigm really makes sense to me.  I&amp;rsquo;ve tried i3 and Regolith, which I like, but they suffer from the same problem as Gnome - having an easy way to browse available applications.  Pop OS! has a tiling extension for Gnome that&amp;rsquo;s well thought out, but I abandoned it because it made Gnome &lt;em&gt;less&lt;/em&gt; responsive.  Still, the Pop OS! experience came the closest to what I imagined tiling could be.&lt;/p&gt;
+&lt;p&gt;Recently I was introduced to &lt;strong&gt;Material Design&lt;/strong&gt;.  I decided to install it on my new Ubuntu 20.10 installation and try to &amp;ldquo;live in it&amp;rdquo; for a better test.  &lt;strong&gt;Material Design&lt;/strong&gt; is a gnome extension that provides a few really specific tiling options.&lt;/p&gt;
+&lt;p&gt;To install Material Design in Ubuntu 20.10, go to &lt;a href=&#34;https://extensions.gnome.org&#34;&gt;https://extensions.gnome.org&lt;/a&gt; and add the extension.  Unfortunately, Ubuntu doesn&amp;rsquo;t support the Gnome add-in page out of the box.  At the Gnome page, load the firefox extension.  You&amp;rsquo;ll also need to install some supporting pieces for it to run properly.  Note that the chrome-gnome-shell is used by both Firefox and Chrome.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install libproxy1-plugin-networkmanager gnome-shell-extension-system-monitor  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install chrome-gnome-shell  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Windows are on desktops, with the taskbar across the top showing you what&amp;rsquo;s on the current desktop.  Desktops are shown on the side bar, so you can think of the two bars as showing a grid of apps X desktops. The version of Material design at Gnome supports four windowing modes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single Window - each application takes up the full window and you can use the taskbar to move easily between them.&lt;/li&gt;
+&lt;li&gt;Split - each application takes up either the left or right half of the screen.  The app order is shown on the taskbar, and you can drag to rearrange.  Many times I&amp;rsquo;m typing in one window with another for reference, so this mode sets up exactly what I&amp;rsquo;m looking for.&lt;/li&gt;
+&lt;li&gt;Half - the first application occupies the left half of the screen.  Subsequent apps stack to the right.  You can drag windows or rearrange the taskbar to change which applications go in each spot.&lt;/li&gt;
+&lt;li&gt;Free - this is the &amp;ldquo;normal&amp;rdquo; Gnome experience, with tiling turned off.
+&lt;img src=&#34;https://raw.githubusercontent.com/material-shell/material-shell/master/documentation/tiling_showcase.gif#floatright&#34; alt=&#34;Material Design&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my testing, I found that I could set different modes for each desktop.  Right now, the desktop I&amp;rsquo;m typing on has Codium on one side and a browser on the other in &amp;ldquo;Split&amp;rdquo; mode.  My other desktop use &amp;ldquo;Half&amp;rdquo; with a big browser on the right and a terminal, Enpass, and settings stacked on the right.&lt;/p&gt;
+&lt;p&gt;I also installed the &lt;strong&gt;Gnome menu&lt;/strong&gt; so that I&amp;rsquo;d have the heirarchical app picking experience I like.  Material shell has a button for the gnome app grid but I want something different.  I&amp;rsquo;m unimpressed with &lt;strong&gt;Gnome Menu&lt;/strong&gt;.  Anyone want to recommend a menu extension?  Gnome Menu hits the minimum reqs - it&amp;rsquo;s an organized menu.  On the other hand, you can&amp;rsquo;t type to search, it doesn&amp;rsquo;t open sub-menus automatically, and it doesn&amp;rsquo;t a place where frequently used apps or files can be quickly found.&lt;/p&gt;
+&lt;p&gt;In the end though, the beauty of Linux is that the machine is &lt;em&gt;yours&lt;/em&gt;.  In a half hour I installed a new distro with a new DE, updated it and installed some critical apps, customized the desktop for tiling and changed the application selection process.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m going to keep Ubuntu 20.10 and Material Design on this machine for a while.  It works well on the 1920x1080 17&amp;quot; display.  I&amp;rsquo;m also curious how the combination will work on my desktop with it&amp;rsquo;s two 4k displays, but I&amp;rsquo;ll take a little time before making that decision.&lt;/p&gt;
+&lt;p&gt;Ubuntu 20.10 has answered my objections to the laggy experience of Gnome and given me a &amp;ldquo;standard&amp;rdquo; desktop experience I can customize to my interests.  I&amp;rsquo;m curious about your impressions - write to me and let me know!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Linux Home Cloud Backup</title>
+      <link>https://nextpertise.net/posts/200804_homebackup/</link>
+      <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200804_homebackup/</guid>
+      <description>&lt;p&gt;At one point, I was taught to divide tasks by priority A, B, C.  As I&amp;rsquo;ve gotten older, I&amp;rsquo;ve converted that scale into &amp;ldquo;things that will immediately get me fired or divorced&amp;rdquo;, &amp;ldquo;things that will eventually get me fired or divorced&amp;rdquo;, and &amp;ldquo;things I&amp;rsquo;d like to do if I have time&amp;rdquo;.  One of the &amp;ldquo;A&amp;rdquo; tasks on this scale is making sure that we don&amp;rsquo;t lose our family digital pictures!&lt;/p&gt;
+&lt;p&gt;Our home file server is an Ubuntu VM.  Over the years, I&amp;rsquo;ve used a variety of strategies to maintain personal backups.  Recently, I felt the time was right to move to cloud based backup - both for the convenience and the security of having things off-site.  I considered AWS S3, but Backblaze offers a similar and less-expensive service.  A former employer used Backblaze for laptop backups and I administered that system, and I always felt they did a good job and were reasonable to work with.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/BB_bucket_setup.png#floatright&#34; alt=&#34;Backblaze Dashboard&#34;&gt;  I settled on using Duplicati for the backkup software.  Duplicati runs on everything (Linux + various less secure OS), has a DEB, and is FOSS.  Duplicati has built in support for cloud backup, including Backblaze and S3.  I have a friend that uses Duplicati and it&amp;rsquo;s discussed on Jupiter Broadcasting, so I wanted to give it a try.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with Backblaze.  I setup an account and configured it for 2FA.  Then I created an ID and application key at the Backblaze dashboard and setup a bucket.  You can specify the bucket policy, and I recommend keeping older copies to protect against crypto-locking malware.  I setup my bucket to retain older copies for 180 days.&lt;/p&gt;
+&lt;p&gt;Setting up Duplicati is as easy as installing the DEB and enabling the app to autostart.  My server runs Mate, so I opened the Control Center (alt&amp;ndash;f2, &amp;ldquo;mate-control-center&amp;rdquo;) and added Duplicati to the autoruns (at the bottom of the control center window).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Mate-autorun-Duplicati.png#floatleft&#34; alt=&#34;Mate Autorun&#34;&gt; Once running, Duplicati shows a menu-bar applet. The application is administered from a web page on port 8200.  This webpage can be accessible from other machines and I usually manage the backups from my desktop.  Duplicati has excellent documentation on their website, but I was able to get it up and running quickly without investing a lot of time.&lt;/p&gt;
+&lt;p&gt;From the initial Duplicati page choose &amp;ldquo;Add backup&amp;rdquo; and a wizard will walk you through specifying the details.  Make sure you keep track of the passphrase used by the backup!  Here&amp;rsquo;s a quick rundown on the selections I used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;General - AES-256 Encryption.  Other options are no encryption and GNU Privacy Guard.  I don&amp;rsquo;t protect nuclear secrets, but I get itchy not encrypting data at rest, so I definitely don&amp;rsquo;t recommend that option.  I don&amp;rsquo;t know much about GNU PG, but AES-256 is considered a solid and well researched encryption so I used it.&lt;/li&gt;
+&lt;li&gt;Backup destination - this is where you&amp;rsquo;ll plug in the ID and Key you generated at Backblaze earlier.&lt;/li&gt;
+&lt;li&gt;Source data - gives you a file tree to select what you&amp;rsquo;d like to backup.  I&amp;rsquo;m cheap, so I separated out the non-private stuff into another directory (like installation ISOs) so I didn&amp;rsquo;t pay to back them up.&lt;/li&gt;
+&lt;li&gt;Schedule - We&amp;rsquo;ll get into a discussion of RTO and RPO another time perhaps.  Basically, think about your cost to transfer files (with Backblaze, there is no incremental cost) and how much data you are willing to lose between backups.  I setup my schedule to run every night - with Backblaze there&amp;rsquo;s not really a reason &lt;em&gt;not to&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Options - Duplicati allows you to set the remote volume size.  I kept this at the recommended 50Mb.  Basically, it chunks your data so that it&amp;rsquo;s easier to restore and so that an adversary can&amp;rsquo;t identify individual file sizes, which could be a way that you&amp;rsquo;d leak information.  I also chose to keep all backups, again to protect against crypto-lockers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Duplicati_Wiz.png#floatright&#34; alt=&#34;Duplicati Wizard&#34;&gt; After all that, just let it run!  My biggest knock on the combination of Duplicati and Backblaze is that there&amp;rsquo;s not an easy way to confirm backups are happening.  Backblaze has a 10 day trial and I didn&amp;rsquo;t initially put in a credit card.  To be clear, kudos to them for letting you try it and being easy to work with.  But . . . I forgot and the trial ran out and my backups stopped for several days.  Worse, I was clueless.&lt;/p&gt;
+&lt;p&gt;Duplicati has options to setup a confirmation email after backups, which I recommend.  You&amp;rsquo;ll know there&amp;rsquo;s a problem when you &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; get an email.  Unless you are more clever than me, that&amp;rsquo;s suboptimal but it is something.  Backblaze doesn&amp;rsquo;t have an alerting option for things that don&amp;rsquo;t happen.  I&amp;rsquo;m thinking that I could setup a Lambda to check via API, then send an SNS, but that&amp;rsquo;s for another day.&lt;/p&gt;
+&lt;p&gt;Overall, I&amp;rsquo;m please with the setup and the results I&amp;rsquo;m getting and would recommend either component to someone trying to solve a similar home problem.  I don&amp;rsquo;t see a reason this wouldn&amp;rsquo;t be good for a work environment, but I&amp;rsquo;ll need to use it for a while before I feel comfortable making that a recommendation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AWS S3 Review</title>
+      <link>https://nextpertise.net/posts/200728_s3review/</link>
+      <pubDate>Tue, 28 Jul 2020 15:44:02 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200728_s3review/</guid>
+      <description>&lt;p&gt;In a previous post, I described hosting this website on Render.  I mentioned that I am coming up to speed on AWS and it was my intention to host the site on S3 as well.  This post documents my experience.&lt;/p&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
+&lt;p&gt;Render has a CI-step that builds the html from Hugo auto-magically.  AWS isn’t integrated with Github, so I needed to build the website.  This is pretty easy, just navigate to the directory and type “hugo”.  This produces a “public” directory that needs to be copied to your webserver.&lt;/p&gt;
+&lt;p&gt;AWS allows you to specify an error page.  In Hugo, I setup a &lt;em&gt;404.html&lt;/em&gt; page under &lt;em&gt;theme/layouts&lt;/em&gt; and used the S3 Properties page to specify that URL for the error page.&lt;/p&gt;
+&lt;h2 id=&#34;aws&#34;&gt;AWS&lt;/h2&gt;
+&lt;p&gt;The short version of hosting a site on S3 is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create an S3 bucket&lt;/li&gt;
+&lt;li&gt;The bucket needs to be public, so set &amp;ldquo;Block all public access&amp;rdquo; to OFF.&lt;/li&gt;
+&lt;li&gt;Navigate to S3, select the bucket and go to the Properties tab.  Under &amp;ldquo;Static Website Hosting&amp;rdquo; select &amp;ldquo;Use this bucket to host a website&amp;rdquo;.  You can also grab the URL from this screen.  This will look something like  &lt;a href=&#34;http://mybucket.s3-website-us-east-1.amazonaws.com&#34;&gt;http://mybucket.s3-website-us-east-1.amazonaws.com&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In your DNS, setup a CNAME for www to the bucket URL.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The above is pretty well documented at various places and it&amp;rsquo;s pretty easy.  So obviously, that&amp;rsquo;s not the way I did it.&lt;/p&gt;
+&lt;p&gt;AWS has a feature called Cloud Formation that let&amp;rsquo;s you specify an environment in JSON or YAML.  This approach is called &lt;em&gt;Infrastructure as Code&lt;/em&gt;.  There are a lot of scenarios where IaC is useful.  It reduces the time and cost of setting up an environment, which could be useful if you wanted to quickly setup a dev environment or duplicate an environment for some other purpose.  This approach reduces errors because you can troubleshoot the setup script when you build it and then iteratively improve it.  It also allows for the environment to be specified and reviewed by security specialists, improving communication between operations and security and reducing risks.&lt;/p&gt;
+&lt;p&gt;Cloud Formation is free to use.  I built a JSON &lt;a href=&#34;https://nextpertise.net/CloudFormation-Setup_Public_S3.json&#34;&gt;file&lt;/a&gt; that creates an S3 bucket, marks the bucket public, and then applies a security policy.  My template also outputs the URL back to you when it completes.  The Amazon online user guide has a lot of examples I used to understand the process, plus there is a template designer that let&amp;rsquo;s you draw out your target environment a la Visio and builds the JSON for you.  I didn&amp;rsquo;t use the designer to draw, but I pasted the file I developed into the designer and it was a good way to &amp;ldquo;debug&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Doing initial development of a Cloud Formation template meant running the process several times and fixing issues.  For me, most of these were formatting.  This took a little over an hour to iron out.  When everything was ready, I instantiated my S3 web bucket and I just needed to copy my Hugo public folder into the bucket.&lt;/p&gt;
+&lt;p&gt;AWS has a &amp;ldquo;free tier&amp;rdquo; that&amp;rsquo;s offered during your first 12 months.  Five gigs of S3 space is included in this tier, so the initial cost isn&amp;rsquo;t bad and S3 isn&amp;rsquo;t expensive after that.  Whether you my example to use Cloud Formation or not, this is a cheap and effective way to get a static website setup.  Amazon provides a very durable and scalable environment, there&amp;rsquo;s a ton of tools available, and it&amp;rsquo;s easy to imagine growing from this initial setup to a dynamic site using K8s.&lt;/p&gt;
+&lt;p&gt;That said, updating the html feels a little clunky after using Render and it&amp;rsquo;s integration with Github.  I&amp;rsquo;m going to leave the S3 version up for a while and try some improvements.  I&amp;rsquo;d like to build a command line script to run the Cloud Formation process, run Hugo to compile the site, and then transfer files.  That seems doable and it would make this a lot easier to maintain.  AWS also has a CodeCommit repository that looks like Github from a distance.  It would be interesting to explore using CodeCommit for the site as well.&lt;/p&gt;
+&lt;p&gt;For now, I&amp;rsquo;m very pleased with the Render workflow and I&amp;rsquo;ve decided to leave the &amp;ldquo;official&amp;rdquo; copy of the site there.&lt;/p&gt;
+&lt;p&gt;As always, I&amp;rsquo;m interested in your experiences and suggestions!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Render</title>
+      <link>https://nextpertise.net/posts/200724_render/</link>
+      <pubDate>Fri, 24 Jul 2020 08:21:27 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200724_render/</guid>
+      <description>&lt;h3 id=&#34;tldr-you-should-take-a-look-at-rendercom&#34;&gt;TLDR: you should take a look at Render.com&lt;/h3&gt;
+&lt;p&gt;I wrote in a previous post that I decided to build my site using Hugo, a decision I&amp;rsquo;m still really tickled with.  My initial draw to a Static Site Generator was to host my site in S3.  There&amp;rsquo;s a lot of attraction there - creating a public S3 bucket is easy, it&amp;rsquo;s low-cost, there&amp;rsquo;s no server to maintain, and the data is replicated within region between Availability Zones.  From a security perspective, S3 is easy to secure and the bucket is isolated.&lt;/p&gt;
+&lt;p&gt;I have experience with the major cloud providers and my high-level opinion is that AWS is the most mature, has the most complete set of products, and is the easiest to deal with.  Plus, I&amp;rsquo;m working my way through the AWS certs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/render.png#floatright&#34; alt=&#34;Render Logo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In coming up to speed on Hugo, I heard about a site called Render.  The salient points were that Render offered free static-site hosting and would pull your site from Git.  The Git integration was attractive - I had already decided to put the theme there and now I could just put the entire site there.  I decided to try Render.&lt;/p&gt;
+&lt;p&gt;At the time of this writing, I&amp;rsquo;ve had a Render account for two days.  Signup was easy and didn&amp;rsquo;t require a credit card.  They support federation with Github, so I used that option and that may have made things easier later.&lt;/p&gt;
+&lt;p&gt;Forcing me to give a card when I signup for something free always makes me feel like I&amp;rsquo;m being suckered into something.  In fact, I had an experience with Azure where I signed up for a &amp;ldquo;free&amp;rdquo; tier and ended up getting a big bill a couple months later so I have empirical reasons to be wary.&lt;/p&gt;
+&lt;p&gt;I was super-impressed with the Git integration.  I went to Github and created a new &amp;ldquo;Nextpertise&amp;rdquo; project, then went to my Hugo directory and made it a repository and sync&amp;rsquo;d it to Github.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git init  
+    $ git add .  
+    $ git commit -m &amp;quot;Initial commit&amp;quot;  
+    $ git remote add origin https://github.com/brentstewart/nextpertise.git  
+    $ git push -f origin master  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hugo takes your markdown content and compiles it against templates to generate a public directory of html files that can be copied to a web server.  When you are ready to deploy, just run &amp;ldquo;hugo&amp;rdquo; with no options.  The caveat here is that Hugo doesn&amp;rsquo;t clear out old content first, and will just copy the new build on top of the old.  Best practice then is to delete the public directory before regenerating.  So before setting up Render, I generated the public directory and sync&amp;rsquo;d my repo to Github.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Render_setup.png#floatsmallright&#34; alt=&#34;Render Setup&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From Render, I selected New &amp;ldquo;Web Service&amp;rdquo; and selected the repository I wanted to use.  Render asked for the web content directory (the &amp;ldquo;Publish directory&amp;rdquo;)  and the build command - here&amp;rsquo;s where I realized I messed up.  I went back and removed my &lt;strong&gt;public&lt;/strong&gt; directory and resync&amp;rsquo;d to Github, then used  &lt;strong&gt;hugo&lt;/strong&gt; as my build command.&lt;/p&gt;
+&lt;p&gt;By default, Render published my site to &lt;strong&gt;nextpertise.onrender.com&lt;/strong&gt;, but adding a custom domain is super-easy.  The setup screen provides instructions on setting up your DNS and tests to confirm that this step is complete.  The Nextpertise DNS is at Network Solutions, so it was easy enough to add the required records and the changes replicated overnight and were working this morning.  Render automatically assigns certs and makes the site available via https (I literally did nothing to enable this feature, it &lt;em&gt;just worked&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Render can redirect traffic to unknown pages.  I setup a rule to redirect this traffic to 404.html.  In Hugo, I created a 404.html file under &lt;em&gt;theme/layouts&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;When I finish this update, I&amp;rsquo;ll commit my local changes and push to Github.  Then I need to go to Render and click Manual Deploy.  Render will pull the changes, build the site using Hugo, and the new site will be online!  Render supports a build api hook, so I may look into using Githubs CI to trigger a Render deploy.  For now, I&amp;rsquo;m focused on getting enough content onto the site to make it interesting and cleaning up the look.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a screenshot of the pull and build.
+&lt;img src=&#34;https://nextpertise.net/Render_deploy.png#floatright&#34; alt=&#34;Render build&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Render deployed my site to Oregon - I wasn&amp;rsquo;t given an option, but that seems reasonable for a free service.  They mention that &amp;ldquo;lightning-fast CDN&amp;rdquo; is included and accessing the site from the eastern US does seem reasonably quick.  &lt;em&gt;If one of my friends in India reads this, could you provide some feedback on what it&amp;rsquo;s like for you?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m really impressed with Render and - based on two days of playing - definitely recommend you take a look.  I still intend to deploy to S3, for comparison and to get some experience with S3, so I&amp;rsquo;ll write about that in the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building this site using Hugo</title>
+      <link>https://nextpertise.net/posts/200720_building_site_with_hugo/</link>
+      <pubDate>Mon, 20 Jul 2020 11:38:07 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200720_building_site_with_hugo/</guid>
+      <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
+&lt;h2 id=&#34;hugohttpsd33wubrfki0l68cloudfrontnetc38c7334cc3f23585738e40334284fddcaf03d5e2e17cimageshugo-logo-widesvgfloatleft&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;
+&lt;p&gt;Mike Dane at Giraffe Academy has done an excellent series of videos that walk through Hugo.  Rather than repeat his work, I will tell you a little about my site.&lt;/p&gt;
+&lt;p&gt;Hugo supports multiple taxonomies, but for now I&amp;rsquo;ve focused on using tags.  I&amp;rsquo;ve defined some parameters in my front matter for a github link, Youtube link, and other references.  If I populate those parameters, they automatically display on the single template.  I used an HTML Grid for the list pages and set it to scale based on window width to produce a nice responsive behavior.  Hugo supports using themes and there are some great options, but I&amp;rsquo;ve chosen to build my own theme (&amp;ldquo;next&amp;rdquo;) because I wanted to understand the process.  You&amp;rsquo;re welcome to clone the theme.  Better yet, tell me what I did wrong!&lt;/p&gt;
+&lt;p&gt;This website is maintained on GitHub.  If you like the theme, clone the submodule.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

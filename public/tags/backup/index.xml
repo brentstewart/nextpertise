@@ -1,0 +1,40 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Backup on </title>
+    <link>https://nextpertise.net/tags/backup/</link>
+    <description>Recent content in Backup on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Aug 2020 09:12:52 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/backup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux Home Cloud Backup</title>
+      <link>https://nextpertise.net/posts/200804_homebackup/</link>
+      <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/200804_homebackup/</guid>
+      <description>&lt;p&gt;At one point, I was taught to divide tasks by priority A, B, C.  As I&amp;rsquo;ve gotten older, I&amp;rsquo;ve converted that scale into &amp;ldquo;things that will immediately get me fired or divorced&amp;rdquo;, &amp;ldquo;things that will eventually get me fired or divorced&amp;rdquo;, and &amp;ldquo;things I&amp;rsquo;d like to do if I have time&amp;rdquo;.  One of the &amp;ldquo;A&amp;rdquo; tasks on this scale is making sure that we don&amp;rsquo;t lose our family digital pictures!&lt;/p&gt;
+&lt;p&gt;Our home file server is an Ubuntu VM.  Over the years, I&amp;rsquo;ve used a variety of strategies to maintain personal backups.  Recently, I felt the time was right to move to cloud based backup - both for the convenience and the security of having things off-site.  I considered AWS S3, but Backblaze offers a similar and less-expensive service.  A former employer used Backblaze for laptop backups and I administered that system, and I always felt they did a good job and were reasonable to work with.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/BB_bucket_setup.png#floatright&#34; alt=&#34;Backblaze Dashboard&#34;&gt;  I settled on using Duplicati for the backkup software.  Duplicati runs on everything (Linux + various less secure OS), has a DEB, and is FOSS.  Duplicati has built in support for cloud backup, including Backblaze and S3.  I have a friend that uses Duplicati and it&amp;rsquo;s discussed on Jupiter Broadcasting, so I wanted to give it a try.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with Backblaze.  I setup an account and configured it for 2FA.  Then I created an ID and application key at the Backblaze dashboard and setup a bucket.  You can specify the bucket policy, and I recommend keeping older copies to protect against crypto-locking malware.  I setup my bucket to retain older copies for 180 days.&lt;/p&gt;
+&lt;p&gt;Setting up Duplicati is as easy as installing the DEB and enabling the app to autostart.  My server runs Mate, so I opened the Control Center (alt&amp;ndash;f2, &amp;ldquo;mate-control-center&amp;rdquo;) and added Duplicati to the autoruns (at the bottom of the control center window).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Mate-autorun-Duplicati.png#floatleft&#34; alt=&#34;Mate Autorun&#34;&gt; Once running, Duplicati shows a menu-bar applet. The application is administered from a web page on port 8200.  This webpage can be accessible from other machines and I usually manage the backups from my desktop.  Duplicati has excellent documentation on their website, but I was able to get it up and running quickly without investing a lot of time.&lt;/p&gt;
+&lt;p&gt;From the initial Duplicati page choose &amp;ldquo;Add backup&amp;rdquo; and a wizard will walk you through specifying the details.  Make sure you keep track of the passphrase used by the backup!  Here&amp;rsquo;s a quick rundown on the selections I used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;General - AES-256 Encryption.  Other options are no encryption and GNU Privacy Guard.  I don&amp;rsquo;t protect nuclear secrets, but I get itchy not encrypting data at rest, so I definitely don&amp;rsquo;t recommend that option.  I don&amp;rsquo;t know much about GNU PG, but AES-256 is considered a solid and well researched encryption so I used it.&lt;/li&gt;
+&lt;li&gt;Backup destination - this is where you&amp;rsquo;ll plug in the ID and Key you generated at Backblaze earlier.&lt;/li&gt;
+&lt;li&gt;Source data - gives you a file tree to select what you&amp;rsquo;d like to backup.  I&amp;rsquo;m cheap, so I separated out the non-private stuff into another directory (like installation ISOs) so I didn&amp;rsquo;t pay to back them up.&lt;/li&gt;
+&lt;li&gt;Schedule - We&amp;rsquo;ll get into a discussion of RTO and RPO another time perhaps.  Basically, think about your cost to transfer files (with Backblaze, there is no incremental cost) and how much data you are willing to lose between backups.  I setup my schedule to run every night - with Backblaze there&amp;rsquo;s not really a reason &lt;em&gt;not to&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Options - Duplicati allows you to set the remote volume size.  I kept this at the recommended 50Mb.  Basically, it chunks your data so that it&amp;rsquo;s easier to restore and so that an adversary can&amp;rsquo;t identify individual file sizes, which could be a way that you&amp;rsquo;d leak information.  I also chose to keep all backups, again to protect against crypto-lockers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Duplicati_Wiz.png#floatright&#34; alt=&#34;Duplicati Wizard&#34;&gt; After all that, just let it run!  My biggest knock on the combination of Duplicati and Backblaze is that there&amp;rsquo;s not an easy way to confirm backups are happening.  Backblaze has a 10 day trial and I didn&amp;rsquo;t initially put in a credit card.  To be clear, kudos to them for letting you try it and being easy to work with.  But . . . I forgot and the trial ran out and my backups stopped for several days.  Worse, I was clueless.&lt;/p&gt;
+&lt;p&gt;Duplicati has options to setup a confirmation email after backups, which I recommend.  You&amp;rsquo;ll know there&amp;rsquo;s a problem when you &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; get an email.  Unless you are more clever than me, that&amp;rsquo;s suboptimal but it is something.  Backblaze doesn&amp;rsquo;t have an alerting option for things that don&amp;rsquo;t happen.  I&amp;rsquo;m thinking that I could setup a Lambda to check via API, then send an SNS, but that&amp;rsquo;s for another day.&lt;/p&gt;
+&lt;p&gt;Overall, I&amp;rsquo;m please with the setup and the results I&amp;rsquo;m getting and would recommend either component to someone trying to solve a similar home problem.  I don&amp;rsquo;t see a reason this wouldn&amp;rsquo;t be good for a work environment, but I&amp;rsquo;ll need to use it for a while before I feel comfortable making that a recommendation.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

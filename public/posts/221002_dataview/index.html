@@ -1,0 +1,155 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Obsidian Dataview (Part 3) - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: This article is the third I&rsquo;ve written on Obsidian. Part 1 describes the basics and Part 2 covers tasks, this article will describe using Dataview.">
+    <meta name="keywords" content="Markdown,Obsidian Dataview" />
+    <meta name="twitter:card" content="Obsidian Dataview">
+    <meta property="og:title" content="Obsidian Dataview (Part 3)" >
+    <meta property="og:url" content="https://nextpertise.net/posts/221002_dataview/" >
+    <meta property="og:description" content="Obsidian Dataview" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/markdown.png#floatright" height="140">
+<h1>Obsidian Dataview (Part 3)</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Nov 1, 2022</i><br></div></h6>
+  <p><p>This article is the third I&rsquo;ve written on Obsidian.  <a href="/posts/220829_obsidian_intro">Part 1</a> describes the basics and <a href="/posts/220831_using_obsidian/">Part 2</a> covers tasks, this article will describe using Dataview.</p>
+<p>Core Obsidian is &ldquo;just&rdquo; a markdown editor with some Wiki functionality and a pretty good understanding of tasks.  The magic comes through add-ons.  The process of adding plugins is described in the second article where I discussed &ldquo;Checklist&rdquo;, which pulled all your open tasks together on one list in a sidebar.  The Dataview plugin is also a way to collect information across notes, but much more powerful.</p>
+<p>Once the Dataview plugin is added, you can add a dataview query into any document.  Fields can be created in any document either as YAML front matter or within the document using double-colons.
+<img src="/221101_Opty.png#floatright" alt="Example job">
+<img src="/obsidian.png" alt="Obsidian"></p>
+<h3 id="lets-build-out-an-example">Let&rsquo;s build out an example!</h3>
+<p>At the time of this writing, I&rsquo;m looking for a new job.  I&rsquo;ve gone into Obsidian and created an &ldquo;Opportunities&rdquo; folder.  Each document in that folder is based on a standard template that I fill out.  I update the document as I learn more and I make &ldquo;active=False&rdquo; if it&rsquo;s not a good fit.  I should note that each document starts with these standard fields, but I add all kinds of unstructured data underneath.  I have a diary of notes from calls and follow-up tasks that starts after the fields.</p>
+<pre tabindex="0"><code>## Untitled
+
+active::True
+Title::
+Pay::
+Link::
+
+contact:: 
+initialContact::
+lastContact::
+
+Onsite::
+Location::
+
+group:: #opportunity
+</code></pre><p>Outside the folder, I have a &ldquo;master view&rdquo; document where I track the entire job search.  This gives me a dynamic dashboard of the opportunities I am targeting.  The first table on this dashboard document is a summary of the various opportunities.  The first field in the table is the filename and it links back to the underlying details document.</p>
+<blockquote>
+<p>NOTE:   Obsidian denotes sections of code by encapsulating with three tics (`).  Noting the language after the top tics will highlight based on the language.  When the Dataview plugin is present, mark the code &ldquo;dataview&rdquo; and it will be interpretted and replaced with the query results.  I&rsquo;ve added a space in the bottom three tics to prevent Hugo from interpretting (and then hiding) the tics.</p>
+</blockquote>
+<pre tabindex="0"><code>```dataview
+table title,stage, pay, onsite from &#34;Projects/Opportunities&#34; 
+where active SORT file.name asc
+` ``
+</code></pre><p><img src="/221101_dashboard.png#floatright" alt="Dashboard">
+I have a similar set of documents for the people I&rsquo;ve met to track their contact information.  This query pulls in contact information from documents in the People folder that have the tag #jobhunt.</p>
+<pre tabindex="0"><code>```dataview
+table mobile,email, Last_contact 
+from &#34;People&#34; and #jobhunt 
+` ``
+</code></pre><p>Another table in the dashboard file is a list of open tasks.  Remember that Obsidian allows you to create a task using square brackets anywhere in a document.  In my employment search, many people have volunteered to help but are not necessarily associated with a particular job.  This means that I may have a follow-up reminder associated with a contact or with a job.  Here&rsquo;s the query that pulls all those to-dos together.  It&rsquo;s worth noting that I can check off a task either in the source document or in the dataview list and it will update the other.</p>
+<pre tabindex="0"><code>```dataview
+TASK from &#34;projects/opportunities&#34; 
+or (&#34;People&#34; and #jobhunt) 
+WHERE !completed 
+GROUP BY file.name SORT file.ctime asc
+` ``
+</code></pre><p>The second screenshot shows that I also have a dataview list of people on this &ldquo;dashboard&rdquo; page.  Dataview is enormously powerful and really turns building a personal database into a load of fun.</p>
+<p>Dataview provides a pretty good exposure to NoSQL.  I have a lot of SQL experience and struggled with the concepts of &ldquo;NoSQL&rdquo;.  Dataview uses it&rsquo;s own query language (called DSL), but it&rsquo;s easy to pick up and starts to give you a vision of what&rsquo;s possible in NoSQL.  A simple example here - if you built a SQL database and started populating it, it could be problematic to add a field later.  With Dataview, I could just start adding a field for &ldquo;PTO&rdquo; and the query would just ignore pages that didn&rsquo;t have that field.  Although Dataview can handle schema changes adroitly, it doesn&rsquo;t have any concepts of data relationships, so it&rsquo;s going to be fit for flat data.</p>
+<p>Those of you with sharp eyes may notice that I have buttons on my dashboard (for instance, &ldquo;New Opportunity&rdquo;).  I may describe setting that up in a future post, but just to not leave the question hanging I&rsquo;ll mention those are created using the &ldquo;Buttons&rdquo; and &ldquo;Quick Add&rdquo; plugins.  You may also notice that my folders have icons - that&rsquo;s done using the &ldquo;Icon Folder&rdquo; plugin.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/blacksmithgu/obsidian-dataview">https://github.com/blacksmithgu/obsidian-dataview</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/markdown/">Markdown</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230922_markdown_to_docx/">Markdown to DOCX</a><br />
+        Converting markdown files
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/221002_dataview/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Obsidian Dataview (Part 3)</a></nav>
+</div>
+  </body>
+  </html>

@@ -1,0 +1,115 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise VMWare PSA update - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I wrote back on January 5th about an issue with VMWare Workstation on the latest Linux kernels. I&rsquo;m using Pop! OS and it is fairly aggressive about keeping the system on fairly recent kernels.">
+    <meta name="keywords" content="vmware,VMWare" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="VMWare PSA update" >
+    <meta property="og:url" content="https://nextpertise.net/posts/220727_psa_update/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/vmware.png#floatright" height="140">
+<h1>VMWare PSA update</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Jul 27, 2022</i><br></div></h6>
+  <p><p>I wrote back on <a href="/posts/220105_psa_vmware">January 5th</a> about an issue with VMWare Workstation on the latest Linux kernels.  I&rsquo;m using Pop! OS and it is fairly aggressive about keeping the system on fairly recent kernels.  VMWare doesn&rsquo;t support the newest kernels and Workstaion thus can&rsquo;t recompile vmmon and vmnet after a kernel upgrade.  This is probably a problem shared by anyone who keeps their kernel updated, but it&rsquo;s worth saying that - if your goal is stability - you don&rsquo;t have to upgrade the kernel when offered.</p>
+<p>I previously recommended a project from Michal Kubeček that maintained the <a href="https://github.com/mkubecek/vmware-host-modules">necessary patches</a>.  That project is still great, but you have to periodically download a new copy to stay current.  Today when I hit this issue again, I used a different project - the <a href="https://github.com/LinuxEuphony/vmware-host-modules-builder-cli">VMWare host modules Builder CLI</a>.  This project builds on and automates the Kubeček project.</p>
+<p><strong>Builder CLI</strong> supports Debian (and thus Pop!), Arch, and is working on Fedora support.  When run, the script confirms that you are logged in as root and that there is internet connectivity.  It checks for unmet dependencies and cleans up.  As part of the script it installs ncat and wget, as well as open-vm-tools.  It detects your kernel and VMWare Workstation versions, downloads the updates, and guides you through installation.  It was quick and easy on my system.</p>
+<p>To run the VMWare Host Modules Builders script, download and unzip the script, then make the script executable.  For Debian, the script is called <em>debian-vmware-host-modules-builder-cli.sh</em>.  Thus run the script as root (or sudo).</p>
+<p><img src="/220727_vmwarescript.png" alt="Script prompt"></p>
+<p>Method 1 worked fine for me, although I had to reboot to get everthing working.  That&rsquo;s consistent with the behavior from the older method as well.  It&rsquo;s a little disruptive, since downloading a new kernel can cause VMWare Workstation to have errors until you reboot.  Once you reboot into the new kernel, you have to check vmware, and then run the script if needed and then reboot again with the patches loaded.  Simple enough to just only do updates after business hours and make sure everything is working before you walk away.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/mkubecek/vmware-host-modules">https://github.com/mkubecek/vmware-host-modules</a><br> &nbsp&nbsp<a href="https://github.com/LinuxEuphony/vmware-host-modules-builder-cli">https://github.com/LinuxEuphony/vmware-host-modules-builder-cli</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/vmware/">vmware</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/220122_deploying_wim/">Deploying a WIM Image to VMWare</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/220727_psa_update/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">VMWare PSA update</a></nav>
+</div>
+  </body>
+  </html>

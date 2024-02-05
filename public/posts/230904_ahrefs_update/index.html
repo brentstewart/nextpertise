@@ -1,0 +1,127 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Ahrefs update - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I wrote about Ahrefs a month ago. Ahrefs is a site inspector that provides feedback on errors on a website. I contine to use it and be pleased with it.">
+    <meta name="keywords" content="jamstack,Ahrefs" />
+    <meta name="twitter:card" content="Nextpertise is a journal of interesting ideas in technology, covering topics such as Linux use at home and in the cloud, self-hosting, and cybersecurity.">
+    <meta property="og:title" content="Ahrefs update" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230904_ahrefs_update/" >
+    <meta property="og:description" content="Nextpertise is a journal of interesting ideas in technology, covering topics such as Linux use at home and in the cloud, self-hosting, and cybersecurity." >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/review.png#floatright" height="140">
+<h1>Ahrefs update</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Sep 4, 2023</i><br></div></h6>
+  <p><p>I wrote about <a href="/posts/230731_ahrefs">Ahrefs</a> a month ago.  Ahrefs is a site inspector that provides feedback on errors on a website.  I contine to use it and be pleased with it.</p>
+<h2 id="ahrefs-after-a-month">Ahrefs after a month</h2>
+<p>As this site has grown, I&rsquo;ve encountered a number of issues.  In the original post, I mentioned that I changed the folder structure at one time and even after a self-audit to clean things up still found references using the old structure.  I&rsquo;ve been continuing to work through the problems that Ahrefs found and try to clean up a few each week.  I haven&rsquo;t posted as much because of this change of focus, but I hope that you can see an improvement in website quality.</p>
+<p><img src="/gardentools.jpeg#floatright" alt="Garden Tools">
+Ahrefs has also revealed problems of old age.  When I mention a product or a project and include an image, I have generally done that by referencing the image on the source page.  I think the reason I did that was philosophical, it&rsquo;s not like I have space issues working with <a href="/posts/200817_jamstack/">Render</a>.  That said, some of those sources have disappeared.  Others have updated their sites and used new images with new names.  It&rsquo;s not just images - URLs are being updated as well.  The result is broken references from my older pages.  It feels like this aspect of  maintaining a site is like gardening, and in that analogy I&rsquo;m finding Ahrefs to be the right tools to maintain the garden because Ahrefs runs down all the links and lets me know of any that don&rsquo;t complete successfully.</p>
+<p>Ahrefs is also telling me that I lack <a href="https://css-tricks.com/essential-meta-tags-social-media/">social media tags</a>.  My personal view is that Facebook is more of a security risk than a socialization tool.  About the only social media I use is LinkedIn.  That said, I&rsquo;d like for folks to be able to find what I write and I&rsquo;d like it to present cleanly in those platforms.  Ahrefs pointed out my backwardsness and provided directions about how to add these tags (as shown below, using Hugo variables to customize the output for each page).</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Nextpertise - {{.Params.Title}}&lt;/title&gt;
+    &lt;meta name=&quot;{{.Params.Description}}&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;{{.Params.Focus_Keyword}},linux, VPN, Virtual Machine, cybersecurity, Virtualization, self-hosting&quot;&gt;
+    &lt;meta name=&quot;twitter:card&quot; content=&quot;{{.Params.description}}&quot;&gt;
+    &lt;meta property=&quot;og:title&quot; content=&quot;{{.Title}}&quot; &gt;
+    &lt;meta property=&quot;og:url&quot; content=&quot;{{.Permalink}}&quot; &gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;{{.Params.summary}}&quot; &gt;
+    &lt;meta property=&quot;og:image&quot; content=&quot;https://nextpertise.net/non-technical.png&quot; &gt;
+    &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;https://nextpertise.net/non-technical.png&quot; &gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://nextpertise.net/style.css&quot; &gt;
+&lt;/head&gt;
+</code></pre>
+<h2 id="thoughts">Thoughts</h2>
+<p>My original conclusion - that Ahrefs offered a valuable resource to web developers - continues to hold.  Using their feedback has helped me to understand some new wrinkles in the way pages are constructed.  Ahrefs has definitely helped me handle the technical debt on the site and keep it up to date with current practices.  After a month, I rely on it more and as I become a more sophisticated blogger and understand more, the tool continues to be accessible and valuable.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://ahrefs.com">https://ahrefs.com</a><br> &nbsp&nbsp<a href="https://css-tricks.com/essential-meta-tags-social-media/">https://css-tricks.com/essential-meta-tags-social-media/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/jamstack/">jamstack</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230904_ahrefs_update/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Ahrefs update</a></nav>
+</div>
+  </body>
+  </html>

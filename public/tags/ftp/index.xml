@@ -1,0 +1,84 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FTP on </title>
+    <link>https://nextpertise.net/tags/ftp/</link>
+    <description>Recent content in FTP on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jun 2022 18:00:16 -0400</lastBuildDate>
+    
+        <atom:link href="https://nextpertise.net/tags/ftp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Filezilla</title>
+      <link>https://nextpertise.net/posts/220626_filezilla/</link>
+      <pubDate>Sun, 26 Jun 2022 18:00:16 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/220626_filezilla/</guid>
+      <description>&lt;p&gt;Filezilla produces a set of graphical file transfer tools and this has been a high-quality product for a very long time.  I&amp;rsquo;ve used Filezilla since the early 2000s, as have a lot of other folks, and it&amp;rsquo;s something of a standard in industry where FTP/FTPS is used.  Part of the charm is that the Filezilla client is very accessible for non-technical folks - a little introduction and they can manage their own downloads.&lt;/p&gt;
+&lt;p&gt;The traditional Filezilla open-source client supports FTP and SFTP.  Filezilla makes an open-source FTP/FTPS server that makes it easy to host an FTP site.  Filezilla server used to be a great way to support FTP on a Windows server (and I used it that way 15 years ago), but researching this article I see that it is now offered for other OS as well.  They have also released a &lt;a href=&#34;https://filezilla-project.org/filezilla_pro.php&#34;&gt;Filezilla Pro&lt;/a&gt; client that includes support for things like WebDAV, S3, and various cloud file stores.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/220626_Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;using-filezilla&#34;&gt;Using Filezilla&lt;/h2&gt;
+&lt;p&gt;I still occassionally have to explain Filezilla to new folks, so I thought I&amp;rsquo;d document a quick run through.&lt;/p&gt;
+&lt;p&gt;When you first start Filezilla, local files are on the left and remote files are on the right.  Because you haven&amp;rsquo;t connected anywhere, the right pane will be blank to start.  Note the path for each side is shown above the files (marked (1)).&lt;/p&gt;
+&lt;p&gt;You can &amp;ldquo;quick connect&amp;rdquo; by typing in the particulars in the top row (marked (2) in the picture).  To attach to a remote FTP server, for instance, you might fill in host with an IP address (like 1.2.3.4) or a Fully Qualified Domain Name (an FQDN looks like &amp;ldquo;ftp.makingthisup.com&amp;rdquo;).  Username and password are for the remote system and will be supplied by the administrator of that system.  Most FTP systems use port 21 and most FTPS systems use port 22, so it&amp;rsquo;s safe to assume these port numbers unless you&amp;rsquo;ve been given an alternative.  When everything is ready, click the button!&lt;/p&gt;
+&lt;p&gt;Another way to connect is to use bookmarks.  This is particularly useful if you attach to the same remote systems repeatedly.  To create a bookmark, click the top left icon that looks like a file folder (marked (3) in the picture).  Once that screen opens, click New Site and fill in the same particulars that were used for the quick connect.  Bookmarks offer a range of logon types including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Anonymous - don&amp;rsquo;t trust any site using this 🙂&lt;/li&gt;
+&lt;li&gt;Normal - just fill in the user/pass below.&lt;/li&gt;
+&lt;li&gt;Ask - it will pop a box for login when you connect.&lt;/li&gt;
+&lt;li&gt;Interactive - not really sure, don&amp;rsquo;t recall using that&lt;/li&gt;
+&lt;li&gt;Key file - used if you have a cryptographic key supplied by an SFTP server owner.  If you are using FTP you don&amp;rsquo;t need this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once you&amp;rsquo;re done, click OK to save it or &amp;ldquo;Connect&amp;rdquo; to save and to start a session immediately.&lt;/p&gt;
+&lt;p&gt;Remote files will appear in the area marked (4).  Filezilla functions like a normal file manager with two side-by-side windows open.  Click &amp;ldquo;..&amp;rdquo; to go up a level, click a directory to open it.  Once you&amp;rsquo;ve found the files you need, either double-click the remote files to start a transfer or drag them to a local directory.&lt;/p&gt;
+&lt;p&gt;Filezilla has a lot of features that address more advanced cases, but this introduction covers the basics that are used 99% of the time.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Setting up a Basic FTP server on Linux</title>
+      <link>https://nextpertise.net/posts/220117_linux_ftp/</link>
+      <pubDate>Mon, 17 Jan 2022 15:49:07 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/220117_linux_ftp/</guid>
+      <description>&lt;h1 id=&#34;brother-printers-work-well-with-linux&#34;&gt;Brother Printers work well with Linux&lt;/h1&gt;
+&lt;p&gt;My last two printers have been Brother multi-function copiers (MFCs).  These printers work really well with everything in the house - Windows, Linux, even the school Chromebooks.  They have a Linux driver available on their website for all their printers, the print quality is excellent, and they&amp;rsquo;ve been very durable.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re looking for a printer that plays well with others, take a look.&lt;/p&gt;
+&lt;p&gt;My Brother MFC-L3770CDW printer can scan to SMB, FTP, or a flash drive you plug in.  I wanted to set it up to FTP scans into the personal directories of family members.&lt;/p&gt;
+&lt;h1 id=&#34;basic-ftp-with-linux&#34;&gt;Basic FTP with Linux&lt;/h1&gt;
+&lt;p&gt;FTP is a very old file transfer protocol.  VSFTP (&amp;ldquo;Very Secure&amp;rdquo;) is the default FTP server for Linux.  Regardless of the name, plain vanilla FTP transmits usernames and passwords in clear text and setting it up to be &amp;ldquo;Very Secure&amp;rdquo; takes a little extra effort.  I&amp;rsquo;m also using it because it&amp;rsquo;s compatible with my printer, but securing it might interfere with that connection.  So this setup isn&amp;rsquo;t security optimized and is really only appropriate for a home network.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;As a note, if secure file transfer is interesting to you, check out the articles on &lt;a href=&#34;https://nextpertise.net/posts/200813_using_ssh3/&#34;&gt;SSHFS&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;On Ubuntu, installation can be done through apt.  Configuration is done by editing the &lt;em&gt;/etc/vsftpd.conf&lt;/em&gt; file.  After editing, you&amp;rsquo;ll need to restart the service.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install vsftpd
+sudo nano /etc/vsftpd.conf
+sudo systemctl restart vsftpd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The configuration file is mostly comments, with each setting preceded by documentation.  Remove the hash to &amp;ldquo;uncomment&amp;rdquo; a line.  Here&amp;rsquo;s the relevant settings that I used in this case.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;listen=YES
+listen_ipv6=NO
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+allow_writeable_chroot=YES
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This configuration turns off IPv6 since I&amp;rsquo;m not using it.  It limits access to valid users on the server, allows those users to write files, and limits each user to their personal folder.  VSFTP will throw an error if a chroot&amp;rsquo;d user has both SSH and FTP write priviledges, which makes sense under more secure circumstances.  In this case, I turned off the security check.  Be very careful when setting this up, sentences like that last are usually followed by tragedy!  It&amp;rsquo;s only appropriate because I&amp;rsquo;m limiting access to the server and it&amp;rsquo;s not &amp;ldquo;mission critical&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Testing is easy with Filezilla or from the command line.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@server:~$ ftp 192.168.1.2
+Connected to 192.168.1.2.
+220 (vsFTPd 3.0.3)
+Name (192.168.1.2:brent): brent
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once complete, this worked like a champ.  I created &lt;em&gt;~/scan&lt;/em&gt; directories under each user and setup a quick-connect button from the Brother printer.  Voila - scans directly to each users home directory!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

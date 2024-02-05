@@ -1,0 +1,950 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Anonymous Browsing - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: What is the best way to be truly anonymous online? Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&rsquo;t creep everyone out as much as it does me).">
+    <meta name="keywords" content="Basics, How To, Linux, Virtualization, Security,Anonymous Browsing" />
+    <meta name="twitter:card" content="Running TOR">
+    <meta property="og:title" content="Anonymous Browsing" >
+    <meta property="og:url" content="https://nextpertise.net/posts/230405_anonymous/" >
+    <meta property="og:description" content="Running TOR" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/how%20to.png#floatright" height="140">
+<h1>Anonymous Browsing</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Apr 5, 2023</i><br></div></h6>
+  <p><p>What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&rsquo;t creep everyone out as much as it does me).  My kids think I&rsquo;m paranoid.  Just for fun, take a look at <a href="https://amiunique.org">Am I Unique</a> and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
+<img src="/230407_amiunique.png#floatleft" alt="Am I unique?"></p>
+<p>My personal summary from <strong>Am I Unique?</strong> is shown to the left.  Just like Mom said, I&rsquo;m one in a million.</p>
+<p>Sometimes our need for anonymity goes beyond shielding our selves from spam.  When the stakes are higher, revealing an identity could impact a job or put lives in danger.  Many people depend on this type of anonymity to circumvent hostile governments or to leak important stories to reporters.</p>
+<h2 id="recipe-for-anonymity">Recipe for Anonymity</h2>
+<p>Here&rsquo;s a quick description of how you might approach trying to safeguard your identity.  This will guide you through installing Tails.  Tails is a standalone operating system that allows browsing through TOR.  The machine is clean, so nothing leaks to identify you, the OS is scrubbed every time you boot, the browser is locked down, and TOR passes your traffic through a series of other computers (&ldquo;nodes&rdquo;) to obscure your source address.</p>
+<div class="admonition danger">
+    <div class="title">Danger</div>
+    <div class="content"><p>This kind of concern means that the authorities are either unconcerned or hostile to your situation.  I am praying for you!</p>
+<p>Don&rsquo;t trust my advice!  I have a reasonable level of expertise, but I don&rsquo;t do this for a living.  My advice is a good starting point, but technology is constantly changing and this may be old when you read it.</p>
+<p>I believe Tails by itself is sufficient against non-Nation-State actors.  Especially if you have that level of concern, maintain a sense of paranoia and protect yourself in multiple layers.  For instance, use this post as a starting point but load the USB stick from a computer in a random location that can&rsquo;t be associated to you.  In all cases, continue to research best practice!</p>
+</div>
+</div>
+<p>Tails can be installed via USB.  If you are in serious danger, this is the best way.  You can then take the USB to any computer, boot up from the USB, and further obscure your source.
+<div class="admonition danger">
+    <div class="title">Danger</div>
+    <div class="content">Tails doesn&rsquo;t protect against stupidity.  Don&rsquo;t login anywhere or take other actions that may identify you while using Tails.  Also, remember that browser crumbs are only one way that someone could be identified.  Cameras, visitor logs, and phone GPS are examples of other ways you could be tied to a location at a specific time.</div>
+</div></p>
+<h3 id="setting-up-tails">Setting up Tails</h3>
+<p>In this exercise, I&rsquo;m going to walk through installing Tails in a VM on Linux, which may be sufficient for run-of-the-mill situations.</p>
+<p>First, install KVM.  The commands below apply for debian-derived systems like Ubuntu, Mint, or Pop!_OS.</p>
+<pre><code>sudo apt install qemu-kvm libvirt-daemon-system
+sudo adduser $USER libvirt
+sudo apt install virt-manager
+</code></pre>
+<p>Next, download the <a href="https://tails.boum.org/install/dvd/index.en.html">Tails ISO</a> or an <a href="https://tails.boum.org/install/download/">IMG file</a> which is easier to write to USB.  I&rsquo;d use <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwio88TRvZr-AhVXIUQIHej7AqwQFnoECCAQAQ&amp;url=https%3A%2F%2Fwww.balena.io%2Fetcher&amp;usg=AOvVaw0UNPm_qcksmQ1aL8D-5gLD">Etcher</a> to write to disk, but if you haven&rsquo;t done that part before the Tails website has installation <a href="https://tails.boum.org/install/index.en.html">instructions</a>.</p>
+<p>If you want to install on a VM, run the Virtual Machine Manager and create a new machine.  The device I setup had the following settings:</p>
+<ul>
+<li>Generic Linux 2020</li>
+<li>2 vCPU, 8 GB RAM (I think you just need 4)</li>
+<li>Boot options - boot from SATA CDROM</li>
+<li>SATA CDROM - mapped to the Tails ISO in my download directory</li>
+</ul>
+<p>Start the VM.  The VM window will &ldquo;capture&rdquo; your mouse and keyboard - to break out and back to your host machine press the right Win and Ctrl keys.  It will boot to a welcome.  You may want to set some additional parameters (these will only apply until the next boot).</p>
+<p><img src="/230407_tailsadditionalsettings.png#floatsmallright" alt="Additional Settings"></p>
+<p>Under Additional settings, choose the plus and set an Administrative password.  This only applies to the session.  The &ldquo;Unsafe Browser&rdquo; option allows you to sign into a captive portal.  Again, that&rsquo;s another way to identify you so I would just pick another place to connect and turn that off.</p>
+<p>Choose &ldquo;start Tails&rdquo; to move into a Gnome desktop.  It will prompt you to start Tor first thing.  You can tell it to connect automatically or &ldquo;Hide to my local network that I&rsquo;m connecting to Tor&rdquo;.  The latter choice requires identifying and connecting to a Tor bridge manually.  You&rsquo;ll be prompted to email <a href="mailto:bridges@torproject.org">bridges@torproject.org</a> and they&rsquo;ll help you find a discrete way to connect.</p>
+<h3 id="specifying-tor-exit-node">Specifying Tor Exit Node</h3>
+<p>One problem that you may encounter is that the site you are trying to contact blocks connections from other countries.  Since Tor will give you a random exit node, there&rsquo;s a good chance your traffic will appear to be coming from somewhere else on the globe.  My first test put me in Germany, for instance.</p>
+<p>If you want to force Tor to exit your traffic in a particular country, open a terminal in Tails and edit the tor configuration file.</p>
+<pre><code>sudo nano /etc/tor/torrc
+</code></pre>
+<p>Add these lines to the end of the config file to force traffic to exit in the US.</p>
+<pre><code>ExitNodes {us}
+StrictNodes 1
+</code></pre>
+<p>I&rsquo;ve included a table of exit codes at the end of this document to help you find the appropriate country.</p>
+<h3 id="browserling">Browserling</h3>
+<p>For an extra level of obscurity, use <a href="https://www.browserling.com/">Browserling</a>.  Browserling is a site that will give you a web browser in a Windows VM to test your website.  You can also use this to create another level of difficulty to tracing the connection back.  Use Tor to connect to browserling, which will spin up a temporary VM (it will take a minute).  It&rsquo;s meant for testing web pages and will only be available to you for a couple minutes, so you might want to prep what you want to send in a text editor and then copy and paste it over.</p>
+<h2 id="final-note">Final Note</h2>
+<p>I hope you don&rsquo;t need this, but if you do I wish you the best.  Hopefully this will give you some ideas where to look and how to protect yourself!</p>
+<h2 id="for-reference----tor-country-codes">For Reference -  Tor country codes</h2>
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+<table class="table table-responsive table-hover">
+<caption>Table of Tor Country Codes</caption>
+<thead class="table-info">
+<tr>
+<th style="text-align:center">Country</th>
+<th style="text-align:center">Code</th>
+<th style="text-align:left">Country</th>
+<th style="text-align:center">Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Ascension Island</td>
+<td style="text-align:center">{Ac}</td>
+<td style="text-align:left">Afghanistan</td>
+<td style="text-align:center">{Af}</td>
+</tr>
+<tr>
+<td style="text-align:center">Aland</td>
+<td style="text-align:center">{Ax}</td>
+<td style="text-align:left">Albania</td>
+<td style="text-align:center">{Al}</td>
+</tr>
+<tr>
+<td style="text-align:center">Algeria</td>
+<td style="text-align:center">{Dz}</td>
+<td style="text-align:left">Andorra</td>
+<td style="text-align:center">{Ad}</td>
+</tr>
+<tr>
+<td style="text-align:center">Angola</td>
+<td style="text-align:center">{Ao}</td>
+<td style="text-align:left">Anguilla</td>
+<td style="text-align:center">{Ai}</td>
+</tr>
+<tr>
+<td style="text-align:center">Antarctica</td>
+<td style="text-align:center">{Aq}</td>
+<td style="text-align:left">Antigua And Barbuda</td>
+<td style="text-align:center">{Ag}</td>
+</tr>
+<tr>
+<td style="text-align:center">Argentina Republic</td>
+<td style="text-align:center">{Ar}</td>
+<td style="text-align:left">Armenia</td>
+<td style="text-align:center">{Am}</td>
+</tr>
+<tr>
+<td style="text-align:center">Aruba</td>
+<td style="text-align:center">{Aw}</td>
+<td style="text-align:left">Australia</td>
+<td style="text-align:center">{Au}</td>
+</tr>
+<tr>
+<td style="text-align:center">Austria</td>
+<td style="text-align:center">{At}</td>
+<td style="text-align:left">Azerbaijan</td>
+<td style="text-align:center">{Az}</td>
+</tr>
+<tr>
+<td style="text-align:center">Bahamas</td>
+<td style="text-align:center">{Bs}</td>
+<td style="text-align:left">Bahrain</td>
+<td style="text-align:center">{Bh}</td>
+</tr>
+<tr>
+<td style="text-align:center">Bangladesh</td>
+<td style="text-align:center">{Bd}</td>
+<td style="text-align:left">Barbados</td>
+<td style="text-align:center">{Bb}</td>
+</tr>
+<tr>
+<td style="text-align:center">Belarus</td>
+<td style="text-align:center">{By}</td>
+<td style="text-align:left">Belgium</td>
+<td style="text-align:center">{Be}</td>
+</tr>
+<tr>
+<td style="text-align:center">Belize</td>
+<td style="text-align:center">{Bz}</td>
+<td style="text-align:left">Benin</td>
+<td style="text-align:center">{Bj}</td>
+</tr>
+<tr>
+<td style="text-align:center">Bermuda</td>
+<td style="text-align:center">{Bm}</td>
+<td style="text-align:left">Bhutan</td>
+<td style="text-align:center">{Bt}</td>
+</tr>
+<tr>
+<td style="text-align:center">Bolivia</td>
+<td style="text-align:center">{Bo}</td>
+<td style="text-align:left">Bosnia And Herzegovina</td>
+<td style="text-align:center">{Ba}</td>
+</tr>
+<tr>
+<td style="text-align:center">Botswana</td>
+<td style="text-align:center">{Bw}</td>
+<td style="text-align:left">Bouvet Island</td>
+<td style="text-align:center">{Bv}</td>
+</tr>
+<tr>
+<td style="text-align:center">Brazil</td>
+<td style="text-align:center">{Br}</td>
+<td style="text-align:left">British Indian Ocean Terr</td>
+<td style="text-align:center">{Io}</td>
+</tr>
+<tr>
+<td style="text-align:center">British Virgin Islands</td>
+<td style="text-align:center">{Vg}</td>
+<td style="text-align:left">Brunei Darussalam</td>
+<td style="text-align:center">{Bn}</td>
+</tr>
+<tr>
+<td style="text-align:center">Bulgaria</td>
+<td style="text-align:center">{Bg}</td>
+<td style="text-align:left">Burkina Faso</td>
+<td style="text-align:center">{Bf}</td>
+</tr>
+<tr>
+<td style="text-align:center">Burundi</td>
+<td style="text-align:center">{Bi}</td>
+<td style="text-align:left">Cambodia</td>
+<td style="text-align:center">{Kh}</td>
+</tr>
+<tr>
+<td style="text-align:center">Cameroon</td>
+<td style="text-align:center">{Cm}</td>
+<td style="text-align:left">Canada</td>
+<td style="text-align:center">{Ca}</td>
+</tr>
+<tr>
+<td style="text-align:center">Cape Verde</td>
+<td style="text-align:center">{Cv}</td>
+<td style="text-align:left">Cayman Islands</td>
+<td style="text-align:center">{Ky}</td>
+</tr>
+<tr>
+<td style="text-align:center">Central African Republic</td>
+<td style="text-align:center">{Cf}</td>
+<td style="text-align:left">Chad</td>
+<td style="text-align:center">{Td}</td>
+</tr>
+<tr>
+<td style="text-align:center">Chile</td>
+<td style="text-align:center">{Cl}</td>
+<td style="text-align:left">People&rsquo;s Republic Of China</td>
+<td style="text-align:center">{Cn}</td>
+</tr>
+<tr>
+<td style="text-align:center">Christmas Islands</td>
+<td style="text-align:center">{Cx}</td>
+<td style="text-align:left">Cocos Islands</td>
+<td style="text-align:center">{Cc}</td>
+</tr>
+<tr>
+<td style="text-align:center">Colombia</td>
+<td style="text-align:center">{Co}</td>
+<td style="text-align:left">Comoras</td>
+<td style="text-align:center">{Km}</td>
+</tr>
+<tr>
+<td style="text-align:center">Congo</td>
+<td style="text-align:center">{Cg}</td>
+<td style="text-align:left">Congo (Democratic Republic)</td>
+<td style="text-align:center">{Cd}</td>
+</tr>
+<tr>
+<td style="text-align:center">Cook Islands</td>
+<td style="text-align:center">{Ck}</td>
+<td style="text-align:left">Costa Rica</td>
+<td style="text-align:center">{Cr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Cote D Ivoire</td>
+<td style="text-align:center">{Ci}</td>
+<td style="text-align:left">Croatia</td>
+<td style="text-align:center">{Hr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Cuba</td>
+<td style="text-align:center">{Cu}</td>
+<td style="text-align:left">Cyprus</td>
+<td style="text-align:center">{Cy}</td>
+</tr>
+<tr>
+<td style="text-align:center">Czech Republic</td>
+<td style="text-align:center">{Cz}</td>
+<td style="text-align:left">Denmark</td>
+<td style="text-align:center">{Dk}</td>
+</tr>
+<tr>
+<td style="text-align:center">Djibouti</td>
+<td style="text-align:center">{Dj}</td>
+<td style="text-align:left">Dominica</td>
+<td style="text-align:center">{Dm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Dominican Republic</td>
+<td style="text-align:center">{Do}</td>
+<td style="text-align:left">East Timor</td>
+<td style="text-align:center">{Tp}</td>
+</tr>
+<tr>
+<td style="text-align:center">Ecuador</td>
+<td style="text-align:center">{Ec}</td>
+<td style="text-align:left">Egypt</td>
+<td style="text-align:center">{Eg}</td>
+</tr>
+<tr>
+<td style="text-align:center">El Salvador</td>
+<td style="text-align:center">{Sv}</td>
+<td style="text-align:left">Equatorial Guinea</td>
+<td style="text-align:center">{Gq}</td>
+</tr>
+<tr>
+<td style="text-align:center">Estonia</td>
+<td style="text-align:center">{Ee}</td>
+<td style="text-align:left">Ethiopia</td>
+<td style="text-align:center">{Et}</td>
+</tr>
+<tr>
+<td style="text-align:center">Falkland Islands</td>
+<td style="text-align:center">{Fk}</td>
+<td style="text-align:left">Faroe Islands</td>
+<td style="text-align:center">{Fo}</td>
+</tr>
+<tr>
+<td style="text-align:center">Fiji</td>
+<td style="text-align:center">{Fj}</td>
+<td style="text-align:left">Finland</td>
+<td style="text-align:center">{Fi}</td>
+</tr>
+<tr>
+<td style="text-align:center">France</td>
+<td style="text-align:center">{Fr}</td>
+<td style="text-align:left">France Metropolitan</td>
+<td style="text-align:center">{Fx}</td>
+</tr>
+<tr>
+<td style="text-align:center">French Guiana</td>
+<td style="text-align:center">{Gf}</td>
+<td style="text-align:left">French Polynesia</td>
+<td style="text-align:center">{Pf}</td>
+</tr>
+<tr>
+<td style="text-align:center">French Southern Territories</td>
+<td style="text-align:center">{Tf}</td>
+<td style="text-align:left">Gabon</td>
+<td style="text-align:center">{Ga}</td>
+</tr>
+<tr>
+<td style="text-align:center">Gambia</td>
+<td style="text-align:center">{Gm}</td>
+<td style="text-align:left">Georgia</td>
+<td style="text-align:center">{Ge}</td>
+</tr>
+<tr>
+<td style="text-align:center">Germany</td>
+<td style="text-align:center">{De}</td>
+<td style="text-align:left">Ghana</td>
+<td style="text-align:center">{Gh}</td>
+</tr>
+<tr>
+<td style="text-align:center">Gibralter</td>
+<td style="text-align:center">{Gi}</td>
+<td style="text-align:left">Greece</td>
+<td style="text-align:center">{Gr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Greenland</td>
+<td style="text-align:center">{Gl}</td>
+<td style="text-align:left">Grenada</td>
+<td style="text-align:center">{Gd}</td>
+</tr>
+<tr>
+<td style="text-align:center">Guadeloupe</td>
+<td style="text-align:center">{Gp}</td>
+<td style="text-align:left">Guam</td>
+<td style="text-align:center">{Gu}</td>
+</tr>
+<tr>
+<td style="text-align:center">Guatemala</td>
+<td style="text-align:center">{Gt}</td>
+<td style="text-align:left">Guinea</td>
+<td style="text-align:center">{Gn}</td>
+</tr>
+<tr>
+<td style="text-align:center">Guinea-Bissau</td>
+<td style="text-align:center">{Gw}</td>
+<td style="text-align:left">Guyana</td>
+<td style="text-align:center">{Gy}</td>
+</tr>
+<tr>
+<td style="text-align:center">Haiti</td>
+<td style="text-align:center">{Ht}</td>
+<td style="text-align:left">Heard-Mcdonald Island</td>
+<td style="text-align:center">{Hm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Honduras</td>
+<td style="text-align:center">{Hn}</td>
+<td style="text-align:left">Hong Kong</td>
+<td style="text-align:center">{Hk}</td>
+</tr>
+<tr>
+<td style="text-align:center">Hungary</td>
+<td style="text-align:center">{Hu}</td>
+<td style="text-align:left">Iceland</td>
+<td style="text-align:center">{Is}</td>
+</tr>
+<tr>
+<td style="text-align:center">India</td>
+<td style="text-align:center">{In}</td>
+<td style="text-align:left">Indonesia</td>
+<td style="text-align:center">{Id}</td>
+</tr>
+<tr>
+<td style="text-align:center">Iran, Islamic Republic Of</td>
+<td style="text-align:center">{Ir}</td>
+<td style="text-align:left">Iraq</td>
+<td style="text-align:center">{Iq}</td>
+</tr>
+<tr>
+<td style="text-align:center">Ireland</td>
+<td style="text-align:center">{Ie}</td>
+<td style="text-align:left">Isle Of Man</td>
+<td style="text-align:center">{Im}</td>
+</tr>
+<tr>
+<td style="text-align:center">Israel</td>
+<td style="text-align:center">{Il}</td>
+<td style="text-align:left">Italy</td>
+<td style="text-align:center">{It}</td>
+</tr>
+<tr>
+<td style="text-align:center">Jamaica</td>
+<td style="text-align:center">{Jm}</td>
+<td style="text-align:left">Japan</td>
+<td style="text-align:center">{Jp}</td>
+</tr>
+<tr>
+<td style="text-align:center">Jordan</td>
+<td style="text-align:center">{Jo}</td>
+<td style="text-align:left">Kazakhstan</td>
+<td style="text-align:center">{Kz}</td>
+</tr>
+<tr>
+<td style="text-align:center">Kenya</td>
+<td style="text-align:center">{Ke}</td>
+<td style="text-align:left">Kiribati</td>
+<td style="text-align:center">{Ki}</td>
+</tr>
+<tr>
+<td style="text-align:center">Korea, Dem. Peoples Rep Of</td>
+<td style="text-align:center">{Kp}</td>
+<td style="text-align:left">Korea, Republic Of</td>
+<td style="text-align:center">{Kr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Kuwait</td>
+<td style="text-align:center">{Kw}</td>
+<td style="text-align:left">Kyrgyzstan</td>
+<td style="text-align:center">{Kg}</td>
+</tr>
+<tr>
+<td style="text-align:center">Lao People&rsquo;s Dem. Republic</td>
+<td style="text-align:center">{La}</td>
+<td style="text-align:left">Latvia</td>
+<td style="text-align:center">{Lv}</td>
+</tr>
+<tr>
+<td style="text-align:center">Lebanon</td>
+<td style="text-align:center">{Lb}</td>
+<td style="text-align:left">Lesotho</td>
+<td style="text-align:center">{Ls}</td>
+</tr>
+<tr>
+<td style="text-align:center">Liberia</td>
+<td style="text-align:center">{Lr}</td>
+<td style="text-align:left">Libyan Arab Jamahiriya</td>
+<td style="text-align:center">{Ly}</td>
+</tr>
+<tr>
+<td style="text-align:center">Liechtenstein</td>
+<td style="text-align:center">{Li}</td>
+<td style="text-align:left">Lithuania</td>
+<td style="text-align:center">{Lt}</td>
+</tr>
+<tr>
+<td style="text-align:center">Luxembourg</td>
+<td style="text-align:center">{Lu}</td>
+<td style="text-align:left">Macao</td>
+<td style="text-align:center">{Mo}</td>
+</tr>
+<tr>
+<td style="text-align:center">Macedonia</td>
+<td style="text-align:center">{Mk}</td>
+<td style="text-align:left">Madagascar</td>
+<td style="text-align:center">{Mg}</td>
+</tr>
+<tr>
+<td style="text-align:center">Malawi</td>
+<td style="text-align:center">{Mw}</td>
+<td style="text-align:left">Malaysia</td>
+<td style="text-align:center">{My}</td>
+</tr>
+<tr>
+<td style="text-align:center">Maldives</td>
+<td style="text-align:center">{Mv}</td>
+<td style="text-align:left">Mali</td>
+<td style="text-align:center">{Ml}</td>
+</tr>
+<tr>
+<td style="text-align:center">Malta</td>
+<td style="text-align:center">{Mt}</td>
+<td style="text-align:left">Marshall Islands</td>
+<td style="text-align:center">{Mh}</td>
+</tr>
+<tr>
+<td style="text-align:center">Martinique</td>
+<td style="text-align:center">{Mq}</td>
+<td style="text-align:left">Mauritania</td>
+<td style="text-align:center">{Mr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Mauritius</td>
+<td style="text-align:center">{Mu}</td>
+<td style="text-align:left">Mayotte</td>
+<td style="text-align:center">{Yt}</td>
+</tr>
+<tr>
+<td style="text-align:center">Mexico</td>
+<td style="text-align:center">{Mx}</td>
+<td style="text-align:left">Micronesia</td>
+<td style="text-align:center">{Fm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Moldava Republic Of</td>
+<td style="text-align:center">{Md}</td>
+<td style="text-align:left">Monaco</td>
+<td style="text-align:center">{Mc}</td>
+</tr>
+<tr>
+<td style="text-align:center">Mongolia</td>
+<td style="text-align:center">{Mn}</td>
+<td style="text-align:left">Montenegro</td>
+<td style="text-align:center">{Me}</td>
+</tr>
+<tr>
+<td style="text-align:center">Montserrat</td>
+<td style="text-align:center">{Ms}</td>
+<td style="text-align:left">Morocco</td>
+<td style="text-align:center">{Ma}</td>
+</tr>
+<tr>
+<td style="text-align:center">Mozambique</td>
+<td style="text-align:center">{Mz}</td>
+<td style="text-align:left">Myanmar</td>
+<td style="text-align:center">{Mm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Namibia</td>
+<td style="text-align:center">{Na}</td>
+<td style="text-align:left">Nauru</td>
+<td style="text-align:center">{Nr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Nepal</td>
+<td style="text-align:center">{Np}</td>
+<td style="text-align:left">Netherlands Antilles</td>
+<td style="text-align:center">{An}</td>
+</tr>
+<tr>
+<td style="text-align:center">Netherlands</td>
+<td style="text-align:center">{Nl}</td>
+<td style="text-align:left">New Caledonia</td>
+<td style="text-align:center">{Nc}</td>
+</tr>
+<tr>
+<td style="text-align:center">New Zealand</td>
+<td style="text-align:center">{Nz}</td>
+<td style="text-align:left">Nicaragua</td>
+<td style="text-align:center">{Ni}</td>
+</tr>
+<tr>
+<td style="text-align:center">Niger</td>
+<td style="text-align:center">{Ne}</td>
+<td style="text-align:left">Nigeria</td>
+<td style="text-align:center">{Ng}</td>
+</tr>
+<tr>
+<td style="text-align:center">Niue</td>
+<td style="text-align:center">{Nu}</td>
+<td style="text-align:left">Norfolk Island</td>
+<td style="text-align:center">{Nf}</td>
+</tr>
+<tr>
+<td style="text-align:center">Northern Mariana Islands</td>
+<td style="text-align:center">{Mp}</td>
+<td style="text-align:left">Norway</td>
+<td style="text-align:center">{No}</td>
+</tr>
+<tr>
+<td style="text-align:center">Oman</td>
+<td style="text-align:center">{Om}</td>
+<td style="text-align:left">Pakistan</td>
+<td style="text-align:center">{Pk}</td>
+</tr>
+<tr>
+<td style="text-align:center">Palau</td>
+<td style="text-align:center">{Pw}</td>
+<td style="text-align:left">Palestine</td>
+<td style="text-align:center">{Ps}</td>
+</tr>
+<tr>
+<td style="text-align:center">Panama</td>
+<td style="text-align:center">{Pa}</td>
+<td style="text-align:left">Papua New Guinea</td>
+<td style="text-align:center">{Pg}</td>
+</tr>
+<tr>
+<td style="text-align:center">Paraguay</td>
+<td style="text-align:center">{Py}</td>
+<td style="text-align:left">Peru</td>
+<td style="text-align:center">{Pe}</td>
+</tr>
+<tr>
+<td style="text-align:center">Poland</td>
+<td style="text-align:center">{Pl}</td>
+<td style="text-align:left">Portugal</td>
+<td style="text-align:center">{Pt}</td>
+</tr>
+<tr>
+<td style="text-align:center">Puerto Rico</td>
+<td style="text-align:center">{Pr}</td>
+<td style="text-align:left">Qatar</td>
+<td style="text-align:center">{Qa}</td>
+</tr>
+<tr>
+<td style="text-align:center">Reunion</td>
+<td style="text-align:center">{Re}</td>
+<td style="text-align:left">Romania</td>
+<td style="text-align:center">{Ro}</td>
+</tr>
+<tr>
+<td style="text-align:center">Russian Federation</td>
+<td style="text-align:center">{Ru}</td>
+<td style="text-align:left">Rwanda</td>
+<td style="text-align:center">{Rw}</td>
+</tr>
+<tr>
+<td style="text-align:center">Samoa</td>
+<td style="text-align:center">{Ws}</td>
+<td style="text-align:left">San Marino</td>
+<td style="text-align:center">{Sm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Sao Tome/Principe</td>
+<td style="text-align:center">{St}</td>
+<td style="text-align:left">Saudi Arabia</td>
+<td style="text-align:center">{Sa}</td>
+</tr>
+<tr>
+<td style="text-align:center">Scotland</td>
+<td style="text-align:center">{Uk}</td>
+<td style="text-align:left">Senegal</td>
+<td style="text-align:center">{Sn}</td>
+</tr>
+<tr>
+<td style="text-align:center">Serbia</td>
+<td style="text-align:center">{Rs}</td>
+<td style="text-align:left">Seychelles</td>
+<td style="text-align:center">{Sc}</td>
+</tr>
+<tr>
+<td style="text-align:center">Sierra Leone</td>
+<td style="text-align:center">{Sl}</td>
+<td style="text-align:left">Singapore</td>
+<td style="text-align:center">{Sg}</td>
+</tr>
+<tr>
+<td style="text-align:center">Slovakia</td>
+<td style="text-align:center">{Sk}</td>
+<td style="text-align:left">Slovenia</td>
+<td style="text-align:center">{Si}</td>
+</tr>
+<tr>
+<td style="text-align:center">Solomon Islands</td>
+<td style="text-align:center">{Sb}</td>
+<td style="text-align:left">Somalia</td>
+<td style="text-align:center">{So}</td>
+</tr>
+<tr>
+<td style="text-align:center">Somoa,Gilbert,Ellice Islands</td>
+<td style="text-align:center">{As}</td>
+<td style="text-align:left">South Africa</td>
+<td style="text-align:center">{Za}</td>
+</tr>
+<tr>
+<td style="text-align:center">South Georgia, South Sandwich Islands</td>
+<td style="text-align:center">{Gs}</td>
+<td style="text-align:left">Spain</td>
+<td style="text-align:center">{Es}</td>
+</tr>
+<tr>
+<td style="text-align:center">Sri Lanka</td>
+<td style="text-align:center">{Lk}</td>
+<td style="text-align:left">St. Helena</td>
+<td style="text-align:center">{Sh}</td>
+</tr>
+<tr>
+<td style="text-align:center">St. Kitts And Nevis</td>
+<td style="text-align:center">{Kn}</td>
+<td style="text-align:left">St. Lucia</td>
+<td style="text-align:center">{Lc}</td>
+</tr>
+<tr>
+<td style="text-align:center">St. Pierre And Miquelon</td>
+<td style="text-align:center">{Pm}</td>
+<td style="text-align:left">St. Vincent - The Grenadines</td>
+<td style="text-align:center">{Vc}</td>
+</tr>
+<tr>
+<td style="text-align:center">Sudan</td>
+<td style="text-align:center">{Sd}</td>
+<td style="text-align:left">Suriname</td>
+<td style="text-align:center">{Sr}</td>
+</tr>
+<tr>
+<td style="text-align:center">Svalbard And Jan Mayen</td>
+<td style="text-align:center">{Sj}</td>
+<td style="text-align:left">Swaziland</td>
+<td style="text-align:center">{Sz}</td>
+</tr>
+<tr>
+<td style="text-align:center">Sweden</td>
+<td style="text-align:center">{Se}</td>
+<td style="text-align:left">Switzerland</td>
+<td style="text-align:center">{Ch}</td>
+</tr>
+<tr>
+<td style="text-align:center">Syrian Arab Republic</td>
+<td style="text-align:center">{Sy}</td>
+<td style="text-align:left">Taiwan</td>
+<td style="text-align:center">{Tw}</td>
+</tr>
+<tr>
+<td style="text-align:center">Tajikistan</td>
+<td style="text-align:center">{Tj}</td>
+<td style="text-align:left">Tanzania</td>
+<td style="text-align:center">{Tz}</td>
+</tr>
+<tr>
+<td style="text-align:center">Thailand</td>
+<td style="text-align:center">{Th}</td>
+<td style="text-align:left">Togo</td>
+<td style="text-align:center">{Tg}</td>
+</tr>
+<tr>
+<td style="text-align:center">Tokelau</td>
+<td style="text-align:center">{Tk}</td>
+<td style="text-align:left">Tonga</td>
+<td style="text-align:center">{To}</td>
+</tr>
+<tr>
+<td style="text-align:center">Trinidad And Tobago</td>
+<td style="text-align:center">{Tt}</td>
+<td style="text-align:left">Tunisia</td>
+<td style="text-align:center">{Tn}</td>
+</tr>
+<tr>
+<td style="text-align:center">Turkey</td>
+<td style="text-align:center">{Tr}</td>
+<td style="text-align:left">Turkmenistan</td>
+<td style="text-align:center">{Tm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Turks And Calcos Islands</td>
+<td style="text-align:center">{Tc}</td>
+<td style="text-align:left">Tuvalu</td>
+<td style="text-align:center">{Tv}</td>
+</tr>
+<tr>
+<td style="text-align:center">Uganda</td>
+<td style="text-align:center">{Ug}</td>
+<td style="text-align:left">Ukraine</td>
+<td style="text-align:center">{Ua}</td>
+</tr>
+<tr>
+<td style="text-align:center">United Arab Emirates</td>
+<td style="text-align:center">{Ae}</td>
+<td style="text-align:left">United Kingdom</td>
+<td style="text-align:center">{Gb}</td>
+</tr>
+<tr>
+<td style="text-align:center">United Kingdom</td>
+<td style="text-align:center">{Uk}</td>
+<td style="text-align:left">United States</td>
+<td style="text-align:center">{Us}</td>
+</tr>
+<tr>
+<td style="text-align:center">United States Minor Outl.Islands</td>
+<td style="text-align:center">{Um}</td>
+<td style="text-align:left">Uruguay</td>
+<td style="text-align:center">{Uy}</td>
+</tr>
+<tr>
+<td style="text-align:center">Uzbekistan</td>
+<td style="text-align:center">{Uz}</td>
+<td style="text-align:left">Vanuatu</td>
+<td style="text-align:center">{Vu}</td>
+</tr>
+<tr>
+<td style="text-align:center">Vatican City State</td>
+<td style="text-align:center">{Va}</td>
+<td style="text-align:left">Venezuela</td>
+<td style="text-align:center">{Ve}</td>
+</tr>
+<tr>
+<td style="text-align:center">Viet Nam</td>
+<td style="text-align:center">{Vn}</td>
+<td style="text-align:left">US Virgin Islands</td>
+<td style="text-align:center">{Vi}</td>
+</tr>
+<tr>
+<td style="text-align:center">Wallis And Futuna Islands</td>
+<td style="text-align:center">{Wf}</td>
+<td style="text-align:left">Western Sahara</td>
+<td style="text-align:center">{Eh}</td>
+</tr>
+<tr>
+<td style="text-align:center">Yemen</td>
+<td style="text-align:center">{Ye}</td>
+<td style="text-align:left">Zambia</td>
+<td style="text-align:center">{Zm}</td>
+</tr>
+<tr>
+<td style="text-align:center">Zimbabwe</td>
+<td style="text-align:center">{Zw}</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://amiunique.org/">https://amiunique.org/</a><br> &nbsp&nbsp<a href="https://tails.boum.org/index.en.html">https://tails.boum.org/index.en.html</a><br> &nbsp&nbsp<a href="https://www.browserling.com/">https://www.browserling.com/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/basics/">Basics</a> 
+       
+        <a href="/tags/how-to/">How To</a> 
+       
+        <a href="/tags/linux/">Linux</a> 
+       
+        <a href="/tags/virtualization/">Virtualization</a> 
+       
+        <a href="/tags/security/">Security</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        A Gnome extension, compatible with Pop! that lables workspaces
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        Getting VSCode to work on Android
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/230405_anonymous/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Anonymous Browsing</a></nav>
+</div>
+  </body>
+  </html>

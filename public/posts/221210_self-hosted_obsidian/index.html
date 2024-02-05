@@ -1,0 +1,159 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Self-Hosted Obsidian - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I&rsquo;ve recently written about using Obsidian - an intro, a discussion of tasks and add-ins, and a discussion of dataview. The number of add-ins and the ideas that are being implemented using Obsidian has exploded, and hopefully I&rsquo;ve provided enough to get you started and help you discover how it could work for you.">
+    <meta name="keywords" content="markdown, obsidian,obsidian" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Self-Hosted Obsidian" >
+    <meta property="og:url" content="https://nextpertise.net/posts/221210_self-hosted_obsidian/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/markdown.png#floatright" height="140">
+<h1>Self-Hosted Obsidian</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Saturday, Dec 10, 2022</i><br></div></h6>
+  <p><p>I&rsquo;ve recently written about using Obsidian - an <a href="/posts/220829_obsidian_intro">intro</a>, a discussion of <a href="/posts/220831_using_obsidian">tasks</a> and add-ins, and a discussion of <a href="/posts/221002_dataview">dataview</a>.  The number of add-ins and the ideas that are being implemented using Obsidian has exploded, and hopefully I&rsquo;ve provided enough to get you started and help you discover how it could work for you.</p>
+<p>Justin Pot at PC Magazine published a <a href="https://www.pcmag.com/reviews/obsidian">review</a> in November.  It&rsquo;s a good review and on the whole very positive.  One deficiency that he points out, though, is the fact that Obsidian is installed locally and there&rsquo;s no facility for accessing it on multiple computers. Justin goes on to suggest that one could use a seperate service to sync files between computers.  I&rsquo;d argue that this is consistent with the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix philosophy</a> of &ldquo;making each program do one thing well&rdquo;.  If you need two functions (notes, file replication) then use two programs.</p>
+<p>I&rsquo;m aware of six ways that Obsidian could be kept up to date between computers, and I&rsquo;ve tested several.  If you are interested in using Obsidian and being able to access notes from your PC on your phone is a requirement, here are my experiences and opinions.</p>
+<p>You&rsquo;ll note that I&rsquo;m syncing to my phone.  Obsidian runs - plug-ins, themes and all - identically on the phone.  I don&rsquo;t enjoy the swishy keyboard interface, but I use my daily notes for to-dos and bullet points.  I find the using Obsidian on mobile invaluable for checking things off or adding quick notes as I move around.  I also have added some key PDFs to my vault for reference and the Obsidian interface is an easy way to access that information.</p>
+<h2 id="the-ones-i-didnt-try">The ones I didn&rsquo;t try</h2>
+<p>Several solutions may be good, but I haven&rsquo;t personally tried them.  <a href="https://obsidian.md/pricing">Obsidian Sync</a> is made by the developers to fund the project and I&rsquo;ve looked at this closely.  Obsidian Sync also supports version history, something you don&rsquo;t get using other methods.  That said, it&rsquo;s $8 per month which strikes me as steep.  I just came through a period of unemployment and feel like there&rsquo;s something sinister about the way we&rsquo;re being pushed into more and more subscriptions.  The same link includes an option to donate to the project one-time, and I&rsquo;m electing to support the devs that way.</p>
+<p>Obsidian could also be sync&rsquo;d through a cloud file system, such as Apple Cloud, Google or Box.  The PC Mag article references using <a href="https://www.resilio.com/platforms/desktop/">Resilio Sync</a>, which is a new one for me. There are comments on Reddit from folks who use various cloud services (Apple seems popular).  My issue here is that Obsidian has some of my most personal information.  I&rsquo;m not entirely comfortable putting that in cloud storage.  Many cloud providers have some level of free storage, probably enough for an Obsidian vault.  If you need to pay, it&rsquo;s typically around $5-10 and could be used for a variety of things, so this technique could be free and in the worst case is on-par with Obsidian Sync.</p>
+<div class="admonition danger">
+    <div class="title">Danger!</div>
+    <div class="content">Backup your Obsidian vault before experimenting with sync options.</div>
+</div>
+<h2 id="shared-drive">Shared Drive</h2>
+<p>The first idea is the easiest and most obvious: use a shared drive.  I put my Obsidian vault on a server and published that folder using NFS, then mounted it on my PC.  I used SSHFS to map to it from a Linux laptop and from Windows.  Read more about using SSHFS and NFS <a href="/posts/200813_using_ssh3">here</a>.  No problems.  All three devices were able to co-edit within the same vault - I even noticed open files being updated dynamically.  This method is free, but requires access to the devices (local LAN) and doesn&rsquo;t work for mobile devices.</p>
+<p>The private network can be extended using VPN to get this to work remotely.  In fact, I used <a href="/posts/201027_zerotierrouter">Zerotier</a> and <a href="/posts/221004_tailscale">Tailscale</a> to test this and things worked perfectly for laptops.  There might be sync issues if someone was editing on both sides, but as long as it&rsquo;s being used as a personal vault, this shouldn&rsquo;t be an issue.  IOS and Android both support various VPN mechanisms, but Obsidian on those platforms expects a device-local vault.
+<img src="/221210_Syncthing.png#floatright" alt="Syncthing"></p>
+<h2 id="syncthing">Syncthing</h2>
+<p><a href="https://syncthing.net/">Syncthing</a> is a tool that many people use to keep files sync&rsquo;d between computers.  It&rsquo;s free, and is supported on just about every OS short of Haiku (nope, I checked).  Once Syncthing is downloaded to a device, it needs to have a  relationship approved on a remote device.  The devices agree on local directories that are to be sync&rsquo;d, then syncthing runs periodically to update files.</p>
+<p>Like a shared drive, it&rsquo;s free and devices need to be local to each other.  As shown in the picture to the right, I setup my desktop, tablet and phone to keep an Obsidian vault in sync.  When I first setup Syncthing, there was an instance where it deleted a file.  I wasn&rsquo;t able to replicate that behavior later so it may have been something I did, but it left me with a bad taste.  Syncthing doesn&rsquo;t overwrite - it creates duplicate marked copies.  This results in having a proliferation of these dups that have to be cleaned up.  I had as many as four devices syncing and that may have added to the replication issues.</p>
+<p>So my experience of Syncthing was that it worked, but required local software and had some rough edges.
+<img src="/posts/221211_Obsidian_webdav.png#floatright" alt="WebDav"></p>
+<h2 id="remotely-save-plug-in">Remotely Save Plug-in</h2>
+<p>The <a href="https://github.com/remotely-save/remotely-save">Remotely Save</a> plug-in is the option that I&rsquo;ve personally settled on.  Remotely Save allows syncing using S3-compatible storage, Dropbox, OneDrive, or WebDav.  I already have a local WebDav server running on Apache (see <a href="/posts/210906_apachedav">Using WebDAV on Apache</a>).  This required minimal self-hosted infrastructure, supported PC and mobile operating systems, and was free.  I&rsquo;ve had no issues with it working or losing data.</p>
+<p>The screenshot to the right shows the setup of Remotely Save.  The first selection is for the storage type and Webdav is chosen.  Next I specified the server address.  I use other applications that will just take the IP address of the server and Remotely Save required the protocol prefix &ldquo;http://&rdquo;.  This brings up the one problem I had - there&rsquo;s very little in the way of error messages or debugging output if you have a problem.  If failed when I used a raw IP, but didn&rsquo;t provide clues as how to remedy the issue and it took a bit of trial and error.</p>
+<p>I have this setup of several devices.  On each, I have them setup to run at startup and then periodically afterward.  I don&rsquo;t tend to have Obsidian open in multiple places, so this is sufficient to prevent replication bifurcations.</p>
+<h2 id="git-plug-in">Git Plug-in</h2>
+<p>The <a href="https://github.com/denolehov/obsidian-git">Git Plug-in</a> has a lot of potential.  I tested with Github and couldn&rsquo;t get it to work with cert-based authentication (as is required by Github).  That was okay, because I&rsquo;m not really interested in copying my vault to public cloud.  I also tested this with local Gitlab.  That worked very similarly to the Remotely Save plugin, with the added bonus of having a history.  If you are comfortable setting up a local Git server and using Git, this is a little more complicated than WebDav but a good option.</p>
+<h2 id="round-up">Round-up</h2>
+<p>For my usage, Obsidian is superior to other options such as Evernote or OneNote.  It&rsquo;s plug-in architecture have also made it an exciting platform for experimentation. There are constantly new ideas about what can be done using this as a base.  The PC Mag review was right to call out multi-device usage as a shortcoming, but I&rsquo;ve found this can be addressed in a variety of ways.  I&rsquo;ve been using local WebDAV (using the Remotely Save plugin) for about a month and Tailscale to allow remote syncing and I&rsquo;ve been very pleased.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.pcmag.com/reviews/obsidian">https://www.pcmag.com/reviews/obsidian</a><br> &nbsp&nbsp<a href="https://www.resilio.com/platforms/desktop/">https://www.resilio.com/platforms/desktop/</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/markdown/">markdown</a> 
+       
+        <a href="/tags/obsidian/">obsidian</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        A simple Ci-like process to send word files to Obsidian
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230310_ava/">Obsidian Ava ChatGPT Plugin</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220901_obsidian3/">Linking and Embedding in Obsidian Notes (Part 3)</a><br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/220831_using_obsidian/">Obsidian Tasks (Part 2)</a><br />
+        
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/221210_self-hosted_obsidian/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Self-Hosted Obsidian</a></nav>
+</div>
+  </body>
+  </html>

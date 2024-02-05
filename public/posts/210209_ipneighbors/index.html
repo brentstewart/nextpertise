@@ -1,0 +1,178 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Won&#39;t you be my Neighbor? - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Cisco devices have long had the Cisco Discovery Protocol (CDP). CDP is a data link layer advertisement that is periodically broadcast (every 30 seconds). Devices can listen and build a list of directly attached &ldquo;neighbors&rdquo; that includes critical information like the name, IP, type of device, and the port attached.">
+    <meta name="keywords" content="linux,LLDP Discovery Protocol" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Won&#39;t you be my Neighbor?" >
+    <meta property="og:url" content="https://nextpertise.net/posts/210209_ipneighbors/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>Won&#39;t you be my Neighbor?</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Feb 9, 2021</i><br></div></h6>
+  <p><p>Cisco devices have long had the Cisco Discovery Protocol (CDP).  CDP is a data link layer advertisement that is periodically broadcast (every 30 seconds).  Devices can listen and build a list of directly attached &ldquo;neighbors&rdquo; that includes critical information like the name, IP, type of device, and the port attached.  Other vendors developed their own protocols, including Nortel, Foundry, and Microsoft.  This information can be useful, either to familiarize yourself with a network or to communicate network information between systems.</p>
+<h2 id="arp-for-network-discovery">ARP for Network Discovery</h2>
+<p>PCs don&rsquo;t typically support CDP, but you can do get some of this information by looking at the ARP table.  All network communication takes place at layer 2. When a device wants to communicate with another local device and only knows it&rsquo;s IP, it uses the Address Resolution Protocol to send a data-link layer broadcast asking &ldquo;Who&rsquo;s using this IP?&rdquo;.  The response is a MAC address.  This is easy to see using Wireshark, especially if you can place your network card in promiscuous mode, so if you&rsquo;re unfamiliar with the process take a look!</p>
+<p>We can inspect the ARP table to see a list of other local systems on our network.  There are three problems with this - first, the arp command is slow. Second, this will only show things that have communicated with your PC recently.  You can use some type of broadcast to try to goose other devices to identify themselves (i.e. <strong>ping 192.168.0.255</strong>).  Third, the devices only identify their layer 2 and 3 addresses so we don&rsquo;t know much about them.  The command below shows the <strong>arp</strong> command on Linux, but parallel commands are available in every operating system and network device.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pop &gt; pop-os &gt; ~ &gt; $ &gt;  __arp__  
+</span></span><span style="display:flex;"><span>Address              HWtype    HWaddress    Flags Mask             Iface  
+</span></span><span style="display:flex;"><span>_gateway             ether    0c:8d:db:8f:60:c0   C      enp0s31f6  
+</span></span><span style="display:flex;"><span>192.168.25.50        ether    00:0c:29:19:61:6d     C      enp0s31f6  
+</span></span><span style="display:flex;"><span>vcenter.stewart.tc   ether    0c:ee:99:81:23:03   C      enp0s31f6  
+</span></span><span style="display:flex;"><span>192.168.25.5         ether    00:0c:29:9d:a2:38   C      enp0s31f6  
+</span></span><span style="display:flex;"><span>192.168.25.4         ether    96:ee:a6:5d:30:ec   C      enp0s31f6  
+</span></span></code></pre></div><p>A slightly more useful command for discovering devices on the local network is <strong>ip neigh</strong>.  This gives the same information but is much more responsive.  It still depends on the target having been in communication recently.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pop &gt; pop-os &gt; ~ &gt; $ &gt; __ip neigh__  
+</span></span><span style="display:flex;"><span>192.168.25.1 dev enp0s31f6 lladdr 0c:8d:db:8f:60:c0 REACHABLE  
+</span></span><span style="display:flex;"><span>192.168.25.50 dev enp0s31f6 lladdr 00:0c:29:19:61:6d STALE  
+</span></span><span style="display:flex;"><span>192.168.25.3 dev enp0s31f6 lladdr 0c:ee:99:80:00:03 REACHABLE  
+</span></span><span style="display:flex;"><span>192.168.25.5 dev enp0s31f6 lladdr 00:0c:29:9d:a2:38 STALE  
+</span></span><span style="display:flex;"><span>192.168.25.4 dev enp0s31f6 lladdr 96:ee:a6:5d:30:ec REACHABLE  
+</span></span></code></pre></div><p>You could achieve something similar with nmap as well.  Running a command like <strong>nmap 192.168.0.0/24</strong> will identify all the devices that respond locally and which ports are open on each of them, but it&rsquo;s not happening automatically.  NMAP takes a while to run, which makes it less practical, plus it will raise alarms if your network is monitored to any extent.</p>
+<h2 id="link-layer-discovery-protocol-lldp">Link Layer Discovery Protocol (LLDP)</h2>
+<p><img src="/lldp.jpeg#floatright" alt="LLDP">
+Link Layer Discovery Protocol is a vendor-neutral version of the CDP concept.  Like CDP, LLDP advertises identity and capabilities.  It can be used to communicate Power over Ethernet capabilities or requirements as well as device location.  Information gathered by LLDP is stored in the SNMP device management information Base (MIB) and can be queried using SNMP tools.  Most networking equipment either runs LLDP or allows it to be used.</p>
+<p>LLDP can be enabled for Ubuntu derived Linux servers using the <em>lldpd</em> package.  It uses snmpd, so install that at the same time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install lldpd snmpd  
+</span></span><span style="display:flex;"><span>sudo service lldpd status start  
+</span></span><span style="display:flex;"><span>sudo service snmpd status start  
+</span></span><span style="display:flex;"><span>lldpcli
+</span></span></code></pre></div><p>Once installed, use the <strong>lldpcli</strong> command to enter an LLDP command line interface.  From the prompt, type <strong>show neighbors</strong> to list the discovered devices.  In this example, I can see that I&rsquo;m connected to a Cisco Meraki switch on port 6.  LLDP can also be enabled with the -c flag to produce CDP packets.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>lldpcli<span style="color:#f92672">]</span> $ __show neighbors__  
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">\-</span>------------------------------------------------------------------------------  
+</span></span><span style="display:flex;"><span>LLDP neighbors:  
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">\-</span>------------------------------------------------------------------------------  
+</span></span><span style="display:flex;"><span>Interface:  enp0s31f6, via: LLDP, RID: 1, Time: <span style="color:#ae81ff">0</span> day, 01:50:10  
+</span></span><span style="display:flex;"><span>Chassis:       
+</span></span><span style="display:flex;"><span> ChassisID:  mac 0c:8d:db:80:72:3e  
+</span></span><span style="display:flex;"><span> SysName:    MS220-Switch  
+</span></span><span style="display:flex;"><span>SysDescr:   Meraki MS220-8P Cloud Managed PoE Switch  
+</span></span><span style="display:flex;"><span>MgmtIP:     192.168.26.3  
+</span></span><span style="display:flex;"><span>Capability: Bridge, on  
+</span></span><span style="display:flex;"><span>Port:          
+</span></span><span style="display:flex;"><span>  PortID:      ifalias <span style="color:#ae81ff">6</span>  
+</span></span><span style="display:flex;"><span>  PortDescr:   Port <span style="color:#ae81ff">6</span>  
+</span></span><span style="display:flex;"><span>  TTL:         <span style="color:#ae81ff">120</span>  
+</span></span><span style="display:flex;"><span>Unknown TLVs:  
+</span></span><span style="display:flex;"><span>  TLV:         OUI: 00,18,0A, SubType: 1, Len: <span style="color:#ae81ff">4</span> 00,F6,40,25  
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">\-</span>------------------------------------------------------------------------------
+</span></span></code></pre></div><h2 id="who-cares">Who cares?</h2>
+<p>&ldquo;Why&rdquo; is always a useful question - I&rsquo;ve always found that people who understand something embrace the opportunity it presents.</p>
+<p>So, why bother with LLDP?  It&rsquo;s really going to be most useful to network support people.  Putting this on my laptop allows me to quickly get my bearings on a network as I relocate.  I can identify the port I&rsquo;m attached to either from the PC or from the switch side.  It may sound mundane, but just understanding the port is a lot easier than tracing cables!  Pentesters can use it for reconoitering.  As always, use your power for good!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.wireshark.org/">https://www.wireshark.org/</a><br> &nbsp&nbsp<a href="https://manpages.ubuntu.com/manpages/bionic/man8/lldpcli.8.html">https://manpages.ubuntu.com/manpages/bionic/man8/lldpcli.8.html</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
+        Update on NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
+        Remote access via Cheese
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/210209_ipneighbors/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Won&#39;t you be my Neighbor?</a></nav>
+</div>
+  </body>
+  </html>

@@ -1,0 +1,165 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Updated Ubuntu Upgrading - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: OS Hopping update I&rsquo;ve confessed in this blog to being a distro hopper. I love to see what is possible and to explore alternatives! I haven&rsquo;t provided an update on where that journey has taken me, so let&rsquo;s start there.">
+    <meta name="keywords" content="linux,Linux Upgrade" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Updated Ubuntu Upgrading" >
+    <meta property="og:url" content="https://nextpertise.net/posts/221114_topgrade/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    
+  </div>
+
+    
+<img src="/linux.png#floatright" height="140">
+<h1>Updated Ubuntu Upgrading</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Nov 14, 2022</i><br></div></h6>
+  <p><h2 id="os-hopping-update">OS Hopping update</h2>
+<p>I&rsquo;ve confessed in this blog to being a distro hopper.  I love to see what is possible and to explore alternatives!  I haven&rsquo;t provided an update on where that journey has taken me, so let&rsquo;s start there.</p>
+<p>I have a desktop, where the majority of work is done, and a laptop for traveling and returning emails from the couch.</p>
+<p>The desktop is running Pop! OS and I&rsquo;ve considered changing that many times (most recently to Nix OS) but just haven&rsquo;t.  I&rsquo;ve found Pop! really fits my workflow.  In particular, I think the Pop! implementation of tiling is the experience that suits me best.  I&rsquo;m not crazy about the full-frontal keyboard experience of i3, and tiling in Gnome and KDE is &ldquo;meh&rdquo; in comparison.  I also like that Pop! builds on Ubuntu, the environment with which I&rsquo;m most familiar.</p>
+<p>Tiling on a big 4K display is just the obvious way to go, but it doesn&rsquo;t work as well on a smaller screen.  My laptop has been where I&rsquo;ve done my current distro hopping.  It ran Nix-OS KDE for a long time and that was a mostly great experience.  The big miss there was software - I had issues getting my Brother printer driver to load and I wanted to update to KDE 5.26 and it isn&rsquo;t available yet.  I&rsquo;ll circle back to Nix at a later point because it sold me on the vision of reproducibility.  I briefly tried stock Ubuntu and got frustrated with Gnome extensions and . . . well, Gnome.  It&rsquo;s currently running Kubuntu.  I&rsquo;ve added <em>backports</em> and upgrade KDE to 5.26 as well.</p>
+<p>All this sets the context that I&rsquo;ve settled into Ubuntu family systems and developed some comfort there.  The package system is a core part of what differentiates distros and I&rsquo;m pretty comfortable with <em>apt</em>.   Recently, two new programs have emerged to provide a better experience - <em>nala</em> and <em>topgrade</em>.</p>
+<h2 id="apt">Apt</h2>
+<p>Package updates on an Ubuntu-derived system (Ubuntu, Kubuntu, Mint, Pop! and others) is done through <em>apt</em>.  Apt is pretty good, but isn&rsquo;t optimized for speed and really only covers packages distributed as debs.  Also, new package formats have emerged that build the application and all it&rsquo;s dependencies together (like flatpak, snap) and these aren&rsquo;t updated by apt.</p>
+<p>To address part of this, I made a simple update script that includes flatpak and snap.  I just run &ldquo;updateall.sh&rdquo;.</p>
+<pre><code>sudo apt update
+sudo apt upgrade -y
+sudo snap refresh -y
+flatpak update -y
+</code></pre>
+<h2 id="nala">Nala</h2>
+<p><a href="https://gitlab.com/volian/nala/-/wikis/Installation">Nala</a> is an apt replacement that has been generating some buzz recently.  It is able to pick the fastest mirrors, utilize multiple mirrors, and download in parrallel.  Installing nala via PPA is shown below.  You&rsquo;ll need to run <em>nala fetch</em> to have it evaluate the latency to mirrors and pick the fastest.</p>
+<pre><code>echo &quot;deb [arch=amd64,arm64,armhf] http://deb.volian.org/volian/ scar main&quot; | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg &gt; /dev/null
+sudo apt update
+sudo apt install nala
+
+nala fetch
+</code></pre>
+<p>Once nala is installed, it&rsquo;s used very similarly to apt.  A system upgrade is <em>nala update</em> and <em>nala upgrade</em>.</p>
+<p>In my testing, nala is slightly faster than apt and a little more visually appealing.  It didn&rsquo;t seem to result in a qualitatively better experience though and didn&rsquo;t address other packaging formats.  It&rsquo;s probably worth moving from apt to nala, but you&rsquo;re still going to need an <em>updateall.sh</em> script!</p>
+<p><img src="/topgrade.png#floatsmallright" alt="Topgrade"></p>
+<h2 id="topgrade">Topgrade</h2>
+<p><a href="https://github.com/topgrade-rs/topgrade">Topgrade</a> is a rust application that detects the invoking OS and then steps through various appropriate update routines.  On my system, it not only recognized that Pop! is a deriviate of Debian but also caught that I had installed Nala and used it instead of apt!  I&rsquo;m not a Rust programmer, but looking through the <em>linux.rs</em> file gives a sense of the logic.</p>
+<p><img src="https://github.com/topgrade-rs/topgrade/raw/master/doc/screenshot.gif" alt="Topgrade running"></p>
+<p>Topgrade uses every update mechanism it finds on your system.  On my PC, it used Nala, Brew, conda, pip, flatpak, snap, and fwupd.  It updated containers and Gnome shell extensions as well.  Wow!</p>
+<p>Installing Topgrade on Ubuntu is done through cargo.  Conducting an upgrade simply involves running <em>topgrade</em>.</p>
+<pre><code>cargo install topgrade
+</code></pre>
+<p>I haven&rsquo;t had any issues running this against Pop! OS.</p>
+<h2 id="do-both">Do Both!</h2>
+<p>I started this article with an eye toward examing Nala against Topgrade (which I was already using).  My conclusion is that the combination is the best of both worlds.  Topgrade will incorporate Nala if installed.  Through Nala, it gains some speed over apt.  Topgrade also provides the upgrade mechanism for a variety of other sources.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/topgrade-rs/topgrade">https://github.com/topgrade-rs/topgrade</a><br> &nbsp&nbsp<a href="https://gitlab.com/volian/nala/-/wikis/Installation">https://gitlab.com/volian/nala/-/wikis/Installation</a><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux</a> 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
+        Update on NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
+        Pulling weather from the command line
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
+        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
+        Beware of NVidia 5.35
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
+        Remote access via Cheese
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/221114_topgrade/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Updated Ubuntu Upgrading</a></nav>
+</div>
+  </body>
+  </html>
