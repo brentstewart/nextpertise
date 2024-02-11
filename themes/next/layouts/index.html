@@ -4,7 +4,7 @@
 <h1>Most Recent Posts:</h1>
 {{range first 5 (where .Site.RegularPages "File.Dir" "posts/") }}
 <div class="child">
-  {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatleft" height="140" alt="{{.Params.picture}}">{{end}}
+  {{if .Params.picture }}<img src="{{.Params.picture}}.png#floatleft" height="100" alt="{{.Params.picture}}">{{end}}
   <a href="{{.RelPermalink}}">{{.Title}}</a> <div class="tags"> <i>{{.Params.Author}} | {{ dateFormat "Monday, Jan 2, 2006" .Date }}</i></div>
         {{ .Summary}}<div class="tags"> 
          {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
@@ -17,7 +17,7 @@
 <div id="parent">
 {{range first 6 (after 5 .Site.RegularPages)}}
   <div class="child">
-    {{if .Params.picture }}<img src="{{.Params.picture}}.png" height="20" alt="{{.Params.picture}}">{{end}}
+    {{if .Params.picture }}<img src="{{.Params.picture}}.png" height="25" alt="{{.Params.picture}}">{{end}}
     <a href="{{.RelPermalink}}">{{.Title}}</a><br>
     <div class="tags"> 
       <i>by {{.Params.Author}} on {{ dateFormat "1/2/06" .Date }}</i><br>
