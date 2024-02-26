@@ -7,26 +7,8 @@ markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: ""
-Focus_Keyword: ""
-youtube: ""
-github: ""
-refs: [""]
-tags:
-  - ""
----
-
----
-title: "Distro Hopping 2024"
-description: "On to Ubuntu"
-author: "Brent Stewart"
-date: "2024-02-17T13:19:46-05:00"
-markup: 'mmark'
-math: false
-draft: false
-Victor_Hugo: "true"
 picture: "linux"
-Focus_Keyword: "Ubuntu Linux"
+Focus_Keyword: ""
 youtube: ""
 github: ""
 refs: [""]

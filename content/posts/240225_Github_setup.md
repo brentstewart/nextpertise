@@ -13,7 +13,7 @@ youtube: ""
 github: ""
 refs: [""]
 tags:
-  - ""
+  - "git"
 ---
 ![_Github screenshot_](/Githuboptions.png#floatsmallleft)
 Recently I had to rebuild my desktop.  Backups were my friend, and recreating my rig and loading files went without a hitch.  My _git_ directory restored, but I needed to reconnect them to Github.  I decided to start with fresh pulls, so I renamed _git_ to _oldgit_ and pulled down my repos (including the one that's used for this website).
@@ -38,6 +38,13 @@ You can test the new setup with an ssh to Github.  You should be prompted for yo
 
     ssh -T git@github.com
     Hi brentstewart! You've successfully authenticated, but GitHub does not provide shell access.
+
+Credentials can be saved (so you aren't prompted with each interaction).
+
+        git config --global credential.helper store
+{{<danger title="Danger">}}
+_This cute command saves your creds to disk in plain text.  Be careful!_
+{{</danger>}}
 
 Once the token is setup, push and pull commands should work without forcing your to reauthenticate. A typical workflow of syncing to git might be:
 
