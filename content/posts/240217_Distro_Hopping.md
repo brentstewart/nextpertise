@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2024-02-17T18:08:32-05:00"
 markup: 'mmark'
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: ""
 Focus_Keyword: ""
@@ -74,3 +74,14 @@ Silverblue plays havoc with my password vault or Calibre.  The vault flatpak doe
 
 ## Back to the Start
 In the end I've decided to retreat from Immutable for the moment for my working desktop.  I can keep playing at the edges and chipping away at it, watching the progress.  I'm also really interested in what System76 puts forward with the new version of Pop! (hopefully 24.04).  In the meantime, I'll retreat to Ubuntu and run a modern (Wayland) but not immutable environment and get some work done.
+
+## Addendum
+I ended up taking one more stab at immutable in the form of [Bluefin](https://projectbluefin.io/).  Bluefin is an opinionated  "spin" of Silverblue, still using Gnome.  It's aimed more at the cloud-native developer crowd, but the operation of Bluefin is very much like Silverblue.  
+
+I was very happy with Bluefin and think it's a better Silverblue than Silverblue.  That said, I still had some of the same issues.  I had screen freezes that required reboot, and issues running some programs.  While giving Bluefin a shot, I tried installing Enpass within ostree.
+
+    cd /etc/yum.repos.d/
+    sudo wget https://yum.enpass.io/enpass-yum.repo
+    sudo rpm-ostree  install enpass
+
+That worked and fixed the Enpass problem!
