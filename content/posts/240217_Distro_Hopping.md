@@ -1,6 +1,6 @@
 ---
-title: "240217_Distro_Hopping"
-description: ""
+title: "Distro Hopping"
+description: "Again"
 author: "Brent Stewart"
 date: "2024-02-17T18:08:32-05:00"
 markup: 'mmark'
