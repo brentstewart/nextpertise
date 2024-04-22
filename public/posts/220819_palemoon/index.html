@@ -10,7 +10,7 @@
     <title>Nextpertise Palemoon for legacy Flash support - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,30 +39,32 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/cisco.png#floatright" height="140">
 <h1>Palemoon for legacy Flash support</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Aug 19, 2022</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Friday, Aug 19, 2022</i><br></div></h6>
   <p><p>Flash was a technology to extend the functionality of websites past what was possible with HTML at the time.  It allowed for highly interactive experiences and was used for streaming, video games, and for &ldquo;application like&rdquo; experiences inside the browser.  Flash was implemented on the client-side via a browser &ldquo;plug-in&rdquo; and was notorious for security issues.  In my experience, a big part of the problem with Flash was the update process.  The plug-in was updated seperately from the Operating System and browser, leading to many cases to persistence of older versions.  Furthermore, the installer would commonly not clean up old versions, leaving an attack surface.</p>
 <p>Why do we care?  For the most part we don&rsquo;t.  Flash was deprecated in 2020 and is no longer supported by the major browsers.  The functionality of Flash has been ably replaced by HTML5.  However, there was a range of IT products created in the mid-teens that used a Flash console for administrative access.  Cisco used Flash in equipment like ASA firewalls, SOHO switches, and UCS servers.  Much of that equipment is ageing out, but some of it is still in good shape and capable of delivering value.  One example is my home server, which is an old Cisco UCS M3.</p>
 <h2 id="accessing-a-flash-console">Accessing a Flash Console</h2>
@@ -71,12 +73,12 @@ I hadn&rsquo;t accessed the CIMC in a long time.  Rebooting the server displays 
 <blockquote>
 <p>Step 1 - set the port to auto/auto, define the VLAN and set the mode to access</p>
 </blockquote>
-<p>With the CIMC port responding, I could browse to it using it&rsquo;s IP address.  The next problem is that the site presents a security warning.  Although the CIMC uses TLS 1.2 (which is still supported), it uses 128b keys (which are not).  Mozilla <a href="https://wiki.mozilla.org/Security/Features/Certs_Disallow_Weak_Keys">phased out</a> key sizes smaller than 2048b at the end of 2013.  Even getting around this issue still leaves us with the Flash problem.</p>
-<p><a href="https://linux.palemoon.org/download/mainline/">Palemoon</a> is a browser forked from Firefox years ago and developed in the years since.  It maintains compatibility with the older XUL-based plugins.  It is distributed as a tar-ball, so I just extracted it to my <em>apps</em> directory and ran the palemoon executable.</p>
+<p>With the CIMC port responding, I could browse to it using it&rsquo;s IP address.  The next problem is that the site presents a security warning.  Although the CIMC uses TLS 1.2 (which is still supported), it uses 128b keys (which are not).  Mozilla <a href="https://wiki.mozilla.org/Security/Features/Certs_Disallow_Weak_Keys">phased out key sizes smaller than 2048b at the end of 2013.  Even getting around this issue still leaves us with the Flash problem.</p>
+<p><a href="https://linux.palemoon.org/download/mainline/">Palemoon is a browser forked from Firefox years ago and developed in the years since.  It maintains compatibility with the older XUL-based plugins.  It is distributed as a tar-ball, so I just extracted it to my <em>apps</em> directory and ran the palemoon executable.</p>
 <blockquote>
 <p>Step 2 - Download Palemoon, extract and run</p>
 </blockquote>
-<p>The flash plugin was abandoned at version 34.0.0.137 and can be obtained from <a href="https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7">Github</a>.  Again, it can be installed directly from github using the following command.</p>
+<p>The flash plugin was abandoned at version 34.0.0.137 and can be obtained from <a href="https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7">Github.  Again, it can be installed directly from github using the following command.</p>
 <pre><code> mkdir -p ~/.mozilla/plugins &amp;&amp; wget -q https://github.com/darktohka/clean-flash-builds/releases/download/v1.7/flash_player_patched_npapi_linux.$( (( $(getconf LONG_BIT) == 32 )) &amp;&amp; echo &quot;i386&quot; || echo &quot;x86_64&quot;).tar.gz -O - | tar -zxf - -C ~/.mozilla/plugins libflashplayer.so
 </code></pre>
 <p>After installation, Palemoon is able to access the Flash-based admin console for the UCS server.  The installation did not impact my current (104) version of Firefox.</p>
@@ -90,44 +92,44 @@ I hadn&rsquo;t accessed the CIMC in a long time.  Rebooting the server displays 
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://linux.palemoon.org/download/mainline/">https://linux.palemoon.org/download/mainline/</a><br> &nbsp&nbsp<a href="https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7">https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://linux.palemoon.org/download/mainline/">https://linux.palemoon.org/download/mainline/<br> &nbsp&nbsp<a href="https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7">https://github.com/darktohka/clean-flash-builds/releases/tag/v1.7<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/cisco/">Cisco</a> 
+        <a href="/tags/cisco/">Cisco 
        
-        <a href="/tags/network/">Network</a> 
+        <a href="/tags/network/">Network 
        
-        <a href="/tags/linux/">Linux</a> 
+        <a href="/tags/linux/">Linux 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension<br />
         A Gnome extension, compatible with Pop! that lables workspaces
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you<br />
         Getting VSCode to work on Android
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        <a href="/posts/221019_packer/">Basic Packer<br />
         
       </li>
     
@@ -139,7 +141,7 @@ I hadn&rsquo;t accessed the CIMC in a long time.  Rebooting the server displays 
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/220819_palemoon/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -150,7 +152,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Palemoon for legacy Flash support</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Palemoon for legacy Flash support</nav>
 </div>
   </body>
   </html>

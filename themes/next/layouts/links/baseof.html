@@ -1,0 +1,30 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="{{ .Site.BaseURL }}">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise {{.Title}} - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://nextpertise.net/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    {{ partial "victorhugo.html" . }}
+  </head>
+
+  <body>
+    {{partial "header" .}}
+    <i>Years ago, the best search engines were carefully hand-curated.  In 2024, search intermediates access to information and it's become increasing enshitified.  Hopefully, these collections of interesting sites will help you avoid the privacy issues and ads!  These are all sites that have been interesting and useful to me.<br>
+    {{.Description}}</i>
+    <hr>
+        {{block "main" . }}
+    {{end}}
+    {{partial "footer" .}}
+  </body>
+  </html>

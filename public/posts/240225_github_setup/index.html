@@ -1,0 +1,133 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Github setup - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Recently I had to rebuild my desktop. Backups were my friend, and recreating my rig and loading files went without a hitch. My git directory restored, but I needed to reconnect them to Github.">
+    <meta name="keywords" content="git,Github setup" />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Github setup" >
+    <meta property="og:url" content="https://nextpertise.net/posts/240225_github_setup/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
+    
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
+    
+  </div>
+
+    
+<img src="/git.png#floatright" height="140">
+<h1>Github setup</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Sunday, Feb 25, 2024</i><br></div></h6>
+  <p><p><img src="/Githuboptions.png#floatsmallleft" alt="Github screenshot">
+Recently I had to rebuild my desktop.  Backups were my friend, and recreating my rig and loading files went without a hitch.  My <em>git</em> directory restored, but I needed to reconnect them to Github.  I decided to start with fresh pulls, so I renamed <em>git</em> to <em>oldgit</em> and pulled down my repos (including the one that&rsquo;s used for this website).</p>
+<p>Once setup, Github is easy to use, but I always forget how to set it up and have to rediscover the process.  Hopefully, this quick step-by-step will help you avoid that difficulty (and will help me the next time I need to do it)!</p>
+<h2 id="cloning-the-repo">Cloning the repo</h2>
+<p>In this case, my repos already exist.  I started by cloning from github to have a clean current copy.  I&rsquo;m using this website as an example.</p>
+<pre><code>git clone https://github.com/brentstewart/nextpertise.git
+</code></pre>
+<h2 id="setting">Setting</h2>
+<p>Next I created a personal token.  I clicked my user icon (my smiling face) in the upper right hand corner of the <a href="https:github.com">Github site and chose <em>Settings</em> (near the bottom).  In the settings menu, choose <strong>&lt;Developer settings&gt;</strong> at the bottom.  This gets you to a menu that let&rsquo;s you chose <strong>Personal access tokens</strong>.  I use classic tokens - the &ldquo;fine grained&rdquo; option allows for permisssions and would be more appropriate if there was a team of people maintaining this site.</p>
+<p>At this point, it&rsquo;s as simple as clicking <strong>Generate new token</strong> and then copying the text string down for later use.
+<img src="/Githubtoken.png#center" alt="Github token setup"></p>
+<h2 id="git-access-to-github">Git Access to Github</h2>
+<p>You can test the new setup with an ssh to Github.  You should be prompted for your Github username and then a password.  Use the token from above for the password.</p>
+<pre><code>ssh -T git@github.com
+Hi brentstewart! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+<p>Credentials can be saved (so you aren&rsquo;t prompted with each interaction).</p>
+<pre><code>    git config --global credential.helper store
+</code></pre>
+<div class="admonition danger">
+    <div class="title">Danger</div>
+    <div class="content"><em>This cute command saves your creds to disk in plain text.  Be careful!</em></div>
+</div>
+<p>Once the token is setup, push and pull commands should work without forcing your to reauthenticate. A typical workflow of syncing to git might be:</p>
+<pre><code>git add .
+git commit -m &quot;Another commit&quot;
+git push</code></pre>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/git/">git 
+       
+    
+    <ul style="list-style: none;">
+      
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/240225_github_setup/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Github setup</nav>
+</div>
+  </body>
+  </html>

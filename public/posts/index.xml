@@ -5,17 +5,270 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Oct 2023 21:14:12 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 24 Mar 2024 16:35:20 -0400</lastBuildDate>
     
         <atom:link href="https://nextpertise.net/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Turning off Evolution Alarm Notify</title>
+      <link>https://nextpertise.net/posts/240324_ean/</link>
+      <pubDate>Sun, 24 Mar 2024 16:35:20 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240324_ean/</guid>
+      <description>&lt;h1 id=&#34;ridding-yourself-of-annoying-calendar-pop-ups-on-linux&#34;&gt;Ridding Yourself of Annoying Calendar Pop-ups on Linux&lt;/h1&gt;
+&lt;p&gt;Gnome will prompt for email accounts, and then tie in alerts from your calendar.  These come in as pop-up windows.  If you liked these in Outlook, you&amp;rsquo;ll be pleased with the Linux implementation.&lt;/p&gt;
+&lt;p&gt;I didn&amp;rsquo;t like these reminders in Outlook.  I feel that too many programs are competing for my attention and that pop-ups in general are a drain on my concentration.  I understand the thought and I understand that it&amp;rsquo;s useful for some, just not for me.&lt;/p&gt;
+&lt;p&gt;These days, I have a couple of 4k displays and really like tiling desktops (I&amp;rsquo;m currently using Ubuntu Gnome with the Forge extension).  These pop-ups are doubly annoying in this context because they occupy a slice of screen and completely disrupt what I&amp;rsquo;m working with.&lt;/p&gt;
+&lt;h2 id=&#34;what-doesnt-work&#34;&gt;What doesn&amp;rsquo;t work&lt;/h2&gt;
+&lt;p&gt;Uninstalling Evolution doesn&amp;rsquo;t work.&lt;/p&gt;
+&lt;p&gt;The next obvious solution would be to turn off the notifications.  In Gnome, opening the control panel shows a &lt;em&gt;notifications&lt;/em&gt; tab where you can turn OFF Evolution Alarm Notify.&lt;/p&gt;
+&lt;p&gt;This doesn&amp;rsquo;t work. The reminders keep popping up.  This is a &lt;a href=&#34;https://gitlab.gnome.org/GNOME/gnome-control-center/-/issues/295&#34;&gt;bug&lt;/a&gt; that goes back several years.&lt;/p&gt;
+&lt;p&gt;Removing the calendar file used by Evolution Alarm Nofiy does not work.  In the past, EAN would simply re-create the file at next boot.  That bug seems to be fixed and I&amp;rsquo;ve verified that the calendar file is NOT recreated, however EAN is still popping up.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rm ~/.local/share/evolution/calendar/system/calendar.ics 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;what-seems-to-work-april-24&#34;&gt;What seems to work (April &amp;lsquo;24)&lt;/h2&gt;
+&lt;p&gt;Add the following line to /etc/xdg/autostart/org.gnome.Evolution-alarm-notify.desktop:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NotShowIn=Gnome;&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Adding a user to Ubuntu</title>
+      <link>https://nextpertise.net/posts/240226_newuser/</link>
+      <pubDate>Mon, 26 Feb 2024 20:56:43 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240226_newuser/</guid>
+      <description>&lt;p&gt;I built an Ubuntu server for work and then had to add a group of co-workers.  I always need to lookup this up, so hopefully my notes will help you!&lt;/p&gt;
+&lt;h2 id=&#34;adding-a-user&#34;&gt;Adding a user&lt;/h2&gt;
+&lt;p&gt;Adding a user to Linux is simple enough.  The bash command is &lt;em&gt;useradd&lt;/em&gt;.  For a user bstewart, the commend is shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo useradd bstewart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;set-password&#34;&gt;Set password&lt;/h2&gt;
+&lt;p&gt;One the user is created, they have to be assigned an initial password.  This is done with the &lt;em&gt;passwd&lt;/em&gt; command, which will then prompt for the new password twice (to confirm).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo passwd bstewart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The passwd command can be used by the user later - without sudo - to change their initial password.&lt;/p&gt;
+&lt;h2 id=&#34;create-a-home-directory&#34;&gt;Create a Home Directory&lt;/h2&gt;
+&lt;p&gt;The last step to to instatiate a home directory.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo mkhomedir_helper bstewart
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Github setup</title>
+      <link>https://nextpertise.net/posts/240225_github_setup/</link>
+      <pubDate>Sun, 25 Feb 2024 14:47:54 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240225_github_setup/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Githuboptions.png#floatsmallleft&#34; alt=&#34;Github screenshot&#34;&gt;
+Recently I had to rebuild my desktop.  Backups were my friend, and recreating my rig and loading files went without a hitch.  My &lt;em&gt;git&lt;/em&gt; directory restored, but I needed to reconnect them to Github.  I decided to start with fresh pulls, so I renamed &lt;em&gt;git&lt;/em&gt; to &lt;em&gt;oldgit&lt;/em&gt; and pulled down my repos (including the one that&amp;rsquo;s used for this website).&lt;/p&gt;
+&lt;p&gt;Once setup, Github is easy to use, but I always forget how to set it up and have to rediscover the process.  Hopefully, this quick step-by-step will help you avoid that difficulty (and will help me the next time I need to do it)!&lt;/p&gt;
+&lt;h2 id=&#34;cloning-the-repo&#34;&gt;Cloning the repo&lt;/h2&gt;
+&lt;p&gt;In this case, my repos already exist.  I started by cloning from github to have a clean current copy.  I&amp;rsquo;m using this website as an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/brentstewart/nextpertise.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;setting&#34;&gt;Setting&lt;/h2&gt;
+&lt;p&gt;Next I created a personal token.  I clicked my user icon (my smiling face) in the upper right hand corner of the &lt;a href=&#34;https:github.com&#34;&gt;Github&lt;/a&gt; site and chose &lt;em&gt;Settings&lt;/em&gt; (near the bottom).  In the settings menu, choose &lt;strong&gt;&amp;lt;Developer settings&amp;gt;&lt;/strong&gt; at the bottom.  This gets you to a menu that let&amp;rsquo;s you chose &lt;strong&gt;Personal access tokens&lt;/strong&gt;.  I use classic tokens - the &amp;ldquo;fine grained&amp;rdquo; option allows for permisssions and would be more appropriate if there was a team of people maintaining this site.&lt;/p&gt;
+&lt;p&gt;At this point, it&amp;rsquo;s as simple as clicking &lt;strong&gt;Generate new token&lt;/strong&gt; and then copying the text string down for later use.
+&lt;img src=&#34;https://nextpertise.net/Githubtoken.png#center&#34; alt=&#34;Github token setup&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;git-access-to-github&#34;&gt;Git Access to Github&lt;/h2&gt;
+&lt;p&gt;You can test the new setup with an ssh to Github.  You should be prompted for your Github username and then a password.  Use the token from above for the password.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+Hi brentstewart! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Credentials can be saved (so you aren&amp;rsquo;t prompted with each interaction).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    git config --global credential.helper store
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;&lt;em&gt;This cute command saves your creds to disk in plain text.  Be careful!&lt;/em&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once the token is setup, push and pull commands should work without forcing your to reauthenticate. A typical workflow of syncing to git might be:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;quot;Another commit&amp;quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Distro Hopping</title>
+      <link>https://nextpertise.net/posts/240217_distro_hopping/</link>
+      <pubDate>Sat, 17 Feb 2024 18:08:32 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240217_distro_hopping/</guid>
+      <description>&lt;p&gt;This article is the last thing I&amp;rsquo;m doing on this installation of Silverblue.&lt;/p&gt;
+&lt;h2 id=&#34;what-happened-to-pop-os&#34;&gt;What happened to Pop! OS&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve written in the past about my tendencies to distro-hop.  There&amp;rsquo;s always been a greener grass kind of feel to checking out new  Linux distributions.  However, I found &amp;ldquo;home&amp;rdquo; with Pop! OS about three years ago and stopped hopping.  Pop! is a distribution that really hits a lot of sweet spots with me.  It&amp;rsquo;s Debian based - moving to an RPM distribtion isn&amp;rsquo;t the hardest thing, but I&amp;rsquo;ve had better luck for over a decade with Debian distros.  The Pop! desktop is the best compromise of windowing/tiling, allowing me to use either or both paradigms to allocate screen real estate without a lot of futzing.  Finally, Pop! had a great update policy.  I noticed updates, like new kernels, arrived aggressively but that (with the exception of the NVidia driver update) they were reliable.  Unfortunately, I got bit by a dying NVME drive.&lt;/p&gt;
+&lt;p&gt;I had good backups, but I needed to reinstall. Pop! is in the middle of seperating it&amp;rsquo;s desktop environment from Gnome and they&amp;rsquo;ve pretty much halted the development of the Pop! DE while that happens.  I&amp;rsquo;m very excited about the COSMIC environment, but it&amp;rsquo;s not here today and Pop! still uses X.11.  One of the things I&amp;rsquo;m trying to do with my home environment is to learn about what&amp;rsquo;s next, and maintaining X.11 doesn&amp;rsquo;t seem like where I want to spend my time.  So there has opened a gap - I have to reinstall something and Pop! isn&amp;rsquo;t ready.&lt;/p&gt;
+&lt;h2 id=&#34;stop-1---nix&#34;&gt;Stop #1 - Nix&lt;/h2&gt;
+&lt;p&gt;I claimed to have stopped distro hopping, but I have a laptop that I use as a &amp;ldquo;casual&amp;rdquo; computer and I&amp;rsquo;ve tried a number of things with it.  I&amp;rsquo;m really interested in the possibilities of immutable distros and I&amp;rsquo;ve been playing with Nix.  What a great opportunity!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://nixos.org/&#34;&gt;Nix&lt;/a&gt; has a great vision - you can specify the state of your computer  in one file, and basically compile that file into a finished computer.  This allows you to setup the OS and the installed applications.  I think there&amp;rsquo;s a lot of good ideas there, espeically in terms of cloud computing and CI/CD delivery.&lt;/p&gt;
+&lt;p&gt;That said, a serious dive into Nix-os reveals some real gaps in the current implementation.  The core &amp;ldquo;nix&amp;rdquo; language has been extended through flakes.  Don&amp;rsquo;t know what a flake is?  Good luck finding documentation.  If you have a programming background, you may make more headway on Nix.  I&amp;rsquo;ve found it to be slow going.&lt;/p&gt;
+&lt;p&gt;Without using flakes, there&amp;rsquo;s not a good way to specify pulling in things like fonts from shared folders, dot (settings) files, and managing flatpaks.  I really buy into the vision of a fully specified environment, but Nix seems to be an incomplete implementation at this stage.&lt;/p&gt;
+&lt;p&gt;Ultimately, I came to see Nix-OS as almost but not fully baked.  I&amp;rsquo;m going to continue to run it on my &amp;ldquo;casual laptop&amp;rdquo;, but the desktop needs to be in a more stable and predictable environment.&lt;/p&gt;
+&lt;p&gt;As a side-note - I also seriously looked at &lt;a href=&#34;https://snowflakeos.org/&#34;&gt;Snowflake&lt;/a&gt;, which attempts to address some of the rough edges in Nix.  It&amp;rsquo;s still Alpha as of February &amp;lsquo;24, but has promise.  I&amp;rsquo;ll keep an eye on it.&lt;/p&gt;
+&lt;h2 id=&#34;vanilla&#34;&gt;Vanilla&lt;/h2&gt;
+&lt;p&gt;I experimented with &lt;a href=&#34;https://vanillaos.org/download&#34;&gt;Vanilla&lt;/a&gt;.  I didn&amp;rsquo;t spend as much time here.  What I saw looked fine.  It uses ABRoot for the immutable part.&lt;/p&gt;
+&lt;p&gt;The project is in the middle of a re-imagining.  The Orchid release will be build in a different way and use differnt tools.  That&amp;rsquo;s great and I&amp;rsquo;m looking forward to where they end up, but I don&amp;rsquo;t want to put a lot of energy into learning a system that will change completely later this year.&lt;/p&gt;
+&lt;h2 id=&#34;redhat-silverblue&#34;&gt;RedHat Silverblue&lt;/h2&gt;
+&lt;p&gt;I wasn&amp;rsquo;t as crazy about &lt;a href=&#34;https://fedoraproject.org/atomic-desktops/silverblue/&#34;&gt;Fedora Silverblue&lt;/a&gt;.  It&amp;rsquo;s atomic through the use of OSTree.  OSTree requires a reboot when the config is changed.  I went all-in on Flatpaks to address this and that seemed to close the worst of the gap.&lt;/p&gt;
+&lt;p&gt;One conclusion I made is that it is possible to run about 90% of the software I need strictly using Flatpak.  I was also able to create a script to setup my environment, pulling in the flatpaks I wanted and adding to the OStree image.&lt;/p&gt;
+&lt;p&gt;Silverblue ended up being the closest to usable of the immutable environments for me.  It is stable, and I learned a few tricks with BTRFS in the scope of setting it up.  It recognized hardware and performed really well.&lt;/p&gt;
+&lt;p&gt;I learned about &lt;a href=&#34;https://github.com/89luca89/distrobox&#34;&gt;Distrobox&lt;/a&gt; on Silverblue.  Distrobox is a wrapper around a container system (it uses either podman or docker).  It allows you to install any Linux distribution in a container on another Linux box.  You can install things in the container and the application is tightly integrated with the host environment.  The normal container isolation is removed, allowing those applications to function like host applications.  I used a GUI called BoxBuddy to make setting this up easier.  Boxbuddy/Distrobox made setting up my Python environment a snap.  I used it to setup an Ubuntu environment, but could just as easily have setup Arch.&lt;/p&gt;
+&lt;p&gt;But I&amp;rsquo;m not staying.&lt;/p&gt;
+&lt;p&gt;Silverblue plays havoc with my password vault or Calibre.  The vault flatpak doesn&amp;rsquo;t display a GUI and the integration with the browser doesn&amp;rsquo;t work.  I&amp;rsquo;m back to typing in passwords like an animal!  Calibre also never starts up. Yes, I&amp;rsquo;ve thought of trying to reinstall apps at the ostree level, I&amp;rsquo;ve tried &lt;a href=&#34;https://flathub.org/apps/com.github.tchx84.Flatseal&#34;&gt;flatseal&lt;/a&gt; (which allows you to adjust flatpak permissions).  I&amp;rsquo;ve also thought about installing apps through Distrobox.&lt;/p&gt;
+&lt;h2 id=&#34;back-to-the-start&#34;&gt;Back to the Start&lt;/h2&gt;
+&lt;p&gt;In the end I&amp;rsquo;ve decided to retreat from Immutable for the moment for my working desktop.  I can keep playing at the edges and chipping away at it, watching the progress.  I&amp;rsquo;m also really interested in what System76 puts forward with the new version of Pop! (hopefully 24.04).  In the meantime, I&amp;rsquo;ll retreat to Ubuntu and run a modern (Wayland) but not immutable environment and get some work done.&lt;/p&gt;
+&lt;h2 id=&#34;addendum&#34;&gt;Addendum&lt;/h2&gt;
+&lt;p&gt;I ended up taking one more stab at immutable in the form of &lt;a href=&#34;https://projectbluefin.io/&#34;&gt;Bluefin&lt;/a&gt;.  Bluefin is an opinionated  &amp;ldquo;spin&amp;rdquo; of Silverblue, still using Gnome.  It&amp;rsquo;s aimed more at the cloud-native developer crowd, but the operation of Bluefin is very much like Silverblue.&lt;/p&gt;
+&lt;p&gt;I was very happy with Bluefin and think it&amp;rsquo;s a better Silverblue than Silverblue.  That said, I still had some of the same issues.  I had screen freezes that required reboot, and issues running some programs.  While giving Bluefin a shot, I tried installing Enpass within ostree.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /etc/yum.repos.d/
+sudo wget https://yum.enpass.io/enpass-yum.repo
+sudo rpm-ostree  install enpass
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That worked and fixed the Enpass problem!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Restoring from Proxmox Backup Server</title>
+      <link>https://nextpertise.net/posts/240206_pbs_restore/</link>
+      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240206_pbs_restore/</guid>
+      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;https://nextpertise.net/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
+&lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;is-it-working&#34;&gt;Is it working?&lt;/h2&gt;
+&lt;p&gt;Before we delve into how to restore a backup, it&amp;rsquo;s worth asking whether there is something there to restore!&lt;/p&gt;
+&lt;p&gt;Proxmox backup asks for an e-mail address during setup.  Assuming you enter a valid e-mail, you should get a note each time the backup job runs.  A screenshot of this email appears to the right.  You can see that it&amp;rsquo;s reporting successfully backing up four VMs (technically two LXD containers and two fully virtualized devices, but that difference isn&amp;rsquo;t the focus of this article).&lt;/p&gt;
+&lt;p&gt;My home server has crown-jewel level data assets.  Things like baby pictures, that would be awful to lose.  It&amp;rsquo;s important to note that the backup is one piece of a larger multi-level strategy to maintain those files.  That strategy includes using ZFS to protect against &amp;ldquo;data rot&amp;rdquo;, having some form of RAID to protect against disk error, backing up, and backing up offsite.&lt;/p&gt;
+&lt;p&gt;When it comes to the backup piece, setting it up is good.  Having some form of monitoring is better (email in this case, although there&amp;rsquo;s also a server screen you could go check out).  However there are a &lt;em&gt;lot&lt;/em&gt; of stories about backups that didn&amp;rsquo;t work when they were needed.&lt;/p&gt;
+&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
+&lt;p&gt;Enough pontificating!  On to the good stuff . . .&lt;/p&gt;
+&lt;h2 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h2&gt;
+&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Proxmox Backup Server</title>
+      <link>https://nextpertise.net/posts/240204_pbs/</link>
+      <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240204_pbs/</guid>
+      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
+&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;https://nextpertise.net/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
+&lt;p&gt;Originally, I used a free version of VMWare (6.0 and later 6.5) but VMWare stopped supporting that version and it has never made sense to pay for an ESXi license for a home lab.  Proxmox  VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).  Recently, however, I had a hard-drive fail in the RAID array.  That server was already pretty long in the tooth, so I built a new one.
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;note&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Proxmox includes a container technology that is interesting, but different from what someone familiar with docker might intuitively expect.  I&amp;rsquo;ll get into that in a seperate post.  For purposes of this story, I&amp;rsquo;m using &amp;ldquo;vm&amp;rdquo; but as many of my workloads as possible run as LXC containers.&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h2 id=&#34;so-what-happened-was---&#34;&gt;So what happened was . . .&lt;/h2&gt;
+&lt;p&gt;All good to this point, new server came up running PVE without a hitch.  I joined the servers together in a cluster and migrated VMs.  Most of my VMs, as mentioned, are single purpose appliances (either downloaded or assembled).  One of my VMs has a big disk file and is used to store my personal files.  And that&amp;rsquo;s the one that wouldn&amp;rsquo;t boot.&lt;/p&gt;
+&lt;p&gt;Because it&amp;rsquo;s the biggest disk (by far), I migrated other workloads first.  I also upgraded my home network to 2.5G to support the environment, so I took a little longer to handle this VM.  My guess is that the VM suffered corruption, either running in a limping-RAID1 or during transfer.&lt;/p&gt;
+&lt;h2 id=&#34;but-i-had-already---&#34;&gt;But I had already . . .&lt;/h2&gt;
+&lt;p&gt;I setup PBS about six months ago and it had been backing up my VMs every week.  I did a recovery on a small VM way back, but hadn&amp;rsquo;t really touched it since.  In this case, I was able to restore a copy of the impacted VM from a few days prior and recover all my files.  PBS runs in the background and emails me each week to let me know that it&amp;rsquo;s good.  Recovery of a 2TB disk image did take a couple hours, but it was simple to setup.  If you use PVE, I think you have to use PBS.&lt;/p&gt;
+&lt;h2 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h2&gt;
+&lt;p&gt;Setting up PBS is about as difficult as setting up PVE.  If you did the one, the other will not be a problem.  The documentation is good, but takes some time to read so here&amp;rsquo;s a quick walkthrough of the actions you&amp;rsquo;ll need to take.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download and install PBS on a new machine.  I&amp;rsquo;m using an old NUC with a 5TB drive.  &lt;a href=&#34;https://www.proxmox.com/en/downloads&#34;&gt;Download&lt;/a&gt; the image and throw it on &lt;a href=&#34;https://nextpertise.net/posts/210911_distrohoppingwventoy/&#34;&gt;Ventoy&lt;/a&gt;!  This is an easy and obvious setup, so I won&amp;rsquo;t walk you through clicking &amp;ldquo;next&amp;rdquo;.
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on PVE!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron like adding an NVME drive to this &lt;a href=&#34;https://www.amazon.com/gp/product/B0BWZB8971/?th=1&#34;&gt;Kikusenko&lt;/a&gt;.&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;When the process is complete, you can administer PBS from https://BACKUPSERVER:8007.  Login as root and the password you chose during setup.&lt;/li&gt;
+&lt;li&gt;Setup a Datastore on PBS.  &amp;ldquo;Add Datastore&amp;rdquo; is found under Datastore on the Proxmox menu.  This will make a local path available for backup use.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_pbsdatastore.png#center&#34; alt=&#34;PBS Datastore Setup&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Setup Pruning to keep the latest backups.  This setup mostly comes down to the crossing point of your budget, paranoia, and available space.  You can specify the number of backups to keep over various timeframes, such as days, weeks, months, and years.  I backup weekly and want to keep a couple backups, but I also keep monthlys as well in case I realize later that I need a restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get the &amp;ldquo;fingerprint&amp;rdquo; using the big &amp;ldquo;show Fingerprint&amp;rdquo; button on the dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_pbssetup.png#floatright&#34; alt=&#34;PBS setup in PVE&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Back in the PVE environment, go to the server view and select DataCenter &amp;gt; Storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click Add and choose Proxmox Backup Server from the drop-down menu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Give the backup server an ID and enter in it&amp;rsquo;s IP address.  Use &lt;em&gt;root@pam&lt;/em&gt; as the username, the password you set on PBS and then supply the datastore setup in Step 3 above.  Here&amp;rsquo;s where you&amp;rsquo;ll need to paste in the fingerprint from PBS.  This is also the place where you can fiddle with retention and encryption if needed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_automated_pbs.png#floatsmallleft&#34; alt=&#34;PBS Job setup&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The simple way to backup a VM at this point is just to select a VM and choose &amp;ldquo;Backup&amp;rdquo;.  No one remembers to do backups though, so the key is to have them happen automatically.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Still under Datacenter, choose backup and &lt;strong&gt;Add&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To backup all VMs from all PVE instances weekly, use the following settings:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Node &lt;strong&gt;&amp;ndash;All &amp;ndash;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Storage &lt;strong&gt;pbs&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Schedule &lt;strong&gt;sun 01:00&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Selection: &lt;strong&gt;Include selected VMs&lt;/strong&gt; or &lt;strong&gt;All&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email: &lt;strong&gt;Always&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
+&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but this made sense.  At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
+&lt;p&gt;Restoring specific files or VMs is a topic for a second article.  Hope this is helpful!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Biz card</title>
-      <link>https://nextpertise.net/posts/2310255_bizcard/</link>
+      <link>https://nextpertise.net/posts/231025_bizcard/</link>
       <pubDate>Wed, 25 Oct 2023 21:14:12 -0400</pubDate>
       
-      <guid>https://nextpertise.net/posts/2310255_bizcard/</guid>
+      <guid>https://nextpertise.net/posts/231025_bizcard/</guid>
       <description>&lt;p&gt;One of the guys on Jupiter Broadcasting spoke about a curl-able business card and I thought, &amp;ldquo;Gotta try it&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;A little searching led me to an example - the card of &lt;a href=&#34;https://github.com/tallguyjenks/BusinessCard/blob/master/business_card&#34;&gt;Bryan Jenks&lt;/a&gt;.  I used Bryan&amp;rsquo;s work as a template.  Here&amp;rsquo;s what my finished version looks like.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://nextpertise.net/bizcard.png#floatleft&#34; alt=&#34;My curlable business card&#34;&gt;&lt;/p&gt;
@@ -5383,7 +5636,7 @@ Upon logging into a Kali terminal or console, users may be presented with a &lt;
 &lt;p&gt;I&amp;rsquo;ve created a new repository for Visio Stencils.&lt;/p&gt;
 &lt;p&gt;Affinity Blue is a set of abstract network icons set in circles.  These are the alternative icons used in the GNS3 project.  I like using them in GNS3 because they provide a nice &amp;ldquo;clean&amp;rdquo; look that makes diagrams easy to quickly understand.  Vendor-specific icons for each type of firewall, for instance, can quickly distract from the function being provided and the flow of traffic.  These icons have been given four cardinal connections points.&lt;/p&gt;
 &lt;p&gt;A second set is called &amp;ldquo;Brent&amp;rsquo;s Stencil&amp;rdquo;.  This is a collection of &amp;ldquo;standard&amp;rdquo; shapes taken from a variety of online sources - mostly old Cisco drawings.  If you like the old Cisco documentation diagrams, these give that same look.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/BrentsStencil.PNG#floatleft&#34; alt=&#34;Brent&amp;amp;rsquo;s Stencil&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/BrentsStencil.PNG#floatleft&#34; alt=&#34;Brent&amp;rsquo;s Stencil&#34;&gt;
 This second stencil has been more heavily customized.  Several of the icons have extra connection points (this makes it easier to label lines going to a switch, for instance).  The &amp;ldquo;link&amp;rdquo; lines have been set so that the text will be at the same angle as the line, which helps to clean up diagrams.&lt;/p&gt;
 &lt;p&gt;This set is older - I&amp;rsquo;ve used it for at least a decade.  It has some icons that show time has passed like a TDM PBX, analog phone, and ISDN switch.  It also doesn&amp;rsquo;t have much in the way of containers, VMs, or clouds.  Still, this collects a variety of useful icons and puts them in one place.  I hope it is useful to you.&lt;/p&gt;
 &lt;h2 id=&#34;creating-a-custom-visio-stencil&#34;&gt;Creating a Custom Visio Stencil&lt;/h2&gt;

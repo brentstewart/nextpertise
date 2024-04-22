@@ -10,7 +10,7 @@
     <title>Nextpertise Adding Hyperlinks to GNS3 Topologies - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,39 +39,41 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/gns3.png#floatright" height="140">
 <h1>Adding Hyperlinks to GNS3 Topologies</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Jan 13, 2021</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Wednesday, Jan 13, 2021</i><br></div></h6>
   <p><p>GNS3 is great for simulating networks, but what happens when your lab needs to include  devices outside GNS3 (like physical hardware)?  Wouldn&rsquo;t it be nice to include hyperlinks to &ldquo;real&rdquo; assets in the GNS3 diagram?  There&rsquo;s a way to do this!</p>
 <p><img src="/2021-01-13_GNS3_Home.png#floatsmallleft" alt="Home"></p>
 <h2 id="adding-non-gns3-devices-to-a-topology">Adding Non-GNS3 Devices To a Topology</h2>
 <p>Let&rsquo;s think about the things that might be interesting to add to a GNS3 topology . . . the home firewall, switch, server.  You could even imagine adding IoT devices to the diagram and controlling them from a GNS3 appliance.</p>
 <p>For this demonstration, I&rsquo;ve built a simplified view of my home network.  I have a Meraki stack - an MX64 Security Appliance (&ldquo;Firewall&rdquo;), an MS220 switch, and some MR33 access points.  To make this a little more interesting, I&rsquo;ve including my ESXi server.</p>
 <p>To add a device, drag a &ldquo;cloud&rdquo; appliance into the topology.  Right click the cloud and change the symbol.  For instance, you can see that I changed the top cloud to use the firewall symbol.  I also changed the label to &ldquo;MX64&rdquo;.</p>
-<p>There&rsquo;s not an Affinity Blue symbol for access points, so I chose the &ldquo;cog&rdquo;.  You could also grab a picture or manufacturer icon.  Just for fun, in the third picture I went to <a href="http://images.google.com">Google Images</a> and copied a picture of a Meraki access point.  I don&rsquo;t think it looks as good as the cog, but it demonstrates how you could use this technique to introduce all kinds of graphics.</p>
+<p>There&rsquo;s not an Affinity Blue symbol for access points, so I chose the &ldquo;cog&rdquo;.  You could also grab a picture or manufacturer icon.  Just for fun, in the third picture I went to <a href="http://images.google.com">Google Images and copied a picture of a Meraki access point.  I don&rsquo;t think it looks as good as the cog, but it demonstrates how you could use this technique to introduce all kinds of graphics.</p>
 <p>To extend this concept, in that same example I created a stand alone book icon that links to my documentation.  It would be easy to imagine a link to a Google doc or Sharepoint site in the same way.</p>
-<p>If you use outside graphics, keep in mind that GNS3 <a href="https://github.com/GNS3/gns3-registry/tree/master/symbols">recommends</a> a maximum height and width of 70px.  I find that the &ldquo;summary view&rdquo; size on Google images works pretty well.  You can also resize existing graphics with Imagemagick:</p>
+<p>If you use outside graphics, keep in mind that GNS3 <a href="https://github.com/GNS3/gns3-registry/tree/master/symbols">recommends a maximum height and width of 70px.  I find that the &ldquo;summary view&rdquo; size on Google images works pretty well.  You can also resize existing graphics with Imagemagick:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>convert -background none download/meraki.svg -resize x70 meraki.svg
 </span></span></code></pre></div><p><img src="/2021-01-13_GNS3-Config.png#floatsmallleft" alt="GNS3 Device Properties"></p>
 <h2 id="creating-hyperlinks">Creating Hyperlinks</h2>
@@ -90,40 +92,40 @@
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/gns3/">GNS3</a> 
+        <a href="/tags/gns3/">GNS3 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE</a><br />
+        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi</a><br />
+        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance</a><br />
+        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18</a><br />
+        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18<br />
         
       </li>
     
@@ -135,7 +137,7 @@
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/210113_gns3_links/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -146,7 +148,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Adding Hyperlinks to GNS3 Topologies</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Adding Hyperlinks to GNS3 Topologies</nav>
 </div>
   </body>
   </html>

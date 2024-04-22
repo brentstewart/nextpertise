@@ -1,0 +1,14 @@
+
+{{define "main"}}
+
+{{.Content}}
+
+{{range .Pages.ByTitle}}
+    <img src="/{{.Params.Picture}}.png" height="20">
+    <a href="{{.RelPermalink}}">{{.Title}}<br>
+
+  {{end}}
+
+{{end}}
+
+

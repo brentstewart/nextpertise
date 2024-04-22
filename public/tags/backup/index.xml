@@ -5,10 +5,141 @@
     <description>Recent content in Backup on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2020 09:12:52 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 06 Feb 2024 13:19:46 -0500</lastBuildDate>
     
         <atom:link href="https://nextpertise.net/tags/backup/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Restoring from Proxmox Backup Server</title>
+      <link>https://nextpertise.net/posts/240206_pbs_restore/</link>
+      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240206_pbs_restore/</guid>
+      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;https://nextpertise.net/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
+&lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;is-it-working&#34;&gt;Is it working?&lt;/h2&gt;
+&lt;p&gt;Before we delve into how to restore a backup, it&amp;rsquo;s worth asking whether there is something there to restore!&lt;/p&gt;
+&lt;p&gt;Proxmox backup asks for an e-mail address during setup.  Assuming you enter a valid e-mail, you should get a note each time the backup job runs.  A screenshot of this email appears to the right.  You can see that it&amp;rsquo;s reporting successfully backing up four VMs (technically two LXD containers and two fully virtualized devices, but that difference isn&amp;rsquo;t the focus of this article).&lt;/p&gt;
+&lt;p&gt;My home server has crown-jewel level data assets.  Things like baby pictures, that would be awful to lose.  It&amp;rsquo;s important to note that the backup is one piece of a larger multi-level strategy to maintain those files.  That strategy includes using ZFS to protect against &amp;ldquo;data rot&amp;rdquo;, having some form of RAID to protect against disk error, backing up, and backing up offsite.&lt;/p&gt;
+&lt;p&gt;When it comes to the backup piece, setting it up is good.  Having some form of monitoring is better (email in this case, although there&amp;rsquo;s also a server screen you could go check out).  However there are a &lt;em&gt;lot&lt;/em&gt; of stories about backups that didn&amp;rsquo;t work when they were needed.&lt;/p&gt;
+&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
+&lt;p&gt;Enough pontificating!  On to the good stuff . . .&lt;/p&gt;
+&lt;h2 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h2&gt;
+&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Proxmox Backup Server</title>
+      <link>https://nextpertise.net/posts/240204_pbs/</link>
+      <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240204_pbs/</guid>
+      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
+&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;https://nextpertise.net/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
+&lt;p&gt;Originally, I used a free version of VMWare (6.0 and later 6.5) but VMWare stopped supporting that version and it has never made sense to pay for an ESXi license for a home lab.  Proxmox  VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).  Recently, however, I had a hard-drive fail in the RAID array.  That server was already pretty long in the tooth, so I built a new one.
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;note&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Proxmox includes a container technology that is interesting, but different from what someone familiar with docker might intuitively expect.  I&amp;rsquo;ll get into that in a seperate post.  For purposes of this story, I&amp;rsquo;m using &amp;ldquo;vm&amp;rdquo; but as many of my workloads as possible run as LXC containers.&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h2 id=&#34;so-what-happened-was---&#34;&gt;So what happened was . . .&lt;/h2&gt;
+&lt;p&gt;All good to this point, new server came up running PVE without a hitch.  I joined the servers together in a cluster and migrated VMs.  Most of my VMs, as mentioned, are single purpose appliances (either downloaded or assembled).  One of my VMs has a big disk file and is used to store my personal files.  And that&amp;rsquo;s the one that wouldn&amp;rsquo;t boot.&lt;/p&gt;
+&lt;p&gt;Because it&amp;rsquo;s the biggest disk (by far), I migrated other workloads first.  I also upgraded my home network to 2.5G to support the environment, so I took a little longer to handle this VM.  My guess is that the VM suffered corruption, either running in a limping-RAID1 or during transfer.&lt;/p&gt;
+&lt;h2 id=&#34;but-i-had-already---&#34;&gt;But I had already . . .&lt;/h2&gt;
+&lt;p&gt;I setup PBS about six months ago and it had been backing up my VMs every week.  I did a recovery on a small VM way back, but hadn&amp;rsquo;t really touched it since.  In this case, I was able to restore a copy of the impacted VM from a few days prior and recover all my files.  PBS runs in the background and emails me each week to let me know that it&amp;rsquo;s good.  Recovery of a 2TB disk image did take a couple hours, but it was simple to setup.  If you use PVE, I think you have to use PBS.&lt;/p&gt;
+&lt;h2 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h2&gt;
+&lt;p&gt;Setting up PBS is about as difficult as setting up PVE.  If you did the one, the other will not be a problem.  The documentation is good, but takes some time to read so here&amp;rsquo;s a quick walkthrough of the actions you&amp;rsquo;ll need to take.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download and install PBS on a new machine.  I&amp;rsquo;m using an old NUC with a 5TB drive.  &lt;a href=&#34;https://www.proxmox.com/en/downloads&#34;&gt;Download&lt;/a&gt; the image and throw it on &lt;a href=&#34;https://nextpertise.net/posts/210911_distrohoppingwventoy/&#34;&gt;Ventoy&lt;/a&gt;!  This is an easy and obvious setup, so I won&amp;rsquo;t walk you through clicking &amp;ldquo;next&amp;rdquo;.
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on PVE!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron like adding an NVME drive to this &lt;a href=&#34;https://www.amazon.com/gp/product/B0BWZB8971/?th=1&#34;&gt;Kikusenko&lt;/a&gt;.&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;When the process is complete, you can administer PBS from https://BACKUPSERVER:8007.  Login as root and the password you chose during setup.&lt;/li&gt;
+&lt;li&gt;Setup a Datastore on PBS.  &amp;ldquo;Add Datastore&amp;rdquo; is found under Datastore on the Proxmox menu.  This will make a local path available for backup use.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_pbsdatastore.png#center&#34; alt=&#34;PBS Datastore Setup&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Setup Pruning to keep the latest backups.  This setup mostly comes down to the crossing point of your budget, paranoia, and available space.  You can specify the number of backups to keep over various timeframes, such as days, weeks, months, and years.  I backup weekly and want to keep a couple backups, but I also keep monthlys as well in case I realize later that I need a restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get the &amp;ldquo;fingerprint&amp;rdquo; using the big &amp;ldquo;show Fingerprint&amp;rdquo; button on the dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_pbssetup.png#floatright&#34; alt=&#34;PBS setup in PVE&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Back in the PVE environment, go to the server view and select DataCenter &amp;gt; Storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click Add and choose Proxmox Backup Server from the drop-down menu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Give the backup server an ID and enter in it&amp;rsquo;s IP address.  Use &lt;em&gt;root@pam&lt;/em&gt; as the username, the password you set on PBS and then supply the datastore setup in Step 3 above.  Here&amp;rsquo;s where you&amp;rsquo;ll need to paste in the fingerprint from PBS.  This is also the place where you can fiddle with retention and encryption if needed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/240204_automated_pbs.png#floatsmallleft&#34; alt=&#34;PBS Job setup&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The simple way to backup a VM at this point is just to select a VM and choose &amp;ldquo;Backup&amp;rdquo;.  No one remembers to do backups though, so the key is to have them happen automatically.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Still under Datacenter, choose backup and &lt;strong&gt;Add&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To backup all VMs from all PVE instances weekly, use the following settings:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Node &lt;strong&gt;&amp;ndash;All &amp;ndash;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Storage &lt;strong&gt;pbs&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Schedule &lt;strong&gt;sun 01:00&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Selection: &lt;strong&gt;Include selected VMs&lt;/strong&gt; or &lt;strong&gt;All&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email: &lt;strong&gt;Always&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
+&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but this made sense.  At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
+&lt;p&gt;Restoring specific files or VMs is a topic for a second article.  Hope this is helpful!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Linux Home Cloud Backup</title>

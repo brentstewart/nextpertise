@@ -607,7 +607,7 @@
         var stopwordFound = stopwordFind.test(slug);
 
         if (stopwordFound) {
-            $("#stopword").html("The slug for this page contains <a href='http://en.wikipedia.org/wiki/Stop_words'>stop words</a>, consider removing them. ").addClass('improve');        
+            $("#stopword").html("The slug for this page contains <a href='http://en.wikipedia.org/wiki/Stop_words'>stop words, consider removing them. ").addClass('improve');        
         } else {
             $("#stopword").html("The slug for this page looks good.").addClass('good').appendTo($("#stopword").parent());
         }
@@ -657,7 +657,7 @@
               $("#meta__description").text( "The meta description is over 320 characters. Reducing the length will ensure the entire description will be visible.").addClass('fix');
           } 
         } else {
-          $("#meta__description").html( "The meta description is not set. Please add a <a href='https://github.com/doncabreraphone/victorhugo/blob/master/misc/hugo-seo-snippets.md'>meta description</a> to your post.").addClass('fix');
+          $("#meta__description").html( "The meta description is not set. Please add a <a href='https://github.com/doncabreraphone/victorhugo/blob/master/misc/hugo-seo-snippets.md'>meta description to your post.").addClass('fix');
         }
 
         // CONTENT
@@ -888,11 +888,11 @@
         var victorhugo__readability = readabilityFunction("{{ .Content }}").fleschReadingEase;
 
         if ( victorhugo__readability >= 60 ) {
-            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the '<a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test</a>', which is considered ok to read. Well done! " ).addClass("good").appendTo($("#victorhugo__readability").parent());
+            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the '<a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test', which is considered ok to read. Well done! " ).addClass("good").appendTo($("#victorhugo__readability").parent());
         } else if ( victorhugo__readability >= 45 && victorhugo__readability < 60 ) {
-            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the <a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test</a>, which is considered fairly difficult to read. Try to make shorter sentences to improve readability." ).addClass("improve");
+            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the <a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test, which is considered fairly difficult to read. Try to make shorter sentences to improve readability." ).addClass("improve");
         } else if ( victorhugo__readability < 45 ) {
-            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the <a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test</a>, which is considered extremely difficult to read. Try to make shorter sentences to improve readability. This needs improvement." ).addClass("fix");
+            $("#victorhugo__readability").html( "The copy scores '" + victorhugo__readability.toFixed(1) +"' in the <a href='https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests' target='_blank'>Flesch Reading Ease test, which is considered extremely difficult to read. Try to make shorter sentences to improve readability. This needs improvement." ).addClass("fix");
         }
         
         // TIME READING SCORE
@@ -1345,7 +1345,7 @@
 
     <a href="#" id="victorhugo__open">
       <img src="https://raw.githubusercontent.com/doncabreraphone/victorhugo/master/misc/victorhugo__logo_small.png">
-    </a>
+    
 
     <div id="victorhugo">
         <a href="#" id="victorhugo__close">
@@ -1353,7 +1353,7 @@
             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
           </svg>
-        </a>
+        
 
         <div class="victorhugo_panel">
           <img src="https://raw.githubusercontent.com/doncabreraphone/victorhugo/master/misc/victorhugo__logo_small.png" id="victorhugo_logo">
@@ -1506,7 +1506,7 @@
           </div>
 
           
-          <p id="victorhugo__bottom"><a href="https://github.com/doncabreraphone/victorhugo" target="_blank">About Victor Hugo</a></p>
+          <p id="victorhugo__bottom"><a href="https://github.com/doncabreraphone/victorhugo" target="_blank">About Victor Hugo</p>
 
         </div>
     
@@ -1546,7 +1546,7 @@
 
     <ul style="list-style-type: none; margin: 0; padding: 0 15px;">
 
-    <li style="text-indent: -1rem;  margin: 15px 0;"><span style="font-size: 2rem; vertical-align: middle; line-height: 1.2rem; color: #dc3232">•</span> You forgot to add, either "Focus_Keyword", or "Victor_Hugo" params in the front matter of this page. <a href="https://github.com/doncabreraphone/victorhugo/#configure-victor-hugo" target="_blank">Read More.</a></li>
+    <li style="text-indent: -1rem;  margin: 15px 0;"><span style="font-size: 2rem; vertical-align: middle; line-height: 1.2rem; color: #dc3232">•</span> You forgot to add, either "Focus_Keyword", or "Victor_Hugo" params in the front matter of this page. <a href="https://github.com/doncabreraphone/victorhugo/#configure-victor-hugo" target="_blank">Read More.</li>
 
     </ul>
 

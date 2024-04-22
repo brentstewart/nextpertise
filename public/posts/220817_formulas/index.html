@@ -10,7 +10,7 @@
     <title>Nextpertise Adding Math Formulas to a Hugo-based site - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,23 +39,25 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
 
 
@@ -80,11 +82,11 @@
     
 <img src="/hugo.png#floatright" height="140">
 <h1>Adding Math Formulas to a Hugo-based site</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Aug 17, 2022</i><br></div></h6>
-  <p><p>An upcoming article features some basic math, but rendering it in markdown is unaesthetic.  What you get is <em>E=mc^2</em> when what you want is $ E=mc^2$.  My search led me to <a href="https://katex.org/">KaTeX</a> which is a JavaScript library that let&rsquo;s you put $\LaTeX$ code into an HTML document.  LaTeX was created to typeset scientific papers, so it is built for displaying things like matrices and integrals.  I don&rsquo;t plan to publish math that intense, but LaTeX can help clearly display even a simple division equation and improve the readability of the post.  The best source of information I found was <a href="https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/">Mert Bakir&rsquo;s blog</a> and my usage is based on his work.</p>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Wednesday, Aug 17, 2022</i><br></div></h6>
+  <p><p>An upcoming article features some basic math, but rendering it in markdown is unaesthetic.  What you get is <em>E=mc^2</em> when what you want is $ E=mc^2$.  My search led me to <a href="https://katex.org/">KaTeX which is a JavaScript library that let&rsquo;s you put $\LaTeX$ code into an HTML document.  LaTeX was created to typeset scientific papers, so it is built for displaying things like matrices and integrals.  I don&rsquo;t plan to publish math that intense, but LaTeX can help clearly display even a simple division equation and improve the readability of the post.  The best source of information I found was <a href="https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/">Mert Bakir&rsquo;s blog and my usage is based on his work.</p>
 <p>There are three steps to incorporating KaTeX with Hugo.</p>
 <ol>
-<li>Create a partial template.  I added this to my theme by creating a file at <em>themes/next/layouts/partials/katex.html</em>, but it could also be added to the site at <em>layouts/partials/</em> (note that the name <em>next</em> is my theme name, so your&rsquo;s will differ).  Pull the code from the <a href="https://katex.org/docs/browser.html">KaTeX site</a> by copying everything within the <!-- raw HTML omitted --> tags.  You&rsquo;ll notice there&rsquo;s also a script in the code below - add that to the file as well.  Here is the file that is current in August, 2022, for this site.</li>
+<li>Create a partial template.  I added this to my theme by creating a file at <em>themes/next/layouts/partials/katex.html</em>, but it could also be added to the site at <em>layouts/partials/</em> (note that the name <em>next</em> is my theme name, so your&rsquo;s will differ).  Pull the code from the <a href="https://katex.org/docs/browser.html">KaTeX site by copying everything within the <!-- raw HTML omitted --> tags.  You&rsquo;ll notice there&rsquo;s also a script in the code below - add that to the file as well.  Here is the file that is current in August, 2022, for this site.</li>
 </ol>
 <pre tabindex="0"><code>  &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css&#34; integrity=&#34;sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC&#34; crossorigin=&#34;anonymous&#34;&gt;
 
@@ -115,7 +117,7 @@
 <pre tabindex="0"><code>  markup: &#39;mmark&#39;
   math: false
 </code></pre><p>Use KaTeX in markdown by using two dollar signs ($$) as before and after delimiters for a standalone centered equation or single dollar signs for in-line equations.
-You can find a good LaTeX resource at the <a href="https://www.overleaf.com/learn/latex/Mathematical_expressions">Overleaf</a> site.</p>
+You can find a good LaTeX resource at the <a href="https://www.overleaf.com/learn/latex/Mathematical_expressions">Overleaf site.</p>
 <p>The last problem I had was finding some good examples!  So, here are a few equations to give you a feel for what is possible.</p>
 <p>$\LaTeX$</p>
 <p>Bracket the equation with two dollar signs to center ($$) - x = {-b \pm \sqrt{b^2-4ac} \over 2a}</p>
@@ -127,20 +129,20 @@ $$i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r}
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/">https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/</a><br> &nbsp&nbsp<a href="https://katex.org/docs/browser.html">https://katex.org/docs/browser.html</a><br> &nbsp&nbsp<a href="https://www.overleaf.com/learn/latex/Mathematical_expressions">https://www.overleaf.com/learn/latex/Mathematical_expressions</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/">https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/<br> &nbsp&nbsp<a href="https://katex.org/docs/browser.html">https://katex.org/docs/browser.html<br> &nbsp&nbsp<a href="https://www.overleaf.com/learn/latex/Mathematical_expressions">https://www.overleaf.com/learn/latex/Mathematical_expressions<br> 
     
-    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/nextpertise">Nextpertise on Github</a><br></strong>
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/nextpertise">Nextpertise on Github<br></strong>
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/hugo/">hugo</a> 
+        <a href="/tags/hugo/">hugo 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/210424_hugo_markdown_cheatsheet/">Hugo Markdown Cheatsheet</a><br />
+        <a href="/posts/210424_hugo_markdown_cheatsheet/">Hugo Markdown Cheatsheet<br />
         
       </li>
     
@@ -152,7 +154,7 @@ $$i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r}
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/220817_formulas/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -163,7 +165,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Adding Math Formulas to a Hugo-based site</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Adding Math Formulas to a Hugo-based site</nav>
 </div>
   </body>
   </html>

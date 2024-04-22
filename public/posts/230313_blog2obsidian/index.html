@@ -10,7 +10,7 @@
     <title>Nextpertise Automaticly adding Hugo articles to Obsidian - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -40,33 +40,35 @@ My blog articles are written in Visual Studio Code, in markdown so that they can
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>Automaticly adding Hugo articles to Obsidian</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Mar 13, 2023</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Monday, Mar 13, 2023</i><br></div></h6>
   <p><h2 id="incorporating-blog-articles-in-obsidian">Incorporating blog articles in Obsidian</h2>
 <p>Most of my writing occurs in two places, but I&rsquo;d like to consolidate it into my &ldquo;second brain&rdquo;.</p>
-<p>My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via <a href="/posts/210102_hugoafter6">hugo</a>.  I&rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &ldquo;second brain&rdquo;.  My blog posts represent an important part of that &ldquo;second brain&rdquo;, so I&rsquo;d like to make sure they&rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.</p>
+<p>My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via <a href="/posts/210102_hugoafter6">hugo.  I&rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &ldquo;second brain&rdquo;.  My blog posts represent an important part of that &ldquo;second brain&rdquo;, so I&rsquo;d like to make sure they&rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.</p>
 <pre><code>cp ~/git/nextpertise/content/posts/*.md ~/2nd\ Brain/Nextpertise/
 echo &quot;blog2obs.sh ran&quot;
 </code></pre>
@@ -80,56 +82,56 @@ echo &quot;blog2obs.sh ran&quot;
 0 0 * * * /home/brent/blog2obs.sh
 </code></pre>
 <p><img src="/230314_Linux_Email.jpg#floatright" alt="It works!">
-The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my <a href="/posts/230313_command_line_email/">last post</a>.</p>
+The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my <a href="/posts/230313_command_line_email/">last post.</p>
 <p>The received email is on the right, and now it&rsquo;s clear why the <em>echo</em> command is in the batch file.  The echo provides some text - without that text there&rsquo;s no output from the script and nothing to email.</p>
 <p>There are some possible improvements that might make this worth revisiting in the future.  The simple script doesn&rsquo;t indicate if there was an error copying the files.  I could also imagine inserting links and tags that are used in my Obsidian vault as a header to the imported files.  However, this is a straight-forward process and it&rsquo;s meeting my immediate need.</p>
 </p>
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/markdown/">markdown</a> 
+        <a href="/tags/markdown/">markdown 
        
-        <a href="/tags/linux/">linux</a> 
+        <a href="/tags/linux/">linux 
        
-        <a href="/tags/shell/">shell</a> 
+        <a href="/tags/shell/">shell 
        
-        <a href="/tags/hugo/">Hugo</a> 
+        <a href="/tags/hugo/">Hugo 
        
-        <a href="/tags/obsidian/">obsidian</a> 
+        <a href="/tags/obsidian/">obsidian 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/2310255_bizcard/">Biz card</a><br />
-        Creating a curl-able business card
+        <a href="/posts/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
-        Update on NVidia 5.35
+        <a href="/posts/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230922_markdown_to_docx/">Markdown to DOCX</a><br />
-        Converting markdown files
+        <a href="/posts/240217_distro_hopping/">Distro Hopping<br />
+        Again
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
-        Pulling weather from the command line
+        <a href="/posts/240206_pbs_restore/">Restoring from Proxmox Backup Server<br />
+        An easy way to protect your data
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
-        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+        <a href="/posts/240204_pbs/">Proxmox Backup Server<br />
+        Incredibly valuable and also free!
       </li>
     
   </ul>
@@ -140,7 +142,7 @@ The five variables before the job are minute, hour, day, month, and day of the w
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/230313_blog2obsidian/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -151,7 +153,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Automaticly adding Hugo articles to Obsidian</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Automaticly adding Hugo articles to Obsidian</nav>
 </div>
   </body>
   </html>

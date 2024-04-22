@@ -10,7 +10,7 @@
     <title>Nextpertise Creating a new GNS3 Appliance using a script - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,32 +39,34 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/gns3.png#floatright" height="140">
 <h1>Creating a new GNS3 Appliance using a script</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Friday, Sep 4, 2020</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Friday, Sep 4, 2020</i><br></div></h6>
   <p><p><img src="https://gns3.com/assets/custom/gns3/images/logo-colour.png#floatleft" alt="GNS3">
-In <a href="/posts/200902_updatinggns3appliances/"><em>Updating a GNS3 Appliance File</em></a> I described editing a GNS3a file to update an appliance.  That is the method I&rsquo;ve used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.</p>
+In <a href="/posts/200902_updatinggns3appliances/"><em>Updating a GNS3 Appliance File</em> I described editing a GNS3a file to update an appliance.  That is the method I&rsquo;ve used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.</p>
 <p>I was listening to the most recent Linux Unplugged, and they were doing interesting networking using a Pi to connect two different 4G providers.  Their setup allowed choosing an active path based on throughput or errors, or for balancing between multiple paths.  The discussion touched on multi-link, policy-based routing, using Linux routing.  It sounded like something I&rsquo;d like to experiment with!  I&rsquo;ve linked to the show in the references.  In addition, Raspian is a prettty good &ldquo;light&rdquo; desktop for testing in GNS3 and a lot of folks use it with their Pis, so I thought this would be an interesting appliance.</p>
 <h2 id="setting-up-the-git-environment">Setting up the Git environment</h2>
 <p>To begin, assuming you haven&rsquo;t done so already, you&rsquo;ll need to clone the gns3-registry repository from GitHub.</p>
@@ -335,40 +337,40 @@ Go to the gns3-registry repository on Github and select the Pull Requests tab an
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/">https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/</a><br> &nbsp&nbsp<a href="https://github.com/GNS3/gns3-registry">https://github.com/GNS3/gns3-registry</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/">https://www.jupiterbroadcasting.com/142657/double-data-rate-trouble-linux-unplugged-369/<br> &nbsp&nbsp<a href="https://github.com/GNS3/gns3-registry">https://github.com/GNS3/gns3-registry<br> 
     
-    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/gns3-registry">Nextpertise on Github</a><br></strong>
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/gns3-registry">Nextpertise on Github<br></strong>
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/gns3/">GNS3</a> 
+        <a href="/tags/gns3/">GNS3 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE</a><br />
+        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi</a><br />
+        <a href="/posts/210421_gns3_attached_to_esxi/">GNS3 Attached to ESXi<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance</a><br />
+        <a href="/posts/210215_network_templates/">New Project - Testing <em>Every</em> GNS3 Network Appliance<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18</a><br />
+        <a href="/posts/210219_gns3_2.2.18/">GNS3 2.2.18<br />
         
       </li>
     
@@ -380,7 +382,7 @@ Go to the gns3-registry repository on Github and select the Pull Requests tab an
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/200904_creating_gns3_appliance/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -391,7 +393,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Creating a new GNS3 Appliance using a script</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Creating a new GNS3 Appliance using a script</nav>
 </div>
   </body>
   </html>

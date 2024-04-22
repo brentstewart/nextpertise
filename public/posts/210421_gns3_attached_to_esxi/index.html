@@ -10,7 +10,7 @@
     <title>Nextpertise GNS3 Attached to ESXi - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,33 +39,35 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/gns3.png#floatright" height="140">
 <h1>GNS3 Attached to ESXi</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Wednesday, Apr 21, 2021</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Wednesday, Apr 21, 2021</i><br></div></h6>
   <p><p><img src="/210421_GNS3-30.png#floatsmallleft" alt="VLAN Setup"></p>
 <p>I got a little distracted.  I have been coming up to speed on Ansible, which got me started on Vagrant.  Vagrant got me building VMs in VMWare Workstation , which got me thinking how neat it would be to place those <em>automagically</em> into my GNS3VM environment hosted on ESXi.  Didn&rsquo;t get that far - yet  - but the progress I made is pretty cool in it&rsquo;s own right.</p>
-<p>Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see <a href="/posts/210417_connecting_gns3/">Connecting GNS3</a>. Here I want to do something more complex - I&rsquo;d like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection &ldquo;out&rdquo; to the home network and Internet, but I want to add an ESXi VM &ldquo;inside&rdquo; the network as well.</p>
+<p>Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see <a href="/posts/210417_connecting_gns3/">Connecting GNS3. Here I want to do something more complex - I&rsquo;d like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection &ldquo;out&rdquo; to the home network and Internet, but I want to add an ESXi VM &ldquo;inside&rdquo; the network as well.</p>
 <p>The approach I used was to attach the VMs into an ESXi VSwitch VLAN and then use additional cloud appliances to attach those VLAN into the GNS3 topology.  <em>This seems obvious in retrospect</em>.</p>
 <h2 id="setup-on-esxi">Setup on ESXi</h2>
 <p><img src="/210422_GNS3Shell.png#floatsmallright" alt="Alt">
@@ -93,7 +95,7 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">dhcp4</span>: <span style="color:#66d9ef">no</span>  
 </span></span></code></pre></div><p>When I did this step, it replaced the existing eth0 on the GNS3VM and made my old interface eth1.  This disconnected the VM because the IP information was associated with eth0.  I diagnosed this by using the VMWare interface and the <em>ifconfig</em> command on the GNS3VM to identify and associate names and MAC addresses, but it took a little time to understand what happened.  I&rsquo;m still not sure why, but be alert for this issue if you add an interface.  My Internet GNS3 cloud appliance had to be disconnected (you cannot add interfaces to a cloud with existing connections), eth1 added, and reconnected to get it to work.</p>
 <h2 id="adding-to-gns3-topology">Adding to GNS3 Topology</h2>
-<p>Recall from <a href="/posts/210417_connecting_gns3/">Connecting GNS3</a> that I&rsquo;ve setup my home network to expect a GNS3 border router at 192.168.25.82 and it will be the route to 192.168.28.0/22.  In this simplest case, I&rsquo;m attaching another interface on that same router to a different vSwitch VLAN and routing between them.  I <em>could</em> have put the new VLAN deep in the GNS3 topology.</p>
+<p>Recall from <a href="/posts/210417_connecting_gns3/">Connecting GNS3 that I&rsquo;ve setup my home network to expect a GNS3 border router at 192.168.25.82 and it will be the route to 192.168.28.0/22.  In this simplest case, I&rsquo;m attaching another interface on that same router to a different vSwitch VLAN and routing between them.  I <em>could</em> have put the new VLAN deep in the GNS3 topology.</p>
 <p><img src="/210422_AddingACloud.png#center" alt="Setup in GNS3"></p>
 <p>So pause before this next paragraph.  Recall that there are three contexts, one physical, one in terms of the ESXi vSwitch, and one inside GNS3.</p>
 <p>Attaching a new cloud (in GNS3) that uses the GNS3VM interface (in the vSwitch context) attached to the new VLAN (in my case, eth0 -&gt; VLAN30) will bring that new network into the virtual lab.</p>
@@ -117,42 +119,42 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="/210417_Connecting_GNS3">/210417_Connecting_GNS3</a><br> 
-    <strong>&nbsp&nbsp <a href="https://github.com/brentstewart/gns3labs">Nextpertise on YouTube</a><br></strong> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="/210417_Connecting_GNS3">/210417_Connecting_GNS3<br> 
+    <strong>&nbsp&nbsp <a href="https://github.com/brentstewart/gns3labs">Nextpertise on YouTube<br></strong> 
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/gns3/">GNS3</a> 
+        <a href="/tags/gns3/">GNS3 
        
-        <a href="/tags/virtualization/">Virtualization</a> 
+        <a href="/tags/virtualization/">Virtualization 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE</a><br />
+        <a href="/posts/230121_gns3_proxmox/">Running GNS3 on Proxmox VE<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        <a href="/posts/221019_packer/">Basic Packer<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220219_proxmox/">Problems with Proxmox VE</a><br />
+        <a href="/posts/220219_proxmox/">Problems with Proxmox VE<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks<br />
         
       </li>
     
@@ -164,7 +166,7 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/210421_gns3_attached_to_esxi/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -175,7 +177,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">GNS3 Attached to ESXi</a></nav>
+     <nav class ="sidebar-nav"><a href="/">GNS3 Attached to ESXi</nav>
 </div>
   </body>
   </html>

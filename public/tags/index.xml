@@ -5,10 +5,46 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Oct 2023 21:14:12 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 24 Mar 2024 16:35:20 -0400</lastBuildDate>
     
         <atom:link href="https://nextpertise.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux</title>
+      <link>https://nextpertise.net/tags/linux/</link>
+      <pubDate>Sun, 24 Mar 2024 16:35:20 -0400</pubDate>
+      
+      <guid>https://nextpertise.net/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://nextpertise.net/tags/git/</link>
+      <pubDate>Sun, 25 Feb 2024 14:47:54 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Backup</title>
+      <link>https://nextpertise.net/tags/backup/</link>
+      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/backup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualization</title>
+      <link>https://nextpertise.net/tags/virtualization/</link>
+      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/tags/virtualization/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>shell</title>
@@ -25,15 +61,6 @@
       <pubDate>Sat, 21 Oct 2023 11:47:23 -0400</pubDate>
       
       <guid>https://nextpertise.net/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://nextpertise.net/tags/linux/</link>
-      <pubDate>Thu, 19 Oct 2023 08:32:41 -0400</pubDate>
-      
-      <guid>https://nextpertise.net/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -191,15 +218,6 @@
     </item>
     
     <item>
-      <title>Virtualization</title>
-      <link>https://nextpertise.net/tags/virtualization/</link>
-      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
-      
-      <guid>https://nextpertise.net/tags/virtualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>VPN</title>
       <link>https://nextpertise.net/tags/vpn/</link>
       <pubDate>Sat, 18 Mar 2023 15:46:32 -0400</pubDate>
@@ -308,15 +326,6 @@
     </item>
     
     <item>
-      <title>VMWare</title>
-      <link>https://nextpertise.net/tags/vmware/</link>
-      <pubDate>Wed, 27 Jul 2022 13:00:36 -0400</pubDate>
-      
-      <guid>https://nextpertise.net/tags/vmware/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>FTP</title>
       <link>https://nextpertise.net/tags/ftp/</link>
       <pubDate>Sun, 26 Jun 2022 18:00:16 -0400</pubDate>
@@ -371,15 +380,6 @@
     </item>
     
     <item>
-      <title>Git</title>
-      <link>https://nextpertise.net/tags/git/</link>
-      <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
-      
-      <guid>https://nextpertise.net/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Diagramming</title>
       <link>https://nextpertise.net/tags/diagramming/</link>
       <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
@@ -430,15 +430,6 @@
       <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
       
       <guid>https://nextpertise.net/tags/nfs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Backup</title>
-      <link>https://nextpertise.net/tags/backup/</link>
-      <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
-      
-      <guid>https://nextpertise.net/tags/backup/</guid>
       <description></description>
     </item>
     

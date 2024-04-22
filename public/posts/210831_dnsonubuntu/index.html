@@ -10,7 +10,7 @@
     <title>Nextpertise DNS on Ubuntu - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,31 +39,33 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>DNS on Ubuntu</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Aug 31, 2021</i><br></div></h6>
-  <p><p>Continuing from my <a href="/posts/210830_apache/">previous post</a>, I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I&rsquo;m still getting the hang of Proxmox, although I&rsquo;m feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I&rsquo;ll provide a walk through of a simple local DNS server.  My goal at home is to create a &ldquo;stewart.lan&rdquo; network that I can use to reference local resources.</p>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Tuesday, Aug 31, 2021</i><br></div></h6>
+  <p><p>Continuing from my <a href="/posts/210830_apache/">previous post, I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I&rsquo;m still getting the hang of Proxmox, although I&rsquo;m feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I&rsquo;ll provide a walk through of a simple local DNS server.  My goal at home is to create a &ldquo;stewart.lan&rdquo; network that I can use to reference local resources.</p>
 <p>Like the Apache server I built last time, this server is running Ubuntu 21.04 Server and my instructions are written from that perspective.  Some commands may change as you move to non-Debian distributions or with different versions.  Installation of DNS services is done with <strong>bind9</strong>.</p>
 <pre><code>sudo apt update
 sudo apt install bind9
@@ -193,42 +195,42 @@ webnamer	IN	CNAME	ns.stewart.lan
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/linux/">Linux</a> 
+        <a href="/tags/linux/">Linux 
        
-        <a href="/tags/dns/">DNS</a> 
+        <a href="/tags/dns/">DNS 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension<br />
         A Gnome extension, compatible with Pop! that lables workspaces
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you<br />
         Getting VSCode to work on Android
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230226_home/">Home Names</a><br />
+        <a href="/posts/230226_home/">Home Names<br />
         
       </li>
     
@@ -240,7 +242,7 @@ webnamer	IN	CNAME	ns.stewart.lan
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/210831_dnsonubuntu/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -251,7 +253,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">DNS on Ubuntu</a></nav>
+     <nav class ="sidebar-nav"><a href="/">DNS on Ubuntu</nav>
 </div>
   </body>
   </html>

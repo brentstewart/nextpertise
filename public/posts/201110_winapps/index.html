@@ -10,7 +10,7 @@
     <title>Nextpertise Winapps - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,33 +39,35 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>Winapps</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Nov 10, 2020</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Tuesday, Nov 10, 2020</i><br></div></h6>
   <p><p>Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&rsquo;s you use &ldquo;open with&rdquo; types of functionality.</p>
 <p><img src="https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright" alt="WinApps"></p>
-<p>To give it a try, clone the code from <a href="https://github.com/Fmstrat/winapps">GitHub</a>. Remember that it&rsquo;s running programs that are installed on a VM. If you don&rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &ldquo;Windows source&rdquo;.</p>
+<p>To give it a try, clone the code from <a href="https://github.com/Fmstrat/winapps">GitHub. Remember that it&rsquo;s running programs that are installed on a VM. If you don&rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &ldquo;Windows source&rdquo;.</p>
 <p>Create a text file at _~/.config/winapps/winapps.conf that looks like this.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>RDP_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyWindowsUser&#34;</span>  
 </span></span><span style="display:flex;"><span>RDP_PASS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyWindowsPassword&#34;</span>  
@@ -93,51 +95,51 @@
 </span></span><span style="display:flex;"><span>MIME_TYPES<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;;&#34;</span>
 </span></span></code></pre></div><p><img src="https://microfilums.files.wordpress.com/2010/01/2260894625_ea1feecb2a.jpg#floatleft" alt="Big Brains">
 I wanted to add the work I&rsquo;d done back to the project, so I forked the <em>develop</em> branch, added the files, and submitted a Pull Request back to &ldquo;fmstrat&rdquo;. I also added some troubleshooting suggestions for them based on my experience.</p>
-<p>This was a neat adventure to write up because it combines a lot of the things we&rsquo;ve been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in <a href="/posts/200922_using_ssh5/">Remotely Possible</a>. Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.</p>
+<p>This was a neat adventure to write up because it combines a lot of the things we&rsquo;ve been discussing in this blog. The implementation is a lot like running an X application on a remote machine, which we discussed in <a href="/posts/200922_using_ssh5/">Remotely Possible. Of course we talk a lot about Linux and using Linux in a Windows world, and we talk about Git.</p>
 <p>But this is another chance to hit on a favorite theme of mine. You don&rsquo;t need to be gods-gift-to-programming to make meaningful and appreciated contributions to the open source community. In the day I took to play with this and contribute the Kindle definition, several other people also submitted apps and the library is quickly growing. Similar to defining GNS3 appliances, there&rsquo;s a lot of ways to give back. There&rsquo;s a real satisfaction to contributing in this way that I hope you have a chance to experience.</p>
 <p>As far as Winapps, as I mentioned at the beginning, it&rsquo;s interesting and definitely looks cool. I&rsquo;m not complete sold that it&rsquo;s that much more useful than just pulling up a Windows VM, but it&rsquo;s close enough that it will fit the work styles of some folks really well. It&rsquo;s worth a look!</p>
 </p>
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/Fmstrat/winapps">https://github.com/Fmstrat/winapps</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/Fmstrat/winapps">https://github.com/Fmstrat/winapps<br> 
     
-    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/winapps">Nextpertise on Github</a><br></strong>
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/winapps">Nextpertise on Github<br></strong>
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/linux/">Linux</a> 
+        <a href="/tags/linux/">Linux 
        
-        <a href="/tags/windows/">Windows</a> 
+        <a href="/tags/windows/">Windows 
        
-        <a href="/tags/review/">Review</a> 
+        <a href="/tags/review/">Review 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension<br />
         A Gnome extension, compatible with Pop! that lables workspaces
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you<br />
         Getting VSCode to work on Android
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221226_fancywm/">FancyWM</a><br />
+        <a href="/posts/221226_fancywm/">FancyWM<br />
         
       </li>
     
@@ -149,7 +151,7 @@ I wanted to add the work I&rsquo;d done back to the project, so I forked the <em
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/201110_winapps/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -160,7 +162,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Winapps</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Winapps</nav>
 </div>
   </body>
   </html>

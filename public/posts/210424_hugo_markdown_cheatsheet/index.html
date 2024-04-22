@@ -10,7 +10,7 @@
     <title>Nextpertise Hugo Markdown Cheatsheet - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,40 +39,42 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/hugo.png#floatright" height="140">
 <h1>Hugo Markdown Cheatsheet</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Saturday, Apr 24, 2021</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Saturday, Apr 24, 2021</i><br></div></h6>
   <p><p>Markdown is a fantastic distraction-free way to write.  Using Markdown in VSCode is one of the things I like most about building this blog with Hugo.  It&rsquo;s important to realize that the site CSS and Hugo shortcodes that are present play a big role in the way you write for the Hugo platform.  Those elements are usually included in the theme.  My theme is called <em>next</em> and you can clone it from Github.</p>
 <p>This post is a reference for how to use Markdown with my CSS and shortcodes.  I built my own hugo theme and CSS because I wanted to understand how it all worked.  I don&rsquo;t think that my setup is the fanciest, but you are welcome to clone it or fork it.  If you are new to Hugo, CSS, or HTML in general then my efforts are cleaner and probably more understandable than one of the advanced themes.</p>
-<p>I&rsquo;ve been doing this for nine months - pretty much the entire pandemic - and I&rsquo;ve started to realize that I&rsquo;ve forgotten some of the things I used months ago.  This document is therefore a reference for <strong>me</strong>.  My career has never centered on HTML or CSS, so this has been an awesome learning opportunity.  <a href="https://mikedane.com">Mike Dane</a> has some fantastic videos that helped me get started.</p>
+<p>I&rsquo;ve been doing this for nine months - pretty much the entire pandemic - and I&rsquo;ve started to realize that I&rsquo;ve forgotten some of the things I used months ago.  This document is therefore a reference for <strong>me</strong>.  My career has never centered on HTML or CSS, so this has been an awesome learning opportunity.  <a href="https://mikedane.com">Mike Dane has some fantastic videos that helped me get started.</p>
 <h2 id="basic-markdown">Basic Markdown</h2>
 <p>The <strong>quick</strong> <em>brown</em> <strong><em>fox</em></strong> jumped over the <strike>frog</strike> <mark>lazy dog</mark>.  Use the backslash to display literal symbols instead of processing them {}.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>The <span style="font-weight:bold">__quick__</span> <span style="font-style:italic">_brown_</span> <span style="font-style:italic">__</span>*fox*__ jumped over the {{\&lt;strike &#34;frog&#34;&gt;}} 
 </span></span><span style="display:flex;"><span>{{\&lt;highlight &#34;lazy dog&#34;&gt;}}.    Use the backslash to display literal 
 </span></span><span style="display:flex;"><span>symbols instead of processing them \{}.
 </span></span></code></pre></div><p><em>Note that &ldquo;\&rdquo; literals appear in the shortcodes to force shortcode syntax display and are not used in production.  Double tildes &ldquo;~~&rdquo; can be used before and after to strikethorugh as well.</em></p>
-<p>I picked up the shortcodes  for highlighting and strikethrough  from Ashish Lahoti at <a href="https://codingnconcepts.com/hugo/">codingconcepts.com</a>, who has several interesting Hugo articles on his blog.</p>
+<p>I picked up the shortcodes  for highlighting and strikethrough  from Ashish Lahoti at <a href="https://codingnconcepts.com/hugo/">codingconcepts.com, who has several interesting Hugo articles on his blog.</p>
 <h2 id="lists">Lists</h2>
 <p>Unnumbered and ordered list are easy and intuitive.</p>
 <ul>
@@ -194,10 +196,10 @@ Print (&quot;using three ticks before and after&quot;)
 </span></span><span style="display:flex;"><span>| B |  | 1 | | $ |  
 </span></span><span style="display:flex;"><span>| C |  | 2 | | % |   
 </span></span><span style="display:flex;"><span>\{\{\&lt;/bootstrap-table&gt;\}\}
-</span></span></code></pre></div><p>I copied the shortcode for bootstrap tables from <a href="https://mybluelinux.com">MyBlueLinux</a>.  I&rsquo;m not sure who the author is, but they are interested in many of the same things I am - networking, Linux, and so on.  Readers of my blog would probably enjoy this site as well.
+</span></span></code></pre></div><p>I copied the shortcode for bootstrap tables from <a href="https://mybluelinux.com">MyBlueLinux.  I&rsquo;m not sure who the author is, but they are interested in many of the same things I am - networking, Linux, and so on.  Readers of my blog would probably enjoy this site as well.
 <img src="/gns3.png#floatsmallright" alt="GNS3"></p>
 <h2 id="links-and-images">Links and Images</h2>
-<p>Links in Markdown are formatted as shown below for <a href="https://gns3.com">GNS3</a>.</p>
+<p>Links in Markdown are formatted as shown below for <a href="https://gns3.com">GNS3.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>[<span style="color:#f92672">GNS3</span>](<span style="color:#a6e22e">https://gns3.com</span>)
 </span></span></code></pre></div><p>Images in markdown are formatted similarly to links, but start with an exclamation.  The code to bring in the GNS3 symbols is shown below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>\![GNS3]\(/gns3.png#floatsmallright)  
@@ -214,44 +216,44 @@ Print (&quot;using three ticks before and after&quot;)
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://gohugo.io">https://gohugo.io</a><br> &nbsp&nbsp<a href="https://codingnconcepts.com/hugo/">https://codingnconcepts.com/hugo/</a><br> &nbsp&nbsp<a href="https://www.mybluelinux.com/how-create-bootstrap-tables-in-hugo/">https://www.mybluelinux.com/how-create-bootstrap-tables-in-hugo/</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://gohugo.io">https://gohugo.io<br> &nbsp&nbsp<a href="https://codingnconcepts.com/hugo/">https://codingnconcepts.com/hugo/<br> &nbsp&nbsp<a href="https://www.mybluelinux.com/how-create-bootstrap-tables-in-hugo/">https://www.mybluelinux.com/how-create-bootstrap-tables-in-hugo/<br> 
     
-    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/nextpertise">Nextpertise on Github</a><br></strong>
+    <strong>&nbsp&nbsp<a href="https://github.com/brentstewart/nextpertise">Nextpertise on Github<br></strong>
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/hugo/">hugo</a> 
+        <a href="/tags/hugo/">hugo 
        
-        <a href="/tags/jamstack/">JAMStack</a> 
+        <a href="/tags/jamstack/">JAMStack 
        
-        <a href="/tags/markdown/">markdown</a> 
+        <a href="/tags/markdown/">markdown 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
+        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI<br />
         A simple Ci-like process to send word files to Obsidian
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian</a><br />
+        <a href="/posts/230313_blog2obsidian/">Automaticly adding Hugo articles to Obsidian<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230310_ava/">Obsidian Ava ChatGPT Plugin</a><br />
+        <a href="/posts/230310_ava/">Obsidian Ava ChatGPT Plugin<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221210_self-hosted_obsidian/">Self-Hosted Obsidian</a><br />
+        <a href="/posts/221210_self-hosted_obsidian/">Self-Hosted Obsidian<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220901_obsidian3/">Linking and Embedding in Obsidian Notes (Part 3)</a><br />
+        <a href="/posts/220901_obsidian3/">Linking and Embedding in Obsidian Notes (Part 3)<br />
         
       </li>
     
@@ -263,7 +265,7 @@ Print (&quot;using three ticks before and after&quot;)
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/210424_hugo_markdown_cheatsheet/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -274,7 +276,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Hugo Markdown Cheatsheet</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Hugo Markdown Cheatsheet</nav>
 </div>
   </body>
   </html>

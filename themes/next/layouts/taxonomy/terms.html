@@ -4,7 +4,7 @@
     {{ range .Data.Terms.Alphabetical }}
     <div class="child">
         <img src="/{{lower .Page.Title}}.png" height="20">
-        <a href="{{.Page.Permalink }}">{{ .Page.Title }}</a> ({{.Count}})
+        <a href="{{.Page.Permalink }}">{{ .Page.Title }} ({{.Count}})
     </div>
     {{ end }}
 </div>

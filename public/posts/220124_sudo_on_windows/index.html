@@ -10,7 +10,7 @@
     <title>Nextpertise Sudo for Windows Powershell - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,35 +39,37 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/windows.png#floatright" height="140">
 <h1>Sudo for Windows Powershell</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Sunday, Jan 23, 2022</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Sunday, Jan 23, 2022</i><br></div></h6>
   <p><p>Some Windows Powershell commands must be run from Powershell running in an administrative context.  It&rsquo;s a little bit of a pain when you need to invoke Powershell this way (right click it in the menu).  The real problem is once there&rsquo;s a terminal up, do you limit this to just the command that requires it or do you just work out of the open (administrative) terminal window?  Choosing to remain in that admin context could lead to trouble.</p>
 <p><img src="/sudologo.png#floatsmallleft" alt="Sudo Logo"></p>
 <h2 id="the-need-for-sudo">The need for sudo</h2>
 <p>Unix has a nice way of handling this.  The command prompt starts with your user priviledges.  It can be escalated for a single command with &ldquo;sudo&rdquo; - substitute user do.  Wouldn&rsquo;t it be cool (and more secure) if a similar command existed for Powershell on Windows?</p>
-<p>Luke Sampson has a set of powershell scripts that appropximate Linux commands on <a href="https://github.com/lukesampson/psutils/blob/master/sudo.ps1">Github</a>.  These include sudo and are meant to be installed using <em>scoop</em>.</p>
+<p>Luke Sampson has a set of powershell scripts that appropximate Linux commands on <a href="https://github.com/lukesampson/psutils/blob/master/sudo.ps1">Github.  These include sudo and are meant to be installed using <em>scoop</em>.</p>
 <h2 id="using-scoop">Using Scoop</h2>
 <p>Scoop is an installer, like winget or choco, but it&rsquo;s aimed more at simple installs.  Scoop doesn&rsquo;t require a developer to make a special installer - it can use a ZIP and instructions in a JSON.  These JSON files are stored in buckets - basically these are curated compilations of JSON files stored in a Git.</p>
 <p>Scoop specializes in simple programs, like command-line tools such as sudo.  In fact, many linux-like tools can be easily installed by scoop such as sudo, git, and curl.  Scoop puts everything in your users directory, so it doesn&rsquo;t cause a lot of UAC pop-ups.</p>
@@ -88,42 +90,42 @@ scoop install sudo
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/lukesampson/psutils/blob/master/sudo.ps1">https://github.com/lukesampson/psutils/blob/master/sudo.ps1</a><br> &nbsp&nbsp<a href="https://scoop.sh/">https://scoop.sh/</a><br> &nbsp&nbsp<a href="https://github.com/ScoopInstaller/Scoop">https://github.com/ScoopInstaller/Scoop</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/lukesampson/psutils/blob/master/sudo.ps1">https://github.com/lukesampson/psutils/blob/master/sudo.ps1<br> &nbsp&nbsp<a href="https://scoop.sh/">https://scoop.sh/<br> &nbsp&nbsp<a href="https://github.com/ScoopInstaller/Scoop">https://github.com/ScoopInstaller/Scoop<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/windows/">Windows</a> 
+        <a href="/tags/windows/">Windows 
        
-        <a href="/tags/shell/">Shell</a> 
+        <a href="/tags/shell/">Shell 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221226_fancywm/">FancyWM</a><br />
+        <a href="/posts/221226_fancywm/">FancyWM<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220404_winkey/">Finding Windows Keys on Hardware</a><br />
+        <a href="/posts/220404_winkey/">Finding Windows Keys on Hardware<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220124_oh_my_posh/">Oh My Posh</a><br />
+        <a href="/posts/220124_oh_my_posh/">Oh My Posh<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/211228_winget/">Winget</a><br />
+        <a href="/posts/211228_winget/">Winget<br />
         
       </li>
     
@@ -135,7 +137,7 @@ scoop install sudo
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/220124_sudo_on_windows/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -146,7 +148,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Sudo for Windows Powershell</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Sudo for Windows Powershell</nav>
 </div>
   </body>
   </html>

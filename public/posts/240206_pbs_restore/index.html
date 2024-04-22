@@ -1,0 +1,179 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="https://nextpertise.net/">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Restoring from Proxmox Backup Server - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="https://nextpertise.net/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: Proxmox Backup Server (PBS) saved my bacon. My previous journal described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).">
+    <meta name="keywords" content="backup, virtualization, linux,Proxmox Backup" />
+    <meta name="twitter:card" content="An easy way to protect your data">
+    <meta property="og:title" content="Restoring from Proxmox Backup Server" >
+    <meta property="og:url" content="https://nextpertise.net/posts/240206_pbs_restore/" >
+    <meta property="og:description" content="An easy way to protect your data" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+      <a class="sidebar-nav-item" href="/" title="">Home
+    
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
+    
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
+    
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
+    
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
+    
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
+    
+  </div>
+
+    
+<img src="/backup.png#floatright" height="140">
+<h1>Restoring from Proxmox Backup Server</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Tuesday, Feb 6, 2024</i><br></div></h6>
+  <p><p>Proxmox Backup Server (PBS) saved my bacon.  My previous <a href="/posts/240204_pbs/">journal described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).</p>
+<p>I wanted to continue the story to tell you how I used it.</p>
+<p><img src="/240210_pbs_email.png#floatright" alt="Email Verifying Backup"></p>
+<h2 id="is-it-working">Is it working?</h2>
+<p>Before we delve into how to restore a backup, it&rsquo;s worth asking whether there is something there to restore!</p>
+<p>Proxmox backup asks for an e-mail address during setup.  Assuming you enter a valid e-mail, you should get a note each time the backup job runs.  A screenshot of this email appears to the right.  You can see that it&rsquo;s reporting successfully backing up four VMs (technically two LXD containers and two fully virtualized devices, but that difference isn&rsquo;t the focus of this article).</p>
+<p>My home server has crown-jewel level data assets.  Things like baby pictures, that would be awful to lose.  It&rsquo;s important to note that the backup is one piece of a larger multi-level strategy to maintain those files.  That strategy includes using ZFS to protect against &ldquo;data rot&rdquo;, having some form of RAID to protect against disk error, backing up, and backing up offsite.</p>
+<p>When it comes to the backup piece, setting it up is good.  Having some form of monitoring is better (email in this case, although there&rsquo;s also a server screen you could go check out).  However there are a <em>lot</em> of stories about backups that didn&rsquo;t work when they were needed.</p>
+<p>You should absolutely review the files that are being backed up to make sure that they include all of the correct files.</p>
+<p>It&rsquo;s also a rule, call it <em>Brent&rsquo;s Law of DR</em>, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is <em>really</em> working and that you remember the steps necessary to invoke a restore.</p>
+<p>Enough pontificating!  On to the good stuff . . .</p>
+<h2 id="restore-a-file">Restore a file</h2>
+<p>Restores are conducted from the PVE admin screen (http://your-pve-server:8006).</p>
+<p><img src="/240210_pbs_screen.png" alt="PBS Restore Admin Screen"></p>
+<ol>
+<li>
+<p>Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called <em>pbs</em> in the screenshot.  Because it&rsquo;s attached to the datacenter, that storage shows up under every server.  It&rsquo;s the same thing, so for file recovery just pick a server to work through.</p>
+</li>
+<li>
+<p>Pick the backup that has the file  you&rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.</p>
+</li>
+<li>
+<p>Once you&rsquo;ve found your target, select File Restore.  I know, kind of obvious.</p>
+</li>
+<li>
+<p>This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.</p>
+</li>
+</ol>
+<h2 id="restore-a-vm">Restore a VM</h2>
+<ol>
+<li>
+<p>Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called <em>pbs</em> in the screenshot.  Because it&rsquo;s attached to the datacenter, that storage shows up under every server and so I&rsquo;m selecting the one under the server that I want to restore to.</p>
+</li>
+<li>
+<p>Pick the backup you&rsquo;d like to restore.  Again, there will probably be several copies.</p>
+</li>
+<li>
+<p>Once you&rsquo;ve found your target, select Restore.</p>
+</li>
+<li>
+<p>When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.</p>
+</li>
+</ol>
+<p>You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&rsquo;s a second copy.  That could be useful if you&rsquo;re trying to clone a setup.</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/backup/">backup 
+       
+        <a href="/tags/virtualization/">virtualization 
+       
+        <a href="/tags/linux/">linux 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/posts/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/240217_distro_hopping/">Distro Hopping<br />
+        Again
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/240204_pbs/">Proxmox Backup Server<br />
+        Incredibly valuable and also free!
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update<br />
+        Update on NVidia 5.35
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/posts/240206_pbs_restore/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Restoring from Proxmox Backup Server</nav>
+</div>
+  </body>
+  </html>

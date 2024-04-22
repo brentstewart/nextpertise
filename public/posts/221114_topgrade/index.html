@@ -10,7 +10,7 @@
     <title>Nextpertise Updated Ubuntu Upgrading - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,30 +39,32 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>Updated Ubuntu Upgrading</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Monday, Nov 14, 2022</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Monday, Nov 14, 2022</i><br></div></h6>
   <p><h2 id="os-hopping-update">OS Hopping update</h2>
 <p>I&rsquo;ve confessed in this blog to being a distro hopper.  I love to see what is possible and to explore alternatives!  I haven&rsquo;t provided an update on where that journey has taken me, so let&rsquo;s start there.</p>
 <p>I have a desktop, where the majority of work is done, and a laptop for traveling and returning emails from the couch.</p>
@@ -78,7 +80,7 @@ sudo snap refresh -y
 flatpak update -y
 </code></pre>
 <h2 id="nala">Nala</h2>
-<p><a href="https://gitlab.com/volian/nala/-/wikis/Installation">Nala</a> is an apt replacement that has been generating some buzz recently.  It is able to pick the fastest mirrors, utilize multiple mirrors, and download in parrallel.  Installing nala via PPA is shown below.  You&rsquo;ll need to run <em>nala fetch</em> to have it evaluate the latency to mirrors and pick the fastest.</p>
+<p><a href="https://gitlab.com/volian/nala/-/wikis/Installation">Nala is an apt replacement that has been generating some buzz recently.  It is able to pick the fastest mirrors, utilize multiple mirrors, and download in parrallel.  Installing nala via PPA is shown below.  You&rsquo;ll need to run <em>nala fetch</em> to have it evaluate the latency to mirrors and pick the fastest.</p>
 <pre><code>echo &quot;deb [arch=amd64,arm64,armhf] http://deb.volian.org/volian/ scar main&quot; | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg &gt; /dev/null
 sudo apt update
@@ -90,7 +92,7 @@ nala fetch
 <p>In my testing, nala is slightly faster than apt and a little more visually appealing.  It didn&rsquo;t seem to result in a qualitatively better experience though and didn&rsquo;t address other packaging formats.  It&rsquo;s probably worth moving from apt to nala, but you&rsquo;re still going to need an <em>updateall.sh</em> script!</p>
 <p><img src="/topgrade.png#floatsmallright" alt="Topgrade"></p>
 <h2 id="topgrade">Topgrade</h2>
-<p><a href="https://github.com/topgrade-rs/topgrade">Topgrade</a> is a rust application that detects the invoking OS and then steps through various appropriate update routines.  On my system, it not only recognized that Pop! is a deriviate of Debian but also caught that I had installed Nala and used it instead of apt!  I&rsquo;m not a Rust programmer, but looking through the <em>linux.rs</em> file gives a sense of the logic.</p>
+<p><a href="https://github.com/topgrade-rs/topgrade">Topgrade is a rust application that detects the invoking OS and then steps through various appropriate update routines.  On my system, it not only recognized that Pop! is a deriviate of Debian but also caught that I had installed Nala and used it instead of apt!  I&rsquo;m not a Rust programmer, but looking through the <em>linux.rs</em> file gives a sense of the logic.</p>
 <p><img src="https://github.com/topgrade-rs/topgrade/raw/master/doc/screenshot.gif" alt="Topgrade running"></p>
 <p>Topgrade uses every update mechanism it finds on your system.  On my PC, it used Nala, Brew, conda, pip, flatpak, snap, and fwupd.  It updated containers and Gnome shell extensions as well.  Wow!</p>
 <p>Installing Topgrade on Ubuntu is done through cargo.  Conducting an upgrade simply involves running <em>topgrade</em>.</p>
@@ -103,41 +105,41 @@ nala fetch
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/topgrade-rs/topgrade">https://github.com/topgrade-rs/topgrade</a><br> &nbsp&nbsp<a href="https://gitlab.com/volian/nala/-/wikis/Installation">https://gitlab.com/volian/nala/-/wikis/Installation</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://github.com/topgrade-rs/topgrade">https://github.com/topgrade-rs/topgrade<br> &nbsp&nbsp<a href="https://gitlab.com/volian/nala/-/wikis/Installation">https://gitlab.com/volian/nala/-/wikis/Installation<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/linux/">linux</a> 
+        <a href="/tags/linux/">linux 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
-        Update on NVidia 5.35
+        <a href="/posts/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
-        Pulling weather from the command line
+        <a href="/posts/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
-        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+        <a href="/posts/240217_distro_hopping/">Distro Hopping<br />
+        Again
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230819_nvidia535-copy/">NVidia 5.35 Warning</a><br />
-        Beware of NVidia 5.35
+        <a href="/posts/240206_pbs_restore/">Restoring from Proxmox Backup Server<br />
+        An easy way to protect your data
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
-        Remote access via Cheese
+        <a href="/posts/240204_pbs/">Proxmox Backup Server<br />
+        Incredibly valuable and also free!
       </li>
     
   </ul>
@@ -148,7 +150,7 @@ nala fetch
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/221114_topgrade/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -159,7 +161,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Updated Ubuntu Upgrading</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Updated Ubuntu Upgrading</nav>
 </div>
   </body>
   </html>

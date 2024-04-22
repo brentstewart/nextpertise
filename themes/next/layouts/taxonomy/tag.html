@@ -8,7 +8,7 @@ Ordered by date
 <ul>
     {{ range .Data.Pages }}
     <li>
-      <a href="{{.RelPermalink}}">{{ .Title }}</a> - <i>{{ dateFormat "Monday, Jan 2, 2006" .Date}}</i>
+      <a href="{{.RelPermalink}}">{{ .Title }} - <i>{{ dateFormat "Monday, Jan 2, 2006" .Date}}</i>
     </li>
     {{ end }}
   </ul>

@@ -12,8 +12,6 @@ refs:
   ]
 ---
 
-## About Brent Stewart
-
 I have been in the IT industry for about 30 years. Early in my career, I benefitted enormously from a knowledgeable mentor. I've found that my default approach to a lot of my career has been to teach, whether I'm part of a team, leadership, working with clients, or explaining things to management. I hope that I've been able to mentor others along the way and "pay it forward."
 
 I have a Bachelor's in Physics and a Masters in Computer Science / Information Security. I've written numerous books, mostly for Cisco Press. I've included links below to the ones still in print. I've been employed as an IT Director and I've included my LinkedIn profile below - feel free to link to me and please mention that you saw my website!

@@ -3,18 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nextpertise.net/</loc>
-    <lastmod>2023-10-25T21:14:12-04:00</lastmod>
+    <lastmod>2024-03-24T16:35:20-04:00</lastmod>
   </url><url>
-    <loc>https://nextpertise.net/posts/2310255_bizcard/</loc>
-    <lastmod>2023-10-25T21:14:12-04:00</lastmod>
+    <loc>https://nextpertise.net/tags/linux/</loc>
+    <lastmod>2024-03-24T16:35:20-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/</loc>
+    <lastmod>2024-03-24T16:35:20-04:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/tags/</loc>
+    <lastmod>2024-03-24T16:35:20-04:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240324_ean/</loc>
+    <lastmod>2024-03-24T16:35:20-04:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240226_newuser/</loc>
+    <lastmod>2024-02-26T20:56:43-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/tags/git/</loc>
+    <lastmod>2024-02-25T14:47:54-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240225_github_setup/</loc>
+    <lastmod>2024-02-25T14:47:54-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240217_distro_hopping/</loc>
+    <lastmod>2024-02-17T18:08:32-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/tags/backup/</loc>
+    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240206_pbs_restore/</loc>
+    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/tags/virtualization/</loc>
+    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/240204_pbs/</loc>
+    <lastmod>2024-02-04T13:19:46-05:00</lastmod>
+  </url><url>
+    <loc>https://nextpertise.net/posts/231025_bizcard/</loc>
     <lastmod>2023-10-25T21:14:12-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/tags/shell/</loc>
-    <lastmod>2023-10-25T21:14:12-04:00</lastmod>
-  </url><url>
-    <loc>https://nextpertise.net/tags/</loc>
     <lastmod>2023-10-25T21:14:12-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/231021_jirareport/</loc>
@@ -22,9 +52,6 @@
   </url><url>
     <loc>https://nextpertise.net/tags/python/</loc>
     <lastmod>2023-10-21T11:47:23-04:00</lastmod>
-  </url><url>
-    <loc>https://nextpertise.net/tags/linux/</loc>
-    <lastmod>2023-10-19T08:32:41-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/230819_nvidia535/</loc>
     <lastmod>2023-10-19T08:32:41-04:00</lastmod>
@@ -123,9 +150,6 @@
     <lastmod>2023-04-05T22:04:50-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/tags/security/</loc>
-    <lastmod>2023-04-05T22:04:50-04:00</lastmod>
-  </url><url>
-    <loc>https://nextpertise.net/tags/virtualization/</loc>
     <lastmod>2023-04-05T22:04:50-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/230318_trayscale/</loc>
@@ -241,9 +265,6 @@
   </url><url>
     <loc>https://nextpertise.net/posts/220610-nix/</loc>
     <lastmod>2022-08-06T17:17:55-04:00</lastmod>
-  </url><url>
-    <loc>https://nextpertise.net/tags/vmware/</loc>
-    <lastmod>2022-07-27T13:00:36-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/220727_psa_update/</loc>
     <lastmod>2022-07-27T13:00:36-04:00</lastmod>
@@ -428,9 +449,6 @@
     <loc>https://nextpertise.net/posts/201201_smag/</loc>
     <lastmod>2020-12-01T20:35:56-05:00</lastmod>
   </url><url>
-    <loc>https://nextpertise.net/tags/git/</loc>
-    <lastmod>2020-11-30T18:23:57-05:00</lastmod>
-  </url><url>
     <loc>https://nextpertise.net/posts/201130_powerline-windows/</loc>
     <lastmod>2020-11-30T18:23:57-05:00</lastmod>
   </url><url>
@@ -559,9 +577,6 @@
   </url><url>
     <loc>https://nextpertise.net/posts/200805_reasonablysecurebrowsing/</loc>
     <lastmod>2020-08-05T11:23:41-04:00</lastmod>
-  </url><url>
-    <loc>https://nextpertise.net/tags/backup/</loc>
-    <lastmod>2020-08-04T09:12:52-04:00</lastmod>
   </url><url>
     <loc>https://nextpertise.net/posts/200804_homebackup/</loc>
     <lastmod>2020-08-04T09:12:52-04:00</lastmod>

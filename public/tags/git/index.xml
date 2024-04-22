@@ -5,10 +5,46 @@
     <description>Recent content in Git on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Nov 2020 18:23:57 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 25 Feb 2024 14:47:54 -0500</lastBuildDate>
     
         <atom:link href="https://nextpertise.net/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Github setup</title>
+      <link>https://nextpertise.net/posts/240225_github_setup/</link>
+      <pubDate>Sun, 25 Feb 2024 14:47:54 -0500</pubDate>
+      
+      <guid>https://nextpertise.net/posts/240225_github_setup/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://nextpertise.net/Githuboptions.png#floatsmallleft&#34; alt=&#34;Github screenshot&#34;&gt;
+Recently I had to rebuild my desktop.  Backups were my friend, and recreating my rig and loading files went without a hitch.  My &lt;em&gt;git&lt;/em&gt; directory restored, but I needed to reconnect them to Github.  I decided to start with fresh pulls, so I renamed &lt;em&gt;git&lt;/em&gt; to &lt;em&gt;oldgit&lt;/em&gt; and pulled down my repos (including the one that&amp;rsquo;s used for this website).&lt;/p&gt;
+&lt;p&gt;Once setup, Github is easy to use, but I always forget how to set it up and have to rediscover the process.  Hopefully, this quick step-by-step will help you avoid that difficulty (and will help me the next time I need to do it)!&lt;/p&gt;
+&lt;h2 id=&#34;cloning-the-repo&#34;&gt;Cloning the repo&lt;/h2&gt;
+&lt;p&gt;In this case, my repos already exist.  I started by cloning from github to have a clean current copy.  I&amp;rsquo;m using this website as an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/brentstewart/nextpertise.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;setting&#34;&gt;Setting&lt;/h2&gt;
+&lt;p&gt;Next I created a personal token.  I clicked my user icon (my smiling face) in the upper right hand corner of the &lt;a href=&#34;https:github.com&#34;&gt;Github&lt;/a&gt; site and chose &lt;em&gt;Settings&lt;/em&gt; (near the bottom).  In the settings menu, choose &lt;strong&gt;&amp;lt;Developer settings&amp;gt;&lt;/strong&gt; at the bottom.  This gets you to a menu that let&amp;rsquo;s you chose &lt;strong&gt;Personal access tokens&lt;/strong&gt;.  I use classic tokens - the &amp;ldquo;fine grained&amp;rdquo; option allows for permisssions and would be more appropriate if there was a team of people maintaining this site.&lt;/p&gt;
+&lt;p&gt;At this point, it&amp;rsquo;s as simple as clicking &lt;strong&gt;Generate new token&lt;/strong&gt; and then copying the text string down for later use.
+&lt;img src=&#34;https://nextpertise.net/Githubtoken.png#center&#34; alt=&#34;Github token setup&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;git-access-to-github&#34;&gt;Git Access to Github&lt;/h2&gt;
+&lt;p&gt;You can test the new setup with an ssh to Github.  You should be prompted for your Github username and then a password.  Use the token from above for the password.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+Hi brentstewart! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Credentials can be saved (so you aren&amp;rsquo;t prompted with each interaction).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    git config --global credential.helper store
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;&lt;em&gt;This cute command saves your creds to disk in plain text.  Be careful!&lt;/em&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once the token is setup, push and pull commands should work without forcing your to reauthenticate. A typical workflow of syncing to git might be:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;quot;Another commit&amp;quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Powerline Windows</title>

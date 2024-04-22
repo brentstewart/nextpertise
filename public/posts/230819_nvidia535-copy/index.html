@@ -10,7 +10,7 @@
     <title>Nextpertise NVidia 5.35 Warning - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,30 +39,32 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>NVidia 5.35 Warning</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Saturday, Aug 19, 2023</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Saturday, Aug 19, 2023</i><br></div></h6>
   <p><h1 id="nvidia-535-may-be-buggy">NVidia 5.35 may be buggy</h1>
 <p>I&rsquo;m writing a quick note to share a word of warning.  I recently updated my NVidia driver to 5.35 and had issues.  I&rsquo;ve seen people asking similar questions in the last few weeks in online threads, so I think this is happening to a few folks.</p>
 <h2 id="my-system">My system</h2>
@@ -71,8 +73,8 @@ The affected computer is running Pop_OS 22.04.  One of the things I like about P
 <p>I&rsquo;m using a 1060 card as well.  I&rsquo;m not a big gamer and this card is fine for work.  It drives two 4K displays, and I&rsquo;ve had it running four displays using it&rsquo;s two HDMI and two DisplayPorts.  I haven&rsquo;t had many problems with it.  The lure of a newer card is there, but GPUs have been expensive for a long time.</p>
 <p>So stable system, good hardware, been humming for a while.</p>
 <h2 id="symptoms">Symptoms</h2>
-<p>I maintain the system in two ways.  The Pop!_Shop application does a pretty good job with it&rsquo;s applications, but it doesn&rsquo;t pick up things outside of apt and flatpak.  I wrote about <a href="/posts/221114_topgrade/">Topgrade</a> late last year - it is an application I&rsquo;ve found that will catch apt and flatpak, plus things like Nix, Brew, Cargo, shell extensions, PIP, containers, and others.</p>
-<p>i&rsquo;ve been using NVidia 5.25 and Topgrade <a href="https://www.stickycomics.com/computer-update/">presented the option</a> to go to 5.35.</p>
+<p>I maintain the system in two ways.  The Pop!_Shop application does a pretty good job with it&rsquo;s applications, but it doesn&rsquo;t pick up things outside of apt and flatpak.  I wrote about <a href="/posts/221114_topgrade/">Topgrade late last year - it is an application I&rsquo;ve found that will catch apt and flatpak, plus things like Nix, Brew, Cargo, shell extensions, PIP, containers, and others.</p>
+<p>i&rsquo;ve been using NVidia 5.25 and Topgrade <a href="https://www.stickycomics.com/computer-update/">presented the option to go to 5.35.</p>
 <p>My current configuration has a display on my standing desk and one on my sitting desk that are mirrored.  I was using HDMi for both.</p>
 <p>After installation, both displays went blank.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
@@ -80,47 +82,47 @@ The affected computer is running Pop_OS 22.04.  One of the things I like about P
 <p>I found several posts on places like r/linux asking about similar problems without a solution.</p>
 <p>The Pop! display configuration tool only showed the one display.  Somewhere around this time I ordered new DisplayPort cables, thinking it was maybe related to HDMI.  I eventually remembered the upgrade and backed it out.  <em>Viola!</em> Everything has returned to working since.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>I haven&rsquo;t heard this discussed in the tech press, even on places like [Unplugged](<a href="https://www.jupiterbroadcasting.com/show/linux-unplugged/%7D">https://www.jupiterbroadcasting.com/show/linux-unplugged/}</a>, so I assume this isn&rsquo;t pervassive.  That said, approach any graphics driver upgrade with caution and specifically be wary of 5.35.</p>
+<p>I haven&rsquo;t heard this discussed in the tech press, even on places like [Unplugged](<a href="https://www.jupiterbroadcasting.com/show/linux-unplugged/%7D">https://www.jupiterbroadcasting.com/show/linux-unplugged/}, so I assume this isn&rsquo;t pervassive.  That said, approach any graphics driver upgrade with caution and specifically be wary of 5.35.</p>
 <p>The Linux community benefits from a lot of cool people contributing to it and I appreciate that.  This type of issue is the tax we pay.  I appreciate NVidia&rsquo;s contributions and all the people who work to make it just pop in to my system and I&rsquo;ll definitely try the upgrade again when they bring out 5.4.</p>
 </p>
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href=""></a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href=""><br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/linux/">linux</a> 
+        <a href="/tags/linux/">linux 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230819_nvidia535/">NVidia 5.35 Update</a><br />
-        Update on NVidia 5.35
+        <a href="/posts/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230910_terminal_weather/">Terminal Weather</a><br />
-        Pulling weather from the command line
+        <a href="/posts/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230909_python_on_pop/">Python on Pop</a><br />
-        Pop! OS hasn&rsquo;t been updated in a while and python is getting long in the tooth.
+        <a href="/posts/240217_distro_hopping/">Distro Hopping<br />
+        Again
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230706_remoteaccessthw/">Remote access - The Hard Way</a><br />
-        Remote access via Cheese
+        <a href="/posts/240206_pbs_restore/">Restoring from Proxmox Backup Server<br />
+        An easy way to protect your data
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230509_word2obsidian/">Word to Obsidian with a DIY CI</a><br />
-        A simple Ci-like process to send word files to Obsidian
+        <a href="/posts/240204_pbs/">Proxmox Backup Server<br />
+        Incredibly valuable and also free!
       </li>
     
   </ul>
@@ -131,7 +133,7 @@ The affected computer is running Pop_OS 22.04.  One of the things I like about P
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/230819_nvidia535-copy/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -142,7 +144,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">NVidia 5.35 Warning</a></nav>
+     <nav class ="sidebar-nav"><a href="/">NVidia 5.35 Warning</nav>
 </div>
   </body>
   </html>

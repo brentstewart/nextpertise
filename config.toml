@@ -1,4 +1,5 @@
 baseURL = "https://nextpertise.net/"
+
 languageCode = "en-us"
 title = ""
 theme = "next"
@@ -9,16 +10,17 @@ summaryLength=25
   github="https://github.com/brentstewart"
   twitter="@nextpertise"
   Authors="Brent Stewart"
-
-
 [taxonomies]
   tag = "tags"
   writer = "writers"
-
 [[menu.main]]
   name="Home"
   url = "/"
   weight = 1
+[[menu.main]]
+  name = "TagCloud"
+  url = "/tags/"
+  weight = 2
 [[menu.main]]
   name="Archives"
   url="/posts/"
@@ -26,20 +28,20 @@ summaryLength=25
 [[menu.main]]
   name="Personal"
   url="https://stewart.tc/"
-  weight=3
+  weight=4
 [[menu.main]]
   name="Reading"
   url="https://stewart.tc/reading/"
-  weight=3
+  weight=5
+[[menu.main]]
+  name = "Links"
+  url = "/links"
+  weight=7
 [[menu.main]]
   name="About"
   url = "/contributors"
-  weight = 5
-[[menu.main]]
-  name = "TagCloud"
-  url = "/tags/"
-  weight = 2
+  weight = 8
 [[menu.main]]
   name = "Github"
   url = "https://github.com/brentstewart"
-  weight = 4
+  weight = 6

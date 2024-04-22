@@ -10,7 +10,7 @@
     <title>Nextpertise I&#39;m cooler than you - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,30 +39,32 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/linux.png#floatright" height="140">
 <h1>I&#39;m cooler than you</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Thursday, Apr 27, 2023</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Thursday, Apr 27, 2023</i><br></div></h6>
   <p><p>Hah!  I don&rsquo;t really believe that thing about being cooler, but have you ever done a project and just felt <em>so</em> pleased with yourself?  I turned my Samsung Galaxy Tab S6 Lite into a Linux tablet/laptop and I&rsquo;m feeling pretty happy.  The actual process isn&rsquo;t that involved, so a little of my self-congratulation is probably undeserved, but the result is stinking cool!</p>
 <h2 id="what-is-a-linux-device">What is a Linux device?</h2>
 <p>Before we get into the work, we need to take a philosophical detour.  I wanted a Linux tablet, but what exactly does that mean?  Android is based on Linux, so isn&rsquo;t Android &ldquo;Linux&rdquo;?</p>
@@ -70,59 +72,59 @@
 <p>Office is available for Android, as is Google Docs.  I can use <strong>Markor</strong> for markdown files, and of course there is a native Firefox.  I can&rsquo;t find a native version of <strong>VS Code</strong>, so we&rsquo;ll have to think about that.  Otherwise, a traditional desktop really doesn&rsquo;t move things forward on this tablet.</p>
 <h2 id="installing-the-bash-environment">Installing the Bash Environment</h2>
 <p><img src="/230427_Termux.png#floatsmallright" alt="Termux"></p>
-<p>Prior to this effort, I had already installed <a href="https://f-droid.org">F-Droid</a> as an alternative to the Play Store that focuses on FOSS (Free Open Source Software).  Pulling Termux from F-Droid instead of the Play Store is supposed to provide an updated version according to their docs.  I downloaded two apps: <strong>Termux</strong> and <strong>Termux:Styling</strong>.  Termux provides a debian-based Bash environment.  Apt is supported for updates, although the Termux project suggests using <strong>pkg</strong> for installs.  <strong>Pkg</strong> automatically runs &ldquo;apt update&rdquo; and finds the right mirror, but is basically a wrapper for apt.</p>
-<p>Termux creates a home directory at <em>/data/data/com.termux/files/home</em>.  I was able to install the command line tools I expect, such as <strong>git</strong>, <strong>hugo</strong>, <strong>openssh</strong> and <strong>python</strong>.  Android apps are able to read and write into the home directory.  Running a Linux shell via Termux doesn&rsquo;t have any impact on speed (and you wouldn&rsquo;t expect it to).  I found a great article at <a href="https://www.learntermux.tech/2022/06/termux-lsd-install-file-folder-icons-in.html">Learn Termux</a> that even walked through installing nerd fonts!</p>
+<p>Prior to this effort, I had already installed <a href="https://f-droid.org">F-Droid as an alternative to the Play Store that focuses on FOSS (Free Open Source Software).  Pulling Termux from F-Droid instead of the Play Store is supposed to provide an updated version according to their docs.  I downloaded two apps: <strong>Termux</strong> and <strong>Termux:Styling</strong>.  Termux provides a debian-based Bash environment.  Apt is supported for updates, although the Termux project suggests using <strong>pkg</strong> for installs.  <strong>Pkg</strong> automatically runs &ldquo;apt update&rdquo; and finds the right mirror, but is basically a wrapper for apt.</p>
+<p>Termux creates a home directory at <em>/data/data/com.termux/files/home</em>.  I was able to install the command line tools I expect, such as <strong>git</strong>, <strong>hugo</strong>, <strong>openssh</strong> and <strong>python</strong>.  Android apps are able to read and write into the home directory.  Running a Linux shell via Termux doesn&rsquo;t have any impact on speed (and you wouldn&rsquo;t expect it to).  I found a great article at <a href="https://www.learntermux.tech/2022/06/termux-lsd-install-file-folder-icons-in.html">Learn Termux that even walked through installing nerd fonts!</p>
 <p>I was able to use <strong>git</strong> to pull down a copy of this website from Github.  I could then use <strong>hugo server -D</strong> to run the dev environment.  Going out to the local Firefox allowed me to connect to http://127.0.0.1:1313 and see the dev page!  I typically use VS Code to write for this site, but at this point I could use <strong>nano</strong> on bash to edit markdown files or use the Android-native Markor editor.</p>
 <h2 id="visual-studio-code">Visual Studio Code</h2>
 <p><img src="/230427_Code_on_Droid.png#floatsmallright" alt="VS Code running on Android"></p>
-<p>There&rsquo;s no version of Visual Studio Code for Android.  <a href="https://github.com/coder/code-server">Code-server</a> is an open-source version of VS Code that runs in a web page, and given my success with hugo I immediately thought of it as an alternative.  There are a <em>lot</em> of instructions online for how to do this, some of them quite complicated, but I ultimately got it to work in a fairly straight-forward way.  In the end, what worked was:</p>
+<p>There&rsquo;s no version of Visual Studio Code for Android.  <a href="https://github.com/coder/code-server">Code-server is an open-source version of VS Code that runs in a web page, and given my success with hugo I immediately thought of it as an alternative.  There are a <em>lot</em> of instructions online for how to do this, some of them quite complicated, but I ultimately got it to work in a fairly straight-forward way.  In the end, what worked was:</p>
 <pre><code>pkg install tur-repo
 pkg install code-server
 </code></pre>
 <p>With code-server installed, you need to edit ~/.config/code-server/config.yaml and set the password.  You can do this using <em>nano</em> or from an Android text editor.</p>
 <p>Start the application using the <strong>code-server</strong> command.  Once it was up and running, I was able to access the environment at http://127.0.0.1:8080.  One last note - I didn&rsquo;t know the path to my home directory and <strong>code-server</strong> didn&rsquo;t know what to do with &ldquo;~&rdquo;.  Clicking the &ldquo;files&rdquo; icon (right under the hamburger menu) doesn&rsquo;t have an interactive way to browse until you get into your home directory.  So here it is again: <em>/data/data/com.termux/files/home</em>.</p>
 <h2 id="final-notes">Final notes</h2>
-<p>I <em>love</em> this setup.  It&rsquo;s a lot of fun to use the device and it&rsquo;s easy to travel with it.  Although the pictures show an on-screen keyboard - which works pretty well if you are comfortable two-finger typing - my slim bluetooth keyboard packs up easily and works great in this environment.  I&rsquo;m running <a href="/posts/221004_tailscale/">TailScale</a> in Android to access my home and Termux can access the VPN addresses without an issue.  In fact, the first screenshot where I am sshing into my desktop was taken remotely.  On the whole, this setup takes advantage of Android for the part it does well but still exposes the power of a Linux shell and I&rsquo;m really pleased with it.  It wasn&rsquo;t that complicated to setup, but I&rsquo;m really happy with the result.</p>
+<p>I <em>love</em> this setup.  It&rsquo;s a lot of fun to use the device and it&rsquo;s easy to travel with it.  Although the pictures show an on-screen keyboard - which works pretty well if you are comfortable two-finger typing - my slim bluetooth keyboard packs up easily and works great in this environment.  I&rsquo;m running <a href="/posts/221004_tailscale/">TailScale in Android to access my home and Termux can access the VPN addresses without an issue.  In fact, the first screenshot where I am sshing into my desktop was taken remotely.  On the whole, this setup takes advantage of Android for the part it does well but still exposes the power of a Linux shell and I&rsquo;m really pleased with it.  It wasn&rsquo;t that complicated to setup, but I&rsquo;m really happy with the result.</p>
 </p>
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://learntermux.tech">https://learntermux.tech</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://learntermux.tech">https://learntermux.tech<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/android/">Android</a> 
+        <a href="/tags/android/">Android 
        
-        <a href="/tags/linux/">Linux</a> 
+        <a href="/tags/linux/">Linux 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension<br />
         A Gnome extension, compatible with Pop! that lables workspaces
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        <a href="/posts/221019_packer/">Basic Packer<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220819_palemoon/">Palemoon for legacy Flash support</a><br />
+        <a href="/posts/220819_palemoon/">Palemoon for legacy Flash support<br />
         Palemoon iu
       </li>
     
@@ -134,7 +136,7 @@ pkg install code-server
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/230427_im_cooler_than_you/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -145,7 +147,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">I&#39;m cooler than you</a></nav>
+     <nav class ="sidebar-nav"><a href="/">I&#39;m cooler than you</nav>
 </div>
   </body>
   </html>

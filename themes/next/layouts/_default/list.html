@@ -4,9 +4,9 @@
 <div id="parent">
 {{range .Pages}}
   <div class="child">
-    <a href="{{.RelPermalink}}">{{.Title}}</a><br>
+    <a href="{{.RelPermalink}}">{{.Title}}<br>
     <div class="tags"> 
-      {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}
+      {{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }} {{end}}{{end}}
     </div>
   <br>
   </div>

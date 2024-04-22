@@ -10,7 +10,7 @@
     <title>Nextpertise Tailscale - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,41 +39,43 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/network.png#floatright" height="140">
 <h1>Tailscale</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Tuesday, Oct 4, 2022</i><br></div></h6>
-  <p><p>I&rsquo;m interested in TailScale.  I&rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (<a href="/posts/201027_zerotier/">Zerotier Basic Configuration</a> and <a href="/posts/201027_zerotierrouter/">ZeroTier Router</a>).  ZeroTier continues to work well, but I haven&rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.</p>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Tuesday, Oct 4, 2022</i><br></div></h6>
+  <p><p>I&rsquo;m interested in TailScale.  I&rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (<a href="/posts/201027_zerotier/">Zerotier Basic Configuration and <a href="/posts/201027_zerotierrouter/">ZeroTier Router).  ZeroTier continues to work well, but I haven&rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.</p>
 <h2 id="challenges">Challenges</h2>
 <p>Both ZeroTier and TailScale are &ldquo;overlay networks&rdquo;.  I have a Meraki stack at home with two Internet connections (WISP and Starlink).  Meraki has horrible VPN support and I&rsquo;m not over-enthused about cutting holes in my firewall.  Plus, anything that requires an ISP failover would kill VPN, so these overlay-style connections fit my needs closely.</p>
 <p>Both solutions use NAT traversal techniques and some of the same encryption suite.  Tailscale is an implementation of Wireguard (which is all the rage in Linux circles), but Zerotier predates wireguard and is a custom solution.  I&rsquo;m not aware of any active security issues with either.  Obviously though, you&rsquo;re only as secure as who you trust.</p>
 <p>Both ZeroTier and Tailscale operate in a &ldquo;freemium&rdquo; model, where the rendezvous server allows 20 connections.  Larger networks require a subscription, but both have self-hosted rendezvous servers as an option (presumably you&rsquo;d set these up on something like EC2). I solved this with ZeroTier by configuring an Ubuntu server as a router from the ZT network into my home network.</p>
 <h2 id="experience-with-tailscale">Experience with TailScale</h2>
-<p>The Tailscale experience starts with signing up on the <a href="https://tailscale.com">website</a>.  Instructions are provided for all the supported operating systems - Windows, Mac, Linux, iOS and Android.  Mobile operating systems send you to the respective App Stores to pick up a client.  My Pop! desktop is Ubuntu-based, so I was able to add a PPA and install from there.  TailScale doesn&rsquo;t have a Linux GUI client, it is invoked through the command line as shown below.</p>
+<p>The Tailscale experience starts with signing up on the <a href="https://tailscale.com">website.  Instructions are provided for all the supported operating systems - Windows, Mac, Linux, iOS and Android.  Mobile operating systems send you to the respective App Stores to pick up a client.  My Pop! desktop is Ubuntu-based, so I was able to add a PPA and install from there.  TailScale doesn&rsquo;t have a Linux GUI client, it is invoked through the command line as shown below.</p>
 <pre><code>sudo tailscale up 
 tailscale ip -4  #shows private TS IP, can also be seen using &quot;ip a&quot;
 </code></pre>
-<p>Once clients are instantiated, the VPN network is maintained at the <a href="https://tailscale.com">tailscale website</a>.  My machines were given addresses in the 100.64/10 range, but not in the same /24, which is a little different than Zerotier.  Clients <em>should</em> be able to communicate after they are registered and visible on the dashboard.  Tailscale functions as expected - I was able to access internal TailScale-attached resources without having to provision access on the firewall and speeds were comporable to ZeroTier.</p>
+<p>Once clients are instantiated, the VPN network is maintained at the <a href="https://tailscale.com">tailscale website.  My machines were given addresses in the 100.64/10 range, but not in the same /24, which is a little different than Zerotier.  Clients <em>should</em> be able to communicate after they are registered and visible on the dashboard.  Tailscale functions as expected - I was able to access internal TailScale-attached resources without having to provision access on the firewall and speeds were comporable to ZeroTier.</p>
 <p>With Zerotier, I had to build a router to access non-attached devices.  TailScale allows any device to be an &ldquo;exit node&rdquo; and to route traffic into the local network.  Here I ran into some minor issues.  Tailscale documentation is pretty good, but there are still some mental hurdles to getting this to work correctly.</p>
 <p>First, the node has to be setup as an exit node.  To enable this, I re-enabled the tailscale client with the advertise flag.</p>
 <pre><code>sudo tailscale down
@@ -115,46 +117,46 @@ services.tailscale.enable=true;</p>
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://tailscale.com">https://tailscale.com</a><br> &nbsp&nbsp<a href="https://github.com/juanfont/headscale">https://github.com/juanfont/headscale</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://tailscale.com">https://tailscale.com<br> &nbsp&nbsp<a href="https://github.com/juanfont/headscale">https://github.com/juanfont/headscale<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/zerotier/">Zerotier</a> 
+        <a href="/tags/zerotier/">Zerotier 
        
-        <a href="/tags/vpn/">VPN</a> 
+        <a href="/tags/vpn/">VPN 
        
-        <a href="/tags/review/">Review</a> 
+        <a href="/tags/review/">Review 
        
-        <a href="/tags/network/">Network</a> 
+        <a href="/tags/network/">Network 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230318_trayscale/">Trayscale</a><br />
+        <a href="/posts/230318_trayscale/">Trayscale<br />
         Trayscale is an top-bar indicator for Tailscale
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        <a href="/posts/221019_packer/">Basic Packer<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220819_palemoon/">Palemoon for legacy Flash support</a><br />
+        <a href="/posts/220819_palemoon/">Palemoon for legacy Flash support<br />
         Palemoon iu
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/220723_5g_troubleshooting/">5G Troubleshooting</a><br />
+        <a href="/posts/220723_5g_troubleshooting/">5G Troubleshooting<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks</a><br />
+        <a href="/posts/210417_connecting_gns3/">Connecting GNS3 to Real Networks<br />
         
       </li>
     
@@ -166,7 +168,7 @@ services.tailscale.enable=true;</p>
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/221004_tailscale/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -177,7 +179,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Tailscale</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Tailscale</nav>
 </div>
   </body>
   </html>

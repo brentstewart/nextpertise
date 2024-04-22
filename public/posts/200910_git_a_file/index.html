@@ -10,7 +10,7 @@
     <title>Nextpertise Git (and run) a File! - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
     <link rel="icon" href="/n.ico">
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
     
@@ -39,30 +39,32 @@
   <nav class="sidebar-nav">
     
     
-      <a class="sidebar-nav-item" href="/" title="">Home</a>
+      <a class="sidebar-nav-item" href="/" title="">Home
     
-      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+      <a class="sidebar-nav-item" href="/tags/" title="">TagCloud
     
-      <a class="sidebar-nav-item" href="/posts/" title="">Archives</a>
+      <a class="sidebar-nav-item" href="/posts/" title="">Archives
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal
     
-      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading</a>
+      <a class="sidebar-nav-item" href="https://stewart.tc/reading/" title="">Reading
     
-      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+      <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github
     
-      <a class="sidebar-nav-item" href="/contributors" title="">About</a>
+      <a class="sidebar-nav-item" href="/links" title="">Links
+    
+      <a class="sidebar-nav-item" href="/contributors" title="">About
     
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
-    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" ></a>
-    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
     
   </div>
 
     
 <img src="/shell.png#floatright" height="140">
 <h1>Git (and run) a File!</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart</a>  on Thursday, Sep 10, 2020</i><br></div></h6>
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Thursday, Sep 10, 2020</i><br></div></h6>
   <p><p>I maintain a private Github repository for my Linux install scripts.  My install scripts setup PPAs, install programs that I typically use, and setup my system the way I want it.  The repository has scripts for Ubuntu and Red Hat variants, plus secondary scripts that perform other admin tasks.</p>
 <p><img src="/githubpriv1.png#floatsmallright" alt="GitHub Repository Settings"></p>
 <p>These scripts aren&rsquo;t supposed to have personal information in them, but things like IP addresses, paths, and security measures could sneak in.  I don&rsquo;t want to have to worry about revealing something that opens me to attack, so the repos are private.
@@ -108,7 +110,7 @@
 <p><img src="/githubpat.png#floatright" alt="Github Token">
 <strong>- - header &lsquo;Authorization: token X&rsquo;</strong> is used to authenticate to Github.  You&rsquo;ll need to create a token for your account, so choose settings under your account (upper right).  Choose <em>Developer Options</em> and <em>Personal Access Tokens</em>.  Create a new token and copy it to your script.</p>
 <p><strong>&ndash;header &lsquo;Accept: application/vnd.github.v3.raw&rsquo; &ndash;remote-name</strong>  are options that are documented by github as required.  Don&rsquo;t change these parts.</p>
-<p><strong>- - location</strong> <a href="https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh">https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh</a> is the part that took an <em>embarrassingly</em> long time to get right.  I read a lot of blog posts and api docs and tried a lot of things that didn&rsquo;t work.  I gather that the working examples I found online were from a previous iteration of github and the methods have been deprecated.  This, however, works!  The parts you&rsquo;ll need to change here are your Github username and the name of repository.  <em>Contents</em> stays on the path unchanged, but you&rsquo;ll need to add in the file you are looking for on the end.</p>
+<p><strong>- - location</strong> <a href="https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh">https://api.github.com/repos/brentstewart/Private_linuxinstall/contents/hw.sh is the part that took an <em>embarrassingly</em> long time to get right.  I read a lot of blog posts and api docs and tried a lot of things that didn&rsquo;t work.  I gather that the working examples I found online were from a previous iteration of github and the methods have been deprecated.  This, however, works!  The parts you&rsquo;ll need to change here are your Github username and the name of repository.  <em>Contents</em> stays on the path unchanged, but you&rsquo;ll need to add in the file you are looking for on the end.</p>
 <p>I didn&rsquo;t want to run my install script over and over, so the referenced file just has <strong>echo Hello World</strong> in it (thus hw.sh).</p>
 <p><strong>&amp;&amp;</strong> is used to join multiple commands on a single line.</p>
 <p><strong>chmod +x hw.sh</strong> makes the file that was just downloaded executable</p>
@@ -123,42 +125,42 @@
   <br>
   <hr>
   <h6>
-    <strong>References:<br></strong> &nbsp&nbsp<a href="https://docs.github.com/en/rest/reference/repos#get-repository-content">https://docs.github.com/en/rest/reference/repos#get-repository-content</a><br> &nbsp&nbsp<a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token</a><br> 
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://docs.github.com/en/rest/reference/repos#get-repository-content">https://docs.github.com/en/rest/reference/repos#get-repository-content<br> &nbsp&nbsp<a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token<br> 
     
     
     <br>
     Recent articles related to these tags:
     
       
-        <a href="/tags/git/">Git</a> 
+        <a href="/tags/git/">Git 
        
-        <a href="/tags/linux/">Linux</a> 
+        <a href="/tags/linux/">Linux 
        
     
     <ul style="list-style: none;">
       
       <li class="relatedPost">
-        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension</a><br />
+        <a href="/posts/230917_activities_workspace_name/">Gnome Activities Workspace Name Extension<br />
         A Gnome extension, compatible with Pop! that lables workspaces
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you</a><br />
+        <a href="/posts/230427_im_cooler_than_you/">I&rsquo;m cooler than you<br />
         Getting VSCode to work on Android
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230405_anonymous/">Anonymous Browsing</a><br />
+        <a href="/posts/230405_anonymous/">Anonymous Browsing<br />
         Running TOR
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl</a><br />
+        <a href="/posts/230305_carbonyl/">Command Line Browser Carbonyl<br />
         
       </li>
     
       <li class="relatedPost">
-        <a href="/posts/221019_packer/">Basic Packer</a><br />
+        <a href="/posts/221019_packer/">Basic Packer<br />
         
       </li>
     
@@ -170,7 +172,7 @@
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
   <script type="IN/Share" data-url="/posts/200910_git_a_file/"></script>&NonBreakingSpace;
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </h6>
   <script
     async
@@ -181,7 +183,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">Git (and run) a File!</a></nav>
+     <nav class ="sidebar-nav"><a href="/">Git (and run) a File!</nav>
 </div>
   </body>
   </html>
