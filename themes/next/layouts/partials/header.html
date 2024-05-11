@@ -17,10 +17,11 @@
   <nav class="sidebar-nav">
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
-      <a class="sidebar-nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}
+     <a class="sidebar-nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
     {{ end }}
     &NonBreakingSpace;Find us on:&NonBreakingSpace;
     <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25" >
     <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" >
-    {{ if .Params.math }}{{ partial "katex.html" . }}{{ end }}
+
+      {{ if .Params.math }}{{ partial "katex.html" . }}{{ end }}
   </div>
