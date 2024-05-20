@@ -1,0 +1,178 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VPN on </title>
+    <link>http://localhost:1313/tags/vpn/</link>
+    <description>Recent content in VPN on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Mar 2023 15:46:32 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Trayscale</title>
+      <link>http://localhost:1313/posts/230318_trayscale/</link>
+      <pubDate>Sat, 18 Mar 2023 15:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230318_trayscale/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve covered a few items in recent months around my home network, including using &lt;a href=&#34;http://localhost:1313/posts/221004_tailscale&#34;&gt;Tailscale&lt;/a&gt; as a VPN overlay and setting up a home &lt;a href=&#34;http://localhost:1313/posts/230226_home&#34;&gt;DNS&lt;/a&gt; server.  This entry is an update on living with those elements.&lt;/p&gt;
+&lt;p&gt;As a point of comparison, I&amp;rsquo;ve used Zerotier in the recent past and really liked it.  With Zerotier, I had a dedicated Ubuntu server VM to route the local network onto the Zerotier VPN.  That worked beautifully.  Tailscale has been a little uneven, but it&amp;rsquo;s becoming more comfortable.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230318_tailscaledns.png#floatsmallright&#34; alt=&#34;Tailscale DNS picture&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;getting-dns-straightened-out&#34;&gt;Getting DNS straightened out&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve had issues accessing home devices by name.  I really can&amp;rsquo;t believe I missed the setting, but logging into the tailscale admin portal showed that I didn&amp;rsquo;t have a DNS setting.  Going to the DNS tab and poiting the Global nameserver setting to my local pi-hole fixed this issue nicely and now I&amp;rsquo;m able to ping into the home.arpa domain I use in the house.
+&lt;img src=&#34;https://user-images.githubusercontent.com/326750/188052311-2267af08-82a1-422f-b6ad-bc2cd4de0ac5.png#floatsmallleft&#34; alt=&#34;Trayscale&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;trayscale&#34;&gt;Trayscale&lt;/h2&gt;
+&lt;p&gt;Tailscale is typically invoked from the command line.  The command to turn on my desktop at home and to have it bridge the tailscale network into the home network looks like this.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale up --advertise-routes=192.168.0.0/24 --advertise-exit-node --accept-routes=true 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Trayscale is an unofficial graphical client for Tailscale available from Flathub.  It is still described as &amp;ldquo;alpha&amp;rdquo;, but aims to provide an easy way to invoke the VPN, change settings, and find other device on the tailnet.  It can be installed from the command line using the following command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;flatpak install flathub dev.deedles.Trayscale
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ve tested it on Pop! and Nix-OS.  In my experience it&amp;rsquo;s reliable and much easier than the command line.  Plus, understanding the local node and getting a list of devices is well presented.  I like that it&amp;rsquo;s available through Flathub, because that will make it easy to ensure that it&amp;rsquo;s kept up to date.  Given the description, I assume that it&amp;rsquo;s still at a stage where it&amp;rsquo;s undergoing rapid change and that&amp;rsquo;s born out by the release list shown on Github.  As of 3/18/22, Flathub gives me v0.8.1 which was released two days ago.  Github shows a v0.8.2 released today.&lt;/p&gt;
+&lt;p&gt;Cute little utility, and it makes it easier to support your tailscale network, so check it out!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tailscale</title>
+      <link>http://localhost:1313/posts/221004_tailscale/</link>
+      <pubDate>Tue, 04 Oct 2022 14:48:18 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/221004_tailscale/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m interested in TailScale.  I&amp;rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (&lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;Zerotier Basic Configuration&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/posts/201027_zerotierrouter/&#34;&gt;ZeroTier Router&lt;/a&gt;).  ZeroTier continues to work well, but I haven&amp;rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&amp;rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.&lt;/p&gt;
+&lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
+&lt;p&gt;Both ZeroTier and TailScale are &amp;ldquo;overlay networks&amp;rdquo;.  I have a Meraki stack at home with two Internet connections (WISP and Starlink).  Meraki has horrible VPN support and I&amp;rsquo;m not over-enthused about cutting holes in my firewall.  Plus, anything that requires an ISP failover would kill VPN, so these overlay-style connections fit my needs closely.&lt;/p&gt;
+&lt;p&gt;Both solutions use NAT traversal techniques and some of the same encryption suite.  Tailscale is an implementation of Wireguard (which is all the rage in Linux circles), but Zerotier predates wireguard and is a custom solution.  I&amp;rsquo;m not aware of any active security issues with either.  Obviously though, you&amp;rsquo;re only as secure as who you trust.&lt;/p&gt;
+&lt;p&gt;Both ZeroTier and Tailscale operate in a &amp;ldquo;freemium&amp;rdquo; model, where the rendezvous server allows 20 connections.  Larger networks require a subscription, but both have self-hosted rendezvous servers as an option (presumably you&amp;rsquo;d set these up on something like EC2). I solved this with ZeroTier by configuring an Ubuntu server as a router from the ZT network into my home network.&lt;/p&gt;
+&lt;h2 id=&#34;experience-with-tailscale&#34;&gt;Experience with TailScale&lt;/h2&gt;
+&lt;p&gt;The Tailscale experience starts with signing up on the &lt;a href=&#34;https://tailscale.com&#34;&gt;website&lt;/a&gt;.  Instructions are provided for all the supported operating systems - Windows, Mac, Linux, iOS and Android.  Mobile operating systems send you to the respective App Stores to pick up a client.  My Pop! desktop is Ubuntu-based, so I was able to add a PPA and install from there.  TailScale doesn&amp;rsquo;t have a Linux GUI client, it is invoked through the command line as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale up 
+tailscale ip -4  #shows private TS IP, can also be seen using &amp;quot;ip a&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once clients are instantiated, the VPN network is maintained at the &lt;a href=&#34;https://tailscale.com&#34;&gt;tailscale website&lt;/a&gt;.  My machines were given addresses in the 100.64/10 range, but not in the same /24, which is a little different than Zerotier.  Clients &lt;em&gt;should&lt;/em&gt; be able to communicate after they are registered and visible on the dashboard.  Tailscale functions as expected - I was able to access internal TailScale-attached resources without having to provision access on the firewall and speeds were comporable to ZeroTier.&lt;/p&gt;
+&lt;p&gt;With Zerotier, I had to build a router to access non-attached devices.  TailScale allows any device to be an &amp;ldquo;exit node&amp;rdquo; and to route traffic into the local network.  Here I ran into some minor issues.  Tailscale documentation is pretty good, but there are still some mental hurdles to getting this to work correctly.&lt;/p&gt;
+&lt;p&gt;First, the node has to be setup as an exit node.  To enable this, I re-enabled the tailscale client with the advertise flag.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale down
+sudo tailscale up --advertise-exit-node 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The node will now show in the dashboard as an available exit, but it won&amp;rsquo;t have any routes.  It turns out the node has to explicitly advertise local routes.  In ZT, this is controlled through the dashboard.  To enable this, I re-enabled the tailscale client with the routes.  For the record, I&amp;rsquo;m not sure that you have to take the service down everytime you make the change.  That might just be years of conditioning coming out on my part.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale down
+sudo tailscale up --advertise-routes=192.168.0.0/22 --advertise-exit-node --accept-routes=true  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By way of reference, I have four VLANs locally.  I could use seperate tailscale endpoints to attach into each of them, but I want to advertise them all as a block and thus have the /22 above.&lt;/p&gt;
+&lt;p&gt;At this point, routing onto the local network from Tailscale will still not work.  There are two issues left to deal with, one obvious and one bug.  Let&amp;rsquo;s deal with the bug first.  When I review the Linux routing table, it does not show the tailscale network.  After beseeching the Great Google, I found references to a known bug in Ubuntu that doesn&amp;rsquo;t add these routes.  Since the computer doesn&amp;rsquo;t have a route in the tailscale network, it can&amp;rsquo;t pass traffic back.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;route
+Kernel IP routing table
+Destination     Gateway         Genmask http://192.168.26.53/ worked, but not to other devices in the same VLAN or to other VLANs.
+
+sudo route add -net 100.64.0.0/10 dev tailscale0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The remaining issue is that local devices have my firewall as their default gateway.  When they receive traffic from a tailscale-connected IP, they reply using their default route back to the firewall.  The firewall then uses it&amp;rsquo;s default route to pass the traffic to the public Internet!  To fix this, I went into firewall (for those of you with Meraki, it&amp;rsquo;s on the dashboard under &lt;em&gt;Security &amp;amp; SD-WAN &amp;gt; Addressing &amp;amp; VLAN&lt;/em&gt;) and added a static route.  The route should target 10.64.0.0/10 and the next hop should be the IP of the tailscale exit node.  With this in place, everything works!&lt;/p&gt;
+&lt;h2 id=&#34;nix-setup&#34;&gt;Nix setup&lt;/h2&gt;
+&lt;p&gt;Setup in Nix involves two steps and also varied slightly for me from the docs.  First, add tailscale to &lt;em&gt;configuration.nix&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;environment.systemPackages = with pkgs; [
+. . .
+pkgs.tailscale
+]
+services.tailscale.enable=true;&lt;/p&gt;
+&lt;h1 id=&#34;exit-the-text-editor&#34;&gt;exit the text editor&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once tailscale is installed, run &lt;strong&gt;sudo tailscale up&lt;/strong&gt; as before.  This will provide a URL for authentication.  Finally, go into the tailscale dashboard and authorize the new machine (click the ellipsis to the right of the machine and choose authorize).  Nix runs on my travel laptop, so I didn&amp;rsquo;t try to advertise it as an exit node.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/221005_Tailscale.png#floatright&#34; alt=&#34;Dashboard&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tailscale-dashboard&#34;&gt;Tailscale Dashboard&lt;/h2&gt;
+&lt;p&gt;My impression of the Tailscale dashboard is mixed.  There&amp;rsquo;s a download link, and a place to add users.  Free accounts cannot have multiple users, so the main user would have to setup the client on each device (like my wifes&amp;rsquo; or kids&amp;rsquo; computers).&lt;/p&gt;
+&lt;p&gt;The documentation is pretty good, but I ran into several questions where it gave insufficient answers and I needed to just experiment to get things working.  The &lt;strong&gt;Machines&lt;/strong&gt; tab shows devices that are currently connected.  This also allows you to set tags and enable routing (assuming that the client is also configured to support routing).  The &lt;strong&gt;Services&lt;/strong&gt; tab collects a list of services so that you are aware of what you are sharing into the TailScale network.  This has the potential to be very useful, but you cannot &amp;ldquo;click to block&amp;rdquo; on this screen and it only shows services from the Tailscale-connected machine.  No services were shown from elsewhere on the connected network.  This could lead someone to a misunderstanding about their risk profile.&lt;/p&gt;
+&lt;p&gt;Other dashboard tabs allow you to setup access-lists and control DNS.  &lt;strong&gt;Access control&lt;/strong&gt; is configured through a JSON document.  The controls available are pretty good - they allow you to block access by user or group (both rendered useless on the free account), by host IP, or by service port.  The JSON ACL can be managed through Github using Github actions which is very exciting, but you&amp;rsquo;d have to make sure that repo is marked private.  The &lt;strong&gt;DNS&lt;/strong&gt; tab allows you to point Tailscale clients to an internal resolver or to use &amp;ldquo;MagicDNS&amp;rdquo;.  MagicDNS, as near as I can tell, is basically a shared &lt;em&gt;hosts&lt;/em&gt; file, but it&amp;rsquo;s nice for folks who don&amp;rsquo;t have a private name server.&lt;/p&gt;
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;What does this all boil down to?  I&amp;rsquo;m attracted to Tailscale because it uses wireguard and because it doesn&amp;rsquo;t require a dedicated router-vm.  Zerotier seems to have better access controls.  In both cases, the free-tier accounts offer analogous features (20 devices, 1 user).  Setup complexity is different, but equal.  If one or the other is working for you already,  I don&amp;rsquo;t think a change is necessary.  I&amp;rsquo;ve decided to keep Tailscale in place for at least a little while and I&amp;rsquo;m very interested in investigating the self-hosted option and seeing what additional capabilities that would provide.  Tailscale also offers a $5/month package of five users that would support a family and less work than spinning up an EC2 instance.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier Router</title>
+      <link>http://localhost:1313/posts/201027_zerotierrouter/</link>
+      <pubDate>Tue, 27 Oct 2020 22:10:59 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/201027_zerotierrouter/</guid>
+      <description>&lt;p&gt;This article continues the exploration of ZeroTier started in a previous &lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;posting&lt;/a&gt;.  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll continue the thought describing how to connect your local home network to your Zerotier virtual network.  For purposes of this article, let&amp;rsquo;s consider a home network with a little complexity.
+&lt;img src=&#34;http://localhost:1313/ZeroTier_Routing.png#center&#34; alt=&#34;Sample Network&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In this example, there is a base network of 192.168.100.0/24.  The 101 network is routed through the firewall and is used for IoT devices, while 102 is used for wireless.  104/22 has a next-hop in GNS3, so that a network can be establish and ennumberated using the network simulator and still route out to the &amp;ldquo;real&amp;rdquo; world.&lt;/p&gt;
+&lt;p&gt;We want to create a router that has one interface in the local 192.168.100.0/24 network and a virtual interface in the virtual Zerotier 103.0/24 network, able to route between them.  To do this, I built a new Linux server (an Ubuntu 20.10 VM, but any distro physical or virtual should work).  I named the router &amp;ldquo;ZTRouter&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;A quick note - use care when routing 192.168.0.0/24 and 192.168.1.0/24.  A lot of home routers use these ranges and adding a ZeroTier route to the same destination might lead to confusion.  Select a space out of 10/8, 172.16/12, or 192.168/16 that won&amp;rsquo;t conflict with other routes you need to support.&lt;/p&gt;
+&lt;h2 id=&#34;zerotier-routing&#34;&gt;ZeroTier Routing&lt;/h2&gt;
+&lt;p&gt;I assigned ZTRouter 192.168.100.2/24 with a default route to the local router at 192.168.100.1.  Next I installed Zerotier and attached it to the SDN built in the last article.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -s https://install.zerotier.com | sudo bash  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli join 0123456789ABCDEF
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli listnetworks
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ZTrouting.png#floatright&#34; alt=&#34;Zero Tier Routing Configuration&#34;&gt;The router will be automatically assigned an address on the ZeroTier network - in this case I received 192.168.103.88.  &lt;strong&gt;listnetworks&lt;/strong&gt; is used to confirm the connection.&lt;/p&gt;
+&lt;p&gt;The routing that will need to be setup might not be obvious, so let&amp;rsquo;s walk through each route.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;192.168.103.0/24 is the Zerotier network.  A range from this network should be used in &amp;ldquo;auto-assign pools&amp;rdquo; in ZeroTier Central, such as 192.168.103.1 - 192.168.103.50.&lt;/li&gt;
+&lt;li&gt;192.168.100.0/22 is the summary route to the local network and it points to ZTRouter.  This tells the other ZeroTier clients that this range is available through ZTRouter.&lt;/li&gt;
+&lt;li&gt;192.168.104.0/22 is another summary route, this time for GNS3.  Again, this communicates the availability of the range to the ZeroTier network via ZTRouter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;routing-between-zerotier-and-the-lan&#34;&gt;Routing between ZeroTier and the LAN&lt;/h2&gt;
+&lt;p&gt;Next, ZTRouter needs to be enabled as a router.  Edit /etc/sysctl.conf and uncomment the line that says &lt;strong&gt;net.ipv4.forward&lt;/strong&gt;.  This will enable the Linux machine to route when it reboots.  Since we want it to work &lt;em&gt;now&lt;/em&gt;, well use this command as well:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo sysctl -w net.ipv4.ip_forward&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The local firewall also has to permit the traffic.  Depending on the distro, you may have nftables, iptables, or ufw.  Assuming the system uses iptables, start by getting the interface names.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ip link
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For purposes of the article, let&amp;rsquo;s assume it shows you that the ethernet is enp1s0 and ZeroTier is zt1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PHY_IFACE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;enp1s0; ZT_IFACE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;zt1 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -A POSTROUTING -o $PHY_IFACE -j MASQUERADE  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -A FORWARD -i $PHY_IFACE -o $ZT_IFACE -m state --state RELATED,ESTABLISHED -j ACCEPT  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -A FORWARD -i $ZT_IFACE -o $PHY_IFACE -j ACCEPT  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make the iptables changes persistent.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install iptables-persistent
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo bash -c iptables-save &amp;gt; /etc/iptables/rules.v4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;reciprocal-routes&#34;&gt;Reciprocal Routes&lt;/h2&gt;
+&lt;p&gt;If testing is done at this point, it will show that ZT clients can ping the LAN interface of ZTRouter but can&amp;rsquo;t reach other users on the LAN.  What gives?  The problem is that we&amp;rsquo;ve built a path from the ZT cloud into our LAN, but not the reciprocal path &lt;em&gt;back&lt;/em&gt;.  The local users have a default gateway of the Internet router and &lt;em&gt;it&lt;/em&gt; doesn&amp;rsquo;t have a route to 192.168.103.0/24.  The easy way to fix that is to give it a route.  Everyone&amp;rsquo;s home router will be different, so in psuedo-code you just need to &lt;strong&gt;route 192.168.103.0/24 via 192.168.100.2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Testing will now show that ZeroTier clients can ping devices in the &amp;ldquo;100&amp;rdquo; network!  But, they can&amp;rsquo;t reach the other local VLANs.  The problem is that ZTRouter doesn&amp;rsquo;t have a route.  To fix that, add a summary route going to the Internet router.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ip route add 192.168.100.0/22 gw 192.168.100.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Add this line to &lt;em&gt;/etc/rc.local&lt;/em&gt; so that it is persistent.&lt;/p&gt;
+&lt;p&gt;Note that this summary includes the ZeroTier network.  The routing table prefers the most specific path, so traffic to 103/24 will continue to route to ZeroTier and everything else will take the less specific route to the inter-vlan router.&lt;/p&gt;
+&lt;p&gt;At this point, ZeroTier clients will be able to reach all the local subnets (100/24, 101/24, and 102/24).  Traffic to GNS3 can also be pointed to the Internet router, or it can be directed to a GNS3 router.  Note that 100/22 and 104/22 can&amp;rsquo;t be summarized into 100/21 because they fall across a bit-boundary, so they&amp;rsquo;ll have to be configured as two routes.&lt;/p&gt;
+&lt;p&gt;One place that can cause trouble is route selection.  On ZTRouter, the ZeroTier summary route for 100/22 will be in the routing table.  The static route created &lt;em&gt;must&lt;/em&gt; be a lower metric so that it takes precedence.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;This is a slick setup.  ZeroTier makes a great VPN client, punches through NATs, and can create sophisticated routing.  The two places I expect folks to get hung up are getting the routes correctly configured in ZeroTier Central and making sure there is a reciprocal route back to the ZeroTier VPN range.  If you have problems, work your way out from the router one step at a time and make sure you understand how the routes are working going in &lt;em&gt;both&lt;/em&gt; directions (I&amp;rsquo;ve taught routing for twenty years and everyone always forgets to check the path back).&lt;/p&gt;
+&lt;p&gt;Of course, most networks won&amp;rsquo;t be as sophisticated as the one shown here and will be very straightforward to setup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier Basic Configuration</title>
+      <link>http://localhost:1313/posts/201027_zerotier/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/201027_zerotier/</guid>
+      <description>&lt;p&gt;Zerotier is a virtualized network that runs &amp;ldquo;on top of&amp;rdquo; the Internet.&lt;/p&gt;
+&lt;p&gt;Traditional VPN solutions are built around a VPN server, which acts as a hub location with a stable IP.  Modern teams feature mobile workers and home connections with random IPs behind service-provider NATs.  Start-up teams and home users are left with few options, all of which involve some level of compromise.&lt;/p&gt;
+&lt;p&gt;Zerotier works around this by offering a stable point to connect end-points.  The connection strategy resembles VoIP connections - there&amp;rsquo;s a registration to a central point, that tries a variety of ways to create a connection to end points.  It then allows the end-points to speak directly.  All traffic between end-points is encrypted peer-to-peer.&lt;/p&gt;
+&lt;p&gt;Zerotier allows the creation of a &amp;ldquo;virtual ethernet&amp;rdquo; that connects disparate endpoints.  I created a ZeroTier network and tested it with Fedora and Ubuntu Linux, as well as an Android phone.  I was able to connect to the ZeroTier network from a guest wifi and over a 4G connection.  Once connected, it behaved like a local network.  I was able to SSH, browse and download files, access a Calibre server, and use KDE Connect.&lt;/p&gt;
+&lt;h2 id=&#34;setting-up-a-zerotier-network&#34;&gt;Setting up a ZeroTier network&lt;/h2&gt;
+&lt;p&gt;Go to &lt;a href=&#34;https://www.zerotier.com&#34;&gt;ZeroTier&lt;/a&gt; and scroll down to the bottom to &lt;strong&gt;Sign Up&lt;/strong&gt;.  After signing up, you&amp;rsquo;ll be taken to the ZeroTier Central page and be given a 16-digit hex network id and a made up name (like &amp;ldquo;gratious_donut&amp;rdquo;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ZTnetworks.png#floatright&#34; alt=&#34;Zero Tier Networking&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Make sure under Access Control that you set your network to private.  This will not allow new connections without your permission.&lt;/p&gt;
+&lt;p&gt;Under advanced, choose a network range.  You can use one of the &amp;ldquo;easy&amp;rdquo; options or select an IP address range of your own.  For now, just choose a pre-defined range.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s an option to use IPv6.  The easy way is to click the ZeroTier 6PLANE option.  It&amp;rsquo;s a great idea to be learning about IPv6, but most of us are still using v4 and if that&amp;rsquo;s the case for you then just leave this turned off.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for Central for now.  Copy your network ID (the 16 digit hex number).  We&amp;rsquo;ll need to revisit Central later, but next we need to setup devices.&lt;/p&gt;
+&lt;h2 id=&#34;client-installation&#34;&gt;Client installation&lt;/h2&gt;
+&lt;p&gt;The instructions  for setting up clients can be found at &lt;a href=&#34;https://www.zerotier.com/download&#34;&gt;ZeroTier Downloads&lt;/a&gt;.  There&amp;rsquo;s a clicky MSI installer for Windows, and a pkg for Mac.  Smartphone users are directed to their stores.&lt;/p&gt;
+&lt;p&gt;On Linux, the software can be installed with this command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -s https://install.zerotier.com | sudo bash  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After installation, use &lt;strong&gt;zerotier-cli&lt;/strong&gt; to join the new virtual network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli join 123456789ABCDEF  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ZTclient.png#floatright&#34; alt=&#34;ZeroTier Client&#34;&gt;
+Go back to Central and scroll down to clients.  Find the new client and check the Auth? box.  You should add a name and description here as well to help identify this client as you add more endpoints.&lt;/p&gt;
+&lt;p&gt;Back at Linux, confirm that you&amp;rsquo;re on the network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo zerotier-cli status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, let&amp;rsquo;s setup an Android endpoint to have something to talk to.  Grab the app from the Play store.  Click the + in the upper right and type in the network ID.  Slide the ON button over and go back to Central and Authorize the client.&lt;/p&gt;
+&lt;p&gt;You can continue to add clients in this manner, but I suggest you pause here.  My next article will be about routing between networks with Zerotier and that may be useful before you move further.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

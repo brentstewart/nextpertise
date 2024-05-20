@@ -1,0 +1,327 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI on </title>
+    <link>http://localhost:1313/tags/ci/</link>
+    <description>Recent content in CI on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 May 2023 21:20:24 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Save to Kindle with a DIY CI</title>
+      <link>http://localhost:1313/posts/230514_save2kindle/</link>
+      <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230514_save2kindle/</guid>
+      <description>&lt;p&gt;My &lt;a href=&#34;http://localhost:1313/posts/230509_word2obsidian/&#34;&gt;previous post&lt;/a&gt; dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I&amp;rsquo;d like to use a similar approach.&lt;/p&gt;
+&lt;h1 id=&#34;print-to-tablet&#34;&gt;Print to Tablet&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ve always wanted a way to &amp;ldquo;print to tablet&amp;rdquo;.  I&amp;rsquo;ve had IPads and Galaxy Tabs and enjoy the form factor - tablets are an easy way to read.  But there&amp;rsquo;s never been a great way to move something I create on my desktop over to the tablet.  I&amp;rsquo;ve resorted to saving it to PDF, emailing it to myself, and then opening it on the tablet.  But wait!  Because of the way tabllet break up storage, it&amp;rsquo;s usually confusing to understand where the file is stored and which programs should be used.  Bah!&lt;/p&gt;
+&lt;p&gt;This really galls me because sometimes I&amp;rsquo;ll print out a document and think, &amp;ldquo;This would save a lot of paper if I could just print it to my tablet&amp;rdquo;.  The thought of saving printing costs, saving a fraction  of a tree, and having the file in a convenient form would really be nice.&lt;/p&gt;
+&lt;h2 id=&#34;ingredients&#34;&gt;Ingredients&lt;/h2&gt;
+&lt;p&gt;How did I get this to work?  In my mind, the basic building blocks would be &lt;strong&gt;inotifywait&lt;/strong&gt; (discussed in the previous post), kindle&amp;rsquo;s email import function and ssmtp (discussed in &lt;a href=&#34;http://localhost:1313/posts/230313_command_line_email/&#34;&gt;Command Line Email&lt;/a&gt;).  Expiriments with ssmtp determined that it&amp;rsquo;s hard to use with attachments, but researching that led me to &lt;strong&gt;mpack&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This project will use &lt;strong&gt;inotifywait&lt;/strong&gt; to monitor a directory.  When a file is put in that directory it will be copied out to the kindle app on my tablet.  There&amp;rsquo;s a little longer discussion of inotifywait in the previous post.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230514_Amazon_Devices.png#floatsmallleft&#34; alt=&#34;Amazon Devices&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Amazon provides an email associated with every Kindle, physical or app, that can be used to import files.  Sending an email to that address will copy the attached file into the Kindle&amp;rsquo;s local library (and convert it if needed).  You can find this email address two ways - either login to Amazon and navigate to &amp;ldquo;Accounts &amp;amp; List&amp;rdquo; and choose &amp;ldquo;Devices&amp;rdquo;.  From here you can select either a Fire Tablet or a Kindle app and see it&amp;rsquo;s assigned email address.  It will look like _&lt;a href=&#34;mailto:name_ABCD@kindle.com&#34;&gt;name_ABCD@kindle.com&lt;/a&gt;.  You can also go into the kindle app and find it under &amp;ldquo;More&amp;rdquo;, then &amp;ldquo;Settings&amp;rdquo; and it will be shown as &lt;strong&gt;Send to Kindle Email Address&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Amazon calls this function the &amp;ldquo;Kindle Personal Document Service&amp;rdquo; and claim that it can convert several types of files.  I tested PDF, DOCX, and EPUB and didn&amp;rsquo;t have any issues.
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table of supported import formats&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;DOC&lt;/td&gt;
+&lt;td&gt;DOCX&lt;/td&gt;
+&lt;td&gt;RTF&lt;/td&gt;
+&lt;td&gt;TXT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HTM&lt;/td&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;td&gt;ZIP&lt;/td&gt;
+&lt;td&gt;x-zip&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MOBI&lt;/td&gt;
+&lt;td&gt;EPUB&lt;/td&gt;
+&lt;td&gt;PDF&lt;/td&gt;
+&lt;td&gt;JPEG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GIF&lt;/td&gt;
+&lt;td&gt;BMP&lt;/td&gt;
+&lt;td&gt;PNG&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+&lt;p&gt;The last piece is &lt;strong&gt;mpack&lt;/strong&gt;.  I used &lt;strong&gt;ssmtp&lt;/strong&gt; in my previous project and found some ideas on how to attach a file using ssmtp, but never got that to work.  In the process of researching that issue I found &lt;strong&gt;mpack&lt;/strong&gt;, which uses ssmtp (at least the settings and a library) to send an email with attachment.  Install mpack on Ubuntu using &lt;strong&gt;sudo apt install mpack&lt;/strong&gt;.  Once it&amp;rsquo;s installed, here&amp;rsquo;s a usage example to help you test.  The part being echo&amp;rsquo;d in is the body of the email - unnecessary when sending to kindle.  Email subject is set with &amp;ldquo;-s&amp;rdquo;.  Attachment is defined with &amp;ldquo;-a&amp;rdquo;, and then followed by the email address this should go to.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;Sent from your linux desktop&amp;quot; | mpack -s &amp;quot;Subject Line&amp;quot; -a &amp;quot;File.TXT&amp;quot; destination_email@ddress
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If there are issues, I suggest going back to the ssmtp setup and making sure that part is working.&lt;/p&gt;
+&lt;h2 id=&#34;mixing-it-all-together&#34;&gt;Mixing it all together.&lt;/h2&gt;
+&lt;p&gt;I defined a directory &lt;em&gt;send2kindle&lt;/em&gt;.  Anything copied in will be sent to my kindle email address and imported into that kindle library.  I created a batch file (watch_send2kindle.sh) and made it executable.  That script is shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+TARGET=~/send2kindle/
+
+inotifywait -m -e create -e moved_to --format &amp;quot;%f&amp;quot; $TARGET | while read FILENAME
+do
+  echo Detected $FILENAME
+  echo &amp;quot;Sent from your linux desktop&amp;quot; \
+  | mpack -s &amp;quot;$FILENAME&amp;quot; -a &amp;quot;send2kindle/$FILENAME&amp;quot; user_ABCD@kindle.com
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This follows the logic used in the previous post.  Note that the backslash (&amp;quot; \ &amp;ldquo;) shows line continuation, so the echo and pipe are one line.  I did it that way to make it easier to read here.  I&amp;rsquo;ve setup &lt;strong&gt;innotify&lt;/strong&gt; to trigger on something being copied in.  The previous discussion has a few more details on that command if you are interested.  Note that I leave the files in the directory, so you may need to occassionally clean up and delete them.  I could have added a &lt;strong&gt;rm&lt;/strong&gt; command, but I decided that it might be useful to have a copy.  Once they&amp;rsquo;re copied in, they won&amp;rsquo;t trigger the workflow again.&lt;/p&gt;
+&lt;h2 id=&#34;testing&#34;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;With everything in place, all that&amp;rsquo;s left is testing.  Run the script and then copy a file into that directory.  It should pop into the Kindle library of your choice in less than a minute.&lt;/p&gt;
+&lt;p&gt;Just like I did in the previous discussion, I recommend settting up the watcher script to start itself after reboot.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;crontab -e  # gets us into edit mode
+# add below entry
+@reboot /home/brent/watch-send2kindle.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;in-closing&#34;&gt;In closing&lt;/h2&gt;
+&lt;p&gt;This really extends some of the recent things I&amp;rsquo;ve been doing in a very useful way.  For instance, I can Print from any file and choose &amp;ldquo;PDF&amp;rdquo; as the printer.  When prompted for a filename, directing that to ~/send2kindle/newfile.pdf will send it to my tablet.  It&amp;rsquo;s not very complex to get setup and working and it &amp;ldquo;scratches an itch&amp;rdquo; I had.  Hope it is useful to you as well!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Word to Obsidian with a DIY CI</title>
+      <link>http://localhost:1313/posts/230509_word2obsidian/</link>
+      <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230509_word2obsidian/</guid>
+      <description>&lt;p&gt;I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&amp;rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&amp;rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.&lt;/p&gt;
+&lt;h2 id=&#34;what-didnt-work&#34;&gt;What Didn&amp;rsquo;t Work&lt;/h2&gt;
+&lt;p&gt;Just to save you time, I&amp;rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called &lt;a href=&#34;https://www.writage.com/&#34;&gt;Writage&lt;/a&gt;.  It&amp;rsquo;s $29, but a trial version is available.  I&amp;rsquo;m obstinately opposed to closed source and I&amp;rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&amp;rsquo;t tried it.&lt;/p&gt;
+&lt;p&gt;I also found an old github repo that purported to address this issue.  That project has pivoted to HTML and deprecated the markdown code.&lt;/p&gt;
+&lt;h2 id=&#34;the-beginning-of-an-idea&#34;&gt;The beginning of an idea&lt;/h2&gt;
+&lt;p&gt;Looking for a FOSS solution lead me back to Pandoc.  Long, &lt;em&gt;long&lt;/em&gt; time readers may recall one of my early &lt;a href=&#34;http://localhost:1313/posts/200919_pandoc_improved/&#34;&gt;experiments&lt;/a&gt; with Pandoc.  &lt;a href=&#34;https://pandoc.org/&#34;&gt;Pandoc&lt;/a&gt; is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.&lt;/p&gt;
+&lt;p&gt;I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here&amp;rsquo;s the command I came up with.  I&amp;rsquo;ve tested this with business memos and it worked fine.  I haven&amp;rsquo;t tried it with complex tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pandoc -wrap=none -f docx -t markdown &amp;quot;test.doc&amp;quot; -o &amp;quot;test.md&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;automating-markdown-conversion-and-ingestion&#34;&gt;Automating markdown conversion and ingestion&lt;/h2&gt;
+&lt;p&gt;Pandoc gets the conversion, but I really don&amp;rsquo;t want to have to remember that command and then move files around.  I want something that is a DIY pipeline to go from DOCX to Markdown.  Here&amp;rsquo;s how I did it - explanation to follow.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+TARGET=~/doc2obs/
+PROCESSED=~/Downloads
+
+inotifywait -m -e create -e moved_to --format &amp;quot;%f&amp;quot; $TARGET | while read FILENAME
+do
+  echo Detected $FILENAME
+  pandoc -wrap=none -f docx -t markdown &amp;quot;/home/brent/doc2obs/$FILENAME&amp;quot; -o &amp;quot;/home/brent/doc2obs/$FILENAME.md&amp;quot;
+  echo converted to Markdown
+  rm &amp;quot;/home/brent/doc2obs/$FILENAME&amp;quot;
+  echo removed doc file
+  mv &amp;quot;/home/brent/doc2obs/$FILENAME.md&amp;quot; &amp;quot;/home/brent/2nd Brain/Notes/$(date +%y%m%d)_$FILENAME.md&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I created a directory (doc2obs) and created a watcher shell script.  It waits for a DOCX file to be copied into &lt;em&gt;doc2obs&lt;/em&gt;.  When that occurs, it converts the file into markdown, deletes the DOCX, and renames and moves the markdown file.  Of course, the script needs to be executable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x watch-doc2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let&amp;rsquo;s take that script step by step and explain a little more.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;TARGET=~/doc2obs/
+inotifywait -m -e create -e moved_to --format &amp;quot;%f&amp;quot; $TARGET | while read FILENAME
+do
+  ...
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This batch of done defines the directory to be monitored.  If your Linux of choice doesn&amp;rsquo;t have &lt;strong&gt;inotify&lt;/strong&gt;, it can be loaded using yum or apt as inotify-tools.  -m tells it to monitor, -e defines the events to be monitored.  You can notify on a variety of events.&lt;/p&gt;
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table of inotify events&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;access&lt;/td&gt;
+&lt;td&gt;create&lt;/td&gt;
+&lt;td&gt;move_self&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;attrib&lt;/td&gt;
+&lt;td&gt;delete&lt;/td&gt;
+&lt;td&gt;moved_to&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close_write&lt;/td&gt;
+&lt;td&gt;delete_self&lt;/td&gt;
+&lt;td&gt;moved_from&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close_nowrite&lt;/td&gt;
+&lt;td&gt;modify&lt;/td&gt;
+&lt;td&gt;open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close&lt;/td&gt;
+&lt;td&gt;move&lt;/td&gt;
+&lt;td&gt;unmount&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;strong&gt;echo&lt;/strong&gt; commands are present for debugging.  Note that the &lt;strong&gt;mv&lt;/strong&gt; moves the markdown file into my Obsidian vault and names it.  My daily notes all start with a date prefix like 230510 (two digits for year, month, and date), so the date command embedded in the move automatically prefixes the markdown file with the current date in the correct format.&lt;/p&gt;
+&lt;h2 id=&#34;automating-the-script&#34;&gt;Automating the script&lt;/h2&gt;
+&lt;p&gt;So the script is ready.  I can run it and it will monitor the &lt;em&gt;doc2obs&lt;/em&gt; directory until I stop it or reboot.  The next step is to make this into something that just runs automatically, so I don&amp;rsquo;t have to open a shell and worry about restarting it.&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;ll refer back to the process I used in &lt;a href=&#34;http://localhost:1313/posts/230313_blog2obsidian/&#34;&gt;Automatically adding Hugo articles to Obsidian&lt;/a&gt;, which is to use &lt;strong&gt;cron&lt;/strong&gt;.  That script ran periodically and this one runs continuously, so we&amp;rsquo;ll modify the approach to ask &lt;strong&gt;cron&lt;/strong&gt; to run it once at startup.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;crontab -e  # gets us into edit mode
+# add below entry
+@reboot /home/brent/watch-doc2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;things-to-fix&#34;&gt;Things to fix&lt;/h2&gt;
+&lt;p&gt;This does what I need it to do, but I have a few ideas about how it could be improved.  I&amp;rsquo;m not sure if I&amp;rsquo;ll ever get to them, but they&amp;rsquo;re worth noting.&lt;/p&gt;
+&lt;p&gt;I build daily notes from a template.  The template is essentially some buttons, backlinks, tags, and such.  I may try to add those elements into the markdown output.  Right now my thought is just to append the tags at the end, which would be easy.&lt;/p&gt;
+&lt;p&gt;I could build a set of these CI actions.  Sometimes I get business documents and want to read them later on my tablet, so another idea is to setup a directory that converts to PDF or EPUB and emails it to my kindle email address.  This one I really think I&amp;rsquo;ll do, and will probably blog about.&lt;/p&gt;
+&lt;p&gt;This version of the script generates an error when the markdown is created because it&amp;rsquo;s created in the directory I&amp;rsquo;m monitoring.  I could maybe just create it straight into my vault, but I&amp;rsquo;d need to handle the date prepending.  That&amp;rsquo;s not a big issue, but it&amp;rsquo;s a bigger issue than just ignoring an error that doesn&amp;rsquo;t really do anything.&lt;/p&gt;
+&lt;h2 id=&#34;toodles&#34;&gt;Toodles&lt;/h2&gt;
+&lt;p&gt;So that&amp;rsquo;s it.  This is a cool project for Obsidian obsessives (hand raised) because it makes it easy to ingest all the &lt;em&gt;other&lt;/em&gt; documents in our lives.  But the part I&amp;rsquo;m most excited about is that in a clumsy and hacky way, this is a really easy home delivery pipeline that could be adopted for &lt;em&gt;anything&lt;/em&gt; that you want to automate.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CI for Docs with Pandoc (take 2)</title>
+      <link>http://localhost:1313/posts/200919_pandoc_improved/</link>
+      <pubDate>Sat, 19 Sep 2020 13:18:28 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200919_pandoc_improved/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;http://localhost:1313/posts/200818_pandoc/&#34;&gt;post&lt;/a&gt;, I built out a Continuous Integration process for documentation. That process allowed the team to pull a Github repository and keep a local copy of documentation. As the markdown files were updated and the repository pushed, a clean PDF with table of contents was generated.
+I identified a few problems with that and I&amp;rsquo;ve been working to improve the process. If you take a look at the associated github project you can follow my struggles. Here&amp;rsquo;s where we are with the open issues from last time:&lt;/p&gt;
+&lt;p&gt;The generated document placed the cover &lt;em&gt;after&lt;/em&gt; the table of contents. It also include the github README.md in the generated file. The Github CI process uses &lt;em&gt;.github/workflows/test.yml&lt;/em&gt; to build the workflow and my file pulled in all the markdown files alphabetically.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt; run: echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;::set-env name=FILELIST::\$(printf &amp;#39;%s &amp;#39; \*.md)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;with:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  args: --template eisvogel2.tex --o output/result.pdf &lt;span style=&#34;color:#ae81ff&#34;&gt;\$&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;{{&lt;/span&gt;env.FILELIST&lt;span style=&#34;color:#f92672&#34;&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I fixed this by changing FILELIST to use &lt;strong&gt;d*.md&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I was also able to improve the output a little by generating a default latex layout.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pandoc -D latex &amp;gt; ~/next.latex 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I also found that including YAML headers in the markdown transferred over to the output. Pandoc only takes the first headers it finds, so I placed my files in doc0.md. I was able to transfer all my customizations from the latex file to the YAML, which is much cleaner to maintain. Here&amp;rsquo;s a version of that file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My Sample Doc&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;subtitle&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;author&lt;/span&gt;: [&lt;span style=&#34;color:#ae81ff&#34;&gt;Brent Stewart]  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;date&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2020-09-18&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;abstract&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;|  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;This is a sample document used to demonstrate documentation via pandoc and Github.  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;keywords&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;institute&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Nextpertise.Net&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;numbersections&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;toc&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;geometry&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;margin=2.5cm  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;header-include&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;\pagebreak  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;include-before&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;include-after&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;logo&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Feed-icon.png&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;header-includes&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;|  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\usepackage{fancyhdr}  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\pagestyle{fancy}  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\lfoot{Prepared September 18th, 2020}  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\rfoot{Page \thepage}  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\cfoot{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Notice that this also cleaned up the command line used to invoke pandoc,as things like the Table of Contents directive were moved to YML. You can also use this technique to change fonts, margins, headers, and such.&lt;/p&gt;
+&lt;h2 id=&#34;whats-not-working&#34;&gt;What&amp;rsquo;s &lt;strong&gt;not&lt;/strong&gt; working&lt;/h2&gt;
+&lt;p&gt;That the good news. Using the existing directions and my &lt;strong&gt;mymeta.md&lt;/strong&gt; example, you can get a nice clean output. What&amp;rsquo;s not working is having a cover page. That led me into customizing the latex file, which led me to find the eisvogeltemplate project. Pascal Wagler has developed a &lt;em&gt;very&lt;/em&gt; nice and usable latex template (it&amp;rsquo;s currently in my github project). I was able to use it locally and output wonderful PDFs. It has some dependencies that required I grab the full latex distribution (apt install texlive-full), but otherwise no problems.&lt;/p&gt;
+&lt;p&gt;I wanted to update the pandoc Docker file to support the eisvogel template. I made a custom Dockerfile to pull pandoc/ubuntu-latex
+and add in the full set of texlive files.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-tex&#34; data-lang=&#34;tex&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;from pandoc/ubuntu-latex  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;run apt update &amp;amp;&amp;amp; apt install texlive-full texlive-full -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This was then built and pushed to Docker hub.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-docker&#34; data-lang=&#34;docker&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker build --tag&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pandoc_texlive:1.0&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;docker push brentstewart/pandoc_texlive:1.0&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I went back to github and updated the CI action to use the new docker file and to run &lt;strong&gt;pandoc &amp;ndash;template eisvogel.tex -o Output/result.pdf d*.md&lt;/strong&gt; and . . . didn&amp;rsquo;t work! I keep getting:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-tex&#34; data-lang=&#34;tex&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;! LaTeX Error: File `adjustbox.sty&amp;#39; not found.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This works on my local system, but it doesn&amp;rsquo;t work if I run docker locally with my image. The default pandoc images don&amp;rsquo;t have the required files either.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve tried rebuilding Docker with just the texlive-extras (a smaller set of Latex files). I tried editing the latex to remove the dependencies. So far nothing has worked.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Good progress was made on the project. I improved the CI output and simplified the CI process by using the default docker file and by supplying instructions in YAML. I also was able to produce really nice PDFs locally using the eisvogel.tex template.&lt;/p&gt;
+&lt;p&gt;Trying to duplicate this last step on Github failed because I&amp;rsquo;m missing includes in the docker system, and trying to update that Docker system has been a source of frustration! I&amp;rsquo;ll update this when I have some more time, but we&amp;rsquo;re getting close.&lt;/p&gt;
+&lt;p&gt;If anyone out there want&amp;rsquo;s to take a look at the github project and the docker image, I&amp;rsquo;d welcome your thoughts!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Team Documentation Using GitHub and Pandoc</title>
+      <link>http://localhost:1313/posts/200818_pandoc/</link>
+      <pubDate>Tue, 18 Aug 2020 13:56:30 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200818_pandoc/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://thumbs.gfycat.com/GargantuanScaryAnura-max-1mb.gif#floatleft&#34; alt=&#34;Dean Wormer&#34;&gt;
+Building team documentation is a critical part of IT.  After all, you can&amp;rsquo;t manage what you don&amp;rsquo;t know about.  You can&amp;rsquo;t follow policies you don&amp;rsquo;t know about.  It&amp;rsquo;s common in IT that documentation is divided between shared files and updated copies on individual laptops.  The problem is that it&amp;rsquo;s difficult for any one person to collect all the most recent files.  I&amp;rsquo;ve learned a lot about Git in the last few years and I wanted to explore whether it could be an answer.&lt;/p&gt;
+&lt;p&gt;Various attempts have been made to resolve this versioning issue.  One common approach is to ask everyone to contribute their individual documents to a shared folder.  This has the advantage that everyone can be a contributor and the files are accessible and easy to update.  However, different team members may update the file at different times and in different ways and there&amp;rsquo;s no clear editorial process to bring everything back together.  A second approach is to have a strict editorial process &amp;ndash; maybe a dedicated person who &amp;ldquo;checks in&amp;rdquo; so the boss can &amp;ldquo;approve&amp;rdquo;.  There&amp;rsquo;s typically a drop box for proposed documents and then a locked-down directory with a PDF for the final version.  This process can take a while, can occupy a person, and is discouraging to contributors.&lt;/p&gt;
+&lt;p&gt;Using Git has a lot of advantages.  Everyone can have an up-to-date copy using &lt;strong&gt;git clone&lt;/strong&gt; and &lt;strong&gt;git fetch&lt;/strong&gt;.  Team members can edit documents and submit them as Pull Requests (PRs).  There&amp;rsquo;s a built in process for the repo owner to accept or reject those changes.  GitHub already has an issues process that would make it easy to note deficiencies and discrepancies.  Finally, Github repos can be marked private, are available even when internal systems are down, and maintain historical versions.&lt;/p&gt;
+&lt;p&gt;Having a repository of Word files would be useful, but formatting can be maddening.  All those files will use different fonts, sizes, margins, colors, headings . . . sigh.  Another problem is that you&amp;rsquo;ll have a directory full of files with names like &lt;strong&gt;ITPROC1.docx&lt;/strong&gt;.  As an administrator, I would like to have one place where I can easily browse through documentation and be confident that I&amp;rsquo;m up to date!&lt;/p&gt;
+&lt;p&gt;My proposal is to use Markdown files for documentation.  They&amp;rsquo;re easy to create and reasonably readable in a text editor.  As pushes or PRs occur, these files can be combined into a PDF using &lt;strong&gt;pandoc&lt;/strong&gt;.  I&amp;rsquo;ve built a demonstration of this in the referenced Github repository.  There&amp;rsquo;s a Continuous Integration (CI) process built out of Github Actions.  Setting that up adds a &lt;em&gt;.github/workflows/name.yaml&lt;/em&gt; file to your repository.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Be careful!&lt;/strong&gt;  &lt;em&gt;I originally built my repository locally and pushed it to Github, then used the Github actions &amp;ldquo;wizard&amp;rdquo; to setup the CI process.  That builds an initial configuration file for you and puts it into your repository.  The next time I pushed, this directory and file were wiped out!  The result was that the CI process didn&amp;rsquo;t run and it took me a while to understand what I had done.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s my YAML file to handle the CI process.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;CI  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;on&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;push&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;branches&lt;/span&gt;: [ &lt;span style=&#34;color:#ae81ff&#34;&gt;master ]  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;pull_request&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;branches&lt;/span&gt;: [ &lt;span style=&#34;color:#ae81ff&#34;&gt;master ]  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;jobs&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;runs-on&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;ubuntu-latest  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;steps&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;\- uses&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;actions/checkout@v2  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;\- run&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;echo &amp;#34;::set-env name=FILELIST::$(printf &amp;#39;%s &amp;#39; *.md)&amp;#34;  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;\- uses&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;docker://pandoc/latex:2.9  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;with&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;args&lt;/span&gt;: --&lt;span style=&#34;color:#ae81ff&#34;&gt;toc --output=output/result.pdf ${{env.FILELIST}}  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;\- uses&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;actions/upload-artifact@master  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;with&lt;/span&gt;:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;output  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;path&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;output  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/githubartifact.png#floatright&#34; alt=&#34;Artifact&#34;&gt;
+This process will pull all the md files into a PDF, ordering them alphabetically.  It will then add a table of contents to the front, based on headings found in the files.  I&amp;rsquo;ve cribbed this together using the pandoc example on github (referenced below).&lt;/p&gt;
+&lt;p&gt;The result is a zip file named &lt;em&gt;output&lt;/em&gt; that will show up under Actions.  The latest run should be at the top of the screen, and clicking the link should show you the Artifacts produced.  Note that if there are problems with the CI process, you can review those by looking at the &lt;em&gt;build&lt;/em&gt; section.  You could add to the CI process to have the output file emailed to you or stored in a convenient place.  For instance, you could send the PDF directly to your Kindle!  I&amp;rsquo;ve chosen not to bother with that since this is a public repository.  Another idea would be to have this process output HTML files that could be placed on a local web server.  Pandoc can handle PDF, HTML, EPUB, and a lot of other formats.&lt;/p&gt;
+&lt;p&gt;My repository is public and you are welcome to clone it and play with this process.  The markdown files currently in place are filled with Lorem Ipsum nonsense but they give you a sense of how it might look as a finished PDF.  I&amp;rsquo;d like to build in an automatic way to add a cover page.  The Pandoc documentation also references using a CSS file to dictate formatting when outputting to EPUB, so I&amp;rsquo;d like to see if I could get that supported in PDF.  PRs are welcome if you have any ideas!&lt;/p&gt;
+&lt;p&gt;What do you think?  Would this be a good way for your IT group to maintain documentation?  I&amp;rsquo;d welcome your comments in the section below!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

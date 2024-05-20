@@ -1,0 +1,109 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proxmox on </title>
+    <link>http://localhost:1313/tags/proxmox/</link>
+    <description>Recent content in Proxmox on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Jan 2023 10:00:18 -0500</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/proxmox/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Running GNS3 on Proxmox VE</title>
+      <link>http://localhost:1313/posts/230121_gns3_proxmox/</link>
+      <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230121_gns3_proxmox/</guid>
+      <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
+&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
+&lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-run-gns3-vm-on-proxmox-ve&#34;&gt;How to run GNS3 VM on Proxmox VE&lt;/h2&gt;
+&lt;p&gt;Nothing stands still, so before we get into instructions I&amp;rsquo;ll date this article.  It&amp;rsquo;s January, 2023, and I used this process to get the VMWare ESXi GNS3 VM 2.2.36 to run on Proxmox VE 7.3-4 using Linux pve kernel 5.13-19-15.  I think Proxmox is now shipping 5.15, but I ran into a boot issue on my server and haven&amp;rsquo;t upgraded the kernel since I fixed it.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The first step is to &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;download&lt;/a&gt; the VMware ESXi GNS3 VM.&lt;/li&gt;
+&lt;li&gt;The downloaded file is a ZIP, which expands out to an OVA.  OVA is really just another ZIP, so expanding that out gives you two VMDK virtual disks, a manifest(MF) file and an OVF file.  The OVF provides information about the virtual hardware environment and the manifest has the hashes of all the files in the OVA.  We&amp;rsquo;re only interested in the two VMDK files (GNS3_VM-disk1.vmdk and GNS3_VM-disk2.vmdk).  You can expand these out using most file managers of via the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    tar -zzvf GNS3_VM.ova
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Upload the VMDK files to Proxmox.  In the &lt;em&gt;root&lt;/em&gt; home directory, I created an &lt;em&gt;import&lt;/em&gt; subdirectory for the files.  This is very easy to do with Filezilla or from the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    # sftp brent@server
+    sftp&amp;gt; cd import
+    sftp&amp;gt; put GNS3_VM-disk1.vmdk
+    sftp&amp;gt; put GNS3_VM-disk2.vmdk
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new Qemu VM in Proxmox by clicking the &amp;ldquo;Create VM&amp;rdquo; button in the upper right of the management page. &lt;img src=&#34;http://localhost:1313/230121-createvm.png&#34; alt=&#34;Create VM&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can accept the defaults on the General tab.  Under OS, steup the VM without any media.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnomedia.png#center&#34; alt=&#34;No Media&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accept defaults on the System tab and Disks tab.  I set my VM to use 4 processors (2 sockets, 2 cores each) and set the default memory to 16GB.  I didn&amp;rsquo;t see a lot of guidance on this, so that was a SWAG.  Note the ID (105 in my case).
+&lt;img src=&#34;http://localhost:1313/230121-GNS3VM.png#center&#34; alt=&#34;GNS3 VM&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After the VM is created, select the VM, go to the Hardware section, and select the disk.  Click Detach and then Remove from the menu bar.
+&lt;img src=&#34;http://localhost:1313/230121-PVErmove.png#center&#34; alt=&#34;Remove disk&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Import the VMDK disks into Proxmox.  SSH into the host and use the &lt;strong&gt;qm&lt;/strong&gt; command to convert the disk to QCOW2 format and import it for use.  Change the machine ID (105 is my GNS3 VM) and make sure the VMDK file name matches before running the command below.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    root@pve:~/import# qm importdisk 105 GNS3_VM-disk1.vmdk local-lvm -format qcow2
+    importing disk &amp;#39;GNS3_VM-disk1.vmdk&amp;#39; to VM 105 ...
+    Logical volume &amp;#34;vm-105-disk-0&amp;#34; created.
+    transferred 0.0 B of 19.5 GiB (0.00%)
+    transferred 200.0 MiB of 19.5 GiB (1.00%)
+    transferred 400.0 MiB of 19.5 GiB (2.00%)
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Attach the QCOW2 images to your VM using the Add button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Proxmox admin page, select the VM, select options, and set the boot order.  Double-click the boot Order line and a window will appear to allow you to drag the disk into the correct order.  Disk1, the smaller of the two images, should be enabled and the boot drive.
+&lt;img src=&#34;http://localhost:1313/230121-PVEboot.png#center&#34; alt=&#34;Boot order&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;One other tweak that I used: I run multiple VLANs and so I went into Hardware and double-clicked the Network Device to put the device into my office VLAN by setting the tag.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnet.png#center&#34; alt=&#34;Networking&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;At this point, I was able to start the VM.  GNS3 started up in the correct VLAN and grabbed a DHCP address.  Opening a console, the boot screen of the VM shows the IP address assigned.  Accessing this address from a browser will provide the GNS3 web console.  You can also use this address in the GNS3 front-end to identify the back-end server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&amp;rsquo;ve been using the web version more this time and continue to be impressed by it and by the progression that the GNS3 team is making on it.  I was able to add appliances using either interface - I actually find the web client to be a little easier in that regard.  Early testing is great, although I can always go back and commit more cores or more memory if needed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Problems with Proxmox VE</title>
+      <link>http://localhost:1313/posts/220219_proxmox/</link>
+      <pubDate>Sat, 19 Feb 2022 15:37:06 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/220219_proxmox/</guid>
+      <description>&lt;p&gt;Look, I know you&amp;rsquo;re reading this, but sometimes I write these posts for myself.  To remind myself of how I built or repaired something.  This is one of those posts.&lt;/p&gt;
+&lt;p&gt;My home server ran VMWare ESXi for a long time.  I had trouble upgrading it from 6.5 and I was intrigued by Proxmox VE and putting my home network more firmly in the open source camp.  I&amp;rsquo;ve been running Proxmox VE 7.1 for a while now.&lt;/p&gt;
+&lt;h2 id=&#34;quick-review-of-pve&#34;&gt;Quick review of PVE&lt;/h2&gt;
+&lt;p&gt;My experience with PVE has been mixed.  VMWare hid a lot of it&amp;rsquo;s Linux base, where PVE is like an opinionated distro aimed at virtualization.  With PVE, you are definitely administering a debian derivitive box.  PVE will host VMs and also does OS-level containers, which is an interesting take and seems to conserve processor.  I implemented my internal servers this way and it&amp;rsquo;s indistinguishable from a full VM in terms of use    .&lt;/p&gt;
+&lt;p&gt;Probably the biggest &amp;ldquo;issue&amp;rdquo; is that I use VMWare Workstation to have a Windows VM on my Linux machine.  Workstation was a pretty good front-end for ESXi and you could migrate loads between the two.  Obviously, that use case is out the window now.&lt;/p&gt;
+&lt;p&gt;Generally, PVE runs as good as or better than ESXi.  However, on the occassion that something goes sideways you are combing through blog posts and support forums (assuming you don&amp;rsquo;t have a subscription, which I don&amp;rsquo;t for home).  I like that the things I learn in PVE are transferable to Linux and vice versa, but I wouldn&amp;rsquo;t make PVE your first experience with Linux.&lt;/p&gt;
+&lt;h2 id=&#34;back-to-the-show&#34;&gt;Back to the show&lt;/h2&gt;
+&lt;p&gt;Power went out at the house the other night and the VMs (actually OS-level containers, but that&amp;rsquo;s arduous to say and if I abbreviate it OSLC no one will know what I&amp;rsquo;m nattering on about) storage had an issue.  When PVE tried to load those volumes it gave an error &lt;em&gt;&amp;ldquo;activating LV &amp;lsquo;pve/data&amp;rsquo; failed: Activation of logical volume pve/data is prohibited while logical volume pve/data_tmeta is active. (500)&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I tried several approaches to resolve this.  You can see the error from the PVE command line via &lt;strong&gt;lsblk&lt;/strong&gt;.  What actually worked was to make the interfering volumes inactive. Seems obvious, but I needed the command &lt;strong&gt;vgchange&lt;/strong&gt;.  As a note, after I deactivated &lt;em&gt;tmeta&lt;/em&gt; I got an error because &lt;em&gt;tdata&lt;/em&gt; was active so I had to deactivate that as well.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#deactivate the offending volume
+lvchange -an pve/data_tmeta
+##activate the expected volumes
+vgchange -ay
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So this post is a note to myself for the next time.  Hopefully it&amp;rsquo;s helpful to you as well.&lt;/p&gt;
+&lt;h3 id=&#34;update-i-had-a-power-outage-in-late-april-and-had-to-follow-this-procedure-again--apparently-its-a-common-failure-state&#34;&gt;Update: I had a power outage in late April and had to follow this procedure again.  Apparently it&amp;rsquo;s a common failure state.&lt;/h3&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

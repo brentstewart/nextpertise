@@ -1,0 +1,613 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on </title>
+    <link>http://localhost:1313/tags/markdown/</link>
+    <description>Recent content in Markdown on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Sep 2023 08:17:00 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markdown to DOCX</title>
+      <link>http://localhost:1313/posts/230922_markdown_to_docx/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230922_markdown_to_docx/</guid>
+      <description>&lt;h1 id=&#34;exporting-markdown&#34;&gt;Exporting Markdown&lt;/h1&gt;
+&lt;p&gt;Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.  Although initially reluctant, I&amp;rsquo;ve grown to appreciate the portability and easy reuse that markdown allows.  The problem is that the rest of the world doesn&amp;rsquo;t always appreciate what is obvious to me.  As an example, the folks at work prefer their documents in Office formats.&lt;/p&gt;
+&lt;h2 id=&#34;office-to-obsidian&#34;&gt;Office to Obsidian&lt;/h2&gt;
+&lt;p&gt;One of the things I love about markdown is that it&amp;rsquo;s an easy format to migrate to and from, perhaps because it&amp;rsquo;s a simple format.  I wrote about an automated process to take Word documents, convert them to markdown, and incorporate them into your Obsidian vault in &lt;a href=&#34;http://localhost:1313/posts/230509_word2obsidian/&#34;&gt;Word to Obsidian with a DIY CI&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;obsidian-to-word&#34;&gt;Obsidian to Word&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ObsPandoc.png#floatleft&#34; alt=&#34;Pandoc Plugin&#34;&gt;
+The techniques I used in the above article &lt;em&gt;could&lt;/em&gt; be used for any type of file format changes, but exporting from Obsidian isn&amp;rsquo;t always to DOCX and isn&amp;rsquo;t always aimed at a particular directory.  In fact, if you are using O365 then it may need to be uploaded to an arbitrary place on OneDrive/Sharepoint in a seperate step.  Instead, I&amp;rsquo;ve found the best method to be the &lt;a href=&#34;https://github.com/OliverBalfour/obsidian-pandoc&#34;&gt;Pandoc Plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In Obsidian, go to &lt;em&gt;options&lt;/em&gt; (the cog in the lower right), then to _Community Plugins&amp;quot; and search for Pandoc.  This presents an &amp;ldquo;install&amp;rdquo; button, which adds the plugin to your vault and it can then be enabled.  Don&amp;rsquo;t forget to enable it!  I do that sometimes and then wonder why it&amp;rsquo;s not working.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve found that the plugin exposes Pandoc options pretty well and that default settings work well (I&amp;rsquo;ve mostly used it to export to DOCX and PDF).  There are options to supply default formating to the document, but they&amp;rsquo;re not necessary.&lt;/p&gt;
+&lt;h2 id=&#34;hugo-markdown-to-word&#34;&gt;Hugo Markdown to Word&lt;/h2&gt;
+&lt;p&gt;Other sources of markdown files, such as those from Hugo or Github, can be converted using Pandoc on the commandline.  The issue here is that Hugo files typically include embedded images, and the images are specified based on where the image ends up after compilation.  When you run &lt;em&gt;hugo&lt;/em&gt; it takes the markdown directories and produces a set of html files in a new structure.  On this blog, my images are refrenced at the &amp;ldquo;root&amp;rdquo; pre-compilation, for instance &amp;ldquo;/image.png&amp;rdquo;, alongside the written content.  In the on-disk structure (and you can see this in the github) my writing is under &amp;ldquo;/post/file.md&amp;rdquo; and the images are under &amp;ldquo;/static/image.png&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;When Pandoc runs against the raw Hugo markdown, it just references the path and produces compilation errors.  I also use CSS to style images, which modifies the URL (for instance &amp;ldquo;/image.png#floatright&amp;rdquo;).  The CSS markings are also lost on Pandoc and will cause errors. There are three ways to deal with this.  The first is to manually edit the markdown to remove the image or correct the path.  Options two and three involve a pre-processor, a piece of lua code that Pandoc runs mid-conversion.  Option two is to use a lua pre-processor to remove all images.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@hyper &amp;gt; cat filterimagesinpandoc.lua 
+function Image () return {} end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Option three is to use a lua pre-processor to correct the path and remove the styling.  No code demonstrated here because I use option 2 and the code would depend on your directory structure.&lt;/p&gt;
+&lt;p&gt;The final trick to converting markdown - Hugo, Obsidian, or any other - is to understand that Pandoc expects markdown to begin with a YAML header.  That header can be as simple as an authors name.  The YAML ends with a line of three dashses.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;author: Brent
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pandoc will fail if it doesn&amp;rsquo;t see that YAML header.  Most Hugo files and most Obsidian files are going to include that header, so you should be okay.  Pandoc also gets confused if it sees three dashes on a line later in the file.  I used that to generate a seperator line in Obsidian and caused Pandoc to blow up.  Make sure that there is at least a primitive YAML header AND that there&amp;rsquo;s only one line of three dashes.&lt;/p&gt;
+&lt;p&gt;Converting ends up looking like this.  This command specifies the source (markdown.doc), the output file and format (Word.docx) and the filter.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pandoc ~/Folder/markdown.md -o Word.docx --lua-filter filterimagesinpandoc.lua
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So rock on with Markdown and convert to Word as you need to live with the normies.  Hope this helps!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Word to Obsidian with a DIY CI</title>
+      <link>http://localhost:1313/posts/230509_word2obsidian/</link>
+      <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230509_word2obsidian/</guid>
+      <description>&lt;p&gt;I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&amp;rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&amp;rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.&lt;/p&gt;
+&lt;h2 id=&#34;what-didnt-work&#34;&gt;What Didn&amp;rsquo;t Work&lt;/h2&gt;
+&lt;p&gt;Just to save you time, I&amp;rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called &lt;a href=&#34;https://www.writage.com/&#34;&gt;Writage&lt;/a&gt;.  It&amp;rsquo;s $29, but a trial version is available.  I&amp;rsquo;m obstinately opposed to closed source and I&amp;rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&amp;rsquo;t tried it.&lt;/p&gt;
+&lt;p&gt;I also found an old github repo that purported to address this issue.  That project has pivoted to HTML and deprecated the markdown code.&lt;/p&gt;
+&lt;h2 id=&#34;the-beginning-of-an-idea&#34;&gt;The beginning of an idea&lt;/h2&gt;
+&lt;p&gt;Looking for a FOSS solution lead me back to Pandoc.  Long, &lt;em&gt;long&lt;/em&gt; time readers may recall one of my early &lt;a href=&#34;http://localhost:1313/posts/200919_pandoc_improved/&#34;&gt;experiments&lt;/a&gt; with Pandoc.  &lt;a href=&#34;https://pandoc.org/&#34;&gt;Pandoc&lt;/a&gt; is a file converter and will handle conversions between things like DOC, EPUB, PDF, and HTML.  I setup a continuous integration (CI) pipeline using Github actions so that I uploaded some markdown files and they were automatically assembled and formatted as chapters into a PDF book.  That was a cool project, and perfect for maintaining SOPs, but a cloud solution seems like a lot of steps to get this into my Obsidian vault.&lt;/p&gt;
+&lt;p&gt;I took a moment to confirm that pandoc will do the conversion I wanted.  After a little back and forth, here&amp;rsquo;s the command I came up with.  I&amp;rsquo;ve tested this with business memos and it worked fine.  I haven&amp;rsquo;t tried it with complex tables or graphs.  -f and -t are the from and to formats, -o is the output and the first file in quotes is the input.  The wrap command prevents pandoc from setting line length to 72 and adding a line return in every line.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pandoc -wrap=none -f docx -t markdown &amp;quot;test.doc&amp;quot; -o &amp;quot;test.md&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;automating-markdown-conversion-and-ingestion&#34;&gt;Automating markdown conversion and ingestion&lt;/h2&gt;
+&lt;p&gt;Pandoc gets the conversion, but I really don&amp;rsquo;t want to have to remember that command and then move files around.  I want something that is a DIY pipeline to go from DOCX to Markdown.  Here&amp;rsquo;s how I did it - explanation to follow.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+TARGET=~/doc2obs/
+PROCESSED=~/Downloads
+
+inotifywait -m -e create -e moved_to --format &amp;quot;%f&amp;quot; $TARGET | while read FILENAME
+do
+  echo Detected $FILENAME
+  pandoc -wrap=none -f docx -t markdown &amp;quot;/home/brent/doc2obs/$FILENAME&amp;quot; -o &amp;quot;/home/brent/doc2obs/$FILENAME.md&amp;quot;
+  echo converted to Markdown
+  rm &amp;quot;/home/brent/doc2obs/$FILENAME&amp;quot;
+  echo removed doc file
+  mv &amp;quot;/home/brent/doc2obs/$FILENAME.md&amp;quot; &amp;quot;/home/brent/2nd Brain/Notes/$(date +%y%m%d)_$FILENAME.md&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I created a directory (doc2obs) and created a watcher shell script.  It waits for a DOCX file to be copied into &lt;em&gt;doc2obs&lt;/em&gt;.  When that occurs, it converts the file into markdown, deletes the DOCX, and renames and moves the markdown file.  Of course, the script needs to be executable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x watch-doc2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let&amp;rsquo;s take that script step by step and explain a little more.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;TARGET=~/doc2obs/
+inotifywait -m -e create -e moved_to --format &amp;quot;%f&amp;quot; $TARGET | while read FILENAME
+do
+  ...
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This batch of done defines the directory to be monitored.  If your Linux of choice doesn&amp;rsquo;t have &lt;strong&gt;inotify&lt;/strong&gt;, it can be loaded using yum or apt as inotify-tools.  -m tells it to monitor, -e defines the events to be monitored.  You can notify on a variety of events.&lt;/p&gt;
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table of inotify events&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;access&lt;/td&gt;
+&lt;td&gt;create&lt;/td&gt;
+&lt;td&gt;move_self&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;attrib&lt;/td&gt;
+&lt;td&gt;delete&lt;/td&gt;
+&lt;td&gt;moved_to&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close_write&lt;/td&gt;
+&lt;td&gt;delete_self&lt;/td&gt;
+&lt;td&gt;moved_from&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close_nowrite&lt;/td&gt;
+&lt;td&gt;modify&lt;/td&gt;
+&lt;td&gt;open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;close&lt;/td&gt;
+&lt;td&gt;move&lt;/td&gt;
+&lt;td&gt;unmount&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;strong&gt;echo&lt;/strong&gt; commands are present for debugging.  Note that the &lt;strong&gt;mv&lt;/strong&gt; moves the markdown file into my Obsidian vault and names it.  My daily notes all start with a date prefix like 230510 (two digits for year, month, and date), so the date command embedded in the move automatically prefixes the markdown file with the current date in the correct format.&lt;/p&gt;
+&lt;h2 id=&#34;automating-the-script&#34;&gt;Automating the script&lt;/h2&gt;
+&lt;p&gt;So the script is ready.  I can run it and it will monitor the &lt;em&gt;doc2obs&lt;/em&gt; directory until I stop it or reboot.  The next step is to make this into something that just runs automatically, so I don&amp;rsquo;t have to open a shell and worry about restarting it.&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;ll refer back to the process I used in &lt;a href=&#34;http://localhost:1313/posts/230313_blog2obsidian/&#34;&gt;Automatically adding Hugo articles to Obsidian&lt;/a&gt;, which is to use &lt;strong&gt;cron&lt;/strong&gt;.  That script ran periodically and this one runs continuously, so we&amp;rsquo;ll modify the approach to ask &lt;strong&gt;cron&lt;/strong&gt; to run it once at startup.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;crontab -e  # gets us into edit mode
+# add below entry
+@reboot /home/brent/watch-doc2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;things-to-fix&#34;&gt;Things to fix&lt;/h2&gt;
+&lt;p&gt;This does what I need it to do, but I have a few ideas about how it could be improved.  I&amp;rsquo;m not sure if I&amp;rsquo;ll ever get to them, but they&amp;rsquo;re worth noting.&lt;/p&gt;
+&lt;p&gt;I build daily notes from a template.  The template is essentially some buttons, backlinks, tags, and such.  I may try to add those elements into the markdown output.  Right now my thought is just to append the tags at the end, which would be easy.&lt;/p&gt;
+&lt;p&gt;I could build a set of these CI actions.  Sometimes I get business documents and want to read them later on my tablet, so another idea is to setup a directory that converts to PDF or EPUB and emails it to my kindle email address.  This one I really think I&amp;rsquo;ll do, and will probably blog about.&lt;/p&gt;
+&lt;p&gt;This version of the script generates an error when the markdown is created because it&amp;rsquo;s created in the directory I&amp;rsquo;m monitoring.  I could maybe just create it straight into my vault, but I&amp;rsquo;d need to handle the date prepending.  That&amp;rsquo;s not a big issue, but it&amp;rsquo;s a bigger issue than just ignoring an error that doesn&amp;rsquo;t really do anything.&lt;/p&gt;
+&lt;h2 id=&#34;toodles&#34;&gt;Toodles&lt;/h2&gt;
+&lt;p&gt;So that&amp;rsquo;s it.  This is a cool project for Obsidian obsessives (hand raised) because it makes it easy to ingest all the &lt;em&gt;other&lt;/em&gt; documents in our lives.  But the part I&amp;rsquo;m most excited about is that in a clumsy and hacky way, this is a really easy home delivery pipeline that could be adopted for &lt;em&gt;anything&lt;/em&gt; that you want to automate.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Automaticly adding Hugo articles to Obsidian</title>
+      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
+&lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cp ~/git/nextpertise/content/posts/*.md ~/2nd\ Brain/Nextpertise/
+echo &amp;quot;blog2obs.sh ran&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I also made this file executable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x blog2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works as expected.  The markdown files are copied from my hugo git directory into my Obsidian vault under the &amp;ldquo;Nextpertise&amp;rdquo; folder.  Obsidian actually updates dynamically as soon as the files are present.  There are some issues - my website has a directory for graphics that I&amp;rsquo;m not copying over, for instance, and the internal linking and tagging I expect in Obsidian wouldn&amp;rsquo;t be present in these files.  External links in the posts seem to work as expected though.  All I need to do is remember to run this occassionally . . .&lt;/p&gt;
+&lt;h2 id=&#34;automatically&#34;&gt;Automatically&lt;/h2&gt;
+&lt;p&gt;So the next step was to have this run as a &lt;em&gt;cron&lt;/em&gt; job.  On Linux, use &lt;strong&gt;crontab -e&lt;/strong&gt; to setup the job.  Below is the way I have this setup and working.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MAILTO=MYEMAILADDRESS
+0 0 * * * /home/brent/blog2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230314_Linux_Email.jpg#floatright&#34; alt=&#34;It works!&#34;&gt;
+The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my &lt;a href=&#34;http://localhost:1313/posts/230313_command_line_email/&#34;&gt;last post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The received email is on the right, and now it&amp;rsquo;s clear why the &lt;em&gt;echo&lt;/em&gt; command is in the batch file.  The echo provides some text - without that text there&amp;rsquo;s no output from the script and nothing to email.&lt;/p&gt;
+&lt;p&gt;There are some possible improvements that might make this worth revisiting in the future.  The simple script doesn&amp;rsquo;t indicate if there was an error copying the files.  I could also imagine inserting links and tags that are used in my Obsidian vault as a header to the imported files.  However, this is a straight-forward process and it&amp;rsquo;s meeting my immediate need.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Obsidian Ava ChatGPT Plugin</title>
+      <link>http://localhost:1313/posts/230310_ava/</link>
+      <pubDate>Fri, 10 Mar 2023 22:11:53 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230310_ava/</guid>
+      <description>&lt;p&gt;ChatGPT is all the rage  these days.  It can carry on a chat conversation and compose text.  Folks are using it to help write business letters, to help write documents, and to explore the state of modern Artificial Intelligence.  Because ChatGPT has ingested a lot of background data, it&amp;rsquo;s able to write coherently on a number of topics and sometimes can make insightful inferences.  Contrarily, because it doesn&amp;rsquo;t really &amp;ldquo;know&amp;rdquo; so much as form statistical relationships, it sometimes speaks authoritatively against the facts.&lt;/p&gt;
+&lt;h2 id=&#34;installing-the-ava-plugin&#34;&gt;Installing the Ava Plugin&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230310_ava.png#center&#34; alt=&#34;Ava Installed&#34;&gt;
+The &lt;a href=&#34;https://github.com/louis030195/obsidian-ava&#34;&gt;Obsidian Ava&lt;/a&gt; plugin pulls ChatGPT into Obsidian.  To install the plugin:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In Obsidian  open settings by clicking on the gear icon at the bottom of the left-hand toolbar.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;Third-Party Plugins&amp;rdquo; and select &amp;ldquo;Community Plugins.&amp;rdquo; Search for &amp;ldquo;Obsidian Ava&amp;rdquo; in the search bar, and once you find it, click on &amp;ldquo;Install&amp;rdquo; to install the plugin.  You&amp;rsquo;ll need to enable the plugin while you are there.&lt;/li&gt;
+&lt;li&gt;Then open your command palette by pressing &amp;ldquo;Ctrl/Cmd + P&amp;rdquo; and type &amp;ldquo;Ava&amp;rdquo; to launch the chatbot. Follow the instructions to link to the chatbot, and you&amp;rsquo;re good to go!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;what-can-it-do&#34;&gt;What can it do?&lt;/h3&gt;
+&lt;p&gt;Once installed, the plugin can compose text, create links, or generate an image based on text you provide.&lt;/p&gt;
+&lt;p&gt;There are options for Ava to take a prompt and write a paragraph, to rewrite something you&amp;rsquo;ve written, or to finish writing something you&amp;rsquo;ve started.  I&amp;rsquo;ve been expirimenting with this capability and found it to be potentially helpful.  I often have trouble finding a way to start writing, but found that I could take the ChatGPT-generated paragraph, edit and rework it, and this made getting started on a topic easier.&lt;/p&gt;
+&lt;p&gt;I said &amp;ldquo;potentially&amp;rdquo; for two reasons.  First, the generated text commonly begins with a boiler-plate cavaet like &amp;ldquo;As an AI language model, I am unable to determine subjective motives or reasons, but . . .&amp;rdquo;  Second, in most cases I found that ChatGPT generated structurally correct sentences, but that they lacked content, direction, and few concepts that weren&amp;rsquo;t already in my prompt.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230310_ava_tags.png#floatsmallright&#34; alt=&#34;Tagging&#34;&gt;
+Ava can analyze a file and your vault and suggest linking to other files.  The whole &amp;ldquo;Second brain&amp;rdquo; concept is built off of these connections, so this is could be a powerful tool.  Ava installs a link icon that will suggest similar notes.  It will rank them using a &amp;ldquo;similarity percentage&amp;rdquo;.  I&amp;rsquo;m not sure what &amp;ldquo;86% similar&amp;rdquo; means, but I found that it did a reasonable job of surfacing other content that includes the same words.&lt;/p&gt;
+&lt;p&gt;In the same vein, Ava can analyze a file and suggest tags.  I&amp;rsquo;m a sparse user of tags, so I can&amp;rsquo;t testify to the utility here.  The image to the right shows the tags suggested for this file, so you can see that these generally make sense.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/If_ChatGPT_was_a_human_girl_named_Ava.jpg#floatsmallleft&#34; alt=&#34;Ava&#34;&gt;
+Ava can also generate images based on text.  Select a block of text, open the command prompt, and choose &amp;ldquo;Ava:Generate Image&amp;rdquo; and the image will be placed below the selected text.  As an example, I typed &amp;ldquo;If ChatGPT was a human girl named Ava&amp;rdquo; and it created the image to the left.  I&amp;rsquo;ve been playing with this and have yet to generate a really compelling picture, but it&amp;rsquo;s intriguing.  This may be a way around writers block by engaging a different part of the brain and I&amp;rsquo;ll continue to fiddle with it.&lt;/p&gt;
+&lt;h2 id=&#34;final-notes&#34;&gt;Final notes&lt;/h2&gt;
+&lt;p&gt;The cute thing these days is to have ChatGPT write an article on it&amp;rsquo;s on.  Bonus points to have it write an article about itself for you.  In my opinion, Ava doesn&amp;rsquo;t represent the day when a Chatbot can produce text at the level of a common human writer.  I tried different prompts as I was writing this piece and Ava failed to produce output that ended up in the final piece.&lt;/p&gt;
+&lt;p&gt;That said, I found that Ava was useful as a tool to spur my writing.  Generating the prompt text backed me into outlining the article.  The returned copy provided a starting point, even if none of it was incorporated in the final product.  Ava made useful suggestions about tags and links within my Obsidian vault.  Finally, playing with the image generation was fun and I could see how it could be used as a way to creatively engage with your writing.&lt;/p&gt;
+&lt;p&gt;I understand there are other integrations and I&amp;rsquo;ll try them out as I have time.  I intend to leave this plugin enabled and continue to investigate the best way to use it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Self-Hosted Obsidian</title>
+      <link>http://localhost:1313/posts/221210_self-hosted_obsidian/</link>
+      <pubDate>Sat, 10 Dec 2022 17:17:04 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/221210_self-hosted_obsidian/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve recently written about using Obsidian - an &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;intro&lt;/a&gt;, a discussion of &lt;a href=&#34;http://localhost:1313/posts/220831_using_obsidian&#34;&gt;tasks&lt;/a&gt; and add-ins, and a discussion of &lt;a href=&#34;http://localhost:1313/posts/221002_dataview&#34;&gt;dataview&lt;/a&gt;.  The number of add-ins and the ideas that are being implemented using Obsidian has exploded, and hopefully I&amp;rsquo;ve provided enough to get you started and help you discover how it could work for you.&lt;/p&gt;
+&lt;p&gt;Justin Pot at PC Magazine published a &lt;a href=&#34;https://www.pcmag.com/reviews/obsidian&#34;&gt;review&lt;/a&gt; in November.  It&amp;rsquo;s a good review and on the whole very positive.  One deficiency that he points out, though, is the fact that Obsidian is installed locally and there&amp;rsquo;s no facility for accessing it on multiple computers. Justin goes on to suggest that one could use a seperate service to sync files between computers.  I&amp;rsquo;d argue that this is consistent with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_philosophy&#34;&gt;Unix philosophy&lt;/a&gt; of &amp;ldquo;making each program do one thing well&amp;rdquo;.  If you need two functions (notes, file replication) then use two programs.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m aware of six ways that Obsidian could be kept up to date between computers, and I&amp;rsquo;ve tested several.  If you are interested in using Obsidian and being able to access notes from your PC on your phone is a requirement, here are my experiences and opinions.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll note that I&amp;rsquo;m syncing to my phone.  Obsidian runs - plug-ins, themes and all - identically on the phone.  I don&amp;rsquo;t enjoy the swishy keyboard interface, but I use my daily notes for to-dos and bullet points.  I find the using Obsidian on mobile invaluable for checking things off or adding quick notes as I move around.  I also have added some key PDFs to my vault for reference and the Obsidian interface is an easy way to access that information.&lt;/p&gt;
+&lt;h2 id=&#34;the-ones-i-didnt-try&#34;&gt;The ones I didn&amp;rsquo;t try&lt;/h2&gt;
+&lt;p&gt;Several solutions may be good, but I haven&amp;rsquo;t personally tried them.  &lt;a href=&#34;https://obsidian.md/pricing&#34;&gt;Obsidian Sync&lt;/a&gt; is made by the developers to fund the project and I&amp;rsquo;ve looked at this closely.  Obsidian Sync also supports version history, something you don&amp;rsquo;t get using other methods.  That said, it&amp;rsquo;s $8 per month which strikes me as steep.  I just came through a period of unemployment and feel like there&amp;rsquo;s something sinister about the way we&amp;rsquo;re being pushed into more and more subscriptions.  The same link includes an option to donate to the project one-time, and I&amp;rsquo;m electing to support the devs that way.&lt;/p&gt;
+&lt;p&gt;Obsidian could also be sync&amp;rsquo;d through a cloud file system, such as Apple Cloud, Google or Box.  The PC Mag article references using &lt;a href=&#34;https://www.resilio.com/platforms/desktop/&#34;&gt;Resilio Sync&lt;/a&gt;, which is a new one for me. There are comments on Reddit from folks who use various cloud services (Apple seems popular).  My issue here is that Obsidian has some of my most personal information.  I&amp;rsquo;m not entirely comfortable putting that in cloud storage.  Many cloud providers have some level of free storage, probably enough for an Obsidian vault.  If you need to pay, it&amp;rsquo;s typically around $5-10 and could be used for a variety of things, so this technique could be free and in the worst case is on-par with Obsidian Sync.&lt;/p&gt;
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Backup your Obsidian vault before experimenting with sync options.&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;shared-drive&#34;&gt;Shared Drive&lt;/h2&gt;
+&lt;p&gt;The first idea is the easiest and most obvious: use a shared drive.  I put my Obsidian vault on a server and published that folder using NFS, then mounted it on my PC.  I used SSHFS to map to it from a Linux laptop and from Windows.  Read more about using SSHFS and NFS &lt;a href=&#34;http://localhost:1313/posts/200813_using_ssh3&#34;&gt;here&lt;/a&gt;.  No problems.  All three devices were able to co-edit within the same vault - I even noticed open files being updated dynamically.  This method is free, but requires access to the devices (local LAN) and doesn&amp;rsquo;t work for mobile devices.&lt;/p&gt;
+&lt;p&gt;The private network can be extended using VPN to get this to work remotely.  In fact, I used &lt;a href=&#34;http://localhost:1313/posts/201027_zerotierrouter&#34;&gt;Zerotier&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/posts/221004_tailscale&#34;&gt;Tailscale&lt;/a&gt; to test this and things worked perfectly for laptops.  There might be sync issues if someone was editing on both sides, but as long as it&amp;rsquo;s being used as a personal vault, this shouldn&amp;rsquo;t be an issue.  IOS and Android both support various VPN mechanisms, but Obsidian on those platforms expects a device-local vault.
+&lt;img src=&#34;http://localhost:1313/221210_Syncthing.png#floatright&#34; alt=&#34;Syncthing&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;syncthing&#34;&gt;Syncthing&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://syncthing.net/&#34;&gt;Syncthing&lt;/a&gt; is a tool that many people use to keep files sync&amp;rsquo;d between computers.  It&amp;rsquo;s free, and is supported on just about every OS short of Haiku (nope, I checked).  Once Syncthing is downloaded to a device, it needs to have a  relationship approved on a remote device.  The devices agree on local directories that are to be sync&amp;rsquo;d, then syncthing runs periodically to update files.&lt;/p&gt;
+&lt;p&gt;Like a shared drive, it&amp;rsquo;s free and devices need to be local to each other.  As shown in the picture to the right, I setup my desktop, tablet and phone to keep an Obsidian vault in sync.  When I first setup Syncthing, there was an instance where it deleted a file.  I wasn&amp;rsquo;t able to replicate that behavior later so it may have been something I did, but it left me with a bad taste.  Syncthing doesn&amp;rsquo;t overwrite - it creates duplicate marked copies.  This results in having a proliferation of these dups that have to be cleaned up.  I had as many as four devices syncing and that may have added to the replication issues.&lt;/p&gt;
+&lt;p&gt;So my experience of Syncthing was that it worked, but required local software and had some rough edges.
+&lt;img src=&#34;http://localhost:1313/posts/221211_Obsidian_webdav.png#floatright&#34; alt=&#34;WebDav&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;remotely-save-plug-in&#34;&gt;Remotely Save Plug-in&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/remotely-save/remotely-save&#34;&gt;Remotely Save&lt;/a&gt; plug-in is the option that I&amp;rsquo;ve personally settled on.  Remotely Save allows syncing using S3-compatible storage, Dropbox, OneDrive, or WebDav.  I already have a local WebDav server running on Apache (see &lt;a href=&#34;http://localhost:1313/posts/210906_apachedav&#34;&gt;Using WebDAV on Apache&lt;/a&gt;).  This required minimal self-hosted infrastructure, supported PC and mobile operating systems, and was free.  I&amp;rsquo;ve had no issues with it working or losing data.&lt;/p&gt;
+&lt;p&gt;The screenshot to the right shows the setup of Remotely Save.  The first selection is for the storage type and Webdav is chosen.  Next I specified the server address.  I use other applications that will just take the IP address of the server and Remotely Save required the protocol prefix &amp;ldquo;http://&amp;rdquo;.  This brings up the one problem I had - there&amp;rsquo;s very little in the way of error messages or debugging output if you have a problem.  If failed when I used a raw IP, but didn&amp;rsquo;t provide clues as how to remedy the issue and it took a bit of trial and error.&lt;/p&gt;
+&lt;p&gt;I have this setup of several devices.  On each, I have them setup to run at startup and then periodically afterward.  I don&amp;rsquo;t tend to have Obsidian open in multiple places, so this is sufficient to prevent replication bifurcations.&lt;/p&gt;
+&lt;h2 id=&#34;git-plug-in&#34;&gt;Git Plug-in&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/denolehov/obsidian-git&#34;&gt;Git Plug-in&lt;/a&gt; has a lot of potential.  I tested with Github and couldn&amp;rsquo;t get it to work with cert-based authentication (as is required by Github).  That was okay, because I&amp;rsquo;m not really interested in copying my vault to public cloud.  I also tested this with local Gitlab.  That worked very similarly to the Remotely Save plugin, with the added bonus of having a history.  If you are comfortable setting up a local Git server and using Git, this is a little more complicated than WebDav but a good option.&lt;/p&gt;
+&lt;h2 id=&#34;round-up&#34;&gt;Round-up&lt;/h2&gt;
+&lt;p&gt;For my usage, Obsidian is superior to other options such as Evernote or OneNote.  It&amp;rsquo;s plug-in architecture have also made it an exciting platform for experimentation. There are constantly new ideas about what can be done using this as a base.  The PC Mag review was right to call out multi-device usage as a shortcoming, but I&amp;rsquo;ve found this can be addressed in a variety of ways.  I&amp;rsquo;ve been using local WebDAV (using the Remotely Save plugin) for about a month and Tailscale to allow remote syncing and I&amp;rsquo;ve been very pleased.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Obsidian Dataview (Part 3)</title>
+      <link>http://localhost:1313/posts/221002_dataview/</link>
+      <pubDate>Tue, 01 Nov 2022 09:38:21 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/221002_dataview/</guid>
+      <description>&lt;p&gt;This article is the third I&amp;rsquo;ve written on Obsidian.  &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;Part 1&lt;/a&gt; describes the basics and &lt;a href=&#34;http://localhost:1313/posts/220831_using_obsidian/&#34;&gt;Part 2&lt;/a&gt; covers tasks, this article will describe using Dataview.&lt;/p&gt;
+&lt;p&gt;Core Obsidian is &amp;ldquo;just&amp;rdquo; a markdown editor with some Wiki functionality and a pretty good understanding of tasks.  The magic comes through add-ons.  The process of adding plugins is described in the second article where I discussed &amp;ldquo;Checklist&amp;rdquo;, which pulled all your open tasks together on one list in a sidebar.  The Dataview plugin is also a way to collect information across notes, but much more powerful.&lt;/p&gt;
+&lt;p&gt;Once the Dataview plugin is added, you can add a dataview query into any document.  Fields can be created in any document either as YAML front matter or within the document using double-colons.
+&lt;img src=&#34;http://localhost:1313/221101_Opty.png#floatright&#34; alt=&#34;Example job&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/obsidian.png&#34; alt=&#34;Obsidian&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;lets-build-out-an-example&#34;&gt;Let&amp;rsquo;s build out an example!&lt;/h3&gt;
+&lt;p&gt;At the time of this writing, I&amp;rsquo;m looking for a new job.  I&amp;rsquo;ve gone into Obsidian and created an &amp;ldquo;Opportunities&amp;rdquo; folder.  Each document in that folder is based on a standard template that I fill out.  I update the document as I learn more and I make &amp;ldquo;active=False&amp;rdquo; if it&amp;rsquo;s not a good fit.  I should note that each document starts with these standard fields, but I add all kinds of unstructured data underneath.  I have a diary of notes from calls and follow-up tasks that starts after the fields.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## Untitled
+
+active::True
+Title::
+Pay::
+Link::
+
+contact:: 
+initialContact::
+lastContact::
+
+Onsite::
+Location::
+
+group:: #opportunity
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Outside the folder, I have a &amp;ldquo;master view&amp;rdquo; document where I track the entire job search.  This gives me a dynamic dashboard of the opportunities I am targeting.  The first table on this dashboard document is a summary of the various opportunities.  The first field in the table is the filename and it links back to the underlying details document.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NOTE:   Obsidian denotes sections of code by encapsulating with three tics (`).  Noting the language after the top tics will highlight based on the language.  When the Dataview plugin is present, mark the code &amp;ldquo;dataview&amp;rdquo; and it will be interpretted and replaced with the query results.  I&amp;rsquo;ve added a space in the bottom three tics to prevent Hugo from interpretting (and then hiding) the tics.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;```dataview
+table title,stage, pay, onsite from &amp;#34;Projects/Opportunities&amp;#34; 
+where active SORT file.name asc
+` ``
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/221101_dashboard.png#floatright&#34; alt=&#34;Dashboard&#34;&gt;
+I have a similar set of documents for the people I&amp;rsquo;ve met to track their contact information.  This query pulls in contact information from documents in the People folder that have the tag #jobhunt.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;```dataview
+table mobile,email, Last_contact 
+from &amp;#34;People&amp;#34; and #jobhunt 
+` ``
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Another table in the dashboard file is a list of open tasks.  Remember that Obsidian allows you to create a task using square brackets anywhere in a document.  In my employment search, many people have volunteered to help but are not necessarily associated with a particular job.  This means that I may have a follow-up reminder associated with a contact or with a job.  Here&amp;rsquo;s the query that pulls all those to-dos together.  It&amp;rsquo;s worth noting that I can check off a task either in the source document or in the dataview list and it will update the other.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;```dataview
+TASK from &amp;#34;projects/opportunities&amp;#34; 
+or (&amp;#34;People&amp;#34; and #jobhunt) 
+WHERE !completed 
+GROUP BY file.name SORT file.ctime asc
+` ``
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The second screenshot shows that I also have a dataview list of people on this &amp;ldquo;dashboard&amp;rdquo; page.  Dataview is enormously powerful and really turns building a personal database into a load of fun.&lt;/p&gt;
+&lt;p&gt;Dataview provides a pretty good exposure to NoSQL.  I have a lot of SQL experience and struggled with the concepts of &amp;ldquo;NoSQL&amp;rdquo;.  Dataview uses it&amp;rsquo;s own query language (called DSL), but it&amp;rsquo;s easy to pick up and starts to give you a vision of what&amp;rsquo;s possible in NoSQL.  A simple example here - if you built a SQL database and started populating it, it could be problematic to add a field later.  With Dataview, I could just start adding a field for &amp;ldquo;PTO&amp;rdquo; and the query would just ignore pages that didn&amp;rsquo;t have that field.  Although Dataview can handle schema changes adroitly, it doesn&amp;rsquo;t have any concepts of data relationships, so it&amp;rsquo;s going to be fit for flat data.&lt;/p&gt;
+&lt;p&gt;Those of you with sharp eyes may notice that I have buttons on my dashboard (for instance, &amp;ldquo;New Opportunity&amp;rdquo;).  I may describe setting that up in a future post, but just to not leave the question hanging I&amp;rsquo;ll mention those are created using the &amp;ldquo;Buttons&amp;rdquo; and &amp;ldquo;Quick Add&amp;rdquo; plugins.  You may also notice that my folders have icons - that&amp;rsquo;s done using the &amp;ldquo;Icon Folder&amp;rdquo; plugin.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Linking and Embedding in Obsidian Notes (Part 3)</title>
+      <link>http://localhost:1313/posts/220901_obsidian3/</link>
+      <pubDate>Thu, 01 Sep 2022 06:24:59 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/220901_obsidian3/</guid>
+      <description>&lt;p&gt;Obsidian has been a great way to organize my work and my personal activities.  This is the third article I&amp;rsquo;ve written in this series.  &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;Part 1&lt;/a&gt; was an introduction and &lt;a href=&#34;http://localhost:1313/posts/220831_using_obsidian&#34;&gt;Part 2&lt;/a&gt; focused on &lt;em&gt;tasks&lt;/em&gt; and used that as an introduction to plugins and tags.&lt;/p&gt;
+&lt;p&gt;This entry will focus on linking and embedding.  At this point we&amp;rsquo;re focusing on using Obsidian to take notes as we go.  After this, the series will turn to more advanced and non-obvious uses.&lt;/p&gt;
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+&lt;p&gt;Links are central to the way Obsidian works.  I described Obsidian as part note-taking and part personal knowledge-base wiki.  Being able to quickly link articles furthers both of those aspects.  Embedding links allows quick reference to existing material so that it doesn&amp;rsquo;t need to be repeated.  The links also start to create a navigational structure that allows quickly finding referenced information.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve created a sample daily entry below that demonstrates three basic types of linking that everyone needs to be able to do.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220904_Links.png&#34; alt=&#34;Links in Obsidian&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The simplest is a straightforward link to another note in the same vault.  I&amp;rsquo;ve demonstrated that below with the two notes to call Bob and Alice.  Notice that two formats are supported - the double square brackets used by twiki and the markdown style used for Alice.  Twiki-style is very easy to use - just type two opening square brackets and Obsidian will drop-down a selection list of notes to link.  You can start typing a name if you need to narrow down the list.  Selecting a note and pressing enter will automatically close the brackets.&lt;/p&gt;
+&lt;p&gt;One neat wrinkle on this style link is that it can reference a point within the document.  Add a hash and then a header within the target document to the link and it will point to that location in the document.  You can see this demonstrated below in the tasks section with a link that goes to the task section of the project.&lt;/p&gt;
+&lt;p&gt;Markdown links use a single set of square brackets for the link text and paranthesis for the link.  In the case of Alice (below), the link is referencing a document in this vault and just needs the &amp;ldquo;Obsidian path&amp;rdquo;.  Note the line below Alice . . . the same format is used for an external link.  A markdown link is required for external references.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#  Sunday, Sep 04, 2022
+
+## Tasks
+- [ ] Update [[Take over the World Project#Tasks]]
+
+## Notes
+Call [[Bob]]
+Call [Alice](People/Alice)
+tutorial on [MongoDB](https://www.tutorialspoint.com/mongodb/index.htm)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;links-provide-structure&#34;&gt;Links provide structure&lt;/h2&gt;
+&lt;p&gt;Other search engines provided an index of web pages, but Google realized the power of links for ranking results.  If a lot of &lt;em&gt;other&lt;/em&gt; websites refenced a page, then it might be interesting.  The same logic is true in Obsidian and there are two tools to help you use this information.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Backlinks&lt;/strong&gt; refer to other Obsidian notes that have links back to the note currently being viewed.  This helps to create two-way traffic bewteen notes.  I&amp;rsquo;ve also found it helpful to track down related notes.  Backlinks are compiled automatically by Obsidian and shown in the &amp;ldquo;action&amp;rdquo; pane to the right by clicking the left-most tab.  This is pictured below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220904_Backlinks.png&#34; alt=&#34;Backlinks&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220904_Graphview.png#floatright&#34; alt=&#34;Graph View&#34;&gt;
+&lt;strong&gt;Graph view&lt;/strong&gt; is another way that Obsidian tries to help surface relationships between notes.  Graph view shows you all the notes in the vault, with linking lines to show where links exist.  The graph view on the right is from my personal vault.  I turned off the note names in this view, both to consolidate the view and to protect my privacy.  Even without labels, two &amp;ldquo;hub&amp;rdquo; nodes are apparent.&lt;/p&gt;
+&lt;p&gt;Graph view is pretty, but I don&amp;rsquo;t personally find it necessary.  Backlinks, on the other hand, I use fairly frequency to remember the name of the other file.&lt;/p&gt;
+&lt;h2 id=&#34;embeds&#34;&gt;Embeds&lt;/h2&gt;
+&lt;p&gt;Embedding is a term I&amp;rsquo;m using to describe including non-Markdown objects in an Obsidian note.  We&amp;rsquo;ll talk here about including code, math, pictures, and other files in a note.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220904_Obsidian_Blockquote.png#floatleft&#34; alt=&#34;Blockquotes&#34;&gt;
+&lt;strong&gt;Block quotes&lt;/strong&gt; are used to pull something out of the body of the text.  These are useful for highlighting an interesting author&amp;rsquo;s quote or creating a sidebar.  Block quotes are created by preceeding lines with a greater-than sign.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220904_Obsidian_callout.png#floatsmallright&#34; alt=&#34;Callout&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Callout boxes&lt;/strong&gt; are a cool way to focus attention on a part of the page.  These extend the use of quote blocks with commonly used headings and colors to draw attention to a point.  Think about a cookbook that needed to say, &amp;ldquo;Danger - don&amp;rsquo;t put metal in the microwave!&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Callout boxes are built like block quotes with a header. The header is constructed from square-brackets with an exclamation mark.  The box includes everything until an empty line return, so it can be long.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## Callout
+&amp;gt; [!Danger]
+&amp;gt; Here&amp;#39;s a danger callout
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Obsidian supports twelve types of callouts and will automatically apply a simbol and colored header appropriately.  Those types are listed below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;note&lt;/li&gt;
+&lt;li&gt;abstract, summary, tldr&lt;/li&gt;
+&lt;li&gt;info, todo&lt;/li&gt;
+&lt;li&gt;tip, hint, important&lt;/li&gt;
+&lt;li&gt;success, check, done&lt;/li&gt;
+&lt;li&gt;question, help, faq&lt;/li&gt;
+&lt;li&gt;warning, caution, attention&lt;/li&gt;
+&lt;li&gt;failure, fail, missing&lt;/li&gt;
+&lt;li&gt;danger, error&lt;/li&gt;
+&lt;li&gt;bug&lt;/li&gt;
+&lt;li&gt;example&lt;/li&gt;
+&lt;li&gt;quote, cite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Obsidian also supports &lt;strong&gt;code snippets&lt;/strong&gt;.  Programming should be enclosed in three tic-marks as shown below.  The language should be identified after the first set of tics - Obsidian will automatically color the text similar to an IDE.  Obsidian supports close to a hundred languages, including HTML, CSS, and Python.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  ```python
+	print(&amp;#34;Hello World&amp;#34;)
+  ```  #tics to open and close
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Finally, Obsidian supports &lt;strong&gt;Latex&lt;/strong&gt; code in-line or blocked out.  $Latex$ included in-line should be brackted by dollar signs ($).  If the equation needs to be blocked out and centered it should use double-dollar signss.  The code for this paragraph is shown below the equation.
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Obsidian supports &lt;span style=&#34;font-weight:bold&#34;&gt;__Latex__&lt;/span&gt; code in-line or blocked out.  $Latex$ included 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;in-line should be brackted by dollar signs ($).  If the equation needs to be 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;blocked out and centered it should use double-dollar signs.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pictures-and-other-files&#34;&gt;Pictures and other files&lt;/h2&gt;
+&lt;p&gt;Pictures and other files can be embedded in an Obsidian note.  Pictures are automatically displayed as part of the note.  There are two ways to do this.  The first is to use the markdown link format.  This does not copy the image into your vault, which is both good and bad.  Linking to an external image keeps your vault smaller and cleaner, but if that object changes or is deleted then it will be gone from your notes as well.  When I use this approach, I select a picture on a web page and right-click to choose &amp;ldquo;copy link&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;A second option is to copy the file into the vault and use the twiki-style link.  This increases the size and clutter in the vault.  This tecnique allows specifying size with a | bar and a width.  It also protects your notes from random changes on the Internet.  When copying, right-click and choose &amp;ldquo;copy file&amp;rdquo;.  Move into Obsidian and paste where you want it.  The file will default to the root of the vault, but I usually store images in an &amp;ldquo;Archive&amp;rdquo; folder.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;![&lt;span style=&#34;color:#f92672&#34;&gt;Obsidian&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;https://obsidian.md/images/crafting.svg&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;![[Pasted image 20220904161541.png|200]]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the code above, I&amp;rsquo;ve limited the width of the obsidian image to 200 pixels.  I can&amp;rsquo;t control the size of the linked image.&lt;/p&gt;
+&lt;h2 id=&#34;wrap-up&#34;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;I hope this has been a useful run-through of some of the Obsidian formatting.  I&amp;rsquo;m working on further posts to get useful plugins.  Dataview is a special treat - it really blew my mind - so look for that post soon.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Obsidian Tasks (Part 2)</title>
+      <link>http://localhost:1313/posts/220831_using_obsidian/</link>
+      <pubDate>Wed, 31 Aug 2022 06:24:59 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/220831_using_obsidian/</guid>
+      <description>&lt;p&gt;In &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;Part 1&lt;/a&gt;, I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it&amp;rsquo;s a good place to start.&lt;/p&gt;
+&lt;p&gt;Part 2 will focus more on tasks within notes.  We&amp;rsquo;ll use tasks to also introduce plugins and tags.   Future articles will discuss links, embeds, tags and some of the other plugins that add functionality, such as Dataview.&lt;/p&gt;
+&lt;h2 id=&#34;tasks&#34;&gt;Tasks&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220831_Obsidian_Tasks.png#floatright&#34; alt=&#34;Obsidian Tasks&#34;&gt;
+In the last article, we discussed the basics of creating a note using Obsidian.  One of the first ways that Obsidian starts to differentiate itself from other text-based note systems is the way it incorporates tasks.  Creating a task simply involves starting a line with space seperated dash and square brackets (&lt;em&gt;the spaces are required&lt;/em&gt;).  In the snippet below I&amp;rsquo;ve demonstrated how this might look.  Obsidian recognizes the pattern as a checkbox and presents it as a graphical box as shown in the screen capture to the right.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## Task List #todo
+- [ ] Write article
+- [ ] Post article
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;checklist-plugin&#34;&gt;Checklist Plugin&lt;/h2&gt;
+&lt;p&gt;Notice that I&amp;rsquo;ve tagged this list with &lt;em&gt;#todo&lt;/em&gt;.  That is necessitated by a plugin I use - &lt;strong&gt;Checklist&lt;/strong&gt;.  This also presents a chance to introduce the usage of plugins and tags.  The tag will be used by the plugin to generate a consolidated list of open to-dos across all documents.&lt;/p&gt;
+&lt;p&gt;To configure plugins, select the gear button (bottom left).  Plugins are grouped as &amp;ldquo;Core&amp;rdquo; - the ones included with the application and supported by the developer - and &amp;ldquo;community&amp;rdquo; - those that are created by third parties and made available to other Obsidian users.  Checklist is a community plugin, so step one is to go to the Community Plugins page in options and Turn Off restricted mode.  This will allow you to browse and install community plugins.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220831_Obsidian_Plugins.png#floatsmallright&#34; alt=&#34;Configuring Plugins&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Browsing plugins gives you a &lt;em&gt;huge&lt;/em&gt; list.  There are 637 plugins listed in August of 2022!  There&amp;rsquo;s relatively little danger in just scrolling through the list and trying some.  For this discussion, let&amp;rsquo;s stick to &lt;strong&gt;Checklist&lt;/strong&gt; to understand how to install and configure a plugin.  You can find a specific plugin by scrolling or by typing the name or a keyword into search. Once you find it, click the install button and then the enable button.  Typing &amp;ldquo;Checklist&amp;rdquo; gives a single possibility.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Using plugins requires that they be downloaded (installed) and then enabled.  If you forget to enable, just go back into options.  Scroll down to the bottom where Community Plugins are listed and they can be enabled from there.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220831_Obsidian_Checklist.png#floatleft&#34; alt=&#34;Configuring Plugins&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/220831_Obsidian_Tasklist.png#floatleft&#34; alt=&#34;Configuring Plugins&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/220831_Obsidian_Tags.png#floatleft&#34; alt=&#34;Working with tags&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once the Checklist plugin is installed, you&amp;rsquo;ll be able to configure it under options.  Select the gear icon (lower left) to get into options and scroll down to the bottom.  You&amp;rsquo;ll find a header called &amp;ldquo;community plugins&amp;rdquo; and the Checklist plugin should be under that.  Notice that my screen shows several plugins, while you may only have Checklist to this point.&lt;/p&gt;
+&lt;h2 id=&#34;tags-to-build-our-checklist&#34;&gt;Tags to build our Checklist&lt;/h2&gt;
+&lt;p&gt;Check four settings while here.  First, multiple tags can be specified to pull in tasks.  You might have #honeydo and #worktasks for instance.  In this case, a generic #todo tag is specified.  Some other settings to check (to get this to work the way one might intuitively expect) are Show Completed - OFF, Group By - Tags, and Auto-Refresh ON.&lt;/p&gt;
+&lt;p&gt;Once the plugin is configured, create a couple notes with tasks.  Remember to tag the tasks using a tag you defined in the Checklist seutp.  In the example screenshot, I took our sample list above and named the note &amp;ldquo;Sample 1&amp;rdquo;.  I created a second list and named it &amp;ldquo;Sample 2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;The vault pane shows that I&amp;rsquo;m editing &amp;ldquo;Sample 2&amp;rdquo;.  You can see the new note defined in the editing pane.  Because the checklist plugin is installed, the &amp;ldquo;action&amp;rdquo; pane on the right should now have a &amp;ldquo;check&amp;rdquo; tab (I&amp;rsquo;ve circled it in the example). Selecting this tab will show a consolidated list of incomplete tasks.  Marking an item complete in the pane will remove it from the list and mark it complete in the original document.  Similarly, you can complete tasks in the document and the update will carry over to the checklist sidebar.&lt;/p&gt;
+&lt;p&gt;Tags are used by Obsidian to group things - in this case checklist.  They can also be used to group notes.  To see where we have tags defined, click the hashmark tab in the right &amp;ldquo;action&amp;rdquo; pane.  My example vault, built to demonstrate these concepts, has three tags in use: #todo, #evil, and #work.
+Choosing &lt;em&gt;todo&lt;/em&gt; changes the left pane to show us which notes contain that tag and allow us to quickly jump to related entries.&lt;/p&gt;
+&lt;h2 id=&#34;scratching-the-surface&#34;&gt;Scratching the surface&lt;/h2&gt;
+&lt;p&gt;At this point, we have &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;introduced&lt;/a&gt; Obsidian as a &lt;a href=&#34;http://localhost:1313/posts/210424_hugo_markdown_cheatsheet&#34;&gt;markdown&lt;/a&gt;-based note taking tool. Obsidian has great tools to help manage tasks, and we&amp;rsquo;ve demonstrated the basics of using tasks.  Finally, we&amp;rsquo;ve started to cover the concepts of plugins and tags.&lt;/p&gt;
+&lt;p&gt;There is a lot more to discuss!  Once I started using Obsidian, my use cases grew and the way I built notes started to fundamentally change.  I&amp;rsquo;m very excited by the possibilities.  I&amp;rsquo;m equally excited to share the journey.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Obsidian Introduction (Part 1)</title>
+      <link>http://localhost:1313/posts/220829_obsidian_intro/</link>
+      <pubDate>Mon, 29 Aug 2022 17:24:59 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/220829_obsidian_intro/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve kept notes using a lot of different tools over the years.  I&amp;rsquo;ve used Outlook, Simple Note, Visual Studio Code, and even just Notepad.  At the start of the pandemic, I switched back to writing on paper.  I like paper because the mechanical act of writing helps keep me present in a meeting, it engages my brain, and it&amp;rsquo;s not distracting to the other folks in the meeting.  On the other hand, writing notes on my computer makes them easier to read (I have bad handwriting), easier to transport and easier to refer back to.&lt;/p&gt;
+&lt;p&gt;The balance has tilted toward the computer again.  In the past, my notes were passive and most of the value was the way that writing helped me remember.  I&amp;rsquo;ve recently started using Obsidian, which allows you to create a group of markdown documents (Simple Note or Code) and link them together (like a personal wiki).  It also has the ability to query fields across notes, and add dynamic linking that really helps surface the information you neeed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220830_Obsidian.png#floatright&#34; alt=&#34;Obsidian&#34;&gt;
+Past systems I&amp;rsquo;ve used created lockin (Outlook) or involved making someone else the custodian of my private file.  Obsidian uses a local database that is simply a collection of directories and markdown text files - easy to migrate data in and out.  The project has a syncing service that helps support the developers.  You can also make a one-time &lt;a href=&#34;https://obsidian.md/pricing&#34;&gt;contribution&lt;/a&gt; if you find value in the program.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m blown away at what I can do with Obsidian and I&amp;rsquo;d like to share a part of that journey with you.  Obsidian is a blank slate and can adapt to any style you want to work in.  I&amp;rsquo;ll be writing a series of articles to help you get concepts, demonstrate usage ideas, and share how I have my personal vault setup.&lt;/p&gt;
+&lt;p&gt;The application is available for Linux, Mac, Windows, IOS, and Android from &lt;a href=&#34;https://obsidian.md&#34;&gt;their site&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;obsidian-interface&#34;&gt;Obsidian Interface&lt;/h2&gt;
+&lt;p&gt;Obsidian is a markdown editor that organizes notes into folders, collectively called &lt;em&gt;vaults&lt;/em&gt;.  Those object map direclty to markdown files in directories.  The application is divided into three panes normally (you can open more) - the vault, the note editor, and (what I&amp;rsquo;ll call) an action pane.  The vault (on the left) shows the file structure, similar to the way VSCode works.  The editor is in the middle, and the action pane presents additional features (many times from add-ins).
+&lt;img src=&#34;http://localhost:1313/220830_Obsidian_Bar.png#floatleft&#34; alt=&#34;Obsidian Bar&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The icon bar on the left (as shown in my screen shot and close up) includes several buttons.  In order, the first hides the vault pane.  Next is a table editor, present because I&amp;rsquo;ve added the Advanced Table Editor plugin.  Third is a button that will let you jump to a note by title, then a graph view that shows the linking relationships between notes.&lt;/p&gt;
+&lt;p&gt;The fifth icon will create a new note for today.  This is really useful if you routinely keep a file open for whatever happens in your day.  I extend this by specifying a template for my daily notes and specifying the directory they should all be kept in.  Next is a button to apply a template to a note, then a button to open the command palette.  &lt;img src=&#34;http://localhost:1313/220830_Obsidian_LowBar.png#floatright&#34; alt=&#34;Lower bar&#34;&gt;  The command palette allows you to enter a command instead of working through the GUI - I rarely use this, but it&amp;rsquo;s useful in providing instructions.  Finally, the last icon is to publish this to an Obsidian hosted page.  I typically disable that option.&lt;/p&gt;
+&lt;p&gt;There are another three icons at the bottom of the bar - switching vaults, help, and settings.&lt;/p&gt;
+&lt;h2 id=&#34;first-note&#34;&gt;First note&lt;/h2&gt;
+&lt;p&gt;Writing a note is easy - just click the &amp;ldquo;new note&amp;rdquo; button and start typing.  Markdown is pretty sparse - you can&amp;rsquo;t specify things like fonts or headers.  This can be a plus - it allows you to focus on the content.  Refer to my previous &lt;a href=&#34;http://localhost:1313/posts/210424_hugo_markdown_cheatsheet&#34;&gt;Markdown Cheatsheet&lt;/a&gt; for a review of markdown syntax.&lt;/p&gt;
+&lt;p&gt;Using the &amp;ldquo;new note&amp;rdquo; will put your file in the root of the vault.  Because I sort my notes into folders, I prefer to right-click the folder and choose new note so that it is created in the folder.&lt;/p&gt;
+&lt;p&gt;A third way to create a new note is wiki-style.  Just use double-square brackets to reference another file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[[new file]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clicking on the link will create the file and open it for editing.&lt;/p&gt;
+&lt;h2 id=&#34;the-end-of-the-beginning&#34;&gt;The end of the beginning&lt;/h2&gt;
+&lt;p&gt;At this point you should have installed the app and completed your first file.  If this is the first time you have used Obsidian, you may be saying, &amp;ldquo;so what&amp;rdquo;?  Have patience.  The next post will get into some more advanced Obsidian usage ideas and later posts will cover dataview (!) and my organizing strategy.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo Markdown Cheatsheet</title>
+      <link>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</link>
+      <pubDate>Sat, 24 Apr 2021 12:42:56 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</guid>
+      <description>&lt;p&gt;Markdown is a fantastic distraction-free way to write.  Using Markdown in VSCode is one of the things I like most about building this blog with Hugo.  It&amp;rsquo;s important to realize that the site CSS and Hugo shortcodes that are present play a big role in the way you write for the Hugo platform.  Those elements are usually included in the theme.  My theme is called &lt;em&gt;next&lt;/em&gt; and you can clone it from Github.&lt;/p&gt;
+&lt;p&gt;This post is a reference for how to use Markdown with my CSS and shortcodes.  I built my own hugo theme and CSS because I wanted to understand how it all worked.  I don&amp;rsquo;t think that my setup is the fanciest, but you are welcome to clone it or fork it.  If you are new to Hugo, CSS, or HTML in general then my efforts are cleaner and probably more understandable than one of the advanced themes.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been doing this for nine months - pretty much the entire pandemic - and I&amp;rsquo;ve started to realize that I&amp;rsquo;ve forgotten some of the things I used months ago.  This document is therefore a reference for &lt;strong&gt;me&lt;/strong&gt;.  My career has never centered on HTML or CSS, so this has been an awesome learning opportunity.  &lt;a href=&#34;https://mikedane.com&#34;&gt;Mike Dane&lt;/a&gt; has some fantastic videos that helped me get started.&lt;/p&gt;
+&lt;h2 id=&#34;basic-markdown&#34;&gt;Basic Markdown&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;quick&lt;/strong&gt; &lt;em&gt;brown&lt;/em&gt; &lt;strong&gt;&lt;em&gt;fox&lt;/em&gt;&lt;/strong&gt; jumped over the &lt;strike&gt;frog&lt;/strike&gt; &lt;mark&gt;lazy dog&lt;/mark&gt;.  Use the backslash to display literal symbols instead of processing them {}.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;The &lt;span style=&#34;font-weight:bold&#34;&gt;__quick__&lt;/span&gt; &lt;span style=&#34;font-style:italic&#34;&gt;_brown_&lt;/span&gt; &lt;span style=&#34;font-style:italic&#34;&gt;__&lt;/span&gt;*fox*__ jumped over the {{\&amp;lt;strike &amp;#34;frog&amp;#34;&amp;gt;}} 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{{\&amp;lt;highlight &amp;#34;lazy dog&amp;#34;&amp;gt;}}.    Use the backslash to display literal 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;symbols instead of processing them \{}.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Note that &amp;ldquo;\&amp;rdquo; literals appear in the shortcodes to force shortcode syntax display and are not used in production.  Double tildes &amp;ldquo;~~&amp;rdquo; can be used before and after to strikethorugh as well.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I picked up the shortcodes  for highlighting and strikethrough  from Ashish Lahoti at &lt;a href=&#34;https://codingnconcepts.com/hugo/&#34;&gt;codingconcepts.com&lt;/a&gt;, who has several interesting Hugo articles on his blog.&lt;/p&gt;
+&lt;h2 id=&#34;lists&#34;&gt;Lists&lt;/h2&gt;
+&lt;p&gt;Unnumbered and ordered list are easy and intuitive.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bullet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Numbered&lt;/li&gt;
+&lt;li&gt;Example&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;*&lt;/span&gt; Bullet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;1.&lt;/span&gt; Numbered
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;2.&lt;/span&gt; Example
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;headings&#34;&gt;Headings&lt;/h2&gt;
+&lt;p&gt;Headings are created by successive hash symbols.&lt;/p&gt;
+&lt;h1 id=&#34;heading-one&#34;&gt;Heading One&lt;/h1&gt;
+&lt;h2 id=&#34;heading-two&#34;&gt;Heading Two&lt;/h2&gt;
+&lt;h3 id=&#34;heading-three&#34;&gt;Heading Three&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# H1  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;## H2     
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;### H3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;I usually use Heading one for the title and heading two inside an article.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;blockquotes&#34;&gt;Blockquotes&lt;/h2&gt;
+&lt;p&gt;Block quotes are accomplished by tabs.  Consecutive lines are assumed to be a continuation.  You can also use the &amp;ldquo;greater than&amp;rdquo; sign to indicate a section is a blockquote.  When presenting this way add two spaces at the end of every line to indicate the following line is also a part of the block and a new line, otherwise it won&amp;rsquo;t respect returns.  You can also use multiple greater thans to create an indented section.  This comes in using my CSS Blockquote style.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a block quote.  “Two things are infinite: the universe and human stupidity; and I&amp;rsquo;m not sure about the universe.”
+― Albert Einstein&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and here&amp;rsquo;s the actual typed Markdown.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;This is a block quote.  “Two things are infinite: the universe and human stupidity; and I&amp;#39;m not sure about the universe.”
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;&lt;/span&gt;― Albert Einstein 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;gt;&amp;gt; This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+&lt;p&gt;Code can be accomplished a number of ways.  It can be surrounded by three ticks (`).  The easiest way to create a code block is to add a line to the block, then tab and add your code.  Leave a line after the block and the tabbed section will be treated as a code block.&lt;/p&gt;
+&lt;h3 id=&#34;tick-block&#34;&gt;Tick block&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Print (&amp;#34;tick block&amp;#34;)
+Print (&amp;#34;using three ticks before and after&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and here&amp;rsquo;s what that looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```
+Print (&amp;quot;tick block&amp;quot;)
+Print (&amp;quot;using three ticks before and after&amp;quot;)
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;tab-block&#34;&gt;Tab block&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;Print (&amp;quot;tick block&amp;quot;)
+Print (&amp;quot;using three ticks before and after&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and here&amp;rsquo;s what that looks like - line before and after, tabbed block.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 
+          Print (&amp;quot;tick block&amp;quot;)
+          Print (&amp;quot;using three ticks before and after&amp;quot;)
+ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;non-printing-characters&#34;&gt;Non-printing characters&lt;/h3&gt;
+&lt;p&gt;You can also make this work with non-printing characters as demonstrated below.  Pretty weak approach, but sometimes I don&amp;rsquo;t have a better way to make columns line up.&lt;/p&gt;
+&lt;p&gt;          non-printing characters were used to indent this line . . .&lt;/p&gt;
+&lt;h2 id=&#34;tables&#34;&gt;Tables&lt;/h2&gt;
+&lt;p&gt;Tables are created using a table shortcode as demonstrated below.
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table: Demonstration&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Letters&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Numbers&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Symbols&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;A&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;0&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;B&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;C&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+&lt;p&gt;Ignore the backslashes below - the shortcut kicks in when displaying if I leave them out.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\{\{\&amp;lt; bootstrap-table table_class=&amp;#34;table table-responsive table-hover&amp;#34; thead_class=&amp;#34;table-info&amp;#34; caption=&amp;#34;Table: Demonstration&amp;#34; \&amp;gt;\}\}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| Letters | | Numbers | | Symbols  |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;|:-----:|:--:|:-----|-|-----|  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| A |  | 0   | | \* |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| B |  | 1 | | $ |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| C |  | 2 | | % |   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\{\{\&amp;lt;/bootstrap-table&amp;gt;\}\}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I copied the shortcode for bootstrap tables from &lt;a href=&#34;https://mybluelinux.com&#34;&gt;MyBlueLinux&lt;/a&gt;.  I&amp;rsquo;m not sure who the author is, but they are interested in many of the same things I am - networking, Linux, and so on.  Readers of my blog would probably enjoy this site as well.
+&lt;img src=&#34;http://localhost:1313/gns3.png#floatsmallright&#34; alt=&#34;GNS3&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;links-and-images&#34;&gt;Links and Images&lt;/h2&gt;
+&lt;p&gt;Links in Markdown are formatted as shown below for &lt;a href=&#34;https://gns3.com&#34;&gt;GNS3&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#f92672&#34;&gt;GNS3&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;https://gns3.com&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Images in markdown are formatted similarly to links, but start with an exclamation.  The code to bring in the GNS3 symbols is shown below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\![GNS3]\(/gns3.png#floatsmallright)  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;My CSS supports the following directives - these are all dynamic and change the image size based on the window size, which gives a much cleaner look.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;floatsmallright&lt;/li&gt;
+&lt;li&gt;floatsmallleft&lt;/li&gt;
+&lt;li&gt;floatright&lt;/li&gt;
+&lt;li&gt;floatleft&lt;/li&gt;
+&lt;li&gt;center&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;m not sure where I copied this idea from (God bless open source and github!).  You can find this in the next theme style.css in my Github account, along with all the shortcodes.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,53 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home Assistant on </title>
+    <link>http://localhost:1313/tags/home-assistant/</link>
+    <description>Recent content in Home Assistant on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 May 2024 15:09:11 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/home-assistant/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home Assistant Device Recovery</title>
+      <link>http://localhost:1313/posts/240517_homeassistantrecovery/</link>
+      <pubDate>Sat, 18 May 2024 15:09:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/240517_homeassistantrecovery/</guid>
+      <description>&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Spectrum was in my neighborhood, extending their cable network finally.  Bear in mind that Spectrum (Charter in those days) promised this &amp;ldquo;soon&amp;rdquo; when I first moved in.&lt;/p&gt;
+&lt;p&gt;So, anyway, 24 years later they were installing conduit, nicked a power line, and shut down the neighborhood.  As much as I&amp;rsquo;m griping about others, this story is really about personal stupidity.  I setup a bunch of Shelly plugs to work with Home Assistant and didn&amp;rsquo;t lock down their IPs.&lt;/p&gt;
+&lt;h2 id=&#34;is-this-really-a-problem&#34;&gt;Is this, really a problem?&lt;/h2&gt;
+&lt;p&gt;Yes, it is.&lt;/p&gt;
+&lt;p&gt;Devices are added to Home Assistant under settings &amp;gt; devices and then choosing the Add Device button. The Device settings records the MAC, but the IP isn&amp;rsquo;t shown anywhere in Home Assistant that I could find.  For completeness, yes, I googled it as well.  I guess I assumed that the discovery was via MAC, but after the Spectrum reboot my devices all got new addresses from DHCP and all my buttons were broken.&lt;/p&gt;
+&lt;p&gt;One way to recover would be to rediscover all the devices and subsequently rebuild all my dashboards and integrations.  I&amp;rsquo;d prefer not to do that.  I didn&amp;rsquo;t label devices before, nor did I write down the original IPs, so that process sounds like work.  I had one device that I &lt;em&gt;did&lt;/em&gt; have an IP for so I tried to change the IP back and was able to verify that using the original IP will fix the integration.&lt;/p&gt;
+&lt;h2 id=&#34;i-need-a-map&#34;&gt;I need a map&lt;/h2&gt;
+&lt;p&gt;I was able to find my original IPs in the Home Assistant container config files.  From the container host, I used docker to access the host as shown below.  &lt;strong&gt;-i&lt;/strong&gt; is for interactive and &lt;strong&gt;-t&lt;/strong&gt; is for a terminal, with homeassistant being the container name (found via &amp;ldquo;docker ps&amp;rdquo;).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo docker exec -i -t homeassitant bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the container, navigate to /config/.storage and view the &lt;em&gt;core.device_registry&lt;/em&gt; file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd .storage
+cat core.device_registry
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The registry is formatted in JSON, but a little searching will turn up the obvious sections that map IPs to MACs (snippet below).&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;configuration_url&amp;rdquo;: &amp;ldquo;http://192.168.1.222&amp;rdquo;,
+&amp;ldquo;connections&amp;rdquo;: [
+[
+&amp;ldquo;mac&amp;rdquo;,
+&amp;ldquo;d4:d4:da:01:02:03&amp;rdquo;
+]
+]&lt;/p&gt;
+&lt;h2 id=&#34;resetting-ips&#34;&gt;Resetting IPs&lt;/h2&gt;
+&lt;p&gt;To fix the situation, I did what I should have done the first time.  I locked down the IPs.  One way would be to set a static IP, but I want to manage this in DHCP.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m using PFSense for DHCP, so after logging into PFSense I navigated to &lt;em&gt;Services&amp;gt;DHCP Server&lt;/em&gt;.  At the bottom of the page, under &amp;ldquo;DHCP Static Mappings&amp;rdquo; I clicked the button and filled in the IP and MAC on the next page.  Saving the mapping is the obvious last step.
+&lt;img src=&#34;http://localhost:1313/240519_pfsensedhcp.png&#34; alt=&#34;PFSense DHCP&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/240519_shellypage.png#floatsmallright&#34; alt=&#34;Shelly Page&#34;&gt;
+Setting a DHCP record doesn&amp;rsquo;t change the device. To get it to move to the new IP, you&amp;rsquo;ll need to restart it.  One way would be to unplug the device (probably the easy way).  Another way - my method - was to go to Status &amp;gt; DHCP Leases in PFSense and query the MAC to get it&amp;rsquo;s current IP.  Shelly devices have a web interface, so navigating to the device provides a reboot button under settings.  When the device reboots, the integration in Home Assistant will be working!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/20240519_pfsensedhcpstatus.png&#34; alt=&#34;PFSense DHCP Leases&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

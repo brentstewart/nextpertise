@@ -1,0 +1,415 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on </title>
+    <link>http://localhost:1313/tags/hugo/</link>
+    <description>Recent content in Hugo on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Sep 2023 08:17:00 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markdown to DOCX</title>
+      <link>http://localhost:1313/posts/230922_markdown_to_docx/</link>
+      <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230922_markdown_to_docx/</guid>
+      <description>&lt;h1 id=&#34;exporting-markdown&#34;&gt;Exporting Markdown&lt;/h1&gt;
+&lt;p&gt;Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.  Although initially reluctant, I&amp;rsquo;ve grown to appreciate the portability and easy reuse that markdown allows.  The problem is that the rest of the world doesn&amp;rsquo;t always appreciate what is obvious to me.  As an example, the folks at work prefer their documents in Office formats.&lt;/p&gt;
+&lt;h2 id=&#34;office-to-obsidian&#34;&gt;Office to Obsidian&lt;/h2&gt;
+&lt;p&gt;One of the things I love about markdown is that it&amp;rsquo;s an easy format to migrate to and from, perhaps because it&amp;rsquo;s a simple format.  I wrote about an automated process to take Word documents, convert them to markdown, and incorporate them into your Obsidian vault in &lt;a href=&#34;http://localhost:1313/posts/230509_word2obsidian/&#34;&gt;Word to Obsidian with a DIY CI&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;obsidian-to-word&#34;&gt;Obsidian to Word&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ObsPandoc.png#floatleft&#34; alt=&#34;Pandoc Plugin&#34;&gt;
+The techniques I used in the above article &lt;em&gt;could&lt;/em&gt; be used for any type of file format changes, but exporting from Obsidian isn&amp;rsquo;t always to DOCX and isn&amp;rsquo;t always aimed at a particular directory.  In fact, if you are using O365 then it may need to be uploaded to an arbitrary place on OneDrive/Sharepoint in a seperate step.  Instead, I&amp;rsquo;ve found the best method to be the &lt;a href=&#34;https://github.com/OliverBalfour/obsidian-pandoc&#34;&gt;Pandoc Plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In Obsidian, go to &lt;em&gt;options&lt;/em&gt; (the cog in the lower right), then to _Community Plugins&amp;quot; and search for Pandoc.  This presents an &amp;ldquo;install&amp;rdquo; button, which adds the plugin to your vault and it can then be enabled.  Don&amp;rsquo;t forget to enable it!  I do that sometimes and then wonder why it&amp;rsquo;s not working.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve found that the plugin exposes Pandoc options pretty well and that default settings work well (I&amp;rsquo;ve mostly used it to export to DOCX and PDF).  There are options to supply default formating to the document, but they&amp;rsquo;re not necessary.&lt;/p&gt;
+&lt;h2 id=&#34;hugo-markdown-to-word&#34;&gt;Hugo Markdown to Word&lt;/h2&gt;
+&lt;p&gt;Other sources of markdown files, such as those from Hugo or Github, can be converted using Pandoc on the commandline.  The issue here is that Hugo files typically include embedded images, and the images are specified based on where the image ends up after compilation.  When you run &lt;em&gt;hugo&lt;/em&gt; it takes the markdown directories and produces a set of html files in a new structure.  On this blog, my images are refrenced at the &amp;ldquo;root&amp;rdquo; pre-compilation, for instance &amp;ldquo;/image.png&amp;rdquo;, alongside the written content.  In the on-disk structure (and you can see this in the github) my writing is under &amp;ldquo;/post/file.md&amp;rdquo; and the images are under &amp;ldquo;/static/image.png&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;When Pandoc runs against the raw Hugo markdown, it just references the path and produces compilation errors.  I also use CSS to style images, which modifies the URL (for instance &amp;ldquo;/image.png#floatright&amp;rdquo;).  The CSS markings are also lost on Pandoc and will cause errors. There are three ways to deal with this.  The first is to manually edit the markdown to remove the image or correct the path.  Options two and three involve a pre-processor, a piece of lua code that Pandoc runs mid-conversion.  Option two is to use a lua pre-processor to remove all images.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@hyper &amp;gt; cat filterimagesinpandoc.lua 
+function Image () return {} end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Option three is to use a lua pre-processor to correct the path and remove the styling.  No code demonstrated here because I use option 2 and the code would depend on your directory structure.&lt;/p&gt;
+&lt;p&gt;The final trick to converting markdown - Hugo, Obsidian, or any other - is to understand that Pandoc expects markdown to begin with a YAML header.  That header can be as simple as an authors name.  The YAML ends with a line of three dashses.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;author: Brent
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pandoc will fail if it doesn&amp;rsquo;t see that YAML header.  Most Hugo files and most Obsidian files are going to include that header, so you should be okay.  Pandoc also gets confused if it sees three dashes on a line later in the file.  I used that to generate a seperator line in Obsidian and caused Pandoc to blow up.  Make sure that there is at least a primitive YAML header AND that there&amp;rsquo;s only one line of three dashes.&lt;/p&gt;
+&lt;p&gt;Converting ends up looking like this.  This command specifies the source (markdown.doc), the output file and format (Word.docx) and the filter.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pandoc ~/Folder/markdown.md -o Word.docx --lua-filter filterimagesinpandoc.lua
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So rock on with Markdown and convert to Word as you need to live with the normies.  Hope this helps!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ahrefs</title>
+      <link>http://localhost:1313/posts/230731_ahrefs/</link>
+      <pubDate>Mon, 31 Jul 2023 21:28:53 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230731_ahrefs/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been writing in this space for about three years.  I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.  My source files, for instance, were fairly easy to organize in the first year but over time have sprawled.  Changes to my Hugo template have broken some older internal URLs as well.  Even when I recognize the possibility of an issue, it&amp;rsquo;s hard to track down every instance that broke.&lt;/p&gt;
+&lt;p&gt;One simple example is that I originally put my entries into the root folder and later moved them to &lt;em&gt;/posts&lt;/em&gt;.  The issue is that all my older files referenced each other withoot that directory.  I&amp;rsquo;ve corrected this when I see it, but I&amp;rsquo;m sure that readers have stumbled onto these inadvertant issues.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Mea culpa&lt;/em&gt;, but I have a day job and it&amp;rsquo;s hard to keep up sometimes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/ahrefs.png#floatright&#34; alt=&#34;Ahrefs logo&#34;&gt;
+A few months ago I found &lt;a href=&#34;https://app.ahrefs.com/&#34;&gt;Ahrefs&lt;/a&gt;.  Ahrefs is a website that has a gazillion tools that are useful in improving website quality.  There are a few of these sites and most include a &amp;ldquo;try before you buy&amp;rdquo;, but Ahrefs actually has a free tier that provides valuable feedback.&lt;/p&gt;
+&lt;h2 id=&#34;website-quality&#34;&gt;Website Quality&lt;/h2&gt;
+&lt;p&gt;Ahrefs scans this site every Sunday and sends me a report.  It has taken a little time to understand how to use the data they provide - remember, this isn&amp;rsquo;t really what I do.  That said, anyone who is interested in maintaining a blog is already putting in a certain amount of work to figure things out and Ahrefs is accessible with little effort.&lt;/p&gt;
+&lt;p&gt;There are a ton of QA metrics, including all kinds of different types of returned errors.  One of the errors is &amp;ldquo;image file size too large&amp;rdquo;.  It clearly points to the source image and the page where it is used.  I was able to load that image into Gimp, change the JPEG quality and scale, and resave to resolve the issue.
+&lt;img src=&#34;http://localhost:1313/230731_healthscore.png#floatleft&#34; alt=&#34;Health Score&#34;&gt;
+Broken links are another area where I&amp;rsquo;ve been able to drive improvement.  Hugo makes it easy to apply a template to markdown and generate a site, but errors in the template get propogated across a lot of places (and I&amp;rsquo;m sure are annoying to read).  I&amp;rsquo;ve used Ahrefs to quickly point at the offenders and resolve.&lt;/p&gt;
+&lt;p&gt;If you are developing in Hugo, theres a &amp;ldquo;compiling&amp;rdquo; step to get from raw markdown to a website.  It&amp;rsquo;s not always clear where some of the errors come from, so I&amp;rsquo;ve found that I need to run &lt;strong&gt;hugo server -D&lt;/strong&gt; to generate a live copy of the page for debugging.  Sometimes my error is in the page, but I&amp;rsquo;ve found several instances where the issue was in the interaction of the page with my templates.  None fo the issue have been hard to resolve, they just take some thought.&lt;/p&gt;
+&lt;p&gt;I particularly like that Ahrefs summarizes all the issues into a &amp;ldquo;Health Score&amp;rdquo;.  This makes it easy to see how you are doing at-a-glance.  You can see from my score, I have some improvements to make.  That said, Ahrefs also makes it easy to browse the issues and prioritize your time.  I have 237 issues with &amp;ldquo;Multiple meta description tags&amp;rdquo;.  Clearly that&amp;rsquo;s a tag thats being duplicated at the default template and in a partial.  That said, it doesn&amp;rsquo;t impact the user experience and so I&amp;rsquo;ve been prioritizing the more mundane link issues.&lt;/p&gt;
+&lt;h2 id=&#34;seo&#34;&gt;SEO&lt;/h2&gt;
+&lt;p&gt;Ahrefs has a number of tools around search engine optimization.  I&amp;rsquo;m sure that this would be fantastically interesting if I were building an ecommerce site, but even at an amatuer level it&amp;rsquo;s cool to see what other sites link back to me.  There are also tools around what keywords will bring people to the site, what my most popular pages are, and what topics are most popular.&lt;/p&gt;
+&lt;p&gt;The SEO side includes errors around mistakes I&amp;rsquo;ve made that inhibit indexing.  Right now I&amp;rsquo;m missing &amp;ldquo;Social Graph Tags&amp;rdquo; that are used by LinkedIn and Facebook - who knew?  But the error includes a brief explanation, a link to details, and a &amp;ldquo;How to Fix&amp;rdquo; link with good instructions.  Of course, Hugo is not HTML, so there&amp;rsquo;s some level of translation.&lt;/p&gt;
+&lt;h2 id=&#34;paid-accounts&#34;&gt;Paid Accounts&lt;/h2&gt;
+&lt;p&gt;Serious webmasters will want to conssider a paid account.  The paid account includes a lot more SEO tools and analysis.  Accounts start at $83/mo (paid annually), so they&amp;rsquo;re not for the faint of heart, but I&amp;rsquo;m really impressed by the quality of what I see.  I appreciate that Ahrefs makes valuable information available for hobbiest and recommend it as a good way to start understanding more about how HTML, the web, and the world work.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Automaticly adding Hugo articles to Obsidian</title>
+      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
+&lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cp ~/git/nextpertise/content/posts/*.md ~/2nd\ Brain/Nextpertise/
+echo &amp;quot;blog2obs.sh ran&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I also made this file executable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x blog2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works as expected.  The markdown files are copied from my hugo git directory into my Obsidian vault under the &amp;ldquo;Nextpertise&amp;rdquo; folder.  Obsidian actually updates dynamically as soon as the files are present.  There are some issues - my website has a directory for graphics that I&amp;rsquo;m not copying over, for instance, and the internal linking and tagging I expect in Obsidian wouldn&amp;rsquo;t be present in these files.  External links in the posts seem to work as expected though.  All I need to do is remember to run this occassionally . . .&lt;/p&gt;
+&lt;h2 id=&#34;automatically&#34;&gt;Automatically&lt;/h2&gt;
+&lt;p&gt;So the next step was to have this run as a &lt;em&gt;cron&lt;/em&gt; job.  On Linux, use &lt;strong&gt;crontab -e&lt;/strong&gt; to setup the job.  Below is the way I have this setup and working.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MAILTO=MYEMAILADDRESS
+0 0 * * * /home/brent/blog2obs.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230314_Linux_Email.jpg#floatright&#34; alt=&#34;It works!&#34;&gt;
+The five variables before the job are minute, hour, day, month, and day of the week.  So my entry is to run at 00 minutes and 0 hour (midnight) every day.  Cron defaults to outputting to system mail, but I use the MAILTO entry and SSMTP to redirect this to a public email address.  For more information on how to set this up see my &lt;a href=&#34;http://localhost:1313/posts/230313_command_line_email/&#34;&gt;last post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The received email is on the right, and now it&amp;rsquo;s clear why the &lt;em&gt;echo&lt;/em&gt; command is in the batch file.  The echo provides some text - without that text there&amp;rsquo;s no output from the script and nothing to email.&lt;/p&gt;
+&lt;p&gt;There are some possible improvements that might make this worth revisiting in the future.  The simple script doesn&amp;rsquo;t indicate if there was an error copying the files.  I could also imagine inserting links and tags that are used in my Obsidian vault as a header to the imported files.  However, this is a straight-forward process and it&amp;rsquo;s meeting my immediate need.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Adding Math Formulas to a Hugo-based site</title>
+      <link>http://localhost:1313/posts/220817_formulas/</link>
+      <pubDate>Wed, 17 Aug 2022 10:40:54 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/220817_formulas/</guid>
+      <description>&lt;p&gt;An upcoming article features some basic math, but rendering it in markdown is unaesthetic.  What you get is &lt;em&gt;E=mc^2&lt;/em&gt; when what you want is $ E=mc^2$.  My search led me to &lt;a href=&#34;https://katex.org/&#34;&gt;KaTeX&lt;/a&gt; which is a JavaScript library that let&amp;rsquo;s you put $\LaTeX$ code into an HTML document.  LaTeX was created to typeset scientific papers, so it is built for displaying things like matrices and integrals.  I don&amp;rsquo;t plan to publish math that intense, but LaTeX can help clearly display even a simple division equation and improve the readability of the post.  The best source of information I found was &lt;a href=&#34;https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/&#34;&gt;Mert Bakir&amp;rsquo;s blog&lt;/a&gt; and my usage is based on his work.&lt;/p&gt;
+&lt;p&gt;There are three steps to incorporating KaTeX with Hugo.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a partial template.  I added this to my theme by creating a file at &lt;em&gt;themes/next/layouts/partials/katex.html&lt;/em&gt;, but it could also be added to the site at &lt;em&gt;layouts/partials/&lt;/em&gt; (note that the name &lt;em&gt;next&lt;/em&gt; is my theme name, so your&amp;rsquo;s will differ).  Pull the code from the &lt;a href=&#34;https://katex.org/docs/browser.html&#34;&gt;KaTeX site&lt;/a&gt; by copying everything within the &lt;!-- raw HTML omitted --&gt; tags.  You&amp;rsquo;ll notice there&amp;rsquo;s also a script in the code below - add that to the file as well.  Here is the file that is current in August, 2022, for this site.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;
+
+  &amp;lt;!-- The loading of KaTeX is deferred to speed up page rendering --&amp;gt;
+  &amp;lt; script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+
+  &amp;lt;!-- To automatically render math in text elements, include the auto-render extension: --&amp;gt;
+  &amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;
+    onload=&amp;#34;renderMathInElement(document.body);&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+
+  &amp;lt;script&amp;gt;
+      document.addEventListener(&amp;#34;DOMContentLoaded&amp;#34;, function() {
+          renderMathInElement(document.body, {
+              delimiters: [
+                  {left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},
+                  {left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false}
+              ]
+          });
+      });
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Include the partial file in all the pages where you want to use LaTeX.  Again, I chose to include this in my theme as part of the &lt;em&gt;/theme/next/layouts/partials/header.html&lt;/em&gt; file.  It can be included anywhere as long as Hugo builds the code outside the &lt;!-- raw HTML omitted --&gt; tags.  This Hugo function looks for the presence of a parameter named &lt;em&gt;math&lt;/em&gt; which is set to True.  This keeps from loading KaTeX on pages where it is unnecessary.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  {{ if .Params.math }}{{ partial &amp;#34;katex.html&amp;#34; . }}{{ end }}
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Finally, edit the default archetype file (themes/next/archetypes/default.md).  Changing the markdown engine is not required, but issues with KaTeX have been reported using the default Goldmark (I didn&amp;rsquo;t encounter any issues with either in my testing).  I have the math parameter present but set to false, which will not load KaTeX javascript (similar to what would happen if I omitted the parameter).  I am including the parameter as a reminder to my future self.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  markup: &amp;#39;mmark&amp;#39;
+  math: false
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Use KaTeX in markdown by using two dollar signs ($$) as before and after delimiters for a standalone centered equation or single dollar signs for in-line equations.
+You can find a good LaTeX resource at the &lt;a href=&#34;https://www.overleaf.com/learn/latex/Mathematical_expressions&#34;&gt;Overleaf&lt;/a&gt; site.&lt;/p&gt;
+&lt;p&gt;The last problem I had was finding some good examples!  So, here are a few equations to give you a feel for what is possible.&lt;/p&gt;
+&lt;p&gt;$\LaTeX$&lt;/p&gt;
+&lt;p&gt;Bracket the equation with two dollar signs to center ($$) - x = {-b \pm \sqrt{b^2-4ac} \over 2a}&lt;/p&gt;
+&lt;p&gt;$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$&lt;/p&gt;
+&lt;p&gt;Use one dollar sign on each side to include in line.  For instance, acceleration a={\deltav}{t} renders $a= {\Delta v \over t}$&lt;/p&gt;
+&lt;p&gt;Finally, just to show the range of LaTeX, is Schrodinger&amp;rsquo;s Equation - i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r},t).
+$$i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r},t)$$&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo Markdown Cheatsheet</title>
+      <link>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</link>
+      <pubDate>Sat, 24 Apr 2021 12:42:56 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</guid>
+      <description>&lt;p&gt;Markdown is a fantastic distraction-free way to write.  Using Markdown in VSCode is one of the things I like most about building this blog with Hugo.  It&amp;rsquo;s important to realize that the site CSS and Hugo shortcodes that are present play a big role in the way you write for the Hugo platform.  Those elements are usually included in the theme.  My theme is called &lt;em&gt;next&lt;/em&gt; and you can clone it from Github.&lt;/p&gt;
+&lt;p&gt;This post is a reference for how to use Markdown with my CSS and shortcodes.  I built my own hugo theme and CSS because I wanted to understand how it all worked.  I don&amp;rsquo;t think that my setup is the fanciest, but you are welcome to clone it or fork it.  If you are new to Hugo, CSS, or HTML in general then my efforts are cleaner and probably more understandable than one of the advanced themes.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been doing this for nine months - pretty much the entire pandemic - and I&amp;rsquo;ve started to realize that I&amp;rsquo;ve forgotten some of the things I used months ago.  This document is therefore a reference for &lt;strong&gt;me&lt;/strong&gt;.  My career has never centered on HTML or CSS, so this has been an awesome learning opportunity.  &lt;a href=&#34;https://mikedane.com&#34;&gt;Mike Dane&lt;/a&gt; has some fantastic videos that helped me get started.&lt;/p&gt;
+&lt;h2 id=&#34;basic-markdown&#34;&gt;Basic Markdown&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;quick&lt;/strong&gt; &lt;em&gt;brown&lt;/em&gt; &lt;strong&gt;&lt;em&gt;fox&lt;/em&gt;&lt;/strong&gt; jumped over the &lt;strike&gt;frog&lt;/strike&gt; &lt;mark&gt;lazy dog&lt;/mark&gt;.  Use the backslash to display literal symbols instead of processing them {}.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;The &lt;span style=&#34;font-weight:bold&#34;&gt;__quick__&lt;/span&gt; &lt;span style=&#34;font-style:italic&#34;&gt;_brown_&lt;/span&gt; &lt;span style=&#34;font-style:italic&#34;&gt;__&lt;/span&gt;*fox*__ jumped over the {{\&amp;lt;strike &amp;#34;frog&amp;#34;&amp;gt;}} 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{{\&amp;lt;highlight &amp;#34;lazy dog&amp;#34;&amp;gt;}}.    Use the backslash to display literal 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;symbols instead of processing them \{}.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;Note that &amp;ldquo;\&amp;rdquo; literals appear in the shortcodes to force shortcode syntax display and are not used in production.  Double tildes &amp;ldquo;~~&amp;rdquo; can be used before and after to strikethorugh as well.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I picked up the shortcodes  for highlighting and strikethrough  from Ashish Lahoti at &lt;a href=&#34;https://codingnconcepts.com/hugo/&#34;&gt;codingconcepts.com&lt;/a&gt;, who has several interesting Hugo articles on his blog.&lt;/p&gt;
+&lt;h2 id=&#34;lists&#34;&gt;Lists&lt;/h2&gt;
+&lt;p&gt;Unnumbered and ordered list are easy and intuitive.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bullet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Numbered&lt;/li&gt;
+&lt;li&gt;Example&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;*&lt;/span&gt; Bullet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;1.&lt;/span&gt; Numbered
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;2.&lt;/span&gt; Example
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;headings&#34;&gt;Headings&lt;/h2&gt;
+&lt;p&gt;Headings are created by successive hash symbols.&lt;/p&gt;
+&lt;h1 id=&#34;heading-one&#34;&gt;Heading One&lt;/h1&gt;
+&lt;h2 id=&#34;heading-two&#34;&gt;Heading Two&lt;/h2&gt;
+&lt;h3 id=&#34;heading-three&#34;&gt;Heading Three&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# H1  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;## H2     
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;### H3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;I usually use Heading one for the title and heading two inside an article.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;blockquotes&#34;&gt;Blockquotes&lt;/h2&gt;
+&lt;p&gt;Block quotes are accomplished by tabs.  Consecutive lines are assumed to be a continuation.  You can also use the &amp;ldquo;greater than&amp;rdquo; sign to indicate a section is a blockquote.  When presenting this way add two spaces at the end of every line to indicate the following line is also a part of the block and a new line, otherwise it won&amp;rsquo;t respect returns.  You can also use multiple greater thans to create an indented section.  This comes in using my CSS Blockquote style.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a block quote.  “Two things are infinite: the universe and human stupidity; and I&amp;rsquo;m not sure about the universe.”
+― Albert Einstein&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and here&amp;rsquo;s the actual typed Markdown.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;This is a block quote.  “Two things are infinite: the universe and human stupidity; and I&amp;#39;m not sure about the universe.”
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;&lt;/span&gt;― Albert Einstein 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;gt;&amp;gt; This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+&lt;p&gt;Code can be accomplished a number of ways.  It can be surrounded by three ticks (`).  The easiest way to create a code block is to add a line to the block, then tab and add your code.  Leave a line after the block and the tabbed section will be treated as a code block.&lt;/p&gt;
+&lt;h3 id=&#34;tick-block&#34;&gt;Tick block&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Print (&amp;#34;tick block&amp;#34;)
+Print (&amp;#34;using three ticks before and after&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and here&amp;rsquo;s what that looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```
+Print (&amp;quot;tick block&amp;quot;)
+Print (&amp;quot;using three ticks before and after&amp;quot;)
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;tab-block&#34;&gt;Tab block&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;Print (&amp;quot;tick block&amp;quot;)
+Print (&amp;quot;using three ticks before and after&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and here&amp;rsquo;s what that looks like - line before and after, tabbed block.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 
+          Print (&amp;quot;tick block&amp;quot;)
+          Print (&amp;quot;using three ticks before and after&amp;quot;)
+ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;non-printing-characters&#34;&gt;Non-printing characters&lt;/h3&gt;
+&lt;p&gt;You can also make this work with non-printing characters as demonstrated below.  Pretty weak approach, but sometimes I don&amp;rsquo;t have a better way to make columns line up.&lt;/p&gt;
+&lt;p&gt;          non-printing characters were used to indent this line . . .&lt;/p&gt;
+&lt;h2 id=&#34;tables&#34;&gt;Tables&lt;/h2&gt;
+&lt;p&gt;Tables are created using a table shortcode as demonstrated below.
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table: Demonstration&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Letters&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Numbers&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Symbols&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;A&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;0&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;B&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;C&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+&lt;p&gt;Ignore the backslashes below - the shortcut kicks in when displaying if I leave them out.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\{\{\&amp;lt; bootstrap-table table_class=&amp;#34;table table-responsive table-hover&amp;#34; thead_class=&amp;#34;table-info&amp;#34; caption=&amp;#34;Table: Demonstration&amp;#34; \&amp;gt;\}\}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| Letters | | Numbers | | Symbols  |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;|:-----:|:--:|:-----|-|-----|  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| A |  | 0   | | \* |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| B |  | 1 | | $ |  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;| C |  | 2 | | % |   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\{\{\&amp;lt;/bootstrap-table&amp;gt;\}\}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I copied the shortcode for bootstrap tables from &lt;a href=&#34;https://mybluelinux.com&#34;&gt;MyBlueLinux&lt;/a&gt;.  I&amp;rsquo;m not sure who the author is, but they are interested in many of the same things I am - networking, Linux, and so on.  Readers of my blog would probably enjoy this site as well.
+&lt;img src=&#34;http://localhost:1313/gns3.png#floatsmallright&#34; alt=&#34;GNS3&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;links-and-images&#34;&gt;Links and Images&lt;/h2&gt;
+&lt;p&gt;Links in Markdown are formatted as shown below for &lt;a href=&#34;https://gns3.com&#34;&gt;GNS3&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#f92672&#34;&gt;GNS3&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;https://gns3.com&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Images in markdown are formatted similarly to links, but start with an exclamation.  The code to bring in the GNS3 symbols is shown below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;\![GNS3]\(/gns3.png#floatsmallright)  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;My CSS supports the following directives - these are all dynamic and change the image size based on the window size, which gives a much cleaner look.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;floatsmallright&lt;/li&gt;
+&lt;li&gt;floatsmallleft&lt;/li&gt;
+&lt;li&gt;floatright&lt;/li&gt;
+&lt;li&gt;floatleft&lt;/li&gt;
+&lt;li&gt;center&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;m not sure where I copied this idea from (God bless open source and github!).  You can find this in the next theme style.css in my Github account, along with all the shortcodes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Writing a Blog - Reflections after a half year</title>
+      <link>http://localhost:1313/posts/210102_hugoafter6/</link>
+      <pubDate>Sat, 02 Jan 2021 11:45:16 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/210102_hugoafter6/</guid>
+      <description>&lt;p&gt;I started writing this blog back in July of 2020.  There was a lot going on at that point, and yet a lot of nothing.  My employer was acquired in May and management was cut, so I was surprised to be out of job.  We were quarantining, which added a degree of difficulty to the job search, and summer is a slow time to find work anyway.  Against all this uncertainty, I wanted to do &lt;em&gt;something&lt;/em&gt; and decided to start writing.  I hoped that the blog might provide a way to establish my &lt;em&gt;bona fides&lt;/em&gt;, and if nothing else it gave me a chance to share what I was working on (since I no longer had co-workers to share with).&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s now January of 2021.  I&amp;rsquo;m employed and the blog has been going for six months.  I thought I&amp;rsquo;d take a look back at the experience of starting a blog.  Has it accomplished what I hoped?  How hard was it and what things would I change?&lt;/p&gt;
+&lt;p&gt;Most posts here are technical and this article is intended to address technical things I&amp;rsquo;ve learned.  At the same time, writing is a personal expression and accomplishes personal goals, so I also want to share how this experience has worked for me.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll skip to the conclusion . . . I&amp;rsquo;ve found it valuable, technically approachable, and I think it&amp;rsquo;s something most people should consider.  With that conclusion in mind, one of the biggest challenges is trying to figure out how to get started.  There&amp;rsquo;s some good information online and the Hugo community is very supportive, but it&amp;rsquo;s mostly organized into how to accomplish small discrete tasks and not around helping communicate the big picture.  Hopefully this will encourage you to give it a try and help you avoid some of the problems that might derail you.&lt;/p&gt;
+&lt;h2 id=&#34;what-i-did-well&#34;&gt;What I did well&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatsmallright&#34; alt=&#34;Hugo&#34;&gt;
+&lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; is a winner.  I write articles in Markdown, which is lightly formatted plain text.  Hugo then automatically applies formatting and plugs it into the navigational structure.  Hugo takes my raw files and generates a set of set of finished static HTML files.  Because of the way Hugo works, I haven&amp;rsquo;t had to think about server infrastructure or spend a lot of time &amp;ldquo;coding&amp;rdquo;, I&amp;rsquo;ve been able to take the time I have and focus on writing.&lt;/p&gt;
+&lt;p&gt;I write articles in &lt;a href=&#34;https://vscodium.com/&#34;&gt;VSCodium&lt;/a&gt;.  Microsoft&amp;rsquo;s Visual Studio is open-source and VSCodium has stripped out the telemetry.  The two products are almost perfectly equivalent, so take your pick.  VSCodium is very easy to use, once you get the hang of it.  I open my local copy of the Nextpertise repo in the left pane and a terminal below.  I typically write with &lt;strong&gt;hugo server -D&lt;/strong&gt; running so I can check output on the fly.  I used to use different products for note taking, but I&amp;rsquo;ve switched over to VSCode for that, and I could really imagine writing a longer book using VSCode and then outputting via &lt;a href=&#34;http://localhost:1313/posts/200919_pandoc_improved/&#34;&gt;pandoc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://code.visualstudio.com/assets/images/home-git.svg#floatsmallright&#34; alt=&#34;Visual Studio Code&#34;&gt;
+Blog files are kept in a local copy of a Git repository.  After I finish updating, I sync up to GitHub which backs up my files and starts the process of moving them &amp;ldquo;live&amp;rdquo;.  Like VSCodium, Git has become a central tool for me in a variety of settings.  I use it for this blog, for code that I write, for artifacts that I contribute to GNS3, and even for keeping notes (you can have a private Repo).  I&amp;rsquo;ve learned about Git, started contributing to more projects, published my first &amp;ldquo;app&amp;rdquo;, and even expirimented with CI/CD.  One of the benefits of writing the blog is that I&amp;rsquo;ve grown technically and picked up these cool tools.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/89884/render-logo-dark3.png#floatsmallleft&#34; alt=&#34;Render&#34;&gt;
+&lt;a href=&#34;https://render.com&#34;&gt;Render&lt;/a&gt; hosts the site, and that has been a big win.  Render hosts static sites for free, so my only cost has been the domain.  Render integrates with GitHub via a CI process, so when I sync my repository it automatically generates web content with Hugo and posts it to the Render CDN network.  I&amp;rsquo;ve had friends in different parts of the world confirm that performance is uniformly great.  Like other decisions I made early on, this has worked out to allow me to focus my time on content.&lt;/p&gt;
+&lt;p&gt;So those are the big wins: Hugo, VSCodium, GitHub, and Render.  How did I decide on that workflow and set of vendors?  The truth is that I saw &lt;a href=&#34;https://www.mikedane.com/&#34;&gt;Mike Dane&amp;rsquo;s Giraffe Academy&lt;/a&gt; Hugo videos on Youtube and thought &amp;ldquo;I can do that&amp;rdquo;.  I was also starting to learn Python and had been fooling around with Visual Studio.  GitHub was something I&amp;rsquo;d been using for a while, especially to work with the GNS3 project, but I&amp;rsquo;d been using it more at work as well.  It really just all came together.  One of the things that I think I did right was I didn&amp;rsquo;t over-analyze things.  I expirimented enough to make sure that I had a good plan and then I just went for it.&lt;/p&gt;
+&lt;p&gt;Would I revisit any of these decisions?  There are several static site generator alternatives (the other one I hear most about is Jekyll), but so far I&amp;rsquo;ve been able to do everything I want with Hugo.  I expirimented with hosting in &lt;a href=&#34;http://localhost:1313/posts/200728_s3review/&#34;&gt;AWS S3&lt;/a&gt; and AWS offers this free in the first year.  &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; is similar to Render in that it too focuses on the JAMStack space.  Netlify has a lot of good technical documentation and videos of lectures, and they sponsor and participate in the community.  I think all three would have been good options, but for me at this point: it&amp;rsquo;s not broke.  I think that is really the magic of Render: the technical and financial barrier to doing this was significantly lowered, and that encouraged me to start and has allowed me to focus on the part I enjoy since.&lt;/p&gt;
+&lt;p&gt;Another of my early decisions that has really born fruit - making my own CSS and theme.  Hugo allows you to clone a theme from GitHub.  As I mentioned earlier, the Hugo community is very supportive and there are a lot of themes shared via their &lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;gallery&lt;/a&gt;.  I initially started with someone else&amp;rsquo;s theme, but I quickly realized that it was going to take a lot of work to understand how it all fit together.  This was particularly true because I don&amp;rsquo;t have a lot of background in web design.  The Giraffe Academy videos are really good and Mike gets into the early stages of developing a theme there.  I used some of the Giraffe Academy ideas as a basic theme and built up from there.  I&amp;rsquo;ve been able to leverage the blog to learn HTML and CSS.  The theme generally get&amp;rsquo;s more complicated because I want to solve a new problem, so &amp;ldquo;rolling my own&amp;rdquo; has allowed me to grow with the site.&lt;/p&gt;
+&lt;h2 id=&#34;what-i-would-change&#34;&gt;What I would change&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png#floatsmallright&#34; alt=&#34;Google&#34;&gt;
+My biggest issue has been building readership.  I still don&amp;rsquo;t think I&amp;rsquo;ve got a great handle on how to do that.  Google and Bing make it easy to register your page with them so it shows up in search results.  Google also has free online classes in using their Analytics and Search portals.  I recommend you do those things, but I&amp;rsquo;m still seeing slow and steady growth in readership and not a big growth.  Because the site isn&amp;rsquo;t widely read, it really didn&amp;rsquo;t get my name out when I was job hunting.  I recommend spending some time understanding how to publicize your site.  If anyone has great ideas and could leave them in the comments, I would appreciate your thoughts!&lt;/p&gt;
+&lt;p&gt;Another mistake has been setting &lt;strong&gt;draft=false&lt;/strong&gt; in the Archtype.  Turning off the &amp;ldquo;drafts&amp;rdquo; feature in Hugo has resulted in publishing pages that weren&amp;rsquo;t finished.  Yes, you will be annoyed that you forget to &amp;ldquo;publish&amp;rdquo; by setting &lt;strong&gt;draft=false&lt;/strong&gt;, but it was a dumb idea to just turn it off.&lt;/p&gt;
+&lt;p&gt;Finally, when I started I didn&amp;rsquo;t really design the site for growth.  I put all the files in the &amp;ldquo;content&amp;rdquo; directory and let them pile up, making them hard to organize.  Over New Year&amp;rsquo;s, I went back and prepended dates to file names and moved everything under a &amp;ldquo;posts&amp;rdquo; subdirectory.  This also allowed me to create the &amp;ldquo;Archives&amp;rdquo; link and made curation easier.&lt;/p&gt;
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;I started the blog with two goals: sharing some cool things I&amp;rsquo;ve learned and marketing myself during a period of unemployment.  The blog  didn&amp;rsquo;t really help get a job, but it kept me busy and focused on moving forward during a potentially depressing period.  However, I&amp;rsquo;ve found it cathartic to write and I hope that people have read and found value in this work.&lt;/p&gt;
+&lt;p&gt;Creating this site has also given me a &amp;ldquo;real world&amp;rdquo; case to learn about HTML and CSS, cloud hosting, and online analytics.  It&amp;rsquo;s also pushed me to get more involved in various online communities and to learn at a deeper level so I can share my conclusions here.&lt;/p&gt;
+&lt;p&gt;George Carlin used to have a bit about the difference in the quality of experience betweeen &lt;em&gt;riding&lt;/em&gt; and &lt;em&gt;driving&lt;/em&gt;.  It was a funny routine, but it stuck with me (like several of his thoughts) because it was true.  Learning through necessity pushes you to go deeper and wider.  Although my day job is management, continuous detailed learning is an important part of the IT industry.&lt;/p&gt;
+&lt;p&gt;This has been easy enough that I&amp;rsquo;ve thought about creating sites for my church or the Trail Life group I lead.  If you have an expertise and an interest in sharing it, I would encourage you!  Let me know how I can help!  For those of you already on the path, I&amp;rsquo;m going to continue this conversation in a second column to detail some of the cool things I&amp;rsquo;ve learned how to do!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JAMStack</title>
+      <link>http://localhost:1313/posts/200817_jamstack/</link>
+      <pubDate>Mon, 17 Aug 2020 08:25:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200817_jamstack/</guid>
+      <description>&lt;p&gt;I wrote a few weeks ago about setting up this site using Hugo and [Render.  It&amp;rsquo;s become clear since then that what I &amp;ldquo;discovered&amp;rdquo; was a developed concept aimed at solving big problems in web development and that my use case was the simplest use.  Some of you were no doubt well ahead of me, but couldn&amp;rsquo;t tell me because I didn&amp;rsquo;t have a comment system on the blog until this week.
+Hugo and Render are one iteration of a concept called the JAMStack.&lt;/p&gt;
+&lt;h3 id=&#34;you-should-consider-jamstack&#34;&gt;You should consider JAMStack&lt;/h3&gt;
+&lt;p&gt;LAMP is a particular implementation of a web server.  By comparison, JAMStack is a loose collection of ideas about how to assemble the pieces needed to serve a webpage.  I have a diatribe on the &amp;ldquo;loose but enlightening concept&amp;rdquo; to &amp;ldquo;marketecture babble&amp;rdquo; cycle, but I won&amp;rsquo;t bore you with it.  Suffice to say that JAMStack is still early in the process and thus still valuable.&lt;/p&gt;
+&lt;p&gt;With JAMStack we are removing the ediface of a database/content management system/webserver stack.  The old model stored content in a database and built HTML on the fly.  It was difficult on many levels - building, updating, and securing the pieces, maintaining capacity and availability, and difficult for content creators to view their finished page.&lt;/p&gt;
+&lt;p&gt;JAMStack, as originally defined, is JavaScript, APIs, and Markup.  For Nextpertise, this is Hugo+Markup, 3rd Party APIs, and GitHub+Render.  Content is easily created and edited, then pushed straight to a Content Distribution Network (CDN) which provides fast response everywhere in the world.  I don&amp;rsquo;t have to build, license, or grow servers.  I have a local copy of Nextpertise in a local Git repository and can build as much as I want with very little effort.&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/JAMstack.png#floatright&#34; alt=&#34;JAMStack&#34;&gt;&lt;/p&gt;
+&lt;p&gt;HTML is a markup language, but it&amp;rsquo;s complicated and it entangles site design into the content.  Markdown is a simplified markup language that is human-readable.  I write content using VSCodium as a markdown file.  Hugo then compiles this markdown file against a template (in the case of this page, the &lt;em&gt;single.html&lt;/em&gt; file in the &lt;em&gt;themes/layouts/_default&lt;/em&gt; directory).  In the VSCodium terminal, I&amp;rsquo;m running &lt;strong&gt;Hugo server -D&lt;/strong&gt; and a browser is automatically updating a view of this page as I save.  When complete, I can run &lt;strong&gt;hugo server&lt;/strong&gt; and it will output my entire site as a set of html files in the &lt;em&gt;public&lt;/em&gt; directory.  Hugo and VSCodium are open source and well supported by their communities, but if you want to use something different there are too many choices for me to list.  I hear good things about Jekyll, Gatsby, and Eleventy, for instance.&lt;/p&gt;
+&lt;p&gt;Once the site is updated, I push the local copy to Github.  Git provides a backup and handles version control.  It also handles permissions and tracks who makes changes, so I can invite collaborators over time.  Finally, Git provides the Continuous Integration piece.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t actually compile HTML locally.  Hugo shows it on the fly for development, but keeping a local public directory and dragging file to a host can create a problem with old file versions still present.  Better to compile a clean copy with each push, and GitHub handles that for me using a continuous integration (CI) process.  When I push a change to Github, a process automatically kicks off to compile the HTML and pass it to Render for distribution.&lt;/p&gt;
+&lt;p&gt;Speaking of CDNs - I love working with Render.  I chose them after inadequate research and thought they were entirely unique.  It turns out that there are a number of ways to host static sites.  I wrote about S3: good, but doesn&amp;rsquo;t have a way to auto-deploy from Github.  I&amp;rsquo;ve heard good things about CloudFlare, Firebase, and GCP as well, but none of them have the CI integration.  If that&amp;rsquo;s a major factor for you, also look at GitHub pages and Netlify.  Of those options, I want to call out Netlify as providing a lot of support and documentation to the larger community.&lt;/p&gt;
+&lt;p&gt;Everything I&amp;rsquo;ve discussed so far is around static content.  Great for a blog, but serious sites require user feedback for things like purchases and comments.  In the case of Nextpertise, adding a comment option looked like it was going to require standing up an EC2 instance and deploying a service that I could embed in the page.  But I really don&amp;rsquo;t want to build and secure a server and I especially don&amp;rsquo;t want to &lt;em&gt;pay&lt;/em&gt; for one.  This is where JAMStack gets into the API part.&lt;/p&gt;
+&lt;p&gt;There are services to which I can subscribe that will provide a tenanted commenting capability for my site.  The biggest of these is Disqus.  Disqus appears to be a great choice and reasonable plans are available.  In the end, I used &lt;em&gt;utteranc.es&lt;/em&gt;, which is a bit of code that leverages Github APIs to store comments in Github issues.  I&amp;rsquo;m not building, I&amp;rsquo;m consuming.  The JAMStack model is to use APIs (like &lt;em&gt;utteranc.es&lt;/em&gt;) instead of incorporating that logic and - when you reflect on it - it&amp;rsquo;s a Unix-like philosophy of &lt;em&gt;doing one thing well&lt;/em&gt; and coupling those things at a higher level.  The philosophy I&amp;rsquo;ll take is to use third party APIs when possible, then to develop a Lambda if needed, then to stand up a server if I have to.  I&amp;rsquo;ve seen third party apis for maps, weather, jokes, and even shopping carts.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re working our way backward thorough the JAM.  Javascript would be added to help with interactivity, but at this point I don&amp;rsquo;t have a use case on my site.  So, mid-August Nextpertise is no javascript, utteranc.es API for commenting, and Hugo&amp;gt;Git&amp;gt;Render for the static site.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m continuing to read on this and I want to be careful not to present myself as an expert.  That said, I&amp;rsquo;m so enthusiastic about what I see that I wanted to share what I&amp;rsquo;ve learned with you.  I&amp;rsquo;ll check back on this topic as I have a more developed picture.  I&amp;rsquo;d also welcome your comments and suggestions!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Render</title>
+      <link>http://localhost:1313/posts/200724_render/</link>
+      <pubDate>Fri, 24 Jul 2020 08:21:27 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200724_render/</guid>
+      <description>&lt;h3 id=&#34;tldr-you-should-take-a-look-at-rendercom&#34;&gt;TLDR: you should take a look at Render.com&lt;/h3&gt;
+&lt;p&gt;I wrote in a previous post that I decided to build my site using Hugo, a decision I&amp;rsquo;m still really tickled with.  My initial draw to a Static Site Generator was to host my site in S3.  There&amp;rsquo;s a lot of attraction there - creating a public S3 bucket is easy, it&amp;rsquo;s low-cost, there&amp;rsquo;s no server to maintain, and the data is replicated within region between Availability Zones.  From a security perspective, S3 is easy to secure and the bucket is isolated.&lt;/p&gt;
+&lt;p&gt;I have experience with the major cloud providers and my high-level opinion is that AWS is the most mature, has the most complete set of products, and is the easiest to deal with.  Plus, I&amp;rsquo;m working my way through the AWS certs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/render.png#floatright&#34; alt=&#34;Render Logo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In coming up to speed on Hugo, I heard about a site called Render.  The salient points were that Render offered free static-site hosting and would pull your site from Git.  The Git integration was attractive - I had already decided to put the theme there and now I could just put the entire site there.  I decided to try Render.&lt;/p&gt;
+&lt;p&gt;At the time of this writing, I&amp;rsquo;ve had a Render account for two days.  Signup was easy and didn&amp;rsquo;t require a credit card.  They support federation with Github, so I used that option and that may have made things easier later.&lt;/p&gt;
+&lt;p&gt;Forcing me to give a card when I signup for something free always makes me feel like I&amp;rsquo;m being suckered into something.  In fact, I had an experience with Azure where I signed up for a &amp;ldquo;free&amp;rdquo; tier and ended up getting a big bill a couple months later so I have empirical reasons to be wary.&lt;/p&gt;
+&lt;p&gt;I was super-impressed with the Git integration.  I went to Github and created a new &amp;ldquo;Nextpertise&amp;rdquo; project, then went to my Hugo directory and made it a repository and sync&amp;rsquo;d it to Github.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git init  
+    $ git add .  
+    $ git commit -m &amp;quot;Initial commit&amp;quot;  
+    $ git remote add origin https://github.com/brentstewart/nextpertise.git  
+    $ git push -f origin master  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hugo takes your markdown content and compiles it against templates to generate a public directory of html files that can be copied to a web server.  When you are ready to deploy, just run &amp;ldquo;hugo&amp;rdquo; with no options.  The caveat here is that Hugo doesn&amp;rsquo;t clear out old content first, and will just copy the new build on top of the old.  Best practice then is to delete the public directory before regenerating.  So before setting up Render, I generated the public directory and sync&amp;rsquo;d my repo to Github.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Render_setup.png#floatsmallright&#34; alt=&#34;Render Setup&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From Render, I selected New &amp;ldquo;Web Service&amp;rdquo; and selected the repository I wanted to use.  Render asked for the web content directory (the &amp;ldquo;Publish directory&amp;rdquo;)  and the build command - here&amp;rsquo;s where I realized I messed up.  I went back and removed my &lt;strong&gt;public&lt;/strong&gt; directory and resync&amp;rsquo;d to Github, then used  &lt;strong&gt;hugo&lt;/strong&gt; as my build command.&lt;/p&gt;
+&lt;p&gt;By default, Render published my site to &lt;strong&gt;nextpertise.onrender.com&lt;/strong&gt;, but adding a custom domain is super-easy.  The setup screen provides instructions on setting up your DNS and tests to confirm that this step is complete.  The Nextpertise DNS is at Network Solutions, so it was easy enough to add the required records and the changes replicated overnight and were working this morning.  Render automatically assigns certs and makes the site available via https (I literally did nothing to enable this feature, it &lt;em&gt;just worked&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Render can redirect traffic to unknown pages.  I setup a rule to redirect this traffic to 404.html.  In Hugo, I created a 404.html file under &lt;em&gt;theme/layouts&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;When I finish this update, I&amp;rsquo;ll commit my local changes and push to Github.  Then I need to go to Render and click Manual Deploy.  Render will pull the changes, build the site using Hugo, and the new site will be online!  Render supports a build api hook, so I may look into using Githubs CI to trigger a Render deploy.  For now, I&amp;rsquo;m focused on getting enough content onto the site to make it interesting and cleaning up the look.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a screenshot of the pull and build.
+&lt;img src=&#34;http://localhost:1313/Render_deploy.png#floatright&#34; alt=&#34;Render build&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Render deployed my site to Oregon - I wasn&amp;rsquo;t given an option, but that seems reasonable for a free service.  They mention that &amp;ldquo;lightning-fast CDN&amp;rdquo; is included and accessing the site from the eastern US does seem reasonably quick.  &lt;em&gt;If one of my friends in India reads this, could you provide some feedback on what it&amp;rsquo;s like for you?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m really impressed with Render and - based on two days of playing - definitely recommend you take a look.  I still intend to deploy to S3, for comparison and to get some experience with S3, so I&amp;rsquo;ll write about that in the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building this site using Hugo</title>
+      <link>http://localhost:1313/posts/200720_building_site_with_hugo/</link>
+      <pubDate>Mon, 20 Jul 2020 11:38:07 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200720_building_site_with_hugo/</guid>
+      <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
+&lt;h2 id=&#34;hugohttpsd33wubrfki0l68cloudfrontnetc38c7334cc3f23585738e40334284fddcaf03d5e2e17cimageshugo-logo-widesvgfloatleft&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;
+&lt;p&gt;Mike Dane at Giraffe Academy has done an excellent series of videos that walk through Hugo.  Rather than repeat his work, I will tell you a little about my site.&lt;/p&gt;
+&lt;p&gt;Hugo supports multiple taxonomies, but for now I&amp;rsquo;ve focused on using tags.  I&amp;rsquo;ve defined some parameters in my front matter for a github link, Youtube link, and other references.  If I populate those parameters, they automatically display on the single template.  I used an HTML Grid for the list pages and set it to scale based on window width to produce a nice responsive behavior.  Hugo supports using themes and there are some great options, but I&amp;rsquo;ve chosen to build my own theme (&amp;ldquo;next&amp;rdquo;) because I wanted to understand the process.  You&amp;rsquo;re welcome to clone the theme.  Better yet, tell me what I did wrong!&lt;/p&gt;
+&lt;p&gt;This website is maintained on GitHub.  If you like the theme, clone the submodule.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

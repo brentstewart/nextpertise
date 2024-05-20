@@ -1,0 +1,132 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Self-Host on </title>
+    <link>http://localhost:1313/tags/self-host/</link>
+    <description>Recent content in Self-Host on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Sep 2023 11:29:45 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/self-host/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building a Home Web Dashboard</title>
+      <link>http://localhost:1313/posts/230930_dashboards/</link>
+      <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230930_dashboards/</guid>
+      <description>&lt;h1 id=&#34;home-dashboards&#34;&gt;Home Dashboards&lt;/h1&gt;
+&lt;p&gt;Home web dashboards serve as a &amp;ldquo;starting point&amp;rdquo; for web sessions.  Especially as a certain portion of applications now reside online, a home dashboard is a customized menu of the things that you need presented in the way you want.  Dashboards could be as simple as a collection of links, or include things like network and server statistics or embedded frames.&lt;/p&gt;
+&lt;p&gt;Hosting your own dashboard also reduces internet traffic, limits the public data footprint (particularly if you are using it to access local resources), and creates resiliancy (in the sense that local services are still easily accessible if the Internet connection is down).&lt;/p&gt;
+&lt;p&gt;I have had a hand-coded homepage running on Apache for a long time.  I recently tried out some options in Docker and wanted to share the experience.&lt;/p&gt;
+&lt;h3 id=&#34;setting-homepage&#34;&gt;Setting homepage&lt;/h3&gt;
+&lt;p&gt;Before we get into the actual options, we&amp;rsquo;ll need a brief aside on how to actually have a default page.  Browsers used to have a &amp;ldquo;homepage&amp;rdquo; setting that showed a certain site whenever a new window opened.  Over time, browsers have wanted to &amp;ldquo;feature&amp;rdquo; their own content and brand and have made it harder to set a starting point.  Browsers change frequently, so these instructions are current as of late 2023.&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;Chrome&lt;/strong&gt; - Google has rolled out a new &lt;a href=&#34;https://www.theregister.com/2023/09/07/google_privacy_sandbox/&#34;&gt;&amp;ldquo;Privacy Sandbox&amp;rdquo;&lt;/a&gt; that makes it easier for them to target ads and harder for you to avoid profiling.  The best option is to &lt;a href=&#34;https://www.mozilla.org/en-US/firefox/all/&#34;&gt;use another browser&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Meanwhile, when it comes to refuting the concepts of privacy and private ownership, &lt;strong&gt;Edge&lt;/strong&gt; says, &amp;ldquo;Hold my beer&amp;rdquo;.  Again, the best option is to avoid the problem.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230930_firefoxhomepage.png#floatleft&#34; alt=&#34;Mozilla settings&#34;&gt;
+Mozilla is a little bit of a journey sometimes, but I&amp;rsquo;ve settled on Firefox as a browser that performs well and respects privacy.  To set a homepage, go to &lt;em&gt;settings &amp;gt; home&lt;/em&gt; and there&amp;rsquo;s a place to set the homepage.  Even Firefox wants to land you on a page they control though - this setting only works for new windows and clicking the &amp;ldquo;home&amp;rdquo; button.  Under &amp;ldquo;New Tabs&amp;rdquo; the only options are &lt;em&gt;blank page&lt;/em&gt; and &lt;em&gt;Firefox Home (Default)&lt;/em&gt;.  In the good old days, you could pick your own default!  To fix this I use the &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/&#34;&gt;&lt;em&gt;New Tab Override&lt;/em&gt;&lt;/a&gt; extension.&lt;/p&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;tip&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;See this &lt;a href=&#34;http://localhost:1313/posts/230226_home/&#34;&gt;old post&lt;/a&gt; to see why my homepage is set to &lt;a href=&#34;https://www.home.arpa&#34;&gt;www.home.arpa&lt;/a&gt;&amp;hellip;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;byo&#34;&gt;BYO&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230930_handcodedhomepage.png#floatright&#34; alt=&#34;Hand coded&#34;&gt;
+The first option is to Build Your Own.  This is the option I&amp;rsquo;ve traditionally used.  Running an Apache server is pretty easy, and I use my home environment as a training area so this forces me to understand the basics of Apache and HTML.  Since I&amp;rsquo;m a router guy, I don&amp;rsquo;t get up to Layer 7 unless forced, so it&amp;rsquo;s a good way to force myself to be more technically rounded.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m using VS Code to write basic HTML and CSS (with flexboxes to space things out).  I might delve into that setup in a seperate article.  This has the advantage of being a teaching tool and being reasonably easy to maintain.  It doesn&amp;rsquo;t include any dynamic elements and it&amp;rsquo;s not the smoothest presentation.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;be careful!&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;The easiest way to create icons for links is to refer to the host site&amp;rsquo;s image.  For instance, you can right click on &amp;ldquo;Nextpertise&amp;rdquo; above and choose &lt;em&gt;get image link&lt;/em&gt; and then refer to the image &lt;a href=&#34;https://nextpertise.net/nextpertise_rays.png&#34;&gt;https://nextpertise.net/nextpertise_rays.png&lt;/a&gt;.  If you do this, the site owner and others will see you pulling the image.  For instance, the sites your linking to may show up in your companies logging if you open your homepage while on VPN.&lt;/div&gt;
+&lt;/div&gt;
+&lt;img src=&#34;http://localhost:1313/230930_homepage.png#floatleft&#34; alt=&#34;Homepage&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;homepage&#34;&gt;Homepage&lt;/h2&gt;
+&lt;p&gt;Homepage is a slick home dashboard that is available on Github.  The dashboard features integrations and dynamic widgets for a lot of different services, like pi-hole and proxmox, and it can pull in information from different providers. I installed it via docker using a &lt;em&gt;docker-compose.yml&lt;/em&gt; file that looks lie this.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;version: &amp;quot;3.3&amp;quot;
+services:
+  homepage:
+    image: ghcr.io/benphelps/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - /home/brent/homepage:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
+    restart: always
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Homepage is easy to install.  In the example, you can see that I&amp;rsquo;ve started to customize it and I was able to quickly approximate my old bespoke page.  Homepage is configured by editing some YAML files, so it&amp;rsquo;s fairly easy to setup.  It&amp;rsquo;s tedious, but not as bad as typing raw HTML.  The container includes the web server, so this is really easy to fire up and use.&lt;/p&gt;
+&lt;p&gt;I liked Homepage.  It&amp;rsquo;s performant, includes some dynamic status elements that I find valuable and would be hard to recreate by hand, and the documentation is reasonably good.  Integrating webpage icons has been a little of a challenge, but setting up the pi-hole integration (for instance) was very straightforward.  Moreover, it&amp;rsquo;s pretty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230930_dashy.png#floatright&#34; alt=&#34;Dashy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;dashy&#34;&gt;Dashy&lt;/h2&gt;
+&lt;p&gt;Dashy is another home dashboard, published on Github, that can be easily stood up via Docker.  I found Dashy to be the prettiest option.  Once the container is setup, Dashy is fully ready to go.&lt;/p&gt;
+&lt;p&gt;Customization is done via the UI to edit JSON.  I&amp;rsquo;m not a big fan of editing JSON, but I can navigate it.  However, I also found that Dashy sometimes honored my edits and sometimes lost them.&lt;/p&gt;
+&lt;p&gt;Dashy has a wide variety of really cool ways of grabbing a home page icon, but most of them will go out and grab the file from the website each time the page loads (remember the earlier tip!).  I ended up referencing the icon files from my exisitng web server to solve the problem.  Re-typing the same content when it was lost got tiresome though, and I ultimately left my time with Dashy feeling a little frustrated.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the docker command to deploy dashy.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo docker run -p 8080:80 lissy93/dashy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;home-assistant&#34;&gt;Home Assistant&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ll add a fourth option, although I think it&amp;rsquo;s only going to be best in certain situations.  Consider using Home Assistant to build your home dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230930_homeassistant.jpeg#floatright&#34; alt=&#34;Home Assistant&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Home Assistant is awesome and you &lt;em&gt;should&lt;/em&gt; run it in your home.  It&amp;rsquo;s a great way to consolidate a lot of IP-attached devices.  You can build a dashboard to control them, you can build automations (such as having lights come on at sundown), and you can pull many devices together to create &amp;ldquo;scenes&amp;rdquo;.  A scene might be just area lighting to create ambiance for an intimate dinner, for instance, and then anther scene could be &lt;em&gt;all&lt;/em&gt; the lights on for cleaning up.&lt;/p&gt;
+&lt;p&gt;You can use Home Assistant&amp;rsquo;s dashboard to embed web links.  I was able to use the Markdown card to add a group of links and include images.  There&amp;rsquo;s also a card to embed a webpage into your dashboard, and integrations for things like monitoring a pi-hole or proxmox server.&lt;/p&gt;
+&lt;p&gt;Setting up Home Assistant using docker looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo docker run -d   --name homeassistant   --privileged   --restart=unless-stopped   -e TZ=EST   -v /PATH_TO_YOUR_CONFIG:/config   --network=host   ghcr.io/home-assistant/home-assistant:stable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Home Assistant is fairly easy to setup and would allow integration with IoT controls.  I found that the card system eats up a lot of screen real estate and it would be hard to have a lot of links, but this is a nice middle ground between something like homepage and building your own.&lt;/p&gt;
+&lt;p&gt;Obviously HA can be uber-customized.  The screenshot on the right is from their example page and there are a lot of ideas on here that I don&amp;rsquo;t know how to recreate.  You can really make this dashboard sing, so take a look at their example pages.&lt;/p&gt;
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;My first conclussion is that these were all pretty easy to setup and test.  So I&amp;rsquo;d suggest you give them a try and see what you think.  As for me, I really like where Dashy is going but found it frustrating in it&amp;rsquo;s current state.  Using Home Assistant as a start page was tough because it didn&amp;rsquo;t give me a lot of control over layout and didn&amp;rsquo;t support a lot of density, but I could see how this could be the right option.  Homepage seems good, but I think for now I&amp;rsquo;ll continue to hand code it to get that experience.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Home Names</title>
+      <link>http://localhost:1313/posts/230226_home/</link>
+      <pubDate>Sun, 26 Feb 2023 14:56:13 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230226_home/</guid>
+      <description>&lt;h2 id=&#34;if-you-have-a-private-name-server-at-home-use-homearpa&#34;&gt;If you have a private name server at home, use &amp;ldquo;home.arpa&amp;rdquo;&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve used IPs for most of my home networking for a while.  At one point (years ago) I ran a Windows DNS server, but I&amp;rsquo;ve banished Windows and Linux DNS is extra work.  Plus, systemd makes DNS on Linux painful.&lt;/p&gt;
+&lt;p&gt;A couple of things have changed recently.  First, I&amp;rsquo;ve played with some server applications such as NextCloud that expect to be in a named environment.  Second, Pi-Hole has made running a home DNS server much, much, easier.&lt;/p&gt;
+&lt;p&gt;That raises the question -&lt;/p&gt;
+&lt;h2 id=&#34;what-namespace-should-be-used-for-my-personal-devices&#34;&gt;what namespace should be used for my personal devices?&lt;/h2&gt;
+&lt;p&gt;The easy part is what you should NOT do.  Don&amp;rsquo;t invent or re-use a name that is potentially valid on the public Internet.  Calling my home network &amp;ldquo;stewart.com&amp;rdquo; will prevent accessing the real public .com address from my local network.  Automated processes that use the namespace might accidentally send traffic to &amp;ldquo;real&amp;rdquo; stewart.com if my local DNS goes down or if I travel with a home laptop.  Further, any blacklists that impact the &amp;ldquo;real&amp;rdquo; domain might be applied to my traffic.&lt;/p&gt;
+&lt;p&gt;About ten years ago, it was common to see examples that used &amp;ldquo;.local&amp;rdquo; for private domains.  Microsoft recommended it for a while as well.  The big issue here was that Bonjour/Rendezvous/Multicast DNS use that namespace and could cause a conflict.&lt;/p&gt;
+&lt;p&gt;I own two domains - nextpertise.net and &lt;a href=&#34;https://www.stewart.tc&#34;&gt;stewart.tc&lt;/a&gt;.  A second option would be to use one of my domains internally.  When at home, my local server would resolve &amp;ldquo;local&amp;rdquo; names and outside my network the resolution goes to a public DNS with a different set of names.  This gets a little problematic with overlapping names.  For instance, if my public website changes IP then I have to manually update my internal DNS.  Also, it can be confusing trying to figure out what is responding when names overlap.  Still, this is manageable and does work.&lt;/p&gt;
+&lt;p&gt;A version of this would be to use a subdomain like &lt;em&gt;local.stewart.tc&lt;/em&gt;.  My home web server would be &lt;a href=&#34;https://www.local.stewart.tc&#34;&gt;www.local.stewart.tc&lt;/a&gt; and the name spaces would be distinct.  When outside the network, that subdomain just doesn&amp;rsquo;t resolve.  This isn&amp;rsquo;t confusing.  If you have a domain, this isn&amp;rsquo;t a bad option.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t have a public domain, there are some reserved namespaces taht won&amp;rsquo;t be used on the public internet that could be considered.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RFC 2606 reserves .test for testing by the IETF.  I could use &lt;em&gt;stewart.test&lt;/em&gt; without worrying it would be used anywhere else.&lt;/li&gt;
+&lt;li&gt;RFC 6762 suggests .intranet, .internal, .private, .corp, .home, and .lan&lt;/li&gt;
+&lt;li&gt;RFC 8375 reserves .home.arpa for exactly this use&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The RFC 6762 names tend to get used in businesses, so could conflict with your work VPN.  RFC 8375 calls out that there are conflicting uses of &amp;ldquo;.home&amp;rdquo; and so updates that to .home.arpa.  The .arpa top level domain is reserved for technical uses and there isn&amp;rsquo;t a way a register a conflicting domain. .home.arpa is reserved for private use, so it&amp;rsquo;s a slightly better choice than the 6762 names.&lt;/p&gt;
+&lt;p&gt;I chose to use the .home.arpa space when setting up the house in pi-hole and experienced no issues.  As I mentioned earlier, subdomains using a domain I own would have worked as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Nextcloud File Discovery</title>
+      <link>http://localhost:1313/posts/230102_nextcloud_file_discovery/</link>
+      <pubDate>Mon, 02 Jan 2023 14:47:26 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230102_nextcloud_file_discovery/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve heard good things about Nextcloud for a long time and finally decided to take the plunge.  I have a home file server that is accessed via sshfs and nfs, but it&amp;rsquo;s a little problematic to get to from Windows or mobile.  Nextcloud extends the file sharing through a web and dav interface to make it accessible from anywhere.  Nextcloud offers a lot of functionality, but my initial focus is just on straight-forward file-sharing.&lt;/p&gt;
+&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
+&lt;p&gt;Setting up Nextcloud went okay, but it defaults to sharing directories at &lt;em&gt;/var/www/nextcloud/data&lt;/em&gt;.  I spent some time trying to change Nextcloud to access the directories that already had my files but didn&amp;rsquo;t see a good way.  Option two would be to move the files and my first attempt was to access Nextcloud on my desktop PC and drag files from the NFS share.  That was  s l o w.&lt;/p&gt;
+&lt;p&gt;Rethinking my file movement, I accessed the server command line and moved the files.  Replace &lt;em&gt;Source&lt;/em&gt; and &lt;em&gt;user&lt;/em&gt; with the appropriate values.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo mv /Source/ /var/www/nextcloud/data/user/files
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This moves the files (as shown by ls) but doesn&amp;rsquo;t show the files in Nextcloud.&lt;/p&gt;
+&lt;h2 id=&#34;the-solution&#34;&gt;The solution&lt;/h2&gt;
+&lt;p&gt;There are two steps to finish this process.  First, change ownership of the files to www-data so that Nextcloud can access.  This command may take a moment to complete.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown -R www-data:www-data /var/www/nextcloud/data/brent/files/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once everything is in place, use Nextcloud&amp;rsquo;s built-in &lt;strong&gt;occ&lt;/strong&gt; tool  tool to re-index user files.  Depending on the size of your file share, this may take more than a moment.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo -u www-data php /var/www/nextcloud/occ files:scan --all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open Nextcloud and go to files - if already open, refresh.  Your files will now be visible.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

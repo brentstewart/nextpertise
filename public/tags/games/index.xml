@@ -1,0 +1,37 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Games on </title>
+    <link>http://localhost:1313/tags/games/</link>
+    <description>Recent content in Games on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Jan 2023 15:03:12 -0500</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/games/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Slingshot</title>
+      <link>http://localhost:1313/posts/230115_slingshot/</link>
+      <pubDate>Sun, 15 Jan 2023 15:03:12 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230115_slingshot/</guid>
+      <description>&lt;p&gt;Thirty five years ago (!) I took my Amiga 1000 to college.  There used to be a copy of WordPerfect for &lt;em&gt;everything&lt;/em&gt; and that was what I did a lot of my term papers on.  I would print postscript files to a 3.5&amp;quot; disk, then take them to the library and print using &lt;strong&gt;copy termpaper.ps &amp;gt; lpt1:&lt;/strong&gt; to the LaserWriter.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230115_Slingshot.png#floatsmallleft&#34; alt=&#34;Slingshot&#34;&gt;&lt;/p&gt;
+&lt;p&gt;But then, like now, computers were used for more than just work.  There were a lot of cool Amiga games including Arctic Fox (a tank game), an &amp;ldquo;x and o&amp;rdquo; football game that we wore the controllers out on, and others.  But I also remember a really simple &amp;ldquo;Star Trek&amp;rdquo; game that we had a lot of fun with.&lt;/p&gt;
+&lt;p&gt;In retrospect, I&amp;rsquo;m guessing this game was early FOSS and it certainly wasn&amp;rsquo;t licensed, but this was also that period where the last TV show was 20 years old and there had only been a few mediocre movies to keep the flame flickering.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230115_Slingshot2.png#floatright&#34; alt=&#34;Slingshot wide-angle&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In the game, two ships were positioned on opposite sides of the 2D playing field - rudimentary Enterprise and Bird of Prey shapes.  In between were a set of planets of various sizes and densities that were shown as basic circles.  The opposing ship took turns shooting at each other by specifying an angle and a speed for their shot.  Once the shot was away, the gravity of the various planets pulled it into sweeping arcs.&lt;/p&gt;
+&lt;p&gt;This game had more in common with &lt;em&gt;Pong&lt;/em&gt; than modern space warfare simulators, but it was fun to sit around with my friends and give each other grief.  We&amp;rsquo;d imitate Star Trek characters and belittle each other&amp;rsquo;s shots.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve looked for that game over the years and finally found an updated version.  I recently re-installed NixOS on my laptop and was looking through Flathub when I saw &lt;strong&gt;Slingshot&lt;/strong&gt; by Ryan Kavanagh.  Slingshot can be installed from Flathub.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;flatpak install flathub com.github.ryanakca.slingshot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230115_Slingshot3.png#floatleft&#34; alt=&#34;Slingshot mid-game&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In the old Amiga game, players would type in an angle (0-360) and power (1-10).  In this version, a bar is shown emerging from the active ship.  Up and down arrows are used to control power (shown by the length of the bar) and left and right arrows are used to turn the ship.  You can see in the screenshot that the graphics look great but no longer mimic any particular sci-fi franchise.&lt;/p&gt;
+&lt;p&gt;If a shot leaves the screen, there&amp;rsquo;s a zoom-out (shown below).  Shots can orbit until they leave the wider area or timeout.&lt;/p&gt;
+&lt;p&gt;The gameplay is intuitive and very much in keeping with my memory of the &amp;ldquo;classic&amp;rdquo; version.  There&amp;rsquo;s something about the simplicity that I enjoy, and the turn-based play makes it more social.  I played it with my son and had a ball, and anything that gives dads fifteen minutes with their teenager is awesome.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

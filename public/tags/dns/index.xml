@@ -1,0 +1,202 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DNS on </title>
+    <link>http://localhost:1313/tags/dns/</link>
+    <description>Recent content in DNS on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Feb 2023 14:56:13 -0500</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/dns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home Names</title>
+      <link>http://localhost:1313/posts/230226_home/</link>
+      <pubDate>Sun, 26 Feb 2023 14:56:13 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/230226_home/</guid>
+      <description>&lt;h2 id=&#34;if-you-have-a-private-name-server-at-home-use-homearpa&#34;&gt;If you have a private name server at home, use &amp;ldquo;home.arpa&amp;rdquo;&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve used IPs for most of my home networking for a while.  At one point (years ago) I ran a Windows DNS server, but I&amp;rsquo;ve banished Windows and Linux DNS is extra work.  Plus, systemd makes DNS on Linux painful.&lt;/p&gt;
+&lt;p&gt;A couple of things have changed recently.  First, I&amp;rsquo;ve played with some server applications such as NextCloud that expect to be in a named environment.  Second, Pi-Hole has made running a home DNS server much, much, easier.&lt;/p&gt;
+&lt;p&gt;That raises the question -&lt;/p&gt;
+&lt;h2 id=&#34;what-namespace-should-be-used-for-my-personal-devices&#34;&gt;what namespace should be used for my personal devices?&lt;/h2&gt;
+&lt;p&gt;The easy part is what you should NOT do.  Don&amp;rsquo;t invent or re-use a name that is potentially valid on the public Internet.  Calling my home network &amp;ldquo;stewart.com&amp;rdquo; will prevent accessing the real public .com address from my local network.  Automated processes that use the namespace might accidentally send traffic to &amp;ldquo;real&amp;rdquo; stewart.com if my local DNS goes down or if I travel with a home laptop.  Further, any blacklists that impact the &amp;ldquo;real&amp;rdquo; domain might be applied to my traffic.&lt;/p&gt;
+&lt;p&gt;About ten years ago, it was common to see examples that used &amp;ldquo;.local&amp;rdquo; for private domains.  Microsoft recommended it for a while as well.  The big issue here was that Bonjour/Rendezvous/Multicast DNS use that namespace and could cause a conflict.&lt;/p&gt;
+&lt;p&gt;I own two domains - nextpertise.net and &lt;a href=&#34;https://www.stewart.tc&#34;&gt;stewart.tc&lt;/a&gt;.  A second option would be to use one of my domains internally.  When at home, my local server would resolve &amp;ldquo;local&amp;rdquo; names and outside my network the resolution goes to a public DNS with a different set of names.  This gets a little problematic with overlapping names.  For instance, if my public website changes IP then I have to manually update my internal DNS.  Also, it can be confusing trying to figure out what is responding when names overlap.  Still, this is manageable and does work.&lt;/p&gt;
+&lt;p&gt;A version of this would be to use a subdomain like &lt;em&gt;local.stewart.tc&lt;/em&gt;.  My home web server would be &lt;a href=&#34;https://www.local.stewart.tc&#34;&gt;www.local.stewart.tc&lt;/a&gt; and the name spaces would be distinct.  When outside the network, that subdomain just doesn&amp;rsquo;t resolve.  This isn&amp;rsquo;t confusing.  If you have a domain, this isn&amp;rsquo;t a bad option.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t have a public domain, there are some reserved namespaces taht won&amp;rsquo;t be used on the public internet that could be considered.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RFC 2606 reserves .test for testing by the IETF.  I could use &lt;em&gt;stewart.test&lt;/em&gt; without worrying it would be used anywhere else.&lt;/li&gt;
+&lt;li&gt;RFC 6762 suggests .intranet, .internal, .private, .corp, .home, and .lan&lt;/li&gt;
+&lt;li&gt;RFC 8375 reserves .home.arpa for exactly this use&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The RFC 6762 names tend to get used in businesses, so could conflict with your work VPN.  RFC 8375 calls out that there are conflicting uses of &amp;ldquo;.home&amp;rdquo; and so updates that to .home.arpa.  The .arpa top level domain is reserved for technical uses and there isn&amp;rsquo;t a way a register a conflicting domain. .home.arpa is reserved for private use, so it&amp;rsquo;s a slightly better choice than the 6762 names.&lt;/p&gt;
+&lt;p&gt;I chose to use the .home.arpa space when setting up the house in pi-hole and experienced no issues.  As I mentioned earlier, subdomains using a domain I own would have worked as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DNS on Ubuntu</title>
+      <link>http://localhost:1313/posts/210831_dnsonubuntu/</link>
+      <pubDate>Tue, 31 Aug 2021 19:08:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/210831_dnsonubuntu/</guid>
+      <description>&lt;p&gt;Continuing from my &lt;a href=&#34;http://localhost:1313/posts/210830_apache/&#34;&gt;previous post&lt;/a&gt;, I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I&amp;rsquo;m still getting the hang of Proxmox, although I&amp;rsquo;m feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I&amp;rsquo;ll provide a walk through of a simple local DNS server.  My goal at home is to create a &amp;ldquo;stewart.lan&amp;rdquo; network that I can use to reference local resources.&lt;/p&gt;
+&lt;p&gt;Like the Apache server I built last time, this server is running Ubuntu 21.04 Server and my instructions are written from that perspective.  Some commands may change as you move to non-Debian distributions or with different versions.  Installation of DNS services is done with &lt;strong&gt;bind9&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt update
+sudo apt install bind9
+sudo ufw allow 53
+sudo ufw allow 53/udp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the service is installed, &lt;strong&gt;bind&lt;/strong&gt; configuration files are found in &lt;em&gt;/etc/bind&lt;/em&gt;.  In my configuration there are five files that I modified or created: the service configuration file &lt;em&gt;named.conf&lt;/em&gt; which loads in &lt;em&gt;named.conf.local&lt;/em&gt; and &lt;em&gt;named.conf.options&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@webnamer:/etc/bind# cat named.conf
+include &amp;quot;/etc/bind/named.conf.options&amp;quot;;
+include &amp;quot;/etc/bind/named.conf.local&amp;quot;;
+
+###
+
+root@webnamer:/etc/bind# cat named.conf.local
+//
+// Do any local configuration here
+//
+zone &amp;quot;stewart.lan&amp;quot; {
+    type master;
+    file &amp;quot;/etc/bind/forward.stewart.lan&amp;quot;;
+    allow-query { any; };
+};
+
+###
+
+root@webnamer:/etc/bind# cat named.conf.options 
+acl internal-network {
+    192.168.24.0/22;
+    localhost;
+    localnets;
+};
+options {
+    directory &amp;quot;/var/cache/bind&amp;quot;;
+    forwarders {
+	    192.168.26.53;  //this server
+	    208.67.222.222; //OpenDNS1
+	    208.67.220.220; //OpenDNS2
+	    8.8.8.8;        //Google DNS1
+	    8.8.4.4;        //Google DNS2
+    };
+    allow-query { internal-network; };
+    allow-query-cache { internal-network; };
+    allow-recursion { internal-network; };
+    allow-transfer { none; };
+    allow-update { none; };
+    dnssec-validation yes;
+    auth-nxdomain no;
+    recursion yes;
+    notify no;
+    listen-on { any; };
+    listen-on-v6 { none; };
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Anytime DNS config files are changed the system will need to be restarted.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;systemctl restart named
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With these files in place recursive lookups (like &lt;em&gt;google.com&lt;/em&gt;) should be working.  This can be tested by changing DNS on a machine, or by using &lt;strong&gt;dig&lt;/strong&gt; or &lt;strong&gt;nslookup&lt;/strong&gt;.  &lt;strong&gt;Dig&lt;/strong&gt; accepts arguments for the DNS server to use, the domain to be queried, and the type of record (by default A) to be returned.  In the example below, the server and the domain to be returned are specified.   &lt;strong&gt;NSLookup&lt;/strong&gt; is a similar command that queries DNS servers.  In the example below, the server command tells it to connect to the new server and then the &amp;ldquo;www&amp;rdquo; is a query for a record (haven&amp;rsquo;t gotten to the local zone setup yet).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@webnamer:/etc/bind# dig 192.168.26.3 stewart.lan
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.16.8-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; stewart.lan
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 35138
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 1b490288965657d7010000006131687c06bba43e1f56fdbc (good)
+;; QUESTION SECTION:
+;stewart.lan.			IN	A
+
+;; AUTHORITY SECTION:
+stewart.lan.		604600	IN	SOA	localhost. root.localhost. 6 604820 86600 2419600 604600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.26.53#53(192.168.26.53)
+;; WHEN: Thu Sep 02 20:12:44 EDT 2021
+;; MSG SIZE  rcvd: 118
+
+root@webnamer:/etc/bind# nslookup
+&amp;gt; server 192.168.26.53
+Default server: 192.168.26.53
+Address: 192.168.26.53#53
+&amp;gt; www
+Server:		192.168.26.53
+Address:	192.168.26.53#53
+
+&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If there are problems at this point this point, use &lt;strong&gt;named-checkconf&lt;/strong&gt; to review the configuration files for errors.  By default, &lt;em&gt;named&lt;/em&gt; logs can be reviewed with &lt;strong&gt;tail /var/log/syslog&lt;/strong&gt; as well.&lt;/p&gt;
+&lt;p&gt;A forward lookup zone (which matches names to numbers) needs to be created if we want a local zone.  My house is named &lt;em&gt;stewart.lan&lt;/em&gt;, but any name is fine with the caveat that collisions with valid public name spaces should be avoided.  A forward lookup zone is a text file similar to the one below.  Note that this file was referenced in the &lt;em&gt;named.conf&lt;/em&gt; setup.  A records link names to IPs.  CNAMEs are alias records.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brent@webnamer:/etc/bind$ cat forward.stewart.lan
+$TTL    604800
+@       IN      SOA     localhost. root.localhost. (
+                            6         ; Serial
+                        604820         ; Refresh
+                        86600         ; Retry
+                        2419600         ; Expire
+                        604600 )       ; Negative Cache TTL
+;
+;Name Server Information
+@       IN      NS      ns.stewart.lan.
+
+;IP address of Your Domain Name Server(DNS)
+ns IN       A      192.168.26.53
+
+;A Record for Host names
+gw     IN       A       192.168.26.1
+ns	IN	A	192.168.26.53
+pop	IN	A	192.168.25.7
+print	IN	A	192.168.24.17
+oldprint	IN	A	192.168.24.11
+server	IN	A	192.168.26.9
+proxmox	IN	A	192.168.26.10
+library	IN	A	192.168.26.11
+
+
+;CNAME Record
+www	IN	CNAME	ns.stewart.lan.
+dav	IN	CNAME	ns.stewart.lan.
+newprint	IN	CNAME	print.stewart.lan.
+pve	IN	CNAME	proxmox.stewart.lan.
+webnamer	IN	CNAME	ns.stewart.lan
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This setup doesn&amp;rsquo;t show the reverse lookup zone (24.168.192.in-addr.arpa), but that can be built easily and added if needed.  Reverse zones link numbers to names and are used for authentication usually.  With DNS setup and the forward zone in place, we should be able to ping by name (link &lt;em&gt;printer.stewart.lan&lt;/em&gt;).  If there are problems, use &lt;strong&gt;named-checkzone&lt;/strong&gt; to confirm that the format of your zone file is correct.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DNS Services</title>
+      <link>http://localhost:1313/posts/200826_dnsservices/</link>
+      <pubDate>Wed, 26 Aug 2020 12:01:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200826_dnsservices/</guid>
+      <description>&lt;p&gt;This post is to continue the conversation started in &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don&amp;rsquo;t share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.&lt;/p&gt;
+&lt;p&gt;The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like &amp;ldquo;amazon.com&amp;rdquo; with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call &amp;ldquo;Brent&amp;rdquo; or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more &amp;ldquo;human friendly&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Why should you care?  Three reasons - speed, security, and privacy.  DNS is typically set up by your Internet provider.  Sometimes these implementations are the sources of problems, so changing the default DNS will give you a more stable (and sometimes faster) experience.  Anyone &amp;ldquo;listening&amp;rdquo; to your traffic can easily make a list of where you visit by tracking DNS requests.  This could be someone snooping on a shared wifi at the coffee shop, or it could be your ISP (in fact, ISPs sometimes redirect your traffic to internet locations they control for their own benefit).&lt;/p&gt;
+&lt;p&gt;There are a set of alternative DNS providers that provide free services that are unfiltered and private.  I recommend that you consider one of these.  They&amp;rsquo;re all good, but I&amp;rsquo;ve listed them in the order of my preference.&lt;/p&gt;
+&lt;p&gt;To enable, go into your router and change the DNS setting to the IP provided (the exact instructions vary by router).  At home, this is a reasonable step to protect you and your family.  If you travel, these providers also support a variety of options to encrypt your request, including DNS over HTTPS (DoH).  I recommend using DoH within Firefox for devices that leave the house.&lt;/p&gt;
+&lt;p&gt;Firefox can encrypt your DNS traffic from &amp;ldquo;snoopers&amp;rdquo;.  Go to the menu button and choose &lt;em&gt;preferences&lt;/em&gt; and then &lt;em&gt;Network Settings&lt;/em&gt;.  Click &lt;em&gt;Enable DNS over HTTPS&lt;/em&gt; and then choose a provider or select &amp;ldquo;Custom&amp;rdquo; and type in the IP address (included below).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://d15ni2z53ptwz9.cloudfront.net/opendns-www/img/logo-opendns.png#floatright&#34; alt=&#34;OpenDNS&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;opendns-20867222222---best-for-home-use&#34;&gt;OpenDNS (208.67.222.222) - Best for home use&lt;/h2&gt;
+&lt;p&gt;OpenDNS is a great choice.  By default, their free service is excellent.  It recognizes many cases where you&amp;rsquo;ve been directed to a malicious site, and keeps you out of trouble by blocking it.  OpenDNS is owned by Cisco, and it benefits from the huge investments they&amp;rsquo;ve made in Internet security.  It also blocks adult content by default.  You can create an account and customize your home&amp;rsquo;s experience - for instance, do you want to block Gambling or Tobacco advertising?  These settings are tied to your home IP, so your laptop goes back to the &amp;ldquo;default&amp;rdquo; when not at home.  Especially for public places, like church wifi, or for a home with children this allows you to control what portion of the Internet is available to users.&lt;/p&gt;
+&lt;h2 id=&#34;cloudflare-unfiltered-1111-malware-blocking-1112-malware-and-adult-content-1113&#34;&gt;Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3)&lt;/h2&gt;
+&lt;p&gt;Cloudflare is very easy to setup.  Use the IP address that matches your use case.  These settings can carry over when you are away from home if you change them on your device.  There&amp;rsquo;s also an app that provides this service no matter where you are (just for mobile with Windows and Mac coming soon).  Cloudflare has good settings for most cases, is easy to setup, and has the mobile apps, but lacks the customization of OpenDNS.&lt;/p&gt;
+&lt;h2 id=&#34;quad9-9999&#34;&gt;Quad9 (9.9.9.9)&lt;/h2&gt;
+&lt;p&gt;Quad9 provides a service that is very similar to Cloudflare 1.1.1.2 - just set the DNS and forget it and it provides DNS with malicious sites blocked.  My experience with Quad9 has been largely indistinguishable from Cloudflare or OpenDNS with default settings, when testing blocking or response speed.  However, Quad9 doesn&amp;rsquo;t have the customization of OpenDNS or the apps that Cloudflare has.&lt;/p&gt;
+&lt;h2 id=&#34;google-8888&#34;&gt;Google (8.8.8.8)&lt;/h2&gt;
+&lt;p&gt;This has been a popular alternative for the geek set for a long time.  It&amp;rsquo;s easy to remember and it provides an &amp;ldquo;unfiltered&amp;rdquo; response.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Using one of these services helps to protect your home.  I use OpenDNS at home and have customized it to filter out a range of categories.  It doesn&amp;rsquo;t block everything on the Internet, but it addresses some of the obvious sites and it helps prevent &amp;ldquo;oops&amp;rdquo; experiences.  It seems to help with advertising too.  I use Cloudflare on my office network and it does a great job as well.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve benefitted from the &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; discussion, this is another &amp;ldquo;reasonable&amp;rdquo; step that you can take to improve your families Internet experience.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

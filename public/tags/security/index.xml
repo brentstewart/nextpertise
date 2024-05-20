@@ -1,0 +1,1118 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on </title>
+    <link>http://localhost:1313/tags/security/</link>
+    <description>Recent content in Security on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Apr 2023 22:04:50 -0400</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Anonymous Browsing</title>
+      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
+&lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
+&lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
+&lt;p&gt;Sometimes our need for anonymity goes beyond shielding our selves from spam.  When the stakes are higher, revealing an identity could impact a job or put lives in danger.  Many people depend on this type of anonymity to circumvent hostile governments or to leak important stories to reporters.&lt;/p&gt;
+&lt;h2 id=&#34;recipe-for-anonymity&#34;&gt;Recipe for Anonymity&lt;/h2&gt;
+&lt;p&gt;Here&amp;rsquo;s a quick description of how you might approach trying to safeguard your identity.  This will guide you through installing Tails.  Tails is a standalone operating system that allows browsing through TOR.  The machine is clean, so nothing leaks to identify you, the OS is scrubbed every time you boot, the browser is locked down, and TOR passes your traffic through a series of other computers (&amp;ldquo;nodes&amp;rdquo;) to obscure your source address.&lt;/p&gt;
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;&lt;p&gt;This kind of concern means that the authorities are either unconcerned or hostile to your situation.  I am praying for you!&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t trust my advice!  I have a reasonable level of expertise, but I don&amp;rsquo;t do this for a living.  My advice is a good starting point, but technology is constantly changing and this may be old when you read it.&lt;/p&gt;
+&lt;p&gt;I believe Tails by itself is sufficient against non-Nation-State actors.  Especially if you have that level of concern, maintain a sense of paranoia and protect yourself in multiple layers.  For instance, use this post as a starting point but load the USB stick from a computer in a random location that can&amp;rsquo;t be associated to you.  In all cases, continue to research best practice!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Tails can be installed via USB.  If you are in serious danger, this is the best way.  You can then take the USB to any computer, boot up from the USB, and further obscure your source.
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Tails doesn&amp;rsquo;t protect against stupidity.  Don&amp;rsquo;t login anywhere or take other actions that may identify you while using Tails.  Also, remember that browser crumbs are only one way that someone could be identified.  Cameras, visitor logs, and phone GPS are examples of other ways you could be tied to a location at a specific time.&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h3 id=&#34;setting-up-tails&#34;&gt;Setting up Tails&lt;/h3&gt;
+&lt;p&gt;In this exercise, I&amp;rsquo;m going to walk through installing Tails in a VM on Linux, which may be sufficient for run-of-the-mill situations.&lt;/p&gt;
+&lt;p&gt;First, install KVM.  The commands below apply for debian-derived systems like Ubuntu, Mint, or Pop!_OS.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install qemu-kvm libvirt-daemon-system
+sudo adduser $USER libvirt
+sudo apt install virt-manager
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, download the &lt;a href=&#34;https://tails.boum.org/install/dvd/index.en.html&#34;&gt;Tails ISO&lt;/a&gt; or an &lt;a href=&#34;https://tails.boum.org/install/download/&#34;&gt;IMG file&lt;/a&gt; which is easier to write to USB.  I&amp;rsquo;d use &lt;a href=&#34;https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=2ahUKEwio88TRvZr-AhVXIUQIHej7AqwQFnoECCAQAQ&amp;amp;url=https%3A%2F%2Fwww.balena.io%2Fetcher&amp;amp;usg=AOvVaw0UNPm_qcksmQ1aL8D-5gLD&#34;&gt;Etcher&lt;/a&gt; to write to disk, but if you haven&amp;rsquo;t done that part before the Tails website has installation &lt;a href=&#34;https://tails.boum.org/install/index.en.html&#34;&gt;instructions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to install on a VM, run the Virtual Machine Manager and create a new machine.  The device I setup had the following settings:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generic Linux 2020&lt;/li&gt;
+&lt;li&gt;2 vCPU, 8 GB RAM (I think you just need 4)&lt;/li&gt;
+&lt;li&gt;Boot options - boot from SATA CDROM&lt;/li&gt;
+&lt;li&gt;SATA CDROM - mapped to the Tails ISO in my download directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Start the VM.  The VM window will &amp;ldquo;capture&amp;rdquo; your mouse and keyboard - to break out and back to your host machine press the right Win and Ctrl keys.  It will boot to a welcome.  You may want to set some additional parameters (these will only apply until the next boot).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/230407_tailsadditionalsettings.png#floatsmallright&#34; alt=&#34;Additional Settings&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Under Additional settings, choose the plus and set an Administrative password.  This only applies to the session.  The &amp;ldquo;Unsafe Browser&amp;rdquo; option allows you to sign into a captive portal.  Again, that&amp;rsquo;s another way to identify you so I would just pick another place to connect and turn that off.&lt;/p&gt;
+&lt;p&gt;Choose &amp;ldquo;start Tails&amp;rdquo; to move into a Gnome desktop.  It will prompt you to start Tor first thing.  You can tell it to connect automatically or &amp;ldquo;Hide to my local network that I&amp;rsquo;m connecting to Tor&amp;rdquo;.  The latter choice requires identifying and connecting to a Tor bridge manually.  You&amp;rsquo;ll be prompted to email &lt;a href=&#34;mailto:bridges@torproject.org&#34;&gt;bridges@torproject.org&lt;/a&gt; and they&amp;rsquo;ll help you find a discrete way to connect.&lt;/p&gt;
+&lt;h3 id=&#34;specifying-tor-exit-node&#34;&gt;Specifying Tor Exit Node&lt;/h3&gt;
+&lt;p&gt;One problem that you may encounter is that the site you are trying to contact blocks connections from other countries.  Since Tor will give you a random exit node, there&amp;rsquo;s a good chance your traffic will appear to be coming from somewhere else on the globe.  My first test put me in Germany, for instance.&lt;/p&gt;
+&lt;p&gt;If you want to force Tor to exit your traffic in a particular country, open a terminal in Tails and edit the tor configuration file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/tor/torrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add these lines to the end of the config file to force traffic to exit in the US.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ExitNodes {us}
+StrictNodes 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ve included a table of exit codes at the end of this document to help you find the appropriate country.&lt;/p&gt;
+&lt;h3 id=&#34;browserling&#34;&gt;Browserling&lt;/h3&gt;
+&lt;p&gt;For an extra level of obscurity, use &lt;a href=&#34;https://www.browserling.com/&#34;&gt;Browserling&lt;/a&gt;.  Browserling is a site that will give you a web browser in a Windows VM to test your website.  You can also use this to create another level of difficulty to tracing the connection back.  Use Tor to connect to browserling, which will spin up a temporary VM (it will take a minute).  It&amp;rsquo;s meant for testing web pages and will only be available to you for a couple minutes, so you might want to prep what you want to send in a text editor and then copy and paste it over.&lt;/p&gt;
+&lt;h2 id=&#34;final-note&#34;&gt;Final Note&lt;/h2&gt;
+&lt;p&gt;I hope you don&amp;rsquo;t need this, but if you do I wish you the best.  Hopefully this will give you some ideas where to look and how to protect yourself!&lt;/p&gt;
+&lt;h2 id=&#34;for-reference----tor-country-codes&#34;&gt;For Reference -  Tor country codes&lt;/h2&gt;
+
+
+
+
+     
+    
+    
+     
+
+
+
+
+
+
+
+&lt;table class=&#34;table table-responsive table-hover&#34;&gt;
+&lt;caption&gt;Table of Tor Country Codes&lt;/caption&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Country&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Code&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Country&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Code&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ascension Island&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ac}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Afghanistan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Af}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Aland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ax}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Albania&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Al}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Algeria&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Dz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Andorra&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ad}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Angola&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ao}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Anguilla&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ai}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Antarctica&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Aq}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Antigua And Barbuda&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ag}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Argentina Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ar}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Armenia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Am}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Aruba&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Aw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Australia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Au}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Austria&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{At}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Azerbaijan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Az}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Bahamas&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bs}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Bahrain&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Bangladesh&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bd}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Barbados&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bb}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Belarus&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{By}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Belgium&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Be}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Belize&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Benin&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bj}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Bermuda&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bm}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Bhutan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bt}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Bolivia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bo}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Bosnia And Herzegovina&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ba}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Botswana&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Bouvet Island&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bv}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Brazil&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Br}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;British Indian Ocean Terr&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Io}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;British Virgin Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Vg}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Brunei Darussalam&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bn}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Bulgaria&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bg}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Burkina Faso&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bf}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Burundi&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Bi}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cambodia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Cameroon&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cm}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Canada&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ca}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Cape Verde&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cv}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cayman Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ky}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Central African Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cf}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Chad&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Td}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Chile&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cl}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;People&amp;rsquo;s Republic Of China&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cn}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Christmas Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cx}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cocos Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Colombia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Co}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Comoras&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Km}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Congo&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cg}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Congo (Democratic Republic)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cd}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Cook Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ck}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Costa Rica&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Cote D Ivoire&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ci}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Croatia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Hr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Cuba&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cu}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cyprus&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cy}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Czech Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Cz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Denmark&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Dk}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Djibouti&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Dj}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Dominica&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Dm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Dominican Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Do}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;East Timor&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tp}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ecuador&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ec}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Egypt&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Eg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;El Salvador&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sv}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Equatorial Guinea&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gq}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Estonia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ee}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ethiopia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Et}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Falkland Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Faroe Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fo}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fiji&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fj}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Finland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fi}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;France&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fr}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;France Metropolitan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fx}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;French Guiana&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gf}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;French Polynesia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pf}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;French Southern Territories&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tf}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Gabon&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ga}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Gambia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gm}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Georgia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ge}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Germany&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{De}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ghana&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Gibralter&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gi}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Greece&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Greenland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gl}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Grenada&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gd}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Guadeloupe&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gp}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Guam&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gu}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Guatemala&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gt}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Guinea&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gn}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Guinea-Bissau&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Guyana&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gy}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Haiti&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ht}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Heard-Mcdonald Island&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Hm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Honduras&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Hn}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Hong Kong&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Hk}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Hungary&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Hu}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Iceland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Is}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;India&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{In}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indonesia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Id}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Iran, Islamic Republic Of&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ir}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Iraq&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Iq}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ireland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ie}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Isle Of Man&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Im}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Israel&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Il}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Italy&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{It}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Jamaica&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Jm}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Japan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Jp}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Jordan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Jo}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Kazakhstan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kz}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Kenya&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ke}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Kiribati&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ki}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Korea, Dem. Peoples Rep Of&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kp}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Korea, Republic Of&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Kuwait&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Kyrgyzstan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Lao People&amp;rsquo;s Dem. Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{La}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Latvia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lv}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Lebanon&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lb}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Lesotho&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ls}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Liberia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lr}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Libyan Arab Jamahiriya&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ly}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Liechtenstein&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Li}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Lithuania&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lt}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Luxembourg&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lu}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Macao&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mo}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Macedonia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Madagascar&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Malawi&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Malaysia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{My}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Maldives&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mv}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Mali&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ml}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Malta&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mt}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Marshall Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Martinique&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mq}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Mauritania&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Mauritius&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mu}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Mayotte&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Yt}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Mexico&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mx}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Micronesia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Fm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Moldava Republic Of&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Md}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Monaco&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Mongolia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mn}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Montenegro&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Me}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Montserrat&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ms}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Morocco&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ma}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Mozambique&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Myanmar&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Namibia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Na}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Nauru&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Nepal&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Np}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Netherlands Antilles&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{An}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Netherlands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nl}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;New Caledonia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;New Zealand&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Nicaragua&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ni}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Niger&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ne}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Nigeria&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ng}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Niue&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nu}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Norfolk Island&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Nf}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Northern Mariana Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Mp}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Norway&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{No}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Oman&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Om}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pakistan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pk}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Palau&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pw}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Palestine&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ps}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Panama&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pa}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Papua New Guinea&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Paraguay&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Py}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Peru&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pe}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Poland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pl}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Portugal&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pt}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Puerto Rico&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pr}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Qatar&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Qa}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Reunion&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Re}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Romania&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ro}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Russian Federation&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ru}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Rwanda&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Rw}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Samoa&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ws}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;San Marino&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Sao Tome/Principe&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{St}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Saudi Arabia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sa}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Scotland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Uk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Senegal&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sn}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Serbia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Rs}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Seychelles&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Sierra Leone&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sl}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Singapore&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Slovakia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Slovenia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Si}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Solomon Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sb}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Somalia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{So}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Somoa,Gilbert,Ellice Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{As}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;South Africa&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Za}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;South Georgia, South Sandwich Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gs}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Spain&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Es}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Sri Lanka&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;St. Helena&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;St. Kitts And Nevis&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Kn}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;St. Lucia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Lc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;St. Pierre And Miquelon&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Pm}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;St. Vincent - The Grenadines&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Vc}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Sudan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sd}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Suriname&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sr}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Svalbard And Jan Mayen&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sj}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Swaziland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sz}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Sweden&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Se}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Switzerland&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ch}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Syrian Arab Republic&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Sy}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Taiwan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tw}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Tajikistan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tj}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tanzania&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tz}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Thailand&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Th}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Togo&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tg}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Tokelau&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tonga&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{To}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Trinidad And Tobago&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tt}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tunisia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tn}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Turkey&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tr}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Turkmenistan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Turks And Calcos Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tc}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tuvalu&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Tv}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Uganda&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ug}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ukraine&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ua}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;United Arab Emirates&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ae}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;United Kingdom&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Gb}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;United Kingdom&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Uk}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;United States&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Us}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;United States Minor Outl.Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Um}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Uruguay&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Uy}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Uzbekistan&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Uz}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Vanuatu&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Vu}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Vatican City State&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Va}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Venezuela&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ve}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Viet Nam&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Vn}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;US Virgin Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Vi}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Wallis And Futuna Islands&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Wf}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Western Sahara&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Eh}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Yemen&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Ye}&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Zambia&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Zm}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Zimbabwe&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;{Zw}&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Kali Linux 2020.4</title>
+      <link>http://localhost:1313/posts/201120_kali_linux_2020_4/</link>
+      <pubDate>Fri, 20 Nov 2020 10:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/201120_kali_linux_2020_4/</guid>
+      <description>&lt;p&gt;My favourite Operating System (Kali Linux) has a new release: 2020.4.&lt;/p&gt;
+&lt;p&gt;The changes in this version include, but not limited to: ZSH is now Kali’s new default shell on desktop images and cloud, Bash remains the default shell for other platforms (ARM, containers, NetHunter, WSL) for the time being. Users can, of course, use that which they prefer, but be aware that, visually, Bash has been made to look more like ZSH.
+Upon logging into a Kali terminal or console, users may be presented with a &lt;strong&gt;message from Kali developers&lt;/strong&gt; that will point them to more information about that specific installation, in case they need it for troubleshooting&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/kali.PNG#center&#34; alt=&#34;KL&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The most interesting part is that, Kali Linux 2020.4 now comes with a number of new tools to play with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Metasploit Framework v6 (a tool for developing and executing exploits against remote target machines)&lt;/li&gt;
+&lt;li&gt;CertGraph (a tool to crawl the graph of certificate Alternate Names)&lt;/li&gt;
+&lt;li&gt;Apple bleee (a tool for getting info about nearby iPhones – device name, OS version, phone number, etc. – by sniffing Bluetooth traffic)&lt;/li&gt;
+&lt;li&gt;dnscat2 (a tool for creating an encrypted C&amp;amp;C channel over DNS)&lt;/li&gt;
+&lt;li&gt;FinalRecon (an automatic web reconnaissance tool)&lt;/li&gt;
+&lt;li&gt;goDoH (a Command and Control framework that uses DNS-over-HTTPS)&lt;/li&gt;
+&lt;li&gt;hostapd-mana (a rogue access point)&lt;/li&gt;
+&lt;li&gt;Whatmask (a program that helps with network settings)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kali NetHunter, the distro’s mobile pentesting platform, has a new settings menu for easier back up and restore of configuration files, and a module that ensures persistence of the Magisk Android rooting system.&lt;/p&gt;
+&lt;p&gt;Win-KeX 2.5, which provides a Kali Desktop Experience for Windows Subsystem for Linux, comes with a new Enhanced Session Mode for ARM devices and a few other tweaks.&lt;/p&gt;
+&lt;p&gt;For additional information, you can check out the release notes at: &lt;a href=&#34;https://www.kali.org/news/kali-linux-2020-4-release/&#34;&gt;https://www.kali.org/news/kali-linux-2020-4-release/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Active Directory Security Assessment with PingCastle</title>
+      <link>http://localhost:1313/posts/201113_pingcastle/</link>
+      <pubDate>Fri, 13 Nov 2020 10:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/201113_pingcastle/</guid>
+      <description>&lt;p&gt;Microsoft Active Directory (AD) is one of the technologies that is predominantly used in several organizations around the world. While we all know its purpose, most of the time it keeps growing or gets convoluted with uncontrolled Organizational Units, ever growing Users, ever increasing Computers, Policies, Integrations etc. While the Administrators remain busy in putting out the fires at work, they rarely get time to optimize, tune, clean or deploy best practices on the AD, and lock it down by implementing good security controls.&lt;/p&gt;
+&lt;p&gt;Enter PingCastle. I found this tool through an auditor who was using mimkatz to perform a pentest on an AD, and I found it to be super valuable. This may help some of the AD Admins to quickly identify some of the areas that they can fix within their AD deployments.
+The entire Pingcastle project is written in C# and it is available on GitHub, located at: &lt;a href=&#34;https://github.com/vletoux/pingcastle&#34;&gt;https://github.com/vletoux/pingcastle&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It is an AD security assessment tool, designed to quickly assess the AD security level with a methodology based on a risk assessment and maturity framework.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/pingcastle.PNG#center&#34; alt=&#34;PC&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features of PingCastle&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Health Check - This is the default report produced by PingCastle. It quickly collects the most important information of the Active Directory and establishes an overview. Based on a model and rules, it evaluates the score of the sub-processes of the Active Directory. Then it reports the risks.&lt;/li&gt;
+&lt;li&gt;Active Directory Map - This report produces a map of all Active Directory that PingCastle knows about. This map is built based on existing health check reports or when none is available, via a special mode collecting the required information as fast as possible&lt;/li&gt;
+&lt;li&gt;Consolidation - When multiple reports of PingCastle have been collected, they can be regrouped in a single report. This facilitates the benchmark of all domains&lt;/li&gt;
+&lt;li&gt;Scanner - Checking workstations for local admin privileges, open shares, start-up time is usually complex and requires an admin. PingCastle’s scanner bypasses these classic limits. This feature is awesome and can help to cover some of the most blind spots on the network that are often overlooked&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To learn more about this tool, please visit &lt;a href=&#34;https://www.pingcastle.com/&#34;&gt;https://www.pingcastle.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to write an event to Windows and Linux logs</title>
+      <link>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
+&lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
+&lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
+&lt;p&gt;A brief aside: The dichotomy of an admin PowerShell session and a regular PowerShell session is annoying.  One specific but near-to-my-heart example is the built-in terminal in Visual Studio Code (or VSCodium) for Windows, which uses a &amp;ldquo;non-admin&amp;rdquo; session.&lt;/p&gt;
+&lt;p&gt;Linux systems have sudo.  Sudo allows a single command to run in an elevated state and sudo commands can be intermingled with un-priviledged commands.  The following script uses &lt;em&gt;scoop&lt;/em&gt; to grab a &amp;ldquo;sudo&amp;rdquo; application for Powershell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;iex (new-object net.webclient).downloadstring(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;https://get.scoop.sh&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;set-executionpolicy unrestricted -s cu &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;scoop install sudo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;how-to-write-an-event-to-windows-event-log&#34;&gt;How to write an Event to Windows Event Log&lt;/h2&gt;
+&lt;p&gt;This technique allows you to place comments into the Windows event logs, for instance to mark the beginning or completion of a change window.  We could also build this into certain scripts so that they left an entry when they ran.  It could even be automated into systems so that the markings took place without a person having to remember.&lt;/p&gt;
+&lt;p&gt;The general process is to create an information &amp;ldquo;source&amp;rdquo; to write into (if it doesn&amp;rsquo;t already exist) and then to write the event.&lt;/p&gt;
+&lt;h3 id=&#34;creating-a-log-source&#34;&gt;Creating a log source&lt;/h3&gt;
+&lt;p&gt;Since we&amp;rsquo;re creating log events for comments, let&amp;rsquo;s create a log source that matches our username.  If there are several admins, it may be a good idea to use a format like &amp;ldquo;admin-username&amp;rdquo; so that we can later search logs for &amp;ldquo;admin*&amp;rdquo;.  Creating a new source requires PowerShell to run with Administrator priviledges.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;New-eventlog -logname application -source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that you can use the environment variable &lt;em&gt;$env:username&lt;/em&gt;.  You can build this into a script - if the source already exists, the command will return an error to that effect.&lt;/p&gt;
+&lt;h2 id=&#34;logging-an-entry&#34;&gt;Logging an entry&lt;/h2&gt;
+&lt;p&gt;To create a log entry use the &amp;ldquo;write-eventlog&amp;rdquo; cmdlet.  Specify the log (like Application or Security), the source that we defined, and the message.  The EventID isn&amp;rsquo;t significant, so you could also use this numeric field if you had something suitable (like a ticket number).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Write-EventLog -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;brent&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is also possible to write an entry on a remote computer. The example below assumes that the source &amp;ldquo;bstewart&amp;rdquo; exists on the remote computer.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Write-EventLog -computername &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Server&amp;#34;&lt;/span&gt; -LogName Application -Source &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bstewart&amp;#34;&lt;/span&gt; -EntryType Information -Message &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sample text&amp;#34;&lt;/span&gt; -EventID 1__  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;scripting&#34;&gt;Scripting&lt;/h2&gt;
+&lt;p&gt;This can all be simplified in a script, saved as &amp;ldquo;log.ps1&amp;rdquo;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        sudo New-eventlog -logname application -source $env:username  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;Catch&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Write-Output &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Log source already exists&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Write-eventlog -logname application -source $env:username -entrytype information -message $args[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] -eventid &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;write-host &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The following was written to the Application log using the source &lt;/span&gt;$env:username&lt;span style=&#34;color:#e6db74&#34;&gt; for that log.&amp;#34;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;write-host $args[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then run the command from powershell to write a string.  It will try to create a source based on your username.  If one exists, it will use it and keep moving.  The argument is passed through as the message.  You could easily extend this script to have a second argument to pass the eventid as well.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;gt; .\log.ps1 &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Something happened&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;linux-much-easier&#34;&gt;Linux (much easier)&lt;/h1&gt;
+&lt;p&gt;Writing to the Linux journal is pretty straight-forward.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Sample text&amp;#39;&lt;/span&gt; | Systemd-cat
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To take a look at this, just use &lt;strong&gt;journalctl -f&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll talk about logging to syslog another time, or maybe I can talk Myron into delving in because he has great experience with pulling things out of SIEMs.  Whether you use this in the scope of a SIEM or just for local logging, I&amp;rsquo;m sure you&amp;rsquo;ll find this idea useful.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Whitelisting Approach to Security</title>
+      <link>http://localhost:1313/posts/201110_whitelisting_approach/</link>
+      <pubDate>Wed, 07 Oct 2020 06:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/201110_whitelisting_approach/</guid>
+      <description>&lt;p&gt;Today, I am sure that you would be hearing a lot of buzz around ransomware and other malware outbreaks.  To combat some of these threats on a home consumer scale, we mostly use a traditional &lt;strong&gt;Anti-Malware&lt;/strong&gt; (Anti-Virus) software. As you may know, this technology is based on signatures, patterns and heuristics, which are extracted from the malware behaviour or type; thus, as the number of malware instances increase, becoming more sophisticated in the ever increasing threat landscape, it becomes very hard for the Anti-Virus companies to keep up with the pace. I would like to call this a “Cat and a Mouse Chase”.  Anti-Virus software may give you the best protection against known malware, but it may never give you adequate protection against unknown malware, whose signatures, patterns and heuristics are not known to anyone. By design, the traditional Anti-Virus fails miserably and is unable to keep up with todays sophisticated and evolving malware. This post is a follow-up to &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing/&#34;&gt;reasonable secure browsing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of focussing on blocking known malware through an Anti-Virus software, how about we only allow the applications and programs we trust and use on daily basis, and block everything else? Well, this is exactly what is called a &lt;strong&gt;“Whitelist”&lt;/strong&gt; approach, while the former that we discussed above is called a &lt;strong&gt;“Blacklist”&lt;/strong&gt; approach. This approach can be nearly 100% effective in blocking all malware if used correctly; however, most of the Whitelisting software out there is very expensive and only targeted towards enterprise use.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/whitelist.png&#34; alt=&#34;WL&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I use something called as &lt;strong&gt;AppSamvid&lt;/strong&gt;, which is a free utility that is freely available at: &lt;a href=&#34;https://cdac.in/index.aspx?id=cs_eps_appsamvid&#34;&gt;https://cdac.in/index.aspx?id=cs_eps_appsamvid&lt;/a&gt;
+You can use this on any of your Windows based system and have it run as a Whitelisting software. Once installed, you would need to provide the list of applications and software utilities that you trust and use daily. Ideally, you should setup your system and create an effective “Baseline” that is a known ‘good’ or ‘trusted’ system state. Beyond this, any attempts to execute applications that are not listed in the Trusted list would be automatically blocked. You can unblock applications by providing the path or the file Hash. This is highly effective in blocking known and known malware.&lt;/p&gt;
+&lt;p&gt;Give this a try and get one step closer in perfecting your system security!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>OpenDNS For Home</title>
+      <link>http://localhost:1313/posts/200930_opendnsforhome/</link>
+      <pubDate>Wed, 30 Sep 2020 08:07:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/200930_opendnsforhome/</guid>
+      <description>&lt;p&gt;Today, technology has advanced to a point, where it is much more affordable as compared to the last 25 years. We can recollect that having a computer with 32MB of Memory was a great thing; however, today&amp;rsquo;s smartphones come with 12GB of memory out of the box!&lt;/p&gt;
+&lt;p&gt;Speaking of smartphones, I&amp;rsquo;m confident that you have one too. Maybe even your parents and not forgetting children, colleagues and family members. With easy access to Technology, content on the Internet readily available at the click of a button or a swipe, how do you control this content, especially if you have young ones in your house or family? No doubt, that they would use it for their productivity, school or education work, but how do you monitor and ensure that they are not misusing it?&lt;/p&gt;
+&lt;p&gt;This post is a follow-up to &lt;a href=&#34;http://localhost:1313/posts/200826_dnsservices/&#34;&gt;DNS Services&lt;/a&gt;. Brent mentioned about OpenDNS in this blog and how it can help to control the content from the Internet. Keeping that into account, and the above mentioned concern, we can use OpenDNS to block inappropriate content, control the usage of social media and other content that as a parent or a supervisor you feel that it has negative effects on your young ones at home, and also help you to keep a track of their activity and know at all times about what they access.&lt;/p&gt;
+&lt;p&gt;If you signup to use OpenDNS on your home network, which by the way is totally free of cost, you can get the following benefits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Block Malware&lt;/strong&gt; - Protect your devices from malicious code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/OD-malware.JPG&#34; alt=&#34;DDG&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Block Content&lt;/strong&gt; - Block specific content from the Internet, based on the type or categories. For e.g. Pornography and other content that you feel is harmful&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/OD-categories.JPG&#34; alt=&#34;DDG&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Control Access&lt;/strong&gt; - Set Time based access for content like Social Media sites so that your young ones don&amp;rsquo;t be a prey to the addiction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/OD-requests.JPG&#34; alt=&#34;DDG&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monitor Usage&lt;/strong&gt; - Keep an eye on the usage and using this information educate your folks at home about the risks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you need to sign up and use OpenDNS, simply signup on their portal: &lt;a href=&#34;https://opendns.com&#34;&gt;https://opendns.com&lt;/a&gt; using your email address and subsequently use &lt;strong&gt;208.67.222.222&lt;/strong&gt; and &lt;strong&gt;208.67.220.220&lt;/strong&gt; as the DNS servers on your Home network. That’s how easy it is to get started with OpenDNS and protect your loved ones at home with this technology.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Privacy Enabled Search Engines </title>
+      <link>http://localhost:1313/posts/200921_privacyenabledsearchengines/</link>
+      <pubDate>Mon, 21 Sep 2020 08:07:02 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/200921_privacyenabledsearchengines/</guid>
+      <description>&lt;p&gt;In the early days, when we didn’t know something, we would ask our parents or elders. With today’s digital transformation, we would normally run to a large search engine, provided by the big tech giants. These providers store and log countless search terms every day. Have you ever wondered what these tech giants do with the infinite data that is collected via the search engines?&lt;/p&gt;
+&lt;p&gt;Yes, you’ve guessed it right. They index it in their large data warehouses where they run complex machine learning algorithms to profile users, predict patterns and harness intelligence from this big data. This information is used to make product recommendations, shared to third parties to boost sales, etc. The real question is, how far would you trust these search engines with respect to your personal privacy?&lt;/p&gt;
+&lt;p&gt;This post is a follow-up to &lt;a href=&#34;https://www.nextpertise.net/posts/200805_reasonablysecurebrowsing/&#34;&gt;reasonable secure browsing&lt;/a&gt;. As a Security and a Privacy paranoid person, I would always recommend alternate search engines for better privacy protection. Below are two widely used Secure and Privacy focussed search engines that I use:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;DuckDuckGo&lt;/strong&gt; – This is my personal favourite and it is integrated in my Firefox browser. I absolutely love it for it&amp;rsquo;s Security, Trackers Blocking and Sleek Integration features. It has a feature-rich plugin for the Firefox browser that ranks all the sites you visit and displays a privacy score, while blocking the violating content. It can also be used on your Android and iOS based mobile devices – Do give this a try, and feel the difference! &lt;a href=&#34;https://duckduckgo.com/&#34;&gt;https://duckduckgo.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DDG-1.png&#34; alt=&#34;DDG&#34;&gt;  &lt;img src=&#34;http://localhost:1313/DDG-2.png&#34; alt=&#34;DDG&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;StartPage&lt;/strong&gt; – This a Dutch search engine company that emphasises on online privacy. The coolest feature about this search engine is that for the extra paranoid, it offers an ‘Anonymous View’ that allows users to search results via a proxy. I absolutely love their marketing phrase – &lt;em&gt;&amp;ldquo;We don&amp;rsquo;t log or share user personal information. Ever. We believe it’s Your Data. Not Big Data &amp;ldquo;&lt;/em&gt;. Try StartPage from &lt;a href=&#34;https://www.startpage.com&#34;&gt;https://www.startpage.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DNS Services</title>
+      <link>http://localhost:1313/posts/200826_dnsservices/</link>
+      <pubDate>Wed, 26 Aug 2020 12:01:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200826_dnsservices/</guid>
+      <description>&lt;p&gt;This post is to continue the conversation started in &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don&amp;rsquo;t share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.&lt;/p&gt;
+&lt;p&gt;The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like &amp;ldquo;amazon.com&amp;rdquo; with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call &amp;ldquo;Brent&amp;rdquo; or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more &amp;ldquo;human friendly&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Why should you care?  Three reasons - speed, security, and privacy.  DNS is typically set up by your Internet provider.  Sometimes these implementations are the sources of problems, so changing the default DNS will give you a more stable (and sometimes faster) experience.  Anyone &amp;ldquo;listening&amp;rdquo; to your traffic can easily make a list of where you visit by tracking DNS requests.  This could be someone snooping on a shared wifi at the coffee shop, or it could be your ISP (in fact, ISPs sometimes redirect your traffic to internet locations they control for their own benefit).&lt;/p&gt;
+&lt;p&gt;There are a set of alternative DNS providers that provide free services that are unfiltered and private.  I recommend that you consider one of these.  They&amp;rsquo;re all good, but I&amp;rsquo;ve listed them in the order of my preference.&lt;/p&gt;
+&lt;p&gt;To enable, go into your router and change the DNS setting to the IP provided (the exact instructions vary by router).  At home, this is a reasonable step to protect you and your family.  If you travel, these providers also support a variety of options to encrypt your request, including DNS over HTTPS (DoH).  I recommend using DoH within Firefox for devices that leave the house.&lt;/p&gt;
+&lt;p&gt;Firefox can encrypt your DNS traffic from &amp;ldquo;snoopers&amp;rdquo;.  Go to the menu button and choose &lt;em&gt;preferences&lt;/em&gt; and then &lt;em&gt;Network Settings&lt;/em&gt;.  Click &lt;em&gt;Enable DNS over HTTPS&lt;/em&gt; and then choose a provider or select &amp;ldquo;Custom&amp;rdquo; and type in the IP address (included below).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://d15ni2z53ptwz9.cloudfront.net/opendns-www/img/logo-opendns.png#floatright&#34; alt=&#34;OpenDNS&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;opendns-20867222222---best-for-home-use&#34;&gt;OpenDNS (208.67.222.222) - Best for home use&lt;/h2&gt;
+&lt;p&gt;OpenDNS is a great choice.  By default, their free service is excellent.  It recognizes many cases where you&amp;rsquo;ve been directed to a malicious site, and keeps you out of trouble by blocking it.  OpenDNS is owned by Cisco, and it benefits from the huge investments they&amp;rsquo;ve made in Internet security.  It also blocks adult content by default.  You can create an account and customize your home&amp;rsquo;s experience - for instance, do you want to block Gambling or Tobacco advertising?  These settings are tied to your home IP, so your laptop goes back to the &amp;ldquo;default&amp;rdquo; when not at home.  Especially for public places, like church wifi, or for a home with children this allows you to control what portion of the Internet is available to users.&lt;/p&gt;
+&lt;h2 id=&#34;cloudflare-unfiltered-1111-malware-blocking-1112-malware-and-adult-content-1113&#34;&gt;Cloudflare (unfiltered 1.1.1.1, malware blocking 1.1.1.2, malware and adult content 1.1.1.3)&lt;/h2&gt;
+&lt;p&gt;Cloudflare is very easy to setup.  Use the IP address that matches your use case.  These settings can carry over when you are away from home if you change them on your device.  There&amp;rsquo;s also an app that provides this service no matter where you are (just for mobile with Windows and Mac coming soon).  Cloudflare has good settings for most cases, is easy to setup, and has the mobile apps, but lacks the customization of OpenDNS.&lt;/p&gt;
+&lt;h2 id=&#34;quad9-9999&#34;&gt;Quad9 (9.9.9.9)&lt;/h2&gt;
+&lt;p&gt;Quad9 provides a service that is very similar to Cloudflare 1.1.1.2 - just set the DNS and forget it and it provides DNS with malicious sites blocked.  My experience with Quad9 has been largely indistinguishable from Cloudflare or OpenDNS with default settings, when testing blocking or response speed.  However, Quad9 doesn&amp;rsquo;t have the customization of OpenDNS or the apps that Cloudflare has.&lt;/p&gt;
+&lt;h2 id=&#34;google-8888&#34;&gt;Google (8.8.8.8)&lt;/h2&gt;
+&lt;p&gt;This has been a popular alternative for the geek set for a long time.  It&amp;rsquo;s easy to remember and it provides an &amp;ldquo;unfiltered&amp;rdquo; response.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Using one of these services helps to protect your home.  I use OpenDNS at home and have customized it to filter out a range of categories.  It doesn&amp;rsquo;t block everything on the Internet, but it addresses some of the obvious sites and it helps prevent &amp;ldquo;oops&amp;rdquo; experiences.  It seems to help with advertising too.  I use Cloudflare on my office network and it does a great job as well.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve benefitted from the &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; discussion, this is another &amp;ldquo;reasonable&amp;rdquo; step that you can take to improve your families Internet experience.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Reasonably Secure Browsing</title>
+      <link>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</link>
+      <pubDate>Wed, 05 Aug 2020 11:23:41 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</guid>
+      <description>&lt;p&gt;Most of my articles are aimed at helping me remember how I did something &lt;em&gt;cool&lt;/em&gt; years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I&amp;rsquo;m disappointed with the lack of understanding about computer security.  I was going to say &amp;ldquo;surprised&amp;rdquo;, but sadly I&amp;rsquo;m not.  This article tries to fix that by introducing this audience to concepts in Secure Browsing.&lt;/p&gt;
+&lt;p&gt;I get that we can&amp;rsquo;t all be aware of &lt;strong&gt;everything&lt;/strong&gt;.  For instance, I&amp;rsquo;m not really interested in cars.  Still, if you are participating in an area (driving a car or browsing the web), then there&amp;rsquo;s a basic level of awareness that is needed and that you should aim for.  So this post is written for the non-technical in order to provide that grounding.  I&amp;rsquo;ll try to keep this up to date (pay attention to the posting date!) and I&amp;rsquo;ll start pointing people who ask those questions to this resource.
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/0/09/Timmcgee.jpg#floatleft&#34; alt=&#34;Tim McGee from NCIS&#34;&gt;
+I need to define &amp;ldquo;reasonable&amp;rdquo; before I get started.  Internet paranoia comes in three flavors - fear of malicious actors, fear of giant companies assembling dossiers to feed into marketing, and Orwellian fears about nation-states.  All three are reasonable things to be concerned about but this post only addresses the first.  Hiding from the NSA is beyond the ability of most people - even if they unplug.  Hiding from creepy companies is possible, but requires foregoing a lot of services that most of us are loathe to do without.  However, there are small steps that you can take that will give you a good degree of protection against maliciousness.  Reasonable means simple steps picking up bad code or leaking sensitive personal information.&lt;/p&gt;
+&lt;p&gt;Finally, what makes me think I&amp;rsquo;m an expert?  Well, I have a Master&amp;rsquo;s in Information Security and I&amp;rsquo;ve worked in IT operations and security for many, many years.  I&amp;rsquo;m no Tim McGee, but I get by.&lt;/p&gt;
+&lt;h2 id=&#34;general-safe-browsing-advice&#34;&gt;General safe-browsing advice&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;If possible, run Linux&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Setup your home to use OpenDNS or CloudFlare Family DNS servers&lt;/li&gt;
+&lt;li&gt;Check for browser updates regularly, and apply them.  Keep plugins up to date as well.&lt;/li&gt;
+&lt;li&gt;Use Anti-Virus.&lt;/li&gt;
+&lt;li&gt;Don’t &lt;strong&gt;ever&lt;/strong&gt; click on links in email.&lt;/li&gt;
+&lt;li&gt;Use a secure password, and don’t re-use passwords between sites.&lt;/li&gt;
+&lt;li&gt;Do not save passwords within the browser. Use a password safe and subscribe to &lt;strong&gt;Have I been Pwned?&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Use SSL – Sites that use “HTTPS:” instead of “HTTP” are encrypting your traffic.&lt;/li&gt;
+&lt;li&gt;Have a solution to monitor your bank accounts and credit reports.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;general-browser-checklist&#34;&gt;General Browser checklist&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Do not save passwords in the browser.  Use a password safe.&lt;/li&gt;
+&lt;li&gt;Do not use autofill.  Sites use hidden fields to send more than you think.&lt;/li&gt;
+&lt;li&gt;Have the browser ask you where to save files.  This alerts you to files being downloaded and allows you to cancel or put them in a folder for latter consideration.&lt;/li&gt;
+&lt;li&gt;Enable click-to-play for plugins.  This will speed up the browser and allow you to decide when to use useful but potentially dangerous plugins like JavaScript, Flash, and Silverlight.&lt;/li&gt;
+&lt;li&gt;Do not accept third-party cookies except by exception.  Clear all cookies after each session.&lt;/li&gt;
+&lt;li&gt;Use Do Not Track.  This is more aimed at commercial privacy, and depends on the server honoring the request, but why not?&lt;/li&gt;
+&lt;li&gt;Be cautious using extensions, however there are a few that are suggested:
+&lt;ul&gt;
+&lt;li&gt;AdBlock Plus&lt;/li&gt;
+&lt;li&gt;HTTPS Everywhere&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Refer to the following sections for specific help with your browser.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;chromehttpswwwmozillaorgmediaprotocolimglogosfirefoxbrowserlogo-lg-high-resfbc7ffbb50fdpngfloatright-chrome&#34;&gt;&lt;img src=&#34;https://www.mozilla.org/media/protocol/img/logos/firefox/browser/logo-lg-high-res.fbc7ffbb50fd.png#floatright&#34; alt=&#34;Chrome&#34;&gt; Chrome&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Settings are found under the “stacked dots” icon on the right.&lt;/li&gt;
+&lt;li&gt;Under “set up sync”
+&lt;ul&gt;
+&lt;li&gt;Choose “encrypt all synced data with your sync password”.&lt;/li&gt;
+&lt;li&gt;Uncheck Autofill and Passwords.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Select advanced options&lt;/li&gt;
+&lt;li&gt;Under Privacy, check “protect you and your device from dangerous sites” and “send Do Not Track”.&lt;/li&gt;
+&lt;li&gt;Under Passwords and Forms, uncheck both options (do not autofill or remember passwords).&lt;/li&gt;
+&lt;li&gt;Under Downloads, check “Ask where to save each file before downloading”.&lt;/li&gt;
+&lt;li&gt;Under Plugins, select “Let me choose when to run plugin content”.&lt;/li&gt;
+&lt;li&gt;Under Cookies, block third-party cookies.&lt;/li&gt;
+&lt;li&gt;Add recommended Extensions and remove un-needed ones.
+&lt;ul&gt;
+&lt;li&gt;AdBlock Plus&lt;/li&gt;
+&lt;li&gt;HTTPS Everywhere&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;firefoxhttpsp1hiclipartcompreview4981015635mozilla-sleek-icons-firefox-256x256-mozilla-firefox-logo-png-clipartjpgfloatright-firefox&#34;&gt;&lt;img src=&#34;https://p1.hiclipart.com/preview/498/1015/635/mozilla-sleek-icons-firefox-256x256-mozilla-firefox-logo-png-clipart.jpg#floatright&#34; alt=&#34;Firefox&#34;&gt; Firefox&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Options are found under the “hamburger” icon on the right.  In the drop down menu, select preferences.&lt;/li&gt;
+&lt;li&gt;Go to &lt;em&gt;Files and Applications&lt;/em&gt; and select “Always ask me where to save files.”&lt;/li&gt;
+&lt;li&gt;Under &lt;em&gt;Network Settings&lt;/em&gt; select the settings button.  Choose &lt;strong&gt;enable DNS over HTTPS&lt;/strong&gt; and set it to Cloudflare.&lt;/li&gt;
+&lt;li&gt;Under &lt;em&gt;Privacy &amp;amp; Security&lt;/em&gt;
+&lt;ul&gt;
+&lt;li&gt;Select the Standard Tracking Protection option and “Always apply Do Not Track”&lt;/li&gt;
+&lt;li&gt;Set third-party cookies to delete when Firefox is closed.&lt;/li&gt;
+&lt;li&gt;Under Logins and Passwods, disable &amp;ldquo;ask to save&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Under Forms and Autofill, disable Autofill&lt;/li&gt;
+&lt;li&gt;Under Permissions, check &amp;ldquo;Warn me when sites try to install an add-on&amp;rdquo; and &amp;ldquo;Block pop-up windows&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Disable Firefox data collection.&lt;/li&gt;
+&lt;li&gt;Under Security, choose to Block dangerous and deceptive content, block dangerous downloads, and warn about unwanted software.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Back to the hamburger menu and select &lt;em&gt;Add Ons&lt;/em&gt;.  Remove any extensions you don&amp;rsquo;t need and add these two.
+&lt;ul&gt;
+&lt;li&gt;AdBlock Plus&lt;/li&gt;
+&lt;li&gt;HTTPS Everywhere&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;internet-explorer&#34;&gt;Internet Explorer&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Don’t use Internet Explorer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;other-browsers---&#34;&gt;Other browsers . . .&lt;/h2&gt;
+&lt;p&gt;There are some other browsers that are marketed as &amp;ldquo;secure&amp;rdquo;.  Examples include Avast, AVG, and Comodo.  My experience is that these are just custom versions of Chrome.  It&amp;rsquo;s difficult to keep up with all the customizations these different groups make, but generally I find that they are based on an older version of Chromium and aren&amp;rsquo;t always transparent about what changes they are making.  They tend to be updated less often and sometimes behave in unexpected ways because of the changes.  I do not recommend these today, but I&amp;rsquo;m open to the idea.&lt;/p&gt;
+&lt;p&gt;Another set of browsers attempt to compete more directly with Firefox and Chrome.  These include names like Brave and Opera.  I have a good opinion of both these options, but they are more common with power users and not really in scope of this guide.  Safari is used on Macs and is quite good.  I&amp;rsquo;ll try to add it in at a later date.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
