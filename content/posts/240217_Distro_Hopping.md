@@ -3,7 +3,7 @@ title: "Distro Hopping"
 description: "Again"
 author: "Brent Stewart"
 date: "2024-02-17T18:08:32-05:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

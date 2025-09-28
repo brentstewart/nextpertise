@@ -11,7 +11,6 @@ youtube: ""
 refs: [""]
 tags: ["network"]
 math: true
-markup: 'mmark'
 ---
 In the category of unexpected questions:
 

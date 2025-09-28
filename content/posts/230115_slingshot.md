@@ -3,7 +3,6 @@ title: "Slingshot"
 description: ""
 author: "Brent Stewart"
 date: "2023-01-15T15:03:12-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

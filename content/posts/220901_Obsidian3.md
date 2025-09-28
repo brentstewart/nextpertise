@@ -3,7 +3,6 @@ title: "Linking and Embedding in Obsidian Notes (Part 3)"
 description: ""
 author: "Brent Stewart"
 date: "2022-09-01T06:24:59-04:00"
-markup: 'mmark'
 math: true
 draft: false
 Victor_Hugo: "true"

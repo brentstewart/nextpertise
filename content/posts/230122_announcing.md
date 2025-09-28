@@ -3,7 +3,6 @@ title: "IMHO"
 description: ""
 author: "Brent Stewart"
 date: "2023-01-22T13:27:41-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

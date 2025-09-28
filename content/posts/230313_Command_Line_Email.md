@@ -3,7 +3,6 @@ title: "Sending Email through Google from the Command Line"
 description: "How to send email from bash"
 author: "Brent Stewart"
 date: "2023-03-12T18:22:33-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

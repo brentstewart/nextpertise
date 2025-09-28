@@ -3,7 +3,6 @@ title: "Technical Debt"
 description: ""
 author: "Brent Stewart"
 date: "2023-10-02T09:59:14-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

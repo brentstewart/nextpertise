@@ -3,7 +3,6 @@ title: "Running GNS3 on Proxmox VE"
 description: ""
 author: "Brent Stewart"
 date: "2023-01-21T10:00:18-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

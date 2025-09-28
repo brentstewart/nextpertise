@@ -1539,7 +1539,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nextpertise is a journal of interesting ideas: I described using SSHFS as an alternative to NFS back in Using SSH3. I&rsquo;ve been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS.">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I described using SSHFS as an alternative to NFS back in Using SSH3. I&rsquo;ve been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I&rsquo;ve been using a batch file to mount drives and that&rsquo;s getting old. I&rsquo;d like to just add the SSHFS targets into /etc/fstab and get them to automount.
+As a general rule, the Arch Wiki is a great place to find all things Linux. Even though I&rsquo;m running an Ubuntu variant, the Arch Wiki set me straight. For this to work there are a number of things that have to be set.
+First, as described in Using SSH2 I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:">
     <meta name="keywords" content="SSH, Linux,SSH" />
     <meta name="twitter:card" content="">
     <meta property="og:title" content="SSHFS Automount" >

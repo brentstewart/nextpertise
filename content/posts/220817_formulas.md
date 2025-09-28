@@ -4,7 +4,6 @@ description: ""
 author: "Brent Stewart"
 date: "2022-08-17T10:40:54-04:00"
 draft: false
-markup: 'mmark'
 math: true
 Victor_Hugo: "true"
 picture: "hugo"
@@ -50,7 +49,7 @@ There are three steps to incorporating KaTeX with Hugo.
 
 3. Finally, edit the default archetype file (themes/next/archetypes/default.md).  Changing the markdown engine is not required, but issues with KaTeX have been reported using the default Goldmark (I didn't encounter any issues with either in my testing).  I have the math parameter present but set to false, which will not load KaTeX javascript (similar to what would happen if I omitted the parameter).  I am including the parameter as a reminder to my future self.
 ```
-  markup: 'mmark'
+  
   math: false
 ```
 

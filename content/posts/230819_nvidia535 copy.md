@@ -3,7 +3,6 @@ title: "NVidia 5.35 Warning"
 description: "Beware of NVidia 5.35"
 author: "Brent Stewart"
 date: "2023-08-19T08:32:41-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

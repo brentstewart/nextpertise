@@ -3,7 +3,6 @@ title: "Building a Home Web Dashboard"
 description: "Trying out a few options for a home dashboard"
 author: "Brent Stewart"
 date: "2023-09-30T11:29:45-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

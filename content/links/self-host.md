@@ -3,7 +3,6 @@ title: "Self-Host"
 description: "This page has a collection of self-hosted projects."
 author: "Brent Stewart"
 date: "2024-04-20T14:40:57-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

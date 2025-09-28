@@ -3,7 +3,6 @@ title: "Obsidian Introduction (Part 1)"
 description: ""
 author: "Brent Stewart"
 date: "2022-08-29T17:24:59-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

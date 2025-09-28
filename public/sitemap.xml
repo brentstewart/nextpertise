@@ -23,10 +23,10 @@
     <loc>http://localhost:1313/links/hosting/</loc>
     <lastmod>2024-04-21T14:47:07-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/links/</loc>
+    <loc>http://localhost:1313/links/</loc>
     <lastmod>2024-04-21T14:47:07-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/links/</loc>
+    <loc>http://localhost:1313/tags/links/</loc>
     <lastmod>2024-04-21T14:47:07-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/links/jamstack/</loc>

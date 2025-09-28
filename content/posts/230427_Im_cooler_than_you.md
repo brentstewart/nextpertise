@@ -3,7 +3,7 @@ title: "I'm cooler than you"
 description: "Getting VSCode to work on Android"
 author: "Brent Stewart"
 date: "2023-04-27T17:38:24-04:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

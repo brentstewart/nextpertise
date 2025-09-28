@@ -3,7 +3,6 @@ title: "FancyWM"
 description: ""
 author: "Brent Stewart"
 date: "2022-12-26T12:00:26-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

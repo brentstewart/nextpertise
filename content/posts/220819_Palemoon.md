@@ -3,7 +3,6 @@ title: "Palemoon for legacy Flash support"
 description: "Palemoon iu"
 author: "Brent Stewart"
 date: "2022-08-19T09:07:14-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

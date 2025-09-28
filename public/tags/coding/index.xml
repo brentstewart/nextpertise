@@ -368,18 +368,15 @@ The next sections are things that I would usually want, but not always.  One exa
 &lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
 &lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;1 2 add&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;1 2 add&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;In college, I &amp;ldquo;discovered&amp;rdquo; postscript by printing a file for an Apple LaserWriter to an HP Laserjet. Since the Laserjet didn&amp;rsquo;t speak Postscript (they use PCL) it just dumped raw text onto a stack of paper. I was fascinated because I could kinda read it, so I researched it and bought three books and just started playing:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Postscript Language: Tutorial and Cookbook by Adobe
 Graphic Design with Postscript by Gerard Kunkel
-Postscript by Example by Henry McGilton and Mary Campione&lt;/p&gt;
-&lt;/blockquote&gt;
+Postscript by Example by Henry McGilton and Mary Campione&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;At first, I wrote text files and dumped them to the LaserWriter.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;copy myfile.ps &amp;gt; lpt1:&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;copy myfile.ps &amp;gt; lpt1:&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Later I started using early ghostscript to output to my dot matrix printer. I recently rediscoverd some of my files from the 1980&amp;rsquo;s and found that I could display them in Linux with modern Ghostscript.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s a simple Postscript program I took from the Postscript Cookbook:
 &lt;img src=&#34;http://localhost:1313/CircleofBrent.png#floatright&#34; alt=&#34;Circle of Brent&#34;&gt;&lt;/p&gt;

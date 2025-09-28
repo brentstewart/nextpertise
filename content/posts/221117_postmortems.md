@@ -3,7 +3,6 @@ title: "Blameless Post Mortems"
 description: "An introduction to Blameless Post Mortems"
 author: "Brent Stewart"
 date: "2022-11-17T16:00:14-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

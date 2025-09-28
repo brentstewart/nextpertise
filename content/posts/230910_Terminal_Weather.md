@@ -3,7 +3,6 @@ title: "Terminal Weather"
 description: "Pulling weather from the command line"
 author: "Brent Stewart"
 date: "2023-09-10T19:45:03-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

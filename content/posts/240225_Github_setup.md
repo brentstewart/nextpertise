@@ -3,7 +3,7 @@ title: "Github setup"
 description: ""
 author: "Brent Stewart"
 date: "2024-02-25T14:47:54-05:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

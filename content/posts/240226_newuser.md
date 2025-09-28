@@ -3,7 +3,7 @@ title: "Adding a user to Ubuntu"
 description: "How to add a user from BASH"
 author: "Brent Stewart"
 date: "2024-02-26T20:56:43-05:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

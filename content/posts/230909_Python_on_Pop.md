@@ -3,7 +3,6 @@ title: "Python on Pop"
 description: "Pop! OS hasn't been updated in a while and python is getting long in the tooth."
 author: "Brent Stewart"
 date: "2023-09-09T21:58:42-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

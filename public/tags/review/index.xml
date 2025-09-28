@@ -80,8 +80,7 @@ pkgs.tailscale
 services.tailscale.enable=true;&lt;/p&gt;
 &lt;h1 id=&#34;exit-the-text-editor&#34;&gt;exit the text editor&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Once tailscale is installed, run &lt;strong&gt;sudo tailscale up&lt;/strong&gt; as before.  This will provide a URL for authentication.  Finally, go into the tailscale dashboard and authorize the new machine (click the ellipsis to the right of the machine and choose authorize).  Nix runs on my travel laptop, so I didn&amp;rsquo;t try to advertise it as an exit node.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/221005_Tailscale.png#floatright&#34; alt=&#34;Dashboard&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;tailscale-dashboard&#34;&gt;Tailscale Dashboard&lt;/h2&gt;
@@ -403,7 +402,7 @@ Go back to Central and scroll down to clients.  Find the new client and check th
       
       <guid>http://localhost:1313/posts/200720_building_site_with_hugo/</guid>
       <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
-&lt;h2 id=&#34;hugohttpsd33wubrfki0l68cloudfrontnetc38c7334cc3f23585738e40334284fddcaf03d5e2e17cimageshugo-logo-widesvgfloatleft&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;
 &lt;p&gt;Mike Dane at Giraffe Academy has done an excellent series of videos that walk through Hugo.  Rather than repeat his work, I will tell you a little about my site.&lt;/p&gt;
 &lt;p&gt;Hugo supports multiple taxonomies, but for now I&amp;rsquo;ve focused on using tags.  I&amp;rsquo;ve defined some parameters in my front matter for a github link, Youtube link, and other references.  If I populate those parameters, they automatically display on the single template.  I used an HTML Grid for the list pages and set it to scale based on window width to produce a nice responsive behavior.  Hugo supports using themes and there are some great options, but I&amp;rsquo;ve chosen to build my own theme (&amp;ldquo;next&amp;rdquo;) because I wanted to understand the process.  You&amp;rsquo;re welcome to clone the theme.  Better yet, tell me what I did wrong!&lt;/p&gt;

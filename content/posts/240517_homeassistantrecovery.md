@@ -3,7 +3,7 @@ title: "Home Assistant Device Recovery"
 description: "How to find device IPs"
 author: "Brent Stewart"
 date: "2024-05-18T15:09:11-04:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

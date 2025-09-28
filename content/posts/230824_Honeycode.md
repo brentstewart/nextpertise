@@ -3,7 +3,6 @@ title: "RIP Honeycode"
 description: "Honeycode was a cool no-code database from Amazon, but has been discontinued"
 author: "Brent Stewart"
 date: "2023-08-24T21:04:12-04:00"
-markup: 'mmark'
 math: false
 draft: true
 Victor_Hugo: "true"

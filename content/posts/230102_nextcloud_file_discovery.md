@@ -3,7 +3,6 @@ title: "Nextcloud File Discovery"
 description: ""
 author: "Brent Stewart"
 date: "2023-01-02T14:47:26-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

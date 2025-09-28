@@ -3,7 +3,6 @@ title: "Tailscale"
 description: "Using Tailscale with Linux"
 author: "Brent Stewart"
 date: "2022-10-04T14:48:18-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

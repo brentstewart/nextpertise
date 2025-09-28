@@ -3,7 +3,6 @@ title: "Wisdom in 17 sayings"
 description: ""
 author: "Brent Stewart"
 date: "2022-11-15T14:41:10-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

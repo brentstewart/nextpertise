@@ -3,7 +3,6 @@ title: "Ahrefs update"
 description: "Nextpertise is a journal of interesting ideas in technology, covering topics such as Linux use at home and in the cloud, self-hosting, and cybersecurity."
 author: "Brent Stewart"
 date: "2023-09-04T08:43:45-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

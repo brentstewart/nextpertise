@@ -3,7 +3,6 @@ title: "Self-Hosted Obsidian"
 description: ""
 author: "Brent Stewart"
 date: "2022-12-10T17:17:04-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

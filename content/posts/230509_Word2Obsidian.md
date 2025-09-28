@@ -3,7 +3,6 @@ title: "Word to Obsidian with a DIY CI"
 description: "A simple Ci-like process to send word files to Obsidian"
 author: "Brent Stewart"
 date: "2023-05-09T21:20:24-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

@@ -135,7 +135,7 @@ The five variables before the job are minute, hour, day, month, and day of the w
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;Finally, edit the default archetype file (themes/next/archetypes/default.md).  Changing the markdown engine is not required, but issues with KaTeX have been reported using the default Goldmark (I didn&amp;rsquo;t encounter any issues with either in my testing).  I have the math parameter present but set to false, which will not load KaTeX javascript (similar to what would happen if I omitted the parameter).  I am including the parameter as a reminder to my future self.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  markup: &amp;#39;mmark&amp;#39;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  
   math: false
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Use KaTeX in markdown by using two dollar signs ($$) as before and after delimiters for a standalone centered equation or single dollar signs for in-line equations.
 You can find a good LaTeX resource at the &lt;a href=&#34;https://www.overleaf.com/learn/latex/Mathematical_expressions&#34;&gt;Overleaf&lt;/a&gt; site.&lt;/p&gt;
@@ -193,9 +193,7 @@ $$i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r}
 ― Albert Einstein&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This is a indented block quote.  Because my CSS centers them, it looks a little wonky.  “Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.”
-― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+― Martin Luther King Jr., A Testament of Hope: The Essential Writings and Speeches&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;and here&amp;rsquo;s the actual typed Markdown.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;gt; &lt;/span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;This is a block quote.  “Two things are infinite: the universe and human stupidity; and I&amp;#39;m not sure about the universe.”
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;font-style:italic&#34;&gt;&lt;/span&gt;― Albert Einstein 
@@ -244,38 +242,38 @@ Print (&amp;quot;using three ticks before and after&amp;quot;)
 
 &lt;table class=&#34;table table-responsive table-hover&#34;&gt;
 &lt;caption&gt;Table: Demonstration&lt;/caption&gt;
-&lt;thead class=&#34;table-info&#34;&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;Letters&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
-&lt;th style=&#34;text-align:left&#34;&gt;Numbers&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;Symbols&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;A&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;0&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;B&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;$&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;C&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;2&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;%&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead class=&#34;table-info&#34;&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;Letters&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Numbers&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;Symbols&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;A&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;*&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;B&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;C&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/p&gt;
 &lt;p&gt;Ignore the backslashes below - the shortcut kicks in when displaying if I leave them out.&lt;/p&gt;
@@ -403,7 +401,7 @@ Hugo and Render are one iteration of a concept called the JAMStack.&lt;/p&gt;
       
       <guid>http://localhost:1313/posts/200720_building_site_with_hugo/</guid>
       <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
-&lt;h2 id=&#34;hugohttpsd33wubrfki0l68cloudfrontnetc38c7334cc3f23585738e40334284fddcaf03d5e2e17cimageshugo-logo-widesvgfloatleft&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;
 &lt;p&gt;Mike Dane at Giraffe Academy has done an excellent series of videos that walk through Hugo.  Rather than repeat his work, I will tell you a little about my site.&lt;/p&gt;
 &lt;p&gt;Hugo supports multiple taxonomies, but for now I&amp;rsquo;ve focused on using tags.  I&amp;rsquo;ve defined some parameters in my front matter for a github link, Youtube link, and other references.  If I populate those parameters, they automatically display on the single template.  I used an HTML Grid for the list pages and set it to scale based on window width to produce a nice responsive behavior.  Hugo supports using themes and there are some great options, but I&amp;rsquo;ve chosen to build my own theme (&amp;ldquo;next&amp;rdquo;) because I wanted to understand the process.  You&amp;rsquo;re welcome to clone the theme.  Better yet, tell me what I did wrong!&lt;/p&gt;

@@ -3,7 +3,6 @@ title: "Obsidian Dataview (Part 3)"
 description: "Obsidian Dataview"
 author: "Brent Stewart"
 date: "2022-11-01T9:38:21-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

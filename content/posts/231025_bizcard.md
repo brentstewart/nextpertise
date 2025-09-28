@@ -3,7 +3,7 @@ title: "Biz card"
 description: "Creating a curl-able business card"
 author: "Brent Stewart"
 date: "2023-10-25T21:14:12-04:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

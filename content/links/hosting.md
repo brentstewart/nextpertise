@@ -3,7 +3,6 @@ title: "Hosting"
 description: "A collection of places that will host your servers or services."
 author: "Brent Stewart"
 date: "2024-04-21T14:47:07-04:00"
-markup: 'mmark'
 math: false
 draft: true
 Victor_Hugo: "true"

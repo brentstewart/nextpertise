@@ -3,7 +3,6 @@ title: "Jamstack Blogging"
 description: "This page has a collection of blogging-related links."
 author: "Brent Stewart"
 date: "2024-04-20T21:16:24-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

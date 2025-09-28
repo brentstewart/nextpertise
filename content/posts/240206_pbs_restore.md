@@ -3,7 +3,7 @@ title: "Restoring from Proxmox Backup Server"
 description: "An easy way to protect your data"
 author: "Brent Stewart"
 date: "2024-02-06T13:19:46-05:00"
-markup: 'mmark'
+
 math: false
 draft: false
 Victor_Hugo: "true"

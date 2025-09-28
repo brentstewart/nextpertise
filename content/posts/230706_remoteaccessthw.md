@@ -3,7 +3,6 @@ title: "Remote access - The Hard Way"
 description: "Remote access via Cheese"
 author: "Brent Stewart"
 date: "2023-07-06T17:00:43-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

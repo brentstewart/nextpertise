@@ -3,7 +3,6 @@ title: "Command Line Browser Carbonyl"
 description: ""
 author: "Brent Stewart"
 date: "2023-03-05T21:54:31-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

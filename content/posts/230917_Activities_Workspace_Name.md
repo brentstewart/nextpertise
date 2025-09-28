@@ -3,7 +3,6 @@ title: "Gnome Activities Workspace Name Extension"
 description: "A Gnome extension, compatible with Pop! that lables workspaces"
 author: "Brent Stewart"
 date: "2023-09-17T14:34:35-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

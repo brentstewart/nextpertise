@@ -3,7 +3,6 @@ title: "Goodhardt's Law"
 description: ""
 author: "Brent Stewart"
 date: "2023-01-26T17:48:13-05:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"

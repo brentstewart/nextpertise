@@ -3,7 +3,6 @@ title: "Books"
 description: ""
 author: "Brent Stewart"
 date: "2024-04-20T10:30:08-04:00"
-markup: 'mmark'
 math: false
 draft: false
 Victor_Hugo: "true"
