@@ -12,10 +12,10 @@
     
     <item>
       <title>Running GNS3 on Proxmox VE</title>
-      <link>http://localhost:1313/posts/230121_gns3_proxmox/</link>
+      <link>http://localhost:1313/230121_gns3_proxmox/</link>
       <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230121_gns3_proxmox/</guid>
+      <guid>http://localhost:1313/230121_gns3_proxmox/</guid>
       <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
 &lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
 &lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
@@ -82,10 +82,10 @@
     
     <item>
       <title>Problems with Proxmox VE</title>
-      <link>http://localhost:1313/posts/220219_proxmox/</link>
+      <link>http://localhost:1313/220219_proxmox/</link>
       <pubDate>Sat, 19 Feb 2022 15:37:06 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220219_proxmox/</guid>
+      <guid>http://localhost:1313/220219_proxmox/</guid>
       <description>&lt;p&gt;Look, I know you&amp;rsquo;re reading this, but sometimes I write these posts for myself.  To remind myself of how I built or repaired something.  This is one of those posts.&lt;/p&gt;
 &lt;p&gt;My home server ran VMWare ESXi for a long time.  I had trouble upgrading it from 6.5 and I was intrigued by Proxmox VE and putting my home network more firmly in the open source camp.  I&amp;rsquo;ve been running Proxmox VE 7.1 for a while now.&lt;/p&gt;
 &lt;h2 id=&#34;quick-review-of-pve&#34;&gt;Quick review of PVE&lt;/h2&gt;

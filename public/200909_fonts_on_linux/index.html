@@ -1,0 +1,155 @@
+<!doctype html>
+  <html lang="en">
+  <head itemscope itemtype="http://localhost:1313/"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-173443199-1');
+      </script>
+    <title>Nextpertise Fonts on Linux - a personal journal of interesting ideas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://Nextpertise.net/style.css">
+    <link rel="icon" href="/n.ico">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173443199-1"></script>
+    
+
+
+
+
+
+
+  </head>
+  <body>
+    <link rel="stylesheet" href="http://localhost:1313/bootstrap-table.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: I&rsquo;m a little bit of a font nerd.  In the early 90s, someone who knew computers and had a laser printer had an easy opportunity to get into graphic design.  I knew computers and the college had a laser printer, so I got a copy of Looking Good in Print and dabbled.  I&rsquo;ve written about this earlier in describing my love of Postscript.">
+    <meta name="keywords" content="linux," />
+    <meta name="twitter:card" content="">
+    <meta property="og:title" content="Fonts on Linux" >
+    <meta property="og:url" content="http://localhost:1313/200909_fonts_on_linux/" >
+    <meta property="og:description" content="" >
+    <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
+    <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
+    <link rel="stylesheet" href="https://nextpertise.net/style.css" >
+</head>
+<div class="tags"><img src="https://nextpertise.net/nextpertise_rays.png" alt="Nextpertise" height="75" > <i>a journal of interesting technical ideas . . .</i></div>
+<div class="nav"style="text-align: left">
+  <nav class="sidebar-nav">
+    
+    
+     <a class="sidebar-nav-item" href="/" title="">Home</a>
+    
+     <a class="sidebar-nav-item" href="/tags/" title="">TagCloud</a>
+    
+     <a class="sidebar-nav-item" href="/posts/" title="">Recent</a>
+    
+     <a class="sidebar-nav-item" href="/legacy/" title="">Archives</a>
+    
+     <a class="sidebar-nav-item" href="https://stewart.tc/" title="">Personal</a>
+    
+     <a class="sidebar-nav-item" href="https://github.com/brentstewart" title="">Github</a>
+    
+     <a class="sidebar-nav-item" href="/contributors/" title="">About</a>
+    
+    &NonBreakingSpace;Find us on:&NonBreakingSpace;
+    <a href="https://nextpertise.net/index.xml"><img src="/Feed-icon.png" alt="RSS" height="25"></a>
+    <a href="https://www.linkedin.com/company/nextpertise"><img src="/linkedin.png" alt="LinkedIn" height="25" ></a>
+
+      
+  </div>
+
+    
+<img src="/201230_n.png#floatright" height="140">
+<h1>Fonts on Linux</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Wednesday, Sep 9, 2020</i><br></div></h6>
+  <p><p>I&rsquo;m a little bit of a font nerd.  In the early 90s, someone who knew computers and had a laser printer had an easy opportunity to get into graphic design.  I knew computers and the college had a laser printer, so I got a copy of <strong>Looking Good in Print</strong> and dabbled.  I&rsquo;ve written about this earlier in describing my love of <a href="/posts/200803_funwithpostscript/">Postscript</a>.</p>
+<p>If you&rsquo;d like to have some font options on Linux, there are some great places to get high-quality fonts that work well with Linux applications.  This is a minor, but hopefully useful tip!</p>
+<h2 id="formats">Formats</h2>
+<p>Most Linux desktop environments support a variety of formats, but the most common are PostScript, OpenType, and TrueType.</p>
+<p><em>Postscript</em> is the oldest of the three.  Developed by Adobe in the 1984, they found a home on the Apple LaserWriter and were <em>the</em> way to print high quality fonts.  They were expensive to license though, so Microsoft and Apple developed TrueType which was a similar vector-based approach to font description.  <em>TrueType</em> added in the idea of &ldquo;hinting&rdquo; which offered more control over how glyphs were presented.  <em>OpenType</em> is the evolution of TrueType and allows more complex descriptions of shapes and larger character sets (up to 64K).</p>
+<p>All three formats work in Linux.  Unless you are very detail oriented, I doubt you&rsquo;ll be able to tell which font is TrueType and which is OpenType.  There are a a lot of TrueType fonts available, but I use OpenType if I have a choice.</p>
+<h2 id="using-apt">Using Apt</h2>
+<p>One way to get fonts is to use the archive for your distribution.  For Ubuntu, there are a variety of fonts available via PPA.  To list and install them use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt search font
+</span></span><span style="display:flex;"><span>sudo apt install fonts-noto
+</span></span></code></pre></div><p>Noto is a Google font that is clean and available in a range of type faces.</p>
+<p>This is an easy way to install new fonts, but there&rsquo;s no preview and this approach may require some effort.</p>
+<h2 id="from-the-web">From the Web</h2>
+<p><img src="/DownloadGoogleFont.png#center" alt="Google Fonts">
+Option #2 is to search for fonts online.  One great place to get (free!) quality fonts is from <a href="https://fonts.google.com">Google</a>.  Fonts can be previewed online and are easy to download. Google passes these to you as TrueType (TTF) files in a Zip.  Unzip the file and copy the files to <em>/usr/share/fonts</em>.  The <strong>fc-cache</strong> command rebuilds the font cache to include the new files and they should be available in programs afterward.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unzip font.zip
+</span></span><span style="display:flex;"><span>sudo cp *ttf /usr/share/fonts/truetype
+</span></span><span style="display:flex;"><span>sudo fc-cache -f -v
+</span></span></code></pre></div><p>The <em>fonts</em> directory has a set of sub-directories (including <em>postscript</em>, <em>truetype</em>, and <em>openscript</em>) so change the target directory appropriately.  If you downloaded a group of fonts that are sorted into sub-directories, you can grab all the ttf files recursively using <strong>sudo cp *ttf /usr/share/fonts/truetype -r</strong>.</p>
+<p>This font directory (/usr/share/fonts) makes fonts available to all users.  If you want to install them for just one account, you can install them to <em>~/.fonts</em>.  I&rsquo;ve never done it that way, since I control my system, but this would be particularly useful if you don&rsquo;t have root privileges.</p>
+<p>The Google site is a great resource, but there are many places to purchase or get open-source fonts <a href="https://lmgtfy.com/?q=fonts&amp;pp=1&amp;iie=1">online</a>.  Hope this helps!</p>
+</p>
+  <br>
+  <hr>
+  <h6>
+    <strong>References:<br></strong> &nbsp&nbsp<a href="https://fonts.google.com">https://fonts.google.com<br> &nbsp&nbsp<a href="https://www.google.com/get/noto/">https://www.google.com/get/noto/<br> 
+    
+    
+    <br>
+    Recent articles related to these tags:
+    
+      
+        <a href="/tags/linux/">linux 
+       
+    
+    <ul style="list-style: none;">
+      
+      <li class="relatedPost">
+        <a href="/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240217_distro_hopping/">Distro Hopping<br />
+        Again
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240206_pbs_restore/">Restoring from Proxmox Backup Server<br />
+        An easy way to protect your data
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240204_pbs/">Proxmox Backup Server<br />
+        Incredibly valuable and also free!
+      </li>
+    
+  </ul>
+<br>
+
+
+    
+Share this article:&NonBreakingSpace;
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+  <script type="IN/Share" data-url="/200909_fonts_on_linux/"></script>&NonBreakingSpace;
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</h6>
+  <script
+    async
+    src="https://utteranc.es/client.js"
+    repo="brentstewart/nextpertise"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"></script>
+  
+    <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
+     <nav class ="sidebar-nav"><a href="/">Fonts on Linux</nav>
+</div>
+  </body>
+  </html>

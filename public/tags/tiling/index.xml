@@ -12,10 +12,10 @@
     
     <item>
       <title>FancyWM</title>
-      <link>http://localhost:1313/posts/221226_fancywm/</link>
+      <link>http://localhost:1313/221226_fancywm/</link>
       <pubDate>Mon, 26 Dec 2022 12:00:26 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221226_fancywm/</guid>
+      <guid>http://localhost:1313/221226_fancywm/</guid>
       <description>&lt;p&gt;Pop! OS has spoiled me.  I used to try to slide windows left and right across multiple monitors to get them to all fit.  My current workflow on Pop! is to enable tiling on my 4K display and then use multiple desktops if I need to divide my work areas.  I&amp;rsquo;ve recently been using Windows more and set out to recreate that workflow.  I won&amp;rsquo;t claim an exhaustive search, but here is the way I&amp;rsquo;ve currently setup my Windows PC.&lt;/p&gt;
 &lt;h2 id=&#34;multiple-desktops&#34;&gt;Multiple Desktops&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/221228_taskbutton.PNG#floatright&#34; alt=&#34;Task View&#34;&gt;
@@ -35,10 +35,10 @@ There are two screenshots shown.  In the first, I opened a series of new windows
     
     <item>
       <title>Pop! OS</title>
-      <link>http://localhost:1313/posts/201126_pop-os/</link>
+      <link>http://localhost:1313/201126_pop-os/</link>
       <pubDate>Thu, 26 Nov 2020 10:17:03 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201126_pop-os/</guid>
+      <guid>http://localhost:1313/201126_pop-os/</guid>
       <description>&lt;p&gt;I recently wrote about my experiences with &lt;a href=&#34;http://localhost:1313/posts/201024_ubuntu2010/&#34;&gt;Ubuntu 20.10&lt;/a&gt;.  In that article, I mentioned that I previously found Gnome laggy and the app picker to be annoyingly unsorted.  That article got into Gnome 3.38, which seems to answer my issues by being perkier and providing a way to organize applications.  I also mentioend how much I appreciated Material Design, a tiling extension for Gnome.  That setup - Ubuntu 20.10 with Gnome 3.38 and Material Design - has worked really well on my laptop and a month later I remain enthusiastic about the way it organizes my work.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pop.system76.com/_nuxt/img/623f266-700.png#floatright&#34; alt=&#34;Pop OS&#34;&gt;
 But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is an i7 with 64GB of memory (perfect for GNS3!) and a 2K and 4K display.  The Material Design extension didn&amp;rsquo;t adapt well to the dual displays.  Gnome was still great, so I started hunting for a different tiling extension but the others didn&amp;rsquo;t install on 3.38.  I had tried &lt;em&gt;Pop! OS&lt;/em&gt; six months ago and really liked where System 76 was headed with auto-tiling, but had been frustrated by Gnome.  I decided to give the distribution another chance.&lt;/p&gt;
@@ -57,10 +57,10 @@ But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is
     
     <item>
       <title>Tilix</title>
-      <link>http://localhost:1313/posts/201125_tilix/</link>
+      <link>http://localhost:1313/201125_tilix/</link>
       <pubDate>Wed, 25 Nov 2020 07:50:59 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201125_tilix/</guid>
+      <guid>http://localhost:1313/201125_tilix/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://gnunn1.github.io/tilix-web/src/images/gallery/tilix-screenshot-3.png#floatright&#34; alt=&#34;Tilix&#34;&gt; Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution.  This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.&lt;/p&gt;
 &lt;p&gt;The basic pitch of Tilix is that it is a tiling terminal.  New terminals exist in sessions.  Within a session, terminals can split the window horizontally or veritcally.&lt;/p&gt;
 &lt;p&gt;Think of a session like a desktop.  You could create a poor-man&amp;rsquo;s IDE by grouping three sessions on a desktop, with one showing a directory, a second running &lt;strong&gt;nano&lt;/strong&gt;, and the third ready to receive a command.  Another session could be used for networking, with terminals open to a firewall and switch.  You manage sessions with the drop-down menu on the right.&lt;/p&gt;
@@ -78,10 +78,10 @@ GNS3 allows you to set the terminal application it uses under &lt;em&gt;edit &am
     
     <item>
       <title>Ubuntu 20.10</title>
-      <link>http://localhost:1313/posts/201024_ubuntu2010/</link>
+      <link>http://localhost:1313/201024_ubuntu2010/</link>
       <pubDate>Sat, 24 Oct 2020 18:40:56 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201024_ubuntu2010/</guid>
+      <guid>http://localhost:1313/201024_ubuntu2010/</guid>
       <description>&lt;p&gt;I had a chance to download Ubuntu 20.10 and install it on a gen 8 i5 laptop.  I typically use Cinnamon for a desktop environment, which I have long found to be mature, usable, and stable.  In the past, I&amp;rsquo;ve found Gnome to be laggy but I&amp;rsquo;ve heard good things about 3.38.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve become enamored of tiling windows as well.  I&amp;rsquo;ve tried i3, Pop OS!, and others.  So another thing I wanted to look into was the Material Design extension.&lt;/p&gt;
 &lt;h2 id=&#34;about-ubuntu-2010&#34;&gt;About Ubuntu 20.10&lt;/h2&gt;

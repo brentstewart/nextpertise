@@ -12,10 +12,10 @@
     
     <item>
       <title>How to write an event to Windows and Linux logs</title>
-      <link>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <link>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <guid>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</guid>
       <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
 &lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
 &lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;

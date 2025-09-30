@@ -12,10 +12,10 @@
     
     <item>
       <title>Blameless Post Mortems</title>
-      <link>http://localhost:1313/posts/221117_postmortems/</link>
+      <link>http://localhost:1313/221117_postmortems/</link>
       <pubDate>Thu, 17 Nov 2022 16:00:14 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221117_postmortems/</guid>
+      <guid>http://localhost:1313/221117_postmortems/</guid>
       <description>&lt;p&gt;If you support IT infrastructure, the goal is to minimize issues (particularly issues with big impacts).  Some issues can be anticipated and pre-mitigated.  Considerable success can be achieved but &lt;em&gt;perfect&lt;/em&gt; is not for this life.  As a leader, I want to ensure that we learn and improve from every issue.  One way to do that is through a &lt;em&gt;post-mortem&lt;/em&gt; process.&lt;/p&gt;
 &lt;p&gt;I had a mish-mash of approaches that I used from reading Atul Gwande.  If you haven&amp;rsquo;t read his books, I am amazed at how the stories of the history of surgical improvements can be applied to IT and highly recommend them (a good one to start with is &lt;em&gt;The Checklist Manifesto&lt;/em&gt;).  I was inspired to strengthen and standardize the use of post-mortems from a presentation given by Data Dog at an AWS conference.  This article describes my experiences.  I&amp;rsquo;ve also linked to an excellent article from Data Dog.&lt;/p&gt;
 &lt;h2 id=&#34;history-of-post-mortems&#34;&gt;History of Post-Mortems&lt;/h2&gt;
@@ -62,10 +62,10 @@
     
     <item>
       <title>Wisdom in 17 sayings</title>
-      <link>http://localhost:1313/posts/221115_leadership/</link>
+      <link>http://localhost:1313/221115_leadership/</link>
       <pubDate>Tue, 15 Nov 2022 14:41:10 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221115_leadership/</guid>
+      <guid>http://localhost:1313/221115_leadership/</guid>
       <description>&lt;p&gt;I grab onto quotes.  Some I hold onto long enough to consider and they pop up in conversation at odd times.  Others seem to bubble up consistently.  To me, these favorite quotes are the compass that I use to retain my sense of direction in difficult times and circumstances.&lt;/p&gt;
 &lt;p&gt;Folks who have worked with me over the years will have heard versions of these sayings (and probably some that I am forgetting right now).  Some may complain for hearing them too much.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m preparing for a new job and thinking about how I want to approach new responsibilities.  I&amp;rsquo;ve never tried to compile a list but it&amp;rsquo;s a good time for reviewing these touchstones.  I wanted to share that list with you.&lt;/p&gt;

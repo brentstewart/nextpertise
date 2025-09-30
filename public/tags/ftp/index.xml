@@ -12,10 +12,10 @@
     
     <item>
       <title>Filezilla</title>
-      <link>http://localhost:1313/posts/220626_filezilla/</link>
+      <link>http://localhost:1313/220626_filezilla/</link>
       <pubDate>Sun, 26 Jun 2022 18:00:16 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220626_filezilla/</guid>
+      <guid>http://localhost:1313/220626_filezilla/</guid>
       <description>&lt;p&gt;Filezilla produces a set of graphical file transfer tools and this has been a high-quality product for a very long time.  I&amp;rsquo;ve used Filezilla since the early 2000s, as have a lot of other folks, and it&amp;rsquo;s something of a standard in industry where FTP/FTPS is used.  Part of the charm is that the Filezilla client is very accessible for non-technical folks - a little introduction and they can manage their own downloads.&lt;/p&gt;
 &lt;p&gt;The traditional Filezilla open-source client supports FTP and SFTP.  Filezilla makes an open-source FTP/FTPS server that makes it easy to host an FTP site.  Filezilla server used to be a great way to support FTP on a Windows server (and I used it that way 15 years ago), but researching this article I see that it is now offered for other OS as well.  They have also released a &lt;a href=&#34;https://filezilla-project.org/filezilla_pro.php&#34;&gt;Filezilla Pro&lt;/a&gt; client that includes support for things like WebDAV, S3, and various cloud file stores.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/220626_Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/p&gt;
@@ -39,10 +39,10 @@
     
     <item>
       <title>Setting up a Basic FTP server on Linux</title>
-      <link>http://localhost:1313/posts/220117_linux_ftp/</link>
+      <link>http://localhost:1313/220117_linux_ftp/</link>
       <pubDate>Mon, 17 Jan 2022 15:49:07 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220117_linux_ftp/</guid>
+      <guid>http://localhost:1313/220117_linux_ftp/</guid>
       <description>&lt;h1 id=&#34;brother-printers-work-well-with-linux&#34;&gt;Brother Printers work well with Linux&lt;/h1&gt;
 &lt;p&gt;My last two printers have been Brother multi-function copiers (MFCs).  These printers work really well with everything in the house - Windows, Linux, even the school Chromebooks.  They have a Linux driver available on their website for all their printers, the print quality is excellent, and they&amp;rsquo;ve been very durable.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;re looking for a printer that plays well with others, take a look.&lt;/p&gt;

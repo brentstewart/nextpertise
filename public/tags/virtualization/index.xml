@@ -12,10 +12,10 @@
     
     <item>
       <title>Restoring from Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240206_pbs_restore/</link>
+      <link>http://localhost:1313/240206_pbs_restore/</link>
       <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240206_pbs_restore/</guid>
+      <guid>http://localhost:1313/240206_pbs_restore/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;http://localhost:1313/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
 &lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
@@ -65,10 +65,10 @@
     
     <item>
       <title>Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240204_pbs/</link>
+      <link>http://localhost:1313/240204_pbs/</link>
       <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240204_pbs/</guid>
+      <guid>http://localhost:1313/240204_pbs/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
 &lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;http://localhost:1313/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
@@ -143,10 +143,10 @@
     
     <item>
       <title>Anonymous Browsing</title>
-      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <link>http://localhost:1313/230405_anonymous/</link>
       <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <guid>http://localhost:1313/230405_anonymous/</guid>
       <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
 &lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
@@ -965,10 +965,10 @@ StrictNodes 1
     
     <item>
       <title>Running GNS3 on Proxmox VE</title>
-      <link>http://localhost:1313/posts/230121_gns3_proxmox/</link>
+      <link>http://localhost:1313/230121_gns3_proxmox/</link>
       <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230121_gns3_proxmox/</guid>
+      <guid>http://localhost:1313/230121_gns3_proxmox/</guid>
       <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
 &lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
 &lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
@@ -1035,10 +1035,10 @@ StrictNodes 1
     
     <item>
       <title>Basic Packer</title>
-      <link>http://localhost:1313/posts/221019_packer/</link>
+      <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221019_packer/</guid>
+      <guid>http://localhost:1313/221019_packer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://hashicorp.com&#34;&gt;Hashicorp&lt;/a&gt; makes some &lt;em&gt;cool&lt;/em&gt; tools for playing in the cloud or a virtualized environment, especially if you want to build out an Infrastructure as Code approach and make infrastructure updates a CI process. &lt;a href=&#34;https://packer.io&#34;&gt;Packer&lt;/a&gt; is a tool that let&amp;rsquo;s you define a server - OS, cores, storage, packages, and all - in a script that can be built on demand.  You can even define your  environment, like LAMP, in the packer script and load your application files.&lt;/p&gt;
 &lt;p&gt;A very practical use of Packer would be to use it to build a custom AWS AMI for your company.  You want every EC2 instance to look like this image, so it might include security settings or agents, centralized logging setup, connections to centralized authentication, and other common resources.  I would probably load any required data files when the EC2 instance is instantiated, maybe through Cloud Formation.&lt;/p&gt;
 &lt;p&gt;Packer scripts are written in HCL (Hashi Corp Language?  Dunno.), which ends up looking like YAML.&lt;/p&gt;
@@ -1145,10 +1145,10 @@ late-commands:
     
     <item>
       <title>VMWare PSA update</title>
-      <link>http://localhost:1313/posts/220727_psa_update/</link>
+      <link>http://localhost:1313/220727_psa_update/</link>
       <pubDate>Wed, 27 Jul 2022 13:00:36 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220727_psa_update/</guid>
+      <guid>http://localhost:1313/220727_psa_update/</guid>
       <description>&lt;p&gt;I wrote back on &lt;a href=&#34;http://localhost:1313/posts/220105_psa_vmware&#34;&gt;January 5th&lt;/a&gt; about an issue with VMWare Workstation on the latest Linux kernels.  I&amp;rsquo;m using Pop! OS and it is fairly aggressive about keeping the system on fairly recent kernels.  VMWare doesn&amp;rsquo;t support the newest kernels and Workstaion thus can&amp;rsquo;t recompile vmmon and vmnet after a kernel upgrade.  This is probably a problem shared by anyone who keeps their kernel updated, but it&amp;rsquo;s worth saying that - if your goal is stability - you don&amp;rsquo;t have to upgrade the kernel when offered.&lt;/p&gt;
 &lt;p&gt;I previously recommended a project from Michal Kubeček that maintained the &lt;a href=&#34;https://github.com/mkubecek/vmware-host-modules&#34;&gt;necessary patches&lt;/a&gt;.  That project is still great, but you have to periodically download a new copy to stay current.  Today when I hit this issue again, I used a different project - the &lt;a href=&#34;https://github.com/LinuxEuphony/vmware-host-modules-builder-cli&#34;&gt;VMWare host modules Builder CLI&lt;/a&gt;.  This project builds on and automates the Kubeček project.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Builder CLI&lt;/strong&gt; supports Debian (and thus Pop!), Arch, and is working on Fedora support.  When run, the script confirms that you are logged in as root and that there is internet connectivity.  It checks for unmet dependencies and cleans up.  As part of the script it installs ncat and wget, as well as open-vm-tools.  It detects your kernel and VMWare Workstation versions, downloads the updates, and guides you through installation.  It was quick and easy on my system.&lt;/p&gt;
@@ -1160,10 +1160,10 @@ late-commands:
     
     <item>
       <title>Problems with Proxmox VE</title>
-      <link>http://localhost:1313/posts/220219_proxmox/</link>
+      <link>http://localhost:1313/220219_proxmox/</link>
       <pubDate>Sat, 19 Feb 2022 15:37:06 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220219_proxmox/</guid>
+      <guid>http://localhost:1313/220219_proxmox/</guid>
       <description>&lt;p&gt;Look, I know you&amp;rsquo;re reading this, but sometimes I write these posts for myself.  To remind myself of how I built or repaired something.  This is one of those posts.&lt;/p&gt;
 &lt;p&gt;My home server ran VMWare ESXi for a long time.  I had trouble upgrading it from 6.5 and I was intrigued by Proxmox VE and putting my home network more firmly in the open source camp.  I&amp;rsquo;ve been running Proxmox VE 7.1 for a while now.&lt;/p&gt;
 &lt;h2 id=&#34;quick-review-of-pve&#34;&gt;Quick review of PVE&lt;/h2&gt;
@@ -1185,10 +1185,10 @@ vgchange -ay
     
     <item>
       <title>Deploying a WIM Image to VMWare</title>
-      <link>http://localhost:1313/posts/220122_deploying_wim/</link>
+      <link>http://localhost:1313/220122_deploying_wim/</link>
       <pubDate>Sat, 22 Jan 2022 12:54:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220122_deploying_wim/</guid>
+      <guid>http://localhost:1313/220122_deploying_wim/</guid>
       <description>&lt;p&gt;Work uses Windows, but I need a Linux workstation with that set of tools.  I find WSL2 incomplete . . . partly because my personal workflow is Linux based.  I spoke with the Windows expert and we agreed to use VMWare Workstation to deploy my Windows environment alongside my Linux system.  Deploying the standard Windows image to a remote VMWare environment wasn&amp;rsquo;t something we had setup already.  Since I&amp;rsquo;m trying to be a special case, he sent me the WIM file to figure out how to deploy.&lt;/p&gt;
 &lt;h1 id=&#34;what-the-heck-is-a-wim&#34;&gt;What the heck is a WIM?&lt;/h1&gt;
 &lt;p&gt;A WIM is a file-based Windows Image that is made to be easy to test and deploy.   It&amp;rsquo;s kind of like a ZIP, to my understanding, in that it captures all the files and the directory structure of a partition in a file.  Being file-based makes it easy to modify (more on this later).  Because it&amp;rsquo;s not a sector-by-sector image you can deploy it to different sized drives.&lt;/p&gt;
@@ -1233,10 +1233,10 @@ D:\ApplyImage.bat D:\Images\ACME-Standard.wim
     
     <item>
       <title>PSA VMWare</title>
-      <link>http://localhost:1313/posts/220105_psa_vmware/</link>
+      <link>http://localhost:1313/220105_psa_vmware/</link>
       <pubDate>Wed, 05 Jan 2022 17:49:07 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220105_psa_vmware/</guid>
+      <guid>http://localhost:1313/220105_psa_vmware/</guid>
       <description>&lt;h1 id=&#34;public-service-annoucement-on-vmware-workstation&#34;&gt;Public Service Annoucement on VMWare Workstation&lt;/h1&gt;
 &lt;p&gt;That&amp;rsquo;s a little dramatic, but I have had a fit with VMWare Workstation and want to pass along what I&amp;rsquo;ve learned.  I recently upgraded my desktop and VMWare performance went in the dump.&lt;/p&gt;
 &lt;h3 id=&#34;backstory&#34;&gt;Backstory&lt;/h3&gt;
@@ -1254,10 +1254,10 @@ D:\ApplyImage.bat D:\Images\ACME-Standard.wim
     
     <item>
       <title>GNS3 Attached to ESXi</title>
-      <link>http://localhost:1313/posts/210421_gns3_attached_to_esxi/</link>
+      <link>http://localhost:1313/210421_gns3_attached_to_esxi/</link>
       <pubDate>Wed, 21 Apr 2021 20:11:14 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210421_gns3_attached_to_esxi/</guid>
+      <guid>http://localhost:1313/210421_gns3_attached_to_esxi/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/210421_GNS3-30.png#floatsmallleft&#34; alt=&#34;VLAN Setup&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I got a little distracted.  I have been coming up to speed on Ansible, which got me started on Vagrant.  Vagrant got me building VMs in VMWare Workstation , which got me thinking how neat it would be to place those &lt;em&gt;automagically&lt;/em&gt; into my GNS3VM environment hosted on ESXi.  Didn&amp;rsquo;t get that far - yet  - but the progress I made is pretty cool in it&amp;rsquo;s own right.&lt;/p&gt;
 &lt;p&gt;Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see &lt;a href=&#34;http://localhost:1313/posts/210417_connecting_gns3/&#34;&gt;Connecting GNS3&lt;/a&gt;. Here I want to do something more complex - I&amp;rsquo;d like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection &amp;ldquo;out&amp;rdquo; to the home network and Internet, but I want to add an ESXi VM &amp;ldquo;inside&amp;rdquo; the network as well.&lt;/p&gt;
@@ -1313,10 +1313,10 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
     
     <item>
       <title>VMWare File Transfer Options including SFTP </title>
-      <link>http://localhost:1313/posts/210110_vmware-sftp/</link>
+      <link>http://localhost:1313/210110_vmware-sftp/</link>
       <pubDate>Sun, 10 Jan 2021 16:51:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210110_vmware-sftp/</guid>
+      <guid>http://localhost:1313/210110_vmware-sftp/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/210110_VMWare-SFTP.png#floatright&#34; alt=&#34;VMWare SFTP&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m going to be upgrading my home VMware server and need to backup the VMs.  My server uses ESXi 6.5 and I&amp;rsquo;ll need to backup the files before upgrading.  Longtime readers may recall that I&amp;rsquo;m using &lt;a href=&#34;http://localhost:1313/posts/200804_homebackup&#34;&gt;Backblaze&lt;/a&gt; to backup the &lt;em&gt;data&lt;/em&gt; on my server.  That is going swimmingly so far.  I want to backup the images so I don&amp;rsquo;t have to rebuild the VMs after this is done.&lt;/p&gt;
 &lt;h2 id=&#34;admin-interface&#34;&gt;Admin interface&lt;/h2&gt;
@@ -1332,10 +1332,10 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
     
     <item>
       <title>VMWare 3D Acceleration</title>
-      <link>http://localhost:1313/posts/200728_vmware_3d_acceleration/</link>
+      <link>http://localhost:1313/200728_vmware_3d_acceleration/</link>
       <pubDate>Tue, 28 Jul 2020 15:44:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200728_vmware_3d_acceleration/</guid>
+      <guid>http://localhost:1313/200728_vmware_3d_acceleration/</guid>
       <description>&lt;p&gt;I tried to load Chrome OS in VMWare Workstation the other day and got the message &amp;ldquo;No 3D Support is available&amp;rdquo;.  Apparently this is required for Chrome OS to boot.  I&amp;rsquo;ve gotten the message on other VMs, but never needed to worry about it.&lt;/p&gt;
 &lt;p&gt;I assumed this was an issue with Chrome OS at first and tried several versions including &amp;ldquo;CloudReady&amp;rdquo;.  I was using the build put together by FydeOS and had a chance to talk with him on Telegram about the issue.  He recommended I look through a question on AskUbuntu.&lt;/p&gt;
 &lt;p&gt;I edited &lt;strong&gt;.vmware/preferences&lt;/strong&gt; and added the following line.&lt;/p&gt;

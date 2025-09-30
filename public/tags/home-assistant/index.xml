@@ -12,10 +12,10 @@
     
     <item>
       <title>Home Assistant Device Recovery</title>
-      <link>http://localhost:1313/posts/240517_homeassistantrecovery/</link>
+      <link>http://localhost:1313/240517_homeassistantrecovery/</link>
       <pubDate>Sat, 18 May 2024 15:09:11 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/240517_homeassistantrecovery/</guid>
+      <guid>http://localhost:1313/240517_homeassistantrecovery/</guid>
       <description>&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
 &lt;p&gt;Spectrum was in my neighborhood, extending their cable network finally.  Bear in mind that Spectrum (Charter in those days) promised this &amp;ldquo;soon&amp;rdquo; when I first moved in.&lt;/p&gt;
 &lt;p&gt;So, anyway, 24 years later they were installing conduit, nicked a power line, and shut down the neighborhood.  As much as I&amp;rsquo;m griping about others, this story is really about personal stupidity.  I setup a bunch of Shelly plugs to work with Home Assistant and didn&amp;rsquo;t lock down their IPs.&lt;/p&gt;

@@ -12,10 +12,10 @@
     
     <item>
       <title>ahrefs</title>
-      <link>http://localhost:1313/posts/230731_ahrefs/</link>
+      <link>http://localhost:1313/230731_ahrefs/</link>
       <pubDate>Mon, 31 Jul 2023 21:28:53 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230731_ahrefs/</guid>
+      <guid>http://localhost:1313/230731_ahrefs/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been writing in this space for about three years.  I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.  My source files, for instance, were fairly easy to organize in the first year but over time have sprawled.  Changes to my Hugo template have broken some older internal URLs as well.  Even when I recognize the possibility of an issue, it&amp;rsquo;s hard to track down every instance that broke.&lt;/p&gt;
 &lt;p&gt;One simple example is that I originally put my entries into the root folder and later moved them to &lt;em&gt;/posts&lt;/em&gt;.  The issue is that all my older files referenced each other withoot that directory.  I&amp;rsquo;ve corrected this when I see it, but I&amp;rsquo;m sure that readers have stumbled onto these inadvertant issues.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Mea culpa&lt;/em&gt;, but I have a day job and it&amp;rsquo;s hard to keep up sometimes.&lt;/p&gt;
@@ -38,10 +38,10 @@ Broken links are another area where I&amp;rsquo;ve been able to drive improvemen
     
     <item>
       <title>Tailscale</title>
-      <link>http://localhost:1313/posts/221004_tailscale/</link>
+      <link>http://localhost:1313/221004_tailscale/</link>
       <pubDate>Tue, 04 Oct 2022 14:48:18 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221004_tailscale/</guid>
+      <guid>http://localhost:1313/221004_tailscale/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m interested in TailScale.  I&amp;rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (&lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;Zerotier Basic Configuration&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/posts/201027_zerotierrouter/&#34;&gt;ZeroTier Router&lt;/a&gt;).  ZeroTier continues to work well, but I haven&amp;rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&amp;rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.&lt;/p&gt;
 &lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
 &lt;p&gt;Both ZeroTier and TailScale are &amp;ldquo;overlay networks&amp;rdquo;.  I have a Meraki stack at home with two Internet connections (WISP and Starlink).  Meraki has horrible VPN support and I&amp;rsquo;m not over-enthused about cutting holes in my firewall.  Plus, anything that requires an ISP failover would kill VPN, so these overlay-style connections fit my needs closely.&lt;/p&gt;
@@ -94,10 +94,10 @@ services.tailscale.enable=true;&lt;/p&gt;
     
     <item>
       <title>VHEditor - Visual Studio Code for Android</title>
-      <link>http://localhost:1313/posts/210218_vheditor/</link>
+      <link>http://localhost:1313/210218_vheditor/</link>
       <pubDate>Thu, 18 Feb 2021 20:07:38 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210218_vheditor/</guid>
+      <guid>http://localhost:1313/210218_vheditor/</guid>
       <description>&lt;p&gt;These days I live in VSCode.  I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years.  O365 runs like a champ in a browser.  Teams is a really well done application, which I&amp;rsquo;ve come to &lt;em&gt;prefer&lt;/em&gt; over Zoom and (especially) Webex.  But VScode is in a league of it&amp;rsquo;s own.  I didn&amp;rsquo;t know how much I needed a really well done IDE, but it&amp;rsquo;s become a must-have.&lt;/p&gt;
 &lt;p&gt;I use VSCode for writing this blog.  There are extensions that make working with MarkUp easy and that facilitate uploading to Github.  I use the built-in terminal to execute Hugo commands while I&amp;rsquo;m working (like &lt;em&gt;hugo server -D&lt;/em&gt; to preview articles in a browser).  The workspace allows me to move files around or quickly move between files for comparison or editing.&lt;/p&gt;
 &lt;p&gt;I also use VSCode to write Python (again, with some great extensions).  The biggest surprise is that I&amp;rsquo;ve moved my notes into VSCode.  I sync my notes to a private Github repo, so that I can make them available on whichever machine I&amp;rsquo;m working with.  I used to use Simplenote for this, and there&amp;rsquo;s nothing wrong with Simplenote.  But by handling this in VSCode I can consolidate tools.&lt;/p&gt;
@@ -116,10 +116,10 @@ I am going to do some traveling and it occurred to me that I didn&amp;rsquo;t wa
     
     <item>
       <title>Deskreen</title>
-      <link>http://localhost:1313/posts/210201-deskreen/</link>
+      <link>http://localhost:1313/210201-deskreen/</link>
       <pubDate>Mon, 01 Feb 2021 13:43:09 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210201-deskreen/</guid>
+      <guid>http://localhost:1313/210201-deskreen/</guid>
       <description>&lt;p&gt;Deskreen is an open-source utility that allows you to send your Windows, Mac, or Linux desktop onto another screen, including another computer, a tablet, or even a phone.  It can duplicate an application, duplicate an entire display, or extend the desktop and treat the other computer as an additional monitor.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://deskreen.com/img/plugs/hdmi.jpg#floatsmallleft&#34; alt=&#34;HDMI Plug&#34;&gt;
 Deskreen outputs your display to a webpage with an embedded video.  Running the application prompts you to choose an application, existing display, or new display.  It then displays the produced webpage in text and with a 2D barcode.  The page, when opened on a separate device, allows you to play the video stream.&lt;/p&gt;
@@ -144,10 +144,10 @@ Just for fun, I sent the settings app to my phone at the same time.  Running two
     
     <item>
       <title>A Love Letter to Flameshot</title>
-      <link>http://localhost:1313/posts/201210_flameshot/</link>
+      <link>http://localhost:1313/201210_flameshot/</link>
       <pubDate>Thu, 10 Dec 2020 14:28:39 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201210_flameshot/</guid>
+      <guid>http://localhost:1313/201210_flameshot/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/flameshot-demo.gif#floatright&#34; alt=&#34;Flameshot&#34;&gt; My friend Jared always extols the Unix philosophy that programs should &amp;ldquo;do one thing and do it well&amp;rdquo;.  One program that fits that description is &lt;em&gt;flameshot&lt;/em&gt;.  Flameshot makes great screenshots and allows you to easily annotate them.&lt;/p&gt;
 &lt;p&gt;A few years ago I was put in a position where I had to produce monthly reports that included screenshots from our tools.  The default gnome-screenshot application is difficult to work with.  It has to be re-invoked for each capture and it doesn&amp;rsquo;t allow you to easily adjust the parameters or annotate the picture.  As a result, I&amp;rsquo;d take a bunch of screenshots and each one involved a try or two to capture the right section, then opening in Gimp to edit.  It took &lt;em&gt;forever&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Flameshot made this an easy process.  Since then, I very commonly want to take a screenshot for this blog or for an email.  Usually I&amp;rsquo;m trying to demonstrate a function or show what a screen looks like.  This program allows me to quickly grab the section of the screen I need, highlight, draw, and even obfuscate sensitive portions (like credentials).&lt;/p&gt;
@@ -173,10 +173,10 @@ It also works well to map a keybinding to it, such as PrintScreen.  Link the key
     
     <item>
       <title>Pop! OS</title>
-      <link>http://localhost:1313/posts/201126_pop-os/</link>
+      <link>http://localhost:1313/201126_pop-os/</link>
       <pubDate>Thu, 26 Nov 2020 10:17:03 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201126_pop-os/</guid>
+      <guid>http://localhost:1313/201126_pop-os/</guid>
       <description>&lt;p&gt;I recently wrote about my experiences with &lt;a href=&#34;http://localhost:1313/posts/201024_ubuntu2010/&#34;&gt;Ubuntu 20.10&lt;/a&gt;.  In that article, I mentioned that I previously found Gnome laggy and the app picker to be annoyingly unsorted.  That article got into Gnome 3.38, which seems to answer my issues by being perkier and providing a way to organize applications.  I also mentioend how much I appreciated Material Design, a tiling extension for Gnome.  That setup - Ubuntu 20.10 with Gnome 3.38 and Material Design - has worked really well on my laptop and a month later I remain enthusiastic about the way it organizes my work.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pop.system76.com/_nuxt/img/623f266-700.png#floatright&#34; alt=&#34;Pop OS&#34;&gt;
 But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is an i7 with 64GB of memory (perfect for GNS3!) and a 2K and 4K display.  The Material Design extension didn&amp;rsquo;t adapt well to the dual displays.  Gnome was still great, so I started hunting for a different tiling extension but the others didn&amp;rsquo;t install on 3.38.  I had tried &lt;em&gt;Pop! OS&lt;/em&gt; six months ago and really liked where System 76 was headed with auto-tiling, but had been frustrated by Gnome.  I decided to give the distribution another chance.&lt;/p&gt;
@@ -195,10 +195,10 @@ But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is
     
     <item>
       <title>Winapps</title>
-      <link>http://localhost:1313/posts/201110_winapps/</link>
+      <link>http://localhost:1313/201110_winapps/</link>
       <pubDate>Tue, 10 Nov 2020 08:24:53 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201110_winapps/</guid>
+      <guid>http://localhost:1313/201110_winapps/</guid>
       <description>&lt;p&gt;Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&amp;rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&amp;rsquo;s you use &amp;ldquo;open with&amp;rdquo; types of functionality.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright&#34; alt=&#34;WinApps&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To give it a try, clone the code from &lt;a href=&#34;https://github.com/Fmstrat/winapps&#34;&gt;GitHub&lt;/a&gt;. Remember that it&amp;rsquo;s running programs that are installed on a VM. If you don&amp;rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&amp;rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&amp;rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &amp;ldquo;Windows source&amp;rdquo;.&lt;/p&gt;
@@ -237,10 +237,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>ZeroTier Basic Configuration</title>
-      <link>http://localhost:1313/posts/201027_zerotier/</link>
+      <link>http://localhost:1313/201027_zerotier/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201027_zerotier/</guid>
+      <guid>http://localhost:1313/201027_zerotier/</guid>
       <description>&lt;p&gt;Zerotier is a virtualized network that runs &amp;ldquo;on top of&amp;rdquo; the Internet.&lt;/p&gt;
 &lt;p&gt;Traditional VPN solutions are built around a VPN server, which acts as a hub location with a stable IP.  Modern teams feature mobile workers and home connections with random IPs behind service-provider NATs.  Start-up teams and home users are left with few options, all of which involve some level of compromise.&lt;/p&gt;
 &lt;p&gt;Zerotier works around this by offering a stable point to connect end-points.  The connection strategy resembles VoIP connections - there&amp;rsquo;s a registration to a central point, that tries a variety of ways to create a connection to end points.  It then allows the end-points to speak directly.  All traffic between end-points is encrypted peer-to-peer.&lt;/p&gt;
@@ -269,10 +269,10 @@ Go back to Central and scroll down to clients.  Find the new client and check th
     
     <item>
       <title>Ubuntu 20.10</title>
-      <link>http://localhost:1313/posts/201024_ubuntu2010/</link>
+      <link>http://localhost:1313/201024_ubuntu2010/</link>
       <pubDate>Sat, 24 Oct 2020 18:40:56 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201024_ubuntu2010/</guid>
+      <guid>http://localhost:1313/201024_ubuntu2010/</guid>
       <description>&lt;p&gt;I had a chance to download Ubuntu 20.10 and install it on a gen 8 i5 laptop.  I typically use Cinnamon for a desktop environment, which I have long found to be mature, usable, and stable.  In the past, I&amp;rsquo;ve found Gnome to be laggy but I&amp;rsquo;ve heard good things about 3.38.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve become enamored of tiling windows as well.  I&amp;rsquo;ve tried i3, Pop OS!, and others.  So another thing I wanted to look into was the Material Design extension.&lt;/p&gt;
 &lt;h2 id=&#34;about-ubuntu-2010&#34;&gt;About Ubuntu 20.10&lt;/h2&gt;
@@ -309,10 +309,10 @@ Go back to Central and scroll down to clients.  Find the new client and check th
     
     <item>
       <title>Linux Home Cloud Backup</title>
-      <link>http://localhost:1313/posts/200804_homebackup/</link>
+      <link>http://localhost:1313/200804_homebackup/</link>
       <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200804_homebackup/</guid>
+      <guid>http://localhost:1313/200804_homebackup/</guid>
       <description>&lt;p&gt;At one point, I was taught to divide tasks by priority A, B, C.  As I&amp;rsquo;ve gotten older, I&amp;rsquo;ve converted that scale into &amp;ldquo;things that will immediately get me fired or divorced&amp;rdquo;, &amp;ldquo;things that will eventually get me fired or divorced&amp;rdquo;, and &amp;ldquo;things I&amp;rsquo;d like to do if I have time&amp;rdquo;.  One of the &amp;ldquo;A&amp;rdquo; tasks on this scale is making sure that we don&amp;rsquo;t lose our family digital pictures!&lt;/p&gt;
 &lt;p&gt;Our home file server is an Ubuntu VM.  Over the years, I&amp;rsquo;ve used a variety of strategies to maintain personal backups.  Recently, I felt the time was right to move to cloud based backup - both for the convenience and the security of having things off-site.  I considered AWS S3, but Backblaze offers a similar and less-expensive service.  A former employer used Backblaze for laptop backups and I administered that system, and I always felt they did a good job and were reasonable to work with.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/BB_bucket_setup.png#floatright&#34; alt=&#34;Backblaze Dashboard&#34;&gt;  I settled on using Duplicati for the backkup software.  Duplicati runs on everything (Linux + various less secure OS), has a DEB, and is FOSS.  Duplicati has built in support for cloud backup, including Backblaze and S3.  I have a friend that uses Duplicati and it&amp;rsquo;s discussed on Jupiter Broadcasting, so I wanted to give it a try.&lt;/p&gt;
@@ -335,10 +335,10 @@ Go back to Central and scroll down to clients.  Find the new client and check th
     
     <item>
       <title>AWS S3 Review</title>
-      <link>http://localhost:1313/posts/200728_s3review/</link>
+      <link>http://localhost:1313/200728_s3review/</link>
       <pubDate>Tue, 28 Jul 2020 15:44:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200728_s3review/</guid>
+      <guid>http://localhost:1313/200728_s3review/</guid>
       <description>&lt;p&gt;In a previous post, I described hosting this website on Render.  I mentioned that I am coming up to speed on AWS and it was my intention to host the site on S3 as well.  This post documents my experience.&lt;/p&gt;
 &lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
 &lt;p&gt;Render has a CI-step that builds the html from Hugo auto-magically.  AWS isn’t integrated with Github, so I needed to build the website.  This is pretty easy, just navigate to the directory and type “hugo”.  This produces a “public” directory that needs to be copied to your webserver.&lt;/p&gt;
@@ -364,10 +364,10 @@ Go back to Central and scroll down to clients.  Find the new client and check th
     
     <item>
       <title>Render</title>
-      <link>http://localhost:1313/posts/200724_render/</link>
+      <link>http://localhost:1313/200724_render/</link>
       <pubDate>Fri, 24 Jul 2020 08:21:27 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200724_render/</guid>
+      <guid>http://localhost:1313/200724_render/</guid>
       <description>&lt;h3 id=&#34;tldr-you-should-take-a-look-at-rendercom&#34;&gt;TLDR: you should take a look at Render.com&lt;/h3&gt;
 &lt;p&gt;I wrote in a previous post that I decided to build my site using Hugo, a decision I&amp;rsquo;m still really tickled with.  My initial draw to a Static Site Generator was to host my site in S3.  There&amp;rsquo;s a lot of attraction there - creating a public S3 bucket is easy, it&amp;rsquo;s low-cost, there&amp;rsquo;s no server to maintain, and the data is replicated within region between Availability Zones.  From a security perspective, S3 is easy to secure and the bucket is isolated.&lt;/p&gt;
 &lt;p&gt;I have experience with the major cloud providers and my high-level opinion is that AWS is the most mature, has the most complete set of products, and is the easiest to deal with.  Plus, I&amp;rsquo;m working my way through the AWS certs.&lt;/p&gt;
@@ -397,10 +397,10 @@ Go back to Central and scroll down to clients.  Find the new client and check th
     
     <item>
       <title>Building this site using Hugo</title>
-      <link>http://localhost:1313/posts/200720_building_site_with_hugo/</link>
+      <link>http://localhost:1313/200720_building_site_with_hugo/</link>
       <pubDate>Mon, 20 Jul 2020 11:38:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200720_building_site_with_hugo/</guid>
+      <guid>http://localhost:1313/200720_building_site_with_hugo/</guid>
       <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
 &lt;h2 id=&#34;hugo&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;

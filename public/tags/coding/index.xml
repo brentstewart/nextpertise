@@ -12,10 +12,10 @@
     
     <item>
       <title>Building a Home Web Dashboard</title>
-      <link>http://localhost:1313/posts/230930_dashboards/</link>
+      <link>http://localhost:1313/230930_dashboards/</link>
       <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230930_dashboards/</guid>
+      <guid>http://localhost:1313/230930_dashboards/</guid>
       <description>&lt;h1 id=&#34;home-dashboards&#34;&gt;Home Dashboards&lt;/h1&gt;
 &lt;p&gt;Home web dashboards serve as a &amp;ldquo;starting point&amp;rdquo; for web sessions.  Especially as a certain portion of applications now reside online, a home dashboard is a customized menu of the things that you need presented in the way you want.  Dashboards could be as simple as a collection of links, or include things like network and server statistics or embedded frames.&lt;/p&gt;
 &lt;p&gt;Hosting your own dashboard also reduces internet traffic, limits the public data footprint (particularly if you are using it to access local resources), and creates resiliancy (in the sense that local services are still easily accessible if the Internet connection is down).&lt;/p&gt;
@@ -80,10 +80,10 @@ services:
     
     <item>
       <title>Basic Packer</title>
-      <link>http://localhost:1313/posts/221019_packer/</link>
+      <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221019_packer/</guid>
+      <guid>http://localhost:1313/221019_packer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://hashicorp.com&#34;&gt;Hashicorp&lt;/a&gt; makes some &lt;em&gt;cool&lt;/em&gt; tools for playing in the cloud or a virtualized environment, especially if you want to build out an Infrastructure as Code approach and make infrastructure updates a CI process. &lt;a href=&#34;https://packer.io&#34;&gt;Packer&lt;/a&gt; is a tool that let&amp;rsquo;s you define a server - OS, cores, storage, packages, and all - in a script that can be built on demand.  You can even define your  environment, like LAMP, in the packer script and load your application files.&lt;/p&gt;
 &lt;p&gt;A very practical use of Packer would be to use it to build a custom AWS AMI for your company.  You want every EC2 instance to look like this image, so it might include security settings or agents, centralized logging setup, connections to centralized authentication, and other common resources.  I would probably load any required data files when the EC2 instance is instantiated, maybe through Cloud Formation.&lt;/p&gt;
 &lt;p&gt;Packer scripts are written in HCL (Hashi Corp Language?  Dunno.), which ends up looking like YAML.&lt;/p&gt;
@@ -190,10 +190,10 @@ late-commands:
     
     <item>
       <title>VHEditor - Visual Studio Code for Android</title>
-      <link>http://localhost:1313/posts/210218_vheditor/</link>
+      <link>http://localhost:1313/210218_vheditor/</link>
       <pubDate>Thu, 18 Feb 2021 20:07:38 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210218_vheditor/</guid>
+      <guid>http://localhost:1313/210218_vheditor/</guid>
       <description>&lt;p&gt;These days I live in VSCode.  I confess to having developed a hardened opinion of Microsoft in years past, but I have been impressed with their work in recent years.  O365 runs like a champ in a browser.  Teams is a really well done application, which I&amp;rsquo;ve come to &lt;em&gt;prefer&lt;/em&gt; over Zoom and (especially) Webex.  But VScode is in a league of it&amp;rsquo;s own.  I didn&amp;rsquo;t know how much I needed a really well done IDE, but it&amp;rsquo;s become a must-have.&lt;/p&gt;
 &lt;p&gt;I use VSCode for writing this blog.  There are extensions that make working with MarkUp easy and that facilitate uploading to Github.  I use the built-in terminal to execute Hugo commands while I&amp;rsquo;m working (like &lt;em&gt;hugo server -D&lt;/em&gt; to preview articles in a browser).  The workspace allows me to move files around or quickly move between files for comparison or editing.&lt;/p&gt;
 &lt;p&gt;I also use VSCode to write Python (again, with some great extensions).  The biggest surprise is that I&amp;rsquo;ve moved my notes into VSCode.  I sync my notes to a private Github repo, so that I can make them available on whichever machine I&amp;rsquo;m working with.  I used to use Simplenote for this, and there&amp;rsquo;s nothing wrong with Simplenote.  But by handling this in VSCode I can consolidate tools.&lt;/p&gt;
@@ -212,10 +212,10 @@ I am going to do some traveling and it occurred to me that I didn&amp;rsquo;t wa
     
     <item>
       <title>Linux Install Script</title>
-      <link>http://localhost:1313/posts/210207_installscript/</link>
+      <link>http://localhost:1313/210207_installscript/</link>
       <pubDate>Sun, 07 Feb 2021 10:32:29 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210207_installscript/</guid>
+      <guid>http://localhost:1313/210207_installscript/</guid>
       <description>&lt;p&gt;I install Linux pretty regularly.  Sometimes I&amp;rsquo;m setting up a new server instance, sometimes I&amp;rsquo;m deploying it to new hardware.  Many times I&amp;rsquo;m doing a clean install on a new release.  Very often, I&amp;rsquo;m reinstalling my workstation because I want to try a new flavor.  Whether you are a distro-hopper or just need to handle Disaster Recovery process, installing Linux and customizing it to fit your particular needs can take a half day or more.&lt;/p&gt;
 &lt;p&gt;In addition to the time, installing requires you to make sure that you bring critical applications forward, attach to required printers and servers, and put expected security elements in place.  It&amp;rsquo;s easy to forget a step.  If you haven&amp;rsquo;t done it in a while, it&amp;rsquo;s difficult to remember &lt;em&gt;how&lt;/em&gt; to handle a step.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s why years ago I started building an install script.  These days my I keep it in a private Github repository.  When setting up a new instance, I just grab the repo and run script.  For the record, it still takes a while, but I don&amp;rsquo;t have to babysit it.&lt;/p&gt;
@@ -360,10 +360,10 @@ The next sections are things that I would usually want, but not always.  One exa
     
     <item>
       <title>Fun with Postscript</title>
-      <link>http://localhost:1313/posts/200803_funwithpostscript/</link>
+      <link>http://localhost:1313/200803_funwithpostscript/</link>
       <pubDate>Mon, 03 Aug 2020 16:59:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200803_funwithpostscript/</guid>
+      <guid>http://localhost:1313/200803_funwithpostscript/</guid>
       <description>&lt;p&gt;I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&amp;rsquo;s just &lt;em&gt;fun&lt;/em&gt;.  One example of the latter is Postscript.&lt;/p&gt;
 &lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
 &lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;

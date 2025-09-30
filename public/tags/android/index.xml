@@ -12,10 +12,10 @@
     
     <item>
       <title>I&#39;m cooler than you</title>
-      <link>http://localhost:1313/posts/230427_im_cooler_than_you/</link>
+      <link>http://localhost:1313/230427_im_cooler_than_you/</link>
       <pubDate>Thu, 27 Apr 2023 17:38:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230427_im_cooler_than_you/</guid>
+      <guid>http://localhost:1313/230427_im_cooler_than_you/</guid>
       <description>&lt;p&gt;Hah!  I don&amp;rsquo;t really believe that thing about being cooler, but have you ever done a project and just felt &lt;em&gt;so&lt;/em&gt; pleased with yourself?  I turned my Samsung Galaxy Tab S6 Lite into a Linux tablet/laptop and I&amp;rsquo;m feeling pretty happy.  The actual process isn&amp;rsquo;t that involved, so a little of my self-congratulation is probably undeserved, but the result is stinking cool!&lt;/p&gt;
 &lt;h2 id=&#34;what-is-a-linux-device&#34;&gt;What is a Linux device?&lt;/h2&gt;
 &lt;p&gt;Before we get into the work, we need to take a philosophical detour.  I wanted a Linux tablet, but what exactly does that mean?  Android is based on Linux, so isn&amp;rsquo;t Android &amp;ldquo;Linux&amp;rdquo;?&lt;/p&gt;
@@ -41,10 +41,10 @@ pkg install code-server
     
     <item>
       <title>5G Troubleshooting</title>
-      <link>http://localhost:1313/posts/220723_5g_troubleshooting/</link>
+      <link>http://localhost:1313/220723_5g_troubleshooting/</link>
       <pubDate>Sat, 23 Jul 2022 12:14:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220723_5g_troubleshooting/</guid>
+      <guid>http://localhost:1313/220723_5g_troubleshooting/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220723_droid_signal.jpg#floatsmallleft&#34; alt=&#34;Signal Strength on Android&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My office sits beside an Interstate and generally the Interstate corridor is one of the best places to find cellular coverage.  Sure enough, we have towers reasonably close to the east and west of the building along the Interstate.  The construction of the buildings, like many office buildings, has a strong steel and concrete &amp;ldquo;core&amp;rdquo; with open office space around the perimeter.    My analysis is that those cores, along with the way the buildings set next to each other, creates 5G/LTE shadows within the buildings.&lt;/p&gt;
 &lt;p&gt;My buildings are setup along &amp;ldquo;modern&amp;rdquo; cubicle-farm ideas.  To get a feel for where the dead zones are, I got readings on signal strength using my phone at all the cube row intersections.  Wireless signal strength is denoted in decibel-milliwats (dBm).  A decibel is a comparison of two numbers, with a 10dB difference translating as a 10 fold increase.  A 100x difference would be 20dB.  dBm compare a signal to a milliwat.&lt;/p&gt;
@@ -62,10 +62,10 @@ pkg install code-server
     
     <item>
       <title>Disabling RCS on Android</title>
-      <link>http://localhost:1313/posts/220328_rcs/</link>
+      <link>http://localhost:1313/220328_rcs/</link>
       <pubDate>Mon, 28 Mar 2022 17:22:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220328_rcs/</guid>
+      <guid>http://localhost:1313/220328_rcs/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/disable_chat.jpg#floatsmallright&#34; alt=&#34;Disabling Chat&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;googles-move-to-rcschat&#34;&gt;Google&amp;rsquo;s move to RCS/Chat&lt;/h1&gt;
 &lt;p&gt;You really shouldn&amp;rsquo;t care about Google&amp;rsquo;s supported messaging app.  They certainly don&amp;rsquo;t.  They change ideas about messaging more often then their underwear.  Still, they&amp;rsquo;ve made a move from SMS to RCS recently and they&amp;rsquo;re taking you along with them.&lt;/p&gt;

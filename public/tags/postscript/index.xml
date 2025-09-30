@@ -12,10 +12,10 @@
     
     <item>
       <title>Custom Keycaps - Updated</title>
-      <link>http://localhost:1313/posts/201230_keycaps/</link>
+      <link>http://localhost:1313/201230_keycaps/</link>
       <pubDate>Tue, 12 Jan 2021 17:30:38 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201230_keycaps/</guid>
+      <guid>http://localhost:1313/201230_keycaps/</guid>
       <description>&lt;h2 id=&#34;from-12-30-20&#34;&gt;From 12-30-20&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/201230_n.png#floatsmallleft&#34; alt=&#34;N&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My kids got me a Ducky mechanical keyboard for Christmas.  It&amp;rsquo;s a wonderful keyboard, but the Windows keys are hurting my sensibilities.  I decided that I wanted to replace the default Windows logo with the &amp;ldquo;starburst N&amp;rdquo; from my Nextpertise logo.&lt;/p&gt;
@@ -58,10 +58,10 @@
     
     <item>
       <title>Fun with Postscript</title>
-      <link>http://localhost:1313/posts/200803_funwithpostscript/</link>
+      <link>http://localhost:1313/200803_funwithpostscript/</link>
       <pubDate>Mon, 03 Aug 2020 16:59:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200803_funwithpostscript/</guid>
+      <guid>http://localhost:1313/200803_funwithpostscript/</guid>
       <description>&lt;p&gt;I really enjoy being a computer professional.  I like the  creativity, problem solving, and the sense that things can be understood.  Sometimes this is directly applicable, sometimes it&amp;rsquo;s just &lt;em&gt;fun&lt;/em&gt;.  One example of the latter is Postscript.&lt;/p&gt;
 &lt;p&gt;Most of you know Postscript only as a printer thing, but it&amp;rsquo;s actually a programming language.  Postscript builds a mathematical model of a page and then converts that to a bitmap for printing as a final step.  Postscript files always print at the best resolution available on the output device without having to be reformatted.&lt;/p&gt;
 &lt;p&gt;Postscript uses a single stack and then pops off the required number of values to execute a command.  For instance, you might give it:&lt;/p&gt;

@@ -12,10 +12,10 @@
     
     <item>
       <title>RIP Honeycode</title>
-      <link>http://localhost:1313/posts/230824_honeycode/</link>
+      <link>http://localhost:1313/230824_honeycode/</link>
       <pubDate>Thu, 24 Aug 2023 21:04:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230824_honeycode/</guid>
+      <guid>http://localhost:1313/230824_honeycode/</guid>
       <description>&lt;p&gt;I got a sad little note today from Amazon - Honeycode, their no-code environment, is shutting down.  According to the post, no new signups are allowed.  Existing users have until the end of February, 2024, to pull their data.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://localhost:1313/honeycode.png#floatright&#34;&gt;Honeycode Screenshot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Honeycode was one of my early encounters with no-code environments on the web.  It had a vibe like early Access - someone with a good understanding of third normal form could pretty quickly create and join tables, design an interface, and deploy an app.  Like Access, advanced users could do some basic scripting to extend it&amp;rsquo;s capabilities.  It would automatically run in IOS, Android, and the web so your code was available anywhere.&lt;/p&gt;
@@ -27,10 +27,10 @@
     
     <item>
       <title>Basic Packer</title>
-      <link>http://localhost:1313/posts/221019_packer/</link>
+      <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221019_packer/</guid>
+      <guid>http://localhost:1313/221019_packer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://hashicorp.com&#34;&gt;Hashicorp&lt;/a&gt; makes some &lt;em&gt;cool&lt;/em&gt; tools for playing in the cloud or a virtualized environment, especially if you want to build out an Infrastructure as Code approach and make infrastructure updates a CI process. &lt;a href=&#34;https://packer.io&#34;&gt;Packer&lt;/a&gt; is a tool that let&amp;rsquo;s you define a server - OS, cores, storage, packages, and all - in a script that can be built on demand.  You can even define your  environment, like LAMP, in the packer script and load your application files.&lt;/p&gt;
 &lt;p&gt;A very practical use of Packer would be to use it to build a custom AWS AMI for your company.  You want every EC2 instance to look like this image, so it might include security settings or agents, centralized logging setup, connections to centralized authentication, and other common resources.  I would probably load any required data files when the EC2 instance is instantiated, maybe through Cloud Formation.&lt;/p&gt;
 &lt;p&gt;Packer scripts are written in HCL (Hashi Corp Language?  Dunno.), which ends up looking like YAML.&lt;/p&gt;
@@ -137,10 +137,10 @@ late-commands:
     
     <item>
       <title>Writing a Blog - Reflections after a half year</title>
-      <link>http://localhost:1313/posts/210102_hugoafter6/</link>
+      <link>http://localhost:1313/210102_hugoafter6/</link>
       <pubDate>Sat, 02 Jan 2021 11:45:16 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210102_hugoafter6/</guid>
+      <guid>http://localhost:1313/210102_hugoafter6/</guid>
       <description>&lt;p&gt;I started writing this blog back in July of 2020.  There was a lot going on at that point, and yet a lot of nothing.  My employer was acquired in May and management was cut, so I was surprised to be out of job.  We were quarantining, which added a degree of difficulty to the job search, and summer is a slow time to find work anyway.  Against all this uncertainty, I wanted to do &lt;em&gt;something&lt;/em&gt; and decided to start writing.  I hoped that the blog might provide a way to establish my &lt;em&gt;bona fides&lt;/em&gt;, and if nothing else it gave me a chance to share what I was working on (since I no longer had co-workers to share with).&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s now January of 2021.  I&amp;rsquo;m employed and the blog has been going for six months.  I thought I&amp;rsquo;d take a look back at the experience of starting a blog.  Has it accomplished what I hoped?  How hard was it and what things would I change?&lt;/p&gt;
 &lt;p&gt;Most posts here are technical and this article is intended to address technical things I&amp;rsquo;ve learned.  At the same time, writing is a personal expression and accomplishes personal goals, so I also want to share how this experience has worked for me.&lt;/p&gt;
@@ -171,10 +171,10 @@ My biggest issue has been building readership.  I still don&amp;rsquo;t think I&
     
     <item>
       <title>AWS Changing EC2 IPs or Water Never Lies</title>
-      <link>http://localhost:1313/posts/201218_aws-changingec2ips/</link>
+      <link>http://localhost:1313/201218_aws-changingec2ips/</link>
       <pubDate>Fri, 18 Dec 2020 20:35:31 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201218_aws-changingec2ips/</guid>
+      <guid>http://localhost:1313/201218_aws-changingec2ips/</guid>
       <description>&lt;p&gt;I had an issue that required changing the IP address of an EC2 instance.  &lt;strong&gt;The short version: you can&amp;rsquo;t change the primary IP of an EC2 instance.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;water-never-lies&#34;&gt;Water never lies&lt;/h2&gt;
 &lt;p&gt;It seems intuitive to me that you can change an IP of a VM, so when asked I said &amp;ldquo;I think so&amp;rdquo;.  Turns out I answered from ignorance, but then I did a smart thing and actually tested the process to understand it better.&lt;/p&gt;
@@ -204,10 +204,10 @@ I also played with ENIs.  Originally, my idea was to create a new network interf
     
     <item>
       <title>AWS S3 Review</title>
-      <link>http://localhost:1313/posts/200728_s3review/</link>
+      <link>http://localhost:1313/200728_s3review/</link>
       <pubDate>Tue, 28 Jul 2020 15:44:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200728_s3review/</guid>
+      <guid>http://localhost:1313/200728_s3review/</guid>
       <description>&lt;p&gt;In a previous post, I described hosting this website on Render.  I mentioned that I am coming up to speed on AWS and it was my intention to host the site on S3 as well.  This post documents my experience.&lt;/p&gt;
 &lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
 &lt;p&gt;Render has a CI-step that builds the html from Hugo auto-magically.  AWS isn’t integrated with Github, so I needed to build the website.  This is pretty easy, just navigate to the directory and type “hugo”.  This produces a “public” directory that needs to be copied to your webserver.&lt;/p&gt;
@@ -233,10 +233,10 @@ I also played with ENIs.  Originally, my idea was to create a new network interf
     
     <item>
       <title>Render</title>
-      <link>http://localhost:1313/posts/200724_render/</link>
+      <link>http://localhost:1313/200724_render/</link>
       <pubDate>Fri, 24 Jul 2020 08:21:27 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200724_render/</guid>
+      <guid>http://localhost:1313/200724_render/</guid>
       <description>&lt;h3 id=&#34;tldr-you-should-take-a-look-at-rendercom&#34;&gt;TLDR: you should take a look at Render.com&lt;/h3&gt;
 &lt;p&gt;I wrote in a previous post that I decided to build my site using Hugo, a decision I&amp;rsquo;m still really tickled with.  My initial draw to a Static Site Generator was to host my site in S3.  There&amp;rsquo;s a lot of attraction there - creating a public S3 bucket is easy, it&amp;rsquo;s low-cost, there&amp;rsquo;s no server to maintain, and the data is replicated within region between Availability Zones.  From a security perspective, S3 is easy to secure and the bucket is isolated.&lt;/p&gt;
 &lt;p&gt;I have experience with the major cloud providers and my high-level opinion is that AWS is the most mature, has the most complete set of products, and is the easiest to deal with.  Plus, I&amp;rsquo;m working my way through the AWS certs.&lt;/p&gt;

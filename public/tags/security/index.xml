@@ -12,10 +12,10 @@
     
     <item>
       <title>Anonymous Browsing</title>
-      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <link>http://localhost:1313/230405_anonymous/</link>
       <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <guid>http://localhost:1313/230405_anonymous/</guid>
       <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
 &lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
@@ -834,10 +834,10 @@ StrictNodes 1
     
     <item>
       <title>Kali Linux 2020.4</title>
-      <link>http://localhost:1313/posts/201120_kali_linux_2020_4/</link>
+      <link>http://localhost:1313/201120_kali_linux_2020_4/</link>
       <pubDate>Fri, 20 Nov 2020 10:30:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/201120_kali_linux_2020_4/</guid>
+      <guid>http://localhost:1313/201120_kali_linux_2020_4/</guid>
       <description>&lt;p&gt;My favourite Operating System (Kali Linux) has a new release: 2020.4.&lt;/p&gt;
 &lt;p&gt;The changes in this version include, but not limited to: ZSH is now Kali’s new default shell on desktop images and cloud, Bash remains the default shell for other platforms (ARM, containers, NetHunter, WSL) for the time being. Users can, of course, use that which they prefer, but be aware that, visually, Bash has been made to look more like ZSH.
 Upon logging into a Kali terminal or console, users may be presented with a &lt;strong&gt;message from Kali developers&lt;/strong&gt; that will point them to more information about that specific installation, in case they need it for troubleshooting&lt;/p&gt;
@@ -861,10 +861,10 @@ Upon logging into a Kali terminal or console, users may be presented with a &lt;
     
     <item>
       <title>Active Directory Security Assessment with PingCastle</title>
-      <link>http://localhost:1313/posts/201113_pingcastle/</link>
+      <link>http://localhost:1313/201113_pingcastle/</link>
       <pubDate>Fri, 13 Nov 2020 10:30:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/201113_pingcastle/</guid>
+      <guid>http://localhost:1313/201113_pingcastle/</guid>
       <description>&lt;p&gt;Microsoft Active Directory (AD) is one of the technologies that is predominantly used in several organizations around the world. While we all know its purpose, most of the time it keeps growing or gets convoluted with uncontrolled Organizational Units, ever growing Users, ever increasing Computers, Policies, Integrations etc. While the Administrators remain busy in putting out the fires at work, they rarely get time to optimize, tune, clean or deploy best practices on the AD, and lock it down by implementing good security controls.&lt;/p&gt;
 &lt;p&gt;Enter PingCastle. I found this tool through an auditor who was using mimkatz to perform a pentest on an AD, and I found it to be super valuable. This may help some of the AD Admins to quickly identify some of the areas that they can fix within their AD deployments.
 The entire Pingcastle project is written in C# and it is available on GitHub, located at: &lt;a href=&#34;https://github.com/vletoux/pingcastle&#34;&gt;https://github.com/vletoux/pingcastle&lt;/a&gt;&lt;/p&gt;
@@ -883,10 +883,10 @@ The entire Pingcastle project is written in C# and it is available on GitHub, lo
     
     <item>
       <title>How to write an event to Windows and Linux logs</title>
-      <link>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <link>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <guid>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</guid>
       <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
 &lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
 &lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
@@ -932,10 +932,10 @@ The entire Pingcastle project is written in C# and it is available on GitHub, lo
     
     <item>
       <title>Whitelisting Approach to Security</title>
-      <link>http://localhost:1313/posts/201110_whitelisting_approach/</link>
+      <link>http://localhost:1313/201110_whitelisting_approach/</link>
       <pubDate>Wed, 07 Oct 2020 06:30:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/201110_whitelisting_approach/</guid>
+      <guid>http://localhost:1313/201110_whitelisting_approach/</guid>
       <description>&lt;p&gt;Today, I am sure that you would be hearing a lot of buzz around ransomware and other malware outbreaks.  To combat some of these threats on a home consumer scale, we mostly use a traditional &lt;strong&gt;Anti-Malware&lt;/strong&gt; (Anti-Virus) software. As you may know, this technology is based on signatures, patterns and heuristics, which are extracted from the malware behaviour or type; thus, as the number of malware instances increase, becoming more sophisticated in the ever increasing threat landscape, it becomes very hard for the Anti-Virus companies to keep up with the pace. I would like to call this a “Cat and a Mouse Chase”.  Anti-Virus software may give you the best protection against known malware, but it may never give you adequate protection against unknown malware, whose signatures, patterns and heuristics are not known to anyone. By design, the traditional Anti-Virus fails miserably and is unable to keep up with todays sophisticated and evolving malware. This post is a follow-up to &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing/&#34;&gt;reasonable secure browsing&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Instead of focussing on blocking known malware through an Anti-Virus software, how about we only allow the applications and programs we trust and use on daily basis, and block everything else? Well, this is exactly what is called a &lt;strong&gt;“Whitelist”&lt;/strong&gt; approach, while the former that we discussed above is called a &lt;strong&gt;“Blacklist”&lt;/strong&gt; approach. This approach can be nearly 100% effective in blocking all malware if used correctly; however, most of the Whitelisting software out there is very expensive and only targeted towards enterprise use.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/whitelist.png&#34; alt=&#34;WL&#34;&gt;&lt;/p&gt;
@@ -947,10 +947,10 @@ You can use this on any of your Windows based system and have it run as a Whitel
     
     <item>
       <title>OpenDNS For Home</title>
-      <link>http://localhost:1313/posts/200930_opendnsforhome/</link>
+      <link>http://localhost:1313/200930_opendnsforhome/</link>
       <pubDate>Wed, 30 Sep 2020 08:07:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/200930_opendnsforhome/</guid>
+      <guid>http://localhost:1313/200930_opendnsforhome/</guid>
       <description>&lt;p&gt;Today, technology has advanced to a point, where it is much more affordable as compared to the last 25 years. We can recollect that having a computer with 32MB of Memory was a great thing; however, today&amp;rsquo;s smartphones come with 12GB of memory out of the box!&lt;/p&gt;
 &lt;p&gt;Speaking of smartphones, I&amp;rsquo;m confident that you have one too. Maybe even your parents and not forgetting children, colleagues and family members. With easy access to Technology, content on the Internet readily available at the click of a button or a swipe, how do you control this content, especially if you have young ones in your house or family? No doubt, that they would use it for their productivity, school or education work, but how do you monitor and ensure that they are not misusing it?&lt;/p&gt;
 &lt;p&gt;This post is a follow-up to &lt;a href=&#34;http://localhost:1313/posts/200826_dnsservices/&#34;&gt;DNS Services&lt;/a&gt;. Brent mentioned about OpenDNS in this blog and how it can help to control the content from the Internet. Keeping that into account, and the above mentioned concern, we can use OpenDNS to block inappropriate content, control the usage of social media and other content that as a parent or a supervisor you feel that it has negative effects on your young ones at home, and also help you to keep a track of their activity and know at all times about what they access.&lt;/p&gt;
@@ -976,10 +976,10 @@ You can use this on any of your Windows based system and have it run as a Whitel
     
     <item>
       <title>Privacy Enabled Search Engines </title>
-      <link>http://localhost:1313/posts/200921_privacyenabledsearchengines/</link>
+      <link>http://localhost:1313/200921_privacyenabledsearchengines/</link>
       <pubDate>Mon, 21 Sep 2020 08:07:02 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/200921_privacyenabledsearchengines/</guid>
+      <guid>http://localhost:1313/200921_privacyenabledsearchengines/</guid>
       <description>&lt;p&gt;In the early days, when we didn’t know something, we would ask our parents or elders. With today’s digital transformation, we would normally run to a large search engine, provided by the big tech giants. These providers store and log countless search terms every day. Have you ever wondered what these tech giants do with the infinite data that is collected via the search engines?&lt;/p&gt;
 &lt;p&gt;Yes, you’ve guessed it right. They index it in their large data warehouses where they run complex machine learning algorithms to profile users, predict patterns and harness intelligence from this big data. This information is used to make product recommendations, shared to third parties to boost sales, etc. The real question is, how far would you trust these search engines with respect to your personal privacy?&lt;/p&gt;
 &lt;p&gt;This post is a follow-up to &lt;a href=&#34;https://www.nextpertise.net/posts/200805_reasonablysecurebrowsing/&#34;&gt;reasonable secure browsing&lt;/a&gt;. As a Security and a Privacy paranoid person, I would always recommend alternate search engines for better privacy protection. Below are two widely used Secure and Privacy focussed search engines that I use:&lt;/p&gt;
@@ -995,10 +995,10 @@ You can use this on any of your Windows based system and have it run as a Whitel
     
     <item>
       <title>DNS Services</title>
-      <link>http://localhost:1313/posts/200826_dnsservices/</link>
+      <link>http://localhost:1313/200826_dnsservices/</link>
       <pubDate>Wed, 26 Aug 2020 12:01:51 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200826_dnsservices/</guid>
+      <guid>http://localhost:1313/200826_dnsservices/</guid>
       <description>&lt;p&gt;This post is to continue the conversation started in &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don&amp;rsquo;t share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.&lt;/p&gt;
 &lt;p&gt;The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like &amp;ldquo;amazon.com&amp;rdquo; with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call &amp;ldquo;Brent&amp;rdquo; or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more &amp;ldquo;human friendly&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;Why should you care?  Three reasons - speed, security, and privacy.  DNS is typically set up by your Internet provider.  Sometimes these implementations are the sources of problems, so changing the default DNS will give you a more stable (and sometimes faster) experience.  Anyone &amp;ldquo;listening&amp;rdquo; to your traffic can easily make a list of where you visit by tracking DNS requests.  This could be someone snooping on a shared wifi at the coffee shop, or it could be your ISP (in fact, ISPs sometimes redirect your traffic to internet locations they control for their own benefit).&lt;/p&gt;
@@ -1022,10 +1022,10 @@ You can use this on any of your Windows based system and have it run as a Whitel
     
     <item>
       <title>Reasonably Secure Browsing</title>
-      <link>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</link>
+      <link>http://localhost:1313/200805_reasonablysecurebrowsing/</link>
       <pubDate>Wed, 05 Aug 2020 11:23:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</guid>
+      <guid>http://localhost:1313/200805_reasonablysecurebrowsing/</guid>
       <description>&lt;p&gt;Most of my articles are aimed at helping me remember how I did something &lt;em&gt;cool&lt;/em&gt; years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I&amp;rsquo;m disappointed with the lack of understanding about computer security.  I was going to say &amp;ldquo;surprised&amp;rdquo;, but sadly I&amp;rsquo;m not.  This article tries to fix that by introducing this audience to concepts in Secure Browsing.&lt;/p&gt;
 &lt;p&gt;I get that we can&amp;rsquo;t all be aware of &lt;strong&gt;everything&lt;/strong&gt;.  For instance, I&amp;rsquo;m not really interested in cars.  Still, if you are participating in an area (driving a car or browsing the web), then there&amp;rsquo;s a basic level of awareness that is needed and that you should aim for.  So this post is written for the non-technical in order to provide that grounding.  I&amp;rsquo;ll try to keep this up to date (pay attention to the posting date!) and I&amp;rsquo;ll start pointing people who ask those questions to this resource.
 &lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/0/09/Timmcgee.jpg#floatleft&#34; alt=&#34;Tim McGee from NCIS&#34;&gt;

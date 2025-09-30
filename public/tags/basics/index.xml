@@ -12,10 +12,10 @@
     
     <item>
       <title>Anonymous Browsing</title>
-      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <link>http://localhost:1313/230405_anonymous/</link>
       <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <guid>http://localhost:1313/230405_anonymous/</guid>
       <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
 &lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
@@ -834,10 +834,10 @@ StrictNodes 1
     
     <item>
       <title>Tower of Hanoi Backup Strategy</title>
-      <link>http://localhost:1313/posts/220506_tower_of_hanoi/</link>
+      <link>http://localhost:1313/220506_tower_of_hanoi/</link>
       <pubDate>Fri, 06 May 2022 21:23:38 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220506_tower_of_hanoi/</guid>
+      <guid>http://localhost:1313/220506_tower_of_hanoi/</guid>
       <description>&lt;p&gt;When I was getting started in IT in the late 80s, my mentor taught me the most effecient way to handle backup tapes.  He called it the &amp;ldquo;Tower of Hanoi&amp;rdquo; strategy.  This has come up in various contexts through the years, and I&amp;rsquo;ve had to explain it.  I thought it might be interesting, particularly to younger professionals, to understand the problem and how it was solved using this algorithm.  Who knows? Maybe there will be a new application you run across!&lt;/p&gt;
 &lt;h2 id=&#34;understanding-the-game&#34;&gt;Understanding the Game&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/220506_Tower_of_Hanoi.png#floatsmallright&#34; alt=&#34;Tower of Hanoi&#34;&gt;
@@ -861,10 +861,10 @@ The game involves three pegs.  One peg has three rings of increasing size.  The 
     
     <item>
       <title>Technically Correct Verbage Rant</title>
-      <link>http://localhost:1313/posts/201220_networkingrant/</link>
+      <link>http://localhost:1313/201220_networkingrant/</link>
       <pubDate>Sun, 20 Dec 2020 02:00:15 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201220_networkingrant/</guid>
+      <guid>http://localhost:1313/201220_networkingrant/</guid>
       <description>&lt;p&gt;Part of our industry is the need to constantly keep up to date.  I&amp;rsquo;ve been going through some training and flipped the &amp;ldquo;bozo&amp;rdquo; bit on the instructor because he was struggling to explain some basic network concepts.  I&amp;rsquo;m in management these days and often have to quickly evaluate other technical people.  Whether it&amp;rsquo;s hiring, considering contract work, or talking to a potential &amp;ldquo;partner&amp;rdquo;, I form an opinion of you, your company, and your product based on your technical vocabulary.&lt;/p&gt;
 &lt;p&gt;Here are three terms that are commonly misused and make me suspecious.&lt;/p&gt;
 &lt;h2 id=&#34;bandwith&#34;&gt;Bandwith&lt;/h2&gt;

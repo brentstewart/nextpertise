@@ -12,10 +12,10 @@
     
     <item>
       <title>AI-Pocolypse Now</title>
-      <link>http://localhost:1313/posts/230805_ai-pocolypse_now/</link>
+      <link>http://localhost:1313/230805_ai-pocolypse_now/</link>
       <pubDate>Sat, 05 Aug 2023 15:58:38 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230805_ai-pocolypse_now/</guid>
+      <guid>http://localhost:1313/230805_ai-pocolypse_now/</guid>
       <description>&lt;p&gt;My friends know that I am an avid reader and that I love Science Fiction.  I&amp;rsquo;ve read that Science Fiction only became possible when people could see technology changing in their lifetime, and although we had slow changes for a long time it wasn&amp;rsquo;t until the last half of the 19th Century that we got &lt;em&gt;Frankenstein&lt;/em&gt;.  Even in Mary Shelley&amp;rsquo;s time, though, the pace of change was slow compared to now.&lt;/p&gt;
 &lt;p&gt;What a fascinating time to live!  I was born five days after Neil Armstrong set foot on the moon.  Communication - including the Internet - has completely revolutionized the way we relate to others and ourselves several times in my life (fax machines, cell phones, SMS, e-mail, social media).  Cancer used to be a get-your-affairs-in-order conversation.  It&amp;rsquo;s still not good, but the progress from when my uncle Paul died in the 70s until now is &lt;em&gt;astounding&lt;/em&gt;.  Logistics has changed the world - strawberries from South America in the dead of winter?  Having seen all these things, it can feel like my life has been science fiction.&lt;/p&gt;
 &lt;p&gt;Which brings us to the AI-pocolypse, my campy-and-probably-not-original name for the fear that our technological creations will supplant us.  Funny aside, but that&amp;rsquo;s what Frankenstein was about as well.  Science Fiction has a way of predicting the future - it&amp;rsquo;s like a dream half remembered that reveals something about yourself.&lt;/p&gt;
@@ -46,10 +46,10 @@
     
     <item>
       <title>IMHO</title>
-      <link>http://localhost:1313/posts/230122_announcing/</link>
+      <link>http://localhost:1313/230122_announcing/</link>
       <pubDate>Sun, 22 Jan 2023 13:27:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230122_announcing/</guid>
+      <guid>http://localhost:1313/230122_announcing/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve created a seperate site - &lt;a href=&#34;https://www.stewart.tc&#34;&gt;Stewart.tc&lt;/a&gt; - to house my book reviews, discoveries, and thoughts on non-Internet subjects.&lt;/p&gt;
 &lt;p&gt;I titled this &amp;ldquo;IMHO&amp;rdquo; or &amp;ldquo;in my humble opinion&amp;rdquo;, but I&amp;rsquo;ve always tried to avoid opinions in this space on non-technical topics.  Even the &amp;ldquo;non-technical&amp;rdquo; tag is about Internet topics for presentation to non-techies.&lt;/p&gt;
 &lt;p&gt;I started writing because I enjoy sharing what I&amp;rsquo;ve learned and because I enjoy writing and wanted to develop the skill by making it more of a discipline.  Writing helps to organize thoughts and get them out of your head.  The idea that I can pursue IT ideas that fascinate me and share those findings with others has been great, and along the way I&amp;rsquo;ve discovered that I refer back to my own writing fairly often to remember how to do &lt;em&gt;that thing&lt;/em&gt;.&lt;/p&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>DNS Services</title>
-      <link>http://localhost:1313/posts/200826_dnsservices/</link>
+      <link>http://localhost:1313/200826_dnsservices/</link>
       <pubDate>Wed, 26 Aug 2020 12:01:51 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200826_dnsservices/</guid>
+      <guid>http://localhost:1313/200826_dnsservices/</guid>
       <description>&lt;p&gt;This post is to continue the conversation started in &lt;a href=&#34;http://localhost:1313/posts/200805_reasonablysecurebrowsing&#34;&gt;Reasonably Secure Browsing&lt;/a&gt; with some options for home DNS setting that help protect you and your family.  Like that post, this is intended for non-industry friends.  My goal is to have a set of references for the people I care about, but who don&amp;rsquo;t share my love of technology.  For the gurus out there, understand that this leaves out a lot of details for the sake of clarity for the target audience.&lt;/p&gt;
 &lt;p&gt;The first post covered browser settings that balanced security, privacy concerns, and convenience.  Another way to improve your security is use an alternative DNS provider.  DNS (Domain Name System) is an under-the-hood service that connects a name like &amp;ldquo;amazon.com&amp;rdquo; with a number like 176.32.103.205.  Think about your mobile phone.  We rarely memorize peoples telephone numbers anymore, we just call &amp;ldquo;Brent&amp;rdquo; or choose the picture that matches the person we want to call.  The phone translates that into a telephone number.  DNS is a centralized process that translates a name to a number to make the internet more &amp;ldquo;human friendly&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;Why should you care?  Three reasons - speed, security, and privacy.  DNS is typically set up by your Internet provider.  Sometimes these implementations are the sources of problems, so changing the default DNS will give you a more stable (and sometimes faster) experience.  Anyone &amp;ldquo;listening&amp;rdquo; to your traffic can easily make a list of where you visit by tracking DNS requests.  This could be someone snooping on a shared wifi at the coffee shop, or it could be your ISP (in fact, ISPs sometimes redirect your traffic to internet locations they control for their own benefit).&lt;/p&gt;
@@ -87,10 +87,10 @@
     
     <item>
       <title>Reasonably Secure Browsing</title>
-      <link>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</link>
+      <link>http://localhost:1313/200805_reasonablysecurebrowsing/</link>
       <pubDate>Wed, 05 Aug 2020 11:23:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200805_reasonablysecurebrowsing/</guid>
+      <guid>http://localhost:1313/200805_reasonablysecurebrowsing/</guid>
       <description>&lt;p&gt;Most of my articles are aimed at helping me remember how I did something &lt;em&gt;cool&lt;/em&gt; years later, and helping other people who share my interest and want to solve similar problems.  This one is a little different.  When I speak to non-technical folks - at church, other parents, or within my family - I&amp;rsquo;m disappointed with the lack of understanding about computer security.  I was going to say &amp;ldquo;surprised&amp;rdquo;, but sadly I&amp;rsquo;m not.  This article tries to fix that by introducing this audience to concepts in Secure Browsing.&lt;/p&gt;
 &lt;p&gt;I get that we can&amp;rsquo;t all be aware of &lt;strong&gt;everything&lt;/strong&gt;.  For instance, I&amp;rsquo;m not really interested in cars.  Still, if you are participating in an area (driving a car or browsing the web), then there&amp;rsquo;s a basic level of awareness that is needed and that you should aim for.  So this post is written for the non-technical in order to provide that grounding.  I&amp;rsquo;ll try to keep this up to date (pay attention to the posting date!) and I&amp;rsquo;ll start pointing people who ask those questions to this resource.
 &lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/0/09/Timmcgee.jpg#floatleft&#34; alt=&#34;Tim McGee from NCIS&#34;&gt;

@@ -12,10 +12,10 @@
     
     <item>
       <title>JiraReport</title>
-      <link>http://localhost:1313/posts/231021_jirareport/</link>
+      <link>http://localhost:1313/231021_jirareport/</link>
       <pubDate>Sat, 21 Oct 2023 11:47:23 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/231021_jirareport/</guid>
+      <guid>http://localhost:1313/231021_jirareport/</guid>
       <description>&lt;p&gt;I recently had a lot of fun building a quick program to pull data from Jira Cloud and produce Word reports.  I&amp;rsquo;ve shared &lt;a href=&#34;https://github.com/brentstewart/jirareport&#34;&gt;jirareport&lt;/a&gt; at Github if you are curious.  If you use Jira, this may be of interest (although most folks who use Jira are well beyond my meager abilities).&lt;/p&gt;
 &lt;p&gt;Even if you don&amp;rsquo;t use Jira, this was an interesting experience.  It was a fairly simple re-introduction to Python, something that I&amp;rsquo;ve tried to get started in on-and-off over the years.  Seeing it work though was a huge feeling of empowerment and encourgagement, something I hope you are able to experience (whatever cloud resource you need to use).&lt;/p&gt;
 &lt;h2 id=&#34;using-my-tools&#34;&gt;Using my tools&lt;/h2&gt;

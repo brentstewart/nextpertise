@@ -12,10 +12,10 @@
     
     <item>
       <title>Building a Home Web Dashboard</title>
-      <link>http://localhost:1313/posts/230930_dashboards/</link>
+      <link>http://localhost:1313/230930_dashboards/</link>
       <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230930_dashboards/</guid>
+      <guid>http://localhost:1313/230930_dashboards/</guid>
       <description>&lt;h1 id=&#34;home-dashboards&#34;&gt;Home Dashboards&lt;/h1&gt;
 &lt;p&gt;Home web dashboards serve as a &amp;ldquo;starting point&amp;rdquo; for web sessions.  Especially as a certain portion of applications now reside online, a home dashboard is a customized menu of the things that you need presented in the way you want.  Dashboards could be as simple as a collection of links, or include things like network and server statistics or embedded frames.&lt;/p&gt;
 &lt;p&gt;Hosting your own dashboard also reduces internet traffic, limits the public data footprint (particularly if you are using it to access local resources), and creates resiliancy (in the sense that local services are still easily accessible if the Internet connection is down).&lt;/p&gt;
@@ -80,10 +80,10 @@ services:
     
     <item>
       <title>Using WebDAV on Apache</title>
-      <link>http://localhost:1313/posts/210906_apachedav/</link>
+      <link>http://localhost:1313/210906_apachedav/</link>
       <pubDate>Mon, 06 Sep 2021 13:00:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210906_apachedav/</guid>
+      <guid>http://localhost:1313/210906_apachedav/</guid>
       <description>&lt;p&gt;In recent articles, I walked through how to setup a home &lt;a href=&#34;http://localhost:1313/posts/210830_apache&#34;&gt;webserver&lt;/a&gt; with &lt;a href=&#34;https://httpd.apache.org&#34;&gt;Apache&lt;/a&gt; on Linux and how to configure home &lt;a href=&#34;http://localhost:1313/posts/210831_dnsonubuntu&#34;&gt;DNS server&lt;/a&gt; using &lt;a href=&#34;https://www.isc.org/bind/&#34;&gt;bind&lt;/a&gt; on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.&lt;/p&gt;
 &lt;p&gt;WebDAV is a file sharing protocol built on top of HTTP.  Many operating systems can attach to WebDAV folders to upload and download files, including Linux, Windows, Mac, IOS, and Android.  I have a password database that I want to keep sync&amp;rsquo;d between different computers and phones and I&amp;rsquo;m not comfortable hosting that &amp;ldquo;in the cloud&amp;rdquo;, so this allows me to self-host.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m using Ubuntu Server 21.04 for this exercise.&lt;/p&gt;
@@ -146,10 +146,10 @@ New password:
     
     <item>
       <title>Simple Apache Setup on Linux</title>
-      <link>http://localhost:1313/posts/210830_apache/</link>
+      <link>http://localhost:1313/210830_apache/</link>
       <pubDate>Mon, 30 Aug 2021 16:38:48 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210830_apache/</guid>
+      <guid>http://localhost:1313/210830_apache/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been running the free version of ESXi 6.5 for a while, but the vulnerabilities kept piling up and I had issues upgrading it.  I&amp;rsquo;ve been looking at ProxMox VE for a while and last week I decided to give it a chance.  I want to get more experience with the server before I write about it, so I&amp;rsquo;ll start by detailing a simple process to get a local webserver running.  Browsers keep trying to throw distracting junk in front of me for start pages when what I really want is to quickly get to the sites I need.  I put together a simple page that organizes my personal and work links for this purpose.&lt;/p&gt;
 &lt;p&gt;I built this server on Ubuntu 21.04 Server and my instructions are written from that perspective.  Notes around the firewall and restarting the service will vary by distribution and version, but I&amp;rsquo;ll leave translation as an exercise to the reader.  Installing a webserver is straightfoward - there are a variety to choose from, but Apache is good for this purpose because it&amp;rsquo;s so well documented.  Once the package is downloaded and the service started, you should be able to browse to http://127.0.0.1 and see the default Apache page.  When I did this at home, Ubuntu 21.04 had the firewall up by default, so I needed to allow the Apache service.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt update

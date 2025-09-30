@@ -6,7 +6,7 @@ date: "2023-10-02T09:59:14-04:00"
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: ""
+picture: "management"
 Focus_Keyword: ""
 youtube: ""
 github: ""

@@ -12,10 +12,10 @@
     
     <item>
       <title>Anonymous Browsing</title>
-      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <link>http://localhost:1313/230405_anonymous/</link>
       <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <guid>http://localhost:1313/230405_anonymous/</guid>
       <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
 &lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
@@ -834,10 +834,10 @@ StrictNodes 1
     
     <item>
       <title>5G Troubleshooting</title>
-      <link>http://localhost:1313/posts/220723_5g_troubleshooting/</link>
+      <link>http://localhost:1313/220723_5g_troubleshooting/</link>
       <pubDate>Sat, 23 Jul 2022 12:14:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220723_5g_troubleshooting/</guid>
+      <guid>http://localhost:1313/220723_5g_troubleshooting/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220723_droid_signal.jpg#floatsmallleft&#34; alt=&#34;Signal Strength on Android&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My office sits beside an Interstate and generally the Interstate corridor is one of the best places to find cellular coverage.  Sure enough, we have towers reasonably close to the east and west of the building along the Interstate.  The construction of the buildings, like many office buildings, has a strong steel and concrete &amp;ldquo;core&amp;rdquo; with open office space around the perimeter.    My analysis is that those cores, along with the way the buildings set next to each other, creates 5G/LTE shadows within the buildings.&lt;/p&gt;
 &lt;p&gt;My buildings are setup along &amp;ldquo;modern&amp;rdquo; cubicle-farm ideas.  To get a feel for where the dead zones are, I got readings on signal strength using my phone at all the cube row intersections.  Wireless signal strength is denoted in decibel-milliwats (dBm).  A decibel is a comparison of two numbers, with a 10dB difference translating as a 10 fold increase.  A 100x difference would be 20dB.  dBm compare a signal to a milliwat.&lt;/p&gt;
@@ -855,10 +855,10 @@ StrictNodes 1
     
     <item>
       <title>Finding Windows Keys on Hardware</title>
-      <link>http://localhost:1313/posts/220404_winkey/</link>
+      <link>http://localhost:1313/220404_winkey/</link>
       <pubDate>Mon, 04 Apr 2022 13:55:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220404_winkey/</guid>
+      <guid>http://localhost:1313/220404_winkey/</guid>
       <description>&lt;p&gt;My son&amp;rsquo;s computer blew up and we didn&amp;rsquo;t have a copy of the Windows key.  This is something I have run into before - I typically blow Windows off new PCs and install Linux, but then occassionally want to create a Windows VM using that key.  It used to be on a sticker on the laptop, but it&amp;rsquo;s not anymore.  It turns out a copy of the key is stored in BIOS or UEFI and accessible via ACPI.  ACPI (Advanced Configuration and Power Interface) is an abstract interface that provides a standrard way to access hardware functions.&lt;/p&gt;
 &lt;h2 id=&#34;discovering-windows-keys-in-bios-using-linux&#34;&gt;Discovering Windows Keys in BIOS using Linux&lt;/h2&gt;
 &lt;p&gt;ACPI tables are stored in /sys/firmware/acpi/tables.  As an administrator, you can read those text files to see the various settings and values.  The table with the Windows key is MSDM.&lt;/p&gt;
@@ -873,10 +873,10 @@ StrictNodes 1
     
     <item>
       <title>Powerpoint Live (or You don&#39;t know how to share Powerpoint with Teams)</title>
-      <link>http://localhost:1313/posts/220329_teams/</link>
+      <link>http://localhost:1313/220329_teams/</link>
       <pubDate>Tue, 29 Mar 2022 21:11:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220329_teams/</guid>
+      <guid>http://localhost:1313/220329_teams/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220329_teams1.png#floatsmallleft&#34; alt=&#34;Teams Powerpoint Windows&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My company uses Teams.  I have had a poor impression of Microsoft historically, but I am really impressed with Teams.  It&amp;rsquo;s a solid application with a lot of capabilities.  Plus, Teams - and all the O365 web apps - really work well on Linux.&lt;/p&gt;
 &lt;p&gt;In meetings, everytime someone presents slides they do it by sharing their desktop.  It&amp;rsquo;s funny, Teams is so intuitive that no one does a lot of training around it.  I discovered &lt;a href=&#34;https://techcommunity.microsoft.com/t5/microsoft-365-blog/introducing-powerpoint-live-in-microsoft-teams/ba-p/2140980&#34;&gt;Powerpoint Live&lt;/a&gt; almost by accident, because I was presenting from Linux.&lt;/p&gt;
@@ -893,10 +893,10 @@ The best experience was presenting from Windows.  As shown below (notice my draw
     
     <item>
       <title>Using WebDAV on Apache</title>
-      <link>http://localhost:1313/posts/210906_apachedav/</link>
+      <link>http://localhost:1313/210906_apachedav/</link>
       <pubDate>Mon, 06 Sep 2021 13:00:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210906_apachedav/</guid>
+      <guid>http://localhost:1313/210906_apachedav/</guid>
       <description>&lt;p&gt;In recent articles, I walked through how to setup a home &lt;a href=&#34;http://localhost:1313/posts/210830_apache&#34;&gt;webserver&lt;/a&gt; with &lt;a href=&#34;https://httpd.apache.org&#34;&gt;Apache&lt;/a&gt; on Linux and how to configure home &lt;a href=&#34;http://localhost:1313/posts/210831_dnsonubuntu&#34;&gt;DNS server&lt;/a&gt; using &lt;a href=&#34;https://www.isc.org/bind/&#34;&gt;bind&lt;/a&gt; on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.&lt;/p&gt;
 &lt;p&gt;WebDAV is a file sharing protocol built on top of HTTP.  Many operating systems can attach to WebDAV folders to upload and download files, including Linux, Windows, Mac, IOS, and Android.  I have a password database that I want to keep sync&amp;rsquo;d between different computers and phones and I&amp;rsquo;m not comfortable hosting that &amp;ldquo;in the cloud&amp;rdquo;, so this allows me to self-host.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m using Ubuntu Server 21.04 for this exercise.&lt;/p&gt;
@@ -959,10 +959,10 @@ New password:
     
     <item>
       <title>Making a Memorial DVD</title>
-      <link>http://localhost:1313/posts/210308_kdenlive/</link>
+      <link>http://localhost:1313/210308_kdenlive/</link>
       <pubDate>Mon, 08 Mar 2021 21:59:17 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210308_kdenlive/</guid>
+      <guid>http://localhost:1313/210308_kdenlive/</guid>
       <description>&lt;p&gt;A good friend lost his father to COVID last week.  It was unexpected - he was only about 60 and in good health.  My friend asked for help putting together a memorial DVD.  Perhaps you&amp;rsquo;ve seen these - at a receiving in the US it&amp;rsquo;s common these days to find a TV that displays a collection of pictures of the deceased, perhaps with some background music.&lt;/p&gt;
 &lt;p&gt;I don&amp;rsquo;t have any special expertise in Video and I didn&amp;rsquo;t have long to figure it out.  If you&amp;rsquo;re in a similar situation then 1) leave a note in the comments and I&amp;rsquo;ll pray for your friends family and 2) here are some quick and dirty instructions that will let you be of service.&lt;/p&gt;
 &lt;h2 id=&#34;gathering-input&#34;&gt;Gathering input&lt;/h2&gt;
@@ -987,10 +987,10 @@ New password:
     
     <item>
       <title>How to Plan Good Downtime</title>
-      <link>http://localhost:1313/posts/210126_downtime/</link>
+      <link>http://localhost:1313/210126_downtime/</link>
       <pubDate>Tue, 26 Jan 2021 20:18:24 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210126_downtime/</guid>
+      <guid>http://localhost:1313/210126_downtime/</guid>
       <description>&lt;p&gt;In another blog, planning downtime would involve tropical pictures.  Sigh.&lt;/p&gt;
 &lt;h2 id=&#34;downtime&#34;&gt;Downtime&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright&#34; alt=&#34;Time&#34;&gt;
@@ -1057,10 +1057,10 @@ If the change is a group exercise, it is usually a good idea to have one person 
     
     <item>
       <title>Powerline Windows</title>
-      <link>http://localhost:1313/posts/201130_powerline-windows/</link>
+      <link>http://localhost:1313/201130_powerline-windows/</link>
       <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201130_powerline-windows/</guid>
+      <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
 &lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
@@ -1115,10 +1115,10 @@ For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
     
     <item>
       <title>Using SSH - Part 2 (Authentication)</title>
-      <link>http://localhost:1313/posts/200812_using_ssh2/</link>
+      <link>http://localhost:1313/200812_using_ssh2/</link>
       <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200812_using_ssh2/</guid>
+      <guid>http://localhost:1313/200812_using_ssh2/</guid>
       <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
 &lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
 &lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
@@ -1206,10 +1206,10 @@ For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
     
     <item>
       <title>Using SSH - Part 1 (Basics and Banners)</title>
-      <link>http://localhost:1313/posts/200811_using_ssh1/</link>
+      <link>http://localhost:1313/200811_using_ssh1/</link>
       <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200811_using_ssh1/</guid>
+      <guid>http://localhost:1313/200811_using_ssh1/</guid>
       <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
 &lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
 &lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;

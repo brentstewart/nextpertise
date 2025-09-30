@@ -12,10 +12,10 @@
     
     <item>
       <title>Markdown to DOCX</title>
-      <link>http://localhost:1313/posts/230922_markdown_to_docx/</link>
+      <link>http://localhost:1313/230922_markdown_to_docx/</link>
       <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230922_markdown_to_docx/</guid>
+      <guid>http://localhost:1313/230922_markdown_to_docx/</guid>
       <description>&lt;h1 id=&#34;exporting-markdown&#34;&gt;Exporting Markdown&lt;/h1&gt;
 &lt;p&gt;Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.  Although initially reluctant, I&amp;rsquo;ve grown to appreciate the portability and easy reuse that markdown allows.  The problem is that the rest of the world doesn&amp;rsquo;t always appreciate what is obvious to me.  As an example, the folks at work prefer their documents in Office formats.&lt;/p&gt;
 &lt;h2 id=&#34;office-to-obsidian&#34;&gt;Office to Obsidian&lt;/h2&gt;
@@ -46,10 +46,10 @@ function Image () return {} end
     
     <item>
       <title>ahrefs</title>
-      <link>http://localhost:1313/posts/230731_ahrefs/</link>
+      <link>http://localhost:1313/230731_ahrefs/</link>
       <pubDate>Mon, 31 Jul 2023 21:28:53 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230731_ahrefs/</guid>
+      <guid>http://localhost:1313/230731_ahrefs/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been writing in this space for about three years.  I use Hugo and VSCode and write in markdown, so my workflow is less technical but there are still some aspects of maintaining a web page.  My source files, for instance, were fairly easy to organize in the first year but over time have sprawled.  Changes to my Hugo template have broken some older internal URLs as well.  Even when I recognize the possibility of an issue, it&amp;rsquo;s hard to track down every instance that broke.&lt;/p&gt;
 &lt;p&gt;One simple example is that I originally put my entries into the root folder and later moved them to &lt;em&gt;/posts&lt;/em&gt;.  The issue is that all my older files referenced each other withoot that directory.  I&amp;rsquo;ve corrected this when I see it, but I&amp;rsquo;m sure that readers have stumbled onto these inadvertant issues.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Mea culpa&lt;/em&gt;, but I have a day job and it&amp;rsquo;s hard to keep up sometimes.&lt;/p&gt;
@@ -72,10 +72,10 @@ Broken links are another area where I&amp;rsquo;ve been able to drive improvemen
     
     <item>
       <title>Automaticly adding Hugo articles to Obsidian</title>
-      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <link>http://localhost:1313/230313_blog2obsidian/</link>
       <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <guid>http://localhost:1313/230313_blog2obsidian/</guid>
       <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
 &lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
@@ -100,10 +100,10 @@ The five variables before the job are minute, hour, day, month, and day of the w
     
     <item>
       <title>Adding Math Formulas to a Hugo-based site</title>
-      <link>http://localhost:1313/posts/220817_formulas/</link>
+      <link>http://localhost:1313/220817_formulas/</link>
       <pubDate>Wed, 17 Aug 2022 10:40:54 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220817_formulas/</guid>
+      <guid>http://localhost:1313/220817_formulas/</guid>
       <description>&lt;p&gt;An upcoming article features some basic math, but rendering it in markdown is unaesthetic.  What you get is &lt;em&gt;E=mc^2&lt;/em&gt; when what you want is $ E=mc^2$.  My search led me to &lt;a href=&#34;https://katex.org/&#34;&gt;KaTeX&lt;/a&gt; which is a JavaScript library that let&amp;rsquo;s you put $\LaTeX$ code into an HTML document.  LaTeX was created to typeset scientific papers, so it is built for displaying things like matrices and integrals.  I don&amp;rsquo;t plan to publish math that intense, but LaTeX can help clearly display even a simple division equation and improve the readability of the post.  The best source of information I found was &lt;a href=&#34;https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/&#34;&gt;Mert Bakir&amp;rsquo;s blog&lt;/a&gt; and my usage is based on his work.&lt;/p&gt;
 &lt;p&gt;There are three steps to incorporating KaTeX with Hugo.&lt;/p&gt;
 &lt;ol&gt;
@@ -151,10 +151,10 @@ $$i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat H \Psi(\mathbf{r}
     
     <item>
       <title>Hugo Markdown Cheatsheet</title>
-      <link>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</link>
+      <link>http://localhost:1313/210424_hugo_markdown_cheatsheet/</link>
       <pubDate>Sat, 24 Apr 2021 12:42:56 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210424_hugo_markdown_cheatsheet/</guid>
+      <guid>http://localhost:1313/210424_hugo_markdown_cheatsheet/</guid>
       <description>&lt;p&gt;Markdown is a fantastic distraction-free way to write.  Using Markdown in VSCode is one of the things I like most about building this blog with Hugo.  It&amp;rsquo;s important to realize that the site CSS and Hugo shortcodes that are present play a big role in the way you write for the Hugo platform.  Those elements are usually included in the theme.  My theme is called &lt;em&gt;next&lt;/em&gt; and you can clone it from Github.&lt;/p&gt;
 &lt;p&gt;This post is a reference for how to use Markdown with my CSS and shortcodes.  I built my own hugo theme and CSS because I wanted to understand how it all worked.  I don&amp;rsquo;t think that my setup is the fanciest, but you are welcome to clone it or fork it.  If you are new to Hugo, CSS, or HTML in general then my efforts are cleaner and probably more understandable than one of the advanced themes.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve been doing this for nine months - pretty much the entire pandemic - and I&amp;rsquo;ve started to realize that I&amp;rsquo;ve forgotten some of the things I used months ago.  This document is therefore a reference for &lt;strong&gt;me&lt;/strong&gt;.  My career has never centered on HTML or CSS, so this has been an awesome learning opportunity.  &lt;a href=&#34;https://mikedane.com&#34;&gt;Mike Dane&lt;/a&gt; has some fantastic videos that helped me get started.&lt;/p&gt;
@@ -305,10 +305,10 @@ Print (&amp;quot;using three ticks before and after&amp;quot;)
     
     <item>
       <title>Writing a Blog - Reflections after a half year</title>
-      <link>http://localhost:1313/posts/210102_hugoafter6/</link>
+      <link>http://localhost:1313/210102_hugoafter6/</link>
       <pubDate>Sat, 02 Jan 2021 11:45:16 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210102_hugoafter6/</guid>
+      <guid>http://localhost:1313/210102_hugoafter6/</guid>
       <description>&lt;p&gt;I started writing this blog back in July of 2020.  There was a lot going on at that point, and yet a lot of nothing.  My employer was acquired in May and management was cut, so I was surprised to be out of job.  We were quarantining, which added a degree of difficulty to the job search, and summer is a slow time to find work anyway.  Against all this uncertainty, I wanted to do &lt;em&gt;something&lt;/em&gt; and decided to start writing.  I hoped that the blog might provide a way to establish my &lt;em&gt;bona fides&lt;/em&gt;, and if nothing else it gave me a chance to share what I was working on (since I no longer had co-workers to share with).&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s now January of 2021.  I&amp;rsquo;m employed and the blog has been going for six months.  I thought I&amp;rsquo;d take a look back at the experience of starting a blog.  Has it accomplished what I hoped?  How hard was it and what things would I change?&lt;/p&gt;
 &lt;p&gt;Most posts here are technical and this article is intended to address technical things I&amp;rsquo;ve learned.  At the same time, writing is a personal expression and accomplishes personal goals, so I also want to share how this experience has worked for me.&lt;/p&gt;
@@ -339,10 +339,10 @@ My biggest issue has been building readership.  I still don&amp;rsquo;t think I&
     
     <item>
       <title>JAMStack</title>
-      <link>http://localhost:1313/posts/200817_jamstack/</link>
+      <link>http://localhost:1313/200817_jamstack/</link>
       <pubDate>Mon, 17 Aug 2020 08:25:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200817_jamstack/</guid>
+      <guid>http://localhost:1313/200817_jamstack/</guid>
       <description>&lt;p&gt;I wrote a few weeks ago about setting up this site using Hugo and [Render.  It&amp;rsquo;s become clear since then that what I &amp;ldquo;discovered&amp;rdquo; was a developed concept aimed at solving big problems in web development and that my use case was the simplest use.  Some of you were no doubt well ahead of me, but couldn&amp;rsquo;t tell me because I didn&amp;rsquo;t have a comment system on the blog until this week.
 Hugo and Render are one iteration of a concept called the JAMStack.&lt;/p&gt;
 &lt;h3 id=&#34;you-should-consider-jamstack&#34;&gt;You should consider JAMStack&lt;/h3&gt;
@@ -363,10 +363,10 @@ Hugo and Render are one iteration of a concept called the JAMStack.&lt;/p&gt;
     
     <item>
       <title>Render</title>
-      <link>http://localhost:1313/posts/200724_render/</link>
+      <link>http://localhost:1313/200724_render/</link>
       <pubDate>Fri, 24 Jul 2020 08:21:27 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200724_render/</guid>
+      <guid>http://localhost:1313/200724_render/</guid>
       <description>&lt;h3 id=&#34;tldr-you-should-take-a-look-at-rendercom&#34;&gt;TLDR: you should take a look at Render.com&lt;/h3&gt;
 &lt;p&gt;I wrote in a previous post that I decided to build my site using Hugo, a decision I&amp;rsquo;m still really tickled with.  My initial draw to a Static Site Generator was to host my site in S3.  There&amp;rsquo;s a lot of attraction there - creating a public S3 bucket is easy, it&amp;rsquo;s low-cost, there&amp;rsquo;s no server to maintain, and the data is replicated within region between Availability Zones.  From a security perspective, S3 is easy to secure and the bucket is isolated.&lt;/p&gt;
 &lt;p&gt;I have experience with the major cloud providers and my high-level opinion is that AWS is the most mature, has the most complete set of products, and is the easiest to deal with.  Plus, I&amp;rsquo;m working my way through the AWS certs.&lt;/p&gt;
@@ -396,10 +396,10 @@ Hugo and Render are one iteration of a concept called the JAMStack.&lt;/p&gt;
     
     <item>
       <title>Building this site using Hugo</title>
-      <link>http://localhost:1313/posts/200720_building_site_with_hugo/</link>
+      <link>http://localhost:1313/200720_building_site_with_hugo/</link>
       <pubDate>Mon, 20 Jul 2020 11:38:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200720_building_site_with_hugo/</guid>
+      <guid>http://localhost:1313/200720_building_site_with_hugo/</guid>
       <description>&lt;p&gt;This site was built using Hugo, which is a static site generator.  Hugo allows me to create templates and then write my content in markdown.  This makes it easy to update the site without having to fiddle with HTML.  It also makes updating the look and feel easy, because I can update the template and regenerate the site.&lt;/p&gt;
 &lt;h2 id=&#34;hugo&#34;&gt;&lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg#floatleft&#34; alt=&#34;Hugo&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;Hugo is found in most distributions - for Ubuntu I installed it with &amp;ldquo;apt install hugo&amp;rdquo;.  I&amp;rsquo;ve found that running the local Hugo dev server (&amp;ldquo;hugo server -D&amp;rdquo;) and working with the files in VSCodium is a super easy way to develop.&lt;/p&gt;

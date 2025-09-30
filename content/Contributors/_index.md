@@ -13,4 +13,3 @@ Finally, we've learned these things through the works of others.  Where possible
 We wish you the best on your journey!
 
 The contributor team includes . . .
-

@@ -12,10 +12,10 @@
     
     <item>
       <title>Command Line Browser Carbonyl</title>
-      <link>http://localhost:1313/posts/230305_carbonyl/</link>
+      <link>http://localhost:1313/230305_carbonyl/</link>
       <pubDate>Sun, 05 Mar 2023 21:54:31 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230305_carbonyl/</guid>
+      <guid>http://localhost:1313/230305_carbonyl/</guid>
       <description>&lt;p&gt;Not sure where to classify this discovery - Carbonyl is a shell-based brower that is available for Linux, Mac, and Windows.  Carbonyl is built on a Chromium engine and does not support plugins at this point or tie into an existing Chrome installation.&lt;/p&gt;
 &lt;p&gt;Carbonyl is fast and it produces a low-res but usable web page.  It is surprisingly responsive - there&amp;rsquo;s a demo of someone playing Doom using it and I watched some Youtube using it.  That&amp;rsquo;s a little hard to visualize, so you may just have to try it.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s Carbonyl producing a portion of this site: &lt;img src=&#34;http://localhost:1313/230305_Carbonyl.png&#34; alt=&#34;Carbonyl&#34;&gt;&lt;/p&gt;
@@ -32,10 +32,10 @@
     
     <item>
       <title>FancyWM</title>
-      <link>http://localhost:1313/posts/221226_fancywm/</link>
+      <link>http://localhost:1313/221226_fancywm/</link>
       <pubDate>Mon, 26 Dec 2022 12:00:26 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221226_fancywm/</guid>
+      <guid>http://localhost:1313/221226_fancywm/</guid>
       <description>&lt;p&gt;Pop! OS has spoiled me.  I used to try to slide windows left and right across multiple monitors to get them to all fit.  My current workflow on Pop! is to enable tiling on my 4K display and then use multiple desktops if I need to divide my work areas.  I&amp;rsquo;ve recently been using Windows more and set out to recreate that workflow.  I won&amp;rsquo;t claim an exhaustive search, but here is the way I&amp;rsquo;ve currently setup my Windows PC.&lt;/p&gt;
 &lt;h2 id=&#34;multiple-desktops&#34;&gt;Multiple Desktops&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/221228_taskbutton.PNG#floatright&#34; alt=&#34;Task View&#34;&gt;
@@ -55,10 +55,10 @@ There are two screenshots shown.  In the first, I opened a series of new windows
     
     <item>
       <title>Finding Windows Keys on Hardware</title>
-      <link>http://localhost:1313/posts/220404_winkey/</link>
+      <link>http://localhost:1313/220404_winkey/</link>
       <pubDate>Mon, 04 Apr 2022 13:55:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220404_winkey/</guid>
+      <guid>http://localhost:1313/220404_winkey/</guid>
       <description>&lt;p&gt;My son&amp;rsquo;s computer blew up and we didn&amp;rsquo;t have a copy of the Windows key.  This is something I have run into before - I typically blow Windows off new PCs and install Linux, but then occassionally want to create a Windows VM using that key.  It used to be on a sticker on the laptop, but it&amp;rsquo;s not anymore.  It turns out a copy of the key is stored in BIOS or UEFI and accessible via ACPI.  ACPI (Advanced Configuration and Power Interface) is an abstract interface that provides a standrard way to access hardware functions.&lt;/p&gt;
 &lt;h2 id=&#34;discovering-windows-keys-in-bios-using-linux&#34;&gt;Discovering Windows Keys in BIOS using Linux&lt;/h2&gt;
 &lt;p&gt;ACPI tables are stored in /sys/firmware/acpi/tables.  As an administrator, you can read those text files to see the various settings and values.  The table with the Windows key is MSDM.&lt;/p&gt;
@@ -73,10 +73,10 @@ There are two screenshots shown.  In the first, I opened a series of new windows
     
     <item>
       <title>Oh My Posh</title>
-      <link>http://localhost:1313/posts/220124_oh_my_posh/</link>
+      <link>http://localhost:1313/220124_oh_my_posh/</link>
       <pubDate>Tue, 25 Jan 2022 19:05:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220124_oh_my_posh/</guid>
+      <guid>http://localhost:1313/220124_oh_my_posh/</guid>
       <description>&lt;p&gt;I really like the powerline-style prompts that jazz up the command line and I&amp;rsquo;d like to be able to carry that experience through from Linux to Windows.  It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar.  Recently I found &lt;em&gt;Oh My Posh&lt;/em&gt;, which is designed to support Windows, Linux, and MacOS.  The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s an example of OMP installed in Linux running inside Tilix.  You can see that it&amp;rsquo;s providing me collapsed directory information, git info, and the time of the last command.  OMP can be customized and the details of that are described extensively in the online docs.
 &lt;img src=&#34;http://localhost:1313/omp_tilix.png#center&#34; alt=&#34;Oh My Posh in Tilix on Linux&#34;&gt;
@@ -131,10 +131,10 @@ load(io.popen(&#39;oh-my-posh --config=&amp;quot;C:/Users/Brent/.oh-my-posh/them
     
     <item>
       <title>Sudo for Windows Powershell</title>
-      <link>http://localhost:1313/posts/220124_sudo_on_windows/</link>
+      <link>http://localhost:1313/220124_sudo_on_windows/</link>
       <pubDate>Sun, 23 Jan 2022 18:28:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220124_sudo_on_windows/</guid>
+      <guid>http://localhost:1313/220124_sudo_on_windows/</guid>
       <description>&lt;p&gt;Some Windows Powershell commands must be run from Powershell running in an administrative context.  It&amp;rsquo;s a little bit of a pain when you need to invoke Powershell this way (right click it in the menu).  The real problem is once there&amp;rsquo;s a terminal up, do you limit this to just the command that requires it or do you just work out of the open (administrative) terminal window?  Choosing to remain in that admin context could lead to trouble.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/sudologo.png#floatsmallleft&#34; alt=&#34;Sudo Logo&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;the-need-for-sudo&#34;&gt;The need for sudo&lt;/h2&gt;
@@ -161,10 +161,10 @@ scoop install sudo
     
     <item>
       <title>Deploying a WIM Image to VMWare</title>
-      <link>http://localhost:1313/posts/220122_deploying_wim/</link>
+      <link>http://localhost:1313/220122_deploying_wim/</link>
       <pubDate>Sat, 22 Jan 2022 12:54:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220122_deploying_wim/</guid>
+      <guid>http://localhost:1313/220122_deploying_wim/</guid>
       <description>&lt;p&gt;Work uses Windows, but I need a Linux workstation with that set of tools.  I find WSL2 incomplete . . . partly because my personal workflow is Linux based.  I spoke with the Windows expert and we agreed to use VMWare Workstation to deploy my Windows environment alongside my Linux system.  Deploying the standard Windows image to a remote VMWare environment wasn&amp;rsquo;t something we had setup already.  Since I&amp;rsquo;m trying to be a special case, he sent me the WIM file to figure out how to deploy.&lt;/p&gt;
 &lt;h1 id=&#34;what-the-heck-is-a-wim&#34;&gt;What the heck is a WIM?&lt;/h1&gt;
 &lt;p&gt;A WIM is a file-based Windows Image that is made to be easy to test and deploy.   It&amp;rsquo;s kind of like a ZIP, to my understanding, in that it captures all the files and the directory structure of a partition in a file.  Being file-based makes it easy to modify (more on this later).  Because it&amp;rsquo;s not a sector-by-sector image you can deploy it to different sized drives.&lt;/p&gt;
@@ -209,10 +209,10 @@ D:\ApplyImage.bat D:\Images\ACME-Standard.wim
     
     <item>
       <title>Chocolatey Installer for Windows</title>
-      <link>http://localhost:1313/posts/220118_choco/</link>
+      <link>http://localhost:1313/220118_choco/</link>
       <pubDate>Tue, 18 Jan 2022 15:27:47 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220118_choco/</guid>
+      <guid>http://localhost:1313/220118_choco/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m setting up a new Windows 10 VM (this time in VMWare) and decided to use Chocolatey to install applications this time, since I tried &lt;em&gt;winget&lt;/em&gt; last time.  I haven&amp;rsquo;t tried Chocolatey in a while, and I&amp;rsquo;ve spent a lot of time exclusively in Linux since then so I was curious what I would make of it, especially in comparison to &lt;a href=&#34;http://localhost:1313/posts/211228_winget/&#34;&gt;Winget&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://chocolatey.org/&#34;&gt;Chocolatey&lt;/a&gt; is a package manager like apt.  You can use it to search for, install, update, and uninstall programs.  This is particularly useful if you have a &amp;ldquo;standard setup&amp;rdquo; for new computers - it&amp;rsquo;s possible to build a script to install the apps you expect.  Windows Update only covers Microsoft programs, so Chocolatey fills another gap by updating all the programs it installs from the command line.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/chco-square.svg#floatsmallleft&#34; alt=&#34;Logo&#34;&gt;&lt;/p&gt;
@@ -238,10 +238,10 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
     
     <item>
       <title>Winget</title>
-      <link>http://localhost:1313/posts/211228_winget/</link>
+      <link>http://localhost:1313/211228_winget/</link>
       <pubDate>Tue, 28 Dec 2021 11:46:32 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/211228_winget/</guid>
+      <guid>http://localhost:1313/211228_winget/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m experimenting with KVM and decided to build a new Windows VM.  I&amp;rsquo;m currently using Pop!_OS 21.10 which uses the 5.15 kernel.  Turns out that breaks Windows on VMWare workstation and it looks like the cause is VMWare not keeping up with the latest kernels.  There are some patches available, but it&amp;rsquo;s the week between Christmas and New Years and seemed like a good chance to review the FOSS alternative.&lt;/p&gt;
 &lt;p&gt;Part of my troubleshooting process on Linux was to make sure that I haven&amp;rsquo;t made a change that&amp;rsquo;s impacting VMWare.  Pop! has a really cool feature that will roll-back to a clean install, but leave your personal files.  Reinstalling missing applications is pretty easy in linux.  Installing hugo again is as easy as:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt install hugo
@@ -267,10 +267,10 @@ Winget shows promise and it&amp;rsquo;s worth keeping an eye on.  But I won&amp;
     
     <item>
       <title>Deskreen</title>
-      <link>http://localhost:1313/posts/210201-deskreen/</link>
+      <link>http://localhost:1313/210201-deskreen/</link>
       <pubDate>Mon, 01 Feb 2021 13:43:09 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210201-deskreen/</guid>
+      <guid>http://localhost:1313/210201-deskreen/</guid>
       <description>&lt;p&gt;Deskreen is an open-source utility that allows you to send your Windows, Mac, or Linux desktop onto another screen, including another computer, a tablet, or even a phone.  It can duplicate an application, duplicate an entire display, or extend the desktop and treat the other computer as an additional monitor.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://deskreen.com/img/plugs/hdmi.jpg#floatsmallleft&#34; alt=&#34;HDMI Plug&#34;&gt;
 Deskreen outputs your display to a webpage with an embedded video.  Running the application prompts you to choose an application, existing display, or new display.  It then displays the produced webpage in text and with a 2D barcode.  The page, when opened on a separate device, allows you to play the video stream.&lt;/p&gt;
@@ -295,10 +295,10 @@ Just for fun, I sent the settings app to my phone at the same time.  Running two
     
     <item>
       <title>Powerline Windows</title>
-      <link>http://localhost:1313/posts/201130_powerline-windows/</link>
+      <link>http://localhost:1313/201130_powerline-windows/</link>
       <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201130_powerline-windows/</guid>
+      <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
 &lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
@@ -353,10 +353,10 @@ For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
     
     <item>
       <title>Winapps</title>
-      <link>http://localhost:1313/posts/201110_winapps/</link>
+      <link>http://localhost:1313/201110_winapps/</link>
       <pubDate>Tue, 10 Nov 2020 08:24:53 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201110_winapps/</guid>
+      <guid>http://localhost:1313/201110_winapps/</guid>
       <description>&lt;p&gt;Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&amp;rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&amp;rsquo;s you use &amp;ldquo;open with&amp;rdquo; types of functionality.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright&#34; alt=&#34;WinApps&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To give it a try, clone the code from &lt;a href=&#34;https://github.com/Fmstrat/winapps&#34;&gt;GitHub&lt;/a&gt;. Remember that it&amp;rsquo;s running programs that are installed on a VM. If you don&amp;rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&amp;rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&amp;rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &amp;ldquo;Windows source&amp;rdquo;.&lt;/p&gt;
@@ -395,10 +395,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>How to write an event to Windows and Linux logs</title>
-      <link>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <link>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <guid>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</guid>
       <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
 &lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
 &lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
@@ -444,10 +444,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>Using SSH - Part 3 (File Shares)</title>
-      <link>http://localhost:1313/posts/200813_using_ssh3/</link>
+      <link>http://localhost:1313/200813_using_ssh3/</link>
       <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200813_using_ssh3/</guid>
+      <guid>http://localhost:1313/200813_using_ssh3/</guid>
       <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
 &lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
 &lt;h2 id=&#34;sftp-filezilla&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;

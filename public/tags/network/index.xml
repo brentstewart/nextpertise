@@ -12,10 +12,10 @@
     
     <item>
       <title>Basic Packer</title>
-      <link>http://localhost:1313/posts/221019_packer/</link>
+      <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221019_packer/</guid>
+      <guid>http://localhost:1313/221019_packer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://hashicorp.com&#34;&gt;Hashicorp&lt;/a&gt; makes some &lt;em&gt;cool&lt;/em&gt; tools for playing in the cloud or a virtualized environment, especially if you want to build out an Infrastructure as Code approach and make infrastructure updates a CI process. &lt;a href=&#34;https://packer.io&#34;&gt;Packer&lt;/a&gt; is a tool that let&amp;rsquo;s you define a server - OS, cores, storage, packages, and all - in a script that can be built on demand.  You can even define your  environment, like LAMP, in the packer script and load your application files.&lt;/p&gt;
 &lt;p&gt;A very practical use of Packer would be to use it to build a custom AWS AMI for your company.  You want every EC2 instance to look like this image, so it might include security settings or agents, centralized logging setup, connections to centralized authentication, and other common resources.  I would probably load any required data files when the EC2 instance is instantiated, maybe through Cloud Formation.&lt;/p&gt;
 &lt;p&gt;Packer scripts are written in HCL (Hashi Corp Language?  Dunno.), which ends up looking like YAML.&lt;/p&gt;
@@ -122,10 +122,10 @@ late-commands:
     
     <item>
       <title>Tailscale</title>
-      <link>http://localhost:1313/posts/221004_tailscale/</link>
+      <link>http://localhost:1313/221004_tailscale/</link>
       <pubDate>Tue, 04 Oct 2022 14:48:18 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221004_tailscale/</guid>
+      <guid>http://localhost:1313/221004_tailscale/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m interested in TailScale.  I&amp;rsquo;ve been hearing good things about it from my friend, Jared, and TailScale has a fair set of proponents on my favorite podcasts.  A couple years ago, I setup ZeroTier and built a dedicated Linux device to attach to the ZeroTier network and route into my local LAN.  I wrote a well-received set of articles about that experience (&lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;Zerotier Basic Configuration&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/posts/201027_zerotierrouter/&#34;&gt;ZeroTier Router&lt;/a&gt;).  ZeroTier continues to work well, but I haven&amp;rsquo;t been traveling as much and have left the VM off lately.  This investigation doesn&amp;rsquo;t come from any frustration with Zerotier or urgent need, just from an interest in trying something new.&lt;/p&gt;
 &lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
 &lt;p&gt;Both ZeroTier and TailScale are &amp;ldquo;overlay networks&amp;rdquo;.  I have a Meraki stack at home with two Internet connections (WISP and Starlink).  Meraki has horrible VPN support and I&amp;rsquo;m not over-enthused about cutting holes in my firewall.  Plus, anything that requires an ISP failover would kill VPN, so these overlay-style connections fit my needs closely.&lt;/p&gt;
@@ -178,10 +178,10 @@ services.tailscale.enable=true;&lt;/p&gt;
     
     <item>
       <title>Palemoon for legacy Flash support</title>
-      <link>http://localhost:1313/posts/220819_palemoon/</link>
+      <link>http://localhost:1313/220819_palemoon/</link>
       <pubDate>Fri, 19 Aug 2022 09:07:14 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220819_palemoon/</guid>
+      <guid>http://localhost:1313/220819_palemoon/</guid>
       <description>&lt;p&gt;Flash was a technology to extend the functionality of websites past what was possible with HTML at the time.  It allowed for highly interactive experiences and was used for streaming, video games, and for &amp;ldquo;application like&amp;rdquo; experiences inside the browser.  Flash was implemented on the client-side via a browser &amp;ldquo;plug-in&amp;rdquo; and was notorious for security issues.  In my experience, a big part of the problem with Flash was the update process.  The plug-in was updated seperately from the Operating System and browser, leading to many cases to persistence of older versions.  Furthermore, the installer would commonly not clean up old versions, leaving an attack surface.&lt;/p&gt;
 &lt;p&gt;Why do we care?  For the most part we don&amp;rsquo;t.  Flash was deprecated in 2020 and is no longer supported by the major browsers.  The functionality of Flash has been ably replaced by HTML5.  However, there was a range of IT products created in the mid-teens that used a Flash console for administrative access.  Cisco used Flash in equipment like ASA firewalls, SOHO switches, and UCS servers.  Much of that equipment is ageing out, but some of it is still in good shape and capable of delivering value.  One example is my home server, which is an old Cisco UCS M3.&lt;/p&gt;
 &lt;h2 id=&#34;accessing-a-flash-console&#34;&gt;Accessing a Flash Console&lt;/h2&gt;
@@ -207,10 +207,10 @@ I hadn&amp;rsquo;t accessed the CIMC in a long time.  Rebooting the server displ
     
     <item>
       <title>Length of a bit</title>
-      <link>http://localhost:1313/posts/220815_lengthofabit/</link>
+      <link>http://localhost:1313/220815_lengthofabit/</link>
       <pubDate>Mon, 15 Aug 2022 12:59:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220815_lengthofabit/</guid>
+      <guid>http://localhost:1313/220815_lengthofabit/</guid>
       <description>&lt;p&gt;In the category of unexpected questions:&lt;/p&gt;
 &lt;p&gt;Over a glass of good whisky, a semi-technical friend of mine said, &amp;ldquo;Ok - I&amp;rsquo;ve been wondering about this, it&amp;rsquo;s appropos of nothing, but
 have no idea how to figure it out: How long (in length) is a bit?&amp;rdquo;&lt;/p&gt;
@@ -238,10 +238,10 @@ engineers, the VF depends on the line&amp;rsquo;s tendency to impede the progres
     
     <item>
       <title>5G Troubleshooting</title>
-      <link>http://localhost:1313/posts/220723_5g_troubleshooting/</link>
+      <link>http://localhost:1313/220723_5g_troubleshooting/</link>
       <pubDate>Sat, 23 Jul 2022 12:14:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220723_5g_troubleshooting/</guid>
+      <guid>http://localhost:1313/220723_5g_troubleshooting/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/220723_droid_signal.jpg#floatsmallleft&#34; alt=&#34;Signal Strength on Android&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My office sits beside an Interstate and generally the Interstate corridor is one of the best places to find cellular coverage.  Sure enough, we have towers reasonably close to the east and west of the building along the Interstate.  The construction of the buildings, like many office buildings, has a strong steel and concrete &amp;ldquo;core&amp;rdquo; with open office space around the perimeter.    My analysis is that those cores, along with the way the buildings set next to each other, creates 5G/LTE shadows within the buildings.&lt;/p&gt;
 &lt;p&gt;My buildings are setup along &amp;ldquo;modern&amp;rdquo; cubicle-farm ideas.  To get a feel for where the dead zones are, I got readings on signal strength using my phone at all the cube row intersections.  Wireless signal strength is denoted in decibel-milliwats (dBm).  A decibel is a comparison of two numbers, with a 10dB difference translating as a 10 fold increase.  A 100x difference would be 20dB.  dBm compare a signal to a milliwat.&lt;/p&gt;
@@ -259,10 +259,10 @@ engineers, the VF depends on the line&amp;rsquo;s tendency to impede the progres
     
     <item>
       <title>Connecting GNS3 to Real Networks</title>
-      <link>http://localhost:1313/posts/210417_connecting_gns3/</link>
+      <link>http://localhost:1313/210417_connecting_gns3/</link>
       <pubDate>Sat, 17 Apr 2021 10:48:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210417_connecting_gns3/</guid>
+      <guid>http://localhost:1313/210417_connecting_gns3/</guid>
       <description>&lt;p&gt;I mentioned a month or so ago that I wanted to set out on a journey to create a set of template networks and then substitute in the various appliances that are supported under GNS3.  The idea is to start with Cisco, which I know best, and then explore the differences.  I&amp;rsquo;m still really excited about that but . . .  life.  So we&amp;rsquo;re off to a slow start.  I&amp;rsquo;m going to break down some of the topics into smaller pieces so I can keep that project moving forward.  First up - how to connect you GNS3 lab environment to a &amp;ldquo;real&amp;rdquo; network.&lt;/p&gt;
 &lt;h2 id=&#34;current-lab-state&#34;&gt;Current Lab State&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210417_labinprogress.png#floatright&#34; alt=&#34;GNS3 Lab state&#34;&gt;
@@ -324,10 +324,10 @@ My home network is built using Meraki gear.  That&amp;rsquo;s not a typical home
     
     <item>
       <title>ZeroTier Router</title>
-      <link>http://localhost:1313/posts/201027_zerotierrouter/</link>
+      <link>http://localhost:1313/201027_zerotierrouter/</link>
       <pubDate>Tue, 27 Oct 2020 22:10:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201027_zerotierrouter/</guid>
+      <guid>http://localhost:1313/201027_zerotierrouter/</guid>
       <description>&lt;p&gt;This article continues the exploration of ZeroTier started in a previous &lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;posting&lt;/a&gt;.  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ll continue the thought describing how to connect your local home network to your Zerotier virtual network.  For purposes of this article, let&amp;rsquo;s consider a home network with a little complexity.
 &lt;img src=&#34;http://localhost:1313/ZeroTier_Routing.png#center&#34; alt=&#34;Sample Network&#34;&gt;&lt;/p&gt;
@@ -375,10 +375,10 @@ My home network is built using Meraki gear.  That&amp;rsquo;s not a typical home
     
     <item>
       <title>ZeroTier Basic Configuration</title>
-      <link>http://localhost:1313/posts/201027_zerotier/</link>
+      <link>http://localhost:1313/201027_zerotier/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201027_zerotier/</guid>
+      <guid>http://localhost:1313/201027_zerotier/</guid>
       <description>&lt;p&gt;Zerotier is a virtualized network that runs &amp;ldquo;on top of&amp;rdquo; the Internet.&lt;/p&gt;
 &lt;p&gt;Traditional VPN solutions are built around a VPN server, which acts as a hub location with a stable IP.  Modern teams feature mobile workers and home connections with random IPs behind service-provider NATs.  Start-up teams and home users are left with few options, all of which involve some level of compromise.&lt;/p&gt;
 &lt;p&gt;Zerotier works around this by offering a stable point to connect end-points.  The connection strategy resembles VoIP connections - there&amp;rsquo;s a registration to a central point, that tries a variety of ways to create a connection to end points.  It then allows the end-points to speak directly.  All traffic between end-points is encrypted peer-to-peer.&lt;/p&gt;

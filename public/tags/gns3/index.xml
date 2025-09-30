@@ -12,10 +12,10 @@
     
     <item>
       <title>Running GNS3 on Proxmox VE</title>
-      <link>http://localhost:1313/posts/230121_gns3_proxmox/</link>
+      <link>http://localhost:1313/230121_gns3_proxmox/</link>
       <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230121_gns3_proxmox/</guid>
+      <guid>http://localhost:1313/230121_gns3_proxmox/</guid>
       <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
 &lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
 &lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
@@ -82,10 +82,10 @@
     
     <item>
       <title>GNS3 Attached to ESXi</title>
-      <link>http://localhost:1313/posts/210421_gns3_attached_to_esxi/</link>
+      <link>http://localhost:1313/210421_gns3_attached_to_esxi/</link>
       <pubDate>Wed, 21 Apr 2021 20:11:14 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210421_gns3_attached_to_esxi/</guid>
+      <guid>http://localhost:1313/210421_gns3_attached_to_esxi/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/210421_GNS3-30.png#floatsmallleft&#34; alt=&#34;VLAN Setup&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I got a little distracted.  I have been coming up to speed on Ansible, which got me started on Vagrant.  Vagrant got me building VMs in VMWare Workstation , which got me thinking how neat it would be to place those &lt;em&gt;automagically&lt;/em&gt; into my GNS3VM environment hosted on ESXi.  Didn&amp;rsquo;t get that far - yet  - but the progress I made is pretty cool in it&amp;rsquo;s own right.&lt;/p&gt;
 &lt;p&gt;Most GNS3 users are using a GNS3 VM to host their topologies.  Mine sits on an ESXi server.  I discussed a few days ago how to connect GNS3 into a network (see &lt;a href=&#34;http://localhost:1313/posts/210417_connecting_gns3/&#34;&gt;Connecting GNS3&lt;/a&gt;. Here I want to do something more complex - I&amp;rsquo;d like to connect ESXi instances into arbitrary points in a GNS3 network.  The topology will still have a connection &amp;ldquo;out&amp;rdquo; to the home network and Internet, but I want to add an ESXi VM &amp;ldquo;inside&amp;rdquo; the network as well.&lt;/p&gt;
@@ -141,10 +141,10 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
     
     <item>
       <title>Connecting GNS3 to Real Networks</title>
-      <link>http://localhost:1313/posts/210417_connecting_gns3/</link>
+      <link>http://localhost:1313/210417_connecting_gns3/</link>
       <pubDate>Sat, 17 Apr 2021 10:48:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210417_connecting_gns3/</guid>
+      <guid>http://localhost:1313/210417_connecting_gns3/</guid>
       <description>&lt;p&gt;I mentioned a month or so ago that I wanted to set out on a journey to create a set of template networks and then substitute in the various appliances that are supported under GNS3.  The idea is to start with Cisco, which I know best, and then explore the differences.  I&amp;rsquo;m still really excited about that but . . .  life.  So we&amp;rsquo;re off to a slow start.  I&amp;rsquo;m going to break down some of the topics into smaller pieces so I can keep that project moving forward.  First up - how to connect you GNS3 lab environment to a &amp;ldquo;real&amp;rdquo; network.&lt;/p&gt;
 &lt;h2 id=&#34;current-lab-state&#34;&gt;Current Lab State&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210417_labinprogress.png#floatright&#34; alt=&#34;GNS3 Lab state&#34;&gt;
@@ -206,10 +206,10 @@ My home network is built using Meraki gear.  That&amp;rsquo;s not a typical home
     
     <item>
       <title>New Project - Testing *Every* GNS3 Network Appliance</title>
-      <link>http://localhost:1313/posts/210215_network_templates/</link>
+      <link>http://localhost:1313/210215_network_templates/</link>
       <pubDate>Sat, 27 Feb 2021 17:46:15 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210215_network_templates/</guid>
+      <guid>http://localhost:1313/210215_network_templates/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m kicking off an exciting new project, and I&amp;rsquo;d appreciate your thoughts as I get started.  GNS3 supports a many different appliances and I&amp;rsquo;m fascinated by how they work and compare.  I&amp;rsquo;ve supported many of them in my work, but I&amp;rsquo;d like to build a lab for each one that demonstrated the core functions of the device. My hope would be to produce a reference that would allow folks to quickly gain traction with new equipment.  Part of the goal is to directly compare the setup between devices, so the network structure would be static.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m proposing three basic topologies to test switching, routing, and firewalling.  There will obviously be some limitations to my approach.  That list leaves off some appliances categories: endpoints, security tools, NAS, and load balancers come to mind.  If this is successful, I&amp;rsquo;ll come back and explore those in their own environments.  I&amp;rsquo;m also not going to try to teach all the protocols and concepts as I go - this is two fold in that I have to scope this project to a reasonable size and also that&lt;/p&gt;
 &lt;h2 id=&#34;switching&#34;&gt;Switching&lt;/h2&gt;
@@ -260,10 +260,10 @@ Firewalls are pretty straightforward to test.  The biggest question is whether w
     
     <item>
       <title>GNS3 2.2.18</title>
-      <link>http://localhost:1313/posts/210219_gns3_2.2.18/</link>
+      <link>http://localhost:1313/210219_gns3_2.2.18/</link>
       <pubDate>Fri, 19 Feb 2021 14:29:40 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210219_gns3_2.2.18/</guid>
+      <guid>http://localhost:1313/210219_gns3_2.2.18/</guid>
       <description>&lt;p&gt;GNS3 2.2.18 was released on February 15th, no doubt to spare our significant others.  There are a lot of improvements and bug fixes, but this seems to be an incremental release.  3.0 seems to be shaping up to be the next big release, in the second half of this year.&lt;/p&gt;
 &lt;p&gt;There are a lot of updates around handling QEMU disks.  B-ehlers contributed a patch around creating a QEMU config disk, which could be used by IOS to get a day 0 config.  There&amp;rsquo;s now an option to create a config disk which defaults to Off.  There&amp;rsquo;s a change to prevent QEMU disk interfaces from being set to IDE and setting the default interface type to &amp;ldquo;none&amp;rdquo;.  There&amp;rsquo;s also an option to allow cloned QEMU disks to be resized before the node starts.&lt;/p&gt;
 &lt;p&gt;GNS-GUI gets &lt;a href=&#34;https://github.com/GNS3/gns3-gui/issues/3118&#34;&gt;SSL&lt;/a&gt; support, an unused image file was &lt;a href=&#34;https://github.com/GNS3/gns3-gui/issues/3114&#34;&gt;removed&lt;/a&gt;, and logic was added to hide the import/export functions whena configfile attribute is empty.  You can also edit the config files.&lt;/p&gt;
@@ -280,10 +280,10 @@ Firewalls are pretty straightforward to test.  The biggest question is whether w
     
     <item>
       <title>GNS3 Update for February, 2021</title>
-      <link>http://localhost:1313/posts/210211_gns3_february21/</link>
+      <link>http://localhost:1313/210211_gns3_february21/</link>
       <pubDate>Thu, 11 Feb 2021 07:03:01 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210211_gns3_february21/</guid>
+      <guid>http://localhost:1313/210211_gns3_february21/</guid>
       <description>&lt;p&gt;The GNS3 project continues to see regular updates, even though we haven&amp;rsquo;t see a release since December.  I check in on the project periodically and I&amp;rsquo;m going to make updating the status a regular feature of the blog.&lt;/p&gt;
 &lt;h2 id=&#34;state-of-2217&#34;&gt;State of 2.2.17&lt;/h2&gt;
 &lt;p&gt;The current release has been stable in my personal testing.  I use if for all kinds of things, including VMs, containers, and networking out to my physical topology.  A review of the issues reported in GitHub shows 15 bugs reported, with several related to Big Sur.  If you have a new M1 Mac, you might want to run the GNS3 VM and use the Web UI.  The M1 is new and I&amp;rsquo;m hearing reports of software being ported every week, so give this a little time.&lt;/p&gt;
@@ -306,10 +306,10 @@ Firewalls are pretty straightforward to test.  The biggest question is whether w
     
     <item>
       <title>Diagrams on Linux</title>
-      <link>http://localhost:1313/posts/210113_gns3_diagram/</link>
+      <link>http://localhost:1313/210113_gns3_diagram/</link>
       <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210113_gns3_diagram/</guid>
+      <guid>http://localhost:1313/210113_gns3_diagram/</guid>
       <description>&lt;p&gt;The articles I post generally start out as a way to share something I&amp;rsquo;ve learned through years of experience.  Less often, they are a way to share something that I&amp;rsquo;m researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&amp;rsquo;ve learned.&lt;/p&gt;
 &lt;p&gt;I thought that options for creating diagrams on Linux were few and most of them were poor.  What I found is that now (2021!) there are several &lt;em&gt;good&lt;/em&gt; options and that all the tools have matured.  I reviewed Creately, Dia, Draw.io, GNS3, LibreOffice Draw, Lucidchart, Pencil, SmartDraw, Visio, and yEd.   About half are desktop applications and the other half web applications.&lt;/p&gt;
 &lt;h2 id=&#34;diagramming-software&#34;&gt;Diagramming Software&lt;/h2&gt;
@@ -383,10 +383,10 @@ This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is
     
     <item>
       <title>Adding Hyperlinks to GNS3 Topologies</title>
-      <link>http://localhost:1313/posts/210113_gns3_links/</link>
+      <link>http://localhost:1313/210113_gns3_links/</link>
       <pubDate>Wed, 13 Jan 2021 21:28:17 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210113_gns3_links/</guid>
+      <guid>http://localhost:1313/210113_gns3_links/</guid>
       <description>&lt;p&gt;GNS3 is great for simulating networks, but what happens when your lab needs to include  devices outside GNS3 (like physical hardware)?  Wouldn&amp;rsquo;t it be nice to include hyperlinks to &amp;ldquo;real&amp;rdquo; assets in the GNS3 diagram?  There&amp;rsquo;s a way to do this!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/2021-01-13_GNS3_Home.png#floatsmallleft&#34; alt=&#34;Home&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;adding-non-gns3-devices-to-a-topology&#34;&gt;Adding Non-GNS3 Devices To a Topology&lt;/h2&gt;
@@ -415,10 +415,10 @@ This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is
     
     <item>
       <title>GNS3 2.2.17</title>
-      <link>http://localhost:1313/posts/201231_gns3_2.2.17/</link>
+      <link>http://localhost:1313/201231_gns3_2.2.17/</link>
       <pubDate>Thu, 31 Dec 2020 08:29:40 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201231_gns3_2.2.17/</guid>
+      <guid>http://localhost:1313/201231_gns3_2.2.17/</guid>
       <description>&lt;p&gt;GNS3 2.2.17 was released in December. It features bug fixes and some small added features.&lt;/p&gt;
 &lt;p&gt;On the GUI side, the biggest news is that 2.2.17 brings support for MacOS Big Sur.  It fixes an issue with the use of Qemu that affected some appliances because the -nographic switch was set automatically.  The WebUI updates underlying dependencies, closes a security issue and addresses some bugs, including one that cauased an annoying error message in Firefox.  The server now allows configuring VNC port ranges and updates code to remove deprecated Python methods.&lt;/p&gt;
 &lt;p&gt;GNS3 2.2 continues to be a stable platform and we see in this release a refinement.  Unless you run Big Sur, there doesn&amp;rsquo;t appear to be anything earth-shattering.&lt;/p&gt;
@@ -447,10 +447,10 @@ I recommend upgrading &lt;em&gt;assuming you have a little time to sort out any 
     
     <item>
       <title>Tilix</title>
-      <link>http://localhost:1313/posts/201125_tilix/</link>
+      <link>http://localhost:1313/201125_tilix/</link>
       <pubDate>Wed, 25 Nov 2020 07:50:59 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201125_tilix/</guid>
+      <guid>http://localhost:1313/201125_tilix/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://gnunn1.github.io/tilix-web/src/images/gallery/tilix-screenshot-3.png#floatright&#34; alt=&#34;Tilix&#34;&gt; Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution.  This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.&lt;/p&gt;
 &lt;p&gt;The basic pitch of Tilix is that it is a tiling terminal.  New terminals exist in sessions.  Within a session, terminals can split the window horizontally or veritcally.&lt;/p&gt;
 &lt;p&gt;Think of a session like a desktop.  You could create a poor-man&amp;rsquo;s IDE by grouping three sessions on a desktop, with one showing a directory, a second running &lt;strong&gt;nano&lt;/strong&gt;, and the third ready to receive a command.  Another session could be used for networking, with terminals open to a firewall and switch.  You manage sessions with the drop-down menu on the right.&lt;/p&gt;
@@ -468,10 +468,10 @@ GNS3 allows you to set the terminal application it uses under &lt;em&gt;edit &am
     
     <item>
       <title>Visio Shapes</title>
-      <link>http://localhost:1313/posts/201117_visio_shapes/</link>
+      <link>http://localhost:1313/201117_visio_shapes/</link>
       <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201117_visio_shapes/</guid>
+      <guid>http://localhost:1313/201117_visio_shapes/</guid>
       <description>&lt;h2 id=&#34;stencil-sets-for-you-to-use&#34;&gt;Stencil sets for you to use&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/AffinityBlue.PNG#floatright&#34; alt=&#34;Affinity Blue&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve created a new repository for Visio Stencils.&lt;/p&gt;
@@ -494,10 +494,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>GNS3 2.2.16</title>
-      <link>http://localhost:1313/posts/201105_gns3_2.2.16/</link>
+      <link>http://localhost:1313/201105_gns3_2.2.16/</link>
       <pubDate>Thu, 05 Nov 2020 08:29:40 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201105_gns3_2.2.16/</guid>
+      <guid>http://localhost:1313/201105_gns3_2.2.16/</guid>
       <description>&lt;p&gt;GNS3 2.2.16 was released today. This release has a number of bug fixes that are mostly around Qemu and HyperV support. Of general interest, there&amp;rsquo;s a patch for a bug in capturing packets with Wireshark. I had an issue open involving downloading appliances from the application and that was fixed as well. This shapes up to be a good polish on a great application and I wouldn&amp;rsquo;t be surprised if this attention didn&amp;rsquo;t translate into generally better performance in other areas.&lt;/p&gt;
 &lt;h2 id=&#34;should-you-upgrade&#34;&gt;Should you upgrade?&lt;/h2&gt;
 &lt;p&gt;This version doesn&amp;rsquo;t include a security fix. The VM improvements will help those running KVM or HyperV. There are some bug-fixes that will be of general interest, but aren&amp;rsquo;t critical. I recommend upgrading &lt;em&gt;assuming you have a little time to sort out any issues&lt;/em&gt;.&lt;/p&gt;
@@ -530,10 +530,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>ZeroTier Router</title>
-      <link>http://localhost:1313/posts/201027_zerotierrouter/</link>
+      <link>http://localhost:1313/201027_zerotierrouter/</link>
       <pubDate>Tue, 27 Oct 2020 22:10:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201027_zerotierrouter/</guid>
+      <guid>http://localhost:1313/201027_zerotierrouter/</guid>
       <description>&lt;p&gt;This article continues the exploration of ZeroTier started in a previous &lt;a href=&#34;http://localhost:1313/posts/201027_zerotier/&#34;&gt;posting&lt;/a&gt;.  The first article described zerotier - an overlay virtual wire that hangs on the internet to connect disparate clients into a psuedo local network.  At the end of the discussion, we had a PC at home and a 4G mobile phone talking over Zerotier.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ll continue the thought describing how to connect your local home network to your Zerotier virtual network.  For purposes of this article, let&amp;rsquo;s consider a home network with a little complexity.
 &lt;img src=&#34;http://localhost:1313/ZeroTier_Routing.png#center&#34; alt=&#34;Sample Network&#34;&gt;&lt;/p&gt;
@@ -581,10 +581,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>GNS3_2.2.15</title>
-      <link>http://localhost:1313/posts/201008_gns3_2.2.15/</link>
+      <link>http://localhost:1313/201008_gns3_2.2.15/</link>
       <pubDate>Thu, 08 Oct 2020 09:21:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201008_gns3_2.2.15/</guid>
+      <guid>http://localhost:1313/201008_gns3_2.2.15/</guid>
       <description>&lt;p&gt;GNS3 2.2.15 is out. Not much to report . . . reviewing the release notes indicates thi is mostly bug fixes.&lt;/p&gt;
 &lt;h2 id=&#34;should-you-upgrade&#34;&gt;Should you upgrade?&lt;/h2&gt;
 &lt;p&gt;This version doesn&amp;rsquo;t include a security fix, and the bug fixes aren&amp;rsquo;t issues I&amp;rsquo;ve run into.&lt;/p&gt;
@@ -604,10 +604,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>GNS3_2.2.14</title>
-      <link>http://localhost:1313/posts/200915_gns3_2.2.14/</link>
+      <link>http://localhost:1313/200915_gns3_2.2.14/</link>
       <pubDate>Tue, 15 Sep 2020 09:21:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200915_gns3_2.2.14/</guid>
+      <guid>http://localhost:1313/200915_gns3_2.2.14/</guid>
       <description>&lt;p&gt;GNS3 2.2.14 came out today (9/15).  The GUI fixes a bug in the way new appliance versions are created.  The server side tweaks how Qemu runs and includes Beta 4 of the Web-UI.
 &lt;img src=&#34;http://localhost:1313/GNS3WebUI.png#center&#34; alt=&#34;GNS3 WebUI&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;should-you-upgrade&#34;&gt;Should you upgrade?&lt;/h2&gt;
@@ -622,10 +622,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>GNS3 version 2.2.13</title>
-      <link>http://localhost:1313/posts/200907_gns3_2.2.13/</link>
+      <link>http://localhost:1313/200907_gns3_2.2.13/</link>
       <pubDate>Mon, 07 Sep 2020 15:46:53 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200907_gns3_2.2.13/</guid>
+      <guid>http://localhost:1313/200907_gns3_2.2.13/</guid>
       <description>&lt;p&gt;GNS3 2.2.13 dropped Friday (9/4).  The new version doesn&amp;rsquo;t make any changes to the GUI, but fixes a bug that surfaced when using a Qemu device.  It also includes Beta 3 of the Web-UI.
 &lt;img src=&#34;http://localhost:1313/GNS3WebUI.png#center&#34; alt=&#34;GNS3 WebUI&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;should-you-upgrade&#34;&gt;Should you upgrade?&lt;/h2&gt;
@@ -640,10 +640,10 @@ First, in Visio go to &lt;strong&gt;File &amp;gt; Options &amp;gt; Advanced&lt;/
     
     <item>
       <title>Creating a new GNS3 Appliance using a script</title>
-      <link>http://localhost:1313/posts/200904_creating_gns3_appliance/</link>
+      <link>http://localhost:1313/200904_creating_gns3_appliance/</link>
       <pubDate>Fri, 04 Sep 2020 12:00:36 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200904_creating_gns3_appliance/</guid>
+      <guid>http://localhost:1313/200904_creating_gns3_appliance/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://gns3.com/assets/custom/gns3/images/logo-colour.png#floatleft&#34; alt=&#34;GNS3&#34;&gt;
 In &lt;a href=&#34;http://localhost:1313/posts/200902_updatinggns3appliances/&#34;&gt;&lt;em&gt;Updating a GNS3 Appliance File&lt;/em&gt;&lt;/a&gt; I described editing a GNS3a file to update an appliance.  That is the method I&amp;rsquo;ve used for a long time for updating and for creating new appliances, but the GNS3 team has included a Python program to walk you through the process of creating a new appliance and I thought it would be interesting to give it a try.  I decided to create an appliance for the Raspberry Pi Desktop distribution.&lt;/p&gt;
 &lt;p&gt;I was listening to the most recent Linux Unplugged, and they were doing interesting networking using a Pi to connect two different 4G providers.  Their setup allowed choosing an active path based on throughput or errors, or for balancing between multiple paths.  The discussion touched on multi-link, policy-based routing, using Linux routing.  It sounded like something I&amp;rsquo;d like to experiment with!  I&amp;rsquo;ve linked to the show in the references.  In addition, Raspian is a prettty good &amp;ldquo;light&amp;rdquo; desktop for testing in GNS3 and a lot of folks use it with their Pis, so I thought this would be an interesting appliance.&lt;/p&gt;
@@ -917,10 +917,10 @@ Go to the gns3-registry repository on Github and select the Pull Requests tab an
     
     <item>
       <title>Updating a GNS3 Appliance File</title>
-      <link>http://localhost:1313/posts/200902_updatinggns3appliances/</link>
+      <link>http://localhost:1313/200902_updatinggns3appliances/</link>
       <pubDate>Wed, 02 Sep 2020 08:41:13 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200902_updatinggns3appliances/</guid>
+      <guid>http://localhost:1313/200902_updatinggns3appliances/</guid>
       <description>&lt;p&gt;This is a long post, but most of it is file contents.  Keep reading!&lt;/p&gt;
 &lt;p&gt;GNS3 appliance files are descriptions of virtual machines used in network simulations.  The appliance files have suffixes of &lt;em&gt;.gns3a&lt;/em&gt; and are included with the GNS3 download.  You can update the files and create new ones.  The goal of this article is to walk through the process of working with appliance files and contributing them back to the community.&lt;/p&gt;
 &lt;p&gt;On a personal note, submitting a new GNS3 appliance was the first time I contributed to an open-source project.  I&amp;rsquo;m still learning, but a few years ago I knew &lt;em&gt;nothing&lt;/em&gt;.  Jeremy Grossman, with GNS3, was patient and helped me understand the process of using Git.  Contributing - even in this minor way - was a real high for me and I&amp;rsquo;d love for you to be able to share that feeling and contribute to this and other projects.  GNS3a was my &amp;ldquo;gateway drug&amp;rdquo; into being a contributor and not just a consumer of open source.&lt;/p&gt;
@@ -1152,10 +1152,10 @@ Go to the gns3-registry repository on Github and select the Pull Requests tab an
     
     <item>
       <title>Alternate GNS3 Symbols</title>
-      <link>http://localhost:1313/posts/200821_gns3symbols/</link>
+      <link>http://localhost:1313/200821_gns3symbols/</link>
       <pubDate>Fri, 21 Aug 2020 13:18:28 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200821_gns3symbols/</guid>
+      <guid>http://localhost:1313/200821_gns3symbols/</guid>
       <description>&lt;p&gt;GNS3 is a graphical network simulation tool.  Imagine something like Visio that let you place network devices and draw connections, then boot them up and interact with them.  The screenshot above is a simulation I ran that used five Cisco CSR routers to demonstrate BGP for a class.  The devices typically run in KVM or Docker, but can use VMWare or Virtualbox.  This article assumes that you are familiar with the project.
 &lt;img src=&#34;http://localhost:1313/GNS3Lab.png#center&#34; alt=&#34;GNS3 Screen Capture&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve found GNS3 to be an invaluable tool.  I used it to do labs while writing books years ago.  I&amp;rsquo;ve used it to teach networking and security to the people who work with me, and to do labs to teach myself.  I&amp;rsquo;ve also used it to simulate an environment and walk through a change process to practice, verify steps, and perfect configuration updates.&lt;/p&gt;

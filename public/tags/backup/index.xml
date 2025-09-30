@@ -12,10 +12,10 @@
     
     <item>
       <title>Restoring from Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240206_pbs_restore/</link>
+      <link>http://localhost:1313/240206_pbs_restore/</link>
       <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240206_pbs_restore/</guid>
+      <guid>http://localhost:1313/240206_pbs_restore/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;http://localhost:1313/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
 &lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
@@ -65,10 +65,10 @@
     
     <item>
       <title>Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240204_pbs/</link>
+      <link>http://localhost:1313/240204_pbs/</link>
       <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240204_pbs/</guid>
+      <guid>http://localhost:1313/240204_pbs/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
 &lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;http://localhost:1313/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
@@ -143,10 +143,10 @@
     
     <item>
       <title>Linux Home Cloud Backup</title>
-      <link>http://localhost:1313/posts/200804_homebackup/</link>
+      <link>http://localhost:1313/200804_homebackup/</link>
       <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200804_homebackup/</guid>
+      <guid>http://localhost:1313/200804_homebackup/</guid>
       <description>&lt;p&gt;At one point, I was taught to divide tasks by priority A, B, C.  As I&amp;rsquo;ve gotten older, I&amp;rsquo;ve converted that scale into &amp;ldquo;things that will immediately get me fired or divorced&amp;rdquo;, &amp;ldquo;things that will eventually get me fired or divorced&amp;rdquo;, and &amp;ldquo;things I&amp;rsquo;d like to do if I have time&amp;rdquo;.  One of the &amp;ldquo;A&amp;rdquo; tasks on this scale is making sure that we don&amp;rsquo;t lose our family digital pictures!&lt;/p&gt;
 &lt;p&gt;Our home file server is an Ubuntu VM.  Over the years, I&amp;rsquo;ve used a variety of strategies to maintain personal backups.  Recently, I felt the time was right to move to cloud based backup - both for the convenience and the security of having things off-site.  I considered AWS S3, but Backblaze offers a similar and less-expensive service.  A former employer used Backblaze for laptop backups and I administered that system, and I always felt they did a good job and were reasonable to work with.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/BB_bucket_setup.png#floatright&#34; alt=&#34;Backblaze Dashboard&#34;&gt;  I settled on using Duplicati for the backkup software.  Duplicati runs on everything (Linux + various less secure OS), has a DEB, and is FOSS.  Duplicati has built in support for cloud backup, including Backblaze and S3.  I have a friend that uses Duplicati and it&amp;rsquo;s discussed on Jupiter Broadcasting, so I wanted to give it a try.&lt;/p&gt;

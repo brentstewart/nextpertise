@@ -12,10 +12,10 @@
     
     <item>
       <title>Github setup</title>
-      <link>http://localhost:1313/posts/240225_github_setup/</link>
+      <link>http://localhost:1313/240225_github_setup/</link>
       <pubDate>Sun, 25 Feb 2024 14:47:54 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240225_github_setup/</guid>
+      <guid>http://localhost:1313/240225_github_setup/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Githuboptions.png#floatsmallleft&#34; alt=&#34;Github screenshot&#34;&gt;
 Recently I had to rebuild my desktop.  Backups were my friend, and recreating my rig and loading files went without a hitch.  My &lt;em&gt;git&lt;/em&gt; directory restored, but I needed to reconnect them to Github.  I decided to start with fresh pulls, so I renamed &lt;em&gt;git&lt;/em&gt; to &lt;em&gt;oldgit&lt;/em&gt; and pulled down my repos (including the one that&amp;rsquo;s used for this website).&lt;/p&gt;
 &lt;p&gt;Once setup, Github is easy to use, but I always forget how to set it up and have to rediscover the process.  Hopefully, this quick step-by-step will help you avoid that difficulty (and will help me the next time I need to do it)!&lt;/p&gt;
@@ -49,10 +49,10 @@ git push
     
     <item>
       <title>Powerline Windows</title>
-      <link>http://localhost:1313/posts/201130_powerline-windows/</link>
+      <link>http://localhost:1313/201130_powerline-windows/</link>
       <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201130_powerline-windows/</guid>
+      <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
 &lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
@@ -107,10 +107,10 @@ For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
     
     <item>
       <title>CI for Docs with Pandoc (take 2)</title>
-      <link>http://localhost:1313/posts/200919_pandoc_improved/</link>
+      <link>http://localhost:1313/200919_pandoc_improved/</link>
       <pubDate>Sat, 19 Sep 2020 13:18:28 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200919_pandoc_improved/</guid>
+      <guid>http://localhost:1313/200919_pandoc_improved/</guid>
       <description>&lt;p&gt;In a previous &lt;a href=&#34;http://localhost:1313/posts/200818_pandoc/&#34;&gt;post&lt;/a&gt;, I built out a Continuous Integration process for documentation. That process allowed the team to pull a Github repository and keep a local copy of documentation. As the markdown files were updated and the repository pushed, a clean PDF with table of contents was generated.
 I identified a few problems with that and I&amp;rsquo;ve been working to improve the process. If you take a look at the associated github project you can follow my struggles. Here&amp;rsquo;s where we are with the open issues from last time:&lt;/p&gt;
 &lt;p&gt;The generated document placed the cover &lt;em&gt;after&lt;/em&gt; the table of contents. It also include the github README.md in the generated file. The Github CI process uses &lt;em&gt;.github/workflows/test.yml&lt;/em&gt; to build the workflow and my file pulled in all the markdown files alphabetically.&lt;/p&gt;
@@ -168,10 +168,10 @@ and add in the full set of texlive files.&lt;/p&gt;
     
     <item>
       <title>Git (and run) a File!</title>
-      <link>http://localhost:1313/posts/200910_git_a_file/</link>
+      <link>http://localhost:1313/200910_git_a_file/</link>
       <pubDate>Thu, 10 Sep 2020 11:03:09 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200910_git_a_file/</guid>
+      <guid>http://localhost:1313/200910_git_a_file/</guid>
       <description>&lt;p&gt;I maintain a private Github repository for my Linux install scripts.  My install scripts setup PPAs, install programs that I typically use, and setup my system the way I want it.  The repository has scripts for Ubuntu and Red Hat variants, plus secondary scripts that perform other admin tasks.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/githubpriv1.png#floatsmallright&#34; alt=&#34;GitHub Repository Settings&#34;&gt;&lt;/p&gt;
 &lt;p&gt;These scripts aren&amp;rsquo;t supposed to have personal information in them, but things like IP addresses, paths, and security measures could sneak in.  I don&amp;rsquo;t want to have to worry about revealing something that opens me to attack, so the repos are private.
@@ -233,10 +233,10 @@ and add in the full set of texlive files.&lt;/p&gt;
     
     <item>
       <title>Updating a GNS3 Appliance File</title>
-      <link>http://localhost:1313/posts/200902_updatinggns3appliances/</link>
+      <link>http://localhost:1313/200902_updatinggns3appliances/</link>
       <pubDate>Wed, 02 Sep 2020 08:41:13 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200902_updatinggns3appliances/</guid>
+      <guid>http://localhost:1313/200902_updatinggns3appliances/</guid>
       <description>&lt;p&gt;This is a long post, but most of it is file contents.  Keep reading!&lt;/p&gt;
 &lt;p&gt;GNS3 appliance files are descriptions of virtual machines used in network simulations.  The appliance files have suffixes of &lt;em&gt;.gns3a&lt;/em&gt; and are included with the GNS3 download.  You can update the files and create new ones.  The goal of this article is to walk through the process of working with appliance files and contributing them back to the community.&lt;/p&gt;
 &lt;p&gt;On a personal note, submitting a new GNS3 appliance was the first time I contributed to an open-source project.  I&amp;rsquo;m still learning, but a few years ago I knew &lt;em&gt;nothing&lt;/em&gt;.  Jeremy Grossman, with GNS3, was patient and helped me understand the process of using Git.  Contributing - even in this minor way - was a real high for me and I&amp;rsquo;d love for you to be able to share that feeling and contribute to this and other projects.  GNS3a was my &amp;ldquo;gateway drug&amp;rdquo; into being a contributor and not just a consumer of open source.&lt;/p&gt;
@@ -468,10 +468,10 @@ Go to the gns3-registry repository on Github and select the Pull Requests tab an
     
     <item>
       <title>Team Documentation Using GitHub and Pandoc</title>
-      <link>http://localhost:1313/posts/200818_pandoc/</link>
+      <link>http://localhost:1313/200818_pandoc/</link>
       <pubDate>Tue, 18 Aug 2020 13:56:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200818_pandoc/</guid>
+      <guid>http://localhost:1313/200818_pandoc/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://thumbs.gfycat.com/GargantuanScaryAnura-max-1mb.gif#floatleft&#34; alt=&#34;Dean Wormer&#34;&gt;
 Building team documentation is a critical part of IT.  After all, you can&amp;rsquo;t manage what you don&amp;rsquo;t know about.  You can&amp;rsquo;t follow policies you don&amp;rsquo;t know about.  It&amp;rsquo;s common in IT that documentation is divided between shared files and updated copies on individual laptops.  The problem is that it&amp;rsquo;s difficult for any one person to collect all the most recent files.  I&amp;rsquo;ve learned a lot about Git in the last few years and I wanted to explore whether it could be an answer.&lt;/p&gt;
 &lt;p&gt;Various attempts have been made to resolve this versioning issue.  One common approach is to ask everyone to contribute their individual documents to a shared folder.  This has the advantage that everyone can be a contributor and the files are accessible and easy to update.  However, different team members may update the file at different times and in different ways and there&amp;rsquo;s no clear editorial process to bring everything back together.  A second approach is to have a strict editorial process &amp;ndash; maybe a dedicated person who &amp;ldquo;checks in&amp;rdquo; so the boss can &amp;ldquo;approve&amp;rdquo;.  There&amp;rsquo;s typically a drop box for proposed documents and then a locked-down directory with a PDF for the final version.  This process can take a while, can occupy a person, and is discouraging to contributors.&lt;/p&gt;

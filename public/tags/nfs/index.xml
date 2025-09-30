@@ -12,10 +12,10 @@
     
     <item>
       <title>Using SSH - Part 3 (File Shares)</title>
-      <link>http://localhost:1313/posts/200813_using_ssh3/</link>
+      <link>http://localhost:1313/200813_using_ssh3/</link>
       <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200813_using_ssh3/</guid>
+      <guid>http://localhost:1313/200813_using_ssh3/</guid>
       <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
 &lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
 &lt;h2 id=&#34;sftp-filezilla&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;

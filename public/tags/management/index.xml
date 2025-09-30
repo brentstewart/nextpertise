@@ -12,10 +12,10 @@
     
     <item>
       <title>Technical Debt</title>
-      <link>http://localhost:1313/posts/231002_technicaldebt/</link>
+      <link>http://localhost:1313/231002_technicaldebt/</link>
       <pubDate>Mon, 02 Oct 2023 09:59:14 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/231002_technicaldebt/</guid>
+      <guid>http://localhost:1313/231002_technicaldebt/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m going to wander into some concepts from my day job.  Give me a little room and I&amp;rsquo;ll relate how this insight is relevant to everyone and what I&amp;rsquo;ve learned.  By the time I start to make that turn, though, I&amp;rsquo;m guessing you&amp;rsquo;ll be well ahead of me.&lt;/p&gt;
 &lt;h2 id=&#34;technical-debt&#34;&gt;Technical Debt&lt;/h2&gt;
 &lt;p&gt;Technical debt is a concept that commonly discussed in IT.  It&amp;rsquo;s generally understood to be the cost of delayed license and hardware upgrades.  For instance, if you&amp;rsquo;re still running Window 10 then at some point you&amp;rsquo;ll need to migrate to Windows 11.  There will be a cost to that upgrade.  Running Windows 10 today means that cost is something you&amp;rsquo;ll have to bear in the future.&lt;/p&gt;
@@ -41,10 +41,10 @@
     
     <item>
       <title>Goodhardt&#39;s Law</title>
-      <link>http://localhost:1313/posts/230127_goodhardt/</link>
+      <link>http://localhost:1313/230127_goodhardt/</link>
       <pubDate>Thu, 26 Jan 2023 17:48:13 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230127_goodhardt/</guid>
+      <guid>http://localhost:1313/230127_goodhardt/</guid>
       <description>&lt;p&gt;Goodhard&amp;rsquo;t law is a good example of why we say management is an art.  Many of you won&amp;rsquo;t be familiar with this, but you should.  The law says . . .&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;When a measure becomes a target, it ceases to be a good measure.&lt;/p&gt;&lt;/blockquote&gt;
@@ -59,10 +59,10 @@
     
     <item>
       <title>Wisdom in 17 sayings</title>
-      <link>http://localhost:1313/posts/221115_leadership/</link>
+      <link>http://localhost:1313/221115_leadership/</link>
       <pubDate>Tue, 15 Nov 2022 14:41:10 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221115_leadership/</guid>
+      <guid>http://localhost:1313/221115_leadership/</guid>
       <description>&lt;p&gt;I grab onto quotes.  Some I hold onto long enough to consider and they pop up in conversation at odd times.  Others seem to bubble up consistently.  To me, these favorite quotes are the compass that I use to retain my sense of direction in difficult times and circumstances.&lt;/p&gt;
 &lt;p&gt;Folks who have worked with me over the years will have heard versions of these sayings (and probably some that I am forgetting right now).  Some may complain for hearing them too much.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m preparing for a new job and thinking about how I want to approach new responsibilities.  I&amp;rsquo;ve never tried to compile a list but it&amp;rsquo;s a good time for reviewing these touchstones.  I wanted to share that list with you.&lt;/p&gt;
@@ -185,10 +185,10 @@
     
     <item>
       <title>Interviewing</title>
-      <link>http://localhost:1313/posts/220530_interviewing/</link>
+      <link>http://localhost:1313/220530_interviewing/</link>
       <pubDate>Mon, 30 May 2022 14:41:15 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220530_interviewing/</guid>
+      <guid>http://localhost:1313/220530_interviewing/</guid>
       <description>&lt;p&gt;After the &lt;a href=&#34;http://localhost:1313/posts/220506_tower_of_hanoi/&#34;&gt;Tower of Hanoi&lt;/a&gt; discussion, I was trying to think about other tricks I&amp;rsquo;ve picked up over my career that aren&amp;rsquo;t really taught anywhere.  We&amp;rsquo;ve been filling an open position at work and I had the opportunity to coach the process, and I thought that would be a good topic to share.  I&amp;rsquo;m going to try to have this discussion from both perspectives, the person looking and the person hiring, and point out how each can contribute to a better outcome.&lt;/p&gt;
 &lt;h2 id=&#34;looking-for-a-job&#34;&gt;Looking for a Job&lt;/h2&gt;
 &lt;p&gt;There are two sides to the hiring process - the person looking for the job and the person who is trying to fill a job.  We&amp;rsquo;re going to approach this discussion from both sides to understand (my opinion) of how each of those people can help the other. There are a lot of other people in the middle - recruiters and HR for instance - but their job is to define the broad band of acceptability.  As a job seeker, the whole point of your resume is to get through this filtering.  As a hiring manager, your job is to make sure that the automated processes used here don&amp;rsquo;t filter out good candidates.&lt;/p&gt;
@@ -221,10 +221,10 @@
     
     <item>
       <title>On Management</title>
-      <link>http://localhost:1313/posts/220308_tolerate/</link>
+      <link>http://localhost:1313/220308_tolerate/</link>
       <pubDate>Mon, 07 Mar 2022 21:57:48 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220308_tolerate/</guid>
+      <guid>http://localhost:1313/220308_tolerate/</guid>
       <description>&lt;p&gt;Although this blog is primarily focused on technical topics, I&amp;rsquo;ve sprinkled in some thoughts about managing.  I&amp;rsquo;ve been involved with IT management for a long time and have developed some opinions.  It&amp;rsquo;s important to note, before I share advice, that being in management is about &lt;em&gt;results&lt;/em&gt; or it doesn&amp;rsquo;t matter.  So, like dieting, do what works for you.&lt;/p&gt;
 &lt;p&gt;Poor managers can get results, but it typically involves leaving a trail of bodies.  Pyrrhric practices degrade the capabilities of the team over time and make it harder to get results, so good managers not only get results but do it in a way that builds the team up in the process.&lt;/p&gt;
 &lt;p&gt;Management is an administrative function - sorting the papers into the right piles.  Although our job title may be &amp;ldquo;manager&amp;rdquo;, what we want to be is a &lt;em&gt;leader&lt;/em&gt;.  Leadership is about convincing a group of individuals to share a vision and to accomplish something together.  To be the manager you want to be, to be the leader you think you are, you need to be able to deal with people.&lt;/p&gt;
@@ -240,10 +240,10 @@
     
     <item>
       <title>Rational Change Control</title>
-      <link>http://localhost:1313/posts/210318_changecontrol/</link>
+      <link>http://localhost:1313/210318_changecontrol/</link>
       <pubDate>Wed, 17 Mar 2021 19:42:22 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210318_changecontrol/</guid>
+      <guid>http://localhost:1313/210318_changecontrol/</guid>
       <description>&lt;p&gt;Nobody likes change but a baby.  That&amp;rsquo;s the saying anyway.  Yet in IT, we have to deal with constant change.  Not only that, we have to manage it to minimize risk and harm.  &lt;strong&gt;And&lt;/strong&gt; we have to balance the natural tendency to manage through bureaucracy against the need to get things done without paperwork getting in the way.&lt;/p&gt;
 &lt;p&gt;This article isn&amp;rsquo;t about why you need change control: &lt;strong&gt;you do&lt;/strong&gt;.  It&amp;rsquo;s not about the value of ITIL or ticketing: &lt;strong&gt;they&amp;rsquo;re necessary&lt;/strong&gt;.  But if you&amp;rsquo;re going to turn this &amp;ldquo;computer-thing&amp;rdquo; into a career, you need to figure out change control and that&amp;rsquo;s what this article is about.&lt;/p&gt;
 &lt;p&gt;A lot of my thinking on this topic comes from working with people like Dan and Umesh.  These are thoughts that we developed together and made work, and that&amp;rsquo;s why I feel confident recommending them to you.&lt;/p&gt;
@@ -282,10 +282,10 @@ I like to breakdown the activity into three areas.  Pre-downtime and Downtime co
     
     <item>
       <title>How to Plan Good Downtime</title>
-      <link>http://localhost:1313/posts/210126_downtime/</link>
+      <link>http://localhost:1313/210126_downtime/</link>
       <pubDate>Tue, 26 Jan 2021 20:18:24 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210126_downtime/</guid>
+      <guid>http://localhost:1313/210126_downtime/</guid>
       <description>&lt;p&gt;In another blog, planning downtime would involve tropical pictures.  Sigh.&lt;/p&gt;
 &lt;h2 id=&#34;downtime&#34;&gt;Downtime&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://buidln.clipdealer.com/000/183/082/previews/1--183082-time%20abstract.jpg#floatsmallright&#34; alt=&#34;Time&#34;&gt;
@@ -352,10 +352,10 @@ If the change is a group exercise, it is usually a good idea to have one person 
     
     <item>
       <title>Personal Readme</title>
-      <link>http://localhost:1313/posts/201206_personal-readme/</link>
+      <link>http://localhost:1313/201206_personal-readme/</link>
       <pubDate>Sun, 06 Dec 2020 14:58:31 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201206_personal-readme/</guid>
+      <guid>http://localhost:1313/201206_personal-readme/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/GoaDinner.jpg#floatright&#34; alt=&#34;Goa Friends&#34;&gt;
 I recently came across the concept of a personal README.  Conceptually, this is an introduction to workstyles and the preferred ways to work with someone.  Usually these are written by folks in management, because you have to be at a certain level before you can dictate how others should interact with you.  The idea comes from Michael Lopp (the VP of Engineering at Slack).  It&amp;rsquo;s a good concept to be familiar with in our industry because it is becoming more common.&lt;/p&gt;
 &lt;p&gt;I moved into a new team where this was an expected introduction for a new manager.  I&amp;rsquo;ve put one together and posted it to a Github repository along with my professional documentation, like resume and publication list.  I&amp;rsquo;d like to say I&amp;rsquo;ve extended the concept from a personal readme to a personal Repo, but I suspect that I&amp;rsquo;m behind the times and don&amp;rsquo;t realize it.&lt;/p&gt;

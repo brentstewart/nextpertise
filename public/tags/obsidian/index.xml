@@ -12,10 +12,10 @@
     
     <item>
       <title>Markdown to DOCX</title>
-      <link>http://localhost:1313/posts/230922_markdown_to_docx/</link>
+      <link>http://localhost:1313/230922_markdown_to_docx/</link>
       <pubDate>Fri, 22 Sep 2023 08:17:00 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230922_markdown_to_docx/</guid>
+      <guid>http://localhost:1313/230922_markdown_to_docx/</guid>
       <description>&lt;h1 id=&#34;exporting-markdown&#34;&gt;Exporting Markdown&lt;/h1&gt;
 &lt;p&gt;Most of my writing is in markdown in two applications - Visual Studio Code (where I write blog posts amoung other things) and Obsidian.  Although initially reluctant, I&amp;rsquo;ve grown to appreciate the portability and easy reuse that markdown allows.  The problem is that the rest of the world doesn&amp;rsquo;t always appreciate what is obvious to me.  As an example, the folks at work prefer their documents in Office formats.&lt;/p&gt;
 &lt;h2 id=&#34;office-to-obsidian&#34;&gt;Office to Obsidian&lt;/h2&gt;
@@ -46,10 +46,10 @@ function Image () return {} end
     
     <item>
       <title>Word to Obsidian with a DIY CI</title>
-      <link>http://localhost:1313/posts/230509_word2obsidian/</link>
+      <link>http://localhost:1313/230509_word2obsidian/</link>
       <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230509_word2obsidian/</guid>
+      <guid>http://localhost:1313/230509_word2obsidian/</guid>
       <description>&lt;p&gt;I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&amp;rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&amp;rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.&lt;/p&gt;
 &lt;h2 id=&#34;what-didnt-work&#34;&gt;What Didn&amp;rsquo;t Work&lt;/h2&gt;
 &lt;p&gt;Just to save you time, I&amp;rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called &lt;a href=&#34;https://www.writage.com/&#34;&gt;Writage&lt;/a&gt;.  It&amp;rsquo;s $29, but a trial version is available.  I&amp;rsquo;m obstinately opposed to closed source and I&amp;rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&amp;rsquo;t tried it.&lt;/p&gt;
@@ -159,10 +159,10 @@ done
     
     <item>
       <title>Automaticly adding Hugo articles to Obsidian</title>
-      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <link>http://localhost:1313/230313_blog2obsidian/</link>
       <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <guid>http://localhost:1313/230313_blog2obsidian/</guid>
       <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
 &lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
@@ -187,10 +187,10 @@ The five variables before the job are minute, hour, day, month, and day of the w
     
     <item>
       <title>Self-Hosted Obsidian</title>
-      <link>http://localhost:1313/posts/221210_self-hosted_obsidian/</link>
+      <link>http://localhost:1313/221210_self-hosted_obsidian/</link>
       <pubDate>Sat, 10 Dec 2022 17:17:04 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221210_self-hosted_obsidian/</guid>
+      <guid>http://localhost:1313/221210_self-hosted_obsidian/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve recently written about using Obsidian - an &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;intro&lt;/a&gt;, a discussion of &lt;a href=&#34;http://localhost:1313/posts/220831_using_obsidian&#34;&gt;tasks&lt;/a&gt; and add-ins, and a discussion of &lt;a href=&#34;http://localhost:1313/posts/221002_dataview&#34;&gt;dataview&lt;/a&gt;.  The number of add-ins and the ideas that are being implemented using Obsidian has exploded, and hopefully I&amp;rsquo;ve provided enough to get you started and help you discover how it could work for you.&lt;/p&gt;
 &lt;p&gt;Justin Pot at PC Magazine published a &lt;a href=&#34;https://www.pcmag.com/reviews/obsidian&#34;&gt;review&lt;/a&gt; in November.  It&amp;rsquo;s a good review and on the whole very positive.  One deficiency that he points out, though, is the fact that Obsidian is installed locally and there&amp;rsquo;s no facility for accessing it on multiple computers. Justin goes on to suggest that one could use a seperate service to sync files between computers.  I&amp;rsquo;d argue that this is consistent with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_philosophy&#34;&gt;Unix philosophy&lt;/a&gt; of &amp;ldquo;making each program do one thing well&amp;rdquo;.  If you need two functions (notes, file replication) then use two programs.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m aware of six ways that Obsidian could be kept up to date between computers, and I&amp;rsquo;ve tested several.  If you are interested in using Obsidian and being able to access notes from your PC on your phone is a requirement, here are my experiences and opinions.&lt;/p&gt;
@@ -224,10 +224,10 @@ The five variables before the job are minute, hour, day, month, and day of the w
     
     <item>
       <title>Linking and Embedding in Obsidian Notes (Part 3)</title>
-      <link>http://localhost:1313/posts/220901_obsidian3/</link>
+      <link>http://localhost:1313/220901_obsidian3/</link>
       <pubDate>Thu, 01 Sep 2022 06:24:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220901_obsidian3/</guid>
+      <guid>http://localhost:1313/220901_obsidian3/</guid>
       <description>&lt;p&gt;Obsidian has been a great way to organize my work and my personal activities.  This is the third article I&amp;rsquo;ve written in this series.  &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;Part 1&lt;/a&gt; was an introduction and &lt;a href=&#34;http://localhost:1313/posts/220831_using_obsidian&#34;&gt;Part 2&lt;/a&gt; focused on &lt;em&gt;tasks&lt;/em&gt; and used that as an introduction to plugins and tags.&lt;/p&gt;
 &lt;p&gt;This entry will focus on linking and embedding.  At this point we&amp;rsquo;re focusing on using Obsidian to take notes as we go.  After this, the series will turn to more advanced and non-obvious uses.&lt;/p&gt;
 &lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
@@ -301,10 +301,10 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$&lt;/p&gt;
     
     <item>
       <title>Obsidian Tasks (Part 2)</title>
-      <link>http://localhost:1313/posts/220831_using_obsidian/</link>
+      <link>http://localhost:1313/220831_using_obsidian/</link>
       <pubDate>Wed, 31 Aug 2022 06:24:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220831_using_obsidian/</guid>
+      <guid>http://localhost:1313/220831_using_obsidian/</guid>
       <description>&lt;p&gt;In &lt;a href=&#34;http://localhost:1313/posts/220829_obsidian_intro&#34;&gt;Part 1&lt;/a&gt;, I introduced you to Obsidian.  Obsidian is a markdown-based note taking application that is supported on most desktop and phone operating systems.  That article describes the basic interface and usage of Obsidian.  If you are not familiar with Obsidian, it&amp;rsquo;s a good place to start.&lt;/p&gt;
 &lt;p&gt;Part 2 will focus more on tasks within notes.  We&amp;rsquo;ll use tasks to also introduce plugins and tags.   Future articles will discuss links, embeds, tags and some of the other plugins that add functionality, such as Dataview.&lt;/p&gt;
 &lt;h2 id=&#34;tasks&#34;&gt;Tasks&lt;/h2&gt;
@@ -338,10 +338,10 @@ Choosing &lt;em&gt;todo&lt;/em&gt; changes the left pane to show us which notes 
     
     <item>
       <title>Obsidian Introduction (Part 1)</title>
-      <link>http://localhost:1313/posts/220829_obsidian_intro/</link>
+      <link>http://localhost:1313/220829_obsidian_intro/</link>
       <pubDate>Mon, 29 Aug 2022 17:24:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220829_obsidian_intro/</guid>
+      <guid>http://localhost:1313/220829_obsidian_intro/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve kept notes using a lot of different tools over the years.  I&amp;rsquo;ve used Outlook, Simple Note, Visual Studio Code, and even just Notepad.  At the start of the pandemic, I switched back to writing on paper.  I like paper because the mechanical act of writing helps keep me present in a meeting, it engages my brain, and it&amp;rsquo;s not distracting to the other folks in the meeting.  On the other hand, writing notes on my computer makes them easier to read (I have bad handwriting), easier to transport and easier to refer back to.&lt;/p&gt;
 &lt;p&gt;The balance has tilted toward the computer again.  In the past, my notes were passive and most of the value was the way that writing helped me remember.  I&amp;rsquo;ve recently started using Obsidian, which allows you to create a group of markdown documents (Simple Note or Code) and link them together (like a personal wiki).  It also has the ability to query fields across notes, and add dynamic linking that really helps surface the information you neeed.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/220830_Obsidian.png#floatright&#34; alt=&#34;Obsidian&#34;&gt;

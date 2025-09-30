@@ -12,10 +12,10 @@
     
     <item>
       <title>Using the SSH client config file</title>
-      <link>http://localhost:1313/posts/210402_ssh_config/</link>
+      <link>http://localhost:1313/210402_ssh_config/</link>
       <pubDate>Fri, 02 Apr 2021 15:40:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210402_ssh_config/</guid>
+      <guid>http://localhost:1313/210402_ssh_config/</guid>
       <description>&lt;p&gt;This article continues a series of articles I&amp;rsquo;ve done on SSH.  We&amp;rsquo;ve used the server configuration file (sshd_config) to set parameters, but many folks do not realize that there is a client configuration file as well.  In fact, ssh uses command line options, then the &lt;em&gt;client&lt;/em&gt; file, then the server file when building the capabilities of a new connection.&lt;/p&gt;
 &lt;h2 id=&#34;simple-example&#34;&gt;Simple Example&lt;/h2&gt;
 &lt;p&gt;The file is a plain text file found in &lt;strong&gt;~/.ssh&lt;/strong&gt;.  It doesn&amp;rsquo;t exist by default, so a new file with that name needs to be created.  The simplest version of an ssh config file looks something like this.&lt;/p&gt;
@@ -56,10 +56,10 @@
     
     <item>
       <title>Eternal Terminal</title>
-      <link>http://localhost:1313/posts/210125_et/</link>
+      <link>http://localhost:1313/210125_et/</link>
       <pubDate>Mon, 25 Jan 2021 12:43:51 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210125_et/</guid>
+      <guid>http://localhost:1313/210125_et/</guid>
       <description>&lt;p&gt;Eternal Terminal acts like ssh - you start a console session on a remote device by typing &lt;strong&gt;et username@host&lt;/strong&gt; and it connects.  ET adds to ssh by allowing reconnects.&lt;/p&gt;
 &lt;p&gt;A lot of ssh sessions are short affairs - login, put in a few commands, get some output, logout.  If the session is interrupted it&amp;rsquo;s not a big deal.  Occassionally, however, it&amp;rsquo;s important to stay connected for a period of time.&lt;/p&gt;
 &lt;p&gt;In a past life, I used to have to run reports against a database at the data center.  The script I used took a while and any interruption meant starting over.  Eternal Terminal wasn&amp;rsquo;t around at that time, so I solved the problem by deploying a jump server and I could connect to it using x2go and start the session from there.  I could disconnect and reattach later&lt;/p&gt;
@@ -77,10 +77,10 @@
     
     <item>
       <title>VMWare File Transfer Options including SFTP </title>
-      <link>http://localhost:1313/posts/210110_vmware-sftp/</link>
+      <link>http://localhost:1313/210110_vmware-sftp/</link>
       <pubDate>Sun, 10 Jan 2021 16:51:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210110_vmware-sftp/</guid>
+      <guid>http://localhost:1313/210110_vmware-sftp/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/210110_VMWare-SFTP.png#floatright&#34; alt=&#34;VMWare SFTP&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m going to be upgrading my home VMware server and need to backup the VMs.  My server uses ESXi 6.5 and I&amp;rsquo;ll need to backup the files before upgrading.  Longtime readers may recall that I&amp;rsquo;m using &lt;a href=&#34;http://localhost:1313/posts/200804_homebackup&#34;&gt;Backblaze&lt;/a&gt; to backup the &lt;em&gt;data&lt;/em&gt; on my server.  That is going swimmingly so far.  I want to backup the images so I don&amp;rsquo;t have to rebuild the VMs after this is done.&lt;/p&gt;
 &lt;h2 id=&#34;admin-interface&#34;&gt;Admin interface&lt;/h2&gt;
@@ -96,10 +96,10 @@
     
     <item>
       <title>SSH Crypto</title>
-      <link>http://localhost:1313/posts/201229_ssh-crypto/</link>
+      <link>http://localhost:1313/201229_ssh-crypto/</link>
       <pubDate>Tue, 29 Dec 2020 13:01:35 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201229_ssh-crypto/</guid>
+      <guid>http://localhost:1313/201229_ssh-crypto/</guid>
       <description>&lt;h1 id=&#34;cleaning-up-crypto&#34;&gt;Cleaning up Crypto&lt;/h1&gt;
 &lt;p&gt;A previous article - &lt;a href=&#34;http://localhost:1313/posts/201223_ssh-admin/&#34;&gt;SSH Admin&lt;/a&gt; - went through understanding who was logging into a Linux server using SSH or SFTP.  To continue that thought, let&amp;rsquo;s suppose that we are required to make sure that only cypher suites recommended in the CIS benchmarks are in use on a server.  Before we disable old options, we need to check and make sure that no one is using them!&lt;/p&gt;
 &lt;h2 id=&#34;understanding-local-crypto&#34;&gt;Understanding local crypto&lt;/h2&gt;
@@ -206,10 +206,10 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
     
     <item>
       <title>SSH Administrative Trivia</title>
-      <link>http://localhost:1313/posts/201223_ssh-admin/</link>
+      <link>http://localhost:1313/201223_ssh-admin/</link>
       <pubDate>Wed, 23 Dec 2020 18:47:30 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201223_ssh-admin/</guid>
+      <guid>http://localhost:1313/201223_ssh-admin/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s consider an interesting case: we&amp;rsquo;d like to identify remote ssh users.  Remember that SFTP is a part of SSH, so these commands will also identify SSH users.  There are a variety of ways to do this and some are even fairly obviouis.&lt;/p&gt;
 &lt;h2 id=&#34;who-or-w&#34;&gt;Who or w&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt; is a utility to display logged in users.  The man page can walk you through the various switches, but the two I find most valuable are &lt;em&gt;-a&lt;/em&gt; to show all and &lt;em&gt;-H&lt;/em&gt; to show headings.  The &lt;em&gt;all&lt;/em&gt; option includes the time that the session has been active, how it&amp;rsquo;s attached, and where it&amp;rsquo;s coming from.&lt;/p&gt;
@@ -290,10 +290,10 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
     
     <item>
       <title>Powerline Windows</title>
-      <link>http://localhost:1313/posts/201130_powerline-windows/</link>
+      <link>http://localhost:1313/201130_powerline-windows/</link>
       <pubDate>Mon, 30 Nov 2020 18:23:57 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201130_powerline-windows/</guid>
+      <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
 &lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
@@ -348,10 +348,10 @@ For WSL, we&amp;rsquo;ll add a Go version of powerline.&lt;/p&gt;
     
     <item>
       <title>Tilix</title>
-      <link>http://localhost:1313/posts/201125_tilix/</link>
+      <link>http://localhost:1313/201125_tilix/</link>
       <pubDate>Wed, 25 Nov 2020 07:50:59 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201125_tilix/</guid>
+      <guid>http://localhost:1313/201125_tilix/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://gnunn1.github.io/tilix-web/src/images/gallery/tilix-screenshot-3.png#floatright&#34; alt=&#34;Tilix&#34;&gt; Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution.  This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.&lt;/p&gt;
 &lt;p&gt;The basic pitch of Tilix is that it is a tiling terminal.  New terminals exist in sessions.  Within a session, terminals can split the window horizontally or veritcally.&lt;/p&gt;
 &lt;p&gt;Think of a session like a desktop.  You could create a poor-man&amp;rsquo;s IDE by grouping three sessions on a desktop, with one showing a directory, a second running &lt;strong&gt;nano&lt;/strong&gt;, and the third ready to receive a command.  Another session could be used for networking, with terminals open to a firewall and switch.  You manage sessions with the drop-down menu on the right.&lt;/p&gt;
@@ -369,10 +369,10 @@ GNS3 allows you to set the terminal application it uses under &lt;em&gt;edit &am
     
     <item>
       <title>SSHFS Automount</title>
-      <link>http://localhost:1313/posts/201017_sshfs_automount/</link>
+      <link>http://localhost:1313/201017_sshfs_automount/</link>
       <pubDate>Sat, 17 Oct 2020 12:13:01 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201017_sshfs_automount/</guid>
+      <guid>http://localhost:1313/201017_sshfs_automount/</guid>
       <description>&lt;p&gt;I described using SSHFS as an alternative to NFS back in &lt;a href=&#34;http://localhost:1313/posts/200813_using_ssh3/&#34;&gt;Using SSH3&lt;/a&gt;. I&amp;rsquo;ve been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I&amp;rsquo;ve been using a batch file to mount drives and that&amp;rsquo;s getting old. I&amp;rsquo;d like to just add the SSHFS targets into &lt;em&gt;/etc/fstab&lt;/em&gt; and get them to automount.
 As a general rule, the Arch Wiki is a great place to find all things Linux. Even though I&amp;rsquo;m running an Ubuntu variant, the Arch Wiki set me straight. For this to work there are a number of things that have to be set.
 First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_ssh2/&#34;&gt;Using SSH2&lt;/a&gt; I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:&lt;/p&gt;
@@ -397,10 +397,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH (Part 5) - Remotely Possible</title>
-      <link>http://localhost:1313/posts/200922_using_ssh5/</link>
+      <link>http://localhost:1313/200922_using_ssh5/</link>
       <pubDate>Tue, 22 Sep 2020 14:47:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200922_using_ssh5/</guid>
+      <guid>http://localhost:1313/200922_using_ssh5/</guid>
       <description>&lt;p&gt;I confess that I never meant for this to be an SSH blog. It was an easy topic to write about when we started, but friends keep suggesting new things I should cover. The takeaway then is that SSH is a heck of a tool and can be used to accomplish a lot of different things.&lt;/p&gt;
 &lt;p&gt;Today&amp;rsquo;s topic is running a GUI program on a remote computer and displaying the output locally. Pretty cool, right? This is suprisingly easy to do.&lt;/p&gt;
 &lt;p&gt;Why would we want to do this? I already covered that under &amp;ldquo;pretty cool&amp;rdquo;, but I suppose I could say something about using your netbook to run a big program that needs lots of RAM and CPU.&lt;/p&gt;
@@ -421,10 +421,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH Part 4 - Port Forwarding</title>
-      <link>http://localhost:1313/posts/200830_using_ssh4/</link>
+      <link>http://localhost:1313/200830_using_ssh4/</link>
       <pubDate>Sun, 30 Aug 2020 15:12:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200830_using_ssh4/</guid>
+      <guid>http://localhost:1313/200830_using_ssh4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/SSH-Tunnel.png#floatright&#34; alt=&#34;SSH Tunnel&#34;&gt;&lt;strong&gt;Problem&lt;/strong&gt;: We want to access an internal web page that is behind a firewall.  We have SSH access to a server behind the firewall, and &lt;em&gt;that&lt;/em&gt; server can see the intranet.&lt;/p&gt;
 &lt;p&gt;SSH has a solution for this type of problem - tunneling.  Most people use SSH as a telnet replacement &amp;ndash; as just a way to get a terminal session.  SSH is capable of much more than mere terminal access.  There are several ways to accomplish out goal, so let&amp;rsquo;s sort through them.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This article demonstrates an obscure and useful way to use a tool, but raises two important points.  First, don&amp;rsquo;t take any part of this to be an example of good design.  I&amp;rsquo;ve constructed a case that allows demonstrating a technique.  Second, using the tool this way may short-circuit your organizations&amp;rsquo; security design and so security folks may want to mitigate against allowing this use.&lt;/p&gt;
@@ -455,10 +455,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH - Part 3 (File Shares)</title>
-      <link>http://localhost:1313/posts/200813_using_ssh3/</link>
+      <link>http://localhost:1313/200813_using_ssh3/</link>
       <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200813_using_ssh3/</guid>
+      <guid>http://localhost:1313/200813_using_ssh3/</guid>
       <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
 &lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
 &lt;h2 id=&#34;sftp-filezilla&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
@@ -509,10 +509,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH - Part 2 (Authentication)</title>
-      <link>http://localhost:1313/posts/200812_using_ssh2/</link>
+      <link>http://localhost:1313/200812_using_ssh2/</link>
       <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200812_using_ssh2/</guid>
+      <guid>http://localhost:1313/200812_using_ssh2/</guid>
       <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
 &lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
 &lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
@@ -600,10 +600,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH - Part 1 (Basics and Banners)</title>
-      <link>http://localhost:1313/posts/200811_using_ssh1/</link>
+      <link>http://localhost:1313/200811_using_ssh1/</link>
       <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200811_using_ssh1/</guid>
+      <guid>http://localhost:1313/200811_using_ssh1/</guid>
       <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
 &lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
 &lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;

@@ -12,10 +12,10 @@
     
     <item>
       <title>Diagrams on Linux</title>
-      <link>http://localhost:1313/posts/210113_gns3_diagram/</link>
+      <link>http://localhost:1313/210113_gns3_diagram/</link>
       <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210113_gns3_diagram/</guid>
+      <guid>http://localhost:1313/210113_gns3_diagram/</guid>
       <description>&lt;p&gt;The articles I post generally start out as a way to share something I&amp;rsquo;ve learned through years of experience.  Less often, they are a way to share something that I&amp;rsquo;m researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&amp;rsquo;ve learned.&lt;/p&gt;
 &lt;p&gt;I thought that options for creating diagrams on Linux were few and most of them were poor.  What I found is that now (2021!) there are several &lt;em&gt;good&lt;/em&gt; options and that all the tools have matured.  I reviewed Creately, Dia, Draw.io, GNS3, LibreOffice Draw, Lucidchart, Pencil, SmartDraw, Visio, and yEd.   About half are desktop applications and the other half web applications.&lt;/p&gt;
 &lt;h2 id=&#34;diagramming-software&#34;&gt;Diagramming Software&lt;/h2&gt;
@@ -89,10 +89,10 @@ This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is
     
     <item>
       <title>Visio Shapes</title>
-      <link>http://localhost:1313/posts/201117_visio_shapes/</link>
+      <link>http://localhost:1313/201117_visio_shapes/</link>
       <pubDate>Tue, 17 Nov 2020 08:00:28 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201117_visio_shapes/</guid>
+      <guid>http://localhost:1313/201117_visio_shapes/</guid>
       <description>&lt;h2 id=&#34;stencil-sets-for-you-to-use&#34;&gt;Stencil sets for you to use&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/AffinityBlue.PNG#floatright&#34; alt=&#34;Affinity Blue&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve created a new repository for Visio Stencils.&lt;/p&gt;

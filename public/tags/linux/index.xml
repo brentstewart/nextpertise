@@ -12,10 +12,10 @@
     
     <item>
       <title>Turning off Evolution Alarm Notify</title>
-      <link>http://localhost:1313/posts/240324_ean/</link>
+      <link>http://localhost:1313/240324_ean/</link>
       <pubDate>Sun, 24 Mar 2024 16:35:20 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/240324_ean/</guid>
+      <guid>http://localhost:1313/240324_ean/</guid>
       <description>&lt;h1 id=&#34;ridding-yourself-of-annoying-calendar-pop-ups-on-linux&#34;&gt;Ridding Yourself of Annoying Calendar Pop-ups on Linux&lt;/h1&gt;
 &lt;p&gt;Gnome will prompt for email accounts, and then tie in alerts from your calendar.  These come in as pop-up windows.  If you liked these in Outlook, you&amp;rsquo;ll be pleased with the Linux implementation.&lt;/p&gt;
 &lt;p&gt;I didn&amp;rsquo;t like these reminders in Outlook.  I feel that too many programs are competing for my attention and that pop-ups in general are a drain on my concentration.  I understand the thought and I understand that it&amp;rsquo;s useful for some, just not for me.&lt;/p&gt;
@@ -36,10 +36,10 @@
     
     <item>
       <title>Adding a user to Ubuntu</title>
-      <link>http://localhost:1313/posts/240226_newuser/</link>
+      <link>http://localhost:1313/240226_newuser/</link>
       <pubDate>Mon, 26 Feb 2024 20:56:43 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240226_newuser/</guid>
+      <guid>http://localhost:1313/240226_newuser/</guid>
       <description>&lt;p&gt;I built an Ubuntu server for work and then had to add a group of co-workers.  I always need to lookup this up, so hopefully my notes will help you!&lt;/p&gt;
 &lt;h2 id=&#34;adding-a-user&#34;&gt;Adding a user&lt;/h2&gt;
 &lt;p&gt;Adding a user to Linux is simple enough.  The bash command is &lt;em&gt;useradd&lt;/em&gt;.  For a user bstewart, the commend is shown below.&lt;/p&gt;
@@ -59,10 +59,10 @@
     
     <item>
       <title>Distro Hopping</title>
-      <link>http://localhost:1313/posts/240217_distro_hopping/</link>
+      <link>http://localhost:1313/240217_distro_hopping/</link>
       <pubDate>Sat, 17 Feb 2024 18:08:32 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240217_distro_hopping/</guid>
+      <guid>http://localhost:1313/240217_distro_hopping/</guid>
       <description>&lt;p&gt;This article is the last thing I&amp;rsquo;m doing on this installation of Silverblue.&lt;/p&gt;
 &lt;h2 id=&#34;what-happened-to-pop-os&#34;&gt;What happened to Pop! OS&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve written in the past about my tendencies to distro-hop.  There&amp;rsquo;s always been a greener grass kind of feel to checking out new  Linux distributions.  However, I found &amp;ldquo;home&amp;rdquo; with Pop! OS about three years ago and stopped hopping.  Pop! is a distribution that really hits a lot of sweet spots with me.  It&amp;rsquo;s Debian based - moving to an RPM distribtion isn&amp;rsquo;t the hardest thing, but I&amp;rsquo;ve had better luck for over a decade with Debian distros.  The Pop! desktop is the best compromise of windowing/tiling, allowing me to use either or both paradigms to allocate screen real estate without a lot of futzing.  Finally, Pop! had a great update policy.  I noticed updates, like new kernels, arrived aggressively but that (with the exception of the NVidia driver update) they were reliable.  Unfortunately, I got bit by a dying NVME drive.&lt;/p&gt;
@@ -99,10 +99,10 @@ sudo rpm-ostree  install enpass
     
     <item>
       <title>Restoring from Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240206_pbs_restore/</link>
+      <link>http://localhost:1313/240206_pbs_restore/</link>
       <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240206_pbs_restore/</guid>
+      <guid>http://localhost:1313/240206_pbs_restore/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;http://localhost:1313/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
 &lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
@@ -152,10 +152,10 @@ sudo rpm-ostree  install enpass
     
     <item>
       <title>Proxmox Backup Server</title>
-      <link>http://localhost:1313/posts/240204_pbs/</link>
+      <link>http://localhost:1313/240204_pbs/</link>
       <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/240204_pbs/</guid>
+      <guid>http://localhost:1313/240204_pbs/</guid>
       <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
 &lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;http://localhost:1313/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
@@ -230,10 +230,10 @@ sudo rpm-ostree  install enpass
     
     <item>
       <title>NVidia 5.35 Update</title>
-      <link>http://localhost:1313/posts/230819_nvidia535/</link>
+      <link>http://localhost:1313/230819_nvidia535/</link>
       <pubDate>Thu, 19 Oct 2023 08:32:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230819_nvidia535/</guid>
+      <guid>http://localhost:1313/230819_nvidia535/</guid>
       <description>&lt;h1 id=&#34;two-months-ago-i-warned-of-issues-with-the-535-driver&#34;&gt;Two months ago, I warned of issues with the 5.35 driver&lt;/h1&gt;
 &lt;p&gt;Since the initial post, I tried 5.35 after a rev and found that it worked well.  Until today.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;nvidia-smi
@@ -250,10 +250,10 @@ sudo reboot
     
     <item>
       <title>Gnome Activities Workspace Name Extension</title>
-      <link>http://localhost:1313/posts/230917_activities_workspace_name/</link>
+      <link>http://localhost:1313/230917_activities_workspace_name/</link>
       <pubDate>Sun, 17 Sep 2023 14:34:35 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230917_activities_workspace_name/</guid>
+      <guid>http://localhost:1313/230917_activities_workspace_name/</guid>
       <description>&lt;h1 id=&#34;cool-extension&#34;&gt;Cool Extension&lt;/h1&gt;
 &lt;p&gt;The &lt;strong&gt;Activities Workspace Name&lt;/strong&gt; allows you to change the &amp;ldquo;Activities&amp;rdquo; label in the top left of a Gnome desktop to reflect a name for each workspace.  I find it really useful.&lt;/p&gt;
 &lt;p&gt;My current setup is to use workspaces to seperate the different types of activities, so I have one for work, one for writing, one for development, and one for learning.  I have a 4K display, run Pop! tiling or use that tiling extension in Gnome, and use the to left corner to flip desktops. Maybe I&amp;rsquo;m a little too obsessive, but I&amp;rsquo;ve wanted a way to label those spaces to make them easy to identify.&lt;/p&gt;
@@ -271,10 +271,10 @@ sudo reboot
     
     <item>
       <title>Terminal Weather</title>
-      <link>http://localhost:1313/posts/230910_terminal_weather/</link>
+      <link>http://localhost:1313/230910_terminal_weather/</link>
       <pubDate>Sun, 10 Sep 2023 19:45:03 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230910_terminal_weather/</guid>
+      <guid>http://localhost:1313/230910_terminal_weather/</guid>
       <description>&lt;p&gt;I found a fun addition to my command line - wttr.in.  I live in Hickory, NC, and the following curl command will return the weather to the command line:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;curl &#39;https://wttr.in/Hickory%20NC&#39;?0?A?u
 Weather report: Hickory NC
@@ -337,10 +337,10 @@ alias forcast=&amp;quot;curl &#39;https://wttr.in/Hickory%20NC&#39;?0?A?u?m&amp;
     
     <item>
       <title>Python on Pop</title>
-      <link>http://localhost:1313/posts/230909_python_on_pop/</link>
+      <link>http://localhost:1313/230909_python_on_pop/</link>
       <pubDate>Sat, 09 Sep 2023 21:58:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230909_python_on_pop/</guid>
+      <guid>http://localhost:1313/230909_python_on_pop/</guid>
       <description>&lt;p&gt;In the course of building out a small program the other day, I realized that my version of Python was lagging behind.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;python -V
 Python 3.8.17
@@ -372,39 +372,11 @@ sudo apt install python3.10
     </item>
     
     <item>
-      <title>NVidia 5.35 Warning</title>
-      <link>http://localhost:1313/posts/230819_nvidia535-copy/</link>
-      <pubDate>Sat, 19 Aug 2023 08:32:41 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/230819_nvidia535-copy/</guid>
-      <description>&lt;h1 id=&#34;nvidia-535-may-be-buggy&#34;&gt;NVidia 5.35 may be buggy&lt;/h1&gt;
-&lt;p&gt;I&amp;rsquo;m writing a quick note to share a word of warning.  I recently updated my NVidia driver to 5.35 and had issues.  I&amp;rsquo;ve seen people asking similar questions in the last few weeks in online threads, so I think this is happening to a few folks.&lt;/p&gt;
-&lt;h2 id=&#34;my-system&#34;&gt;My system&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/hyper.png#floatright&#34; alt=&#34;Hyper&#34;&gt;
-The affected computer is running Pop_OS 22.04.  One of the things I like about Pop! is that it keeps things like drivers and kernel current.  When they announced that they weren&amp;rsquo;t going to produce releases every six months, I worried about it getting stale, but I&amp;rsquo;ve actually found that the update system keeps it fresh and it&amp;rsquo;s been so stable I&amp;rsquo;m reluctant to move away.  For a distro-hopper, that&amp;rsquo;s saying something.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m using a 1060 card as well.  I&amp;rsquo;m not a big gamer and this card is fine for work.  It drives two 4K displays, and I&amp;rsquo;ve had it running four displays using it&amp;rsquo;s two HDMI and two DisplayPorts.  I haven&amp;rsquo;t had many problems with it.  The lure of a newer card is there, but GPUs have been expensive for a long time.&lt;/p&gt;
-&lt;p&gt;So stable system, good hardware, been humming for a while.&lt;/p&gt;
-&lt;h2 id=&#34;symptoms&#34;&gt;Symptoms&lt;/h2&gt;
-&lt;p&gt;I maintain the system in two ways.  The Pop!_Shop application does a pretty good job with it&amp;rsquo;s applications, but it doesn&amp;rsquo;t pick up things outside of apt and flatpak.  I wrote about &lt;a href=&#34;http://localhost:1313/posts/221114_topgrade/&#34;&gt;Topgrade&lt;/a&gt; late last year - it is an application I&amp;rsquo;ve found that will catch apt and flatpak, plus things like Nix, Brew, Cargo, shell extensions, PIP, containers, and others.&lt;/p&gt;
-&lt;p&gt;i&amp;rsquo;ve been using NVidia 5.25 and Topgrade &lt;a href=&#34;https://www.stickycomics.com/computer-update/&#34;&gt;presented the option&lt;/a&gt; to go to 5.35.&lt;/p&gt;
-&lt;p&gt;My current configuration has a display on my standing desk and one on my sitting desk that are mirrored.  I was using HDMi for both.&lt;/p&gt;
-&lt;p&gt;After installation, both displays went blank.&lt;/p&gt;
-&lt;h2 id=&#34;troubleshooting&#34;&gt;Troubleshooting&lt;/h2&gt;
-&lt;p&gt;Troubleshooting involved rebooting where I saw the POST message, so I knew the card and displays &lt;em&gt;worked&lt;/em&gt;.  Changing out cables and displays led me to realize that only DisplayPort #1 worked.&lt;/p&gt;
-&lt;p&gt;I found several posts on places like r/linux asking about similar problems without a solution.&lt;/p&gt;
-&lt;p&gt;The Pop! display configuration tool only showed the one display.  Somewhere around this time I ordered new DisplayPort cables, thinking it was maybe related to HDMI.  I eventually remembered the upgrade and backed it out.  &lt;em&gt;Viola!&lt;/em&gt; Everything has returned to working since.&lt;/p&gt;
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I haven&amp;rsquo;t heard this discussed in the tech press, even on places like [Unplugged](&lt;a href=&#34;https://www.jupiterbroadcasting.com/show/linux-unplugged/%7D&#34;&gt;https://www.jupiterbroadcasting.com/show/linux-unplugged/}&lt;/a&gt;, so I assume this isn&amp;rsquo;t pervassive.  That said, approach any graphics driver upgrade with caution and specifically be wary of 5.35.&lt;/p&gt;
-&lt;p&gt;The Linux community benefits from a lot of cool people contributing to it and I appreciate that.  This type of issue is the tax we pay.  I appreciate NVidia&amp;rsquo;s contributions and all the people who work to make it just pop in to my system and I&amp;rsquo;ll definitely try the upgrade again when they bring out 5.4.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Remote access - The Hard Way</title>
-      <link>http://localhost:1313/posts/230706_remoteaccessthw/</link>
+      <link>http://localhost:1313/230706_remoteaccessthw/</link>
       <pubDate>Thu, 06 Jul 2023 17:00:43 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230706_remoteaccessthw/</guid>
+      <guid>http://localhost:1313/230706_remoteaccessthw/</guid>
       <description>&lt;p&gt;A little bit of fun today.  There are many cases where we need to access different computers but can&amp;rsquo;t setup something like RDP.  I had the idea to try this via video capture, so here&amp;rsquo;s my experience.&lt;/p&gt;
 &lt;h2 id=&#34;remote-access-via-video-capture&#34;&gt;Remote access via video capture&lt;/h2&gt;
 &lt;p&gt;I ordered the Extenuating Threads &lt;a href=&#34;https://www.amazon.com/dp/B0C2HG93TG&#34;&gt;HDMI Capture Dongle&lt;/a&gt; from Amazon for $14.  There are several options available - I went with Extenuating Threads because it was cheap and I wouldn&amp;rsquo;t be out much if it didn&amp;rsquo;t work.  I needed to capture 4k at least 30Hz and this model promises 4k at 60Hz.&lt;/p&gt;
@@ -427,10 +399,10 @@ v4l2-ctl --list devices
     
     <item>
       <title>Save to Kindle with a DIY CI</title>
-      <link>http://localhost:1313/posts/230514_save2kindle/</link>
+      <link>http://localhost:1313/230514_save2kindle/</link>
       <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230514_save2kindle/</guid>
+      <guid>http://localhost:1313/230514_save2kindle/</guid>
       <description>&lt;p&gt;My &lt;a href=&#34;http://localhost:1313/posts/230509_word2obsidian/&#34;&gt;previous post&lt;/a&gt; dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I&amp;rsquo;d like to use a similar approach.&lt;/p&gt;
 &lt;h1 id=&#34;print-to-tablet&#34;&gt;Print to Tablet&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve always wanted a way to &amp;ldquo;print to tablet&amp;rdquo;.  I&amp;rsquo;ve had IPads and Galaxy Tabs and enjoy the form factor - tablets are an easy way to read.  But there&amp;rsquo;s never been a great way to move something I create on my desktop over to the tablet.  I&amp;rsquo;ve resorted to saving it to PDF, emailing it to myself, and then opening it on the tablet.  But wait!  Because of the way tabllet break up storage, it&amp;rsquo;s usually confusing to understand where the file is stored and which programs should be used.  Bah!&lt;/p&gt;
@@ -525,10 +497,10 @@ done
     
     <item>
       <title>Word to Obsidian with a DIY CI</title>
-      <link>http://localhost:1313/posts/230509_word2obsidian/</link>
+      <link>http://localhost:1313/230509_word2obsidian/</link>
       <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230509_word2obsidian/</guid>
+      <guid>http://localhost:1313/230509_word2obsidian/</guid>
       <description>&lt;p&gt;I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&amp;rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&amp;rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.&lt;/p&gt;
 &lt;h2 id=&#34;what-didnt-work&#34;&gt;What Didn&amp;rsquo;t Work&lt;/h2&gt;
 &lt;p&gt;Just to save you time, I&amp;rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called &lt;a href=&#34;https://www.writage.com/&#34;&gt;Writage&lt;/a&gt;.  It&amp;rsquo;s $29, but a trial version is available.  I&amp;rsquo;m obstinately opposed to closed source and I&amp;rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&amp;rsquo;t tried it.&lt;/p&gt;
@@ -638,10 +610,10 @@ done
     
     <item>
       <title>I&#39;m cooler than you</title>
-      <link>http://localhost:1313/posts/230427_im_cooler_than_you/</link>
+      <link>http://localhost:1313/230427_im_cooler_than_you/</link>
       <pubDate>Thu, 27 Apr 2023 17:38:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230427_im_cooler_than_you/</guid>
+      <guid>http://localhost:1313/230427_im_cooler_than_you/</guid>
       <description>&lt;p&gt;Hah!  I don&amp;rsquo;t really believe that thing about being cooler, but have you ever done a project and just felt &lt;em&gt;so&lt;/em&gt; pleased with yourself?  I turned my Samsung Galaxy Tab S6 Lite into a Linux tablet/laptop and I&amp;rsquo;m feeling pretty happy.  The actual process isn&amp;rsquo;t that involved, so a little of my self-congratulation is probably undeserved, but the result is stinking cool!&lt;/p&gt;
 &lt;h2 id=&#34;what-is-a-linux-device&#34;&gt;What is a Linux device?&lt;/h2&gt;
 &lt;p&gt;Before we get into the work, we need to take a philosophical detour.  I wanted a Linux tablet, but what exactly does that mean?  Android is based on Linux, so isn&amp;rsquo;t Android &amp;ldquo;Linux&amp;rdquo;?&lt;/p&gt;
@@ -667,10 +639,10 @@ pkg install code-server
     
     <item>
       <title>Anonymous Browsing</title>
-      <link>http://localhost:1313/posts/230405_anonymous/</link>
+      <link>http://localhost:1313/230405_anonymous/</link>
       <pubDate>Wed, 05 Apr 2023 22:04:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230405_anonymous/</guid>
+      <guid>http://localhost:1313/230405_anonymous/</guid>
       <description>&lt;p&gt;What is the best way to be truly anonymous online?  Most of the time our concern is about being commercially tracked and having our browsing habits shared (I understand this doesn&amp;rsquo;t creep everyone out as much as it does me).  My kids think I&amp;rsquo;m paranoid.  Just for fun, take a look at &lt;a href=&#34;https://amiunique.org&#34;&gt;Am I Unique&lt;/a&gt; and browse through all the different data points that are shared by your browser and can be used to cross-reference and track you.  Even paranoid people have enemies.
 &lt;img src=&#34;http://localhost:1313/230407_amiunique.png#floatleft&#34; alt=&#34;Am I unique?&#34;&gt;&lt;/p&gt;
 &lt;p&gt;My personal summary from &lt;strong&gt;Am I Unique?&lt;/strong&gt; is shown to the left.  Just like Mom said, I&amp;rsquo;m one in a million.&lt;/p&gt;
@@ -1489,10 +1461,10 @@ StrictNodes 1
     
     <item>
       <title>Automaticly adding Hugo articles to Obsidian</title>
-      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <link>http://localhost:1313/230313_blog2obsidian/</link>
       <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <guid>http://localhost:1313/230313_blog2obsidian/</guid>
       <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
 &lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
@@ -1517,10 +1489,10 @@ The five variables before the job are minute, hour, day, month, and day of the w
     
     <item>
       <title>Sending Email through Google from the Command Line</title>
-      <link>http://localhost:1313/posts/230313_command_line_email/</link>
+      <link>http://localhost:1313/230313_command_line_email/</link>
       <pubDate>Sun, 12 Mar 2023 18:22:33 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_command_line_email/</guid>
+      <guid>http://localhost:1313/230313_command_line_email/</guid>
       <description>&lt;p&gt;In the course of another project, I recently worked out how to send email through Gmail from the Linux shell.  This is both a really cool and powerful tool as well as something I could see incorporating into a lot of future work.  Since it had such utility, I wanted to document the process for myself and share that with you.&lt;/p&gt;
 &lt;p&gt;Some Linux operations, such as cron, will send output to the local mail spooler.  Files sent this way end up in /var/mail/$USER or /var/spool/mail/$USER.  Sendmail can be configured as well so that the output goes to a public email address, however running Sendmail involves a more complication and overhead.  For instance, mail coming from an SMTP server has to be trusted by the receiver and a lot of places (O365, Gmail, etc) don&amp;rsquo;t trust random SMTP servers that pop up - for good reason.&lt;/p&gt;
 &lt;p&gt;SSMTP is a program that takes this &amp;ldquo;local mail&amp;rdquo; and sends it to an external SMTP system.  It can be configured to work with any SMTP server, but I use Google Mail and so that&amp;rsquo;s the example I&amp;rsquo;ll walk through.&lt;/p&gt;
@@ -1553,10 +1525,10 @@ FROM:YOU@YOURCOMPANY.COM
     
     <item>
       <title>Command Line Browser Carbonyl</title>
-      <link>http://localhost:1313/posts/230305_carbonyl/</link>
+      <link>http://localhost:1313/230305_carbonyl/</link>
       <pubDate>Sun, 05 Mar 2023 21:54:31 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230305_carbonyl/</guid>
+      <guid>http://localhost:1313/230305_carbonyl/</guid>
       <description>&lt;p&gt;Not sure where to classify this discovery - Carbonyl is a shell-based brower that is available for Linux, Mac, and Windows.  Carbonyl is built on a Chromium engine and does not support plugins at this point or tie into an existing Chrome installation.&lt;/p&gt;
 &lt;p&gt;Carbonyl is fast and it produces a low-res but usable web page.  It is surprisingly responsive - there&amp;rsquo;s a demo of someone playing Doom using it and I watched some Youtube using it.  That&amp;rsquo;s a little hard to visualize, so you may just have to try it.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s Carbonyl producing a portion of this site: &lt;img src=&#34;http://localhost:1313/230305_Carbonyl.png&#34; alt=&#34;Carbonyl&#34;&gt;&lt;/p&gt;
@@ -1573,10 +1545,10 @@ FROM:YOU@YOURCOMPANY.COM
     
     <item>
       <title>Slingshot</title>
-      <link>http://localhost:1313/posts/230115_slingshot/</link>
+      <link>http://localhost:1313/230115_slingshot/</link>
       <pubDate>Sun, 15 Jan 2023 15:03:12 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230115_slingshot/</guid>
+      <guid>http://localhost:1313/230115_slingshot/</guid>
       <description>&lt;p&gt;Thirty five years ago (!) I took my Amiga 1000 to college.  There used to be a copy of WordPerfect for &lt;em&gt;everything&lt;/em&gt; and that was what I did a lot of my term papers on.  I would print postscript files to a 3.5&amp;quot; disk, then take them to the library and print using &lt;strong&gt;copy termpaper.ps &amp;gt; lpt1:&lt;/strong&gt; to the LaserWriter.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/230115_Slingshot.png#floatsmallleft&#34; alt=&#34;Slingshot&#34;&gt;&lt;/p&gt;
 &lt;p&gt;But then, like now, computers were used for more than just work.  There were a lot of cool Amiga games including Arctic Fox (a tank game), an &amp;ldquo;x and o&amp;rdquo; football game that we wore the controllers out on, and others.  But I also remember a really simple &amp;ldquo;Star Trek&amp;rdquo; game that we had a lot of fun with.&lt;/p&gt;
@@ -1596,10 +1568,10 @@ FROM:YOU@YOURCOMPANY.COM
     
     <item>
       <title>Updated Ubuntu Upgrading</title>
-      <link>http://localhost:1313/posts/221114_topgrade/</link>
+      <link>http://localhost:1313/221114_topgrade/</link>
       <pubDate>Mon, 14 Nov 2022 17:27:51 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/221114_topgrade/</guid>
+      <guid>http://localhost:1313/221114_topgrade/</guid>
       <description>&lt;h2 id=&#34;os-hopping-update&#34;&gt;OS Hopping update&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve confessed in this blog to being a distro hopper.  I love to see what is possible and to explore alternatives!  I haven&amp;rsquo;t provided an update on where that journey has taken me, so let&amp;rsquo;s start there.&lt;/p&gt;
 &lt;p&gt;I have a desktop, where the majority of work is done, and a laptop for traveling and returning emails from the couch.&lt;/p&gt;
@@ -1641,10 +1613,10 @@ nala fetch
     
     <item>
       <title>Basic Packer</title>
-      <link>http://localhost:1313/posts/221019_packer/</link>
+      <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/221019_packer/</guid>
+      <guid>http://localhost:1313/221019_packer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://hashicorp.com&#34;&gt;Hashicorp&lt;/a&gt; makes some &lt;em&gt;cool&lt;/em&gt; tools for playing in the cloud or a virtualized environment, especially if you want to build out an Infrastructure as Code approach and make infrastructure updates a CI process. &lt;a href=&#34;https://packer.io&#34;&gt;Packer&lt;/a&gt; is a tool that let&amp;rsquo;s you define a server - OS, cores, storage, packages, and all - in a script that can be built on demand.  You can even define your  environment, like LAMP, in the packer script and load your application files.&lt;/p&gt;
 &lt;p&gt;A very practical use of Packer would be to use it to build a custom AWS AMI for your company.  You want every EC2 instance to look like this image, so it might include security settings or agents, centralized logging setup, connections to centralized authentication, and other common resources.  I would probably load any required data files when the EC2 instance is instantiated, maybe through Cloud Formation.&lt;/p&gt;
 &lt;p&gt;Packer scripts are written in HCL (Hashi Corp Language?  Dunno.), which ends up looking like YAML.&lt;/p&gt;
@@ -1751,10 +1723,10 @@ late-commands:
     
     <item>
       <title>Palemoon for legacy Flash support</title>
-      <link>http://localhost:1313/posts/220819_palemoon/</link>
+      <link>http://localhost:1313/220819_palemoon/</link>
       <pubDate>Fri, 19 Aug 2022 09:07:14 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220819_palemoon/</guid>
+      <guid>http://localhost:1313/220819_palemoon/</guid>
       <description>&lt;p&gt;Flash was a technology to extend the functionality of websites past what was possible with HTML at the time.  It allowed for highly interactive experiences and was used for streaming, video games, and for &amp;ldquo;application like&amp;rdquo; experiences inside the browser.  Flash was implemented on the client-side via a browser &amp;ldquo;plug-in&amp;rdquo; and was notorious for security issues.  In my experience, a big part of the problem with Flash was the update process.  The plug-in was updated seperately from the Operating System and browser, leading to many cases to persistence of older versions.  Furthermore, the installer would commonly not clean up old versions, leaving an attack surface.&lt;/p&gt;
 &lt;p&gt;Why do we care?  For the most part we don&amp;rsquo;t.  Flash was deprecated in 2020 and is no longer supported by the major browsers.  The functionality of Flash has been ably replaced by HTML5.  However, there was a range of IT products created in the mid-teens that used a Flash console for administrative access.  Cisco used Flash in equipment like ASA firewalls, SOHO switches, and UCS servers.  Much of that equipment is ageing out, but some of it is still in good shape and capable of delivering value.  One example is my home server, which is an old Cisco UCS M3.&lt;/p&gt;
 &lt;h2 id=&#34;accessing-a-flash-console&#34;&gt;Accessing a Flash Console&lt;/h2&gt;
@@ -1780,10 +1752,10 @@ I hadn&amp;rsquo;t accessed the CIMC in a long time.  Rebooting the server displ
     
     <item>
       <title>Getting to know Nix</title>
-      <link>http://localhost:1313/posts/220610-nix/</link>
+      <link>http://localhost:1313/220610-nix/</link>
       <pubDate>Sat, 06 Aug 2022 17:17:55 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220610-nix/</guid>
+      <guid>http://localhost:1313/220610-nix/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m a distro hopper.  I&amp;rsquo;ve described some of the tools that support my dubious lifestyle in previous articles such as &lt;a href=&#34;http://localhost:1313/posts/210911_distrohoppingwventoy/&#34;&gt;Distro Hopping in Style&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/posts/210207_installscript/&#34;&gt;Linux Install Script&lt;/a&gt;.  That said, Pop! OS has been a very comfortable home for a year and a half.  &lt;a href=&#34;https://pop.system76.com/&#34;&gt;Pop! OS&lt;/a&gt; has pushed the envelope on fresh updates, it has been very stable, and my workflow on a 4K display meshes very well with their version of intelligent auto-tiling.&lt;/p&gt;
 &lt;p&gt;Ah, but there are always new ideas in the world and I&amp;rsquo;ve become very interested in immutable operating systems.  Immutability just means that something doesn&amp;rsquo;t change over time and in the case of an OS, it means that that the OS and installed applications are isolated from each other and don&amp;rsquo;t share libraries.  Immutable systems are atomic - changes can be rolled back without collatoral damage.  These systems should be more reliable, since they eliminate some of the major issues in maintaining a linux system.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve played a little with Fedora Silverblue which uses OSTree, Flatpak, and Podman to create this seperation.  In my limited time with Silverblue, it felt interesting but not ready (and I think Fedora would say the same thing at this point).&lt;/p&gt;
@@ -1821,10 +1793,10 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
     
     <item>
       <title>Nautilus Tweaks</title>
-      <link>http://localhost:1313/posts/220717_nautilus_tweaks/</link>
+      <link>http://localhost:1313/220717_nautilus_tweaks/</link>
       <pubDate>Sun, 17 Jul 2022 17:04:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220717_nautilus_tweaks/</guid>
+      <guid>http://localhost:1313/220717_nautilus_tweaks/</guid>
       <description>&lt;p&gt;Nautilus, the Gnome file manager, has a number of available plug-ins available that make it much easier to use.  It also supports a scripting function that you can use to develop your own extensions.  The extentions can be easily added using &lt;em&gt;apt&lt;/em&gt;, but many of them will not be active until a reboot.  You can short-circuit that process by using &lt;strong&gt;nautilus -q&lt;/strong&gt; to quit all open instances of nautilus and then opening a new window.  I&amp;rsquo;m using all of the following extensions with &lt;em&gt;Pop! OS 22.04&lt;/em&gt;, so I can verify they work in COSMIC.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/220717_gnomeimageresize.png#floatsmallright&#34; alt=&#34;Nautlus Image Resize&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;easily-downsize-an-image&#34;&gt;Easily Downsize an Image&lt;/h2&gt;
@@ -1870,10 +1842,10 @@ sha256sum myfile
     
     <item>
       <title>Howdy - Linux face recognition authentication</title>
-      <link>http://localhost:1313/posts/220501_howdy/</link>
+      <link>http://localhost:1313/220501_howdy/</link>
       <pubDate>Sun, 01 May 2022 16:16:31 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/220501_howdy/</guid>
+      <guid>http://localhost:1313/220501_howdy/</guid>
       <description>&lt;p&gt;My friend Jared recommended that I checkout &lt;a href=&#34;https://github.com/boltgolt/howdy/&#34;&gt;Howdy&lt;/a&gt;, which is a PAM add-in to support authentication by &lt;em&gt;facial recognition&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The first thing I did was install &lt;strong&gt;cheese&lt;/strong&gt; so that I could make sure that my face was in the camera&amp;rsquo;s field of view.  Next was installing Howdy.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:boltgolt/howdy
@@ -1908,10 +1880,10 @@ To confirm its working, open a &lt;em&gt;new&lt;/em&gt; termainal and escalate t
     
     <item>
       <title>Webapps</title>
-      <link>http://localhost:1313/posts/220223_webapps/</link>
+      <link>http://localhost:1313/220223_webapps/</link>
       <pubDate>Wed, 23 Feb 2022 17:37:37 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220223_webapps/</guid>
+      <guid>http://localhost:1313/220223_webapps/</guid>
       <description>&lt;h1 id=&#34;using-web-applications&#34;&gt;Using Web Applications&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve found that the quality and capability of applications delivered over the web has been on-par with what is expected in a native application.  In my experience, Lucidchart was an early example of what was possible and today I actually prefer it to Visio.  I&amp;rsquo;ve also been very impressed by O365.  On Linux, I can use O365 to open an office file from OneDrive, edit and save it and get many (most?) of the features I expect in the office applications.  From a work compatibility mode, this really simplifies using a Linux machine.&lt;/p&gt;
 &lt;p&gt;These applications run in a tab in the browser.  Generally, I find this to be a good use of screen real estate.  However, this approach still ties up space on the browser button bar and status bar and adds a little cognitive load in starting the app and finding it on the screen.  Two applications that address these last issues are &amp;ldquo;Web App Manager&amp;rdquo; from the Linux Mint project and Nativefier.  Both wrap the application in a browser to make it look like a native program.&lt;/p&gt;
@@ -1959,10 +1931,10 @@ Categories=Office;
     
     <item>
       <title>Oh My Posh</title>
-      <link>http://localhost:1313/posts/220124_oh_my_posh/</link>
+      <link>http://localhost:1313/220124_oh_my_posh/</link>
       <pubDate>Tue, 25 Jan 2022 19:05:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220124_oh_my_posh/</guid>
+      <guid>http://localhost:1313/220124_oh_my_posh/</guid>
       <description>&lt;p&gt;I really like the powerline-style prompts that jazz up the command line and I&amp;rsquo;d like to be able to carry that experience through from Linux to Windows.  It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar.  Recently I found &lt;em&gt;Oh My Posh&lt;/em&gt;, which is designed to support Windows, Linux, and MacOS.  The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s an example of OMP installed in Linux running inside Tilix.  You can see that it&amp;rsquo;s providing me collapsed directory information, git info, and the time of the last command.  OMP can be customized and the details of that are described extensively in the online docs.
 &lt;img src=&#34;http://localhost:1313/omp_tilix.png#center&#34; alt=&#34;Oh My Posh in Tilix on Linux&#34;&gt;
@@ -2017,10 +1989,10 @@ load(io.popen(&#39;oh-my-posh --config=&amp;quot;C:/Users/Brent/.oh-my-posh/them
     
     <item>
       <title>Setting up a Basic FTP server on Linux</title>
-      <link>http://localhost:1313/posts/220117_linux_ftp/</link>
+      <link>http://localhost:1313/220117_linux_ftp/</link>
       <pubDate>Mon, 17 Jan 2022 15:49:07 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220117_linux_ftp/</guid>
+      <guid>http://localhost:1313/220117_linux_ftp/</guid>
       <description>&lt;h1 id=&#34;brother-printers-work-well-with-linux&#34;&gt;Brother Printers work well with Linux&lt;/h1&gt;
 &lt;p&gt;My last two printers have been Brother multi-function copiers (MFCs).  These printers work really well with everything in the house - Windows, Linux, even the school Chromebooks.  They have a Linux driver available on their website for all their printers, the print quality is excellent, and they&amp;rsquo;ve been very durable.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;re looking for a printer that plays well with others, take a look.&lt;/p&gt;
@@ -2060,10 +2032,10 @@ ftp&amp;gt;
     
     <item>
       <title>Czkawka</title>
-      <link>http://localhost:1313/posts/210926_czkawka/</link>
+      <link>http://localhost:1313/210926_czkawka/</link>
       <pubDate>Sun, 26 Sep 2021 15:07:20 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210926_czkawka/</guid>
+      <guid>http://localhost:1313/210926_czkawka/</guid>
       <description>&lt;p&gt;Czkawka is a &amp;ldquo;simple, fast, and free app to remove unnecessary files&amp;rdquo;.  I heard it mentioned on one of the Jupiter Broadcasting shows and decided to look into it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210924_Czkawka.png#floatsmallleft&#34; alt=&#34;Czkawka logo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I have a server that I map folders to using NFS or SFTP that has a lot of accumulated junk.  I&amp;rsquo;ve got twenty plus years of kids pictures, and as the computer expert in the family I&amp;rsquo;m expected to protect these like crown jewels.  However, backing up pictures all the time leads to a lot of duplicates.  I also keep all my the family files there - school, work, personal, hobbies - and there ends up being a lot of duplication there as well.  Not only are duplicate files a problem for local storage, but I pay to back (not much) it all up to Backblaze B2.  Czkawka would be a big help if it helped me sort all those files and conserve space.&lt;/p&gt;
@@ -2098,10 +2070,10 @@ ftp&amp;gt;
     
     <item>
       <title>Distro Hopping in Style with Ventoy</title>
-      <link>http://localhost:1313/posts/210911_distrohoppingwventoy/</link>
+      <link>http://localhost:1313/210911_distrohoppingwventoy/</link>
       <pubDate>Sat, 11 Sep 2021 09:14:40 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210911_distrohoppingwventoy/</guid>
+      <guid>http://localhost:1313/210911_distrohoppingwventoy/</guid>
       <description>&lt;p&gt;One of the many things I love about Linux is all the competing ideas about how computing should be done and how desktop environments should be organized.  I&amp;rsquo;ve pretty much settled in with Debian-derived systems.  This isn&amp;rsquo;t a religious decision, but I&amp;rsquo;ve found that most of the things that I want to do are easily supported and I&amp;rsquo;ve grown comfortable with the commands and structure.&lt;/p&gt;
 &lt;p&gt;Desktop Environments (DEs) are another matter.  Not only have I &lt;em&gt;not&lt;/em&gt; picked a favorite, I love to switch back and forth and try out the latest.  My current (9/11/21) thoughts are that tiled interfaces work best for the large 4K displays I like to use.  I liked &lt;a href=&#34;https://regolith-linux.org/&#34;&gt;Regolith&lt;/a&gt;, which is an i3 on Ubuntu distro but I&amp;rsquo;m not committed to throwing away my mouse.  I&amp;rsquo;m currently split between &lt;a href=&#34;https://pop.system76.com/&#34;&gt;Pop! OS&lt;/a&gt; (which is a customized Gnome) and &lt;a href=&#34;https://kubuntu.org/&#34;&gt;Kubuntu&lt;/a&gt; with the &lt;a href=&#34;https://github.com/kwin-scripts/kwin-tiling&#34;&gt;Tiling Extension&lt;/a&gt; (KDE on Ubuntu).  On HD screens and smaller, I really like &lt;a href=&#34;https://linuxmint.com/&#34;&gt;Cinnamon&lt;/a&gt; although I&amp;rsquo;m a sucker for the eye-candy in &lt;a href=&#34;https://ubuntudde.com/&#34;&gt;Deepin&lt;/a&gt;.  I&amp;rsquo;ve even recently started playing with &lt;a href=&#34;https://cutefish-ubuntu.github.io/&#34;&gt;Cutefish&lt;/a&gt; which is a Mac-like DE.&lt;/p&gt;
 &lt;p&gt;All this is &lt;em&gt;besides&lt;/em&gt; my fascination with alternative operating systems like &lt;a href=&#34;https://www.haiku-os.org/&#34;&gt;Haiku&lt;/a&gt;, &lt;a href=&#34;https://reactos.org/&#34;&gt;ReactOS&lt;/a&gt;, and &lt;a href=&#34;https://en.wikipedia.org/wiki/AROS_Research_Operating_System&#34;&gt;AROS&lt;/a&gt;.&lt;/p&gt;
@@ -2123,10 +2095,10 @@ ftp&amp;gt;
     
     <item>
       <title>Using WebDAV on Apache</title>
-      <link>http://localhost:1313/posts/210906_apachedav/</link>
+      <link>http://localhost:1313/210906_apachedav/</link>
       <pubDate>Mon, 06 Sep 2021 13:00:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210906_apachedav/</guid>
+      <guid>http://localhost:1313/210906_apachedav/</guid>
       <description>&lt;p&gt;In recent articles, I walked through how to setup a home &lt;a href=&#34;http://localhost:1313/posts/210830_apache&#34;&gt;webserver&lt;/a&gt; with &lt;a href=&#34;https://httpd.apache.org&#34;&gt;Apache&lt;/a&gt; on Linux and how to configure home &lt;a href=&#34;http://localhost:1313/posts/210831_dnsonubuntu&#34;&gt;DNS server&lt;/a&gt; using &lt;a href=&#34;https://www.isc.org/bind/&#34;&gt;bind&lt;/a&gt; on Linux, complete with custom in-home domain for local name resolution.  This article revisits the webserver and creates a second virtual host to handle WebDav.&lt;/p&gt;
 &lt;p&gt;WebDAV is a file sharing protocol built on top of HTTP.  Many operating systems can attach to WebDAV folders to upload and download files, including Linux, Windows, Mac, IOS, and Android.  I have a password database that I want to keep sync&amp;rsquo;d between different computers and phones and I&amp;rsquo;m not comfortable hosting that &amp;ldquo;in the cloud&amp;rdquo;, so this allows me to self-host.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m using Ubuntu Server 21.04 for this exercise.&lt;/p&gt;
@@ -2189,10 +2161,10 @@ New password:
     
     <item>
       <title>DNS on Ubuntu</title>
-      <link>http://localhost:1313/posts/210831_dnsonubuntu/</link>
+      <link>http://localhost:1313/210831_dnsonubuntu/</link>
       <pubDate>Tue, 31 Aug 2021 19:08:11 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210831_dnsonubuntu/</guid>
+      <guid>http://localhost:1313/210831_dnsonubuntu/</guid>
       <description>&lt;p&gt;Continuing from my &lt;a href=&#34;http://localhost:1313/posts/210830_apache/&#34;&gt;previous post&lt;/a&gt;, I have recently rebuilt my server infrastructure at home, migrating from VMWare to Proxmox VE.  I&amp;rsquo;m still getting the hang of Proxmox, although I&amp;rsquo;m feeling favorable towards it so far.  In the meantime, I wanted to document some of the little pieces to setting up a home network.  This time I&amp;rsquo;ll provide a walk through of a simple local DNS server.  My goal at home is to create a &amp;ldquo;stewart.lan&amp;rdquo; network that I can use to reference local resources.&lt;/p&gt;
 &lt;p&gt;Like the Apache server I built last time, this server is running Ubuntu 21.04 Server and my instructions are written from that perspective.  Some commands may change as you move to non-Debian distributions or with different versions.  Installation of DNS services is done with &lt;strong&gt;bind9&lt;/strong&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt update
@@ -2324,10 +2296,10 @@ webnamer	IN	CNAME	ns.stewart.lan
     
     <item>
       <title>Simple Apache Setup on Linux</title>
-      <link>http://localhost:1313/posts/210830_apache/</link>
+      <link>http://localhost:1313/210830_apache/</link>
       <pubDate>Mon, 30 Aug 2021 16:38:48 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210830_apache/</guid>
+      <guid>http://localhost:1313/210830_apache/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been running the free version of ESXi 6.5 for a while, but the vulnerabilities kept piling up and I had issues upgrading it.  I&amp;rsquo;ve been looking at ProxMox VE for a while and last week I decided to give it a chance.  I want to get more experience with the server before I write about it, so I&amp;rsquo;ll start by detailing a simple process to get a local webserver running.  Browsers keep trying to throw distracting junk in front of me for start pages when what I really want is to quickly get to the sites I need.  I put together a simple page that organizes my personal and work links for this purpose.&lt;/p&gt;
 &lt;p&gt;I built this server on Ubuntu 21.04 Server and my instructions are written from that perspective.  Notes around the firewall and restarting the service will vary by distribution and version, but I&amp;rsquo;ll leave translation as an exercise to the reader.  Installing a webserver is straightfoward - there are a variety to choose from, but Apache is good for this purpose because it&amp;rsquo;s so well documented.  Once the package is downloaded and the service started, you should be able to browse to http://127.0.0.1 and see the default Apache page.  When I did this at home, Ubuntu 21.04 had the firewall up by default, so I needed to allow the Apache service.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt update
@@ -2360,10 +2332,10 @@ sudo systemctl reload apache2
     
     <item>
       <title>Cockpit</title>
-      <link>http://localhost:1313/posts/210501_cockpit/</link>
+      <link>http://localhost:1313/210501_cockpit/</link>
       <pubDate>Sat, 01 May 2021 14:44:32 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210501_cockpit/</guid>
+      <guid>http://localhost:1313/210501_cockpit/</guid>
       <description>&lt;p&gt;If &amp;ldquo;web-based graphical interface for administering Linux&amp;rdquo; makes you think &lt;em&gt;Webmin&lt;/em&gt;,  then you  need to look at &lt;em&gt;Cockpit&lt;/em&gt;.  Cockpit is a modern web-based management tool for all your Linux servers.  It&amp;rsquo;s similar to webmin, but slicker.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210506_Cockpit_Login.png#floatsmallleft&#34; alt=&#34;Login&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Installation in Ubuntu is a breeze.  I installed this on all my linux machines and can manage all of the systems from one dashboard (again, Cockpit has to be installed on them all).  &lt;strong&gt;Cockpit&lt;/strong&gt; is the base install, with other packages to add functionality for storage, networking, pack manager, virtual machines, and containers.  After installation, browse to https://linux_ip:9090 to find the login screen for Cockpit.  Login using the same credentials you use to login to ssh.&lt;/p&gt;
@@ -2390,10 +2362,10 @@ Finally, there&amp;rsquo;s built-in access to the console from the web interface
     
     <item>
       <title>CPUFetch</title>
-      <link>http://localhost:1313/posts/210413_cpufetch/</link>
+      <link>http://localhost:1313/210413_cpufetch/</link>
       <pubDate>Tue, 13 Apr 2021 17:50:03 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/210413_cpufetch/</guid>
+      <guid>http://localhost:1313/210413_cpufetch/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/210413_lscpu.png#floatright&#34; alt=&#34;LSCPU Output&#34;&gt;
 I don&amp;rsquo;t have to check CPU statistics very often, but occassionally I need to remember details like how many cores I have.  The traditional way to get CPU information in Linux is to use &lt;strong&gt;lscpu&lt;/strong&gt;.  Here&amp;rsquo;s the top of the output on my desktop.  I&amp;rsquo;ve truncated the picture - the output is a full page or two of details about your CPU and it&amp;rsquo;s capabilities.  You can also &lt;strong&gt;cat /proc/cpu&lt;/strong&gt;, which has similar info, or list hardware with &lt;strong&gt;lshw&lt;/strong&gt;.  &lt;strong&gt;lshw&lt;/strong&gt; provides a &lt;em&gt;lot&lt;/em&gt; of output, so you can filter that down with &lt;strong&gt;lshw -class CPU&lt;/strong&gt;.  All of these options work, but they vary from cluttered to hard-to-read.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210413_cpufetch.png#floatleft&#34; alt=&#34;CPUFetch&#34;&gt;
@@ -2410,10 +2382,10 @@ I came across a fun utility to do the same thing, but prettier.  CPUfetch doesn&
     
     <item>
       <title>Making a Memorial DVD</title>
-      <link>http://localhost:1313/posts/210308_kdenlive/</link>
+      <link>http://localhost:1313/210308_kdenlive/</link>
       <pubDate>Mon, 08 Mar 2021 21:59:17 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210308_kdenlive/</guid>
+      <guid>http://localhost:1313/210308_kdenlive/</guid>
       <description>&lt;p&gt;A good friend lost his father to COVID last week.  It was unexpected - he was only about 60 and in good health.  My friend asked for help putting together a memorial DVD.  Perhaps you&amp;rsquo;ve seen these - at a receiving in the US it&amp;rsquo;s common these days to find a TV that displays a collection of pictures of the deceased, perhaps with some background music.&lt;/p&gt;
 &lt;p&gt;I don&amp;rsquo;t have any special expertise in Video and I didn&amp;rsquo;t have long to figure it out.  If you&amp;rsquo;re in a similar situation then 1) leave a note in the comments and I&amp;rsquo;ll pray for your friends family and 2) here are some quick and dirty instructions that will let you be of service.&lt;/p&gt;
 &lt;h2 id=&#34;gathering-input&#34;&gt;Gathering input&lt;/h2&gt;
@@ -2438,10 +2410,10 @@ I came across a fun utility to do the same thing, but prettier.  CPUfetch doesn&
     
     <item>
       <title>Tsukae - A tool for graphing command usage</title>
-      <link>http://localhost:1313/posts/210306_tsukae/</link>
+      <link>http://localhost:1313/210306_tsukae/</link>
       <pubDate>Sat, 06 Mar 2021 22:59:08 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210306_tsukae/</guid>
+      <guid>http://localhost:1313/210306_tsukae/</guid>
       <description>&lt;p&gt;Readers may recall that six months ago I wrote about the &lt;a href=&#34;http://localhost:1313/posts/200817_mostcommonlinuxcommand/&#34;&gt;most commonly used Linux commands&lt;/a&gt;.  I had seen a series of articles with that title and decided to see what my most common commands were.  I suggested the following as a way to pull command history and count usage.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;history | awk ‘&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;print $2&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;’ | sort | uniq -c
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/irevenko/tsukae&#34;&gt;Tsukae&lt;/a&gt; is a much better way to accomplish this task.  It&amp;rsquo;s much simpler and can produce the output in Bar or Pie chart, or as a list.  Tsukae is written by Ilya Revenko and can be cloned from GitHub.&lt;/p&gt;
@@ -2472,10 +2444,10 @@ I came across a fun utility to do the same thing, but prettier.  CPUfetch doesn&
     
     <item>
       <title>GNS3 Update for February, 2021</title>
-      <link>http://localhost:1313/posts/210211_gns3_february21/</link>
+      <link>http://localhost:1313/210211_gns3_february21/</link>
       <pubDate>Thu, 11 Feb 2021 07:03:01 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210211_gns3_february21/</guid>
+      <guid>http://localhost:1313/210211_gns3_february21/</guid>
       <description>&lt;p&gt;The GNS3 project continues to see regular updates, even though we haven&amp;rsquo;t see a release since December.  I check in on the project periodically and I&amp;rsquo;m going to make updating the status a regular feature of the blog.&lt;/p&gt;
 &lt;h2 id=&#34;state-of-2217&#34;&gt;State of 2.2.17&lt;/h2&gt;
 &lt;p&gt;The current release has been stable in my personal testing.  I use if for all kinds of things, including VMs, containers, and networking out to my physical topology.  A review of the issues reported in GitHub shows 15 bugs reported, with several related to Big Sur.  If you have a new M1 Mac, you might want to run the GNS3 VM and use the Web UI.  The M1 is new and I&amp;rsquo;m hearing reports of software being ported every week, so give this a little time.&lt;/p&gt;
@@ -2498,10 +2470,10 @@ I came across a fun utility to do the same thing, but prettier.  CPUfetch doesn&
     
     <item>
       <title>Won&#39;t you be my Neighbor?</title>
-      <link>http://localhost:1313/posts/210209_ipneighbors/</link>
+      <link>http://localhost:1313/210209_ipneighbors/</link>
       <pubDate>Tue, 09 Feb 2021 18:33:05 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210209_ipneighbors/</guid>
+      <guid>http://localhost:1313/210209_ipneighbors/</guid>
       <description>&lt;p&gt;Cisco devices have long had the Cisco Discovery Protocol (CDP).  CDP is a data link layer advertisement that is periodically broadcast (every 30 seconds).  Devices can listen and build a list of directly attached &amp;ldquo;neighbors&amp;rdquo; that includes critical information like the name, IP, type of device, and the port attached.  Other vendors developed their own protocols, including Nortel, Foundry, and Microsoft.  This information can be useful, either to familiarize yourself with a network or to communicate network information between systems.&lt;/p&gt;
 &lt;h2 id=&#34;arp-for-network-discovery&#34;&gt;ARP for Network Discovery&lt;/h2&gt;
 &lt;p&gt;PCs don&amp;rsquo;t typically support CDP, but you can do get some of this information by looking at the ARP table.  All network communication takes place at layer 2. When a device wants to communicate with another local device and only knows it&amp;rsquo;s IP, it uses the Address Resolution Protocol to send a data-link layer broadcast asking &amp;ldquo;Who&amp;rsquo;s using this IP?&amp;rdquo;.  The response is a MAC address.  This is easy to see using Wireshark, especially if you can place your network card in promiscuous mode, so if you&amp;rsquo;re unfamiliar with the process take a look!&lt;/p&gt;
@@ -2556,10 +2528,10 @@ Link Layer Discovery Protocol is a vendor-neutral version of the CDP concept.  L
     
     <item>
       <title>Linux Install Script</title>
-      <link>http://localhost:1313/posts/210207_installscript/</link>
+      <link>http://localhost:1313/210207_installscript/</link>
       <pubDate>Sun, 07 Feb 2021 10:32:29 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210207_installscript/</guid>
+      <guid>http://localhost:1313/210207_installscript/</guid>
       <description>&lt;p&gt;I install Linux pretty regularly.  Sometimes I&amp;rsquo;m setting up a new server instance, sometimes I&amp;rsquo;m deploying it to new hardware.  Many times I&amp;rsquo;m doing a clean install on a new release.  Very often, I&amp;rsquo;m reinstalling my workstation because I want to try a new flavor.  Whether you are a distro-hopper or just need to handle Disaster Recovery process, installing Linux and customizing it to fit your particular needs can take a half day or more.&lt;/p&gt;
 &lt;p&gt;In addition to the time, installing requires you to make sure that you bring critical applications forward, attach to required printers and servers, and put expected security elements in place.  It&amp;rsquo;s easy to forget a step.  If you haven&amp;rsquo;t done it in a while, it&amp;rsquo;s difficult to remember &lt;em&gt;how&lt;/em&gt; to handle a step.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s why years ago I started building an install script.  These days my I keep it in a private Github repository.  When setting up a new instance, I just grab the repo and run script.  For the record, it still takes a while, but I don&amp;rsquo;t have to babysit it.&lt;/p&gt;
@@ -2704,10 +2676,10 @@ The next sections are things that I would usually want, but not always.  One exa
     
     <item>
       <title>Deskreen</title>
-      <link>http://localhost:1313/posts/210201-deskreen/</link>
+      <link>http://localhost:1313/210201-deskreen/</link>
       <pubDate>Mon, 01 Feb 2021 13:43:09 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210201-deskreen/</guid>
+      <guid>http://localhost:1313/210201-deskreen/</guid>
       <description>&lt;p&gt;Deskreen is an open-source utility that allows you to send your Windows, Mac, or Linux desktop onto another screen, including another computer, a tablet, or even a phone.  It can duplicate an application, duplicate an entire display, or extend the desktop and treat the other computer as an additional monitor.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://deskreen.com/img/plugs/hdmi.jpg#floatsmallleft&#34; alt=&#34;HDMI Plug&#34;&gt;
 Deskreen outputs your display to a webpage with an embedded video.  Running the application prompts you to choose an application, existing display, or new display.  It then displays the produced webpage in text and with a 2D barcode.  The page, when opened on a separate device, allows you to play the video stream.&lt;/p&gt;
@@ -2732,10 +2704,10 @@ Just for fun, I sent the settings app to my phone at the same time.  Running two
     
     <item>
       <title>Diagrams on Linux</title>
-      <link>http://localhost:1313/posts/210113_gns3_diagram/</link>
+      <link>http://localhost:1313/210113_gns3_diagram/</link>
       <pubDate>Thu, 21 Jan 2021 17:42:48 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210113_gns3_diagram/</guid>
+      <guid>http://localhost:1313/210113_gns3_diagram/</guid>
       <description>&lt;p&gt;The articles I post generally start out as a way to share something I&amp;rsquo;ve learned through years of experience.  Less often, they are a way to share something that I&amp;rsquo;m researching currently.  This one started out as a way to share with you how much I rely on Lucidchart and to recommend it, but in the course of reviewing options it became a way to share what I&amp;rsquo;ve learned.&lt;/p&gt;
 &lt;p&gt;I thought that options for creating diagrams on Linux were few and most of them were poor.  What I found is that now (2021!) there are several &lt;em&gt;good&lt;/em&gt; options and that all the tools have matured.  I reviewed Creately, Dia, Draw.io, GNS3, LibreOffice Draw, Lucidchart, Pencil, SmartDraw, Visio, and yEd.   About half are desktop applications and the other half web applications.&lt;/p&gt;
 &lt;h2 id=&#34;diagramming-software&#34;&gt;Diagramming Software&lt;/h2&gt;
@@ -2809,10 +2781,10 @@ This is a powerful and easy-to-use Java-based tool.  The biggest knock on yEd is
     
     <item>
       <title>SSH Crypto</title>
-      <link>http://localhost:1313/posts/201229_ssh-crypto/</link>
+      <link>http://localhost:1313/201229_ssh-crypto/</link>
       <pubDate>Tue, 29 Dec 2020 13:01:35 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201229_ssh-crypto/</guid>
+      <guid>http://localhost:1313/201229_ssh-crypto/</guid>
       <description>&lt;h1 id=&#34;cleaning-up-crypto&#34;&gt;Cleaning up Crypto&lt;/h1&gt;
 &lt;p&gt;A previous article - &lt;a href=&#34;http://localhost:1313/posts/201223_ssh-admin/&#34;&gt;SSH Admin&lt;/a&gt; - went through understanding who was logging into a Linux server using SSH or SFTP.  To continue that thought, let&amp;rsquo;s suppose that we are required to make sure that only cypher suites recommended in the CIS benchmarks are in use on a server.  Before we disable old options, we need to check and make sure that no one is using them!&lt;/p&gt;
 &lt;h2 id=&#34;understanding-local-crypto&#34;&gt;Understanding local crypto&lt;/h2&gt;
@@ -2919,10 +2891,10 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
     
     <item>
       <title>SSH Administrative Trivia</title>
-      <link>http://localhost:1313/posts/201223_ssh-admin/</link>
+      <link>http://localhost:1313/201223_ssh-admin/</link>
       <pubDate>Wed, 23 Dec 2020 18:47:30 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201223_ssh-admin/</guid>
+      <guid>http://localhost:1313/201223_ssh-admin/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s consider an interesting case: we&amp;rsquo;d like to identify remote ssh users.  Remember that SFTP is a part of SSH, so these commands will also identify SSH users.  There are a variety of ways to do this and some are even fairly obviouis.&lt;/p&gt;
 &lt;h2 id=&#34;who-or-w&#34;&gt;Who or w&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt; is a utility to display logged in users.  The man page can walk you through the various switches, but the two I find most valuable are &lt;em&gt;-a&lt;/em&gt; to show all and &lt;em&gt;-H&lt;/em&gt; to show headings.  The &lt;em&gt;all&lt;/em&gt; option includes the time that the session has been active, how it&amp;rsquo;s attached, and where it&amp;rsquo;s coming from.&lt;/p&gt;
@@ -3003,10 +2975,10 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
     
     <item>
       <title>A Love Letter to Flameshot</title>
-      <link>http://localhost:1313/posts/201210_flameshot/</link>
+      <link>http://localhost:1313/201210_flameshot/</link>
       <pubDate>Thu, 10 Dec 2020 14:28:39 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201210_flameshot/</guid>
+      <guid>http://localhost:1313/201210_flameshot/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/flameshot-demo.gif#floatright&#34; alt=&#34;Flameshot&#34;&gt; My friend Jared always extols the Unix philosophy that programs should &amp;ldquo;do one thing and do it well&amp;rdquo;.  One program that fits that description is &lt;em&gt;flameshot&lt;/em&gt;.  Flameshot makes great screenshots and allows you to easily annotate them.&lt;/p&gt;
 &lt;p&gt;A few years ago I was put in a position where I had to produce monthly reports that included screenshots from our tools.  The default gnome-screenshot application is difficult to work with.  It has to be re-invoked for each capture and it doesn&amp;rsquo;t allow you to easily adjust the parameters or annotate the picture.  As a result, I&amp;rsquo;d take a bunch of screenshots and each one involved a try or two to capture the right section, then opening in Gimp to edit.  It took &lt;em&gt;forever&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Flameshot made this an easy process.  Since then, I very commonly want to take a screenshot for this blog or for an email.  Usually I&amp;rsquo;m trying to demonstrate a function or show what a screen looks like.  This program allows me to quickly grab the section of the screen I need, highlight, draw, and even obfuscate sensitive portions (like credentials).&lt;/p&gt;
@@ -3032,10 +3004,10 @@ It also works well to map a keybinding to it, such as PrintScreen.  Link the key
     
     <item>
       <title>SMAG (command line graphing)</title>
-      <link>http://localhost:1313/posts/201201_smag/</link>
+      <link>http://localhost:1313/201201_smag/</link>
       <pubDate>Tue, 01 Dec 2020 20:35:56 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201201_smag/</guid>
+      <guid>http://localhost:1313/201201_smag/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a neat tool to try out - &amp;ldquo;Show Me a Graph&amp;rdquo; or SMAG.  SMAG is available on Github and is a command line tool to produce live character-based graphs on the command line.&lt;/p&gt;
 &lt;p&gt;There are all kinds of situations with modern cloud environments where we are working via SSH and a desktop and graphical tools aren&amp;rsquo;t available.  We still need to troubleshoot and a quick graph is a great way to get a sense of the situation.  Smag takes any command that produces a numeric output and turns that into a graph.&lt;/p&gt;
 &lt;p&gt;To use smag, either clone the repository or grab the latest release from Github.  The example from the site monitors the number of processes.&lt;/p&gt;
@@ -3067,10 +3039,10 @@ You can graph just about anything, but here&amp;rsquo;s a third example to demon
     
     <item>
       <title>Pop! OS</title>
-      <link>http://localhost:1313/posts/201126_pop-os/</link>
+      <link>http://localhost:1313/201126_pop-os/</link>
       <pubDate>Thu, 26 Nov 2020 10:17:03 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201126_pop-os/</guid>
+      <guid>http://localhost:1313/201126_pop-os/</guid>
       <description>&lt;p&gt;I recently wrote about my experiences with &lt;a href=&#34;http://localhost:1313/posts/201024_ubuntu2010/&#34;&gt;Ubuntu 20.10&lt;/a&gt;.  In that article, I mentioned that I previously found Gnome laggy and the app picker to be annoyingly unsorted.  That article got into Gnome 3.38, which seems to answer my issues by being perkier and providing a way to organize applications.  I also mentioend how much I appreciated Material Design, a tiling extension for Gnome.  That setup - Ubuntu 20.10 with Gnome 3.38 and Material Design - has worked really well on my laptop and a month later I remain enthusiastic about the way it organizes my work.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pop.system76.com/_nuxt/img/623f266-700.png#floatright&#34; alt=&#34;Pop OS&#34;&gt;
 But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is an i7 with 64GB of memory (perfect for GNS3!) and a 2K and 4K display.  The Material Design extension didn&amp;rsquo;t adapt well to the dual displays.  Gnome was still great, so I started hunting for a different tiling extension but the others didn&amp;rsquo;t install on 3.38.  I had tried &lt;em&gt;Pop! OS&lt;/em&gt; six months ago and really liked where System 76 was headed with auto-tiling, but had been frustrated by Gnome.  I decided to give the distribution another chance.&lt;/p&gt;
@@ -3089,10 +3061,10 @@ But . . . it doesn&amp;rsquo;t work so well on my desktop setup.  The desktop is
     
     <item>
       <title>Tilix</title>
-      <link>http://localhost:1313/posts/201125_tilix/</link>
+      <link>http://localhost:1313/201125_tilix/</link>
       <pubDate>Wed, 25 Nov 2020 07:50:59 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201125_tilix/</guid>
+      <guid>http://localhost:1313/201125_tilix/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://gnunn1.github.io/tilix-web/src/images/gallery/tilix-screenshot-3.png#floatright&#34; alt=&#34;Tilix&#34;&gt; Tilix is a terminal application for Linux that I recommend as a replacement for the stock program (like gnome-terminal) shipped with your distribution.  This article will walk through some of the reasons I like Tilix and will show you how to use it with GNS3.&lt;/p&gt;
 &lt;p&gt;The basic pitch of Tilix is that it is a tiling terminal.  New terminals exist in sessions.  Within a session, terminals can split the window horizontally or veritcally.&lt;/p&gt;
 &lt;p&gt;Think of a session like a desktop.  You could create a poor-man&amp;rsquo;s IDE by grouping three sessions on a desktop, with one showing a directory, a second running &lt;strong&gt;nano&lt;/strong&gt;, and the third ready to receive a command.  Another session could be used for networking, with terminals open to a firewall and switch.  You manage sessions with the drop-down menu on the right.&lt;/p&gt;
@@ -3110,10 +3082,10 @@ GNS3 allows you to set the terminal application it uses under &lt;em&gt;edit &am
     
     <item>
       <title>Kali Linux 2020.4</title>
-      <link>http://localhost:1313/posts/201120_kali_linux_2020_4/</link>
+      <link>http://localhost:1313/201120_kali_linux_2020_4/</link>
       <pubDate>Fri, 20 Nov 2020 10:30:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/201120_kali_linux_2020_4/</guid>
+      <guid>http://localhost:1313/201120_kali_linux_2020_4/</guid>
       <description>&lt;p&gt;My favourite Operating System (Kali Linux) has a new release: 2020.4.&lt;/p&gt;
 &lt;p&gt;The changes in this version include, but not limited to: ZSH is now Kali’s new default shell on desktop images and cloud, Bash remains the default shell for other platforms (ARM, containers, NetHunter, WSL) for the time being. Users can, of course, use that which they prefer, but be aware that, visually, Bash has been made to look more like ZSH.
 Upon logging into a Kali terminal or console, users may be presented with a &lt;strong&gt;message from Kali developers&lt;/strong&gt; that will point them to more information about that specific installation, in case they need it for troubleshooting&lt;/p&gt;
@@ -3137,10 +3109,10 @@ Upon logging into a Kali terminal or console, users may be presented with a &lt;
     
     <item>
       <title>Winapps</title>
-      <link>http://localhost:1313/posts/201110_winapps/</link>
+      <link>http://localhost:1313/201110_winapps/</link>
       <pubDate>Tue, 10 Nov 2020 08:24:53 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/201110_winapps/</guid>
+      <guid>http://localhost:1313/201110_winapps/</guid>
       <description>&lt;p&gt;Winapps is a project that allows running Windows applications as if they were a part of a Linux Desktop. It&amp;rsquo;s a sleight of hand - the apps run in a VM and an RDP window is created for just that application. However, it integrates with the Linux environment and even let&amp;rsquo;s you use &amp;ldquo;open with&amp;rdquo; types of functionality.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/brentstewart/winapps/develop/demo/demo.gif#floatright&#34; alt=&#34;WinApps&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To give it a try, clone the code from &lt;a href=&#34;https://github.com/Fmstrat/winapps&#34;&gt;GitHub&lt;/a&gt;. Remember that it&amp;rsquo;s running programs that are installed on a VM. If you don&amp;rsquo;t have a Windows VM, the project includes an empty KVM machine that Windows and applications can be installed within. You can use an existing Windows VM (or even physical machine) if you have one. Windows doesn&amp;rsquo;t have to be a VM on your local machine - I set this up to run with a copy of Windows I&amp;rsquo;m running on my ESXi server downstairs. Theoretically, you could use your laptop or a remote computer to be the &amp;ldquo;Windows source&amp;rdquo;.&lt;/p&gt;
@@ -3179,10 +3151,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>How to write an event to Windows and Linux logs</title>
-      <link>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</link>
+      <link>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</link>
       <pubDate>Sun, 25 Oct 2020 16:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201025_how_to_write_an_event_to_windows_event/</guid>
+      <guid>http://localhost:1313/201025_how_to_write_an_event_to_windows_event/</guid>
       <description>&lt;p&gt;Anyone who has trouble sleeping should discover the joys of reviewing Syslog data.  System logging contains a wealth of information that can assist in troubleshooting, security, and incident handling.  The hard part is wading through all the data to put together a useful and actionable story.  There are a wealth of tools to help us correlate and make sense these days, such as SIEM, but there are still times when we need to get into the data.&lt;/p&gt;
 &lt;p&gt;One of the first problems we encounter in understanding syslog is figuring out where to start in the stream of events.  It would be nice if there were a bookmark that we could reference.  This article is about inserting that bookmark into either Windows Event logs or Linux Journals.&lt;/p&gt;
 &lt;h2 id=&#34;powershell-sudo&#34;&gt;PowerShell sudo&lt;/h2&gt;
@@ -3228,10 +3200,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>Ubuntu 20.10</title>
-      <link>http://localhost:1313/posts/201024_ubuntu2010/</link>
+      <link>http://localhost:1313/201024_ubuntu2010/</link>
       <pubDate>Sat, 24 Oct 2020 18:40:56 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201024_ubuntu2010/</guid>
+      <guid>http://localhost:1313/201024_ubuntu2010/</guid>
       <description>&lt;p&gt;I had a chance to download Ubuntu 20.10 and install it on a gen 8 i5 laptop.  I typically use Cinnamon for a desktop environment, which I have long found to be mature, usable, and stable.  In the past, I&amp;rsquo;ve found Gnome to be laggy but I&amp;rsquo;ve heard good things about 3.38.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve become enamored of tiling windows as well.  I&amp;rsquo;ve tried i3, Pop OS!, and others.  So another thing I wanted to look into was the Material Design extension.&lt;/p&gt;
 &lt;h2 id=&#34;about-ubuntu-2010&#34;&gt;About Ubuntu 20.10&lt;/h2&gt;
@@ -3268,10 +3240,10 @@ I wanted to add the work I&amp;rsquo;d done back to the project, so I forked the
     
     <item>
       <title>SSHFS Automount</title>
-      <link>http://localhost:1313/posts/201017_sshfs_automount/</link>
+      <link>http://localhost:1313/201017_sshfs_automount/</link>
       <pubDate>Sat, 17 Oct 2020 12:13:01 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/201017_sshfs_automount/</guid>
+      <guid>http://localhost:1313/201017_sshfs_automount/</guid>
       <description>&lt;p&gt;I described using SSHFS as an alternative to NFS back in &lt;a href=&#34;http://localhost:1313/posts/200813_using_ssh3/&#34;&gt;Using SSH3&lt;/a&gt;. I&amp;rsquo;ve been using SSHFS as a standard way to mount since then, partly because I can use the same technique on a variety of OS and partly because it seems to work cleaner for me than straight NFS. However, I&amp;rsquo;ve been using a batch file to mount drives and that&amp;rsquo;s getting old. I&amp;rsquo;d like to just add the SSHFS targets into &lt;em&gt;/etc/fstab&lt;/em&gt; and get them to automount.
 As a general rule, the Arch Wiki is a great place to find all things Linux. Even though I&amp;rsquo;m running an Ubuntu variant, the Arch Wiki set me straight. For this to work there are a number of things that have to be set.
 First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_ssh2/&#34;&gt;Using SSH2&lt;/a&gt; I need to make sure that logging into my target is done with keys so that an interactive password is not required. See the previous article for a more detailed walk through, but the basic process is:&lt;/p&gt;
@@ -3296,10 +3268,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Using SSH (Part 5) - Remotely Possible</title>
-      <link>http://localhost:1313/posts/200922_using_ssh5/</link>
+      <link>http://localhost:1313/200922_using_ssh5/</link>
       <pubDate>Tue, 22 Sep 2020 14:47:47 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200922_using_ssh5/</guid>
+      <guid>http://localhost:1313/200922_using_ssh5/</guid>
       <description>&lt;p&gt;I confess that I never meant for this to be an SSH blog. It was an easy topic to write about when we started, but friends keep suggesting new things I should cover. The takeaway then is that SSH is a heck of a tool and can be used to accomplish a lot of different things.&lt;/p&gt;
 &lt;p&gt;Today&amp;rsquo;s topic is running a GUI program on a remote computer and displaying the output locally. Pretty cool, right? This is suprisingly easy to do.&lt;/p&gt;
 &lt;p&gt;Why would we want to do this? I already covered that under &amp;ldquo;pretty cool&amp;rdquo;, but I suppose I could say something about using your netbook to run a big program that needs lots of RAM and CPU.&lt;/p&gt;
@@ -3320,10 +3292,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Git (and run) a File!</title>
-      <link>http://localhost:1313/posts/200910_git_a_file/</link>
+      <link>http://localhost:1313/200910_git_a_file/</link>
       <pubDate>Thu, 10 Sep 2020 11:03:09 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200910_git_a_file/</guid>
+      <guid>http://localhost:1313/200910_git_a_file/</guid>
       <description>&lt;p&gt;I maintain a private Github repository for my Linux install scripts.  My install scripts setup PPAs, install programs that I typically use, and setup my system the way I want it.  The repository has scripts for Ubuntu and Red Hat variants, plus secondary scripts that perform other admin tasks.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/githubpriv1.png#floatsmallright&#34; alt=&#34;GitHub Repository Settings&#34;&gt;&lt;/p&gt;
 &lt;p&gt;These scripts aren&amp;rsquo;t supposed to have personal information in them, but things like IP addresses, paths, and security measures could sneak in.  I don&amp;rsquo;t want to have to worry about revealing something that opens me to attack, so the repos are private.
@@ -3385,10 +3357,10 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
     
     <item>
       <title>Fonts on Linux</title>
-      <link>http://localhost:1313/posts/200909_fonts_on_linux/</link>
+      <link>http://localhost:1313/200909_fonts_on_linux/</link>
       <pubDate>Wed, 09 Sep 2020 16:42:10 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200909_fonts_on_linux/</guid>
+      <guid>http://localhost:1313/200909_fonts_on_linux/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m a little bit of a font nerd.  In the early 90s, someone who knew computers and had a laser printer had an easy opportunity to get into graphic design.  I knew computers and the college had a laser printer, so I got a copy of &lt;strong&gt;Looking Good in Print&lt;/strong&gt; and dabbled.  I&amp;rsquo;ve written about this earlier in describing my love of &lt;a href=&#34;http://localhost:1313/posts/200803_funwithpostscript/&#34;&gt;Postscript&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;d like to have some font options on Linux, there are some great places to get high-quality fonts that work well with Linux applications.  This is a minor, but hopefully useful tip!&lt;/p&gt;
 &lt;h2 id=&#34;formats&#34;&gt;Formats&lt;/h2&gt;
@@ -3415,10 +3387,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Using SSH Part 4 - Port Forwarding</title>
-      <link>http://localhost:1313/posts/200830_using_ssh4/</link>
+      <link>http://localhost:1313/200830_using_ssh4/</link>
       <pubDate>Sun, 30 Aug 2020 15:12:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200830_using_ssh4/</guid>
+      <guid>http://localhost:1313/200830_using_ssh4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/SSH-Tunnel.png#floatright&#34; alt=&#34;SSH Tunnel&#34;&gt;&lt;strong&gt;Problem&lt;/strong&gt;: We want to access an internal web page that is behind a firewall.  We have SSH access to a server behind the firewall, and &lt;em&gt;that&lt;/em&gt; server can see the intranet.&lt;/p&gt;
 &lt;p&gt;SSH has a solution for this type of problem - tunneling.  Most people use SSH as a telnet replacement &amp;ndash; as just a way to get a terminal session.  SSH is capable of much more than mere terminal access.  There are several ways to accomplish out goal, so let&amp;rsquo;s sort through them.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This article demonstrates an obscure and useful way to use a tool, but raises two important points.  First, don&amp;rsquo;t take any part of this to be an example of good design.  I&amp;rsquo;ve constructed a case that allows demonstrating a technique.  Second, using the tool this way may short-circuit your organizations&amp;rsquo; security design and so security folks may want to mitigate against allowing this use.&lt;/p&gt;
@@ -3449,10 +3421,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Most Commonly Used Linux Commands</title>
-      <link>http://localhost:1313/posts/200817_mostcommonlinuxcommand/</link>
+      <link>http://localhost:1313/200817_mostcommonlinuxcommand/</link>
       <pubDate>Mon, 17 Aug 2020 12:47:16 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200817_mostcommonlinuxcommand/</guid>
+      <guid>http://localhost:1313/200817_mostcommonlinuxcommand/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve seen some articles recently on &amp;ldquo;Linux commands frequently used by admins&amp;rdquo;  or &amp;ldquo;15 commonly used Linux commands&amp;rdquo;, which got me thinking . . . what commands do I use most frequently?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;history&lt;/strong&gt; shows us a list of recent commands starting with a sequence number (example below).  But I just want the command!&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;gt; brent@MintyTwenty:__~$ history__  
@@ -3501,10 +3473,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Using SSH - Part 3 (File Shares)</title>
-      <link>http://localhost:1313/posts/200813_using_ssh3/</link>
+      <link>http://localhost:1313/200813_using_ssh3/</link>
       <pubDate>Thu, 13 Aug 2020 11:15:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200813_using_ssh3/</guid>
+      <guid>http://localhost:1313/200813_using_ssh3/</guid>
       <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
 &lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
 &lt;h2 id=&#34;sftp-filezilla&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
@@ -3555,10 +3527,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Using SSH - Part 2 (Authentication)</title>
-      <link>http://localhost:1313/posts/200812_using_ssh2/</link>
+      <link>http://localhost:1313/200812_using_ssh2/</link>
       <pubDate>Wed, 12 Aug 2020 11:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200812_using_ssh2/</guid>
+      <guid>http://localhost:1313/200812_using_ssh2/</guid>
       <description>&lt;p&gt;This aricle makes up part two of the series on SSH.  If you&amp;rsquo;re interested in the basics or how to setup a banner, refer to the first article.  As with the first article, I&amp;rsquo;ve tested all of this on Ubuntu Linux and exact commands may vary as you get farther from there.&lt;/p&gt;
 &lt;h2 id=&#34;secure-authentication-with-passwords&#34;&gt;Secure Authentication with Passwords&lt;/h2&gt;
 &lt;p&gt;By default, SSH authenticates users via a password.  Passwords are transmitted in a secure manner, but can be prone to brute force guessing attacks.&lt;/p&gt;
@@ -3646,10 +3618,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Using SSH - Part 1 (Basics and Banners)</title>
-      <link>http://localhost:1313/posts/200811_using_ssh1/</link>
+      <link>http://localhost:1313/200811_using_ssh1/</link>
       <pubDate>Tue, 11 Aug 2020 12:36:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200811_using_ssh1/</guid>
+      <guid>http://localhost:1313/200811_using_ssh1/</guid>
       <description>&lt;p&gt;SSH is a pretty well known protocol that&amp;rsquo;s used for a lot of different things.  Most of us are familiar with the basics and a trick or two.  This article is to try to consolidate a lot of the uses I have for SSH and share them.  The article is a quick review of basic terminal access and banners.  This is the first in a series, so more advanced topics are covered in succeeding posts.&lt;/p&gt;
 &lt;h2 id=&#34;the-basics&#34;&gt;The Basics&lt;/h2&gt;
 &lt;p&gt;SSH is included in modern operating systems.  Apparently it can now also be installed on Windows (I&amp;rsquo;ve included a link).  If you use Windows, the standard client suggested is PuTTY (I really like Solar-PuTTY as well). I have not used Windows as a client or server in my testing, so hopefully my comments will be helpful but I suspect server setup is going to be different.&lt;/p&gt;
@@ -3699,10 +3671,10 @@ Option #2 is to search for fonts online.  One great place to get (free!) quality
     
     <item>
       <title>Linux Home Cloud Backup</title>
-      <link>http://localhost:1313/posts/200804_homebackup/</link>
+      <link>http://localhost:1313/200804_homebackup/</link>
       <pubDate>Tue, 04 Aug 2020 09:12:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/200804_homebackup/</guid>
+      <guid>http://localhost:1313/200804_homebackup/</guid>
       <description>&lt;p&gt;At one point, I was taught to divide tasks by priority A, B, C.  As I&amp;rsquo;ve gotten older, I&amp;rsquo;ve converted that scale into &amp;ldquo;things that will immediately get me fired or divorced&amp;rdquo;, &amp;ldquo;things that will eventually get me fired or divorced&amp;rdquo;, and &amp;ldquo;things I&amp;rsquo;d like to do if I have time&amp;rdquo;.  One of the &amp;ldquo;A&amp;rdquo; tasks on this scale is making sure that we don&amp;rsquo;t lose our family digital pictures!&lt;/p&gt;
 &lt;p&gt;Our home file server is an Ubuntu VM.  Over the years, I&amp;rsquo;ve used a variety of strategies to maintain personal backups.  Recently, I felt the time was right to move to cloud based backup - both for the convenience and the security of having things off-site.  I considered AWS S3, but Backblaze offers a similar and less-expensive service.  A former employer used Backblaze for laptop backups and I administered that system, and I always felt they did a good job and were reasonable to work with.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/BB_bucket_setup.png#floatright&#34; alt=&#34;Backblaze Dashboard&#34;&gt;  I settled on using Duplicati for the backkup software.  Duplicati runs on everything (Linux + various less secure OS), has a DEB, and is FOSS.  Duplicati has built in support for cloud backup, including Backblaze and S3.  I have a friend that uses Duplicati and it&amp;rsquo;s discussed on Jupiter Broadcasting, so I wanted to give it a try.&lt;/p&gt;

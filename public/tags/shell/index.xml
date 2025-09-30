@@ -12,10 +12,10 @@
     
     <item>
       <title>Biz card</title>
-      <link>http://localhost:1313/posts/231025_bizcard/</link>
+      <link>http://localhost:1313/231025_bizcard/</link>
       <pubDate>Wed, 25 Oct 2023 21:14:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/231025_bizcard/</guid>
+      <guid>http://localhost:1313/231025_bizcard/</guid>
       <description>&lt;p&gt;One of the guys on Jupiter Broadcasting spoke about a curl-able business card and I thought, &amp;ldquo;Gotta try it&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;A little searching led me to an example - the card of &lt;a href=&#34;https://github.com/tallguyjenks/BusinessCard/blob/master/business_card&#34;&gt;Bryan Jenks&lt;/a&gt;.  I used Bryan&amp;rsquo;s work as a template.  Here&amp;rsquo;s what my finished version looks like.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/bizcard.png#floatleft&#34; alt=&#34;My curlable business card&#34;&gt;&lt;/p&gt;
@@ -115,10 +115,10 @@
     
     <item>
       <title>Terminal Weather</title>
-      <link>http://localhost:1313/posts/230910_terminal_weather/</link>
+      <link>http://localhost:1313/230910_terminal_weather/</link>
       <pubDate>Sun, 10 Sep 2023 19:45:03 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230910_terminal_weather/</guid>
+      <guid>http://localhost:1313/230910_terminal_weather/</guid>
       <description>&lt;p&gt;I found a fun addition to my command line - wttr.in.  I live in Hickory, NC, and the following curl command will return the weather to the command line:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;curl &#39;https://wttr.in/Hickory%20NC&#39;?0?A?u
 Weather report: Hickory NC
@@ -181,10 +181,10 @@ alias forcast=&amp;quot;curl &#39;https://wttr.in/Hickory%20NC&#39;?0?A?u?m&amp;
     
     <item>
       <title>Save to Kindle with a DIY CI</title>
-      <link>http://localhost:1313/posts/230514_save2kindle/</link>
+      <link>http://localhost:1313/230514_save2kindle/</link>
       <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230514_save2kindle/</guid>
+      <guid>http://localhost:1313/230514_save2kindle/</guid>
       <description>&lt;p&gt;My &lt;a href=&#34;http://localhost:1313/posts/230509_word2obsidian/&#34;&gt;previous post&lt;/a&gt; dealt with building an easy way to convert Word files to Markdown and automatically incorporate them in Obsidian.  That was accomplished by copying the DOCX file into a directory and having automation to perform the actions to get the file into the right place with the right format.  I was pleased with the way that worked out and thought about other places where I&amp;rsquo;d like to use a similar approach.&lt;/p&gt;
 &lt;h1 id=&#34;print-to-tablet&#34;&gt;Print to Tablet&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve always wanted a way to &amp;ldquo;print to tablet&amp;rdquo;.  I&amp;rsquo;ve had IPads and Galaxy Tabs and enjoy the form factor - tablets are an easy way to read.  But there&amp;rsquo;s never been a great way to move something I create on my desktop over to the tablet.  I&amp;rsquo;ve resorted to saving it to PDF, emailing it to myself, and then opening it on the tablet.  But wait!  Because of the way tabllet break up storage, it&amp;rsquo;s usually confusing to understand where the file is stored and which programs should be used.  Bah!&lt;/p&gt;
@@ -279,10 +279,10 @@ done
     
     <item>
       <title>Word to Obsidian with a DIY CI</title>
-      <link>http://localhost:1313/posts/230509_word2obsidian/</link>
+      <link>http://localhost:1313/230509_word2obsidian/</link>
       <pubDate>Tue, 09 May 2023 21:20:24 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230509_word2obsidian/</guid>
+      <guid>http://localhost:1313/230509_word2obsidian/</guid>
       <description>&lt;p&gt;I use Obsidian as a note taking journal, but I get a lot of documents in other formats that I&amp;rsquo;d like to include in that journal.  One example is Word docs, such as my weekly reports.  I&amp;rsquo;ve copied some PDFs into my Obsidian vault, but for some reason I hit on the idea of converting DOCX to Markdown.&lt;/p&gt;
 &lt;h2 id=&#34;what-didnt-work&#34;&gt;What Didn&amp;rsquo;t Work&lt;/h2&gt;
 &lt;p&gt;Just to save you time, I&amp;rsquo;ll mention a few ideas that I tried and discarded on the way.  There is a plugin to save files from Word in Markdown called &lt;a href=&#34;https://www.writage.com/&#34;&gt;Writage&lt;/a&gt;.  It&amp;rsquo;s $29, but a trial version is available.  I&amp;rsquo;m obstinately opposed to closed source and I&amp;rsquo;m feeling less and less comfortable about downloading and installing EXEs and MSIs from random websites, so I haven&amp;rsquo;t tried it.&lt;/p&gt;
@@ -392,10 +392,10 @@ done
     
     <item>
       <title>Automaticly adding Hugo articles to Obsidian</title>
-      <link>http://localhost:1313/posts/230313_blog2obsidian/</link>
+      <link>http://localhost:1313/230313_blog2obsidian/</link>
       <pubDate>Mon, 13 Mar 2023 18:08:17 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_blog2obsidian/</guid>
+      <guid>http://localhost:1313/230313_blog2obsidian/</guid>
       <description>&lt;h2 id=&#34;incorporating-blog-articles-in-obsidian&#34;&gt;Incorporating blog articles in Obsidian&lt;/h2&gt;
 &lt;p&gt;Most of my writing occurs in two places, but I&amp;rsquo;d like to consolidate it into my &amp;ldquo;second brain&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;My blog articles are written in Visual Studio Code, in markdown so that they can be compiled via &lt;a href=&#34;http://localhost:1313/posts/210102_hugoafter6&#34;&gt;hugo&lt;/a&gt;.  I&amp;rsquo;ve discussed in this blog that Obsidian - also in Markdown -  is setup as my &amp;ldquo;second brain&amp;rdquo;.  My blog posts represent an important part of that &amp;ldquo;second brain&amp;rdquo;, so I&amp;rsquo;d like to make sure they&amp;rsquo;re included in my vault.  Since both are markdown, this should be fairly simple.  This should just require that I copy my hugo content directory into my obsidian directory.  To test this, I made a quick script.&lt;/p&gt;
@@ -420,10 +420,10 @@ The five variables before the job are minute, hour, day, month, and day of the w
     
     <item>
       <title>Sending Email through Google from the Command Line</title>
-      <link>http://localhost:1313/posts/230313_command_line_email/</link>
+      <link>http://localhost:1313/230313_command_line_email/</link>
       <pubDate>Sun, 12 Mar 2023 18:22:33 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230313_command_line_email/</guid>
+      <guid>http://localhost:1313/230313_command_line_email/</guid>
       <description>&lt;p&gt;In the course of another project, I recently worked out how to send email through Gmail from the Linux shell.  This is both a really cool and powerful tool as well as something I could see incorporating into a lot of future work.  Since it had such utility, I wanted to document the process for myself and share that with you.&lt;/p&gt;
 &lt;p&gt;Some Linux operations, such as cron, will send output to the local mail spooler.  Files sent this way end up in /var/mail/$USER or /var/spool/mail/$USER.  Sendmail can be configured as well so that the output goes to a public email address, however running Sendmail involves a more complication and overhead.  For instance, mail coming from an SMTP server has to be trusted by the receiver and a lot of places (O365, Gmail, etc) don&amp;rsquo;t trust random SMTP servers that pop up - for good reason.&lt;/p&gt;
 &lt;p&gt;SSMTP is a program that takes this &amp;ldquo;local mail&amp;rdquo; and sends it to an external SMTP system.  It can be configured to work with any SMTP server, but I use Google Mail and so that&amp;rsquo;s the example I&amp;rsquo;ll walk through.&lt;/p&gt;
@@ -456,10 +456,10 @@ FROM:YOU@YOURCOMPANY.COM
     
     <item>
       <title>Command Line Browser Carbonyl</title>
-      <link>http://localhost:1313/posts/230305_carbonyl/</link>
+      <link>http://localhost:1313/230305_carbonyl/</link>
       <pubDate>Sun, 05 Mar 2023 21:54:31 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230305_carbonyl/</guid>
+      <guid>http://localhost:1313/230305_carbonyl/</guid>
       <description>&lt;p&gt;Not sure where to classify this discovery - Carbonyl is a shell-based brower that is available for Linux, Mac, and Windows.  Carbonyl is built on a Chromium engine and does not support plugins at this point or tie into an existing Chrome installation.&lt;/p&gt;
 &lt;p&gt;Carbonyl is fast and it produces a low-res but usable web page.  It is surprisingly responsive - there&amp;rsquo;s a demo of someone playing Doom using it and I watched some Youtube using it.  That&amp;rsquo;s a little hard to visualize, so you may just have to try it.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s Carbonyl producing a portion of this site: &lt;img src=&#34;http://localhost:1313/230305_Carbonyl.png&#34; alt=&#34;Carbonyl&#34;&gt;&lt;/p&gt;
@@ -476,10 +476,10 @@ FROM:YOU@YOURCOMPANY.COM
     
     <item>
       <title>Oh My Posh</title>
-      <link>http://localhost:1313/posts/220124_oh_my_posh/</link>
+      <link>http://localhost:1313/220124_oh_my_posh/</link>
       <pubDate>Tue, 25 Jan 2022 19:05:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220124_oh_my_posh/</guid>
+      <guid>http://localhost:1313/220124_oh_my_posh/</guid>
       <description>&lt;p&gt;I really like the powerline-style prompts that jazz up the command line and I&amp;rsquo;d like to be able to carry that experience through from Linux to Windows.  It seems like everytime I install a new systema and think about this, I find another slightly different way to do something similar.  Recently I found &lt;em&gt;Oh My Posh&lt;/em&gt;, which is designed to support Windows, Linux, and MacOS.  The attraction here is that this gives me the prompt style I like from a consolidated source and with a defined way to set it up.&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s an example of OMP installed in Linux running inside Tilix.  You can see that it&amp;rsquo;s providing me collapsed directory information, git info, and the time of the last command.  OMP can be customized and the details of that are described extensively in the online docs.
 &lt;img src=&#34;http://localhost:1313/omp_tilix.png#center&#34; alt=&#34;Oh My Posh in Tilix on Linux&#34;&gt;
@@ -534,10 +534,10 @@ load(io.popen(&#39;oh-my-posh --config=&amp;quot;C:/Users/Brent/.oh-my-posh/them
     
     <item>
       <title>Sudo for Windows Powershell</title>
-      <link>http://localhost:1313/posts/220124_sudo_on_windows/</link>
+      <link>http://localhost:1313/220124_sudo_on_windows/</link>
       <pubDate>Sun, 23 Jan 2022 18:28:41 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220124_sudo_on_windows/</guid>
+      <guid>http://localhost:1313/220124_sudo_on_windows/</guid>
       <description>&lt;p&gt;Some Windows Powershell commands must be run from Powershell running in an administrative context.  It&amp;rsquo;s a little bit of a pain when you need to invoke Powershell this way (right click it in the menu).  The real problem is once there&amp;rsquo;s a terminal up, do you limit this to just the command that requires it or do you just work out of the open (administrative) terminal window?  Choosing to remain in that admin context could lead to trouble.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/sudologo.png#floatsmallleft&#34; alt=&#34;Sudo Logo&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;the-need-for-sudo&#34;&gt;The need for sudo&lt;/h2&gt;
@@ -564,10 +564,10 @@ scoop install sudo
     
     <item>
       <title>Chocolatey Installer for Windows</title>
-      <link>http://localhost:1313/posts/220118_choco/</link>
+      <link>http://localhost:1313/220118_choco/</link>
       <pubDate>Tue, 18 Jan 2022 15:27:47 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/220118_choco/</guid>
+      <guid>http://localhost:1313/220118_choco/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m setting up a new Windows 10 VM (this time in VMWare) and decided to use Chocolatey to install applications this time, since I tried &lt;em&gt;winget&lt;/em&gt; last time.  I haven&amp;rsquo;t tried Chocolatey in a while, and I&amp;rsquo;ve spent a lot of time exclusively in Linux since then so I was curious what I would make of it, especially in comparison to &lt;a href=&#34;http://localhost:1313/posts/211228_winget/&#34;&gt;Winget&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://chocolatey.org/&#34;&gt;Chocolatey&lt;/a&gt; is a package manager like apt.  You can use it to search for, install, update, and uninstall programs.  This is particularly useful if you have a &amp;ldquo;standard setup&amp;rdquo; for new computers - it&amp;rsquo;s possible to build a script to install the apps you expect.  Windows Update only covers Microsoft programs, so Chocolatey fills another gap by updating all the programs it installs from the command line.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/chco-square.svg#floatsmallleft&#34; alt=&#34;Logo&#34;&gt;&lt;/p&gt;
@@ -593,10 +593,10 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
     
     <item>
       <title>Winget</title>
-      <link>http://localhost:1313/posts/211228_winget/</link>
+      <link>http://localhost:1313/211228_winget/</link>
       <pubDate>Tue, 28 Dec 2021 11:46:32 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/211228_winget/</guid>
+      <guid>http://localhost:1313/211228_winget/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m experimenting with KVM and decided to build a new Windows VM.  I&amp;rsquo;m currently using Pop!_OS 21.10 which uses the 5.15 kernel.  Turns out that breaks Windows on VMWare workstation and it looks like the cause is VMWare not keeping up with the latest kernels.  There are some patches available, but it&amp;rsquo;s the week between Christmas and New Years and seemed like a good chance to review the FOSS alternative.&lt;/p&gt;
 &lt;p&gt;Part of my troubleshooting process on Linux was to make sure that I haven&amp;rsquo;t made a change that&amp;rsquo;s impacting VMWare.  Pop! has a really cool feature that will roll-back to a clean install, but leave your personal files.  Reinstalling missing applications is pretty easy in linux.  Installing hugo again is as easy as:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt install hugo
@@ -622,10 +622,10 @@ Winget shows promise and it&amp;rsquo;s worth keeping an eye on.  But I won&amp;
     
     <item>
       <title>Tsukae - A tool for graphing command usage</title>
-      <link>http://localhost:1313/posts/210306_tsukae/</link>
+      <link>http://localhost:1313/210306_tsukae/</link>
       <pubDate>Sat, 06 Mar 2021 22:59:08 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/210306_tsukae/</guid>
+      <guid>http://localhost:1313/210306_tsukae/</guid>
       <description>&lt;p&gt;Readers may recall that six months ago I wrote about the &lt;a href=&#34;http://localhost:1313/posts/200817_mostcommonlinuxcommand/&#34;&gt;most commonly used Linux commands&lt;/a&gt;.  I had seen a series of articles with that title and decided to see what my most common commands were.  I suggested the following as a way to pull command history and count usage.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;history | awk ‘&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;print $2&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;’ | sort | uniq -c
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/irevenko/tsukae&#34;&gt;Tsukae&lt;/a&gt; is a much better way to accomplish this task.  It&amp;rsquo;s much simpler and can produce the output in Bar or Pie chart, or as a list.  Tsukae is written by Ilya Revenko and can be cloned from GitHub.&lt;/p&gt;

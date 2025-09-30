@@ -12,10 +12,10 @@
     
     <item>
       <title>Building a Home Web Dashboard</title>
-      <link>http://localhost:1313/posts/230930_dashboards/</link>
+      <link>http://localhost:1313/230930_dashboards/</link>
       <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230930_dashboards/</guid>
+      <guid>http://localhost:1313/230930_dashboards/</guid>
       <description>&lt;h1 id=&#34;home-dashboards&#34;&gt;Home Dashboards&lt;/h1&gt;
 &lt;p&gt;Home web dashboards serve as a &amp;ldquo;starting point&amp;rdquo; for web sessions.  Especially as a certain portion of applications now reside online, a home dashboard is a customized menu of the things that you need presented in the way you want.  Dashboards could be as simple as a collection of links, or include things like network and server statistics or embedded frames.&lt;/p&gt;
 &lt;p&gt;Hosting your own dashboard also reduces internet traffic, limits the public data footprint (particularly if you are using it to access local resources), and creates resiliancy (in the sense that local services are still easily accessible if the Internet connection is down).&lt;/p&gt;

@@ -12,10 +12,10 @@
     
     <item>
       <title>Building a Home Web Dashboard</title>
-      <link>http://localhost:1313/posts/230930_dashboards/</link>
+      <link>http://localhost:1313/230930_dashboards/</link>
       <pubDate>Sat, 30 Sep 2023 11:29:45 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/230930_dashboards/</guid>
+      <guid>http://localhost:1313/230930_dashboards/</guid>
       <description>&lt;h1 id=&#34;home-dashboards&#34;&gt;Home Dashboards&lt;/h1&gt;
 &lt;p&gt;Home web dashboards serve as a &amp;ldquo;starting point&amp;rdquo; for web sessions.  Especially as a certain portion of applications now reside online, a home dashboard is a customized menu of the things that you need presented in the way you want.  Dashboards could be as simple as a collection of links, or include things like network and server statistics or embedded frames.&lt;/p&gt;
 &lt;p&gt;Hosting your own dashboard also reduces internet traffic, limits the public data footprint (particularly if you are using it to access local resources), and creates resiliancy (in the sense that local services are still easily accessible if the Internet connection is down).&lt;/p&gt;
@@ -80,10 +80,10 @@ services:
     
     <item>
       <title>Home Names</title>
-      <link>http://localhost:1313/posts/230226_home/</link>
+      <link>http://localhost:1313/230226_home/</link>
       <pubDate>Sun, 26 Feb 2023 14:56:13 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230226_home/</guid>
+      <guid>http://localhost:1313/230226_home/</guid>
       <description>&lt;h2 id=&#34;if-you-have-a-private-name-server-at-home-use-homearpa&#34;&gt;If you have a private name server at home, use &amp;ldquo;home.arpa&amp;rdquo;&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve used IPs for most of my home networking for a while.  At one point (years ago) I ran a Windows DNS server, but I&amp;rsquo;ve banished Windows and Linux DNS is extra work.  Plus, systemd makes DNS on Linux painful.&lt;/p&gt;
 &lt;p&gt;A couple of things have changed recently.  First, I&amp;rsquo;ve played with some server applications such as NextCloud that expect to be in a named environment.  Second, Pi-Hole has made running a home DNS server much, much, easier.&lt;/p&gt;
@@ -106,10 +106,10 @@ services:
     
     <item>
       <title>Nextcloud File Discovery</title>
-      <link>http://localhost:1313/posts/230102_nextcloud_file_discovery/</link>
+      <link>http://localhost:1313/230102_nextcloud_file_discovery/</link>
       <pubDate>Mon, 02 Jan 2023 14:47:26 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/230102_nextcloud_file_discovery/</guid>
+      <guid>http://localhost:1313/230102_nextcloud_file_discovery/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve heard good things about Nextcloud for a long time and finally decided to take the plunge.  I have a home file server that is accessed via sshfs and nfs, but it&amp;rsquo;s a little problematic to get to from Windows or mobile.  Nextcloud extends the file sharing through a web and dav interface to make it accessible from anywhere.  Nextcloud offers a lot of functionality, but my initial focus is just on straight-forward file-sharing.&lt;/p&gt;
 &lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
 &lt;p&gt;Setting up Nextcloud went okay, but it defaults to sharing directories at &lt;em&gt;/var/www/nextcloud/data&lt;/em&gt;.  I spent some time trying to change Nextcloud to access the directories that already had my files but didn&amp;rsquo;t see a good way.  Option two would be to move the files and my first attempt was to access Nextcloud on my desktop PC and drag files from the NFS share.  That was  s l o w.&lt;/p&gt;
