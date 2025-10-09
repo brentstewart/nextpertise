@@ -5,7 +5,7 @@ author: "Brent Stewart"
 date: "2025-10-07T10:43:06-04:00"
 
 math: false
-draft: true
+draft: false
 Victor_Hugo: "true"
 picture: ""
 Focus_Keyword: ""
