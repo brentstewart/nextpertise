@@ -3,18 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-10-06T21:24:58-04:00</lastmod>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/gns3/</loc>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/proxmox/</loc>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/gns3_proxmox/</loc>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/virtualization/</loc>
+    <lastmod>2025-10-08T10:00:18-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/linux/</loc>
+    <lastmod>2025-10-07T10:43:06-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/shell/</loc>
+    <lastmod>2025-10-07T10:43:06-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shell/</loc>
+    <lastmod>2025-10-07T10:43:06-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/proxmox/</loc>
     <lastmod>2025-10-06T21:24:58-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/linux_distros/</loc>
-    <lastmod>2025-10-01T20:01:46-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
-    <lastmod>2025-10-01T20:01:46-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-10-01T20:01:46-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/home-assistant/</loc>
@@ -35,22 +53,7 @@
     <loc>http://localhost:1313/240225_github_setup/</loc>
     <lastmod>2024-02-25T14:47:54-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/backup/</loc>
-    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/240206_pbs_restore/</loc>
-    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/virtualization/</loc>
-    <lastmod>2024-02-06T13:19:46-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/240204_pbs/</loc>
-    <lastmod>2024-02-04T13:19:46-05:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/231025_bizcard/</loc>
-    <lastmod>2023-10-25T21:14:12-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/shell/</loc>
     <lastmod>2023-10-25T21:14:12-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/231021_jirareport/</loc>
@@ -193,15 +196,6 @@
   </url><url>
     <loc>http://localhost:1313/230122_announcing/</loc>
     <lastmod>2023-01-22T13:27:41-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/gns3/</loc>
-    <lastmod>2023-01-21T10:00:18-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/proxmox/</loc>
-    <lastmod>2023-01-21T10:00:18-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/230121_gns3_proxmox/</loc>
-    <lastmod>2023-01-21T10:00:18-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/games/</loc>
     <lastmod>2023-01-15T15:03:12-05:00</lastmod>
@@ -587,6 +581,9 @@
     <loc>http://localhost:1313/200805_reasonablysecurebrowsing/</loc>
     <lastmod>2020-08-05T11:23:41-04:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/backup/</loc>
+    <lastmod>2020-08-04T09:12:52-04:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/200804_homebackup/</loc>
     <lastmod>2020-08-04T09:12:52-04:00</lastmod>
   </url><url>
@@ -594,9 +591,6 @@
     <lastmod>2020-08-03T16:59:30-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/200728_s3review/</loc>
-    <lastmod>2020-07-28T15:44:02-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/200728_vmware_3d_acceleration/</loc>
     <lastmod>2020-07-28T15:44:02-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/200724_render/</loc>

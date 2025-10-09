@@ -5,90 +5,103 @@
     <description>Recent content in Virtualization on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Feb 2024 13:19:46 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 08 Oct 2025 10:00:18 -0500</lastBuildDate>
     
         <atom:link href="http://localhost:1313/tags/virtualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Restoring from Proxmox Backup Server</title>
-      <link>http://localhost:1313/240206_pbs_restore/</link>
-      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
+      <title>Running GNS3 on Proxmox VE</title>
+      <link>http://localhost:1313/gns3_proxmox/</link>
+      <pubDate>Wed, 08 Oct 2025 10:00:18 -0500</pubDate>
       
-      <guid>http://localhost:1313/240206_pbs_restore/</guid>
-      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;http://localhost:1313/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
-&lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;is-it-working&#34;&gt;Is it working?&lt;/h2&gt;
-&lt;p&gt;Before we delve into how to restore a backup, it&amp;rsquo;s worth asking whether there is something there to restore!&lt;/p&gt;
-&lt;p&gt;Proxmox backup asks for an e-mail address during setup.  Assuming you enter a valid e-mail, you should get a note each time the backup job runs.  A screenshot of this email appears to the right.  You can see that it&amp;rsquo;s reporting successfully backing up four VMs (technically two LXD containers and two fully virtualized devices, but that difference isn&amp;rsquo;t the focus of this article).&lt;/p&gt;
-&lt;p&gt;My home server has crown-jewel level data assets.  Things like baby pictures, that would be awful to lose.  It&amp;rsquo;s important to note that the backup is one piece of a larger multi-level strategy to maintain those files.  That strategy includes using ZFS to protect against &amp;ldquo;data rot&amp;rdquo;, having some form of RAID to protect against disk error, backing up, and backing up offsite.&lt;/p&gt;
-&lt;p&gt;When it comes to the backup piece, setting it up is good.  Having some form of monitoring is better (email in this case, although there&amp;rsquo;s also a server screen you could go check out).  However there are a &lt;em&gt;lot&lt;/em&gt; of stories about backups that didn&amp;rsquo;t work when they were needed.&lt;/p&gt;
-&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
-&lt;p&gt;Enough pontificating!  On to the good stuff . . .&lt;/p&gt;
-&lt;h2 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h2&gt;
-&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
+      <guid>http://localhost:1313/gns3_proxmox/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m running GNS3 on Proxmox.  &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt; is fairly straight forward, but there are some tweaks needed to support Proxmox.&lt;/p&gt;
+&lt;h2 id=&#34;disk-format&#34;&gt;Disk Format&lt;/h2&gt;
+&lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-run-gns3-vm-on-proxmox-ve&#34;&gt;How to run GNS3 VM on Proxmox VE&lt;/h2&gt;
+&lt;p&gt;Nothing stands still, so before we get into instructions I&amp;rsquo;ll date this article.  This was originally written in January, 2023, and updated in October, 2025.&lt;/p&gt;
 &lt;ol&gt;
+&lt;li&gt;The first step is to &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;download&lt;/a&gt; the VMware ESXi GNS3 VM.&lt;/li&gt;
+&lt;li&gt;The downloaded file is a ZIP, which expands out to an OVA.  OVA is really just another ZIP, so expanding that out gives you two VMDK virtual disks, a manifest(MF) file and an OVF file.  The OVF provides information about the virtual hardware environment and the manifest has the hashes of all the files in the OVA.  We&amp;rsquo;re only interested in the two VMDK files (GNS3_VM-disk1.vmdk and GNS3_VM-disk2.vmdk).  You can expand these out using most file managers of via the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    tar xvf GNS3_VM.ova
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Upload the VMDK files to Proxmox.  In the &lt;em&gt;root&lt;/em&gt; home directory, I created an &lt;em&gt;import&lt;/em&gt; subdirectory for the files.  This is very easy to do with Filezilla or from the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    # sftp brent@server
+    sftp&amp;gt; cd import
+    sftp&amp;gt; put GNS3_VM-disk1.vmdk
+    sftp&amp;gt; put GNS3_VM-disk2.vmdk
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
+&lt;p&gt;Create a new Qemu VM in Proxmox by clicking the &amp;ldquo;Create VM&amp;rdquo; button in the upper right of the management page. &lt;img src=&#34;http://localhost:1313/230121-createvm.png&#34; alt=&#34;Create VM&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
+&lt;p&gt;You can accept the defaults on the General tab.  Under OS, steup the VM without any media.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnomedia.png#center&#34; alt=&#34;No Media&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
+&lt;p&gt;Accept defaults on the System tab and Disks tab.  I set my VM to use 4 processors (2 sockets, 2 cores each) and set the default memory to 16GB.  I didn&amp;rsquo;t see a lot of guidance on this, so that was a SWAG.  Note the ID (105 in my case).
+&lt;img src=&#34;http://localhost:1313/230121-GNS3VM.png#center&#34; alt=&#34;GNS3 VM&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
+&lt;p&gt;After the VM is created, select the VM, go to the Hardware section, and select the disk.  Click Detach and then Remove from the menu bar.
+&lt;img src=&#34;http://localhost:1313/230121-PVErmove.png#center&#34; alt=&#34;Remove disk&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Import the VMDK disks into Proxmox.  SSH into the host and use the &lt;strong&gt;qm&lt;/strong&gt; command to convert the disk to QCOW2 format and import it for use.  Change the machine ID (105 is my GNS3 VM) and make sure the VMDK file name matches before running the command below.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h2&gt;
-&lt;ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    root@pve:~/import# qm importdisk 105 GNS3_VM-disk1.vmdk local-lvm -format qcow2
+    importing disk &amp;#39;GNS3_VM-disk1.vmdk&amp;#39; to VM 105 ...
+    Logical volume &amp;#34;vm-105-disk-0&amp;#34; created.
+    transferred 0.0 B of 19.5 GiB (0.00%)
+    transferred 200.0 MiB of 19.5 GiB (1.00%)
+    transferred 400.0 MiB of 19.5 GiB (2.00%)
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;9&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
+&lt;p&gt;Attach the QCOW2 images to your VM using the Add button.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
+&lt;p&gt;Go to the Proxmox admin page, select the VM, select options, and set the boot order.  Double-click the boot Order line and a window will appear to allow you to drag the disk into the correct order.  Disk1, the smaller of the two images, should be enabled and the boot drive.
+&lt;img src=&#34;http://localhost:1313/230121-PVEboot.png#center&#34; alt=&#34;Boot order&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
+&lt;p&gt;You can also use another tweak: Go into Hardware and double-clicked the Network Device to put the device into a VLAN by setting the tag.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnet.png#center&#34; alt=&#34;Networking&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
+&lt;p&gt;Start the VM.  GNS3 started up in the correct VLAN and grabbed a DHCP address.  Opening a console, the boot screen of the VM shows the IP address assigned.  Accessing this address from a browser will provide the GNS3 web console.  You can also use this address in the GNS3 front-end to identify the back-end server.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Proxmox Backup Server</title>
-      <link>http://localhost:1313/240204_pbs/</link>
-      <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
+      <title>Proxmox</title>
+      <link>http://localhost:1313/proxmox/</link>
+      <pubDate>Mon, 06 Oct 2025 21:24:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/240204_pbs/</guid>
-      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
-&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;http://localhost:1313/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
-&lt;p&gt;Originally, I used a free version of VMWare (6.0 and later 6.5) but VMWare stopped supporting that version and it has never made sense to pay for an ESXi license for a home lab.  Proxmox  VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).  Recently, however, I had a hard-drive fail in the RAID array.  That server was already pretty long in the tooth, so I built a new one.
-&lt;div class=&#34;admonition note&#34;&gt;
-    &lt;div class=&#34;title&#34;&gt;note&lt;/div&gt;
-    &lt;div class=&#34;content&#34;&gt;Proxmox includes a container technology that is interesting, but different from what someone familiar with docker might intuitively expect.  I&amp;rsquo;ll get into that in a seperate post.  For purposes of this story, I&amp;rsquo;m using &amp;ldquo;vm&amp;rdquo; but as many of my workloads as possible run as LXC containers.&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;
-&lt;h2 id=&#34;so-what-happened-was---&#34;&gt;So what happened was . . .&lt;/h2&gt;
-&lt;p&gt;All good to this point, new server came up running PVE without a hitch.  I joined the servers together in a cluster and migrated VMs.  Most of my VMs, as mentioned, are single purpose appliances (either downloaded or assembled).  One of my VMs has a big disk file and is used to store my personal files.  And that&amp;rsquo;s the one that wouldn&amp;rsquo;t boot.&lt;/p&gt;
-&lt;p&gt;Because it&amp;rsquo;s the biggest disk (by far), I migrated other workloads first.  I also upgraded my home network to 2.5G to support the environment, so I took a little longer to handle this VM.  My guess is that the VM suffered corruption, either running in a limping-RAID1 or during transfer.&lt;/p&gt;
-&lt;h2 id=&#34;but-i-had-already---&#34;&gt;But I had already . . .&lt;/h2&gt;
-&lt;p&gt;I setup PBS about six months ago and it had been backing up my VMs every week.  I did a recovery on a small VM way back, but hadn&amp;rsquo;t really touched it since.  In this case, I was able to restore a copy of the impacted VM from a few days prior and recover all my files.  PBS runs in the background and emails me each week to let me know that it&amp;rsquo;s good.  Recovery of a 2TB disk image did take a couple hours, but it was simple to setup.  If you use PVE, I think you have to use PBS.&lt;/p&gt;
-&lt;h2 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h2&gt;
+      <guid>http://localhost:1313/proxmox/</guid>
+      <description>&lt;h2 id=&#34;proxmox-virtual-edition-pve&#34;&gt;Proxmox Virtual Edition (PVE)&lt;/h2&gt;
+&lt;p&gt;PVE is a hypervisor that supports LXC containers and full virtual machines.  It&amp;rsquo;s comparable to VMWare ESXi.  The comparison fits across the board.  There&amp;rsquo;s a Proxmox DataCenter Manager that&amp;rsquo;s similar to VMWare Cloud Director (VCD), and it supports a similar set of features such as high availability failover.&lt;/p&gt;
+&lt;p&gt;The current version is 9 (as of 10/25), but my experience has been poor when attempting to upgrade.  As a result I recommend v8 for the time being.  I also recommend running Proxmox Backup - the closest VMWare comparable might be Zerto.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been using PVE for a several years and I&amp;rsquo;ve been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  Second, I support virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
+&lt;p&gt;Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven&amp;rsquo;t proven to be transparent in their approach to licensing, plus the server hardware I was using died, so it made sense to explore alternatives.  Proxmox VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).&lt;/p&gt;
+&lt;h2 id=&#34;proxmox-backup-server&#34;&gt;Proxmox Backup Server&lt;/h2&gt;
+&lt;p&gt;PBS has saved my bacon several times.  It&amp;rsquo;s a &amp;ldquo;must&amp;rdquo; when running PVE because it&amp;rsquo;s an easy way to backup VMs.&lt;/p&gt;
+&lt;p&gt;Follow a 3-2-1 strategy for backups - at least 3 copies, at least two media types, at least one offline.  The original data is the first copy and PBS is the second &lt;em&gt;as long as the PBS VM sits on a seperate server&lt;/em&gt;.  I recommend Backblaze as a third offsite copy.&lt;/p&gt;
+&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
+&lt;h3 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h3&gt;
 &lt;p&gt;Setting up PBS is about as difficult as setting up PVE.  If you did the one, the other will not be a problem.  The documentation is good, but takes some time to read so here&amp;rsquo;s a quick walkthrough of the actions you&amp;rsquo;ll need to take.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Download and install PBS on a new machine.  I&amp;rsquo;m using an old NUC with a 5TB drive.  &lt;a href=&#34;https://www.proxmox.com/en/downloads&#34;&gt;Download&lt;/a&gt; the image and throw it on &lt;a href=&#34;http://localhost:1313/posts/210911_distrohoppingwventoy/&#34;&gt;Ventoy&lt;/a&gt;!  This is an easy and obvious setup, so I won&amp;rsquo;t walk you through clicking &amp;ldquo;next&amp;rdquo;.
 &lt;div class=&#34;admonition danger&#34;&gt;
     &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
-    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on PVE!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron like adding an NVME drive to this &lt;a href=&#34;https://www.amazon.com/gp/product/B0BWZB8971/?th=1&#34;&gt;Kikusenko&lt;/a&gt;.&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on the PVE it&amp;rsquo;s backing up!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron.&lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;When the process is complete, you can administer PBS from https://BACKUPSERVER:8007.  Login as root and the password you chose during setup.&lt;/li&gt;
 &lt;li&gt;Setup a Datastore on PBS.  &amp;ldquo;Add Datastore&amp;rdquo; is found under Datastore on the Proxmox menu.  This will make a local path available for backup use.&lt;/li&gt;
@@ -102,7 +115,7 @@
 &lt;p&gt;Get the &amp;ldquo;fingerprint&amp;rdquo; using the big &amp;ldquo;show Fingerprint&amp;rdquo; button on the dashboard.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h2&gt;
+&lt;h3 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_pbssetup.png#floatright&#34; alt=&#34;PBS setup in PVE&#34;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -115,7 +128,7 @@
 &lt;p&gt;Give the backup server an ID and enter in it&amp;rsquo;s IP address.  Use &lt;em&gt;root@pam&lt;/em&gt; as the username, the password you set on PBS and then supply the datastore setup in Step 3 above.  Here&amp;rsquo;s where you&amp;rsquo;ll need to paste in the fingerprint from PBS.  This is also the place where you can fiddle with retention and encryption if needed.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h2&gt;
+&lt;h3 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_automated_pbs.png#floatsmallleft&#34; alt=&#34;PBS Job setup&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The simple way to backup a VM at this point is just to select a VM and choose &amp;ldquo;Backup&amp;rdquo;.  No one remembers to do backups though, so the key is to have them happen automatically.&lt;/p&gt;
 &lt;ol&gt;
@@ -135,9 +148,42 @@
 &lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
+&lt;h3 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h3&gt;
+&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
 &lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
-&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but this made sense.  At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
-&lt;p&gt;Restoring specific files or VMs is a topic for a second article.  Hope this is helpful!&lt;/p&gt;
+&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but it&amp;rsquo;s consistent and mades sense.&lt;/p&gt;
 </description>
     </item>
     
@@ -964,76 +1010,6 @@ StrictNodes 1
     </item>
     
     <item>
-      <title>Running GNS3 on Proxmox VE</title>
-      <link>http://localhost:1313/230121_gns3_proxmox/</link>
-      <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
-      
-      <guid>http://localhost:1313/230121_gns3_proxmox/</guid>
-      <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
-&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
-&lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
-&lt;h2 id=&#34;how-to-run-gns3-vm-on-proxmox-ve&#34;&gt;How to run GNS3 VM on Proxmox VE&lt;/h2&gt;
-&lt;p&gt;Nothing stands still, so before we get into instructions I&amp;rsquo;ll date this article.  It&amp;rsquo;s January, 2023, and I used this process to get the VMWare ESXi GNS3 VM 2.2.36 to run on Proxmox VE 7.3-4 using Linux pve kernel 5.13-19-15.  I think Proxmox is now shipping 5.15, but I ran into a boot issue on my server and haven&amp;rsquo;t upgraded the kernel since I fixed it.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The first step is to &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;download&lt;/a&gt; the VMware ESXi GNS3 VM.&lt;/li&gt;
-&lt;li&gt;The downloaded file is a ZIP, which expands out to an OVA.  OVA is really just another ZIP, so expanding that out gives you two VMDK virtual disks, a manifest(MF) file and an OVF file.  The OVF provides information about the virtual hardware environment and the manifest has the hashes of all the files in the OVA.  We&amp;rsquo;re only interested in the two VMDK files (GNS3_VM-disk1.vmdk and GNS3_VM-disk2.vmdk).  You can expand these out using most file managers of via the command line.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    tar -zzvf GNS3_VM.ova
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;Upload the VMDK files to Proxmox.  In the &lt;em&gt;root&lt;/em&gt; home directory, I created an &lt;em&gt;import&lt;/em&gt; subdirectory for the files.  This is very easy to do with Filezilla or from the command line.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    # sftp brent@server
-    sftp&amp;gt; cd import
-    sftp&amp;gt; put GNS3_VM-disk1.vmdk
-    sftp&amp;gt; put GNS3_VM-disk2.vmdk
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Create a new Qemu VM in Proxmox by clicking the &amp;ldquo;Create VM&amp;rdquo; button in the upper right of the management page. &lt;img src=&#34;http://localhost:1313/230121-createvm.png&#34; alt=&#34;Create VM&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You can accept the defaults on the General tab.  Under OS, steup the VM without any media.
-&lt;img src=&#34;http://localhost:1313/230121-PVEnomedia.png#center&#34; alt=&#34;No Media&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Accept defaults on the System tab and Disks tab.  I set my VM to use 4 processors (2 sockets, 2 cores each) and set the default memory to 16GB.  I didn&amp;rsquo;t see a lot of guidance on this, so that was a SWAG.  Note the ID (105 in my case).
-&lt;img src=&#34;http://localhost:1313/230121-GNS3VM.png#center&#34; alt=&#34;GNS3 VM&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;After the VM is created, select the VM, go to the Hardware section, and select the disk.  Click Detach and then Remove from the menu bar.
-&lt;img src=&#34;http://localhost:1313/230121-PVErmove.png#center&#34; alt=&#34;Remove disk&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Import the VMDK disks into Proxmox.  SSH into the host and use the &lt;strong&gt;qm&lt;/strong&gt; command to convert the disk to QCOW2 format and import it for use.  Change the machine ID (105 is my GNS3 VM) and make sure the VMDK file name matches before running the command below.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    root@pve:~/import# qm importdisk 105 GNS3_VM-disk1.vmdk local-lvm -format qcow2
-    importing disk &amp;#39;GNS3_VM-disk1.vmdk&amp;#39; to VM 105 ...
-    Logical volume &amp;#34;vm-105-disk-0&amp;#34; created.
-    transferred 0.0 B of 19.5 GiB (0.00%)
-    transferred 200.0 MiB of 19.5 GiB (1.00%)
-    transferred 400.0 MiB of 19.5 GiB (2.00%)
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;9&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Attach the QCOW2 images to your VM using the Add button.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Go to the Proxmox admin page, select the VM, select options, and set the boot order.  Double-click the boot Order line and a window will appear to allow you to drag the disk into the correct order.  Disk1, the smaller of the two images, should be enabled and the boot drive.
-&lt;img src=&#34;http://localhost:1313/230121-PVEboot.png#center&#34; alt=&#34;Boot order&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;One other tweak that I used: I run multiple VLANs and so I went into Hardware and double-clicked the Network Device to put the device into my office VLAN by setting the tag.
-&lt;img src=&#34;http://localhost:1313/230121-PVEnet.png#center&#34; alt=&#34;Networking&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;At this point, I was able to start the VM.  GNS3 started up in the correct VLAN and grabbed a DHCP address.  Opening a console, the boot screen of the VM shows the IP address assigned.  Accessing this address from a browser will provide the GNS3 web console.  You can also use this address in the GNS3 front-end to identify the back-end server.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I&amp;rsquo;ve been using the web version more this time and continue to be impressed by it and by the progression that the GNS3 team is making on it.  I was able to add appliances using either interface - I actually find the web client to be a little easier in that regard.  Early testing is great, although I can always go back and commit more cores or more memory if needed.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Basic Packer</title>
       <link>http://localhost:1313/221019_packer/</link>
       <pubDate>Wed, 19 Oct 2022 17:26:07 -0400</pubDate>
@@ -1327,21 +1303,6 @@ The first step is to go onto the VMWare ESXi server and create a new VLAN on the
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/210110_Filezilla.png#floatright&#34; alt=&#34;Filezilla to VMWare&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To speed up the action, I wanted to grab the VMDKs directly from the server using SFTP.  To set this up, login to the administrative interface of ESXi and look under &amp;ldquo;Host&amp;rdquo;.  Choose &amp;ldquo;Actions&amp;rdquo; and &amp;ldquo;Enable SSH&amp;rdquo;. SFTP is a part of SSH, so this also enables SFTP.  This isn&amp;rsquo;t the best way to grab the backup, since it will take a little work to stand these up again, but it is faster.&lt;/p&gt;
 &lt;p&gt;To make this super easy, I used Filezilla.  Under the site manager, I selected SFTP, entered the IP address, and username.  When connecting, you&amp;rsquo;ll need to accept the host key and navigate to /vmfs/volumes/YOUR_VOLUME_NAME/ and each of the VMs will have a directory.  You can also easily upload images this way - ISOs can be saved to to VMWare easily this way.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>VMWare 3D Acceleration</title>
-      <link>http://localhost:1313/200728_vmware_3d_acceleration/</link>
-      <pubDate>Tue, 28 Jul 2020 15:44:02 -0400</pubDate>
-      
-      <guid>http://localhost:1313/200728_vmware_3d_acceleration/</guid>
-      <description>&lt;p&gt;I tried to load Chrome OS in VMWare Workstation the other day and got the message &amp;ldquo;No 3D Support is available&amp;rdquo;.  Apparently this is required for Chrome OS to boot.  I&amp;rsquo;ve gotten the message on other VMs, but never needed to worry about it.&lt;/p&gt;
-&lt;p&gt;I assumed this was an issue with Chrome OS at first and tried several versions including &amp;ldquo;CloudReady&amp;rdquo;.  I was using the build put together by FydeOS and had a chance to talk with him on Telegram about the issue.  He recommended I look through a question on AskUbuntu.&lt;/p&gt;
-&lt;p&gt;I edited &lt;strong&gt;.vmware/preferences&lt;/strong&gt; and added the following line.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mks.gl.allowBlacklistedDrivers = &amp;quot;TRUE&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Chrome OS booted without a problem!  I had VMs on ESXi that I was accessing via Workstation, and this also resolved the issue for them.  If you are interested in running a ChromeOS VM, I suggest checking out FydeOS.  My testing has been smooth and they have a Telegram channel that is super helpful.&lt;/p&gt;
 </description>
     </item>
     

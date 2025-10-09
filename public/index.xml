@@ -5,10 +5,107 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Oct 2025 21:24:58 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 08 Oct 2025 10:00:18 -0500</lastBuildDate>
     
         <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Running GNS3 on Proxmox VE</title>
+      <link>http://localhost:1313/gns3_proxmox/</link>
+      <pubDate>Wed, 08 Oct 2025 10:00:18 -0500</pubDate>
+      
+      <guid>http://localhost:1313/gns3_proxmox/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m running GNS3 on Proxmox.  &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt; is fairly straight forward, but there are some tweaks needed to support Proxmox.&lt;/p&gt;
+&lt;h2 id=&#34;disk-format&#34;&gt;Disk Format&lt;/h2&gt;
+&lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-run-gns3-vm-on-proxmox-ve&#34;&gt;How to run GNS3 VM on Proxmox VE&lt;/h2&gt;
+&lt;p&gt;Nothing stands still, so before we get into instructions I&amp;rsquo;ll date this article.  This was originally written in January, 2023, and updated in October, 2025.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The first step is to &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;download&lt;/a&gt; the VMware ESXi GNS3 VM.&lt;/li&gt;
+&lt;li&gt;The downloaded file is a ZIP, which expands out to an OVA.  OVA is really just another ZIP, so expanding that out gives you two VMDK virtual disks, a manifest(MF) file and an OVF file.  The OVF provides information about the virtual hardware environment and the manifest has the hashes of all the files in the OVA.  We&amp;rsquo;re only interested in the two VMDK files (GNS3_VM-disk1.vmdk and GNS3_VM-disk2.vmdk).  You can expand these out using most file managers of via the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    tar xvf GNS3_VM.ova
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Upload the VMDK files to Proxmox.  In the &lt;em&gt;root&lt;/em&gt; home directory, I created an &lt;em&gt;import&lt;/em&gt; subdirectory for the files.  This is very easy to do with Filezilla or from the command line.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    # sftp brent@server
+    sftp&amp;gt; cd import
+    sftp&amp;gt; put GNS3_VM-disk1.vmdk
+    sftp&amp;gt; put GNS3_VM-disk2.vmdk
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new Qemu VM in Proxmox by clicking the &amp;ldquo;Create VM&amp;rdquo; button in the upper right of the management page. &lt;img src=&#34;http://localhost:1313/230121-createvm.png&#34; alt=&#34;Create VM&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can accept the defaults on the General tab.  Under OS, steup the VM without any media.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnomedia.png#center&#34; alt=&#34;No Media&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accept defaults on the System tab and Disks tab.  I set my VM to use 4 processors (2 sockets, 2 cores each) and set the default memory to 16GB.  I didn&amp;rsquo;t see a lot of guidance on this, so that was a SWAG.  Note the ID (105 in my case).
+&lt;img src=&#34;http://localhost:1313/230121-GNS3VM.png#center&#34; alt=&#34;GNS3 VM&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After the VM is created, select the VM, go to the Hardware section, and select the disk.  Click Detach and then Remove from the menu bar.
+&lt;img src=&#34;http://localhost:1313/230121-PVErmove.png#center&#34; alt=&#34;Remove disk&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Import the VMDK disks into Proxmox.  SSH into the host and use the &lt;strong&gt;qm&lt;/strong&gt; command to convert the disk to QCOW2 format and import it for use.  Change the machine ID (105 is my GNS3 VM) and make sure the VMDK file name matches before running the command below.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    root@pve:~/import# qm importdisk 105 GNS3_VM-disk1.vmdk local-lvm -format qcow2
+    importing disk &amp;#39;GNS3_VM-disk1.vmdk&amp;#39; to VM 105 ...
+    Logical volume &amp;#34;vm-105-disk-0&amp;#34; created.
+    transferred 0.0 B of 19.5 GiB (0.00%)
+    transferred 200.0 MiB of 19.5 GiB (1.00%)
+    transferred 400.0 MiB of 19.5 GiB (2.00%)
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Attach the QCOW2 images to your VM using the Add button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Proxmox admin page, select the VM, select options, and set the boot order.  Double-click the boot Order line and a window will appear to allow you to drag the disk into the correct order.  Disk1, the smaller of the two images, should be enabled and the boot drive.
+&lt;img src=&#34;http://localhost:1313/230121-PVEboot.png#center&#34; alt=&#34;Boot order&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can also use another tweak: Go into Hardware and double-clicked the Network Device to put the device into a VLAN by setting the tag.
+&lt;img src=&#34;http://localhost:1313/230121-PVEnet.png#center&#34; alt=&#34;Networking&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start the VM.  GNS3 started up in the correct VLAN and grabbed a DHCP address.  Opening a console, the boot screen of the VM shows the IP address assigned.  Accessing this address from a browser will provide the GNS3 web console.  You can also use this address in the GNS3 front-end to identify the back-end server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Shell Setup</title>
+      <link>http://localhost:1313/shell/</link>
+      <pubDate>Tue, 07 Oct 2025 10:43:06 -0400</pubDate>
+      
+      <guid>http://localhost:1313/shell/</guid>
+      <description>&lt;p&gt;A shell is a tool used to execute commands in an operating systems.  We most commonly think about shells as graphical (GUI) or command-line (text user interface or &amp;ldquo;TUI&amp;rdquo;), although I suppose you could imagine a spoken interface or mixed reality interface.  In the context of &amp;ldquo;Linux&amp;rdquo;, it&amp;rsquo;s used mostly to refer to the specific TUI environment in use.  Most Linux distributions ship with the Bourne shell (&amp;ldquo;sh&amp;rdquo;) and BASH (Bourne again Shell).  Here I&amp;rsquo;m describing my preferred setup for that environment.&lt;/p&gt;
+&lt;h2 id=&#34;fish&#34;&gt;Fish&lt;/h2&gt;
+&lt;p&gt;I prefer &lt;a href=&#34;https://fishshell.com/&#34;&gt;fish&lt;/a&gt; (friendly interactive shell), which does a better job of suggesting syntax.  The commands below show installation in a Debian distrobution.  &lt;strong&gt;chsh&lt;/strong&gt; is &amp;ldquo;change shell&amp;rdquo; and &lt;strong&gt;which&lt;/strong&gt; provides the full path to the executable.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo apt install fish
+chsh -s $(which fish)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;starship&#34;&gt;Starship&lt;/h2&gt;
+&lt;p&gt;I also enjoy a snazzier presentation of the command line, similar to the Powerline style.  For that I use &lt;a href=&#34;https://starship.rs/&#34;&gt;Starship&lt;/a&gt;.  Starship uses a font that has symbols built in to give a more graphical presentation, so you&amp;rsquo;ll need to download a &lt;a href=&#34;https://www.nerdfonts.com/font-downloads&#34;&gt;nerd font&lt;/a&gt;.  I&amp;rsquo;m currently using Overpass.&lt;/p&gt;
+&lt;p&gt;Install Starship:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl -sS &lt;a href=&#34;https://starship.rs/install.sh&#34;&gt;https://starship.rs/install.sh&lt;/a&gt; | sh
+and add a line to ~/.bashrc to start it with bash.  Why bother, since we switched to fish above?  Mostly a mental hangup, but there are times you get dropped back to a bash shell and I like it to be pretty.
+eval &amp;ldquo;$(starship init bash)&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Setup Starship for Fish by adding a line to ~/.config/fish/config.fish&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;starship init fish | source&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Finally, the default Starship scheme is pretty pedestrian.  It can be customized to your hearts content, but a good set of examples are available and easily selectable.  I use the catppuccin-powerline preset.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;starship preset catppuccin-powerline -o ~/.config/starship.toml&lt;/p&gt;&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Proxmox</title>
@@ -16,10 +113,11 @@
       <pubDate>Mon, 06 Oct 2025 21:24:58 -0400</pubDate>
       
       <guid>http://localhost:1313/proxmox/</guid>
-      <description>&lt;p&gt;Proxmox Virtual Edition (VE) is a hypervisor that supports LXC containers and full virtual machines.  It&amp;rsquo;s comparable to VMWare ESXi.  The comparison fits across the board.  There&amp;rsquo;s a Proxmox DataCenter Manager that&amp;rsquo;s similar to VMWare Cloud Director (VCD), and it supports a similar set of features such as high availability failover.&lt;/p&gt;
-&lt;p&gt;The current version is 9, but my experience has been poor when attempting to upgrade.  As a result I recommend v8 for the time being.  I also recommend running Proxmox Backup - the closest VMWare comparable might be Zerto.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve been using PVE for a couple years and I&amp;rsquo;ve been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
-&lt;p&gt;Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven&amp;rsquo;t proven to be reliable in their approach to licensing, so it makes sense to explore alternatives.  Proxmox  VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).&lt;/p&gt;
+      <description>&lt;h2 id=&#34;proxmox-virtual-edition-pve&#34;&gt;Proxmox Virtual Edition (PVE)&lt;/h2&gt;
+&lt;p&gt;PVE is a hypervisor that supports LXC containers and full virtual machines.  It&amp;rsquo;s comparable to VMWare ESXi.  The comparison fits across the board.  There&amp;rsquo;s a Proxmox DataCenter Manager that&amp;rsquo;s similar to VMWare Cloud Director (VCD), and it supports a similar set of features such as high availability failover.&lt;/p&gt;
+&lt;p&gt;The current version is 9 (as of 10/25), but my experience has been poor when attempting to upgrade.  As a result I recommend v8 for the time being.  I also recommend running Proxmox Backup - the closest VMWare comparable might be Zerto.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been using PVE for a several years and I&amp;rsquo;ve been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  Second, I support virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
+&lt;p&gt;Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven&amp;rsquo;t proven to be transparent in their approach to licensing, plus the server hardware I was using died, so it made sense to explore alternatives.  Proxmox VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).&lt;/p&gt;
 &lt;h2 id=&#34;proxmox-backup-server&#34;&gt;Proxmox Backup Server&lt;/h2&gt;
 &lt;p&gt;PBS has saved my bacon several times.  It&amp;rsquo;s a &amp;ldquo;must&amp;rdquo; when running PVE because it&amp;rsquo;s an easy way to backup VMs.&lt;/p&gt;
 &lt;p&gt;Follow a 3-2-1 strategy for backups - at least 3 copies, at least two media types, at least one offline.  The original data is the first copy and PBS is the second &lt;em&gt;as long as the PBS VM sits on a seperate server&lt;/em&gt;.  I recommend Backblaze as a third offsite copy.&lt;/p&gt;
@@ -78,6 +176,7 @@
 &lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
 &lt;h3 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h3&gt;
 &lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
@@ -112,7 +211,7 @@
 &lt;/ol&gt;
 &lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
 &lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
-&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but this made sense.  At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
+&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but it&amp;rsquo;s consistent and mades sense.&lt;/p&gt;
 </description>
     </item>
     
@@ -2087,76 +2186,6 @@ Ava can also generate images based on text.  Select a block of text, open the co
 &lt;p&gt;I started writing because I enjoy sharing what I&amp;rsquo;ve learned and because I enjoy writing and wanted to develop the skill by making it more of a discipline.  Writing helps to organize thoughts and get them out of your head.  The idea that I can pursue IT ideas that fascinate me and share those findings with others has been great, and along the way I&amp;rsquo;ve discovered that I refer back to my own writing fairly often to remember how to do &lt;em&gt;that thing&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;As I&amp;rsquo;ve grown and my circumstances have evolved, I&amp;rsquo;ve had less time to pursue IT ideas but more time to think on other topics.  I tried to include some of that here, for instance in the book reviews, but in the end felt that it was best persued in a seperate forum.  So, if you have enjoyed my book notes or are interested in my thoughts on deconstructionism, I invite you to check out the new site.  I moved the book reviews over to that site, but there&amp;rsquo;s not much else there so far so you may want to check back in a few weeks.&lt;/p&gt;
 &lt;p&gt;This site will continue, probably at about the same pace, and I hope that it will continue to occassionally offer something of use to you.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Running GNS3 on Proxmox VE</title>
-      <link>http://localhost:1313/230121_gns3_proxmox/</link>
-      <pubDate>Sat, 21 Jan 2023 10:00:18 -0500</pubDate>
-      
-      <guid>http://localhost:1313/230121_gns3_proxmox/</guid>
-      <description>&lt;p&gt;I used to run &lt;a href=&#34;http://localhost:1313/posts/210421_gns3_attached_to_esxi/&#34;&gt;GNS3 on ESXi&lt;/a&gt;, by my really-old Cisco UCS server is not supported by current versions of VMWare and I wanted to move to a FOSS solution anyway so I&amp;rsquo;ve been using &lt;a href=&#34;http://localhost:1313/posts/220219_proxmox/&#34;&gt;Proxmox VE&lt;/a&gt; for about a year.  I have a generally positive impression of Proxmox - in fact, one of the most positive things I can say is that it&amp;rsquo;s been pretty much a drop-in replacement.&lt;/p&gt;
-&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;
-&lt;p&gt;Proxmox virtualization is Qemu-based and the &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;GNS3 VM&lt;/a&gt; is distributed for VirtualBox, VMWare Workstation, VMWare ESXi, and Hyper-V.  I&amp;rsquo;ve worked around that by running GNS3 in VMWare Workstation, but I&amp;rsquo;ve run into some issues with Workstation causing my machine to &amp;ldquo;freeze&amp;rdquo; so I got interested in moving the GNS3 VM to my virtualization host.  A little poking around found that other people have been successful with this and provided some ideas.&lt;/p&gt;
-&lt;h2 id=&#34;how-to-run-gns3-vm-on-proxmox-ve&#34;&gt;How to run GNS3 VM on Proxmox VE&lt;/h2&gt;
-&lt;p&gt;Nothing stands still, so before we get into instructions I&amp;rsquo;ll date this article.  It&amp;rsquo;s January, 2023, and I used this process to get the VMWare ESXi GNS3 VM 2.2.36 to run on Proxmox VE 7.3-4 using Linux pve kernel 5.13-19-15.  I think Proxmox is now shipping 5.15, but I ran into a boot issue on my server and haven&amp;rsquo;t upgraded the kernel since I fixed it.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The first step is to &lt;a href=&#34;https://gns3.com/software/download-vm&#34;&gt;download&lt;/a&gt; the VMware ESXi GNS3 VM.&lt;/li&gt;
-&lt;li&gt;The downloaded file is a ZIP, which expands out to an OVA.  OVA is really just another ZIP, so expanding that out gives you two VMDK virtual disks, a manifest(MF) file and an OVF file.  The OVF provides information about the virtual hardware environment and the manifest has the hashes of all the files in the OVA.  We&amp;rsquo;re only interested in the two VMDK files (GNS3_VM-disk1.vmdk and GNS3_VM-disk2.vmdk).  You can expand these out using most file managers of via the command line.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    tar -zzvf GNS3_VM.ova
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;Upload the VMDK files to Proxmox.  In the &lt;em&gt;root&lt;/em&gt; home directory, I created an &lt;em&gt;import&lt;/em&gt; subdirectory for the files.  This is very easy to do with Filezilla or from the command line.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    # sftp brent@server
-    sftp&amp;gt; cd import
-    sftp&amp;gt; put GNS3_VM-disk1.vmdk
-    sftp&amp;gt; put GNS3_VM-disk2.vmdk
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Create a new Qemu VM in Proxmox by clicking the &amp;ldquo;Create VM&amp;rdquo; button in the upper right of the management page. &lt;img src=&#34;http://localhost:1313/230121-createvm.png&#34; alt=&#34;Create VM&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You can accept the defaults on the General tab.  Under OS, steup the VM without any media.
-&lt;img src=&#34;http://localhost:1313/230121-PVEnomedia.png#center&#34; alt=&#34;No Media&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Accept defaults on the System tab and Disks tab.  I set my VM to use 4 processors (2 sockets, 2 cores each) and set the default memory to 16GB.  I didn&amp;rsquo;t see a lot of guidance on this, so that was a SWAG.  Note the ID (105 in my case).
-&lt;img src=&#34;http://localhost:1313/230121-GNS3VM.png#center&#34; alt=&#34;GNS3 VM&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;After the VM is created, select the VM, go to the Hardware section, and select the disk.  Click Detach and then Remove from the menu bar.
-&lt;img src=&#34;http://localhost:1313/230121-PVErmove.png#center&#34; alt=&#34;Remove disk&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Import the VMDK disks into Proxmox.  SSH into the host and use the &lt;strong&gt;qm&lt;/strong&gt; command to convert the disk to QCOW2 format and import it for use.  Change the machine ID (105 is my GNS3 VM) and make sure the VMDK file name matches before running the command below.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    root@pve:~/import# qm importdisk 105 GNS3_VM-disk1.vmdk local-lvm -format qcow2
-    importing disk &amp;#39;GNS3_VM-disk1.vmdk&amp;#39; to VM 105 ...
-    Logical volume &amp;#34;vm-105-disk-0&amp;#34; created.
-    transferred 0.0 B of 19.5 GiB (0.00%)
-    transferred 200.0 MiB of 19.5 GiB (1.00%)
-    transferred 400.0 MiB of 19.5 GiB (2.00%)
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;9&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Attach the QCOW2 images to your VM using the Add button.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Go to the Proxmox admin page, select the VM, select options, and set the boot order.  Double-click the boot Order line and a window will appear to allow you to drag the disk into the correct order.  Disk1, the smaller of the two images, should be enabled and the boot drive.
-&lt;img src=&#34;http://localhost:1313/230121-PVEboot.png#center&#34; alt=&#34;Boot order&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;One other tweak that I used: I run multiple VLANs and so I went into Hardware and double-clicked the Network Device to put the device into my office VLAN by setting the tag.
-&lt;img src=&#34;http://localhost:1313/230121-PVEnet.png#center&#34; alt=&#34;Networking&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;At this point, I was able to start the VM.  GNS3 started up in the correct VLAN and grabbed a DHCP address.  Opening a console, the boot screen of the VM shows the IP address assigned.  Accessing this address from a browser will provide the GNS3 web console.  You can also use this address in the GNS3 front-end to identify the back-end server.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I&amp;rsquo;ve been using the web version more this time and continue to be impressed by it and by the progression that the GNS3 team is making on it.  I was able to add appliances using either interface - I actually find the web client to be a little easier in that regard.  Early testing is great, although I can always go back and commit more cores or more memory if needed.&lt;/p&gt;
 </description>
     </item>
     

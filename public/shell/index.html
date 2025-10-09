@@ -7,7 +7,7 @@
       gtag('js', new Date());
       gtag('config', 'UA-173443199-1');
       </script>
-    <title>Nextpertise 221226_Pop&#43;Nix - a personal journal of interesting ideas</title>
+    <title>Nextpertise Shell Setup - a personal journal of interesting ideas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://Nextpertise.net/style.css">
@@ -76,11 +76,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nextpertise is a journal of interesting ideas: ">
-    <meta name="keywords" content="," />
+    <meta name="description" content="Nextpertise is a journal of interesting ideas: A shell is a tool used to execute commands in an operating systems.  We most commonly think about shells as graphical (GUI) or command-line (text user interface or &ldquo;TUI&rdquo;), although I suppose you could imagine a spoken interface or mixed reality interface.  In the context of &ldquo;Linux&rdquo;, it&rsquo;s used mostly to refer to the specific TUI environment in use.  Most Linux distributions ship with the Bourne shell (&ldquo;sh&rdquo;) and BASH (Bourne again Shell).  Here I&rsquo;m describing my preferred setup for that environment.">
+    <meta name="keywords" content="shell, linux," />
     <meta name="twitter:card" content="">
-    <meta property="og:title" content="221226_Pop&#43;Nix" >
-    <meta property="og:url" content="http://localhost:1313/221226_pop&#43;nix/" >
+    <meta property="og:title" content="Shell Setup" >
+    <meta property="og:url" content="http://localhost:1313/shell/" >
     <meta property="og:description" content="" >
     <meta property="og:image" content="https://nextpertise.net/non-technical.png" >
     <link rel="apple-touch-icon" href="https://nextpertise.net/non-technical.png" >
@@ -113,10 +113,29 @@
 </div>
 
     
-
-<h1>221226_Pop&#43;Nix</h1> 
-  <h6><div style="text-align: right"><i>by Brent Stewart  on Monday, Dec 26, 2022</i><br></div></h6>
-  <p></p>
+<img src="/shell.png#floatright" height="140">
+<h1>Shell Setup</h1> 
+  <h6><div style="text-align: right"><i>by Brent Stewart  on Tuesday, Oct 7, 2025</i><br></div></h6>
+  <p><p>A shell is a tool used to execute commands in an operating systems.  We most commonly think about shells as graphical (GUI) or command-line (text user interface or &ldquo;TUI&rdquo;), although I suppose you could imagine a spoken interface or mixed reality interface.  In the context of &ldquo;Linux&rdquo;, it&rsquo;s used mostly to refer to the specific TUI environment in use.  Most Linux distributions ship with the Bourne shell (&ldquo;sh&rdquo;) and BASH (Bourne again Shell).  Here I&rsquo;m describing my preferred setup for that environment.</p>
+<h2 id="fish">Fish</h2>
+<p>I prefer <a href="https://fishshell.com/">fish</a> (friendly interactive shell), which does a better job of suggesting syntax.  The commands below show installation in a Debian distrobution.  <strong>chsh</strong> is &ldquo;change shell&rdquo; and <strong>which</strong> provides the full path to the executable.</p>
+<blockquote>
+<p>sudo apt install fish
+chsh -s $(which fish)</p></blockquote>
+<h2 id="starship">Starship</h2>
+<p>I also enjoy a snazzier presentation of the command line, similar to the Powerline style.  For that I use <a href="https://starship.rs/">Starship</a>.  Starship uses a font that has symbols built in to give a more graphical presentation, so you&rsquo;ll need to download a <a href="https://www.nerdfonts.com/font-downloads">nerd font</a>.  I&rsquo;m currently using Overpass.</p>
+<p>Install Starship:</p>
+<blockquote>
+<p>curl -sS <a href="https://starship.rs/install.sh">https://starship.rs/install.sh</a> | sh
+and add a line to ~/.bashrc to start it with bash.  Why bother, since we switched to fish above?  Mostly a mental hangup, but there are times you get dropped back to a bash shell and I like it to be pretty.
+eval &ldquo;$(starship init bash)&rdquo;</p></blockquote>
+<p>Setup Starship for Fish by adding a line to ~/.config/fish/config.fish</p>
+<blockquote>
+<p>starship init fish | source</p></blockquote>
+<p>Finally, the default Starship scheme is pretty pedestrian.  It can be customized to your hearts content, but a good set of examples are available and easily selectable.  I use the catppuccin-powerline preset.</p>
+<blockquote>
+<p>starship preset catppuccin-powerline -o ~/.config/starship.toml</p></blockquote>
+</p>
   <br>
   <hr>
   <h6>
@@ -127,11 +146,38 @@
     Recent articles related to these tags:
     
       
-        <a href="/tags//"> 
+        <a href="/tags/shell/">shell 
+       
+        <a href="/tags/linux/">linux 
        
     
     <ul style="list-style: none;">
       
+      <li class="relatedPost">
+        <a href="/proxmox/">Proxmox<br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/linux_distros/">Distro run-down<br />
+        Everything I think about Linux Distros
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240324_ean/">Turning off Evolution Alarm Notify<br />
+        
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/240226_newuser/">Adding a user to Ubuntu<br />
+        How to add a user from BASH
+      </li>
+    
+      <li class="relatedPost">
+        <a href="/231025_bizcard/">Biz card<br />
+        Creating a curl-able business card
+      </li>
+    
   </ul>
 <br>
 
@@ -139,7 +185,7 @@
     
 Share this article:&NonBreakingSpace;
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-  <script type="IN/Share" data-url="/221226_pop&#43;nix/"></script>&NonBreakingSpace;
+  <script type="IN/Share" data-url="/shell/"></script>&NonBreakingSpace;
 </h6>
   <script
     async
@@ -150,7 +196,7 @@ Share this article:&NonBreakingSpace;
     crossorigin="anonymous"></script>
   
     <div class="nav" style="position:fixed; color: white; background-color:lightgray; bottom:0px; text-align:center; width:100%">
-     <nav class ="sidebar-nav"><a href="/">221226_Pop&#43;Nix</nav>
+     <nav class ="sidebar-nav"><a href="/">Shell Setup</nav>
 </div>
   </body>
   </html>
