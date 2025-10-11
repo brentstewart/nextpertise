@@ -7,13 +7,14 @@ date: "2025-10-07T10:43:06-04:00"
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: ""
+picture: "shell"
 Focus_Keyword: ""
 youtube: ""
 github: ""
 refs: [""]
 tags:
-  - ""
+  - "shell"
+  - "linux"
 ---
 A shell is a tool used to execute commands in an operating systems.  We most commonly think about shells as graphical (GUI) or command-line (text user interface or "TUI"), although I suppose you could imagine a spoken interface or mixed reality interface.  In the context of "Linux", it's used mostly to refer to the specific TUI environment in use.  Most Linux distributions ship with the Bourne shell ("sh") and BASH (Bourne again Shell).  Here I'm describing my preferred setup for that environment.
 

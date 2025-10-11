@@ -1,6 +1,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
+html {
+  color-scheme: light dark;
+}
+
+main {
+  max-width: min(70ch,100%-4rem);
+  margin-inline: auto;
+}
 .nav {
     background-color: blue;
     color: blue;
@@ -10,7 +18,7 @@
   font-family: Raleway,Arial, Helvetica, sans-serif;
   margin: 10px;
   font-size: 24px;
-  background-color: green;
+  background-color: blue;
   padding: 05px;
   list-style-type: none;
 }
@@ -40,6 +48,7 @@ body {
   font-weight: light;
   padding: 0px;
   margin: 50px;
+  line-height: 1.5;
 }
 
 note {
@@ -176,14 +185,14 @@ img[src$='#floatsmallright']
 
 @media screen and (min-width: 600px) {
   #parent {display: grid; grid-template-columns: 33% 33% 33%; width: max-content; 100%;grid-template-rows: auto; bottom-border:20px;}
-  body { font-size: 20px;}
-  note { font-size: 15px;}
-  .tags { font-size: 20px;}
-  .sidebar-nav-item { font-size: 20px;}
-  h1 { font-size: 28px;}
-  h2 { font-size: 24px;}
-  h3 {font-size: 20px;}
-  h6 {font-size: 19px;}
+  body { font-size: 1.25 rem}
+  note { font-size: 1 rem;}
+  .tags { font-size: 1.25 rem;}
+  .sidebar-nav-item { font-size: 1.25 rem;}
+  h1 { font-size: 1.6 rem;}
+  h2 { font-size: 1.5 rem;}
+  h3 {font-size: 1 rem;}
+  h6 {font-size: 1 rem;}
 }
 @media screen and (min-width: 1200px) {
   #parent {display: grid; grid-template-columns: 25% 25% 25% 25%; width: max-content;box-sizing: 100%;grid-template-rows: auto; bottom-border:20px;}

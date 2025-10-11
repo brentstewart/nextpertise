@@ -5,10 +5,191 @@
     <description>Recent content in Linux on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Mar 2024 16:35:20 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 07 Oct 2025 10:43:06 -0400</lastBuildDate>
     
         <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shell Setup</title>
+      <link>http://localhost:1313/shell/</link>
+      <pubDate>Tue, 07 Oct 2025 10:43:06 -0400</pubDate>
+      
+      <guid>http://localhost:1313/shell/</guid>
+      <description>&lt;p&gt;A shell is a tool used to execute commands in an operating systems.  We most commonly think about shells as graphical (GUI) or command-line (text user interface or &amp;ldquo;TUI&amp;rdquo;), although I suppose you could imagine a spoken interface or mixed reality interface.  In the context of &amp;ldquo;Linux&amp;rdquo;, it&amp;rsquo;s used mostly to refer to the specific TUI environment in use.  Most Linux distributions ship with the Bourne shell (&amp;ldquo;sh&amp;rdquo;) and BASH (Bourne again Shell).  Here I&amp;rsquo;m describing my preferred setup for that environment.&lt;/p&gt;
+&lt;h2 id=&#34;fish&#34;&gt;Fish&lt;/h2&gt;
+&lt;p&gt;I prefer &lt;a href=&#34;https://fishshell.com/&#34;&gt;fish&lt;/a&gt; (friendly interactive shell), which does a better job of suggesting syntax.  The commands below show installation in a Debian distrobution.  &lt;strong&gt;chsh&lt;/strong&gt; is &amp;ldquo;change shell&amp;rdquo; and &lt;strong&gt;which&lt;/strong&gt; provides the full path to the executable.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo apt install fish
+chsh -s $(which fish)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;starship&#34;&gt;Starship&lt;/h2&gt;
+&lt;p&gt;I also enjoy a snazzier presentation of the command line, similar to the Powerline style.  For that I use &lt;a href=&#34;https://starship.rs/&#34;&gt;Starship&lt;/a&gt;.  Starship uses a font that has symbols built in to give a more graphical presentation, so you&amp;rsquo;ll need to download a &lt;a href=&#34;https://www.nerdfonts.com/font-downloads&#34;&gt;nerd font&lt;/a&gt;.  I&amp;rsquo;m currently using Overpass.&lt;/p&gt;
+&lt;p&gt;Install Starship:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl -sS &lt;a href=&#34;https://starship.rs/install.sh&#34;&gt;https://starship.rs/install.sh&lt;/a&gt; | sh
+and add a line to ~/.bashrc to start it with bash.  Why bother, since we switched to fish above?  Mostly a mental hangup, but there are times you get dropped back to a bash shell and I like it to be pretty.
+eval &amp;ldquo;$(starship init bash)&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Setup Starship for Fish by adding a line to ~/.config/fish/config.fish&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;starship init fish | source&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Finally, the default Starship scheme is pretty pedestrian.  It can be customized to your hearts content, but a good set of examples are available and easily selectable.  I use the catppuccin-powerline preset.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;starship preset catppuccin-powerline -o ~/.config/starship.toml&lt;/p&gt;&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Proxmox</title>
+      <link>http://localhost:1313/proxmox/</link>
+      <pubDate>Mon, 06 Oct 2025 21:24:58 -0400</pubDate>
+      
+      <guid>http://localhost:1313/proxmox/</guid>
+      <description>&lt;h2 id=&#34;proxmox-virtual-edition-pve&#34;&gt;Proxmox Virtual Edition (PVE)&lt;/h2&gt;
+&lt;p&gt;PVE is a hypervisor that supports LXC containers and full virtual machines.  It&amp;rsquo;s comparable to VMWare ESXi.  The comparison fits across the board.  There&amp;rsquo;s a Proxmox DataCenter Manager that&amp;rsquo;s similar to VMWare Cloud Director (VCD), and it supports a similar set of features such as high availability failover.&lt;/p&gt;
+&lt;p&gt;The current version is 9 (as of 10/25), but my experience has been poor when attempting to upgrade.  As a result I recommend v8 for the time being.  I also recommend running Proxmox Backup - the closest VMWare comparable might be Zerto.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been using PVE for a several years and I&amp;rsquo;ve been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  Second, I support virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
+&lt;p&gt;Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven&amp;rsquo;t proven to be transparent in their approach to licensing, plus the server hardware I was using died, so it made sense to explore alternatives.  Proxmox VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).&lt;/p&gt;
+&lt;h2 id=&#34;proxmox-backup-server&#34;&gt;Proxmox Backup Server&lt;/h2&gt;
+&lt;p&gt;PBS has saved my bacon several times.  It&amp;rsquo;s a &amp;ldquo;must&amp;rdquo; when running PVE because it&amp;rsquo;s an easy way to backup VMs.&lt;/p&gt;
+&lt;p&gt;Follow a 3-2-1 strategy for backups - at least 3 copies, at least two media types, at least one offline.  The original data is the first copy and PBS is the second &lt;em&gt;as long as the PBS VM sits on a seperate server&lt;/em&gt;.  I recommend Backblaze as a third offsite copy.&lt;/p&gt;
+&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
+&lt;h3 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h3&gt;
+&lt;p&gt;Setting up PBS is about as difficult as setting up PVE.  If you did the one, the other will not be a problem.  The documentation is good, but takes some time to read so here&amp;rsquo;s a quick walkthrough of the actions you&amp;rsquo;ll need to take.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download and install PBS on a new machine.  I&amp;rsquo;m using an old NUC with a 5TB drive.  &lt;a href=&#34;https://www.proxmox.com/en/downloads&#34;&gt;Download&lt;/a&gt; the image and throw it on &lt;a href=&#34;http://localhost:1313/posts/210911_distrohoppingwventoy/&#34;&gt;Ventoy&lt;/a&gt;!  This is an easy and obvious setup, so I won&amp;rsquo;t walk you through clicking &amp;ldquo;next&amp;rdquo;.
+&lt;div class=&#34;admonition danger&#34;&gt;
+    &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
+    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on the PVE it&amp;rsquo;s backing up!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron.&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;When the process is complete, you can administer PBS from https://BACKUPSERVER:8007.  Login as root and the password you chose during setup.&lt;/li&gt;
+&lt;li&gt;Setup a Datastore on PBS.  &amp;ldquo;Add Datastore&amp;rdquo; is found under Datastore on the Proxmox menu.  This will make a local path available for backup use.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_pbsdatastore.png#center&#34; alt=&#34;PBS Datastore Setup&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Setup Pruning to keep the latest backups.  This setup mostly comes down to the crossing point of your budget, paranoia, and available space.  You can specify the number of backups to keep over various timeframes, such as days, weeks, months, and years.  I backup weekly and want to keep a couple backups, but I also keep monthlys as well in case I realize later that I need a restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get the &amp;ldquo;fingerprint&amp;rdquo; using the big &amp;ldquo;show Fingerprint&amp;rdquo; button on the dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_pbssetup.png#floatright&#34; alt=&#34;PBS setup in PVE&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Back in the PVE environment, go to the server view and select DataCenter &amp;gt; Storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click Add and choose Proxmox Backup Server from the drop-down menu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Give the backup server an ID and enter in it&amp;rsquo;s IP address.  Use &lt;em&gt;root@pam&lt;/em&gt; as the username, the password you set on PBS and then supply the datastore setup in Step 3 above.  Here&amp;rsquo;s where you&amp;rsquo;ll need to paste in the fingerprint from PBS.  This is also the place where you can fiddle with retention and encryption if needed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_automated_pbs.png#floatsmallleft&#34; alt=&#34;PBS Job setup&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The simple way to backup a VM at this point is just to select a VM and choose &amp;ldquo;Backup&amp;rdquo;.  No one remembers to do backups though, so the key is to have them happen automatically.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Still under Datacenter, choose backup and &lt;strong&gt;Add&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To backup all VMs from all PVE instances weekly, use the following settings:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Node &lt;strong&gt;&amp;ndash;All &amp;ndash;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Storage &lt;strong&gt;pbs&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Schedule &lt;strong&gt;sun 01:00&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Selection: &lt;strong&gt;Include selected VMs&lt;/strong&gt; or &lt;strong&gt;All&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email: &lt;strong&gt;Always&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
+&lt;h3 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h3&gt;
+&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
+&lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
+&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but it&amp;rsquo;s consistent and mades sense.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Distro run-down</title>
+      <link>http://localhost:1313/linux_distros/</link>
+      <pubDate>Wed, 01 Oct 2025 20:01:46 -0400</pubDate>
+      
+      <guid>http://localhost:1313/linux_distros/</guid>
+      <description>&lt;h1 id=&#34;distro-run-down&#34;&gt;Distro run-down&lt;/h1&gt;
+&lt;p&gt;This article summarizes my experiences and organizes my thoughts around Linux as of late 2025.  There are a &lt;em&gt;lot&lt;/em&gt; of Linux distributions and I haven&amp;rsquo;t tried to survey the field completely.  In the past I&amp;rsquo;ve tried a wider sample, but for the most part I&amp;rsquo;m currently interested in either Debian-based or immutable ,modern distributions that support tiling.  It&amp;rsquo;s also important that the distribution support my hardware (such as my multi-monitor setup and printer) and standard software.&lt;/p&gt;
+&lt;h2 id=&#34;ubuntu-or-mint&#34;&gt;Ubuntu or Mint&lt;/h2&gt;
+&lt;p&gt;Both Ubuntu and Mint are Debian-based, which is the environment I&amp;rsquo;m most familiar with.  They&amp;rsquo;re both pretty standard, reliable, and support all my hardware.  They are boring in a good way and thus the yardstick to compare anything else against.&lt;/p&gt;
+&lt;p&gt;Why not run one of these choices all the time?  Mint uses Cinnamon as it&amp;rsquo;s desktop, and Cinnamon doesn&amp;rsquo;t (yet) run on Wayland and only supports the crudest tiling.  Wayland is the modern display environment and I want to make sure that I&amp;rsquo;m spending time learning the current technologies.  Tiling works really well with my workflow.  There are Ubuntu versions that support Gnome or KDE, both of which use Wayland and have tiling plugins.  My experience with those plugins is that they&amp;rsquo;re not bad.&lt;/p&gt;
+&lt;p&gt;These are not immutable distributions, so they tend to accumulate cruft from past decisions and show age over time.  Both have become more opinionated about packaging and security, which creates situations where I have to work around the peculiarities of the environment (for instance, to load Python libraries).  The software I use is supported in native (DEB) packaging and works well.&lt;/p&gt;
+&lt;h2 id=&#34;pop-os&#34;&gt;Pop-OS!&lt;/h2&gt;
+&lt;p&gt;(Pop-OS!)[https://system76.com/pop/?srsltid=AfmBOoqbM-J1jVk7iEygYlQ5k4bHjmR0hJbYIQK43a5l4zblIEVkEH1c] 24.04 LTS utilizes an actively developed rust-based Wayland desktop called COSMIC.  COSMIC has a &lt;em&gt;lot&lt;/em&gt; of potential and recently moved from a seventh alpha to Beta.  I think the COSMIC version of tiling is the most developed and most thought out approach and works really well with my workstyle.  Pop is debian-based and supports the software and hardware I use well.&lt;/p&gt;
+&lt;p&gt;COSMIC is still a work-in-progress.  The Cosmic store install Enpass via Flatpak by default, and that version doesn&amp;rsquo;t tie in to Firefox well.  If you&amp;rsquo;re using Enpass with Cosmic, install the app version from &lt;a href=&#34;https://enpass.io&#34;&gt;the website&lt;/a&gt;.  I use back-to-back desks and switch between them - it seems to only support one keyboard and mouse at a time.  The Cosmic Beta also has some rough spots and I had to reboot once where the desktop wouldn&amp;rsquo;t accept focus.  That seems to be rare and I&amp;rsquo;m hoping that the splinters are sanded down quickly.  Where Ubuntu tends to freeze a system with each release, Pop-OS has some rolling sensibilities that keep it aggressively updated in between official releases.&lt;/p&gt;
+&lt;h2 id=&#34;bluefin-and-aurora&#34;&gt;Bluefin and Aurora&lt;/h2&gt;
+&lt;p&gt;(Bluefin)[https://projectbluefin.io/] and (Aurora)[https://getaurora.dev/en] are immutable distros.  This flavor of immutability comes from booting an OCI image with only /home writable.  Software is installed in the user environment using Homebrew or Flatpak, and the operating system is upgraded semi-monolithically (changed bits are downloaded and overlaid on the existing image, but it&amp;rsquo;s functionally an all-in image replacement).&lt;/p&gt;
+&lt;p&gt;I love the concept!  For purposes of functionality, the KDE (Aurora) and Gnome (Bluefin) versions are fungible.  I found the system to be rock-solid and I came to see the software installation process as practical.  For the most part, these images allow the user to focus on the work and not on the system.  They both check off boxes as modern, Wayland-based, and support tiling (as much as KDE and Gnome do).  I appreciate the isolation and organization provided by a reliance on Flatpak and an assumption of contianer usage.  If I was going to build a machine for Mom, I&amp;rsquo;d want it to be Chrome-OS like in terms of support and these images are the closest to that experience.&lt;/p&gt;
+&lt;p&gt;That said, the cost is that it&amp;rsquo;s difficult to get a customer Brother printer driver installed.  Python is supported via devcontainer, which I found a little bespoke but functional.  There&amp;rsquo;s also a push to support AI in a very specific way - via Ramallama and podman desktop.  In both cases, these approaches worked but felt forced.  One of my primary goals is to use my home environment to learn things to apply at work.  Devcontainer wasn&amp;rsquo;t a big bump, but it was a special case that I don&amp;rsquo;t expect to use professionally.  In the case of AI, I bought a fancy graphics card specifically to play around with self-hosted models and most of the work there is being done in Ollama.  I spent a lot of time trying to understand how others used Ollama and translate that into the Bluefin approach.
+I ended up taking one more stab at immutable in the form of &lt;a href=&#34;https://projectbluefin.io/&#34;&gt;Bluefin&lt;/a&gt;.  Bluefin is an opinionated  &amp;ldquo;spin&amp;rdquo; of Silverblue, still using Gnome.  It&amp;rsquo;s aimed more at the cloud-native developer crowd, but the operation of Bluefin is very much like Silverblue.&lt;/p&gt;
+&lt;p&gt;Enpass as a Flatpak doesn&amp;rsquo;t seem to integrate with the Firefox plug-in.  While giving Bluefin a shot, I tried installing Enpass within ostree.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /etc/yum.repos.d/
+sudo wget https://yum.enpass.io/enpass-yum.repo
+sudo rpm-ostree  install enpass
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That worked and fixed the Enpass problem!&lt;/p&gt;
+&lt;h2 id=&#34;nix&#34;&gt;Nix&lt;/h2&gt;
+&lt;p&gt;Nix offers a different vision of immutable computing.  &lt;a href=&#34;https://nixos.org/&#34;&gt;Nix&lt;/a&gt; has a great vision - you can specify the state of your computer  in one file, and basically compile that file into a finished computer.  This allows you to setup the OS and the installed applications.  I think there&amp;rsquo;s a lot of good ideas there, especially in terms of cloud computing and CI/CD delivery.&lt;/p&gt;
+&lt;p&gt;That said, a serious dive into Nix-os reveals some real gaps in the current implementation.  The core &amp;ldquo;nix&amp;rdquo; language has been extended through flakes.  Don&amp;rsquo;t know what a flake is?  Good luck finding documentation.  If you have a programming background, you may make more headway on Nix.  I&amp;rsquo;ve found it to be slow going.&lt;/p&gt;
+&lt;p&gt;Without using flakes, there&amp;rsquo;s not a good way to specify pulling in things like fonts from shared folders, dot (settings) files, and managing flatpaks.  I really buy into the vision of a fully specified environment, but Nix seems to be an incomplete implementation at this stage.&lt;/p&gt;
+&lt;p&gt;Ultimately, I came to see Nix-OS as almost but not fully baked.  There are also periodic stories about personality issues within the community that leave me wondering if I can rely on the Nix eco-system.  As a side-note - I also seriously looked at &lt;a href=&#34;https://snowflakeos.org/&#34;&gt;Snowflake&lt;/a&gt;, which attempts to address some of the rough edges in Nix.  It&amp;rsquo;s still Alpha today, but has promise.  I&amp;rsquo;ll keep an eye on it.&lt;/p&gt;
+&lt;h2 id=&#34;omarchy&#34;&gt;Omarchy&lt;/h2&gt;
+&lt;p&gt;Just to get this out of the way . . . btw, I use Arch.  &lt;a href=&#34;https://omarchy.org/&#34;&gt;Omarchy&lt;/a&gt; is a very personallized distribution of Arch using Hyprland and built along the ideas of David Heinemeier Hansson (dhh).  Hyprland is a Wayland-based update of i3 - a keyboard-oriented tiling user interface.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m concerned that Arch is going to be a big learning cul-de-sac, but I&amp;rsquo;ve been able to do a tremendous amount without having to dig into Arch-specific issues.  Software installation is setup to &amp;ldquo;just work&amp;rdquo; via the Omarchy menu system and has been golden.  Most of the system configuration is done in dot files using NeoVim.  Text files don&amp;rsquo;t bother me.  I&amp;rsquo;m a &amp;ldquo;nano&amp;rdquo; guy, but I&amp;rsquo;ve been doing okay enough with NeoVim that I haven&amp;rsquo;t tried to change it.&lt;/p&gt;
+&lt;p&gt;Omarchy defaults to Chrome, but I was able to install Firefox and switch it to be the default browser.  Other software works great - even Enpass which is becoming my litmus test.  Printing just worked.  Navigation requires a little commitment to learning the most-common keyboard commands, but they&amp;rsquo;re starting to commit to muscle memory (in fact, I&amp;rsquo;ve updated Pop to use the core set for consistency).&lt;/p&gt;
+&lt;p&gt;Omarchy delivers on the concept of a workstation that&amp;rsquo;s built for work.  The jury is out about Hyprland - mostly because I&amp;rsquo;m trying to give Cosmic some space to develop.  I&amp;rsquo;ve warmed a little more to the interface everytime I use it and don&amp;rsquo;t have any specific tricks that I&amp;rsquo;ve needed to develop to adapt the system.&lt;/p&gt;
+&lt;h2 id=&#34;non-linux-honorable-mentions&#34;&gt;Non-Linux Honorable Mentions&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.haiku-os.org/&#34;&gt;Haiku&lt;/a&gt; isn&amp;rsquo;t a Linux operating system at all, but an open-source descendant of BeOS.  It&amp;rsquo;s a single-user systems and software support is hit and miss, however there&amp;rsquo;s a dev version of Firefox (IceWeasel) available now.  More and more software is available via the web (self-hosted or in the cloud), so that gives a lot of room for Haiku to be used.  File sharing and network printeres aren&amp;rsquo;t things that I&amp;rsquo;ve figured out, and it doesn&amp;rsquo;t check some other boxes (tiling, wayland) and is hard to run on bare metal.  It&amp;rsquo;s a beautiful system worth keeping an eye on.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.redox-os.org/&#34;&gt;Redox&lt;/a&gt; comes from a set of developers that overlap with Pop-OS!  Where COSMIC rustifies the desktop, Redox is an attempt to create a ground-up operating system using Rust.  In fact, COSMIC is used as the DE on top of the base OS.  It&amp;rsquo;s an amazing vision with lots of promise, but the current system isn&amp;rsquo;t ready for daily driving.  Web support is meh and there&amp;rsquo;s not a lot of Redox software available.  Is this a successor to Linux or BSD?  There&amp;rsquo;s good bones, but not a lot of flesh to judge from at this point.&lt;/p&gt;
+&lt;h2 id=&#34;ventoy&#34;&gt;Ventoy&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ventoy.net/static/img/screen/screen_bios2.png#floatsmallleft&#34; alt=&#34;Ventoy Menu&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Ventoy is an open source project that allows you to copy your ISOs onto a single drive and presents a menu that let&amp;rsquo;s you choose which to boot.  Ventoy can even be used to boot a virtual disk and there&amp;rsquo;s a network version that prompts after PXE-boot.  Ventoy is easy to setup on USB.  Download from the site and there is an included executable called &lt;strong&gt;Ventoy2Disk&lt;/strong&gt; that will setup your drive.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Turning off Evolution Alarm Notify</title>
@@ -54,177 +235,6 @@
 &lt;p&gt;The last step to to instatiate a home directory.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo mkhomedir_helper bstewart
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Distro Hopping</title>
-      <link>http://localhost:1313/240217_distro_hopping/</link>
-      <pubDate>Sat, 17 Feb 2024 18:08:32 -0500</pubDate>
-      
-      <guid>http://localhost:1313/240217_distro_hopping/</guid>
-      <description>&lt;p&gt;This article is the last thing I&amp;rsquo;m doing on this installation of Silverblue.&lt;/p&gt;
-&lt;h2 id=&#34;what-happened-to-pop-os&#34;&gt;What happened to Pop! OS&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve written in the past about my tendencies to distro-hop.  There&amp;rsquo;s always been a greener grass kind of feel to checking out new  Linux distributions.  However, I found &amp;ldquo;home&amp;rdquo; with Pop! OS about three years ago and stopped hopping.  Pop! is a distribution that really hits a lot of sweet spots with me.  It&amp;rsquo;s Debian based - moving to an RPM distribtion isn&amp;rsquo;t the hardest thing, but I&amp;rsquo;ve had better luck for over a decade with Debian distros.  The Pop! desktop is the best compromise of windowing/tiling, allowing me to use either or both paradigms to allocate screen real estate without a lot of futzing.  Finally, Pop! had a great update policy.  I noticed updates, like new kernels, arrived aggressively but that (with the exception of the NVidia driver update) they were reliable.  Unfortunately, I got bit by a dying NVME drive.&lt;/p&gt;
-&lt;p&gt;I had good backups, but I needed to reinstall. Pop! is in the middle of seperating it&amp;rsquo;s desktop environment from Gnome and they&amp;rsquo;ve pretty much halted the development of the Pop! DE while that happens.  I&amp;rsquo;m very excited about the COSMIC environment, but it&amp;rsquo;s not here today and Pop! still uses X.11.  One of the things I&amp;rsquo;m trying to do with my home environment is to learn about what&amp;rsquo;s next, and maintaining X.11 doesn&amp;rsquo;t seem like where I want to spend my time.  So there has opened a gap - I have to reinstall something and Pop! isn&amp;rsquo;t ready.&lt;/p&gt;
-&lt;h2 id=&#34;stop-1---nix&#34;&gt;Stop #1 - Nix&lt;/h2&gt;
-&lt;p&gt;I claimed to have stopped distro hopping, but I have a laptop that I use as a &amp;ldquo;casual&amp;rdquo; computer and I&amp;rsquo;ve tried a number of things with it.  I&amp;rsquo;m really interested in the possibilities of immutable distros and I&amp;rsquo;ve been playing with Nix.  What a great opportunity!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://nixos.org/&#34;&gt;Nix&lt;/a&gt; has a great vision - you can specify the state of your computer  in one file, and basically compile that file into a finished computer.  This allows you to setup the OS and the installed applications.  I think there&amp;rsquo;s a lot of good ideas there, espeically in terms of cloud computing and CI/CD delivery.&lt;/p&gt;
-&lt;p&gt;That said, a serious dive into Nix-os reveals some real gaps in the current implementation.  The core &amp;ldquo;nix&amp;rdquo; language has been extended through flakes.  Don&amp;rsquo;t know what a flake is?  Good luck finding documentation.  If you have a programming background, you may make more headway on Nix.  I&amp;rsquo;ve found it to be slow going.&lt;/p&gt;
-&lt;p&gt;Without using flakes, there&amp;rsquo;s not a good way to specify pulling in things like fonts from shared folders, dot (settings) files, and managing flatpaks.  I really buy into the vision of a fully specified environment, but Nix seems to be an incomplete implementation at this stage.&lt;/p&gt;
-&lt;p&gt;Ultimately, I came to see Nix-OS as almost but not fully baked.  I&amp;rsquo;m going to continue to run it on my &amp;ldquo;casual laptop&amp;rdquo;, but the desktop needs to be in a more stable and predictable environment.&lt;/p&gt;
-&lt;p&gt;As a side-note - I also seriously looked at &lt;a href=&#34;https://snowflakeos.org/&#34;&gt;Snowflake&lt;/a&gt;, which attempts to address some of the rough edges in Nix.  It&amp;rsquo;s still Alpha as of February &amp;lsquo;24, but has promise.  I&amp;rsquo;ll keep an eye on it.&lt;/p&gt;
-&lt;h2 id=&#34;vanilla&#34;&gt;Vanilla&lt;/h2&gt;
-&lt;p&gt;I experimented with &lt;a href=&#34;https://vanillaos.org/download&#34;&gt;Vanilla&lt;/a&gt;.  I didn&amp;rsquo;t spend as much time here.  What I saw looked fine.  It uses ABRoot for the immutable part.&lt;/p&gt;
-&lt;p&gt;The project is in the middle of a re-imagining.  The Orchid release will be build in a different way and use differnt tools.  That&amp;rsquo;s great and I&amp;rsquo;m looking forward to where they end up, but I don&amp;rsquo;t want to put a lot of energy into learning a system that will change completely later this year.&lt;/p&gt;
-&lt;h2 id=&#34;redhat-silverblue&#34;&gt;RedHat Silverblue&lt;/h2&gt;
-&lt;p&gt;I wasn&amp;rsquo;t as crazy about &lt;a href=&#34;https://fedoraproject.org/atomic-desktops/silverblue/&#34;&gt;Fedora Silverblue&lt;/a&gt;.  It&amp;rsquo;s atomic through the use of OSTree.  OSTree requires a reboot when the config is changed.  I went all-in on Flatpaks to address this and that seemed to close the worst of the gap.&lt;/p&gt;
-&lt;p&gt;One conclusion I made is that it is possible to run about 90% of the software I need strictly using Flatpak.  I was also able to create a script to setup my environment, pulling in the flatpaks I wanted and adding to the OStree image.&lt;/p&gt;
-&lt;p&gt;Silverblue ended up being the closest to usable of the immutable environments for me.  It is stable, and I learned a few tricks with BTRFS in the scope of setting it up.  It recognized hardware and performed really well.&lt;/p&gt;
-&lt;p&gt;I learned about &lt;a href=&#34;https://github.com/89luca89/distrobox&#34;&gt;Distrobox&lt;/a&gt; on Silverblue.  Distrobox is a wrapper around a container system (it uses either podman or docker).  It allows you to install any Linux distribution in a container on another Linux box.  You can install things in the container and the application is tightly integrated with the host environment.  The normal container isolation is removed, allowing those applications to function like host applications.  I used a GUI called BoxBuddy to make setting this up easier.  Boxbuddy/Distrobox made setting up my Python environment a snap.  I used it to setup an Ubuntu environment, but could just as easily have setup Arch.&lt;/p&gt;
-&lt;p&gt;But I&amp;rsquo;m not staying.&lt;/p&gt;
-&lt;p&gt;Silverblue plays havoc with my password vault or Calibre.  The vault flatpak doesn&amp;rsquo;t display a GUI and the integration with the browser doesn&amp;rsquo;t work.  I&amp;rsquo;m back to typing in passwords like an animal!  Calibre also never starts up. Yes, I&amp;rsquo;ve thought of trying to reinstall apps at the ostree level, I&amp;rsquo;ve tried &lt;a href=&#34;https://flathub.org/apps/com.github.tchx84.Flatseal&#34;&gt;flatseal&lt;/a&gt; (which allows you to adjust flatpak permissions).  I&amp;rsquo;ve also thought about installing apps through Distrobox.&lt;/p&gt;
-&lt;h2 id=&#34;back-to-the-start&#34;&gt;Back to the Start&lt;/h2&gt;
-&lt;p&gt;In the end I&amp;rsquo;ve decided to retreat from Immutable for the moment for my working desktop.  I can keep playing at the edges and chipping away at it, watching the progress.  I&amp;rsquo;m also really interested in what System76 puts forward with the new version of Pop! (hopefully 24.04).  In the meantime, I&amp;rsquo;ll retreat to Ubuntu and run a modern (Wayland) but not immutable environment and get some work done.&lt;/p&gt;
-&lt;h2 id=&#34;addendum&#34;&gt;Addendum&lt;/h2&gt;
-&lt;p&gt;I ended up taking one more stab at immutable in the form of &lt;a href=&#34;https://projectbluefin.io/&#34;&gt;Bluefin&lt;/a&gt;.  Bluefin is an opinionated  &amp;ldquo;spin&amp;rdquo; of Silverblue, still using Gnome.  It&amp;rsquo;s aimed more at the cloud-native developer crowd, but the operation of Bluefin is very much like Silverblue.&lt;/p&gt;
-&lt;p&gt;I was very happy with Bluefin and think it&amp;rsquo;s a better Silverblue than Silverblue.  That said, I still had some of the same issues.  I had screen freezes that required reboot, and issues running some programs.  While giving Bluefin a shot, I tried installing Enpass within ostree.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /etc/yum.repos.d/
-sudo wget https://yum.enpass.io/enpass-yum.repo
-sudo rpm-ostree  install enpass
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That worked and fixed the Enpass problem!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Restoring from Proxmox Backup Server</title>
-      <link>http://localhost:1313/240206_pbs_restore/</link>
-      <pubDate>Tue, 06 Feb 2024 13:19:46 -0500</pubDate>
-      
-      <guid>http://localhost:1313/240206_pbs_restore/</guid>
-      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.  My previous &lt;a href=&#34;http://localhost:1313/posts/240204_pbs/&#34;&gt;journal&lt;/a&gt; described how to install PBS and how to set it up to backup virtual machines (VMs) from ProxMox Virtual Edition (PVE).&lt;/p&gt;
-&lt;p&gt;I wanted to continue the story to tell you how I used it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_email.png#floatright&#34; alt=&#34;Email Verifying Backup&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;is-it-working&#34;&gt;Is it working?&lt;/h2&gt;
-&lt;p&gt;Before we delve into how to restore a backup, it&amp;rsquo;s worth asking whether there is something there to restore!&lt;/p&gt;
-&lt;p&gt;Proxmox backup asks for an e-mail address during setup.  Assuming you enter a valid e-mail, you should get a note each time the backup job runs.  A screenshot of this email appears to the right.  You can see that it&amp;rsquo;s reporting successfully backing up four VMs (technically two LXD containers and two fully virtualized devices, but that difference isn&amp;rsquo;t the focus of this article).&lt;/p&gt;
-&lt;p&gt;My home server has crown-jewel level data assets.  Things like baby pictures, that would be awful to lose.  It&amp;rsquo;s important to note that the backup is one piece of a larger multi-level strategy to maintain those files.  That strategy includes using ZFS to protect against &amp;ldquo;data rot&amp;rdquo;, having some form of RAID to protect against disk error, backing up, and backing up offsite.&lt;/p&gt;
-&lt;p&gt;When it comes to the backup piece, setting it up is good.  Having some form of monitoring is better (email in this case, although there&amp;rsquo;s also a server screen you could go check out).  However there are a &lt;em&gt;lot&lt;/em&gt; of stories about backups that didn&amp;rsquo;t work when they were needed.&lt;/p&gt;
-&lt;p&gt;You should absolutely review the files that are being backed up to make sure that they include all of the correct files.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s also a rule, call it &lt;em&gt;Brent&amp;rsquo;s Law of DR&lt;/em&gt;, that untested disaster recovery never works.  You should do a test restore periodically.  This might be restoring just a sample file, or restoring an entire VM.  Testing the restore process ensures both that the backup is &lt;em&gt;really&lt;/em&gt; working and that you remember the steps necessary to invoke a restore.&lt;/p&gt;
-&lt;p&gt;Enough pontificating!  On to the good stuff . . .&lt;/p&gt;
-&lt;h2 id=&#34;restore-a-file&#34;&gt;Restore a file&lt;/h2&gt;
-&lt;p&gt;Restores are conducted from the PVE admin screen (http://your-pve-server:8006).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240210_pbs_screen.png&#34; alt=&#34;PBS Restore Admin Screen&#34;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server.  It&amp;rsquo;s the same thing, so for file recovery just pick a server to work through.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Pick the backup that has the file  you&amp;rsquo;d like to restore.  Depending on the backup policy you specified, there will be several copies over a period of time.  If you&amp;rsquo;re restoring because you borked the config last week, for instance, you may need to go back two weeks to find a working copy.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Once you&amp;rsquo;ve found your target, select File Restore.  I know, kind of obvious.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This opens a file viewer that lets you burrow into directories to find your file.  Once selected, choose the Download button to get the file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;restore-a-vm&#34;&gt;Restore a VM&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Under the  Server View Datacenter heading, go to the target server and select the Proxmox Backup Server storage.  Mine is called &lt;em&gt;pbs&lt;/em&gt; in the screenshot.  Because it&amp;rsquo;s attached to the datacenter, that storage shows up under every server and so I&amp;rsquo;m selecting the one under the server that I want to restore to.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Pick the backup you&amp;rsquo;d like to restore.  Again, there will probably be several copies.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Once you&amp;rsquo;ve found your target, select Restore.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;When you restore, you can select the target PVE instance, the storage on that PVE you want to use, and the VM ID.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;You can restore it to the existing server, using the existing VM ID, and overwrite the current copy.  You can also choose to restore it to a different ID so that there&amp;rsquo;s a second copy.  That could be useful if you&amp;rsquo;re trying to clone a setup.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Proxmox Backup Server</title>
-      <link>http://localhost:1313/240204_pbs/</link>
-      <pubDate>Sun, 04 Feb 2024 13:19:46 -0500</pubDate>
-      
-      <guid>http://localhost:1313/240204_pbs/</guid>
-      <description>&lt;p&gt;Proxmox Backup Server (PBS) saved my bacon.&lt;/p&gt;
-&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve been using Proxmox VE (Virtual Edition) for a couple years and I&amp;rsquo;ve been pretty pleased with it (&lt;a href=&#34;http://localhost:1313/posts/230121_gns3_proxmox/&#34;&gt;previous article on using it to run GNS3&lt;/a&gt;).  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making supporting self-hosting easier.  I think containers have made inroads here and many folks prefer them, but - no judgement - I&amp;rsquo;ve always found VMs to be conceptually easier.  Second, I&amp;rsquo;ve supported virtual environments and wanted to use my home network to get hands-on time.&lt;/p&gt;
-&lt;p&gt;Originally, I used a free version of VMWare (6.0 and later 6.5) but VMWare stopped supporting that version and it has never made sense to pay for an ESXi license for a home lab.  Proxmox  VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I&amp;rsquo;ve never had an issue that I couldn&amp;rsquo;t recover from (similar to what you&amp;rsquo;d expect running ESXi).  Recently, however, I had a hard-drive fail in the RAID array.  That server was already pretty long in the tooth, so I built a new one.
-&lt;div class=&#34;admonition note&#34;&gt;
-    &lt;div class=&#34;title&#34;&gt;note&lt;/div&gt;
-    &lt;div class=&#34;content&#34;&gt;Proxmox includes a container technology that is interesting, but different from what someone familiar with docker might intuitively expect.  I&amp;rsquo;ll get into that in a seperate post.  For purposes of this story, I&amp;rsquo;m using &amp;ldquo;vm&amp;rdquo; but as many of my workloads as possible run as LXC containers.&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;
-&lt;h2 id=&#34;so-what-happened-was---&#34;&gt;So what happened was . . .&lt;/h2&gt;
-&lt;p&gt;All good to this point, new server came up running PVE without a hitch.  I joined the servers together in a cluster and migrated VMs.  Most of my VMs, as mentioned, are single purpose appliances (either downloaded or assembled).  One of my VMs has a big disk file and is used to store my personal files.  And that&amp;rsquo;s the one that wouldn&amp;rsquo;t boot.&lt;/p&gt;
-&lt;p&gt;Because it&amp;rsquo;s the biggest disk (by far), I migrated other workloads first.  I also upgraded my home network to 2.5G to support the environment, so I took a little longer to handle this VM.  My guess is that the VM suffered corruption, either running in a limping-RAID1 or during transfer.&lt;/p&gt;
-&lt;h2 id=&#34;but-i-had-already---&#34;&gt;But I had already . . .&lt;/h2&gt;
-&lt;p&gt;I setup PBS about six months ago and it had been backing up my VMs every week.  I did a recovery on a small VM way back, but hadn&amp;rsquo;t really touched it since.  In this case, I was able to restore a copy of the impacted VM from a few days prior and recover all my files.  PBS runs in the background and emails me each week to let me know that it&amp;rsquo;s good.  Recovery of a 2TB disk image did take a couple hours, but it was simple to setup.  If you use PVE, I think you have to use PBS.&lt;/p&gt;
-&lt;h2 id=&#34;pbs-setup&#34;&gt;PBS Setup&lt;/h2&gt;
-&lt;p&gt;Setting up PBS is about as difficult as setting up PVE.  If you did the one, the other will not be a problem.  The documentation is good, but takes some time to read so here&amp;rsquo;s a quick walkthrough of the actions you&amp;rsquo;ll need to take.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Download and install PBS on a new machine.  I&amp;rsquo;m using an old NUC with a 5TB drive.  &lt;a href=&#34;https://www.proxmox.com/en/downloads&#34;&gt;Download&lt;/a&gt; the image and throw it on &lt;a href=&#34;http://localhost:1313/posts/210911_distrohoppingwventoy/&#34;&gt;Ventoy&lt;/a&gt;!  This is an easy and obvious setup, so I won&amp;rsquo;t walk you through clicking &amp;ldquo;next&amp;rdquo;.
-&lt;div class=&#34;admonition danger&#34;&gt;
-    &lt;div class=&#34;title&#34;&gt;Danger!&lt;/div&gt;
-    &lt;div class=&#34;content&#34;&gt;Don&amp;rsquo;t install PBS on PVE!  If your Virtual enviroment fails, you don&amp;rsquo;t want it to take backups with it!  If you don&amp;rsquo;t have a suitable old PC, consider a 1L PC based on the modern Celeron like adding an NVME drive to this &lt;a href=&#34;https://www.amazon.com/gp/product/B0BWZB8971/?th=1&#34;&gt;Kikusenko&lt;/a&gt;.&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;When the process is complete, you can administer PBS from https://BACKUPSERVER:8007.  Login as root and the password you chose during setup.&lt;/li&gt;
-&lt;li&gt;Setup a Datastore on PBS.  &amp;ldquo;Add Datastore&amp;rdquo; is found under Datastore on the Proxmox menu.  This will make a local path available for backup use.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_pbsdatastore.png#center&#34; alt=&#34;PBS Datastore Setup&#34;&gt;&lt;/p&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Setup Pruning to keep the latest backups.  This setup mostly comes down to the crossing point of your budget, paranoia, and available space.  You can specify the number of backups to keep over various timeframes, such as days, weeks, months, and years.  I backup weekly and want to keep a couple backups, but I also keep monthlys as well in case I realize later that I need a restore.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Get the &amp;ldquo;fingerprint&amp;rdquo; using the big &amp;ldquo;show Fingerprint&amp;rdquo; button on the dashboard.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;pve-setup-to-use-pbs&#34;&gt;PVE Setup to use PBS&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_pbssetup.png#floatright&#34; alt=&#34;PBS setup in PVE&#34;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Back in the PVE environment, go to the server view and select DataCenter &amp;gt; Storage.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Click Add and choose Proxmox Backup Server from the drop-down menu.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Give the backup server an ID and enter in it&amp;rsquo;s IP address.  Use &lt;em&gt;root@pam&lt;/em&gt; as the username, the password you set on PBS and then supply the datastore setup in Step 3 above.  Here&amp;rsquo;s where you&amp;rsquo;ll need to paste in the fingerprint from PBS.  This is also the place where you can fiddle with retention and encryption if needed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;setup-backups&#34;&gt;Setup Backups&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/240204_automated_pbs.png#floatsmallleft&#34; alt=&#34;PBS Job setup&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The simple way to backup a VM at this point is just to select a VM and choose &amp;ldquo;Backup&amp;rdquo;.  No one remembers to do backups though, so the key is to have them happen automatically.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Still under Datacenter, choose backup and &lt;strong&gt;Add&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To backup all VMs from all PVE instances weekly, use the following settings:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;Node &lt;strong&gt;&amp;ndash;All &amp;ndash;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Storage &lt;strong&gt;pbs&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Schedule &lt;strong&gt;sun 01:00&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Selection: &lt;strong&gt;Include selected VMs&lt;/strong&gt; or &lt;strong&gt;All&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Send email: &lt;strong&gt;Always&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Send email to:  &lt;em&gt;you@yourdomain.tld&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Mode: &lt;strong&gt;Stop&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
-&lt;p&gt;The process of setting this up isn&amp;rsquo;t too confusing.  I find the Proxmox interface takes a little time to develop an intuitive feel, but this made sense.  At this point, weekly backups should start flowing in.  PBS will deduplicate and make very efficient use of space, so even a 4TB backup drive has been fine for me.&lt;/p&gt;
-&lt;p&gt;Restoring specific files or VMs is a topic for a second article.  Hope this is helpful!&lt;/p&gt;
 </description>
     </item>
     
@@ -2065,31 +2075,6 @@ ftp&amp;gt;
 &lt;p&gt;I liked it and plan to keep using it.&lt;/p&gt;
 &lt;p&gt;Any time I look at a Linux program, I remember that it is being developed and freely offered to the community.  The people behind these projects need to be celebrated and appreciated.  That said, not everything on GitHub is &amp;ldquo;fully baked&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m pleased to report that Czkawka is a well thought out and reasonably fast program that does what I expected - it helps me &amp;ldquo;weed the garden&amp;rdquo; on my file server and remove the detritus.  I&amp;rsquo;m not crazy about the file selection process and I recommend that you bring up a file manager to compare with the Czkawka searches to make sure you understand what it is finding.  &lt;em&gt;Anytime&lt;/em&gt; you are dealing with a mass deletion program you want to be extra careful!  But the results made sense to me.  I didn&amp;rsquo;t delete everything it nominated, but I was able to save a lot of space in the end.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Distro Hopping in Style with Ventoy</title>
-      <link>http://localhost:1313/210911_distrohoppingwventoy/</link>
-      <pubDate>Sat, 11 Sep 2021 09:14:40 -0400</pubDate>
-      
-      <guid>http://localhost:1313/210911_distrohoppingwventoy/</guid>
-      <description>&lt;p&gt;One of the many things I love about Linux is all the competing ideas about how computing should be done and how desktop environments should be organized.  I&amp;rsquo;ve pretty much settled in with Debian-derived systems.  This isn&amp;rsquo;t a religious decision, but I&amp;rsquo;ve found that most of the things that I want to do are easily supported and I&amp;rsquo;ve grown comfortable with the commands and structure.&lt;/p&gt;
-&lt;p&gt;Desktop Environments (DEs) are another matter.  Not only have I &lt;em&gt;not&lt;/em&gt; picked a favorite, I love to switch back and forth and try out the latest.  My current (9/11/21) thoughts are that tiled interfaces work best for the large 4K displays I like to use.  I liked &lt;a href=&#34;https://regolith-linux.org/&#34;&gt;Regolith&lt;/a&gt;, which is an i3 on Ubuntu distro but I&amp;rsquo;m not committed to throwing away my mouse.  I&amp;rsquo;m currently split between &lt;a href=&#34;https://pop.system76.com/&#34;&gt;Pop! OS&lt;/a&gt; (which is a customized Gnome) and &lt;a href=&#34;https://kubuntu.org/&#34;&gt;Kubuntu&lt;/a&gt; with the &lt;a href=&#34;https://github.com/kwin-scripts/kwin-tiling&#34;&gt;Tiling Extension&lt;/a&gt; (KDE on Ubuntu).  On HD screens and smaller, I really like &lt;a href=&#34;https://linuxmint.com/&#34;&gt;Cinnamon&lt;/a&gt; although I&amp;rsquo;m a sucker for the eye-candy in &lt;a href=&#34;https://ubuntudde.com/&#34;&gt;Deepin&lt;/a&gt;.  I&amp;rsquo;ve even recently started playing with &lt;a href=&#34;https://cutefish-ubuntu.github.io/&#34;&gt;Cutefish&lt;/a&gt; which is a Mac-like DE.&lt;/p&gt;
-&lt;p&gt;All this is &lt;em&gt;besides&lt;/em&gt; my fascination with alternative operating systems like &lt;a href=&#34;https://www.haiku-os.org/&#34;&gt;Haiku&lt;/a&gt;, &lt;a href=&#34;https://reactos.org/&#34;&gt;ReactOS&lt;/a&gt;, and &lt;a href=&#34;https://en.wikipedia.org/wiki/AROS_Research_Operating_System&#34;&gt;AROS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I think my dream would be the Pop!OS Tiling Extension on Cinnamon.  Sigh.&lt;/p&gt;
-&lt;p&gt;To try out all these operating systems, one has to download ISOs and write them to USBs.  That&amp;rsquo;s not awful, but USB drives aren&amp;rsquo;t easy to label or write but they are easy to lose. That&amp;rsquo;s why I was stoked to discover Ventoy.&lt;/p&gt;
-&lt;h2 id=&#34;ventoy&#34;&gt;Ventoy&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.ventoy.net/static/img/screen/screen_bios2.png#floatsmallleft&#34; alt=&#34;Ventoy Menu&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Ventoy is an open source project that allows you to copy your ISOs onto a single drive and presents a menu that let&amp;rsquo;s you choose which to boot.  Ventoy can even be used to boot a virtual disk (vhd or vdi).&lt;/p&gt;
-&lt;p&gt;Ventoy is easy to setup.  Download from the site and there is an included executable called &lt;strong&gt;Ventoy2Disk&lt;/strong&gt; that will setup your drive.  I recently wanted to upgrade ESXi and had trouble getting my aging server to boot from USB.  I put the ESXi image on Ventoy and it came up without a problem.  Then I decided to migrate to ProxMox and that worked too!
-&lt;img src=&#34;https://images-na.ssl-images-amazon.com/images/I/31rtVwnH1GS._SY90_.jpg#floatright&#34; alt=&#34;UGREEN M.2 Enclosure&#34;&gt;
-&lt;img src=&#34;https://images-na.ssl-images-amazon.com/images/I/41sG6BDAbML._SX90_.jpg#floatright&#34; alt=&#34;Silicon Power M.2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I initially put Ventoy on a large flash drive, but decided I wanted something more robust and speedy.  I bought a UGREEN M.2 Drive enclosure and a Silicon Power 128GB M.2 drive to put inside it.  With this setup, I put all the operating systems I use and all the ones I play with onto the drive and can easily boot into a live environment or install.&lt;/p&gt;
-&lt;p&gt;The UGREEN enclosure has a type A connection on one end and a type C on the other.  It&amp;rsquo;s long and a little heavy, so it puts some torque on the connector if you plug it up directly.  I use an extension cable so that the drive can be out of the way and not damage the port.&lt;/p&gt;
-&lt;p&gt;Every once in a while, I get a wild hair and install a different OS on my main computer or more often on a play laptop I keep on my desk.  I can also plug in my Ventoy disk and use it to setup a VM.  I&amp;rsquo;m in this industry because it&amp;rsquo;s fun and this is a way that I stay in touch with the magic, even when real IT work starts to look like a parade of spreadsheets.  Ventoy helps make it quick and easy to play!&lt;/p&gt;
-&lt;p&gt;If you really want to change out your main PC OS, I recommend keeping data off the PC (using &lt;a href=&#34;http://localhost:1313/posts/201017_sshfs_automount/&#34;&gt;ssh&lt;/a&gt; or &lt;a href=&#34;http://localhost:1313/posts/200813_using_ssh3/&#34;&gt;nfs&lt;/a&gt;) and having a setup file to quickly install critical components.&lt;/p&gt;
-&lt;p&gt;Have fun!&lt;/p&gt;
 </description>
     </item>
     
