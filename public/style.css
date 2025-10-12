@@ -31,7 +31,7 @@ main {
   transition: background-color 0.5s;
   transition: color 0.5s;
   color: white;
-  background-color:green;
+  background-color:blue;
 }
 
 .sidebar-nav-item:hover {

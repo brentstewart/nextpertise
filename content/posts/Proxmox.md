@@ -24,6 +24,71 @@ The current version is 9 (as of 10/25), but my experience has been poor when att
 I've been using PVE for a several years and I've been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  Second, I support virtual environments and wanted to use my home network to get hands-on time.
 
 Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven't proven to be transparent in their approach to licensing, plus the server hardware I was using died, so it made sense to explore alternatives.  Proxmox VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I've never had an issue that I couldn't recover from (similar to what you'd expect running ESXi).
+### Helper scripts
+There's a [community](https://community-scripts.github.io/ProxmoxVE/) that creates scripts to build VMs and LXCs to enable easy setup of popular applications.  The scripts cover popular applications including Pi-Hole, Homeassistant, and Homarr.  At last check, there were almost 400 supported applications!
+
+Use caution here because the scripts are presented as easy "pipe to bash" commands that should be run from PVE root.  The scripts can be downloaded and reviewed or just viewed on [Github](https://github.com/community-scripts/ProxmoxVE).  Before running a foreign script on your server, it would be advisable to review the script!
+
+
+## Command line notes
+
+Here are some basic command line notes for working with PVE.
+Version
+```pveversion```
+Node Status
+```pvesh get /nodes/<id>/status```
+
+####  Cluster
+Cluster Status
+```pvecm status|nodes|quorum```
+```corosync-cmapctl```
+Join a cluster
+```pvecm add|delnode <ip|hostname>```
+Change the quorum number
+```pvecm expected <count>```
+
+#### Networking
+Network specifics are configured in /etc/network/interfaces.  Details about the environment can be seen from the command line.
+What the IP?
+```ip a```
+List bridges
+```brctl show```
+List FW rules
+```iptables -L -n```
+
+#### Manage VMs
+Managing VMs from the command line can be a good deal easier than using the gui.  I've found it's convenient to have a default Ubuntu server ready and turned off.  This can then be cloned and configured.
+
+List VMs
+```qm list```
+Interacting with VMs
+```qm start|stop|shutdown|destroy <id>```
+Create a VM
+```qm create <id> --name <name> --memory <size> --net0 <virtio|bridge=vmbrX> --cores <#> --sockets <#> --virtio0 local:<storage>:<size>```
+Clone a VM
+```qm clone <source-id> <new-id> --name <name>```
+Interacting with Snapshots
+```qm snapshot|rollback <id> <snapshot-name>```
+Interacting with Backup
+```vzdump <id> --compress <type> --storage<id>```
+```vzrestore <file> <id>```
+
+#### Storage
+List storage
+```pvesh get/storage```
+List Storage details
+```pvesh get/storage/<id>```
+Create
+```pvesh create /storage --storage <id> --type <type> --content <type> --path <path>```
+Delete
+```pvesh delete /storage/<id>```
+
+#### Lost password
+Proxmox allows the administrator to attach to a VM using lxc-attach.  The session is logged in as root.
+
+```lxc-attach -n <id>```
+
+This is extremely useful - for instance, it could be used to reset a lost administrator password using the __passwd__ command!
 
 ## Proxmox Backup Server
 PBS has saved my bacon several times.  It's a "must" when running PVE because it's an easy way to backup VMs.

@@ -121,35 +121,35 @@
 
 &lt;table class=&#34;table table-responsive table-hover&#34;&gt;
 &lt;caption&gt;Table: SSH options&lt;/caption&gt;
-  &lt;thead class=&#34;table-info&#34;&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Element&lt;/th&gt;
-          &lt;th&gt;Command&lt;/th&gt;
-          &lt;th&gt;Example options&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Cipher&lt;/td&gt;
-          &lt;td&gt;ssh -Q cipher&lt;/td&gt;
-          &lt;td&gt;3des-cbc, aes256-cbc&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;MAC&lt;/td&gt;
-          &lt;td&gt;ssh -Q mac&lt;/td&gt;
-          &lt;td&gt;hmac-md5, hmac-sh2-256&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Key&lt;/td&gt;
-          &lt;td&gt;ssh -Q key&lt;/td&gt;
-          &lt;td&gt;ssh-rsa, ecdsa-sha2-nistp256&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Kex&lt;/td&gt;
-          &lt;td&gt;ssh -Q kex&lt;/td&gt;
-          &lt;td&gt;diffie-hellman-group1-sha1, curve25519-sha256&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+&lt;thead class=&#34;table-info&#34;&gt;
+&lt;tr&gt;
+&lt;th&gt;Element&lt;/th&gt;
+&lt;th&gt;Command&lt;/th&gt;
+&lt;th&gt;Example options&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Cipher&lt;/td&gt;
+&lt;td&gt;ssh -Q cipher&lt;/td&gt;
+&lt;td&gt;3des-cbc, aes256-cbc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MAC&lt;/td&gt;
+&lt;td&gt;ssh -Q mac&lt;/td&gt;
+&lt;td&gt;hmac-md5, hmac-sh2-256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Key&lt;/td&gt;
+&lt;td&gt;ssh -Q key&lt;/td&gt;
+&lt;td&gt;ssh-rsa, ecdsa-sha2-nistp256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Kex&lt;/td&gt;
+&lt;td&gt;ssh -Q kex&lt;/td&gt;
+&lt;td&gt;diffie-hellman-group1-sha1, curve25519-sha256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
 &lt;/table&gt;
 
 &lt;p&gt;Setting up an SSH connection goes through some basic phases:&lt;/p&gt;
@@ -164,20 +164,24 @@
 &lt;blockquote&gt;
 &lt;p&gt;# Logging&lt;br&gt;
 SyslogFacility AUTH&lt;br&gt;
-LogLevel DEBUG3&lt;/p&gt;&lt;/blockquote&gt;
+LogLevel DEBUG3&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This can then be reviewed using &lt;strong&gt;journalctl -u ssh&lt;/strong&gt; to display entries related to the sshd unit.  I noticed that the relevant lines were at DEBUG1 level and that each sequence completed with the &amp;ldquo;password accepted&amp;rdquo; line.  Based on this pattern, I wrote a utility in Python to create a report.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: algorithm: curve25519-sha256 [preauth]&lt;br&gt;
 Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: host key algorithm: ecdsa-sha2-nistp256 [preauth]&lt;br&gt;
 Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: client-&amp;gt;server cipher: &lt;a href=&#34;mailto:chacha20-poly1305@openssh.com&#34;&gt;chacha20-poly1305@openssh.com&lt;/a&gt; MAC: &lt;!-- raw HTML omitted --&gt; compression: none [preauth]&lt;br&gt;
 Dec 28 15:56:44 pop-os sshd[701591]: debug1: kex: server-&amp;gt;client cipher: &lt;a href=&#34;mailto:chacha20-poly1305@openssh.com&#34;&gt;chacha20-poly1305@openssh.com&lt;/a&gt; MAC: &lt;!-- raw HTML omitted --&gt; compression: none [preauth]&lt;br&gt;
-Dec 28 15:56:46 pop-os sshd[701591]: debug1: PAM: password authentication accepted for pop&lt;/p&gt;&lt;/blockquote&gt;
+Dec 28 15:56:46 pop-os sshd[701591]: debug1: PAM: password authentication accepted for pop&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/brentstewart/ssh-crypto&#34;&gt;&lt;strong&gt;ssh-crypto&lt;/strong&gt;&lt;/a&gt; is a Python3 program to read ssh debugging and identify who has logged in and what settings were used.  It expects a file name, which is a text file that contains ssh logging output.  First make sure that sshd is logging at least at DEBUG1.  Restart the SSH service for the new logging setting to take effect.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;sudo service sshd restart&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;sudo service sshd restart&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Keep in mind that the crypto fields won&amp;rsquo;t be populated for logins before the loggin change takes effect.  To create the text file for analysis, export from journalctl.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;journalctl -u ssh &amp;gt; ~/ssh.txt&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;journalctl -u ssh &amp;gt; ~/ssh.txt&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Again, __ssh-crypto assumes that the system has Python3, uses Systemd, has debugging setup.&lt;/p&gt;
 &lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt; pop  pop-os  ~  $  ~/git/ssh-crypto/ssh-crypto.py ~/ssh.txt
@@ -199,7 +203,8 @@ To limit the server to only accept these options, edit /etc/ssh/sshd_config.  He
 &lt;blockquote&gt;
 &lt;p&gt;Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr&lt;br&gt;
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256&lt;br&gt;
-KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256&lt;/p&gt;&lt;/blockquote&gt;
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Using ssh-crypto will allow review of recent client connections and unused ciphers can be weeded out.  After communicating the change to users, specific recalcitrant users can be identified for follow-up with the utility before ultimately removing the old protocols.&lt;/p&gt;
 </description>
     </item>
@@ -230,7 +235,8 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    pop      pts/6    192.168.1.81    15:36   46:35   0.02s  0.02s -bash
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can also derive this information from &lt;strong&gt;ps&lt;/strong&gt;.  This command lists active processes and includes active ssh sessions.  Note that you can pipe to &lt;strong&gt;grep&lt;/strong&gt; to limit it to lines that include &amp;lsquo;pts&amp;rsquo; or &amp;lsquo;ssh&amp;rsquo;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;ps  ax&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;ps  ax&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;last&#34;&gt;Last&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Last&lt;/strong&gt; looks through /var/log/wtmp and shows login activity.  You can specify a username to see when that user logged in and out.  Note that a psuedo-user named &lt;em&gt;reboot&lt;/em&gt; logs in when the system reboots, so &lt;strong&gt;last reboot&lt;/strong&gt; will show a list of all reboots.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;last
@@ -296,7 +302,7 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-grou
       <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
-&lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
+&lt;h2 id=&#34;step-0-we-_are_-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
 &lt;p&gt;The &lt;a href=&#34;https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha&#34;&gt;Windows Terminal&lt;/a&gt; is a nice addition to Windows, but doesn&amp;rsquo;t ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn&amp;rsquo;t do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.&lt;/p&gt;
 &lt;h2 id=&#34;step-1---install-a-font-that-supports-ligatures&#34;&gt;Step 1 - Install a Font that Supports Ligatures&lt;/h2&gt;
 &lt;p&gt;I prefer &lt;a href=&#34;https://www.jetbrains.com/lp/mono/&#34;&gt;JetBrains Mono&lt;/a&gt;, but this is definitely a question of art.  Microsoft&amp;rsquo;s &lt;a href=&#34;https://github.com/microsoft/cascadia-code/releases&#34;&gt;Cascadia&lt;/a&gt; is one option.  Other options, like the excellent Inconsolata can be found at sites like &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;Nerd Fonts&lt;/a&gt; or &lt;a href=&#34;https://www.programmingfonts.org/&#34;&gt;Programming Fonts&lt;/a&gt;.&lt;/p&gt;
@@ -461,7 +467,7 @@ First, as described in &lt;a href=&#34;http://localhost:1313/posts/200812_using_
       <guid>http://localhost:1313/200813_using_ssh3/</guid>
       <description>&lt;p&gt;One of the basic things you want to do on a network is share files.  At one point, everyone had a Windows PC and this involved shared directories and Network Neighborhood.  It had a lot of issues, but it worked.  However, today we have a variety of clients and CIFS isn&amp;rsquo;t an easy (or appropriate) fit for all of them.  This article focuses on home users, but enterprise users face some of the same challenges.  There are a lot of ways you &lt;em&gt;could&lt;/em&gt; do this; I&amp;rsquo;m going to share how I&amp;rsquo;m currently doing it.  My environment includes several versions of Linux, Windows 10, a Mac, Chromebooks, and Android Phones.&lt;/p&gt;
 &lt;p&gt;I should start by saying that I&amp;rsquo;m &lt;em&gt;not&lt;/em&gt; using Microsoft sharing &amp;ndash; what has been variously termed SMB (Server Message Blocks) or CIFS (Common Internet File System).  My experience with SAMBA (SMB on Linux) has been uneven and I&amp;rsquo;ve never wanted to invest the time.  Your mileage may vary, but trying to sort out access and permissions and deal with the impact of software updates was a drag.&lt;/p&gt;
-&lt;h2 id=&#34;sftp-filezilla&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;sftp-filezillafilezillapngfloatright&#34;&gt;SFTP &lt;img src=&#34;http://localhost:1313/Filezilla.png#floatright&#34; alt=&#34;Filezilla&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;SFTP is a Secure File Transfer Protocol built on top of SSH, and the two are usually bundled together since they are complementary.  One of the easiest ways to use SFTP to transfer files on all platforms is to use &lt;em&gt;Filezilla&lt;/em&gt;.  Filezilla presents a left/right here/there file manager that allows easy drag and drop between locations.  It works most places SSH works.  Login using your SSH credentials and set the port to 22.  If you use Filezilla often, the first button on the left is the Site Manager and remembers common destinations.  Filezilla works, but there&amp;rsquo;s no way to open a file in an application from the other disk.  It must be copied locally and this creates multiple file versions and is onerous to use.  So - Filezilla if nothing else works.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/caja.png#floatleft&#34; alt=&#34;Caja&#34;&gt;Linux file managers like &lt;em&gt;Caja&lt;/em&gt; and Finder on the Mac allow you to attach to an arbitrary destination in an ad-hoc fashion (Windows does not).  For Linux and Mac, just use existing SSH credentials.  This method also supports FTP, CIFS, and WebDav.  I don&amp;rsquo;t recommend FTP because it&amp;rsquo;s not secure and it&amp;rsquo;s a very old protocol and can be difficult to handle on firewalls.  WebDav is slow and involves some Apache setup.  It can be secure, but most folks setting up a quick file share won&amp;rsquo;t take the time to make it so.  I recommend SSH/SFTP.  File managers generally allow bookmarking, but don&amp;rsquo;t automatically reconnect.  I&amp;rsquo;ll walk through a technique that builds the connection at startup later in the article.&lt;/p&gt;
 &lt;p&gt;On Android, I&amp;rsquo;m using &lt;em&gt;Cx File Explorer&lt;/em&gt;.  This application allows me to connect to SFTP resources and bookmark them.  Cx integrates with the rest of Android, so I can do things like type an email and use Cx to attach a file from the server.  Cx has the same requirements SSH does - a network path to the server and credentials. For me, a common use is to grab a PDF from the server and transfer them to my Kindle.&lt;/p&gt;

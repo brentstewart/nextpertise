@@ -78,7 +78,8 @@ pkgs.tailscale
 services.tailscale.enable=true;&lt;/p&gt;
 &lt;h1 id=&#34;exit-the-text-editor&#34;&gt;exit the text editor&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;sudo nixos-rebuild switch&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Once tailscale is installed, run &lt;strong&gt;sudo tailscale up&lt;/strong&gt; as before.  This will provide a URL for authentication.  Finally, go into the tailscale dashboard and authorize the new machine (click the ellipsis to the right of the machine and choose authorize).  Nix runs on my travel laptop, so I didn&amp;rsquo;t try to advertise it as an exit node.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/221005_Tailscale.png#floatright&#34; alt=&#34;Dashboard&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;tailscale-dashboard&#34;&gt;Tailscale Dashboard&lt;/h2&gt;

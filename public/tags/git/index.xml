@@ -42,8 +42,7 @@ Hi brentstewart! You&#39;ve successfully authenticated, but GitHub does not prov
 &lt;p&gt;Once the token is setup, push and pull commands should work without forcing your to reauthenticate. A typical workflow of syncing to git might be:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git add .
 git commit -m &amp;quot;Another commit&amp;quot;
-git push
-&lt;/code&gt;&lt;/pre&gt;
+git push&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -55,7 +54,7 @@ git push
       <guid>http://localhost:1313/201130_powerline-windows/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://docs.microsoft.com/en-us/windows/terminal/images/powerline-powershell.png#floatright&#34; alt=&#34;Powerline on Windows&#34;&gt;
 I work in Windows from time to time.  Writing the article on the &lt;a href=&#34;http://localhost:1313/posts/201125_tilix/&#34;&gt;Tilix&lt;/a&gt; Powerline setup made me realize that I wanted a similar spiffy prompt in Windows.  Let&amp;rsquo;s step through how to set that up!&lt;/p&gt;
-&lt;h2 id=&#34;step-0-we-are-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
+&lt;h2 id=&#34;step-0-we-_are_-programmers---windows-terminal&#34;&gt;Step 0 (We &lt;em&gt;are&lt;/em&gt; programmers) - Windows Terminal&lt;/h2&gt;
 &lt;p&gt;The &lt;a href=&#34;https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?WT.mc_id=-blog-scottha&#34;&gt;Windows Terminal&lt;/a&gt; is a nice addition to Windows, but doesn&amp;rsquo;t ship with Windows 10.  It is a terminal in the Linux-sense, and support tabs and customizations.  Alas, it doesn&amp;rsquo;t do tiling, but it supports Command Line, Powershell, WSL, SSH, and Azure Cloud.  The simplest way to get it is from the Windows Store, but you can also use the link above.&lt;/p&gt;
 &lt;h2 id=&#34;step-1---install-a-font-that-supports-ligatures&#34;&gt;Step 1 - Install a Font that Supports Ligatures&lt;/h2&gt;
 &lt;p&gt;I prefer &lt;a href=&#34;https://www.jetbrains.com/lp/mono/&#34;&gt;JetBrains Mono&lt;/a&gt;, but this is definitely a question of art.  Microsoft&amp;rsquo;s &lt;a href=&#34;https://github.com/microsoft/cascadia-code/releases&#34;&gt;Cascadia&lt;/a&gt; is one option.  Other options, like the excellent Inconsolata can be found at sites like &lt;a href=&#34;https://www.nerdfonts.com/&#34;&gt;Nerd Fonts&lt;/a&gt; or &lt;a href=&#34;https://www.programmingfonts.org/&#34;&gt;Programming Fonts&lt;/a&gt;.&lt;/p&gt;
