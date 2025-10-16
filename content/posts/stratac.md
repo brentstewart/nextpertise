@@ -1,5 +1,5 @@
 ---
-title: "Stratac"
+title: "Strategy vs Tactics"
 description: ""
 author: "Brent Stewart"
 date: "2025-10-15T20:30:47-04:00"
