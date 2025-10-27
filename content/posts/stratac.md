@@ -7,13 +7,13 @@ date: "2025-10-15T20:30:47-04:00"
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: "management"
+picture: "Leadership"
 Focus_Keyword: ""
 youtube: ""
 github: ""
-refs: ["leadership"]
+refs: ["Leadership"]
 tags:
-  - ""
+  - "Leadership"
 ---
 
 In my research on John Boyd, I came across a discussion of Strategy and Tactics that is worth revisiting as it applies to IT leadership.
