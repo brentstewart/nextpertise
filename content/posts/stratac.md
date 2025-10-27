@@ -7,7 +7,7 @@ date: "2025-10-15T20:30:47-04:00"
 math: false
 draft: false
 Victor_Hugo: "true"
-picture: "Leadership"
+picture: "leadership"
 Focus_Keyword: ""
 youtube: ""
 github: ""
