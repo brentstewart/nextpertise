@@ -24,10 +24,41 @@ The current version is 9 (as of 10/25), but my experience has been poor when att
 I've been using PVE for a several years and I've been pretty pleased with it.  I run a virtualization server at home for a few reasons.  VMs have been a way to break apps out into seperate environments, making self-hosting easier.  Second, I support virtual environments and wanted to use my home network to get hands-on time.
 
 Originally, I used a free version of VMWare but VMWare was purchased by Broadcom.  They halted the free version for a while and haven't proven to be transparent in their approach to licensing, plus the server hardware I was using died, so it made sense to explore alternatives.  Proxmox VE had a lot of the capabilities, plus the Linux underpinnings were much more obvious (which supported another direction I was heading).  The PVE environment has been mostly good and I've never had an issue that I couldn't recover from (similar to what you'd expect running ESXi).
+
+###  Environment seutp
+
+Post-install
+* Switches server to "no-subscription"
+* removes nag
+* Disables HA
+* prompts for reboots after updates
+* Run "update" or create cron job
+```bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/misc/post-pve-install.sh)"```
+
+kernel clean
+* Keeps current and n-1 kernels
+
+```bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/misc/kernel-clean.sh)"```
+
+BassT23 Updater
+* updates host and all VMs and LXcs
+* Detects OS and supports various package managers (apt, dnf, pacman, apk)
+* Can be configured to take snapshot or backup before updating
+```bash -c "$(curl -s https://raw.githubusercontent.com/BassT23/Proxmox/master/install.sh)```
+
+Host Backup
+* saves config files to speed reinstallation
+```bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/misc/host-backup.sh)"```
+
+CPU Governor
+Allows selection of CPU scaling governor.  In Enterprise settings, moving to "performance" will give more consistent results.  In homelabs, use powersave or schedutil (adjusts dynamically with demand).
+```bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/scaling-governor.sh)"```
+
 ### Helper scripts
 There's a [community](https://community-scripts.github.io/ProxmoxVE/) that creates scripts to build VMs and LXCs to enable easy setup of popular applications.  The scripts cover popular applications including Pi-Hole, Homeassistant, and Homarr.  At last check, there were almost 400 supported applications!
 
 Use caution here because the scripts are presented as easy "pipe to bash" commands that should be run from PVE root.  The scripts can be downloaded and reviewed or just viewed on [Github](https://github.com/community-scripts/ProxmoxVE).  Before running a foreign script on your server, it would be advisable to review the script!
+
 
 
 ## Command line notes
@@ -82,6 +113,9 @@ Create
 ```pvesh create /storage --storage <id> --type <type> --content <type> --path <path>```
 Delete
 ```pvesh delete /storage/<id>```
+Change datastore password - I used this once because I changed the root password for PBS.  That password was used to map a datastore into PVE, where it was no longer accessible.  This allowed the map settings to be updated.
+```root@pve2:~# pvesm set backup --password```
+```Enter Password: *******```
 
 #### Lost password
 Proxmox allows the administrator to attach to a VM using lxc-attach.  The session is logged in as root.
